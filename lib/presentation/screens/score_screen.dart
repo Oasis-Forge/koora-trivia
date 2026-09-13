@@ -1,0 +1,452 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
+
+import '../../core/constants/app_strings.dart';
+import '../../core/theme/app_colors.dart';
+import '../../core/constants/app_config.dart';
+import '../../domain/entities/quiz_result.dart';
+import '../../domain/usecases/build_share_text.dart';
+import '../providers/ads_provider.dart';
+import '../providers/economy_provider.dart';
+import '../providers/progress_provider.dart';
+import '../providers/quiz_provider.dart';
+import '../providers/settings_provider.dart';
+import '../providers/stats_provider.dart';
+import '../widgets/pitch_background.dart';
+import '../widgets/stat_tile.dart';
+import 'levels_screen.dart';
+import 'quiz_screen.dart';
+
+class ScoreScreen extends StatefulWidget {
+  const ScoreScreen({super.key});
+
+  static const String routeName = '/score';
+
+  @override
+  State<ScoreScreen> createState() => _ScoreScreenState();
+}
+
+class _ScoreScreenState extends State<ScoreScreen>
+    with SingleTickerProviderStateMixin {
+  late final QuizResult _result;
+  late final AnimationController _controller;
+  late final Animation<double> _scoreAnimation;
+
+  /// نتيجة المستوى — تبقى فارغة في اللعب السريع وتحدي اليوم.
+  LevelOutcome? _levelOutcome;
+
+  /// هل مُنح قلب مقابل إكمال تحدي اليوم؟
+  bool _earnedHeart = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // نلتقط النتيجة مرة واحدة حتى لا تتأثر بإعادة تشغيل الجولة.
+    _result = context.read<QuizProvider>().buildResult();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    );
+    _scoreAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOutCubic,
+    );
+    _controller.forward();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+
+      // إعلان بيني كل ثلاث جولات — **ولا إعلان بعد تحدي اليوم إطلاقاً**،
+      // فهو الطقس اليومي الذي يجب أن يبقى نظيفاً.
+      final ads = context.read<AdsProvider>();
+      ads.recordRoundFinished();
+      if (!_result.isDaily) await ads.maybeShowInterstitial();
+
+      if (!mounted) return;
+      await context.read<StatsProvider>().recordResult(_result);
+
+      // إكمال تحدي اليوم يمنح قلباً — يربط النمط المجاني بنمط المستويات.
+      if (_result.isDaily && mounted) {
+        final economy = context.read<EconomyProvider>();
+        await economy.grantDailyChallengeHeart();
+        await economy.recordDailyCompleted();
+        if (mounted) setState(() => _earnedHeart = true);
+      }
+
+      if (!mounted || !_result.isLevel) return;
+      final outcome =
+          await context.read<ProgressProvider>().recordLevelResult(_result);
+
+      if (!mounted) return;
+      // المهمة تُحتسب على اجتياز المستوى لا على مجرد لعبه.
+      if (outcome != null && outcome.passed) {
+        context.read<SettingsProvider>().feedback.levelPassed();
+        await context.read<EconomyProvider>().recordLevelCompleted();
+      }
+
+      if (!mounted) return;
+      setState(() => _levelOutcome = outcome);
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Future<void> _share() async {
+    final streak = context.read<StatsProvider>().streak;
+    final box = context.findRenderObject() as RenderBox?;
+
+    // اسم التصنيف بالعربية يأتي من السؤال نفسه لا من الـ slug.
+    final categoryName =
+        _result.answers.isEmpty ? null : _result.answers.first.question.categoryName;
+
+    await Share.share(
+      const BuildShareText()(
+        _result,
+        streak: streak,
+        categoryName: categoryName,
+      ),
+      subject: AppStrings.appName,
+      // مطلوب لعرض ورقة المشاركة بشكل صحيح على الأجهزة اللوحية (iPad).
+      sharePositionOrigin:
+          box == null ? null : box.localToGlobal(Offset.zero) & box.size,
+    );
+  }
+
+  Future<void> _playAgain() async {
+    final quiz = context.read<QuizProvider>();
+
+    // في نمط المستويات نعيد نفس المستوى بدل جولة عشوائية.
+    if (_result.isLevel) {
+      await quiz.startLevel(
+        categorySlug: _result.categorySlug!,
+        level: _result.level!,
+      );
+    } else {
+      await quiz.startQuickPlay();
+    }
+
+    if (!mounted) return;
+    Navigator.of(context).pushReplacementNamed(QuizScreen.routeName);
+  }
+
+  Future<void> _playNextLevel() async {
+    final quiz = context.read<QuizProvider>();
+    await quiz.startLevel(
+      categorySlug: _result.categorySlug!,
+      level: _result.level! + 1,
+    );
+    if (!mounted) return;
+    Navigator.of(context).pushReplacementNamed(QuizScreen.routeName);
+  }
+
+  /// زر "المستوى التالي" يظهر فقط عند اجتياز مستوى ليس الأخير.
+  bool get _showNextLevelButton {
+    final outcome = _levelOutcome;
+    return outcome != null &&
+        outcome.passed &&
+        _result.level! < AppConfig.levelsPerCategory;
+  }
+
+  /// زر الإعادة **يُخفى بعد تحدي اليوم**: التحدي مرّة واحدة يومياً، وبطاقة
+  /// الرئيسية تعطّله بالفعل. إبقاء الزر هنا كان يوحي بإمكان إعادته — بل كان
+  /// يبدأ جولة "لعب سريع" عشوائية بصمت، فيظن اللاعب أنه يعيد التحدي.
+  bool get _showReplayButton => !_result.isDaily;
+
+  void _goHome() {
+    context.read<QuizProvider>().abandon();
+    Navigator.of(context).popUntil((route) => route.isFirst);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final stats = context.watch<StatsProvider>();
+
+    return Scaffold(
+      body: PitchBackground(
+        child: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 28),
+            children: [
+              const SizedBox(height: 10),
+              Center(
+                child: Text(
+                  _result.rankLabel,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 22),
+              _ScoreMedal(animation: _scoreAnimation, result: _result),
+              if (_levelOutcome case final outcome?) ...[
+                const SizedBox(height: 20),
+                LevelStarsBanner(
+                  stars: outcome.stars,
+                  passed: outcome.passed,
+                  unlockedNext: outcome.unlockedNextLevel,
+                ),
+              ],
+              const SizedBox(height: 24),
+              Row(
+                children: [
+                  Expanded(
+                    child: StatTile(
+                      icon: Icons.check_circle_rounded,
+                      value: '${_result.correctCount}/${_result.total}',
+                      label: AppStrings.correctAnswers,
+                      accent: AppColors.correct,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: StatTile(
+                      icon: Icons.percent_rounded,
+                      value: '${_result.accuracyPercent}%',
+                      label: AppStrings.accuracy,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: StatTile(
+                      icon: Icons.whatshot_rounded,
+                      value: '${stats.streak}',
+                      label: AppStrings.streak,
+                    ),
+                  ),
+                ],
+              ),
+              if (_earnedHeart) ...[
+                const SizedBox(height: 14),
+                Container(
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    color: AppColors.wrong.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: AppColors.wrong.withValues(alpha: 0.5),
+                    ),
+                  ),
+                  child: const Row(
+                    children: [
+                      Icon(Icons.favorite_rounded, color: AppColors.wrong),
+                      SizedBox(width: 10),
+                      Text(
+                        AppStrings.heartEarned,
+                        style: TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+              if (_result.isDaily && stats.streak > 0) ...[
+                const SizedBox(height: 14),
+                Container(
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    color: AppColors.gold.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: AppColors.gold.withValues(alpha: 0.5),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.local_fire_department_rounded,
+                        color: AppColors.gold,
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          '${AppStrings.streakKept} ${stats.streak} ${AppStrings.day} متتالية',
+                          style: const TextStyle(fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+              const SizedBox(height: 24),
+              FilledButton.icon(
+                onPressed: _share,
+                icon: const Icon(Icons.share_rounded),
+                label: const Text(AppStrings.shareScore),
+              ),
+              const SizedBox(height: 12),
+              if (_showNextLevelButton) ...[
+                FilledButton.icon(
+                  onPressed: _playNextLevel,
+                  style: FilledButton.styleFrom(
+                    backgroundColor: AppColors.pitchLight,
+                    foregroundColor: AppColors.chalk,
+                  ),
+                  icon: const Icon(Icons.skip_next_rounded),
+                  label: const Text(AppStrings.nextLevel),
+                ),
+                const SizedBox(height: 12),
+              ],
+              if (_showReplayButton) ...[
+                OutlinedButton.icon(
+                  onPressed: _playAgain,
+                  icon: const Icon(Icons.replay_rounded),
+                  label: Text(
+                    _result.isLevel
+                        ? AppStrings.replayLevel
+                        : AppStrings.playAgain,
+                  ),
+                ),
+                const SizedBox(height: 12),
+              ],
+              TextButton.icon(
+                onPressed: _goHome,
+                icon: const Icon(Icons.home_rounded, color: AppColors.chalkMuted),
+                label: const Text(
+                  AppStrings.backHome,
+                  style: TextStyle(color: AppColors.chalkMuted),
+                ),
+              ),
+              const SizedBox(height: 24),
+              const Text(
+                AppStrings.reviewAnswers,
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+              ),
+              const SizedBox(height: 12),
+              for (final answer in _result.answers) _ReviewRow(answer: answer),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ScoreMedal extends StatelessWidget {
+  const _ScoreMedal({required this.animation, required this.result});
+
+  final Animation<double> animation;
+  final QuizResult result;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 200,
+        height: 200,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: AppColors.goldGradient,
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.gold.withValues(alpha: 0.35),
+              blurRadius: 34,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: Center(
+          child: Container(
+            width: 172,
+            height: 172,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColors.pitchDark,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  AppStrings.yourScore,
+                  style: TextStyle(
+                    color: AppColors.chalkMuted,
+                    fontSize: 14,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                AnimatedBuilder(
+                  animation: animation,
+                  builder: (context, _) => Text(
+                    '${(result.score * animation.value).round()}',
+                    style: const TextStyle(
+                      fontSize: 46,
+                      fontWeight: FontWeight.w900,
+                      color: AppColors.gold,
+                      height: 1.1,
+                    ),
+                  ),
+                ),
+                const Text(
+                  'نقطة',
+                  style: TextStyle(color: AppColors.chalkMuted, fontSize: 13),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ReviewRow extends StatelessWidget {
+  const _ReviewRow({required this.answer});
+
+  final AnswerRecord answer;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = answer.isCorrect ? AppColors.correct : AppColors.wrong;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: AppColors.cardSurface,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.cardBorder),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            answer.isCorrect
+                ? Icons.check_circle_rounded
+                : Icons.cancel_rounded,
+            color: color,
+            size: 20,
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  answer.question.text,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                    height: 1.4,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  answer.isCorrect
+                      ? answer.question.correctAnswer
+                      : 'الصحيح: ${answer.question.correctAnswer}',
+                  style: TextStyle(color: color, fontSize: 13),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

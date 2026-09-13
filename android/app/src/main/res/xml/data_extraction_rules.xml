@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  قواعد النسخ الاحتياطي لأندرويد 12 فما فوق.
+
+  cloud-backup: النسخ إلى حساب غوغل للمستخدم.
+  device-transfer: النقل المباشر عند الانتقال إلى جهاز جديد.
+
+  كلاهما يشمل تفضيلات التطبيق لأن التقدّم محلي ولا يوجد حفظ سحابي.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <include domain="sharedpref" path="." />
+    </cloud-backup>
+    <device-transfer>
+        <include domain="sharedpref" path="." />
+    </device-transfer>
+</data-extraction-rules>

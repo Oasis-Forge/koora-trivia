@@ -1,0 +1,591 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+
+import '../../domain/repositories/backup_repository.dart';
+
+import '../../core/constants/app_config.dart';
+import '../../core/constants/app_strings.dart';
+import '../../core/theme/app_colors.dart';
+import '../providers/progress_provider.dart';
+import '../providers/quiz_provider.dart';
+import '../providers/settings_provider.dart';
+import '../providers/stats_provider.dart';
+import '../widgets/pitch_background.dart';
+
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
+
+  static const String routeName = '/settings';
+
+  @override
+  Widget build(BuildContext context) {
+    final stats = context.watch<StatsProvider>();
+    final progress = context.watch<ProgressProvider>();
+    final categoryCount = context.watch<QuizProvider>().categories.length;
+
+    final maxLevels = categoryCount * AppConfig.levelsPerCategory;
+    final maxStars = maxLevels * 3;
+
+    return Scaffold(
+      body: PitchBackground(
+        child: SafeArea(
+          child: Column(
+            children: [
+              _Header(),
+              Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
+                  children: [
+                    const _SectionTitle(AppStrings.yourStats),
+                    _StatsPanel(
+                      rows: [
+                        (
+                          Icons.whatshot_rounded,
+                          AppStrings.streak,
+                          '${stats.streak} ${AppStrings.day}',
+                        ),
+                        (
+                          Icons.emoji_events_rounded,
+                          AppStrings.bestStreak,
+                          '${stats.bestStreak}',
+                        ),
+                        (
+                          Icons.star_rounded,
+                          AppStrings.bestScore,
+                          '${stats.stats.bestScore}',
+                        ),
+                        (
+                          Icons.functions_rounded,
+                          AppStrings.totalScore,
+                          '${stats.stats.totalScore}',
+                        ),
+                        (
+                          Icons.sports_esports_rounded,
+                          AppStrings.gamesPlayed,
+                          '${stats.stats.gamesPlayed}',
+                        ),
+                        (
+                          Icons.grid_view_rounded,
+                          AppStrings.completedLevels,
+                          maxLevels == 0
+                              ? '${progress.totalCompletedLevels}'
+                              : '${progress.totalCompletedLevels} / $maxLevels',
+                        ),
+                        (
+                          Icons.auto_awesome_rounded,
+                          AppStrings.totalStars,
+                          maxStars == 0
+                              ? '${progress.totalStars}'
+                              : '${progress.totalStars} / $maxStars',
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 26),
+                    const _SectionTitle(AppStrings.reminderSection),
+                    const _ReminderPanel(),
+
+                    const SizedBox(height: 26),
+                    const _SectionTitle(AppStrings.effectsSection),
+                    const _EffectsPanel(),
+
+                    const SizedBox(height: 26),
+                    const _SectionTitle(AppStrings.backupSection),
+                    const _BackupPanel(),
+
+                    const SizedBox(height: 26),
+                    const _SectionTitle(AppStrings.dataSection),
+                    _DangerButton(
+                      icon: Icons.restart_alt_rounded,
+                      label: AppStrings.resetStats,
+                      enabled: stats.stats.gamesPlayed > 0,
+                      onConfirmed: () => context.read<StatsProvider>().resetAll(),
+                      body: AppStrings.resetStatsBody,
+                    ),
+                    const SizedBox(height: 10),
+                    _DangerButton(
+                      icon: Icons.lock_reset_rounded,
+                      label: AppStrings.resetProgress,
+                      enabled: progress.hasProgress,
+                      // نذكر الخسارة بالأرقام لأن هذا الإجراء يمحو كل النجوم.
+                      body: '${AppStrings.resetProgressBody}\n\n'
+                          'ستفقد ${progress.totalStars} نجمة و'
+                          '${progress.totalCompletedLevels} مستوى مكتملاً.',
+                      onConfirmed: () =>
+                          context.read<ProgressProvider>().resetAll(),
+                    ),
+
+                    const SizedBox(height: 26),
+                    const _SectionTitle(AppStrings.aboutSection),
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: AppColors.cardSurface,
+                        borderRadius: BorderRadius.circular(18),
+                        border: Border.all(color: AppColors.cardBorder),
+                      ),
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            AppStrings.appName,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(height: 6),
+                          Text(
+                            AppStrings.appVersion,
+                            style: TextStyle(
+                              color: AppColors.chalkMuted,
+                              fontSize: 13,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            AppStrings.bankSummary,
+                            style: TextStyle(
+                              color: AppColors.chalkMuted,
+                              fontSize: 13,
+                              height: 1.6,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Header extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8, 8, 20, 12),
+      child: Row(
+        children: [
+          IconButton(
+            onPressed: () => Navigator.of(context).pop(),
+            icon: const Icon(Icons.arrow_forward_rounded),
+            color: AppColors.chalk,
+          ),
+          const Text(
+            AppStrings.settings,
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SectionTitle extends StatelessWidget {
+  const _SectionTitle(this.text);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10, right: 4),
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w800,
+          color: AppColors.gold,
+        ),
+      ),
+    );
+  }
+}
+
+class _StatsPanel extends StatelessWidget {
+  const _StatsPanel({required this.rows});
+
+  final List<(IconData, String, String)> rows;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.cardSurface,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: AppColors.cardBorder),
+      ),
+      child: Column(
+        children: [
+          for (var i = 0; i < rows.length; i++) ...[
+            if (i > 0) const Divider(height: 1, thickness: 1),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 13,
+              ),
+              child: Row(
+                children: [
+                  Icon(rows[i].$1, size: 19, color: AppColors.gold),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      rows[i].$2,
+                      style: const TextStyle(fontSize: 14.5),
+                    ),
+                  ),
+                  Text(
+                    rows[i].$3,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.chalk,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _ReminderPanel extends StatelessWidget {
+  const _ReminderPanel();
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<SettingsProvider>();
+
+    // اللون على `Material` لا على `Container`، وإلا اختفى أثر اللمس في
+    // عناصر ListTile لأنها ترسمه على أقرب Material أعلاها.
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: AppColors.cardBorder),
+      ),
+      child: Material(
+        color: AppColors.cardSurface,
+        borderRadius: BorderRadius.circular(18),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          children: [
+            SwitchListTile(
+              value: settings.reminderEnabled,
+              onChanged: (value) => _toggle(context, value),
+              activeThumbColor: AppColors.gold,
+              title: const Text(
+                AppStrings.reminderToggle,
+                style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.w700),
+              ),
+              subtitle: const Text(
+                AppStrings.reminderToggleHint,
+                style: TextStyle(
+                  fontSize: 12.5,
+                  color: AppColors.chalkMuted,
+                  height: 1.5,
+                ),
+              ),
+            ),
+            if (settings.reminderEnabled) ...[
+              const Divider(height: 1, thickness: 1),
+              ListTile(
+                onTap: () => _pickTime(context, settings),
+                leading: const Icon(
+                  Icons.schedule_rounded,
+                  size: 20,
+                  color: AppColors.gold,
+                ),
+                title: const Text(
+                  AppStrings.reminderTime,
+                  style: TextStyle(fontSize: 14.5),
+                ),
+                trailing: Text(
+                  settings.reminderLabel,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.gold,
+                  ),
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _toggle(BuildContext context, bool value) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final granted =
+        await context.read<SettingsProvider>().setReminderEnabled(value);
+
+    if (!granted) {
+      messenger
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          const SnackBar(content: Text(AppStrings.reminderDenied)),
+        );
+    }
+  }
+
+  Future<void> _pickTime(
+    BuildContext context,
+    SettingsProvider settings,
+  ) async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(
+        hour: settings.settings.reminderHour,
+        minute: settings.settings.reminderMinute,
+      ),
+    );
+    if (picked == null || !context.mounted) return;
+
+    await context
+        .read<SettingsProvider>()
+        .setReminderTime(hour: picked.hour, minute: picked.minute);
+  }
+}
+
+class _EffectsPanel extends StatelessWidget {
+  const _EffectsPanel();
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<SettingsProvider>();
+
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: AppColors.cardBorder),
+      ),
+      child: Material(
+        color: AppColors.cardSurface,
+        borderRadius: BorderRadius.circular(18),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          children: [
+            SwitchListTile(
+              value: settings.soundEnabled,
+              activeThumbColor: AppColors.gold,
+              onChanged: (v) =>
+                  context.read<SettingsProvider>().setSoundEnabled(v),
+              secondary: const Icon(
+                Icons.volume_up_rounded,
+                color: AppColors.gold,
+                size: 20,
+              ),
+              title: const Text(
+                AppStrings.soundToggle,
+                style: TextStyle(fontSize: 14.5),
+              ),
+            ),
+            const Divider(height: 1, thickness: 1),
+            SwitchListTile(
+              value: settings.hapticsEnabled,
+              activeThumbColor: AppColors.gold,
+              onChanged: (v) =>
+                  context.read<SettingsProvider>().setHapticsEnabled(v),
+              secondary: const Icon(
+                Icons.vibration_rounded,
+                color: AppColors.gold,
+                size: 20,
+              ),
+              title: const Text(
+                AppStrings.hapticsToggle,
+                style: TextStyle(fontSize: 14.5),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// تصدير واستيراد التقدّم — البديل المحلي عن الحفظ السحابي.
+class _BackupPanel extends StatelessWidget {
+  const _BackupPanel();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Padding(
+          padding: EdgeInsets.only(bottom: 12, right: 4, left: 4),
+          child: Text(
+            AppStrings.backupHint,
+            style: TextStyle(
+              fontSize: 12.5,
+              color: AppColors.chalkMuted,
+              height: 1.6,
+            ),
+          ),
+        ),
+        OutlinedButton.icon(
+          onPressed: () => _export(context),
+          icon: const Icon(Icons.copy_rounded),
+          label: const Text(AppStrings.exportBackup),
+        ),
+        const SizedBox(height: 10),
+        OutlinedButton.icon(
+          onPressed: () => _import(context),
+          icon: const Icon(Icons.download_rounded),
+          label: const Text(AppStrings.importBackup),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _export(BuildContext context) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final code = await context.read<BackupRepository>().export();
+
+    await Clipboard.setData(ClipboardData(text: code));
+    messenger
+      ..hideCurrentSnackBar()
+      ..showSnackBar(const SnackBar(content: Text(AppStrings.backupCopied)));
+  }
+
+  Future<void> _import(BuildContext context) async {
+    final controller = TextEditingController();
+    final messenger = ScaffoldMessenger.of(context);
+    final repository = context.read<BackupRepository>();
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        backgroundColor: AppColors.cardSurface,
+        title: const Text(AppStrings.importTitle),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(AppStrings.importBody, style: TextStyle(height: 1.6)),
+            const SizedBox(height: 14),
+            TextField(
+              controller: controller,
+              maxLines: 3,
+              minLines: 2,
+              style: const TextStyle(fontSize: 12),
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                isDense: true,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: const Text(AppStrings.cancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: const Text(
+              AppStrings.importConfirm,
+              style: TextStyle(
+                color: AppColors.wrong,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true) return;
+
+    final ok = await repository.import(controller.text);
+    messenger
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text(
+            ok ? AppStrings.importSuccess : AppStrings.importFailed,
+          ),
+        ),
+      );
+  }
+}
+
+/// زر إجراء مدمّر — لا ينفّذ شيئاً قبل تأكيد صريح في حوار منفصل.
+class _DangerButton extends StatelessWidget {
+  const _DangerButton({
+    required this.icon,
+    required this.label,
+    required this.body,
+    required this.enabled,
+    required this.onConfirmed,
+  });
+
+  final IconData icon;
+  final String label;
+  final String body;
+  final bool enabled;
+  final Future<void> Function() onConfirmed;
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton.icon(
+      onPressed: enabled ? () => _confirm(context) : null,
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppColors.wrong,
+        side: BorderSide(
+          color: enabled
+              ? AppColors.wrong.withValues(alpha: 0.55)
+              : AppColors.cardBorder,
+        ),
+        disabledForegroundColor: AppColors.chalkMuted,
+      ),
+      icon: Icon(icon),
+      label: Text(label),
+    );
+  }
+
+  Future<void> _confirm(BuildContext context) async {
+    final messenger = ScaffoldMessenger.of(context);
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        backgroundColor: AppColors.cardSurface,
+        title: Text(label),
+        content: Text(body, style: const TextStyle(height: 1.6)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: const Text(AppStrings.cancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: const Text(
+              AppStrings.confirmReset,
+              style: TextStyle(
+                color: AppColors.wrong,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true) return;
+
+    await onConfirmed();
+    messenger
+      ..hideCurrentSnackBar()
+      ..showSnackBar(const SnackBar(content: Text(AppStrings.resetDone)));
+  }
+}

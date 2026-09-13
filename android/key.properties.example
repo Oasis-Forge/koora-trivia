@@ -1,0 +1,9 @@
+# قالب توقيع الإصدار — انسخه إلى android/key.properties واملأ القيم.
+# الملف الحقيقي key.properties مُستثنى من Git (يحوي كلمات مرور).
+#
+# storeFile: المسار المطلق لملف .jks الذي أنشأته بأمر keytool.
+#   على ويندوز استخدم شرطة مائلة أمامية: C:/Users/<you>/keys/koora-upload.jks
+storePassword=REPLACE_WITH_YOUR_STORE_PASSWORD
+keyPassword=REPLACE_WITH_YOUR_KEY_PASSWORD
+keyAlias=upload
+storeFile=C:/Users/<you>/keys/koora-upload.jks

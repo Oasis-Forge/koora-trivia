@@ -1,0 +1,67 @@
+{
+  "version": 2,
+  "levelsPerCategory": 10,
+  "questionsPerLevel": 10,
+  "categories": [
+    {
+      "slug": "world_cup",
+      "name": "كأس العالم",
+      "idBlock": 1000,
+      "order": 1
+    },
+    {
+      "slug": "continental_cups",
+      "name": "البطولات القارية",
+      "idBlock": 2000,
+      "order": 2
+    },
+    {
+      "slug": "champions_league",
+      "name": "دوري أبطال أوروبا",
+      "idBlock": 3000,
+      "order": 3
+    },
+    {
+      "slug": "top_leagues",
+      "name": "الدوريات الكبرى",
+      "idBlock": 4000,
+      "order": 4
+    },
+    {
+      "slug": "arab_football",
+      "name": "الكرة العربية",
+      "idBlock": 5000,
+      "order": 5
+    },
+    {
+      "slug": "players",
+      "name": "اللاعبون",
+      "idBlock": 6000,
+      "order": 6
+    },
+    {
+      "slug": "clubs",
+      "name": "الأندية",
+      "idBlock": 7000,
+      "order": 7
+    },
+    {
+      "slug": "coaches",
+      "name": "المدربون",
+      "idBlock": 8000,
+      "order": 8
+    },
+    {
+      "slug": "laws",
+      "name": "القوانين",
+      "idBlock": 9000,
+      "order": 9
+    },
+    {
+      "slug": "moments_records",
+      "name": "لحظات وأرقام قياسية",
+      "idBlock": 10000,
+      "order": 10
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.idea/
+*.iml
+android/.gradle/
+android/.kotlin/
+android/local.properties
+android/app/debug/
+android/app/profile/
+android/app/release/
+android/key.properties
+*.jks
+*.keystore
+.vscode/
+
+# حِزم الإصدار ثقيلة (٦٠ ميغابايت للواحدة) وتُعاد توليدها — تُحفظ ملاحظاتها فقط
+*.aab
+*.apk
+
+# موقع سياسة الخصوصية مستودع مستقل منشور على GitHub Pages
+privacy-site/
+
+# إعدادات Claude Code المحلية لهذا الجهاز
+.claude/settings.local.json

@@ -1,0 +1,48 @@
+name: football_trivia
+description: "تحدي كرة القدم — لعبة أسئلة عربية عن كرة القدم."
+publish_to: 'none'
+version: 1.0.3+4
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  provider: ^6.1.2
+  shared_preferences: ^2.3.3
+  share_plus: ^10.1.2
+  flutter_local_notifications: ^18.0.1
+  google_mobile_ads: ^9.0.0
+  # مطلوبة لجدولة إشعار يومي بتوقيت المستخدم المحلي.
+  timezone: ^0.9.4
+  # لقراءة المنطقة الزمنية للجهاز — بدونها يفترض timezone أن المحلي هو UTC.
+  flutter_timezone: ^3.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  # لاختبار المؤقّتات دون انتظار زمن حقيقي.
+  fake_async: ^1.3.3
+  # لتوليد أيقونات الإطلاق بكل المقاسات + الأيقونة التكيّفية.
+  flutter_launcher_icons: ^0.14.1
+
+# إعداد توليد الأيقونات — يُشغّل بأمر: dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: false
+  # الأيقونة القديمة (كامل التصميم بخلفيته الخضراء والإطار).
+  image_path: "assets/branding/app_icon_source.png"
+  # الأيقونة التكيّفية: الفن المقصوص فوق خلفية خضراء متجانسة.
+  adaptive_icon_background: "#17872A"
+  adaptive_icon_foreground: "assets/branding/app_icon_foreground.png"
+  min_sdk_android: 21
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/data/categories.json
+    - assets/data/questions/
