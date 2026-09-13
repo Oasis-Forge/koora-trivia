@@ -2,7 +2,9 @@
 ///
 /// يُستخدم لاختيار أسئلة تحدي اليوم بحيث يحصل كل المستخدمين على نفس المجموعة.
 class SeededRandom {
-  SeededRandom(int seed) : _state = (seed & 0x7FFFFFFF) | 1;
+  // لا نفرض بذرة فردية: `| 1` كان يجعل البذرتين 2k و2k+1 متطابقتين، فيتكرر
+  // تحدي اليوم في يومين متتاليين. الـ LCG بثابت إضافة فردي يعمل مع أي بذرة.
+  SeededRandom(int seed) : _state = seed & 0x7FFFFFFF;
 
   int _state;
 

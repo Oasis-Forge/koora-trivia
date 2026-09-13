@@ -1,17 +1,29 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:football_trivia/core/utils/day_key.dart';
+import 'package:football_trivia/core/utils/seeded_random.dart';
 import 'package:football_trivia/data/datasources/question_local_datasource.dart';
 import 'package:football_trivia/data/models/category_model.dart';
 import 'package:football_trivia/data/models/question_model.dart';
 import 'package:football_trivia/data/repositories/quiz_repository_impl.dart';
 import 'package:football_trivia/domain/entities/question.dart';
 
-/// بنك وهمي: تصنيفان × 10 مستويات × 10 أسئلة.
+/// بنك وهمي: عدد من التصنيفات × 10 مستويات × 10 أسئلة.
+/// الافتراضي تصنيفان؛ اختبارات تحدي اليوم تستخدم عشرة ليطابق حجم البنك الحقيقي.
 class _FakeDataSource implements QuestionLocalDataSource {
+  _FakeDataSource({this.categoryCount = 2});
+
+  final int categoryCount;
+
   @override
   Future<QuestionBank> load() async {
-    const categories = [
-      CategoryModel(slug: 'alpha', name: 'ألفا', idBlock: 1000, order: 1),
-      CategoryModel(slug: 'beta', name: 'بيتا', idBlock: 2000, order: 2),
+    final categories = [
+      for (var c = 1; c <= categoryCount; c++)
+        CategoryModel(
+          slug: switch (c) { 1 => 'alpha', 2 => 'beta', _ => 'cat$c' },
+          name: switch (c) { 1 => 'ألفا', 2 => 'بيتا', _ => 'تصنيف $c' },
+          idBlock: c * 1000,
+          order: c,
+        ),
     ];
 
     final questions = <QuestionModel>[];
@@ -87,6 +99,48 @@ void main() {
     expect(a.map((q) => q.id), b.map((q) => q.id));
     expect(a.first.options, b.first.options);
     expect(a.map((q) => q.id).toList(), isNot(equals(c.map((q) => q.id).toList())));
+  });
+
+  test('تحدي اليوم لا يكرر أسئلة الأمس طوال سنة كاملة', () async {
+    // كانت البذرة تُفرض فردية، فيتطابق كل يوم زوجي مع اليوم الفردي الذي يليه
+    // ويحصل اللاعب على أسئلة الأمس نفسها. مقارنة يومين فقط لم تكشف ذلك.
+    final bank = QuizRepositoryImpl(_FakeDataSource(categoryCount: 10));
+    List<int>? previous;
+
+    for (var i = 0; i < 366; i++) {
+      final dayKey = DayKey.from(DateTime.utc(2026, 1, 1).add(Duration(days: i)));
+      final ids = (await bank.getDailyQuestions(dayKey: dayKey, count: 7))
+          .map((q) => q.id)
+          .toList();
+
+      if (previous != null) {
+        final shared = ids.where(previous.contains).length;
+        expect(
+          shared,
+          lessThanOrEqualTo(2),
+          reason: '$dayKey يشارك $shared أسئلة مع اليوم السابق',
+        );
+      }
+      previous = ids;
+    }
+  });
+
+  test('رقم اليوم لا يتأثر بالمنطقة الزمنية للجهاز', () {
+    // كان التاريخ المحلي يُطرح من منتصف ليل UTC، فيتأخر الرقم يوماً شرق غرينتش
+    // ويحصل الخليج وأوروبا على تحدٍّ مختلف في نفس التاريخ.
+    expect(DayKey.epochDay('1970-01-02'), 1);
+    expect(DayKey.epochDay('2026-09-13'), 20709);
+  });
+
+  test('بذرتان متجاورتان لا تعطيان نفس الخلط', () {
+    final items = List<int>.generate(50, (i) => i);
+    for (var seed = 20000; seed < 20200; seed += 2) {
+      expect(
+        SeededRandom(seed).shuffled(items),
+        isNot(equals(SeededRandom(seed + 1).shuffled(items))),
+        reason: 'البذرتان $seed و${seed + 1}',
+      );
+    }
   });
 
   test('خلط الخيارات يحافظ على الإجابة الصحيحة', () async {
