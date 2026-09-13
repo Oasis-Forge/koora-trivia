@@ -62,7 +62,7 @@ currently does not, so leave it unchecked.
 ## E. Privacy policy URL (required field)
 
 ```
-https://thepromptkitchen-alt.github.io/koora-trivia-privacy/
+https://oasis-forge.github.io/koora-trivia-privacy/
 ```
 
 ---
