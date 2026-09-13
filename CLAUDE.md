@@ -77,7 +77,7 @@ the branch rule in "Expected way of working".
 | Store settings | ✅ | Category **Trivia** · contact email |
 | Store listing | ✅ uploaded | Text from [STORE_LISTING.md](docs/STORE_LISTING.md) · 512 icon · feature graphic · 5 screenshots. ⚠️ A "Some languages have errors" warning appeared and **was never resolved** — open the Review step and read the error |
 | AI asset declaration | ✅ | Icon and feature graphic labeled; screenshots are real captures, so not labeled |
-| Data safety | ✅ | Per [DATA_SAFETY_EN.md](docs/DATA_SAFETY_EN.md) |
+| Data safety | ⚠️ out of date | The live form declares only Device or other IDs. Update it to the four types in [DATA_SAFETY_EN.md](docs/DATA_SAFETY_EN.md): Approximate location · App interactions · Diagnostics · Device or other IDs |
 | Financial · health features | ✅ | None |
 | Advertising ID | ✅ Yes | Advertising · analytics · fraud prevention |
 | Content rating · target audience | ✅ | Everyone · 13+. App content shows nothing needing attention (checked 13 September 2026) |
@@ -95,8 +95,13 @@ Update it as items ship.
 1. **Get 7+ more testers opted in** to the closed test (5 of 12; aim for 15–20 as a buffer). This is
    the critical path to production.
 2. **Internal testing:** replace the crashing versionCode 1 with versionCode 4, or stop using that track.
-3. **The plan's other P0s:** declare what AdMob collects in Data safety, and load ads only after the
-   consent check (`canRequestAds()`) with a privacy-options row in Settings.
+3. **The plan's code P0s are in PR #5** (ad consent gate, privacy row in Settings, Data safety docs,
+   rewarded-ad retries — not merged, not in a Play build). After merging: **update the live Data
+   safety form** to the four types in DATA_SAFETY_EN.md, and deploy the updated privacy policy to
+   `privacy-site/`. **Owner, now:** in AdMob → Privacy & messaging, create and publish a *European
+   regulations* (GDPR) message for Koora Trivia. Without it the consent SDK fails with
+   `Publisher misconfiguration … no form(s) configured for the input app ID` (seen on the emulator
+   on 13 September 2026), so users in Europe and the UK never see a consent form.
 4. **Fix the daily reminder**, which never fires (the notification receivers aren't declared in the
    manifest). Ship it in **v1.0.4** with the merged daily-challenge and hearts fixes, after a
    release-build check on the emulator.
@@ -258,6 +263,10 @@ Flutter or third-party import.** That constraint has held so far — keep it.
 - **Async callbacks in `addPostFrameCallback` swallow exceptions.** The result screen records
   stats, stars, and tasks there; any error disappears silently and leaves the UI incomplete. When
   adding logic there, test it through the provider directly, not through the screen.
+- **`ChangeNotifierProvider` is lazy by default** — `create` (and any `..init()` chained on it) runs
+  only when a widget first reads the provider. `AdsProvider` was lazy until PR #5, so consent and ad
+  loading didn't start until Settings, the result screen, the shop or the hearts dialog opened.
+  Anything that must start at launch needs `lazy: false`.
 
 ---
 
@@ -331,7 +340,8 @@ When a question could fit more than one category, apply these in order:
 
 ## Tests
 
-**144 tests across 16 files, all passing.** `flutter analyze` is clean.
+**190 tests across 20 files, all passing.** `flutter analyze` is clean. `test/fakes/fake_ad_service.dart`
+is the shared fake `AdService` — add any new `AdService` member there.
 
 | File | Count | Covers |
 |---|---|---|
@@ -339,23 +349,29 @@ When a question could fit more than one category, apply these in order:
 | `economy_test.dart` | 18 | Heart regen (remainder · clock going backward · corrupt date) · daily limits · `EconomyProvider` (deduction · daily-challenge grant · rewarded-ad cap · hints) |
 | `level_progress_test.dart` | 13 | Star calculation · progressive unlocks · stars never decrease (entity and use case) |
 | `tasks_coins_test.dart` | 12 | Daily tasks (completion · claim once · chest · daily reset) · shop (heart refill · insufficient coins · hint pack and consumption order) |
-| `ads_test.dart` | 10 | `AdsProvider` (earned/dismissed · no two ads at once · isReady) · interstitials (round counting · remove-ads) · ad rewards — **through a fake service** |
+| `ads_test.dart` | 14 | `AdsProvider` (earned/dismissed · no two ads at once · isReady · notifies when an ad loads · privacy options and resume pass through · dispose detaches) · interstitials (round counting · remove-ads) · ad rewards — **through a fake service** |
+| `admob_ad_service_test.dart` | 21 | **Consent gate** — no SDK init or ad request before the consent form closes · previous-session consent loads at once · nothing loads when consent disallows · consent withdrawn during SDK init · a failed consent update retried on resume or ad request, never two at once, not re-run after a successful one · load retry after the delay and on resume · privacy-options changes applied both ways · unsupported platform · init once · **rewarded show path with a fake `RewardedAd`**: result decided on dismissal, not on show (the 8 September bug) · earned · dismissed · failed to show · reload afterwards |
+| `retrying_ad_loader_test.dart` | 11 | Load once · rising retry delays capped at the last · success resets the delay · take once · retry now · stop cancels and disposes · an ad arriving after stop is disposed · a stale callback after stop and a new load · synchronous SDK error |
 | `reminder_test.dart` | 9 | Permission · scheduling and cancel · permission revoked at launch · next-fire calculation |
 | `share_text_test.dart` | 8 | Result grid · daily-challenge date · category and level · Arabic dual form · doesn't leak questions |
 | `quiz_repository_test.dart` | 11 | Levels · daily-challenge stability · **a full year with no day sharing more than 2 of 7 questions with the day before** · epoch day independent of time zone · neighbouring seeds shuffle differently · filtering |
 | `question_bank_test.dart` | 8 | Bank integrity: counts · IDs · structure · balance · banned options · **duplicates** · matches `AppConfig` |
 | `update_streak_test.dart` | 5 | Day-streak logic in every case |
-| `settings_screen_test.dart` | 5 | **Widget test** — stats display · confirmation dialog · reset |
+| `settings_screen_test.dart` | 10 | **Widget test** — stats display · confirmation dialog · reset · privacy: ad-options row only where required, opens the form, failure message · policy link opens the published URL, failure message |
 | `progress_provider_test.dart` | 5 | **Provider-to-storage wiring** — pass ⇒ stars ⇒ next unlocked · survives restart (guards the covariance bug) |
 | `daily_guard_test.dart` | 5 | `isDailyDone` after completion · persists across restart · quick play doesn't set it |
 | `backup_test.dart` | 5 | Export then import · corrupt code · extra whitespace · newer version rejected |
 | `economy_balance_test.dart` | 4 | Daily income below cheapest purchase · purchase within two days · interstitials off · chest is worth it |
 | `score_screen_hearts_test.dart` | 4 | **Widget test** — result screen: "Replay level" and "Next level" with zero hearts show the no-hearts dialog and don't start · replay with hearts starts · quick play stays free |
+| `rewarded_button_test.dart` | 4 | **Widget test** — enables by itself when the ad loads and disables again if it's lost · daily limit · reward only on earned |
+| `app_lifecycle_hooks_test.dart` | 1 | Returning to the app retries ad loading · no listener left after removal |
 
 ### Not covered — and it has bitten us
 
-- **The real AdMob bridge (`AdMobAdService`).** `ads_test` uses a fake service, which is why the
-  "reward is never granted" bug slipped through every test. Test it by hand on the emulator.
+- **The real AdMob SDK.** `admob_ad_service_test` drives the consent gate, retries and the rewarded
+  show path through fakes (including a fake `RewardedAd` that fires callbacks in the SDK's order),
+  but the real UMP form and the SDK's own callback timing still need a hand test on the emulator.
+  Before PR #5 nothing covered this, which is how the "reward is never granted" bug slipped through.
 - **The quiz and levels screens** have no widget tests, and the result screen is covered only for the
   heart check (`score_screen_hearts_test`). The visibility of the "Next level" button and hiding the
   replay button after the daily challenge are **not covered automatically**.
@@ -381,7 +397,8 @@ When a question could fit more than one category, apply these in order:
 - Day streak `user_stats_v1` · level progress with stars and progressive unlocks `level_progress_v1`
 - Result screen: level stars · "Next level" on a pass · "Replay level" · answer review · share
 - Economy: regenerating hearts + hints + daily limits · coins + 3 daily tasks + chest + shop
-- Rewarded ads (heart · 70 coins) and interstitials (off) + UMP consent — production IDs in release
+- Rewarded ads (heart · 70 coins) and interstitials (off) — production IDs in release · UMP consent
+  gate, privacy row in Settings and retried ad loads (PR #5)
 - Daily reminder on device time · haptics and sound via system sounds (no audio files), two toggles
 - One-time onboarding · settings with stats and safe reset · progress export/import (Base64)
 - Full RTL + stadium theme · level grid is 3 centered columns (was 4 with a big empty gap)
@@ -416,7 +433,7 @@ each section.
 | `screenshots/store_9x16/` | **The uploaded screenshots** — 5 × 1080×1920 |
 | `screenshots/store/` | ⚠️ 1440×2975 (ratio 2.07) — **rejected by Play**, don't use |
 | [docs/STORE_LISTING.md](docs/STORE_LISTING.md) | App name · short description · full description (Arabic payload) |
-| [docs/DATA_SAFETY_EN.md](docs/DATA_SAFETY_EN.md) | Data safety answers in Play Console's English terms · Arabic copy [DATA_SAFETY.md](docs/DATA_SAFETY.md) |
+| [docs/DATA_SAFETY_EN.md](docs/DATA_SAFETY_EN.md) | Data safety answers in Play Console's English terms, with the AdMob disclosure source |
 | [docs/privacy_policy.html](docs/privacy_policy.html) | Privacy policy source (English + Arabic) |
 | `docs/app-ads.txt` | Ready, **not published** (needs a root domain) |
 | [docs/PRE_PUBLISH.md](docs/PRE_PUBLISH.md) | Publishing checklist and verification log |
@@ -441,8 +458,8 @@ each section.
 > before the `onUserEarnedReward` callback arrived ⇒ it always returned `dismissed` and the reward
 > was **never** granted (heart or 70 coins). Fix: wait for dismissal with a `Completer` completed
 > in `onAdDismissedFullScreenContent`, then read the flag. Verified on the emulator: watching the ad
-> now actually grants the heart (0 → 1). No automated test covers it because it depends on the SDK;
-> test by hand after any change to the rewarded-ad path.
+> now actually grants the heart (0 → 1). Since PR #5 `admob_ad_service_test` guards it with a fake
+> `RewardedAd`; still test by hand after any change to the rewarded-ad path.
 
 | Type | Where | Reward |
 |---|---|---|
@@ -456,8 +473,36 @@ each section.
 - **Never an interstitial after the daily challenge** — deliberate, to protect the daily ritual.
 - The reward is granted on `RewardResult.earned` **only**, never on early dismissal.
 - The rewarded-ad button shows disabled with «يتطلب اتصالاً بالإنترنت» ("requires an internet
-  connection") until the ad has loaded (a few seconds after launch or after a previous watch) —
-  expected, not a bug.
+  connection") until the ad has loaded (a few seconds after launch or after a previous watch), then
+  enables by itself. Before PR #5 it stayed disabled until the screen rebuilt for another reason,
+  and a failed load was never retried.
+
+### Consent and ad loading — how it works (PR #5)
+
+- **Order at launch:** read `canRequestAds()` (consent from a previous session lets ads start at
+  once) → `gather()` (consent info update, then the form if required; it completes only after the
+  form closes) → read again. `MobileAds.instance.initialize()` and every ad load happen **only**
+  while `canRequestAds()` is true. Never add a load path that skips `_canLoad`.
+- **Settings → «الخصوصية»:** «خيارات خصوصية الإعلانات» appears only when UMP says privacy options
+  are required, and opens `showPrivacyOptionsForm`; the consent state is re-applied as soon as it
+  closes. «سياسة الخصوصية» opens `AppConfig.privacyPolicyUrl` through `LinkOpener` (url_launcher).
+- **Retries:** `RetryingAdLoader` retries a failed load after `AppConfig.adRetryDelaysSeconds`
+  (15 s rising to a 5-minute cap), and at once when the app returns to the foreground
+  (`AppLifecycleHooks`, wrapped around every screen in `MaterialApp.builder`). The service calls
+  `onChanged` whenever an ad becomes ready or is used, so `AdsProvider` notifies the UI. A consent
+  update that **failed** (offline on first launch) is retried on resume or when an ad is
+  requested; one that succeeded but still disallows ads is not, so the form doesn't chase the
+  player on every return to the app.
+- **Testing the EEA form:** clear the app's data, then run
+  `flutter run --dart-define=UMP_DEBUG_EEA=true` on the emulator. The flag is ignored in release
+  builds; a real phone would also need its hashed test-device ID, which isn't wired up.
+- `AdMobAdService` has test seams (`consent`, `supportedPlatform`, `initializeSdk`, `loadRewarded`,
+  `loadInterstitial`). Production passes only `consent`.
+- `AdsProvider` is created with `lazy: false` in `app.dart`, so all of this starts at launch — see
+  the lazy-provider trap in "Known traps".
+- ⚠️ **The EEA form can't appear until AdMob has a European regulations message** for the app (see
+  "Next steps"). Until then the consent update fails with `Publisher misconfiguration`, and the
+  gate falls back to whatever `canRequestAds()` answers.
 
 > ✅ **Production IDs set (8 September 2026)** — the app ID is in `AndroidManifest.xml`, the
 > rewarded and interstitial unit IDs are in
@@ -633,7 +678,7 @@ from serving.
   Arabic shows ← for Back — the reverse of Material's RTL convention. Fixing it changes Arabic
   visuals, so it needs owner approval.
 - Icon-only back and quit buttons have no tooltip, so TalkBack gives them no name.
-- `docs/ECONOMY.md` and `docs/DATA_SAFETY.md` are still in Arabic.
+- `docs/ECONOMY.md` is still in Arabic.
 - `README.md` is stale (old test count, single questions file, a `difficulty` field) and publicly
   claims the app works fully offline (line 180) — contradicts the no-offline-promise rule.
 - `cmdline-tools` missing from the Android SDK (builds work without it) · `share_plus` is 10.x

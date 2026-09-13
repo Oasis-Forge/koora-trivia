@@ -3,10 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../../domain/repositories/backup_repository.dart';
+import '../../domain/repositories/link_opener.dart';
 
 import '../../core/constants/app_config.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
+import '../providers/ads_provider.dart';
 import '../providers/progress_provider.dart';
 import '../providers/quiz_provider.dart';
 import '../providers/settings_provider.dart';
@@ -115,6 +117,10 @@ class SettingsScreen extends StatelessWidget {
                       onConfirmed: () =>
                           context.read<ProgressProvider>().resetAll(),
                     ),
+
+                    const SizedBox(height: 26),
+                    const _SectionTitle(AppStrings.privacySection),
+                    const _PrivacyPanel(),
 
                     const SizedBox(height: 26),
                     const _SectionTitle(AppStrings.aboutSection),
@@ -411,6 +417,90 @@ class _EffectsPanel extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+/// خيارات خصوصية الإعلانات وسياسة الخصوصية.
+class _PrivacyPanel extends StatelessWidget {
+  const _PrivacyPanel();
+
+  @override
+  Widget build(BuildContext context) {
+    final ads = context.watch<AdsProvider>();
+
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: AppColors.cardBorder),
+      ),
+      child: Material(
+        color: AppColors.cardSurface,
+        borderRadius: BorderRadius.circular(18),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          children: [
+            // غوغل تشترط مدخلاً دائماً لتعديل الموافقة حيث تكون مطلوبة (أوروبا
+            // مثلاً)، ويختفي حيث لا يلزم حتى لا يحيّر بقية اللاعبين.
+            if (ads.isPrivacyOptionsRequired) ...[
+              ListTile(
+                onTap: () => _openPrivacyOptions(context),
+                leading: const Icon(
+                  Icons.privacy_tip_rounded,
+                  size: 20,
+                  color: AppColors.gold,
+                ),
+                title: const Text(
+                  AppStrings.adPrivacyOptions,
+                  style: TextStyle(fontSize: 14.5),
+                ),
+              ),
+              const Divider(height: 1, thickness: 1),
+            ],
+            ListTile(
+              onTap: () => _openPolicy(context),
+              leading: const Icon(
+                Icons.policy_rounded,
+                size: 20,
+                color: AppColors.gold,
+              ),
+              title: const Text(
+                AppStrings.privacyPolicy,
+                style: TextStyle(fontSize: 14.5),
+              ),
+              trailing: const Icon(
+                Icons.open_in_new_rounded,
+                size: 18,
+                color: AppColors.chalkMuted,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _openPrivacyOptions(BuildContext context) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final shown = await context.read<AdsProvider>().showPrivacyOptions();
+    if (shown) return;
+
+    messenger
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        const SnackBar(content: Text(AppStrings.privacyOptionsFailed)),
+      );
+  }
+
+  Future<void> _openPolicy(BuildContext context) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final opened = await context
+        .read<LinkOpener>()
+        .open(Uri.parse(AppConfig.privacyPolicyUrl));
+    if (opened) return;
+
+    messenger
+      ..hideCurrentSnackBar()
+      ..showSnackBar(const SnackBar(content: Text(AppStrings.linkOpenFailed)));
   }
 }
 

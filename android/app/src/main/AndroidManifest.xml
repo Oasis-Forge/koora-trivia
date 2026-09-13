@@ -13,8 +13,9 @@
         android:fullBackupContent="@xml/backup_rules"
         android:allowBackup="true">
 
-        <!-- معرّف تطبيق AdMob — هذا معرّف اختبار رسمي من غوغل.
-             استبدله بمعرّفك قبل النشر، وإلا لن تُحتسب أي أرباح. -->
+        <!-- معرّف تطبيق AdMob الحقيقي (Oasis Forge · Koora Trivia).
+             بناء التطوير يبقى آمناً لأنه يطلب وحدات إعلانية تجريبية
+             (useTestIds في Injector). -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-8287765177319119~9883719679" />
@@ -46,6 +47,11 @@
         <intent>
             <action android:name="android.intent.action.SEND" />
             <data android:mimeType="*/*" />
+        </intent>
+        <!-- مطلوب لـ url_launcher حتى يجد متصفحاً يفتح سياسة الخصوصية (أندرويد 11+). -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
         </intent>
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT" />

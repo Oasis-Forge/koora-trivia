@@ -42,7 +42,14 @@ Last full check: **13 September 2026** · Latest build: **v1.0.3+4**
 
 - **A real phone** — everything above was on the emulator.
 - The daily reminder actually firing at its scheduled time.
-- The UMP consent form for a user in Europe.
+- The UMP consent form for a user in Europe. **Blocked** until AdMob → Privacy & messaging has a
+  published European regulations message for the app: on 13 September 2026 the emulator logged
+  `Publisher misconfiguration … no form(s) configured for the input app ID`. Once it exists, on the
+  emulator: clear the app's data, then
+  `flutter run --dart-define=UMP_DEBUG_EEA=true` (the flag is ignored in release builds). Check
+  that the form appears before any ad loads, that Settings → «الخصوصية» shows
+  «خيارات خصوصية الإعلانات» and it opens the form, and that the rewarded button enables by itself
+  once the ad loads.
 - Progress export/import on a device (the logic is covered by `backup_test`).
 - Buying from the shop with real coins · the shop's rewarded ad (+70).
 - Real production ads — **never tap them yourself**.
@@ -112,9 +119,12 @@ graphic** only. The screenshots are real captures of the app, so they are not la
 Full answers in [DATA_SAFETY_EN.md](DATA_SAFETY_EN.md). Summary:
 - Collects or shares data: **Yes** (because of AdMob) · encrypted in transit: **Yes**.
 - Account creation: **My app does not allow users to create an account**.
-- Only data type: **Device or other IDs** → collected and shared · not ephemeral · required ·
-  purposes: advertising · analytics · fraud prevention and security.
-- Do **not** select "App info and performance" (crash logs/diagnostics) — no crash tool is used.
+- Four data types, each collected and shared · not ephemeral · required · purposes: advertising ·
+  analytics · fraud prevention, security, and compliance: **Approximate location** (IP address) ·
+  **App interactions** · **Diagnostics** · **Device or other IDs**.
+- Do **not** select Crash logs — no crash-reporting tool is used.
+- ⚠️ Until 13 September 2026 the live form declared only Device or other IDs. **The owner must
+  update the form in Play Console** — editing this file doesn't change it.
 
 ### Advertising ID
 **Yes** — purposes: Advertising or marketing · Analytics · Fraud prevention, security, and

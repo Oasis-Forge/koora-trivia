@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:football_trivia/core/constants/app_config.dart';
 import 'package:football_trivia/core/constants/app_strings.dart';
+import 'package:football_trivia/domain/repositories/link_opener.dart';
+import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/domain/entities/app_settings.dart';
 import 'package:football_trivia/domain/entities/category_progress.dart';
 import 'package:football_trivia/domain/entities/user_stats.dart';
@@ -17,6 +20,21 @@ import 'package:football_trivia/presentation/providers/quiz_provider.dart';
 import 'package:football_trivia/presentation/providers/stats_provider.dart';
 import 'package:football_trivia/presentation/screens/settings_screen.dart';
 import 'package:provider/provider.dart';
+
+import 'fakes/fake_ad_service.dart';
+
+class _FakeLinkOpener implements LinkOpener {
+  _FakeLinkOpener({this.result = true});
+
+  final bool result;
+  final opened = <Uri>[];
+
+  @override
+  Future<bool> open(Uri uri) async {
+    opened.add(uri);
+    return result;
+  }
+}
 
 class _FakeStatsRepository implements StatsRepository {
   _FakeStatsRepository(this.stats);
@@ -117,6 +135,8 @@ Future<void> _pumpSettings(
   WidgetTester tester, {
   required _FakeStatsRepository statsRepo,
   required _FakeProgressRepository progressRepo,
+  FakeAdService? adService,
+  LinkOpener? linkOpener,
 }) async {
   final stats = StatsProvider(repository: statsRepo);
   final progress = ProgressProvider(repository: progressRepo);
@@ -138,6 +158,10 @@ Future<void> _pumpSettings(
         ChangeNotifierProvider.value(value: progress),
         ChangeNotifierProvider.value(value: quiz),
         ChangeNotifierProvider.value(value: settings),
+        ChangeNotifierProvider(
+          create: (_) => AdsProvider(service: adService ?? FakeAdService()),
+        ),
+        Provider<LinkOpener>.value(value: linkOpener ?? _FakeLinkOpener()),
       ],
       child: const MaterialApp(
         locale: Locale('ar'),
@@ -296,5 +320,82 @@ void main() {
     expect(statsRepo.stats.gamesPlayed, 0);
     expect(statsRepo.stats.bestScore, 0);
     expect(statsRepo.stats.currentStreak, 0);
+  });
+
+  group('الخصوصية', () {
+    Future<void> pumpAndScroll(
+      WidgetTester tester, {
+      FakeAdService? adService,
+      LinkOpener? linkOpener,
+    }) async {
+      await _pumpSettings(
+        tester,
+        statsRepo: _FakeStatsRepository(const UserStats()),
+        progressRepo: _FakeProgressRepository({}),
+        adService: adService,
+        linkOpener: linkOpener,
+      );
+      await tester.scrollUntilVisible(
+        find.text(AppStrings.privacyPolicy),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pumpAndSettle();
+    }
+
+    testWidgets('مدخل خيارات الإعلانات مخفي حيث لا تلزم الموافقة',
+        (tester) async {
+      await pumpAndScroll(tester, adService: FakeAdService());
+
+      expect(find.text(AppStrings.privacyPolicy), findsOneWidget);
+      expect(find.text(AppStrings.adPrivacyOptions), findsNothing);
+    });
+
+    testWidgets('مدخل خيارات الإعلانات يظهر حيث تلزم ويفتح النموذج',
+        (tester) async {
+      final ads = FakeAdService(privacyOptionsRequired: true);
+      await pumpAndScroll(tester, adService: ads);
+
+      await tester.tap(find.text(AppStrings.adPrivacyOptions));
+      await tester.pumpAndSettle();
+
+      expect(ads.privacyFormCalls, 1);
+      expect(find.text(AppStrings.privacyOptionsFailed), findsNothing);
+    });
+
+    testWidgets('تعذّر عرض نموذج الخيارات يعرض رسالة', (tester) async {
+      await pumpAndScroll(
+        tester,
+        adService: FakeAdService(
+          privacyOptionsRequired: true,
+          privacyFormShown: false,
+        ),
+      );
+
+      await tester.tap(find.text(AppStrings.adPrivacyOptions));
+      await tester.pumpAndSettle();
+
+      expect(find.text(AppStrings.privacyOptionsFailed), findsOneWidget);
+    });
+
+    testWidgets('سياسة الخصوصية تفتح الرابط المنشور', (tester) async {
+      final opener = _FakeLinkOpener();
+      await pumpAndScroll(tester, linkOpener: opener);
+
+      await tester.tap(find.text(AppStrings.privacyPolicy));
+      await tester.pumpAndSettle();
+
+      expect(opener.opened, [Uri.parse(AppConfig.privacyPolicyUrl)]);
+      expect(find.text(AppStrings.linkOpenFailed), findsNothing);
+    });
+
+    testWidgets('تعذّر فتح الرابط يعرض رسالة', (tester) async {
+      await pumpAndScroll(tester, linkOpener: _FakeLinkOpener(result: false));
+
+      await tester.tap(find.text(AppStrings.privacyPolicy));
+      await tester.pumpAndSettle();
+
+      expect(find.text(AppStrings.linkOpenFailed), findsOneWidget);
+    });
   });
 }

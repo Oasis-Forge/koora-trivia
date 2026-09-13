@@ -7,6 +7,7 @@ import 'core/di/injector.dart';
 import 'core/theme/app_theme.dart';
 import 'domain/entities/category.dart';
 import 'domain/repositories/backup_repository.dart';
+import 'domain/repositories/link_opener.dart';
 import 'presentation/providers/ads_provider.dart';
 import 'presentation/providers/economy_provider.dart';
 import 'presentation/providers/progress_provider.dart';
@@ -21,6 +22,7 @@ import 'presentation/screens/score_screen.dart';
 import 'presentation/screens/settings_screen.dart';
 import 'presentation/screens/shop_screen.dart';
 import 'presentation/screens/tasks_screen.dart';
+import 'presentation/widgets/app_lifecycle_hooks.dart';
 
 class FootballTriviaApp extends StatelessWidget {
   const FootballTriviaApp({super.key, required this.injector});
@@ -33,6 +35,7 @@ class FootballTriviaApp extends StatelessWidget {
       providers: [
         // مستودع بلا حالة — يُقدَّم كقيمة لا كمزوّد تغيير.
         Provider<BackupRepository>.value(value: injector.backupRepository),
+        Provider<LinkOpener>.value(value: injector.linkOpener),
         ChangeNotifierProvider(
           create: (_) => QuizProvider(repository: injector.quizRepository),
         ),
@@ -50,6 +53,10 @@ class FootballTriviaApp extends StatelessWidget {
               EconomyProvider(repository: injector.economyRepository)..init(),
         ),
         ChangeNotifierProvider(
+          // غير كسول عمداً: الموافقة والإعلانات تبدأ عند الإقلاع. المزوّد الكسول
+          // لا يُنشأ إلا عند أول قراءة (الإعدادات أو شاشة النتيجة أو المتجر)،
+          // فيظهر نموذج الموافقة وسط اللعب ولا يكون الإعلان جاهزاً عند أول زر.
+          lazy: false,
           create: (_) => AdsProvider(service: injector.adService)..init(),
         ),
         ChangeNotifierProvider(
@@ -73,9 +80,11 @@ class FootballTriviaApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        builder: (context, child) => Directionality(
-          textDirection: TextDirection.rtl,
-          child: child ?? const SizedBox.shrink(),
+        builder: (context, child) => AppLifecycleHooks(
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: child ?? const SizedBox.shrink(),
+          ),
         ),
 
         initialRoute: RootScreen.routeName,
