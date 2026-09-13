@@ -636,8 +636,9 @@ from serving.
 
 ## Expected way of working
 
-- **Every new feature or fix goes on its own branch and through a CR (change request = pull
-  request)** — owner's rule, 13 September 2026. Never commit straight to `main`.
+- **Every new feature or fix gets exactly one branch off `main` and a PR (pull request)** —
+  owner's rule, 13 September 2026. Never commit straight to `main`, never stack branches, and
+  never leave a superseded branch behind: one branch per piece of work.
   1. `git fetch origin`, then branch from the **latest `origin/main`**:
      `git switch --no-track -c <type>/<short-name> origin/main` (`feature/…` · `fix/…` · `docs/…`).
   2. Commit the work on that branch.
