@@ -30,10 +30,9 @@ It contains every fix: launch crash (R8) · star saving and level unlocks · rep
 hidden after the daily challenge · rewarded-ad reward granted. Verified on the emulator
 with a release build.
 
-**Open PR:** [#1](https://github.com/Oasis-Forge/koora-trivia/pull/1) on branch
-`docs/english-docs-and-i18n-plan` — these English docs, the multilingual plan, and the branch rule.
-Waiting for the owner to review and **squash-merge**. Until it is merged, `main` still carries the old
-Arabic CLAUDE.md — after the merge, switch to `main` and pull before starting new work.
+**Git:** PR [#1](https://github.com/Oasis-Forge/koora-trivia/pull/1) — English docs, multilingual plan,
+branch rule — was **merged into `main` on 13 September 2026**. Start any new work from the latest
+`main`, following the branch rule in "Expected way of working".
 
 ### Publishing identity
 
@@ -105,7 +104,7 @@ Arabic CLAUDE.md — after the merge, switch to `main` and pull before starting 
   still shows: the two old commits on `main` (the personal account name in the old Arabic CLAUDE.md,
   and the Windows username inside paths in `CLAUDE.md`, `docs/PRE_PUBLISH.md`,
   `android/key.properties.example`), and the privacy repo's public Activity page (its branch was created
-  by the personal account). Plan: **merge PR #1 first** (PRs don't survive recreation) → rename each
+  by the personal account). Plan: **merge any open PRs first** (PRs don't survive recreation) → rename each
   repo to `<name>-old` and make it private → create a fresh repo with the same name → push clean
   history from the `gh` account (privacy repo: re-enable Pages from `main` `/`; the URL stays the same)
   → the owner deletes the `-old` repos (Claude must never delete them). **Re-confirm with the owner
