@@ -83,6 +83,18 @@ class NoHeartsDialog extends StatelessWidget {
     );
   }
 
+  /// بوابة كل زر يبدأ مستوى: يعيد `true` إن وُجد قلب، وإلا يعرض الحوار ويعيد `false`.
+  ///
+  /// كان الفحص في شاشة المستويات وحدها، فبدأ زرّا "إعادة المستوى" و"المستوى
+  /// التالي" في شاشة النتيجة مستوى بلا قلوب — ومع رصيد صفر لا يُخصم شيء عند
+  /// الخطأ، فيصبح اللعب مجانياً بلا حد.
+  static Future<bool> ensureHearts(BuildContext context) async {
+    final economy = context.read<EconomyProvider>()..refresh();
+    if (economy.hasHearts) return true;
+    await show(context, economy.untilNextHeart);
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

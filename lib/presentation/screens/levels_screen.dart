@@ -5,7 +5,6 @@ import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/entities/question.dart';
-import '../providers/economy_provider.dart';
 import '../providers/progress_provider.dart';
 import '../providers/quiz_provider.dart';
 import '../widgets/hearts_bar.dart';
@@ -47,11 +46,8 @@ class _LevelsScreenState extends State<LevelsScreen> {
     if (_starting) return;
 
     // القلوب تُفحص قبل بدء المستوى فقط — لا تمس تحدي اليوم ولا اللعب السريع.
-    final economy = context.read<EconomyProvider>()..refresh();
-    if (!economy.hasHearts) {
-      await NoHeartsDialog.show(context, economy.untilNextHeart);
-      return;
-    }
+    if (!await NoHeartsDialog.ensureHearts(context)) return;
+    if (!mounted) return;
 
     setState(() => _starting = true);
     final quiz = context.read<QuizProvider>();

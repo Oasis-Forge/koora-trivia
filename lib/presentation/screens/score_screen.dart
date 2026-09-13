@@ -13,6 +13,7 @@ import '../providers/progress_provider.dart';
 import '../providers/quiz_provider.dart';
 import '../providers/settings_provider.dart';
 import '../providers/stats_provider.dart';
+import '../widgets/hearts_bar.dart';
 import '../widgets/pitch_background.dart';
 import '../widgets/stat_tile.dart';
 import 'levels_screen.dart';
@@ -122,8 +123,11 @@ class _ScoreScreenState extends State<ScoreScreen>
   Future<void> _playAgain() async {
     final quiz = context.read<QuizProvider>();
 
-    // في نمط المستويات نعيد نفس المستوى بدل جولة عشوائية.
+    // في نمط المستويات نعيد نفس المستوى بدل جولة عشوائية — والمستوى يحتاج قلباً،
+    // أما اللعب السريع فيبقى مجانياً.
     if (_result.isLevel) {
+      if (!await NoHeartsDialog.ensureHearts(context)) return;
+      if (!mounted) return;
       await quiz.startLevel(
         categorySlug: _result.categorySlug!,
         level: _result.level!,
@@ -137,6 +141,8 @@ class _ScoreScreenState extends State<ScoreScreen>
   }
 
   Future<void> _playNextLevel() async {
+    if (!await NoHeartsDialog.ensureHearts(context)) return;
+    if (!mounted) return;
     final quiz = context.read<QuizProvider>();
     await quiz.startLevel(
       categorySlug: _result.categorySlug!,
