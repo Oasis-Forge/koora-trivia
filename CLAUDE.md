@@ -30,6 +30,11 @@ It contains every fix: launch crash (R8) · star saving and level unlocks · rep
 hidden after the daily challenge · rewarded-ad reward granted. Verified on the emulator
 with a release build.
 
+**Open PR:** [#1](https://github.com/Oasis-Forge/koora-trivia/pull/1) on branch
+`docs/english-docs-and-i18n-plan` — these English docs, the multilingual plan, and the branch rule.
+Waiting for the owner to review and **squash-merge**. Until it is merged, `main` still carries the old
+Arabic CLAUDE.md — after the merge, switch to `main` and pull before starting new work.
+
 ### Publishing identity
 
 | Item | Value |
@@ -94,6 +99,18 @@ with a release build.
   Undecided.
 - **③ Multiple languages** — deliberately deferred until the Arabic version proves itself. The full plan,
   the decisions it needs, and a verified codebase audit are in [docs/I18N_PLAN.md](docs/I18N_PLAN.md).
+- **④ Owner's personal name in public GitHub history — approved, then blocked.** On 13 September 2026
+  the owner approved recreating both repos, but Claude Code's auto-mode permission check blocked the
+  history rewrite (`git filter-branch`) and the repo rename/create, so **nothing was changed**. Where it
+  still shows: the two old commits on `main` (the personal account name in the old Arabic CLAUDE.md,
+  and the Windows username inside paths in `CLAUDE.md`, `docs/PRE_PUBLISH.md`,
+  `android/key.properties.example`), and the privacy repo's public Activity page (its branch was created
+  by the personal account). Plan: **merge PR #1 first** (PRs don't survive recreation) → rename each
+  repo to `<name>-old` and make it private → create a fresh repo with the same name → push clean
+  history from the `gh` account (privacy repo: re-enable Pages from `main` `/`; the URL stays the same)
+  → the owner deletes the `-old` repos (Claude must never delete them). **Re-confirm with the owner
+  before running it** — approval doesn't carry across sessions — and have the owner approve each
+  command or run them. The exact strings to scrub are in Claude's private memory, never in this repo.
 
 ---
 
@@ -605,6 +622,8 @@ from serving.
   visuals, so it needs owner approval.
 - Icon-only back and quit buttons have no tooltip, so TalkBack gives them no name.
 - `docs/ECONOMY.md` and `docs/DATA_SAFETY.md` are still in Arabic.
+- `README.md` is stale (old test count, single questions file, a `difficulty` field) and publicly
+  claims the app works fully offline (line 180) — contradicts the no-offline-promise rule.
 - `cmdline-tools` missing from the Android SDK (builds work without it) · `share_plus` is 10.x
   while 13.x is available.
 
