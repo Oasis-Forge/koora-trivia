@@ -1,4 +1,5 @@
 import '../../core/constants/app_strings.dart';
+import '../../core/utils/arabic_count.dart';
 import '../../core/utils/day_key.dart';
 import '../entities/quiz_result.dart';
 
@@ -36,7 +37,11 @@ class BuildShareText {
     buffer.writeln('${grid(result)}  ${result.correctCount}/${result.total}');
 
     if (streak > 0) {
-      buffer.writeln('🔥 $streak ${_dayWord(streak)} متتالية');
+      // بعد نقطتين يأتي العدد مرفوعاً: «يومان» · «5 أيام» · «12 يوماً».
+      buffer.writeln(
+        '🔥 ${AppStrings.streakLabel}: '
+        '${ArabicCount.format(streak, ArabicNoun.day)}',
+      );
     }
 
     return buffer.toString().trimRight();
@@ -51,7 +56,4 @@ class BuildShareText {
       return wrongSquare;
     }).join();
   }
-
-  /// تمييز المثنى في العربية: "يومان" لا "2 يوم".
-  String _dayWord(int streak) => streak == 2 ? 'يومان' : 'أيام';
 }

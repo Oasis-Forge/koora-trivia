@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/utils/arabic_count.dart';
 import '../../domain/entities/question.dart';
 import '../providers/economy_provider.dart';
 import '../providers/quiz_provider.dart';
@@ -244,7 +245,7 @@ class _TopBar extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      '${quiz.score} نقطة',
+                      ArabicCount.format(quiz.score, ArabicNoun.point),
                       style: const TextStyle(
                         color: AppColors.gold,
                         fontSize: 13,

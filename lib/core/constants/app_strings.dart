@@ -19,7 +19,6 @@ class AppStrings {
   static const String bestStreak = 'أفضل سلسلة';
   static const String bestScore = 'أفضل نتيجة';
   static const String gamesPlayed = 'عدد الجولات';
-  static const String day = 'يوم';
 
   // الاختبار
   static const String question = 'سؤال';
@@ -41,7 +40,10 @@ class AppStrings {
   static const String playAgain = 'العب مرة أخرى';
   static const String backHome = 'الرئيسية';
   static const String shareScore = 'شارك النتيجة';
-  static const String streakKept = 'حافظت على سلسلتك!';
+  /// [days] مكتوبة بـ `ArabicCount` بصيغة المجرور بعد «لمدة»: «يومين».
+  static String streakKeptFor(String days) =>
+      'حافظت على سلسلتك لمدة $days!';
+  static const String streakLabel = 'السلسلة';
   static const String reviewAnswers = 'مراجعة الإجابات';
 
   // رسائل الأداء
@@ -81,6 +83,10 @@ class AppStrings {
   static const String resetProgress = 'تصفير تقدّم المستويات';
   static const String resetProgressBody =
       'ستُقفل كل المستويات من جديد وتُحذف كل النجوم. لا يمكن التراجع.';
+
+  /// [stars] و[levels] مكتوبان بـ `ArabicCount` بصيغة المفعول: «نجمتين».
+  static String resetProgressLoss(String stars, String levels) =>
+      'ستفقد $stars وتقدّم $levels.';
   static const String confirmReset = 'تصفير';
   static const String cancel = 'إلغاء';
   static const String resetDone = 'تم التصفير';
@@ -100,13 +106,21 @@ class AppStrings {
   static const String reminderChannelDescription =
       'تذكير يومي بلعب تحدي اليوم والحفاظ على السلسلة.';
   static const String reminderTitle = 'تحدي اليوم بانتظارك ⚽';
-  static const String reminderBody = 'حافظ على سلسلتك — سبعة أسئلة فقط!';
+  /// [questions] عدد أسئلة التحدي مكتوباً بـ `ArabicCount`: «7 أسئلة».
+  static String reminderBody(String questions) =>
+      'العب الآن — $questions فقط!';
+
+  /// [streak] مكتوبة بـ `ArabicCount`: «5 أيام».
+  static String reminderBodyStreak(String streak, String questions) =>
+      'سلسلتك: $streak — لا تدعها تنكسر، $questions فقط!';
 
   // الاقتصاد
   static const String hearts = 'القلوب';
   static const String noHeartsTitle = 'نفدت قلوبك';
   static const String noHeartsBody =
       'انتظر حتى يتجدّد قلب، أو العب تحدي اليوم لتكسب قلباً مجانياً.';
+  static const String noHeartsBodyDailyDone =
+      'انتظر حتى يتجدّد قلب، أو احصل على قلب الآن بإعلان أو بالعملات.';
   static const String nextHeartIn = 'القلب التالي بعد';
   static const String heartsFull = 'القلوب ممتلئة';
   static const String playDailyForHeart = 'العب تحدي اليوم';
@@ -123,7 +137,8 @@ class AppStrings {
   // المهام والمتجر
   static const String coins = 'العملات';
   static const String tasks = 'المهام اليومية';
-  static const String taskAnswers = 'أجب إجابة صحيحة';
+  /// [count] الهدف مكتوباً بـ `ArabicCount` بصيغة المفعول: «10 إجابات صحيحة».
+  static String taskAnswers(String count) => 'أجب $count';
   static const String taskDaily = 'أكمل تحدي اليوم';
   static const String taskLevel = 'اجتز مستوى واحداً';
   static const String claim = 'استلم';
@@ -190,4 +205,5 @@ class AppStrings {
   static const String noQuestions = 'لا توجد أسئلة متاحة حالياً.';
   static const String errorTitle = 'حدث خطأ';
   static const String retry = 'إعادة المحاولة';
+  static const String ok = 'حسناً';
 }

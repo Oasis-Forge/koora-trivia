@@ -7,6 +7,7 @@ import 'package:football_trivia/domain/entities/category.dart';
 import 'package:football_trivia/domain/entities/category_progress.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
 import 'package:football_trivia/domain/entities/question.dart';
+import 'package:football_trivia/domain/entities/reminder_plan.dart';
 import 'package:football_trivia/domain/entities/user_stats.dart';
 import 'package:football_trivia/domain/repositories/ad_service.dart';
 import 'package:football_trivia/domain/repositories/economy_repository.dart';
@@ -126,10 +127,10 @@ class _FakeScheduler implements ReminderScheduler {
   Future<bool> requestPermission() async => true;
 
   @override
-  Future<void> scheduleDaily({required int hour, required int minute}) async {}
+  Future<void> schedule(List<ReminderPlan> plans) async {}
 
   @override
-  Future<void> cancelDaily() async {}
+  Future<void> cancelAll() async {}
 }
 
 class _FakeAdService implements AdService {

@@ -38,18 +38,31 @@ Last full check: **13 September 2026** · Latest build: **v1.0.3+4**
 | Settings · daily tasks · shop | ✅ render |
 | State survives a restart | ✅ hearts and rounds played |
 
+### On the emulator (13 September 2026)
+
+| Flow | Build | Result |
+|---|---|---|
+| EEA consent form | debug, `--dart-define=UMP_DEBUG_EEA=true`, app data cleared | ✅ Google's consent form appears at launch, after the AdMob European regulations message was published |
+| Settings → «الخصوصية» | same | ✅ «خيارات خصوصية الإعلانات» and «سياسة الخصوصية» rows show |
+| Reminder scheduling | release (PR #6) | ✅ enabling the toggle schedules 7 one-shot alarms, one per day at 20:00, through `ScheduledNotificationReceiver` |
+| Reminder after a reboot | release | ✅ all 7 alarms re-registered without opening the app |
+| Reminder fires | release, clock moved past 20:00 the next day | ✅ «تحدي اليوم بانتظارك ⚽» · «العب الآن — 7 أسئلة فقط!» · white football status-bar icon · channel `daily_challenge` |
+| Reminder, final PR #6 build | release, reboot, then clock moved two days ahead | ✅ 7 alarms before and after reboot · days 1 and 2 fired (ids 1001, 1002) · the other 5 stay scheduled · no crash |
+| Tomorrow one-shot + daily-repeating reminder (design tried, dropped) | release | ❌ the plugin armed the repeating one for the next 20:00, ignoring its date, so both fired the same day |
+| Release launch with PRs #5 and #6 | release | ✅ no crash · an ad is requested at launch |
+
+To re-run the EEA check: clear the app's data, then `flutter run --dart-define=UMP_DEBUG_EEA=true`
+(ignored in release builds). To make a reminder fire without waiting: `adb shell settings put global
+auto_time 0`, then `adb shell cmd alarm set-time <epoch ms>` more than an hour past the reminder time
+(inexact alarms have a one-hour window), and set `auto_time` back to 1 afterwards.
+
 ### Not verified yet
 
 - **A real phone** — everything above was on the emulator.
-- The daily reminder actually firing at its scheduled time.
-- The UMP consent form for a user in Europe. **Blocked** until AdMob → Privacy & messaging has a
-  published European regulations message for the app: on 13 September 2026 the emulator logged
-  `Publisher misconfiguration … no form(s) configured for the input app ID`. Once it exists, on the
-  emulator: clear the app's data, then
-  `flutter run --dart-define=UMP_DEBUG_EEA=true` (the flag is ignored in release builds). Check
-  that the form appears before any ad loads, that Settings → «الخصوصية» shows
-  «خيارات خصوصية الإعلانات» and it opens the form, and that the rewarded button enables by itself
-  once the ad loads.
+- Tapping «خيارات خصوصية الإعلانات» opens the form, and the rewarded button enables by itself once
+  the ad loads, in the EEA simulation.
+- The reminder's streak text on a day with a streak, and skipping today after finishing the daily
+  (covered by `plan_reminders_test` and `reminder_test`, not yet seen on a device).
 - Progress export/import on a device (the logic is covered by `backup_test`).
 - Buying from the shop with real coins · the shop's rewarded ad (+70).
 - Real production ads — **never tap them yourself**.

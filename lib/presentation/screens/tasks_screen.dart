@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/utils/arabic_count.dart';
 import '../../domain/entities/daily_task.dart';
 import '../providers/economy_provider.dart';
 import '../widgets/coin_badge.dart';
@@ -82,8 +83,14 @@ class _TaskCard extends StatelessWidget {
 
   final DailyTask task;
 
-  static String _title(TaskKind kind) => switch (kind) {
-        TaskKind.correctAnswers => AppStrings.taskAnswers,
+  static String _title(DailyTask task) => switch (task.kind) {
+        TaskKind.correctAnswers => AppStrings.taskAnswers(
+            ArabicCount.format(
+              task.target,
+              ArabicNoun.correctAnswer,
+              object: true,
+            ),
+          ),
         TaskKind.completeDaily => AppStrings.taskDaily,
         TaskKind.completeLevel => AppStrings.taskLevel,
       };
@@ -106,7 +113,7 @@ class _TaskCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  _title(task.kind),
+                  _title(task),
                   style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w700,

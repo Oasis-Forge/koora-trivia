@@ -11,11 +11,14 @@ class EconomyProvider extends ChangeNotifier {
   EconomyProvider({
     required EconomyRepository repository,
     RegenerateHearts regenerate = const RegenerateHearts(),
+    DateTime Function()? clock,
   })  : _repository = repository,
-        _regenerate = regenerate;
+        _regenerate = regenerate,
+        _clock = clock ?? DateTime.now;
 
   final EconomyRepository _repository;
   final RegenerateHearts _regenerate;
+  final DateTime Function() _clock;
 
   Economy _economy = const Economy();
   Duration? _untilNextHeart;
@@ -90,17 +93,26 @@ class EconomyProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// إعادة احتساب الرصيد. تُستدعى عند فتح أي شاشة تعرض القلوب.
+  /// إعادة احتساب الرصيد والعدّاد والمهام اليومية.
+  ///
+  /// تُستدعى عند العودة إلى التطبيق، وكل نصف دقيقة من `HeartsTicker` ما دامت
+  /// القلوب ناقصة، وقبل بدء أي مستوى.
   void refresh() => _refresh(persist: true);
 
   void _refresh({required bool persist}) {
     final before = _economy;
-    final snapshot = _regenerate(_economy);
+    final minutesBefore = _untilNextHeart?.inMinutes;
+    final snapshot = _regenerate(_economy, now: _clock());
     _economy = snapshot.economy;
     _untilNextHeart = snapshot.untilNextHeart;
 
-    if (persist && !identical(before, _economy)) {
-      _repository.save(_economy);
+    if (!persist) return;
+    final changed = !identical(before, _economy);
+    if (changed) _repository.save(_economy);
+
+    // العدّاد وحده يتغيّر كل دقيقة دون أي تغيّر يُحفظ، وكان لا يُخطر الواجهة
+    // فيبقى الوقت المعروض مجمّداً.
+    if (changed || _untilNextHeart?.inMinutes != minutesBefore) {
       notifyListeners();
     }
   }
@@ -115,8 +127,10 @@ class EconomyProvider extends ChangeNotifier {
     _economy = _economy.copyWith(
       hearts: _economy.hearts - 1,
       lastRegenAtIso:
-          wasFull ? DateTime.now().toIso8601String() : _economy.lastRegenAtIso,
+          wasFull ? _clock().toIso8601String() : _economy.lastRegenAtIso,
     );
+    // يظهر عدّاد القلب التالي فور خسارة القلب، لا بعد إعادة الحساب التالية.
+    _refresh(persist: false);
 
     notifyListeners();
     await _repository.save(_economy);
@@ -134,7 +148,7 @@ class EconomyProvider extends ChangeNotifier {
 
     _economy = _economy.copyWith(
       rewardedRefillsToday: _economy.rewardedRefillsToday + 1,
-      rewardedDayKey: DayKey.today(),
+      rewardedDayKey: DayKey.today(_clock()),
     );
     await _grantHearts(AppConfig.heartsPerRewardedAdWatch);
     return true;
@@ -150,9 +164,9 @@ class EconomyProvider extends ChangeNotifier {
 
     final hearts = (_economy.hearts + amount).clamp(0, AppConfig.maxHearts);
     _economy = _economy.copyWith(hearts: hearts);
-    _untilNextHeart = hearts >= AppConfig.maxHearts
-        ? null
-        : Duration(minutes: AppConfig.heartRegenMinutes);
+    // العدّاد يُحسب من لحظة آخر تجديد: القلب الممنوح لا يعيد انتظار القلب
+    // التالي إلى ثلاثين دقيقة كاملة كما كان.
+    _refresh(persist: false);
 
     notifyListeners();
     await _repository.save(_economy);
@@ -166,7 +180,7 @@ class EconomyProvider extends ChangeNotifier {
     if (freeHintsLeft > 0) {
       _economy = _economy.copyWith(
         hintsUsedToday: _economy.hintsUsedToday + 1,
-        hintsDayKey: DayKey.today(),
+        hintsDayKey: DayKey.today(_clock()),
       );
     } else {
       _economy = _economy.copyWith(bonusHints: _economy.bonusHints - 1);
@@ -191,7 +205,7 @@ class EconomyProvider extends ChangeNotifier {
     _refresh(persist: false);
     _economy = _economy.copyWith(
       correctAnswersToday: _economy.correctAnswersToday + 1,
-      tasksDayKey: DayKey.today(),
+      tasksDayKey: DayKey.today(_clock()),
     );
     notifyListeners();
     await _repository.save(_economy);
@@ -202,7 +216,7 @@ class EconomyProvider extends ChangeNotifier {
     _refresh(persist: false);
     _economy = _economy.copyWith(
       levelsCompletedToday: _economy.levelsCompletedToday + 1,
-      tasksDayKey: DayKey.today(),
+      tasksDayKey: DayKey.today(_clock()),
     );
     notifyListeners();
     await _repository.save(_economy);
@@ -213,7 +227,7 @@ class EconomyProvider extends ChangeNotifier {
     _refresh(persist: false);
     _economy = _economy.copyWith(
       dailyDoneToday: true,
-      tasksDayKey: DayKey.today(),
+      tasksDayKey: DayKey.today(_clock()),
     );
     notifyListeners();
     await _repository.save(_economy);

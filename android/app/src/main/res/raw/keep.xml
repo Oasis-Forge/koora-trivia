@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  أيقونة شريط الحالة يُشار إليها باسمها من Dart فقط، فلا يراها ضاغط الموارد.
+  هذا الملف يمنع حذفها إن فُعّل shrinkResources لاحقاً.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/ic_stat_notification" />

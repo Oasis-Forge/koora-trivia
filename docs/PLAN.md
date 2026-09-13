@@ -5,15 +5,15 @@
 ## Done since the audit
 - Daily challenge repeating on consecutive days, and its seed depending on the time zone: PR #2, merged 13 September 2026.
 - "Replay level" and "Next level" on the result screen starting a level with zero hearts: PR #3, merged 13 September 2026.
-- PR #5, open: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
+- The owner published a *European regulations* consent message in AdMob on 13 September 2026; the EEA consent form now appears on the emulator (debug build with `UMP_DEBUG_EEA=true`), and the Settings privacy-options row shows.
+- PR #6, open: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
+- PR #5, merged 13 September 2026: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
 
 ---
 
 ## Phase 1: before production (during the 14-day closed test)
 
 ### Bugs
-- **P1 · S**: The daily reminder never fires. Declare `ScheduledNotificationReceiver` and the boot receiver in `AndroidManifest.xml`, and add a one-colour status-bar icon (the launcher icon shows as a blank shape). Verify on a release build, including after a reboot.
-- **P1 · S**: Hearts, the refill countdown and tasks stay frozen on screen. Refresh `EconomyProvider` when the app resumes and every ~30 s while hearts are below max. Compute the countdown from `lastRegenAtIso`, which also fixes the 30-minute reset after a granted heart.
 - **P1 · S**: An imported backup gets overwritten by the next save. After import, reload every provider, check each value against its model, and catch TypeError in the local datasources *(backup_repository_impl.dart, settings_screen.dart)*.
 - **P1 · S**: The levels grid hides level 10 on 360×640 and 411×731 phones. Size the tiles with `LayoutBuilder` and let the grid scroll *(levels_screen.dart)*.
 - **P1 · S**: Using the Skip hint shows «انتهى الوقت!» and a red review row. Use `AnswerRecord.skipped` and the unused `skippedAnswer` string *(quiz_screen.dart, score_screen.dart)*.
@@ -22,10 +22,8 @@
 
 ### UI/UX
 - **P1 · M**: On 360×640 phones the 4th answer is below the fold while the timer runs. Add a compact layout below ~700 dp, scroll the feedback panel into view, and check the tall-device gap in the same pass *(quiz_screen.dart, answer_option.dart)*.
-- **P1 · S**: No-hearts dialog. Its only button, «متابعة اللعب», should say "OK". Hide the daily-challenge advice once the daily is done, and add a «العب تحدي اليوم» button and a 200-coin refill button *(hearts_bar.dart)*.
 
 ### Content
-- **P1 · S**: Count-noun grammar is wrong. Add one helper for days, stars, levels and points, and use it in the share text («1 أيام», «12 أيام») and the task title «أجب إجابة صحيحة». Fix the two tests that assert the wrong forms.
 - **P1 · M**: Answers made wrong by 2024–26 events: 1021, 1051, 1084, 4030, 8083, 6037, 10009, 10091, 1079/10024, 1011, 3048, 5048, 6099, 5022, 2097, 8008, 1014, 1044. Re-check each fact on the day you edit it.
 - **P1 · M**: Answers that were never right, or that contradict their own explanation: 10086, 10063, 10082, 5040, 5056, 10092, 3072/10052, 3081, 4081, 7097, 5092, 10095, 9073, 3087, 5096, 3090, 6082, 6091, 7093.
 - **P1 · S**: Remove the second correct option from 1080/10043, 1096, 10081, 8089, 8088, 3083 and 2098. Weaker cases: 10099 and 5098.
@@ -35,9 +33,8 @@
 
 ### Release & tech debt
 - **P0 · S**: The live Data safety form under-declares what AdMob collects. The docs are fixed (PR #5); the owner updates the form in Play Console to the four types in DATA_SAFETY_EN.md.
-- **P0 · S**: AdMob has no consent message for the app. On the emulator the consent SDK reports `Publisher misconfiguration … no form(s) configured for the input app ID`, so users in Europe and the UK never see a consent form. The owner creates and publishes a *European regulations* message in AdMob → Privacy & messaging, then re-tests with `--dart-define=UMP_DEBUG_EEA=true` (PRE_PUBLISH §1).
 - **P0 · M**: Production gate. Only 5 of the 12 required testers have joined. Recruit 15–20 as a buffer and record the date the 12th joins. Replace the crashing versionCode 1 on the internal track.
-- **P1 · S**: Privacy policy. The source is updated (PR #5). After merging, copy it to privacy-site, push, and check the live page (it still shows 6 September).
+- **P1 · S**: Privacy policy. The source is updated (PR #5, merged). Copy it to privacy-site, push, and check the live page (it still shows 6 September). Waiting on the owner's go-ahead to publish.
 - **P1 · S**: Play Console and GitHub tasks:
   - Read and fix the "Some languages have errors" warning.
   - Set the displayed developer name to Oasis Forge.
@@ -47,8 +44,6 @@
 - **P1 · M**: Check on a release build or real phone and log results in PRE_PUBLISH §1:
   - Level pass and fail.
   - Daily challenge shows no replay button.
-  - Reminder fires, including after a reboot.
-  - EEA consent form.
   - Backup import and export.
   - Shop purchases and the +70-coin ad.
   - 360×640 layout.
@@ -60,7 +55,6 @@
 - **P1 · S**: The share text has no link to the app. Add the Play Store URL with a UTM referrer on its own line *(build_share_text.dart, share_text_test)*.
 - **P1 · S**: Ask for an in-app review only at good moments (3rd daily with a streak of 3 or more, or a 3-star pass), at least 30 days apart, never after a failed level or an ad.
 - **P1 · S**: Add a "report this question" flag after the answer is revealed and in the review list. It opens the share sheet or an email with the question id, reason and app version; nothing is sent automatically.
-- **P1 · S**: Skip the reminder on days the daily is already done, mention the streak in its text, and take the question count from AppConfig (the text currently hardcodes seven) *(local_notification_scheduler.dart)*.
 
 ---
 

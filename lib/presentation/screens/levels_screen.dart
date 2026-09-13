@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/constants/app_config.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/utils/arabic_count.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/entities/question.dart';
 import '../providers/progress_provider.dart';
@@ -278,7 +280,7 @@ class _Footer extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 10),
               child: Text(
                 '${AppStrings.level} $level  ·  ${difficulty.arabicLabel}'
-                '  ·  10 أسئلة',
+                '  ·  ${ArabicCount.format(AppConfig.questionsPerLevel, ArabicNoun.question)}',
                 style: const TextStyle(
                   color: AppColors.chalkMuted,
                   fontSize: 13,

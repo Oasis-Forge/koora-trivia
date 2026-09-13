@@ -1,11 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:football_trivia/core/constants/app_config.dart';
+import 'package:football_trivia/core/utils/arabic_count.dart';
 import 'package:football_trivia/data/services/local_notification_scheduler.dart';
 import 'package:football_trivia/domain/entities/app_settings.dart';
+import 'package:football_trivia/domain/entities/reminder_plan.dart';
+import 'package:football_trivia/domain/entities/user_stats.dart';
 import 'package:football_trivia/domain/repositories/reminder_scheduler.dart';
 import 'package:football_trivia/domain/repositories/settings_repository.dart';
 import 'package:football_trivia/presentation/providers/settings_provider.dart';
-import 'package:timezone/data/latest_all.dart' as tz_data;
-import 'package:timezone/timezone.dart' as tz;
 
 class _FakeSettingsRepository implements SettingsRepository {
   _FakeSettingsRepository([this.settings = const AppSettings()]);
@@ -24,16 +26,20 @@ class _FakeSettingsRepository implements SettingsRepository {
 }
 
 class _FakeScheduler implements ReminderScheduler {
-  _FakeScheduler({this.permissionGranted = true, this.alreadyHasPermission = false});
+  _FakeScheduler({
+    this.permissionGranted = true,
+    this.alreadyHasPermission = false,
+  });
 
   bool permissionGranted;
   bool alreadyHasPermission;
 
-  int scheduleCount = 0;
+  final scheduled = <List<ReminderPlan>>[];
   int cancelCount = 0;
   int permissionRequests = 0;
-  int? lastHour;
-  int? lastMinute;
+
+  int get scheduleCount => scheduled.length;
+  ReminderPlan get firstPlan => scheduled.last.first;
 
   @override
   Future<void> init() async {}
@@ -49,23 +55,36 @@ class _FakeScheduler implements ReminderScheduler {
   }
 
   @override
-  Future<void> scheduleDaily({required int hour, required int minute}) async {
-    scheduleCount++;
-    lastHour = hour;
-    lastMinute = minute;
-  }
+  Future<void> schedule(List<ReminderPlan> plans) async => scheduled.add(plans);
 
   @override
-  Future<void> cancelDaily() async => cancelCount++;
+  Future<void> cancelAll() async => cancelCount++;
 }
+
+/// صباح يوم عادي — قبل موعد التنبيه الافتراضي (20:00).
+final _morning = DateTime(2026, 9, 13, 10);
+
+/// إحصائيات لاعب أنهى تحدي [dayKey] وسلسلته [streak].
+UserStats _doneOn(String dayKey, int streak) =>
+    UserStats(currentStreak: streak, lastDailyDayKey: dayKey);
+
+SettingsProvider _provider(
+  _FakeSettingsRepository repo,
+  _FakeScheduler scheduler, {
+  DateTime Function()? clock,
+}) =>
+    SettingsProvider(
+      repository: repo,
+      scheduler: scheduler,
+      clock: clock ?? () => _morning,
+    );
 
 void main() {
   group('SettingsProvider — التنبيه', () {
-    test('التشغيل يطلب الإذن ويجدول التنبيه', () async {
+    test('التشغيل يطلب الإذن ويجدول تنبيهات الأيام القادمة', () async {
       final repo = _FakeSettingsRepository();
       final scheduler = _FakeScheduler();
-      final provider =
-          SettingsProvider(repository: repo, scheduler: scheduler);
+      final provider = _provider(repo, scheduler);
 
       await provider.init();
       final ok = await provider.setReminderEnabled(true);
@@ -73,7 +92,8 @@ void main() {
       expect(ok, isTrue);
       expect(scheduler.permissionRequests, 1);
       expect(scheduler.scheduleCount, 1);
-      expect(scheduler.lastHour, 20);
+      expect(scheduler.scheduled.last, hasLength(AppConfig.reminderDaysAhead));
+      expect(scheduler.firstPlan.at, DateTime(2026, 9, 13, 20));
       expect(provider.reminderEnabled, isTrue);
       expect(repo.settings.reminderEnabled, isTrue);
     });
@@ -81,8 +101,7 @@ void main() {
     test('رفض الإذن يترك التنبيه مطفأً ولا يجدول شيئاً', () async {
       final repo = _FakeSettingsRepository();
       final scheduler = _FakeScheduler(permissionGranted: false);
-      final provider =
-          SettingsProvider(repository: repo, scheduler: scheduler);
+      final provider = _provider(repo, scheduler);
 
       await provider.init();
       final ok = await provider.setReminderEnabled(true);
@@ -94,13 +113,12 @@ void main() {
       expect(repo.settings.reminderEnabled, isFalse);
     });
 
-    test('الإيقاف يلغي التنبيه المجدول', () async {
+    test('الإيقاف يلغي التنبيهات المجدولة', () async {
       final repo = _FakeSettingsRepository(
         const AppSettings(reminderEnabled: true),
       );
       final scheduler = _FakeScheduler(alreadyHasPermission: true);
-      final provider =
-          SettingsProvider(repository: repo, scheduler: scheduler);
+      final provider = _provider(repo, scheduler);
 
       await provider.init();
       await provider.setReminderEnabled(false);
@@ -113,8 +131,7 @@ void main() {
     test('تغيير الوقت يعيد الجدولة عند التشغيل فقط', () async {
       final repo = _FakeSettingsRepository();
       final scheduler = _FakeScheduler(alreadyHasPermission: true);
-      final provider =
-          SettingsProvider(repository: repo, scheduler: scheduler);
+      final provider = _provider(repo, scheduler);
 
       await provider.init();
 
@@ -128,31 +145,30 @@ void main() {
 
       await provider.setReminderTime(hour: 21, minute: 15);
       expect(scheduler.scheduleCount, afterEnable + 1);
-      expect(scheduler.lastHour, 21);
-      expect(scheduler.lastMinute, 15);
+      expect(scheduler.firstPlan.at, DateTime(2026, 9, 13, 21, 15));
     });
 
-    test('سحب الإذن من إعدادات النظام يُطفئ التنبيه عند الإقلاع', () async {
+    test('سحب الإذن من إعدادات النظام يُطفئ التنبيه ويلغيه عند الإقلاع',
+        () async {
       // المستخدم فعّل التنبيه سابقاً ثم منع الإشعارات من النظام.
       final repo = _FakeSettingsRepository(
         const AppSettings(reminderEnabled: true, reminderHour: 19),
       );
       final scheduler = _FakeScheduler(alreadyHasPermission: false);
-      final provider =
-          SettingsProvider(repository: repo, scheduler: scheduler);
+      final provider = _provider(repo, scheduler);
 
       await provider.init();
 
       expect(provider.reminderEnabled, isFalse);
       expect(scheduler.scheduleCount, 0);
+      expect(scheduler.cancelCount, 1);
       expect(repo.settings.reminderEnabled, isFalse);
     });
 
     test('الإذن الممنوح مسبقاً لا يُطلب مجدداً', () async {
       final repo = _FakeSettingsRepository();
       final scheduler = _FakeScheduler(alreadyHasPermission: true);
-      final provider =
-          SettingsProvider(repository: repo, scheduler: scheduler);
+      final provider = _provider(repo, scheduler);
 
       await provider.init();
       await provider.setReminderEnabled(true);
@@ -160,38 +176,132 @@ void main() {
       expect(scheduler.permissionRequests, 0);
       expect(scheduler.scheduleCount, 1);
     });
+
+    test('الإقلاع يعيد الجدولة دائماً', () async {
+      final repo = _FakeSettingsRepository(
+        const AppSettings(reminderEnabled: true),
+      );
+      final scheduler = _FakeScheduler(alreadyHasPermission: true);
+
+      await _provider(repo, scheduler).init();
+
+      expect(scheduler.scheduleCount, 1);
+    });
   });
 
-  group('حساب موعد التنبيه القادم', () {
-    setUpAll(tz_data.initializeTimeZones);
+  group('مزامنة التنبيه مع تحدي اليوم', () {
+    Future<(SettingsProvider, _FakeScheduler)> enabled({
+      DateTime Function()? clock,
+    }) async {
+      final scheduler = _FakeScheduler(alreadyHasPermission: true);
+      final provider = _provider(
+        _FakeSettingsRepository(const AppSettings(reminderEnabled: true)),
+        scheduler,
+        clock: clock,
+      );
+      await provider.init();
+      return (provider, scheduler);
+    }
 
-    test('الموعد اليوم إن لم يمضِ بعد', () {
-      final location = tz.getLocation('Asia/Riyadh');
-      final now = tz.TZDateTime(location, 2026, 8, 4, 14, 0);
+    test('إنجاز تحدي اليوم ينقل أول تنبيه إلى الغد ويذكر السلسلة', () async {
+      final (provider, scheduler) = await enabled();
+      expect(scheduler.firstPlan.at, DateTime(2026, 9, 13, 20));
 
-      final next = LocalNotificationScheduler.nextInstanceOf(20, 0, now);
+      await provider.syncReminder(_doneOn('2026-09-13', 4));
 
-      expect(next.day, 4);
-      expect(next.hour, 20);
+      expect(scheduler.scheduleCount, 2);
+      expect(scheduler.firstPlan.at, DateTime(2026, 9, 14, 20));
+      expect(scheduler.firstPlan.streak, 4);
     });
 
-    test('الموعد غداً إن مضى وقته اليوم', () {
-      final location = tz.getLocation('Asia/Riyadh');
-      final now = tz.TZDateTime(location, 2026, 8, 4, 22, 0);
+    test('مزامنة بلا تغيير لا تعيد الجدولة', () async {
+      final (provider, scheduler) = await enabled();
 
-      final next = LocalNotificationScheduler.nextInstanceOf(20, 0, now);
+      await provider.syncReminder(const UserStats());
+      await provider.syncReminder(const UserStats());
+      expect(scheduler.scheduleCount, 1);
 
-      expect(next.day, 5);
-      expect(next.hour, 20);
+      // سلسلة قائمة منذ الأمس تدخل نص تنبيه اليوم.
+      await provider.syncReminder(_doneOn('2026-09-12', 3));
+      expect(scheduler.scheduleCount, 2);
+      expect(scheduler.firstPlan.streak, 3);
     });
 
-    test('الموعد غداً إن كانت اللحظة نفسها بالضبط', () {
-      final location = tz.getLocation('Asia/Riyadh');
-      final now = tz.TZDateTime(location, 2026, 8, 4, 20, 0);
+    test('سلسلة انقطعت لا تُذكر', () async {
+      final (provider, scheduler) = await enabled();
 
-      final next = LocalNotificationScheduler.nextInstanceOf(20, 0, now);
+      await provider.syncReminder(_doneOn('2026-09-10', 8));
 
-      expect(next.day, 5);
+      expect(scheduler.firstPlan.streak, isNull);
+    });
+
+    test('المزامنة والتنبيه مطفأ لا تجدول شيئاً', () async {
+      final scheduler = _FakeScheduler(alreadyHasPermission: true);
+      final provider = _provider(_FakeSettingsRepository(), scheduler);
+      await provider.init();
+
+      await provider.syncReminder(_doneOn('2026-09-13', 2));
+
+      expect(scheduler.scheduleCount, 0);
+    });
+
+    test('حالة التحدي المعروفة قبل التشغيل تدخل أول جدولة', () async {
+      final scheduler = _FakeScheduler(alreadyHasPermission: true);
+      final provider = _provider(_FakeSettingsRepository(), scheduler);
+      await provider.init();
+
+      await provider.syncReminder(_doneOn('2026-09-13', 6));
+      await provider.setReminderEnabled(true);
+
+      expect(scheduler.firstPlan.at, DateTime(2026, 9, 14, 20));
+      expect(scheduler.firstPlan.streak, 6);
+    });
+
+    test('بعد منتصف الليل لا يُعامَل اليوم الجديد كأنه أُنجز', () async {
+      var now = _morning;
+      final (provider, scheduler) = await enabled(clock: () => now);
+      await provider.syncReminder(_doneOn('2026-09-13', 4));
+      expect(scheduler.firstPlan.at, DateTime(2026, 9, 14, 20));
+
+      // التطبيق بقي مفتوحاً بعد منتصف الليل دون أي مزامنة جديدة.
+      now = DateTime(2026, 9, 14, 0, 30);
+      await provider.setReminderTime(hour: 20, minute: 0);
+
+      expect(scheduler.firstPlan.at, DateTime(2026, 9, 14, 20));
+      expect(scheduler.firstPlan.streak, 4);
+    });
+  });
+
+  group('نص التنبيه', () {
+    final questions = ArabicCount.format(
+      AppConfig.dailyQuestionCount,
+      ArabicNoun.question,
+    );
+
+    test('يذكر السلسلة بصيغتها الصحيحة وعدد أسئلة التحدي', () {
+      final body = LocalNotificationScheduler.bodyFor(
+        ReminderPlan(at: _morning, streak: 5),
+      );
+
+      expect(body, contains('5 أيام'));
+      expect(body, contains(questions));
+    });
+
+    test('بلا سلسلة: نص عام لا يَعِد بسلسلة', () {
+      final body = LocalNotificationScheduler.bodyFor(
+        ReminderPlan(at: _morning),
+      );
+
+      expect(body, isNot(contains('سلسل')));
+      expect(body, contains(questions));
+    });
+
+    test('عدد الأسئلة من الإعدادات لا من نص ثابت', () {
+      final body = LocalNotificationScheduler.bodyFor(
+        ReminderPlan(at: _morning),
+      );
+
+      expect(body, isNot(contains('سبعة')));
     });
   });
 }

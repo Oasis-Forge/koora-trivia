@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/constants/app_config.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/utils/arabic_count.dart';
 
 /// بطاقة تحدي اليوم — تعرض حالة التحدي والسلسلة والوقت المتبقي للتحدي التالي.
 class DailyChallengeCard extends StatelessWidget {
@@ -71,7 +72,7 @@ class DailyChallengeCard extends StatelessWidget {
           Text(
             isDone
                 ? '${AppStrings.dailyDone}  •  التحدي القادم بعد ${_format(untilNext)}'
-                : '${AppConfig.dailyQuestionCount} أسئلة • نقاط مضاعفة ×${AppConfig.dailyMultiplier}',
+                : '${ArabicCount.format(AppConfig.dailyQuestionCount, ArabicNoun.question)} • نقاط مضاعفة ×${AppConfig.dailyMultiplier}',
             style: TextStyle(
               fontSize: 14,
               height: 1.5,

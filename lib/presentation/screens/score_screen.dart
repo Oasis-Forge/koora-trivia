@@ -5,6 +5,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/constants/app_config.dart';
+import '../../core/utils/arabic_count.dart';
 import '../../domain/entities/quiz_result.dart';
 import '../../domain/usecases/build_share_text.dart';
 import '../providers/ads_provider.dart';
@@ -273,7 +274,13 @@ class _ScoreScreenState extends State<ScoreScreen>
                       const SizedBox(width: 10),
                       Expanded(
                         child: Text(
-                          '${AppStrings.streakKept} ${stats.streak} ${AppStrings.day} متتالية',
+                          AppStrings.streakKeptFor(
+                            ArabicCount.format(
+                              stats.streak,
+                              ArabicNoun.day,
+                              object: true,
+                            ),
+                          ),
                           style: const TextStyle(fontWeight: FontWeight.w700),
                         ),
                       ),
@@ -389,9 +396,12 @@ class _ScoreMedal extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Text(
-                  'نقطة',
-                  style: TextStyle(color: AppColors.chalkMuted, fontSize: 13),
+                Text(
+                  ArabicCount.nounFor(result.score, ArabicNoun.point),
+                  style: const TextStyle(
+                    color: AppColors.chalkMuted,
+                    fontSize: 13,
+                  ),
                 ),
               ],
             ),

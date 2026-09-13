@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/constants/app_config.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import '../providers/economy_provider.dart';
+import '../providers/quiz_provider.dart';
+import '../providers/stats_provider.dart';
+import '../screens/quiz_screen.dart';
+import 'hearts_ticker.dart';
 import 'rewarded_button.dart';
 
 /// شارة القلوب مع الوقت المتبقي للقلب التالي.
@@ -17,48 +22,50 @@ class HeartsBar extends StatelessWidget {
     final economy = context.watch<EconomyProvider>();
     final empty = !economy.hasHearts;
 
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: compact ? 10 : 12,
-        vertical: compact ? 6 : 8,
-      ),
-      decoration: BoxDecoration(
-        color: (empty ? AppColors.wrong : AppColors.cardSurface)
-            .withValues(alpha: empty ? 0.18 : 1),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(
-          color: empty ? AppColors.wrong : AppColors.cardBorder,
+    return HeartsTicker(
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: compact ? 10 : 12,
+          vertical: compact ? 6 : 8,
         ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            empty ? Icons.heart_broken_rounded : Icons.favorite_rounded,
-            size: compact ? 15 : 17,
-            color: empty ? AppColors.wrong : AppColors.wrong,
+        decoration: BoxDecoration(
+          color: (empty ? AppColors.wrong : AppColors.cardSurface)
+              .withValues(alpha: empty ? 0.18 : 1),
+          borderRadius: BorderRadius.circular(999),
+          border: Border.all(
+            color: empty ? AppColors.wrong : AppColors.cardBorder,
           ),
-          const SizedBox(width: 5),
-          Text(
-            '${economy.hearts}/${economy.maxHearts}',
-            style: TextStyle(
-              fontSize: compact ? 13 : 14,
-              fontWeight: FontWeight.w800,
-              color: AppColors.chalk,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              empty ? Icons.heart_broken_rounded : Icons.favorite_rounded,
+              size: compact ? 15 : 17,
+              color: AppColors.wrong,
             ),
-          ),
-          if (!compact && economy.untilNextHeart != null) ...[
-            const SizedBox(width: 8),
+            const SizedBox(width: 5),
             Text(
-              _format(economy.untilNextHeart!),
-              style: const TextStyle(
-                fontSize: 11.5,
-                color: AppColors.chalkMuted,
-                fontWeight: FontWeight.w600,
+              '${economy.hearts}/${economy.maxHearts}',
+              style: TextStyle(
+                fontSize: compact ? 13 : 14,
+                fontWeight: FontWeight.w800,
+                color: AppColors.chalk,
               ),
             ),
+            if (!compact && economy.untilNextHeart != null) ...[
+              const SizedBox(width: 8),
+              Text(
+                _format(economy.untilNextHeart!),
+                style: const TextStyle(
+                  fontSize: 11.5,
+                  color: AppColors.chalkMuted,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }
@@ -71,15 +78,16 @@ class HeartsBar extends StatelessWidget {
 }
 
 /// حوار يظهر عند محاولة بدء مستوى بلا قلوب.
+///
+/// يعرض كل طرق الحصول على قلب الآن: تحدي اليوم إن لم يُنجز، والإعلان، والشراء
+/// بالعملات.
 class NoHeartsDialog extends StatelessWidget {
-  const NoHeartsDialog({super.key, required this.untilNext});
+  const NoHeartsDialog({super.key});
 
-  final Duration? untilNext;
-
-  static Future<void> show(BuildContext context, Duration? untilNext) {
+  static Future<void> show(BuildContext context) {
     return showDialog<void>(
       context: context,
-      builder: (_) => NoHeartsDialog(untilNext: untilNext),
+      builder: (_) => const NoHeartsDialog(),
     );
   }
 
@@ -91,59 +99,140 @@ class NoHeartsDialog extends StatelessWidget {
   static Future<bool> ensureHearts(BuildContext context) async {
     final economy = context.read<EconomyProvider>()..refresh();
     if (economy.hasHearts) return true;
-    await show(context, economy.untilNextHeart);
+    await show(context);
     return false;
   }
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: AppColors.cardSurface,
-      title: Row(
-        children: [
-          const Icon(Icons.heart_broken_rounded, color: AppColors.wrong),
-          const SizedBox(width: 8),
-          const Text(AppStrings.noHeartsTitle),
-        ],
-      ),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(AppStrings.noHeartsBody, style: TextStyle(height: 1.6)),
-          if (untilNext != null) ...[
-            const SizedBox(height: 12),
+    final economy = context.watch<EconomyProvider>();
+    // بعد إنجاز تحدي اليوم لا معنى لاقتراحه: قلبه مُنح بالفعل.
+    final dailyDone = context.watch<StatsProvider>().isDailyDone;
+    final untilNext = economy.untilNextHeart;
+
+    // قلب تجدّد والحوار مفتوح، أو مُنح بإعلان أو شراء: لم يعد للحوار سبب، وبقاؤه
+    // يقول «نفدت قلوبك» ويعدّ إلى القلب الثاني.
+    if (economy.hasHearts) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) _close(context);
+      });
+    }
+
+    return HeartsTicker(
+      child: AlertDialog(
+        backgroundColor: AppColors.cardSurface,
+        // أربعة خيارات قد لا تتسع لها الشاشات الصغيرة.
+        scrollable: true,
+        title: const Row(
+          children: [
+            Icon(Icons.heart_broken_rounded, color: AppColors.wrong),
+            SizedBox(width: 8),
+            Text(AppStrings.noHeartsTitle),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
             Text(
-              '${AppStrings.nextHeartIn} ${HeartsBar._format(untilNext!)}',
-              style: const TextStyle(
-                color: AppColors.gold,
-                fontWeight: FontWeight.w700,
+              dailyDone
+                  ? AppStrings.noHeartsBodyDailyDone
+                  : AppStrings.noHeartsBody,
+              style: const TextStyle(height: 1.6),
+            ),
+            if (untilNext != null) ...[
+              const SizedBox(height: 12),
+              Text(
+                '${AppStrings.nextHeartIn} ${HeartsBar._format(untilNext)}',
+                style: const TextStyle(
+                  color: AppColors.gold,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+            const SizedBox(height: 18),
+            if (!dailyDone) ...[
+              FilledButton.icon(
+                onPressed: () => _playDaily(context),
+                icon: const Icon(Icons.local_fire_department_rounded),
+                label: const Text(AppStrings.playDailyForHeart),
+              ),
+              const SizedBox(height: 10),
+            ],
+            RewardedButton(
+              label: AppStrings.watchAdForHeart,
+              icon: Icons.favorite_rounded,
+              dailyLimitReached: economy.rewardedRefillsLeft <= 0,
+              onEarned: () async {
+                await context.read<EconomyProvider>().grantRewardedHearts();
+                if (context.mounted) _close(context);
+              },
+            ),
+            const SizedBox(height: 10),
+            OutlinedButton.icon(
+              onPressed:
+                  economy.canBuyHeartsRefill ? () => _buyRefill(context) : null,
+              icon: const Icon(Icons.monetization_on_rounded),
+              label: Text(
+                '${AppStrings.refillHearts} · ${AppConfig.priceHeartsRefill}',
               ),
             ),
+            if (!economy.canBuyHeartsRefill)
+              const Padding(
+                padding: EdgeInsets.only(top: 6),
+                child: Text(
+                  AppStrings.notEnoughCoins,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 12, color: AppColors.chalkMuted),
+                ),
+              ),
           ],
-          const SizedBox(height: 18),
-          Builder(
-            builder: (context) {
-              final economy = context.watch<EconomyProvider>();
-              return RewardedButton(
-                label: AppStrings.watchAdForHeart,
-                icon: Icons.favorite_rounded,
-                dailyLimitReached: economy.rewardedRefillsLeft <= 0,
-                onEarned: () async {
-                  await context.read<EconomyProvider>().grantRewardedHearts();
-                  if (context.mounted) Navigator.of(context).pop();
-                },
-              );
-            },
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => _close(context),
+            child: const Text(AppStrings.ok),
           ),
         ],
       ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: const Text(AppStrings.quitCancel),
-        ),
-      ],
     );
+  }
+
+  /// يغلق الحوار إن كان ما زال في الأعلى.
+  ///
+  /// الإغلاق يُطلب من أكثر من مكان (قلب تجدّد، شراء اكتمل حفظه، زر «حسناً»)،
+  /// و`pop` غير مشروط بعد انتظار يغلق الشاشة التي تحت الحوار إن كان قد أُغلق.
+  static void _close(BuildContext context) {
+    final route = ModalRoute.of(context);
+    if (route != null && route.isCurrent) Navigator.of(context).pop();
+  }
+
+  /// يغلق الحوار ويبدأ تحدي اليوم — مجاني دائماً ويمنح قلباً عند إكماله.
+  Future<void> _playDaily(BuildContext context) async {
+    final navigator = Navigator.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final quiz = context.read<QuizProvider>();
+
+    _close(context);
+    await quiz.startDaily();
+
+    if (quiz.status == QuizStatus.error) {
+      messenger.showSnackBar(
+        SnackBar(content: Text(quiz.errorMessage ?? AppStrings.errorTitle)),
+      );
+      return;
+    }
+    navigator.pushNamed(QuizScreen.routeName);
+  }
+
+  Future<void> _buyRefill(BuildContext context) async {
+    final messenger = ScaffoldMessenger.of(context);
+    if (!await context.read<EconomyProvider>().buyHeartsRefill()) return;
+
+    // الحوار يُغلق وحده حين تمتلئ القلوب، غالباً قبل اكتمال الحفظ.
+    if (context.mounted) _close(context);
+    messenger
+      ..hideCurrentSnackBar()
+      ..showSnackBar(const SnackBar(content: Text(AppStrings.purchased)));
   }
 }
