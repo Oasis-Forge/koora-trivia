@@ -30,10 +30,18 @@ It contains every fix: launch crash (R8) · star saving and level unlocks · rep
 hidden after the daily challenge · rewarded-ad reward granted. Verified on the emulator
 with a release build. No app code has changed since that build (checked 13 September 2026).
 
-**Git:** PRs #1–#3 (English docs, multilingual plan, branch rule, handoff notes) were merged into
-`main` on 13 September 2026. Their branch `docs/english-docs-and-i18n-plan` still exists on GitHub
-and should go — recreating the repo (decision ④) removes it anyway. Start any new work from the
-latest `main`, following the branch rule in "Expected way of working".
+**Git:** on 13 September 2026 both repos were recreated to remove the owner's personal name from
+public GitHub. `main`'s history was rewritten (final files unchanged), only `main` was pushed, each
+repo's Activity shows only `thepromptkitchen-alt`, and the owner deleted every old copy. PR numbering
+restarted, so the earlier PRs #1–#4 no longer exist. Start new work from the latest `main`, following
+the branch rule in "Expected way of working".
+
+> ⚠️ **Pushing from Windows PowerShell 5.1:** it silently drops empty `""` arguments, so
+> `git config credential.https://github.com.helper ""` does nothing and Git Credential Manager — the
+> owner's personal account — answers first. That is how the first recreation showed the personal
+> account in Activity. Push through Git Bash, or pass
+> `-c credential.helper= -c "credential.helper=!'C:/Program Files/GitHub CLI/gh.exe' auth git-credential"`.
+> Check who pushed with `gh api repos/Oasis-Forge/<repo>/activity --jq ".[].actor.login"`.
 
 ### Publishing identity
 
@@ -99,27 +107,6 @@ latest `main`, following the branch rule in "Expected way of working".
   Undecided.
 - **③ Multiple languages** — deliberately deferred until the Arabic version proves itself. The full plan,
   the decisions it needs, and a verified codebase audit are in [docs/I18N_PLAN.md](docs/I18N_PLAN.md).
-- **④ Owner's personal name in public GitHub history — approved twice, owner to run the script.** On
-  13 September 2026 the owner approved recreating both repos, in two separate sessions. Both times
-  Claude Code's auto-mode permission check blocked the GitHub commands (repo create/rename/visibility),
-  so **nothing on GitHub has changed yet**. What's known:
-  - **App repo:** only the two oldest commits on `main` contain the strings, in 13 lines across
-    `CLAUDE.md`, `docs/PRE_PUBLISH.md` and `android/key.properties.example`. Commit authors and
-    messages are clean everywhere.
-  - **Privacy repo:** its single commit is clean. Only its public Activity page shows the personal account.
-  - A local rewrite of `main` was verified: identical final files, zero matches.
-
-  **The owner runs the recreation script Claude prepared.** It's kept outside the repo because it contains
-  the strings. It refuses to run while PRs are open (PRs don't survive recreation), then:
-  1. Backs up both repos.
-  2. Rewrites `main` and verifies it, then asks for confirmation.
-  3. Renames the old repos to `<name>-old` and makes them private.
-  4. Creates fresh repos and pushes through the `gh` account.
-  5. Re-enables Pages; the privacy URL stays the same.
-  6. Verifies fresh public clones.
-
-  Afterwards the owner deletes the `-old` repos (Claude must never delete them) and this item moves to
-  Done. The exact strings are in Claude's private memory, never in this repo.
 
 ---
 
