@@ -13,6 +13,7 @@ class AnswerOption extends StatelessWidget {
     required this.isSelected,
     required this.onTap,
     this.isEliminated = false,
+    this.compact = false,
   });
 
   final String label;
@@ -23,6 +24,9 @@ class AnswerOption extends StatelessWidget {
 
   /// أزالته مساعدة "حذف إجابتين".
   final bool isEliminated;
+
+  /// مقاسات أصغر للشاشات القصيرة حتى تتسع الخيارات الأربعة دون تمرير.
+  final bool compact;
 
   final VoidCallback? onTap;
 
@@ -46,12 +50,14 @@ class AnswerOption extends StatelessWidget {
       }
     }
 
+    final badgeSize = compact ? 28.0 : 32.0;
+
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 220),
       opacity: isEliminated ? 0.28 : 1,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 220),
-        margin: const EdgeInsets.only(bottom: 12),
+        margin: EdgeInsets.only(bottom: compact ? 8 : 12),
         decoration: BoxDecoration(
           color: background,
           borderRadius: BorderRadius.circular(18),
@@ -63,15 +69,15 @@ class AnswerOption extends StatelessWidget {
             borderRadius: BorderRadius.circular(18),
             onTap: onTap,
             child: Padding(
-              padding: const EdgeInsets.symmetric(
+              padding: EdgeInsets.symmetric(
                 horizontal: 14,
-                vertical: 16,
+                vertical: compact ? 11 : 16,
               ),
               child: Row(
                 children: [
                   Container(
-                    width: 32,
-                    height: 32,
+                    width: badgeSize,
+                    height: badgeSize,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: AppColors.gold.withValues(alpha: 0.18),
@@ -91,8 +97,8 @@ class AnswerOption extends StatelessWidget {
                   Expanded(
                     child: Text(
                       label,
-                      style: const TextStyle(
-                        fontSize: 16,
+                      style: TextStyle(
+                        fontSize: compact ? 15 : 16,
                         height: 1.4,
                         color: AppColors.chalk,
                         fontWeight: FontWeight.w600,

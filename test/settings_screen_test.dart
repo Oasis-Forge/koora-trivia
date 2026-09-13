@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:football_trivia/core/constants/app_config.dart';
 import 'package:football_trivia/core/constants/app_strings.dart';
+import 'package:football_trivia/domain/entities/economy.dart';
+import 'package:football_trivia/domain/repositories/backup_repository.dart';
+import 'package:football_trivia/domain/repositories/economy_repository.dart';
+import 'package:football_trivia/presentation/providers/economy_provider.dart';
 import 'package:football_trivia/domain/repositories/link_opener.dart';
 import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/domain/entities/app_settings.dart';
@@ -23,6 +27,30 @@ import 'package:football_trivia/presentation/screens/settings_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'fakes/fake_ad_service.dart';
+
+class _FakeEconomyRepository implements EconomyRepository {
+  Economy economy = const Economy();
+
+  @override
+  Future<Economy> load() async => economy;
+
+  @override
+  Future<void> save(Economy value) async => economy = value;
+}
+
+/// يحاكي الاستيراد: [onImport] يغيّر المستودعات المزيّفة كما يغيّر الاستيراد
+/// الحقيقي التخزين، ويعيد نجاحه.
+class _FakeBackupRepository implements BackupRepository {
+  _FakeBackupRepository({required this.onImport});
+
+  final bool Function() onImport;
+
+  @override
+  Future<String> export() async => 'رمز';
+
+  @override
+  Future<bool> import(String code) async => onImport();
+}
 
 class _FakeLinkOpener implements LinkOpener {
   _FakeLinkOpener({this.result = true});
@@ -138,6 +166,7 @@ Future<void> _pumpSettings(
   required _FakeProgressRepository progressRepo,
   FakeAdService? adService,
   LinkOpener? linkOpener,
+  BackupRepository? backupRepository,
 }) async {
   final stats = StatsProvider(repository: statsRepo);
   final progress = ProgressProvider(repository: progressRepo);
@@ -151,6 +180,8 @@ Future<void> _pumpSettings(
   await progress.init();
   await quiz.loadCategories();
   await settings.init();
+  final economy = EconomyProvider(repository: _FakeEconomyRepository());
+  await economy.init();
 
   await tester.pumpWidget(
     MultiProvider(
@@ -163,6 +194,11 @@ Future<void> _pumpSettings(
           create: (_) => AdsProvider(service: adService ?? FakeAdService()),
         ),
         Provider<LinkOpener>.value(value: linkOpener ?? _FakeLinkOpener()),
+        ChangeNotifierProvider.value(value: economy),
+        Provider<BackupRepository>.value(
+          value: backupRepository ??
+              _FakeBackupRepository(onImport: () => false),
+        ),
       ],
       child: const MaterialApp(
         locale: Locale('ar'),
@@ -423,6 +459,75 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text(AppStrings.linkOpenFailed), findsOneWidget);
+    });
+  });
+
+  group('استيراد التقدّم', () {
+    Future<void> importCode(WidgetTester tester) async {
+      await tester.scrollUntilVisible(
+        find.text(AppStrings.importBackup),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(AppStrings.importBackup));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField), 'رمز');
+      await tester.tap(find.text(AppStrings.importConfirm));
+      await tester.pumpAndSettle();
+    }
+
+    Future<void> backToTop(WidgetTester tester) async {
+      await tester.fling(find.byType(ListView), const Offset(0, 3000), 3000);
+      await tester.pumpAndSettle();
+    }
+
+    testWidgets('الاستيراد الناجح يعرض التقدّم الجديد فوراً دون إعادة تشغيل',
+        (tester) async {
+      final statsRepo = _FakeStatsRepository(const UserStats(gamesPlayed: 23));
+      final progressRepo = _FakeProgressRepository({});
+
+      await _pumpSettings(
+        tester,
+        statsRepo: statsRepo,
+        progressRepo: progressRepo,
+        backupRepository: _FakeBackupRepository(
+          onImport: () {
+            statsRepo.stats = const UserStats(gamesPlayed: 77);
+            progressRepo.data = {
+              'alpha': const CategoryProgress(
+                slug: 'alpha',
+                stars: [3, 3, 0, 0, 0, 0, 0, 0, 0, 0],
+              ),
+            };
+            return true;
+          },
+        ),
+      );
+
+      await importCode(tester);
+      expect(find.text(AppStrings.importSuccess), findsOneWidget);
+
+      await backToTop(tester);
+      expect(find.text('77'), findsOneWidget);
+      expect(find.text('6 / 30'), findsOneWidget);
+    });
+
+    testWidgets('رمز غير صالح يعرض رسالة ولا يغيّر المعروض', (tester) async {
+      final statsRepo = _FakeStatsRepository(const UserStats(gamesPlayed: 23));
+
+      await _pumpSettings(
+        tester,
+        statsRepo: statsRepo,
+        progressRepo: _FakeProgressRepository({}),
+        backupRepository: _FakeBackupRepository(onImport: () => false),
+      );
+
+      await importCode(tester);
+      expect(find.text(AppStrings.importFailed), findsOneWidget);
+
+      await backToTop(tester);
+      expect(find.text('23'), findsOneWidget);
     });
   });
 }

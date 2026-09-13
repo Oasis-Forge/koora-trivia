@@ -11,16 +11,11 @@ abstract class EconomyLocalDataSource {
 }
 
 class PrefsEconomyDataSource implements EconomyLocalDataSource {
-  static const String _key = 'economy_v1';
+  static const String key = 'economy_v1';
 
-  @override
-  Future<Economy> read() async {
-    final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_key);
-    if (raw == null || raw.isEmpty) {
-      return const Economy(hearts: AppConfig.maxHearts);
-    }
-
+  /// يحوّل النص المحفوظ إلى اقتصاد، ويرمي [FormatException] لأي بنية غير متوقعة
+  /// (انظر `PrefsStatsDataSource.decode`).
+  static Economy decode(String raw) {
     try {
       final map = json.decode(raw) as Map<String, dynamic>;
       return Economy(
@@ -43,8 +38,23 @@ class PrefsEconomyDataSource implements EconomyLocalDataSource {
                 .toSet(),
         chestClaimed: map['chestClaimed'] as bool? ?? false,
       );
+    } on TypeError catch (e) {
+      throw FormatException('بنية اقتصاد غير متوقعة: $e');
+    }
+  }
+
+  @override
+  Future<Economy> read() async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(key);
+    if (raw == null || raw.isEmpty) {
+      return const Economy(hearts: AppConfig.maxHearts);
+    }
+
+    try {
+      return decode(raw);
     } on FormatException {
-      await prefs.remove(_key);
+      await prefs.remove(key);
       return const Economy(hearts: AppConfig.maxHearts);
     }
   }
@@ -53,7 +63,7 @@ class PrefsEconomyDataSource implements EconomyLocalDataSource {
   Future<void> write(Economy economy) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(
-      _key,
+      key,
       json.encode({
         'hearts': economy.hearts,
         'lastRegenAtIso': economy.lastRegenAtIso,

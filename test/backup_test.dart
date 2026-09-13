@@ -1,4 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter_test/flutter_test.dart';
+import 'package:football_trivia/core/constants/app_config.dart';
+import 'package:football_trivia/data/datasources/economy_local_datasource.dart';
+import 'package:football_trivia/data/datasources/progress_local_datasource.dart';
+import 'package:football_trivia/data/datasources/settings_local_datasource.dart';
+import 'package:football_trivia/data/datasources/stats_local_datasource.dart';
 import 'package:football_trivia/data/repositories/backup_repository_impl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -70,5 +77,87 @@ void main() {
     final prefs = await SharedPreferences.getInstance();
     expect(prefs.getString('user_stats_v1'), stats);
     expect(prefs.getString('economy_v1'), isNull);
+  });
+
+  group('فحص القيم قبل الكتابة', () {
+    String encode(Map<String, Object?> data) =>
+        base64Url.encode(utf8.encode(json.encode({'v': 1, 'data': data})));
+
+    test('قيمة واحدة بنوع خاطئ ترفض النسخة كلها ولا يُكتب منها شيء', () async {
+      final code = encode({
+        'user_stats_v1': '{"gamesPlayed":99}',
+        'economy_v1': '{"hearts":"three"}',
+      });
+
+      expect(await BackupRepositoryImpl().import(code), isFalse);
+
+      final prefs = await SharedPreferences.getInstance();
+      expect(prefs.getString('user_stats_v1'), stats);
+      expect(prefs.getString('economy_v1'), '{"hearts":3,"coins":420}');
+    });
+
+    test('قيمة ليست نصاً تُرفض', () async {
+      final code = encode({
+        'user_stats_v1': {'gamesPlayed': 3},
+      });
+
+      expect(await BackupRepositoryImpl().import(code), isFalse);
+    });
+
+    test('مفتاح يوم لا يُقرأ كتاريخ يُرفض', () async {
+      final code = encode({'user_stats_v1': '{"lastDailyDayKey":"أمس"}'});
+
+      expect(await BackupRepositoryImpl().import(code), isFalse);
+    });
+
+    test('نسخة بلا أي مفتاح معروف تُرفض', () async {
+      final code = encode({'something_else_v1': '{}'});
+
+      expect(await BackupRepositoryImpl().import(code), isFalse);
+    });
+  });
+
+  group('قيمة محفوظة بنوع غير متوقع لا تُسقط القراءة', () {
+    Future<String?> stored(String key) async =>
+        (await SharedPreferences.getInstance()).getString(key);
+
+    test('الاقتصاد يعود للافتراضي ويُحذف التالف', () async {
+      SharedPreferences.setMockInitialValues({
+        'economy_v1': '{"hearts":"three","coins":5}',
+      });
+
+      final economy = await PrefsEconomyDataSource().read();
+
+      expect(economy.hearts, AppConfig.maxHearts);
+      expect(economy.coins, 0);
+      expect(await stored('economy_v1'), isNull);
+    });
+
+    test('الإحصائيات', () async {
+      SharedPreferences.setMockInitialValues({
+        'user_stats_v1': '{"gamesPlayed":"x"}',
+      });
+
+      expect((await PrefsStatsDataSource().read()).gamesPlayed, 0);
+      expect(await stored('user_stats_v1'), isNull);
+    });
+
+    test('التقدّم', () async {
+      SharedPreferences.setMockInitialValues({
+        'level_progress_v1': '{"categories":{"world_cup":"x"}}',
+      });
+
+      expect(await PrefsProgressDataSource().read(), isEmpty);
+      expect(await stored('level_progress_v1'), isNull);
+    });
+
+    test('الإعدادات', () async {
+      SharedPreferences.setMockInitialValues({
+        'app_settings_v1': '{"soundEnabled":"yes"}',
+      });
+
+      expect((await PrefsSettingsDataSource().read()).soundEnabled, isTrue);
+      expect(await stored('app_settings_v1'), isNull);
+    });
   });
 }

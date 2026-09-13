@@ -77,13 +77,13 @@ the branch rule in "Expected way of working".
 | Store settings | ✅ | Category **Trivia** · contact email |
 | Store listing | ✅ uploaded | Text from [STORE_LISTING.md](docs/STORE_LISTING.md) · 512 icon · feature graphic · 5 screenshots. ⚠️ A "Some languages have errors" warning appeared and **was never resolved** — open the Review step and read the error |
 | AI asset declaration | ✅ | Icon and feature graphic labeled; screenshots are real captures, so not labeled |
-| Data safety | ⚠️ out of date | The live form declares only Device or other IDs. Update it to the four types in [DATA_SAFETY_EN.md](docs/DATA_SAFETY_EN.md): Approximate location · App interactions · Diagnostics · Device or other IDs |
+| Data safety | ✅ submitted | Updated by the owner on 13 September 2026 to the four types in [DATA_SAFETY_EN.md](docs/DATA_SAFETY_EN.md): Approximate location · App interactions · Diagnostics · Device or other IDs — sent for Google's review |
 | Financial · health features | ✅ | None |
 | Advertising ID | ✅ Yes | Advertising · analytics · fraud prevention |
 | Content rating · target audience | ✅ | Everyone · 13+. App content shows nothing needing attention (checked 13 September 2026) |
 | Displayed developer name | ❓ | Should be set to Oasis Forge in Account details |
 | Developer verification | ✅ | Play reports all apps registered (deadline 30 September 2026) |
-| Privacy policy URL | ✅ | Changed to the oasis-forge.github.io URL by the owner on 13 September 2026 |
+| Privacy policy URL | ✅ | Changed to the oasis-forge.github.io URL by the owner on 13 September 2026. The page itself now carries the PR #5 text (effective 13 September 2026), deployed and checked live the same day |
 | Internal testing | ⚠️ | Still serves the 6 September release — the bundle list shows `1.0.0` (versionCode 1, the **launch-crash** build) still active. Replace it with versionCode 4 or stop using the track |
 | Closed testing | ✅ running · ⚠️ testers | Track **Alpha**: v1.0.3 (versionCode 4), available since **9 September 2026**, 177 countries. Only **5 of 12** testers opted in (13 September). New personal accounts need **12 testers opted in for 14 consecutive days** before requesting production, so the clock hasn't started |
 | Production | ⏳ | |
@@ -95,14 +95,13 @@ Update it as items ship.
 1. **Get 7+ more testers opted in** to the closed test (5 of 12; aim for 15–20 as a buffer). This is
    the critical path to production.
 2. **Internal testing:** replace the crashing versionCode 1 with versionCode 4, or stop using that track.
-3. **PR #5 is merged** (ad consent gate, privacy row in Settings, Data safety docs, rewarded-ad
-   retries — not yet in a Play build), and the owner published the AdMob *European regulations*
-   message on 13 September 2026 (the EEA form now appears on the emulator). Still to do: **update the
-   live Data safety form** to the four types in DATA_SAFETY_EN.md, and deploy the updated privacy
-   policy to `privacy-site/` (waiting on the owner's go-ahead — it's public content).
-4. **PR #6** (open): the daily reminder fires, hearts and the countdown stay live, the no-hearts dialog
-   offers every way to get a heart, and Arabic count grammar is fixed. Ship it in **v1.0.4** with
-   PRs #2, #3 and #5, after a release-build check on the emulator.
+3. **Done on 13 September 2026:** PRs #5 and #6 merged (not yet in a Play build) · AdMob European
+   regulations message published · Data safety form updated to the four types and sent for review ·
+   privacy policy page live with the new text.
+4. **PR #7** (open): small-screen layouts (level grid, quiz screen), the Skip hint shown as a skip,
+   backup import that survives the next save, and widget tests for the result-screen buttons and the
+   level grid. Ship **v1.0.4** with PRs #2, #3, #5, #6 and #7, after a release-build check on the
+   emulator.
 5. Install from the closed test on a **real phone** and verify: pass a level ⇒ star + "Next level" +
    next level unlocked; daily challenge ⇒ no replay button; zero hearts ⇒ replay blocked.
 6. Resolve the store listing's "Some languages have errors" warning, and start the plan's content
@@ -265,6 +264,13 @@ Flutter or third-party import.** That constraint has held so far — keep it.
   only when a widget first reads the provider. `AdsProvider` was lazy until PR #5, so consent and ad
   loading didn't start until Settings, the result screen, the shop or the hearts dialog opened.
   Anything that must start at launch needs `lazy: false`.
+- 🐛 **Providers keep their data in memory and write all of it on the next save.** Anything that
+  changes SharedPreferences behind their back must reload them, or the next save silently undoes it.
+  Backup import did exactly this until PR #7 — the 30-second hearts refresh overwrote the imported
+  economy. `RestoreBackup` reloads every provider after an import.
+- **A cast like `map['x'] as int?` throws `TypeError`, not `FormatException`.** Datasources used to
+  catch only `FormatException`, so one badly typed stored value crashed loading. Each datasource's
+  static `decode` now converts `TypeError` to `FormatException`.
 
 ---
 
@@ -338,8 +344,10 @@ When a question could fit more than one category, apply these in order:
 
 ## Tests
 
-**245 tests across 26 files, all passing.** `flutter analyze` is clean. `test/fakes/fake_ad_service.dart`
-is the shared fake `AdService` — add any new `AdService` member there.
+**278 tests across 30 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+`test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
+(in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
+(`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
 
 | File | Count | Covers |
 |---|---|---|
@@ -361,10 +369,14 @@ is the shared fake `AdService` — add any new `AdService` member there.
 | `quiz_repository_test.dart` | 11 | Levels · daily-challenge stability · **a full year with no day sharing more than 2 of 7 questions with the day before** · epoch day independent of time zone · neighbouring seeds shuffle differently · filtering |
 | `question_bank_test.dart` | 8 | Bank integrity: counts · IDs · structure · balance · banned options · **duplicates** · matches `AppConfig` |
 | `update_streak_test.dart` | 5 | Day-streak logic in every case |
-| `settings_screen_test.dart` | 11 | **Widget test** — stats display · confirmation dialog with the loss in correct Arabic, including the dual after a verb · reset · privacy: ad-options row only where required, opens the form, failure message · policy link opens the published URL, failure message |
+| `settings_screen_test.dart` | 13 | **Widget test** — stats display · confirmation dialog with the loss in correct Arabic, including the dual after a verb · reset · privacy: ad-options row only where required, opens the form, failure message · policy link opens the published URL, failure message · backup import shows the imported progress without a restart · an invalid code changes nothing |
+| `restore_backup_test.dart` | 4 | **Real datasources over mock SharedPreferences** — imported data shows at once and survives the first save from every provider · without the reload the first save overwrites it (why `RestoreBackup` exists) · a code with reminders off cancels the device's reminders and nothing reschedules them · a corrupt code changes nothing |
+| `score_screen_buttons_test.dart` | 6 | **Widget test** — result screen: level pass shows "Next level" and "Replay level" · fail shows only "Replay level" · last level has no "Next level" · daily has no replay or next · quick play shows "Play again" · a skipped question reads as a skip in the review |
+| `levels_screen_test.dart` | 5 | **Widget test** — completed, available and locked tiles · the first open level is auto-selected · a locked tap explains and keeps the selection · level 10 fully visible above the footer on 360×640 and 411×731 |
+| `quiz_screen_layout_test.dart` | 8 | **Widget test** — on 360×640 the 4th option sits above the hints bar in the compact size · on a tall screen the options sit right above the hints bar · the feedback panel scrolls fully into view · the next question starts at the top again · a panel taller than the screen shows its title · a short question's card is as wide as the options · Skip reads as a skip, time-up still as time-up |
 | `progress_provider_test.dart` | 5 | **Provider-to-storage wiring** — pass ⇒ stars ⇒ next unlocked · survives restart (guards the covariance bug) |
 | `daily_guard_test.dart` | 5 | `isDailyDone` after completion · persists across restart · quick play doesn't set it |
-| `backup_test.dart` | 5 | Export then import · corrupt code · extra whitespace · newer version rejected |
+| `backup_test.dart` | 13 | Export then import · corrupt code · extra whitespace · newer version rejected · one badly typed value rejects the whole code and writes nothing · non-string value · unreadable day key · no known key · every datasource reads a badly typed stored value as defaults instead of throwing |
 | `economy_balance_test.dart` | 4 | Daily income below cheapest purchase · purchase within two days · interstitials off · chest is worth it |
 | `score_screen_hearts_test.dart` | 4 | **Widget test** — result screen: "Replay level" and "Next level" with zero hearts show the no-hearts dialog and don't start · replay with hearts starts · quick play stays free |
 | `rewarded_button_test.dart` | 4 | **Widget test** — enables by itself when the ad loads and disables again if it's lost · daily limit · reward only on earned |
@@ -376,9 +388,9 @@ is the shared fake `AdService` — add any new `AdService` member there.
   show path through fakes (including a fake `RewardedAd` that fires callbacks in the SDK's order),
   but the real UMP form and the SDK's own callback timing still need a hand test on the emulator.
   Before PR #5 nothing covered this, which is how the "reward is never granted" bug slipped through.
-- **The quiz and levels screens** have no widget tests, and the result screen is covered only for the
-  heart check (`score_screen_hearts_test`). The visibility of the "Next level" button and hiding the
-  replay button after the daily challenge are **not covered automatically**.
+- **The quiz screen's gameplay through the UI** — heart deduction on a wrong tap, the hints bar, the
+  quit dialog — has no widget test; only its layout and feedback panel do (`quiz_screen_layout_test`).
+  Result-screen buttons and the level grid are covered since PR #7.
 - **Release-build-only failures** (R8, signing) — `flutter test` can't catch them.
 - No integration tests (`integration_test`).
 - No guard against hardcoded user-visible strings — 28 literal lines already bypass `app_strings.dart`.
@@ -599,6 +611,36 @@ many different actions be rewarded with one currency, and lets prices stay fixed
 - Strings that embed a count are functions in `AppStrings` taking the already-formatted count
   (`taskAnswers`, `resetProgressLoss`, `streakKeptFor`, `reminderBody`, `reminderBodyStreak`).
 
+### Backup import — how it works (PR #7)
+
+- `BackupRepositoryImpl.import` checks **every** value with the datasource's own `decode` (the same
+  parsing the app uses to read it) before writing any of them. One bad value, a non-string value, an
+  unreadable day key, or a code with no known key rejects the whole code and writes nothing.
+- The four keys and their parsers live in one map (`_decoders`); a new stored key must be added there
+  to be exported, imported and validated.
+- `RestoreBackup` (presentation) runs the import, then reloads settings **first** and then stats,
+  progress and economy. Order matters: reloading stats notifies `AppLifecycleHooks`, which reschedules
+  the reminder and must see the imported settings. `SettingsProvider.init` cancels reminders whenever
+  the loaded settings have them off, so importing a code with reminders off clears the old ones.
+  The success message is «تم الاستيراد» — a restart is no longer needed.
+- Keys missing from a code are left as they are on the device (not deleted).
+
+### Layout on short and tall screens (PR #7)
+
+- **Level grid:** the tile ratio is computed with `LayoutBuilder` so all ten levels fit above the
+  footer; a tile never gets shorter than 64 dp, and below that the grid scrolls.
+- **Quiz screen:** below `AppConfig.compactLayoutMaxHeight` (700 dp) the question card and options
+  use smaller sizes. Free space goes above the options (`Spacer`s around the question card), so on
+  tall screens the options sit right above the hints bar. After an answer, the feedback panel
+  scrolls itself into view 240 ms later, once the options' border animation has finished; a panel
+  taller than the viewport aligns its top (verdict and correct answer) instead of its bottom. The
+  scroll view is keyed by the question index, so each question starts at the top — otherwise the
+  panel's scroll offset carried into the next question. The card's two tags `Wrap` for large fonts, so the card sets `width: double.infinity` — the old
+  tags `Row` was what stretched it, and without it a short question's card shrank narrower than the
+  options (seen on the emulator).
+- Skip is shown as «تخطّيت هذا السؤال» in gold with a skip icon, on the quiz screen and in the result
+  review — not as «انتهى الوقت!» or a red wrong answer. Scoring is unchanged (decision 3 in PLAN.md).
+
 ### Daily reminder — important traps
 
 - **`tz.local` defaults to UTC.** `initializeTimeZones()` alone isn't enough; you need
@@ -651,7 +693,8 @@ many different actions be rewarded with one currency, and lets prices stay fixed
   challenge, which actually started a random **quick play** round — so players thought they were
   replaying the challenge. Now `_showReplayButton => !_result.isDaily` hides it after the daily
   challenge; "Replay level" remains in level mode and "Play again" in quick play.
-  `daily_guard_test` covers `isDailyDone`; **the button's visibility itself has no widget test**.
+  `daily_guard_test` covers `isDailyDone`, and `score_screen_buttons_test` covers the button's
+  visibility (PR #7).
 - Leaving the challenge before finishing doesn't mark it complete (deliberate).
 
 ### Level system — how it works
@@ -708,8 +751,9 @@ opted-in testers are there, so the 14-day clock hasn't started.
 ### 3. Question accuracy review
 No human has reviewed the 1000 questions. Start with a sample of levels 9–10 in each category.
 
-### 4. Quiz screen on tall devices
-There may be a gap between the last option and the hints bar in level mode. Not addressed.
+### 4. Quiz screen on short and tall devices
+Fixed in PR #7 (compact sizes below 700 dp, options anchored above the hints bar). Still to check on a
+real short phone and a real tall one.
 
 ### 5. In-app purchases
 Not built. Three products (two consumable heart packs + a non-consumable remove-ads).

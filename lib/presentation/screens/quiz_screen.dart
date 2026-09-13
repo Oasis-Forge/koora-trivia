@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/constants/app_config.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/arabic_count.dart';
@@ -110,6 +113,11 @@ class _QuizScreenState extends State<QuizScreen> {
 
     final question = quiz.currentQuestion;
 
+    // الشاشات القصيرة (360×640 مثلاً) لا تتسع لبطاقة السؤال والخيارات الأربعة
+    // بالمقاسات العادية، فيختفي الخيار الرابع أسفل الشاشة والوقت يجري.
+    final compact =
+        MediaQuery.sizeOf(context).height < AppConfig.compactLayoutMaxHeight;
+
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, _) {
@@ -129,6 +137,10 @@ class _QuizScreenState extends State<QuizScreen> {
                       // يمدّد الـ Column، فيبقى ملتصقاً بالأعلى مع فراغ أسفله.
                       Expanded(
                         child: CustomScrollView(
+                          // موضع تمرير جديد لكل سؤال: لوحة الشرح تمرّر الشاشة
+                          // إلى أسفل، وبدون مفتاح يبقى ذلك الإزاح فيبدأ السؤال
+                          // التالي مقصوص الأعلى والوقت يجري.
+                          key: ValueKey(quiz.index),
                           slivers: [
                             SliverFillRemaining(
                               hasScrollBody: false,
@@ -140,12 +152,18 @@ class _QuizScreenState extends State<QuizScreen> {
                                   16,
                                 ),
                                 child: Column(
-                                  // المساحة الحرة تتوزّع بين بطاقة السؤال
-                                  // وكتلة الخيارات لا بين كل خيار وآخر.
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    _QuestionCard(question: question),
+                                    // المساحة الحرة تذهب فوق الخيارات لا
+                                    // تحتها: توزيعها بالتساوي كان يترك فراغاً
+                                    // بين آخر خيار وشريط المساعدات على الشاشات
+                                    // الطويلة، والخيارات مكانها قرب الإبهام.
+                                    const Spacer(),
+                                    _QuestionCard(
+                                      question: question,
+                                      compact: compact,
+                                    ),
+                                    SizedBox(height: compact ? 12 : 16),
+                                    const Spacer(flex: 2),
                                     Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
@@ -155,6 +173,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                           AnswerOption(
                                             label: question.options[i],
                                             index: i,
+                                            compact: compact,
                                             revealed: quiz.isAnswerRevealed,
                                             isCorrect:
                                                 i == question.answerIndex,
@@ -276,14 +295,18 @@ class _TopBar extends StatelessWidget {
 }
 
 class _QuestionCard extends StatelessWidget {
-  const _QuestionCard({required this.question});
+  const _QuestionCard({required this.question, required this.compact});
 
   final Question question;
+  final bool compact;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      // عرض كامل صراحةً: صف الوسوم كان يمدّ البطاقة ضمناً، و`Wrap` لا يفعل،
+      // فتضيق بطاقة السؤال القصير عن الخيارات تحتها.
+      width: double.infinity,
+      padding: EdgeInsets.all(compact ? 16 : 20),
       decoration: BoxDecoration(
         color: AppColors.cardSurface,
         borderRadius: BorderRadius.circular(24),
@@ -292,23 +315,25 @@ class _QuestionCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          // `Wrap` لا `Row`: اسم تصنيف طويل مع خط نظام كبير لا يتسع لسطر واحد.
+          Wrap(
+            spacing: 8,
+            runSpacing: 6,
             children: [
               _Tag(text: question.categoryName, color: AppColors.pitchLight),
-              const SizedBox(width: 8),
               _Tag(
                 text: question.difficulty.arabicLabel,
                 color: AppColors.gold,
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: compact ? 10 : 16),
           Text(
             question.text,
-            style: const TextStyle(
-              fontSize: 21,
+            style: TextStyle(
+              fontSize: compact ? 18 : 21,
               fontWeight: FontWeight.w800,
-              height: 1.55,
+              height: compact ? 1.45 : 1.55,
             ),
           ),
         ],
@@ -344,24 +369,74 @@ class _Tag extends StatelessWidget {
   }
 }
 
-class _FeedbackPanel extends StatelessWidget {
+class _FeedbackPanel extends StatefulWidget {
   const _FeedbackPanel({required this.quiz, required this.question});
 
   final QuizProvider quiz;
   final Question question;
 
   @override
+  State<_FeedbackPanel> createState() => _FeedbackPanelState();
+}
+
+class _FeedbackPanelState extends State<_FeedbackPanel> {
+  Timer? _scrollTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    // اللوحة تظهر أسفل الخيارات، وعلى الشاشات القصيرة خارج المنطقة المرئية،
+    // فلا يرى اللاعب الإجابة الصحيحة ولا الشرح. ننتظر انتهاء حركة إطارات
+    // الخيارات (220ms) لأنها تغيّر ارتفاعها، ثم نمرّر حتى تظهر اللوحة كاملة.
+    _scrollTimer = Timer(const Duration(milliseconds: 240), _scrollIntoView);
+  }
+
+  void _scrollIntoView() {
+    if (!mounted) return;
+    final viewport = Scrollable.of(context).position.viewportDimension;
+    // لوحة أطول من المنطقة المرئية (خط نظام كبير على شاشة قصيرة): نُظهر أعلاها،
+    // ففيه الحكم والإجابة الصحيحة. محاذاة أسفلها كانت تدفعهما خارج الشاشة.
+    final tooTall = (context.size?.height ?? 0) > viewport;
+    Scrollable.ensureVisible(
+      context,
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.easeOut,
+      alignment: 0,
+      // وإلا فلا تمرير إن كانت اللوحة ظاهرة أصلاً.
+      alignmentPolicy: tooTall
+          ? ScrollPositionAlignmentPolicy.explicit
+          : ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
+    );
+  }
+
+  @override
+  void dispose() {
+    _scrollTimer?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final quiz = widget.quiz;
+    final question = widget.question;
+
     final selected = quiz.selectedIndex ?? -1;
-    final timedOut = selected < 0;
-    final correct = !timedOut && question.isCorrect(selected);
-    final color = correct ? AppColors.correct : AppColors.wrong;
+    // مساعدة التخطّي لا تُعرض كانتهاء وقت: اللاعب اختارها ولم يُخطئ.
+    final skipped = quiz.answers.isNotEmpty && quiz.answers.last.skipped;
+    final correct = selected >= 0 && question.isCorrect(selected);
+    final color = correct
+        ? AppColors.correct
+        : skipped
+            ? AppColors.gold
+            : AppColors.wrong;
 
     final title = correct
         ? AppStrings.correct
-        : timedOut
-            ? AppStrings.timeUp
-            : AppStrings.wrong;
+        : skipped
+            ? AppStrings.skippedAnswer
+            : selected < 0
+                ? AppStrings.timeUp
+                : AppStrings.wrong;
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -376,19 +451,26 @@ class _FeedbackPanel extends StatelessWidget {
           Row(
             children: [
               Icon(
-                correct ? Icons.emoji_events_rounded : Icons.info_rounded,
+                correct
+                    ? Icons.emoji_events_rounded
+                    : skipped
+                        ? Icons.skip_next_rounded
+                        : Icons.info_rounded,
                 color: color,
               ),
               const SizedBox(width: 8),
-              Text(
-                title,
-                style: TextStyle(
-                  color: color,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 16,
+              // `Expanded` لا `Spacer`: عنوان «تخطّيت هذا السؤال» أطول من غيره،
+              // ومع خط نظام كبير على شاشة ضيقة كان يفيض عن السطر.
+              Expanded(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: color,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 16,
+                  ),
                 ),
               ),
-              const Spacer(),
               if (correct)
                 Text(
                   '+${quiz.answers.last.earnedPoints}',
@@ -402,7 +484,7 @@ class _FeedbackPanel extends StatelessWidget {
           if (!correct) ...[
             const SizedBox(height: 8),
             Text(
-              'الإجابة الصحيحة: ${question.correctAnswer}',
+              AppStrings.correctAnswerIs(question.correctAnswer),
               style: const TextStyle(fontWeight: FontWeight.w700),
             ),
           ],

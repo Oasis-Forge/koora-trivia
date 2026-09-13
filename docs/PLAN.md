@@ -6,7 +6,10 @@
 - Daily challenge repeating on consecutive days, and its seed depending on the time zone: PR #2, merged 13 September 2026.
 - "Replay level" and "Next level" on the result screen starting a level with zero hearts: PR #3, merged 13 September 2026.
 - The owner published a *European regulations* consent message in AdMob on 13 September 2026; the EEA consent form now appears on the emulator (debug build with `UMP_DEBUG_EEA=true`), and the Settings privacy-options row shows.
-- PR #6, open: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
+- Data safety form updated by the owner to Approximate location, App interactions, Diagnostics and Device or other IDs, and sent for review: 13 September 2026.
+- Privacy policy page updated to the PR #5 text and checked live: 13 September 2026.
+- PR #7, open: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
+- PR #6, merged 13 September 2026: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
 - PR #5, merged 13 September 2026: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
 
 ---
@@ -14,14 +17,10 @@
 ## Phase 1: before production (during the 14-day closed test)
 
 ### Bugs
-- **P1 · S**: An imported backup gets overwritten by the next save. After import, reload every provider, check each value against its model, and catch TypeError in the local datasources *(backup_repository_impl.dart, settings_screen.dart)*.
-- **P1 · S**: The levels grid hides level 10 on 360×640 and 411×731 phones. Size the tiles with `LayoutBuilder` and let the grid scroll *(levels_screen.dart)*.
-- **P1 · S**: Using the Skip hint shows «انتهى الوقت!» and a red review row. Use `AnswerRecord.skipped` and the unused `skippedAnswer` string *(quiz_screen.dart, score_screen.dart)*.
 - **P2 · S**: Follow-ups to the day-key fix (PR #2). Record the day key when the daily starts (finishing after midnight resets the streak), and use UTC dates in `daysBetween` so daylight-saving days count correctly *(day_key.dart, stats_provider.dart)*.
 - **P2 · S**: Charge a heart only when `QuizProvider` actually records the answer (`selectAnswer` returns bool). This closes the double-tap and timeout-frame race. Ship it with decision ① *(quiz_screen.dart, quiz_provider.dart)*.
 
 ### UI/UX
-- **P1 · M**: On 360×640 phones the 4th answer is below the fold while the timer runs. Add a compact layout below ~700 dp, scroll the feedback panel into view, and check the tall-device gap in the same pass *(quiz_screen.dart, answer_option.dart)*.
 
 ### Content
 - **P1 · M**: Answers made wrong by 2024–26 events: 1021, 1051, 1084, 4030, 8083, 6037, 10009, 10091, 1079/10024, 1011, 3048, 5048, 6099, 5022, 2097, 8008, 1014, 1044. Re-check each fact on the day you edit it.
@@ -32,9 +31,7 @@
 - **P2 · S**: Question-bank tests. Ban «كلتاهما», add a test for invisible characters, and run the duplicate check's noise words through `_normalize`. Owner to confirm a bare «لا شيء» is acceptable in laws *(question_bank_test.dart)*.
 
 ### Release & tech debt
-- **P0 · S**: The live Data safety form under-declares what AdMob collects. The docs are fixed (PR #5); the owner updates the form in Play Console to the four types in DATA_SAFETY_EN.md.
 - **P0 · M**: Production gate. Only 5 of the 12 required testers have joined. Recruit 15–20 as a buffer and record the date the 12th joins. Replace the crashing versionCode 1 on the internal track.
-- **P1 · S**: Privacy policy. The source is updated (PR #5, merged). Copy it to privacy-site, push, and check the live page (it still shows 6 September). Waiting on the owner's go-ahead to publish.
 - **P1 · S**: Play Console and GitHub tasks:
   - Read and fix the "Some languages have errors" warning.
   - Set the displayed developer name to Oasis Forge.
@@ -46,8 +43,6 @@
   - Daily challenge shows no replay button.
   - Backup import and export.
   - Shop purchases and the +70-coin ad.
-  - 360×640 layout.
-- **P1 · M**: Widget tests for result-screen button visibility (pass, fail, daily, quick play) and locked/unlocked levels, plus a provider test that imports a backup, saves, and checks the imported data survives.
 - **P2 · S**: Settings → About shows «الإصدار 1.0.0». Read the real version with `package_info_plus` *(app_strings.dart, settings_screen.dart)*.
 - **P2 · S**: Add `android:appCategory="game"` so Android 16 keeps the portrait lock on tablets and foldables *(AndroidManifest.xml)*.
 
