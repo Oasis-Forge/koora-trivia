@@ -28,6 +28,15 @@
 | AdMob | تطبيق «Koora Trivia» · ناشر `pub-8287765177319119` |
 | سياسة الخصوصية | https://thepromptkitchen-alt.github.io/koora-trivia-privacy/ |
 | مفتاح الرفع | `%USERPROFILE%/keys/koora-upload.jks` (alias `upload`) — كلمة المرور في `android/key.properties` خارج Git، **لا تنسخها إلى أي ملف آخر** |
+| المستودع | https://github.com/thepromptkitchen-alt/koora-trivia — **عام** · فرع `main` (أُنشئ ١٣ سبتمبر ٢٠٢٦) |
+
+> **Git — ما يجب معرفته:** المستودع **عام**، فأي ملف يُضاف يراه الجميع. هوية الإيداع
+> محلية لهذا المستودع (`The Prompt Kitchen <thepromptkitchen@gmail.com>`) كي لا يظهر
+> البريد الشخصي. الدفع يمرّ عبر حساب `gh` (`thepromptkitchen-alt`) بمساعد اعتماد
+> محلي، لا عبر الحساب الشخصي المخزّن في Git Credential Manager.
+> `gh` مثبّت في `C:\Program Files\GitHub CLI\` وقد لا يكون في PATH.
+> مستثنى في `.gitignore` عمداً: حزم `.aab`/`.apk` (تبقى `NOTES.md`) · `privacy-site/`
+> (مستودع مستقل) · `key.properties` · `*.jks`.
 
 ### حالة Play Console
 
