@@ -22,17 +22,18 @@ process.
 
 ## 🚦 Current status — start here
 
-**Stage:** internal testing on Google Play. **Not published publicly yet.**
+**Stage:** closed testing on Google Play since 9 September 2026. **Not published publicly yet.**
 
-**Latest build ready to upload:** `v1.0.3+4` in `releases/v1.0.3_build4_2026-09-08/`
-(`app-release.aab` to upload to Play, `app-release.apk` to install directly on a device).
+**Latest build:** `v1.0.3+4` in `releases/v1.0.3_build4_2026-09-08/` — **live on the closed testing
+track** (`app-release.aab` is what was uploaded, `app-release.apk` installs directly on a device).
 It contains every fix: launch crash (R8) · star saving and level unlocks · replay button
 hidden after the daily challenge · rewarded-ad reward granted. Verified on the emulator
-with a release build.
+with a release build. No app code has changed since that build (checked 13 September 2026).
 
-**Git:** PR [#1](https://github.com/Oasis-Forge/koora-trivia/pull/1) — English docs, multilingual plan,
-branch rule — was **merged into `main` on 13 September 2026**. Start any new work from the latest
-`main`, following the branch rule in "Expected way of working".
+**Git:** PRs #1–#3 (English docs, multilingual plan, branch rule, handoff notes) were merged into
+`main` on 13 September 2026. Their branch `docs/english-docs-and-i18n-plan` still exists on GitHub
+and should go — recreating the repo (decision ④) removes it anyway. Start any new work from the
+latest `main`, following the branch rule in "Expected way of working".
 
 ### Publishing identity
 
@@ -43,7 +44,7 @@ branch rule — was **merged into `main` on 13 September 2026**. Start any new w
 | App name on the store | «تحدي كرة القدم» (Arabic is the default listing language) |
 | Public contact email | `thepromptkitchen@gmail.com` (same as the privacy policy) |
 | AdMob | app "Koora Trivia" · publisher `pub-8287765177319119` |
-| Privacy policy | https://oasis-forge.github.io/koora-trivia-privacy/ — ⚠️ moved from the old personal-account URL (now 404) on 13 September 2026; **Play Console must use this one** |
+| Privacy policy | https://oasis-forge.github.io/koora-trivia-privacy/ — moved from the old personal-account URL (now 404) on 13 September 2026; Play Console was updated to it the same day |
 | Upload key | `%USERPROFILE%/keys/koora-upload.jks` (alias `upload`) — the password is in `android/key.properties`, outside Git. **Never copy it into any other file.** |
 | Repository | https://github.com/Oasis-Forge/koora-trivia — **public**, owned by the **Oasis-Forge organization** (transferred from the `thepromptkitchen-alt` account on 13 September 2026) · branch `main` |
 
@@ -71,23 +72,23 @@ branch rule — was **merged into `main` on 13 September 2026**. Start any new w
 | Data safety | ✅ | Per [DATA_SAFETY_EN.md](docs/DATA_SAFETY_EN.md) |
 | Financial · health features | ✅ | None |
 | Advertising ID | ✅ Yes | Advertising · analytics · fraud prevention |
-| Content rating · target audience | ❓ **completion not confirmed** | Everyone · 13+ |
+| Content rating · target audience | ✅ | Everyone · 13+. App content shows nothing needing attention (checked 13 September 2026) |
 | Displayed developer name | ❓ | Should be set to Oasis Forge in Account details |
-| Internal testing | ⚠️ | versionCode 1 was uploaded and **crashed on launch** (R8). **Unconfirmed** which versionCode is live now |
-| Closed testing | ⏳ not started | Rule for new personal accounts: **12 testers opted in for 14 consecutive days** before production can be requested |
+| Developer verification | ✅ | Play reports all apps registered (deadline 30 September 2026) |
+| Privacy policy URL | ✅ | Changed to the oasis-forge.github.io URL by the owner on 13 September 2026 |
+| Internal testing | ⚠️ | Still serves the 6 September release — the bundle list shows `1.0.0` (versionCode 1, the **launch-crash** build) still active. Replace it with versionCode 4 or stop using the track |
+| Closed testing | ✅ running · ⚠️ testers | Track **Alpha**: v1.0.3 (versionCode 4), available since **9 September 2026**, 177 countries. Only **5 of 12** testers opted in (13 September). New personal accounts need **12 testers opted in for 14 consecutive days** before requesting production, so the clock hasn't started |
 | Production | ⏳ | |
 
 ### Next steps, in order
-> ⚠️ **Do first:** Play Console → App content → Privacy policy → change the URL to
-> https://oasis-forge.github.io/koora-trivia-privacy/. The old personal-account URL is **404** since
-> the repos moved to the Oasis-Forge organization (13 September 2026).
-
-1. Upload `v1.0.3+4` to internal testing and verify on a **real phone**: pass a level ⇒
-   star + "Next level" button + next level unlocked; daily challenge ⇒ no replay button.
-2. Finish content rating and target audience if not done, and resolve the language warning.
-3. Wait for the owner's decisions ① and ② below (before production, not before closed testing).
-4. Create the closed testing track, add 12+ testers, and start the 14-day clock early.
-5. While the clock runs: review a sample of level 9–10 questions.
+1. **Get 7+ more testers opted in** to the closed test (5 of 12). This is the critical path to production.
+2. **Internal testing:** replace the crashing versionCode 1 with versionCode 4, or stop using that track.
+3. Install v1.0.3 from the closed test on a **real phone** and verify: pass a level ⇒ star + "Next level"
+   button + next level unlocked; daily challenge ⇒ no replay button.
+4. Resolve the store listing's "Some languages have errors" warning (not checked yet).
+5. While the 14-day clock runs: fix the §0 audit bugs (the daily challenge repeating every other day
+   first) as v1.0.4 for the closed track, and review a sample of level 9–10 questions.
+6. Before production: the owner's decisions ① and ② below.
 
 ### Decisions waiting on the owner
 - **① Heart deduction.** Currently one heart per wrong answer; a single failed attempt drained
@@ -98,18 +99,27 @@ branch rule — was **merged into `main` on 13 September 2026**. Start any new w
   Undecided.
 - **③ Multiple languages** — deliberately deferred until the Arabic version proves itself. The full plan,
   the decisions it needs, and a verified codebase audit are in [docs/I18N_PLAN.md](docs/I18N_PLAN.md).
-- **④ Owner's personal name in public GitHub history — approved, then blocked.** On 13 September 2026
-  the owner approved recreating both repos, but Claude Code's auto-mode permission check blocked the
-  history rewrite (`git filter-branch`) and the repo rename/create, so **nothing was changed**. Where it
-  still shows: the two old commits on `main` (the personal account name in the old Arabic CLAUDE.md,
-  and the Windows username inside paths in `CLAUDE.md`, `docs/PRE_PUBLISH.md`,
-  `android/key.properties.example`), and the privacy repo's public Activity page (its branch was created
-  by the personal account). Plan: **merge any open PRs first** (PRs don't survive recreation) → rename each
-  repo to `<name>-old` and make it private → create a fresh repo with the same name → push clean
-  history from the `gh` account (privacy repo: re-enable Pages from `main` `/`; the URL stays the same)
-  → the owner deletes the `-old` repos (Claude must never delete them). **Re-confirm with the owner
-  before running it** — approval doesn't carry across sessions — and have the owner approve each
-  command or run them. The exact strings to scrub are in Claude's private memory, never in this repo.
+- **④ Owner's personal name in public GitHub history — approved twice, owner to run the script.** On
+  13 September 2026 the owner approved recreating both repos, in two separate sessions. Both times
+  Claude Code's auto-mode permission check blocked the GitHub commands (repo create/rename/visibility),
+  so **nothing on GitHub has changed yet**. What's known:
+  - **App repo:** only the two oldest commits on `main` contain the strings, in 13 lines across
+    `CLAUDE.md`, `docs/PRE_PUBLISH.md` and `android/key.properties.example`. Commit authors and
+    messages are clean everywhere.
+  - **Privacy repo:** its single commit is clean. Only its public Activity page shows the personal account.
+  - A local rewrite of `main` was verified: identical final files, zero matches.
+
+  **The owner runs the recreation script Claude prepared.** It's kept outside the repo because it contains
+  the strings. It refuses to run while PRs are open (PRs don't survive recreation), then:
+  1. Backs up both repos.
+  2. Rewrites `main` and verifies it, then asks for confirmation.
+  3. Renames the old repos to `<name>-old` and makes them private.
+  4. Creates fresh repos and pushes through the `gh` account.
+  5. Re-enables Pages; the privacy URL stays the same.
+  6. Verifies fresh public clones.
+
+  Afterwards the owner deletes the `-old` repos (Claude must never delete them) and this item moves to
+  Done. The exact strings are in Claude's private memory, never in this repo.
 
 ---
 
@@ -593,7 +603,8 @@ answer (the proposal) · raise the cap · lower the pass threshold. The other `A
 (question timer, regen) haven't been tuned on a real phone yet.
 
 ### 2. Publishing on Play
-See "Current status". The most important part: closed testing (12 × 14 days) hasn't started.
+See "Current status". Closed testing has been running since 9 September 2026, but only 5 of the 12
+opted-in testers are there, so the 14-day clock hasn't started.
 
 ### 3. Question accuracy review
 No human has reviewed the 1000 questions. Start with a sample of levels 9–10 in each category.

@@ -136,18 +136,23 @@ app itself never starts a foreground service.
 "My app doesn't provide any financial features" · "My app does not have any health features".
 In-game coins are not a financial feature.
 
-### Content rating — ❓ completion not confirmed
+### Content rating — ✅ done
+Play Console → App content shows nothing needing attention (checked 13 September 2026).
 Category **Game**; "No" to every violence, sexual content, drugs, gambling, and profanity
 question. Sharing through the system share sheet is not in-app user-to-user interaction.
 Expected result: Everyone / PEGI 3.
 
-### Target audience — ❓ completion not confirmed
+### Target audience — ✅ done
 **13 and over**, and "No" to appealing to children — matches the privacy policy. Choosing ages
 under 13 puts the app under the Families policy and requires child-directed ad settings.
 
 ---
 
 ## 4. Closed testing — the gate to production
+
+> **Status (13 September 2026):** track **Alpha** is live with v1.0.3 (versionCode 4) since
+> 9 September, in 177 countries — steps 1–2 below are done. Only **5 of 12** testers have opted in,
+> so the 14-day clock hasn't started; the job now is getting 7+ more testers through step 4.
 
 New **personal** developer accounts can't request production until a closed test has run with
 **at least 12 testers opted in for 14 consecutive days**. Internal testing **does not count**.
