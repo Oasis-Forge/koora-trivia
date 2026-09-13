@@ -89,14 +89,22 @@ the branch rule in "Expected way of working".
 | Production | ⏳ | |
 
 ### Next steps, in order
-1. **Get 7+ more testers opted in** to the closed test (5 of 12). This is the critical path to production.
+The full prioritised plan from the 13 September 2026 audit is in **[docs/PLAN.md](docs/PLAN.md)**.
+Update it as items ship.
+
+1. **Get 7+ more testers opted in** to the closed test (5 of 12; aim for 15–20 as a buffer). This is
+   the critical path to production.
 2. **Internal testing:** replace the crashing versionCode 1 with versionCode 4, or stop using that track.
-3. Install v1.0.3 from the closed test on a **real phone** and verify: pass a level ⇒ star + "Next level"
-   button + next level unlocked; daily challenge ⇒ no replay button.
-4. Resolve the store listing's "Some languages have errors" warning (not checked yet).
-5. While the 14-day clock runs: fix the §0 audit bugs (the daily challenge repeating every other day
-   first) as v1.0.4 for the closed track, and review a sample of level 9–10 questions.
-6. Before production: the owner's decisions ① and ② below.
+3. **The plan's other P0s:** declare what AdMob collects in Data safety, and load ads only after the
+   consent check (`canRequestAds()`) with a privacy-options row in Settings.
+4. **Fix the daily reminder**, which never fires (the notification receivers aren't declared in the
+   manifest). Ship it in **v1.0.4** with the merged daily-challenge and hearts fixes, after a
+   release-build check on the emulator.
+5. Install from the closed test on a **real phone** and verify: pass a level ⇒ star + "Next level" +
+   next level unlocked; daily challenge ⇒ no replay button; zero hearts ⇒ replay blocked.
+6. Resolve the store listing's "Some languages have errors" warning, and start the plan's content
+   fixes (answers that are wrong).
+7. Before production: the owner's decisions ① and ② below; the plan lists nine more.
 
 ### Decisions waiting on the owner
 - **① Heart deduction.** Currently one heart per wrong answer; a single failed attempt drained
@@ -323,7 +331,7 @@ When a question could fit more than one category, apply these in order:
 
 ## Tests
 
-**137 tests across 15 files, all passing.** `flutter analyze` is clean.
+**144 tests across 16 files, all passing.** `flutter analyze` is clean.
 
 | File | Count | Covers |
 |---|---|---|
@@ -334,7 +342,7 @@ When a question could fit more than one category, apply these in order:
 | `ads_test.dart` | 10 | `AdsProvider` (earned/dismissed · no two ads at once · isReady) · interstitials (round counting · remove-ads) · ad rewards — **through a fake service** |
 | `reminder_test.dart` | 9 | Permission · scheduling and cancel · permission revoked at launch · next-fire calculation |
 | `share_text_test.dart` | 8 | Result grid · daily-challenge date · category and level · Arabic dual form · doesn't leak questions |
-| `quiz_repository_test.dart` | 8 | Levels · daily-challenge stability · filtering |
+| `quiz_repository_test.dart` | 11 | Levels · daily-challenge stability · **a full year with no day sharing more than 2 of 7 questions with the day before** · epoch day independent of time zone · neighbouring seeds shuffle differently · filtering |
 | `question_bank_test.dart` | 8 | Bank integrity: counts · IDs · structure · balance · banned options · **duplicates** · matches `AppConfig` |
 | `update_streak_test.dart` | 5 | Day-streak logic in every case |
 | `settings_screen_test.dart` | 5 | **Widget test** — stats display · confirmation dialog · reset |
@@ -342,19 +350,20 @@ When a question could fit more than one category, apply these in order:
 | `daily_guard_test.dart` | 5 | `isDailyDone` after completion · persists across restart · quick play doesn't set it |
 | `backup_test.dart` | 5 | Export then import · corrupt code · extra whitespace · newer version rejected |
 | `economy_balance_test.dart` | 4 | Daily income below cheapest purchase · purchase within two days · interstitials off · chest is worth it |
+| `score_screen_hearts_test.dart` | 4 | **Widget test** — result screen: "Replay level" and "Next level" with zero hearts show the no-hearts dialog and don't start · replay with hearts starts · quick play stays free |
 
 ### Not covered — and it has bitten us
 
 - **The real AdMob bridge (`AdMobAdService`).** `ads_test` uses a fake service, which is why the
   "reward is never granted" bug slipped through every test. Test it by hand on the emulator.
-- **The quiz, result, and levels screens** have no widget tests. The visibility of the "Next level"
-  and "Replay level" buttons, and hiding the replay button after the daily challenge, are
-  **not covered automatically**.
+- **The quiz and levels screens** have no widget tests, and the result screen is covered only for the
+  heart check (`score_screen_hearts_test`). The visibility of the "Next level" button and hiding the
+  replay button after the daily challenge are **not covered automatically**.
 - **Release-build-only failures** (R8, signing) — `flutter test` can't catch them.
 - No integration tests (`integration_test`).
 - No guard against hardcoded user-visible strings — 28 literal lines already bypass `app_strings.dart`.
-- `quiz_repository_test` "daily differs between two days" **only passes east of UTC** (see Remaining
-  §0); it would fail on a UTC or western CI machine.
+- **Real notification delivery.** `reminder_test` uses a fake scheduler, so it didn't catch that the
+  reminder never fires (receivers missing from the manifest, see docs/PLAN.md). Check on a device.
 
 **Timer tests:** `quiz_provider_test.dart` uses `fakeAsync` from the `fake_async` package
 (declared in `dev_dependencies`) to fast-forward time instead of waiting. Required patterns:
@@ -387,6 +396,15 @@ When a question could fit more than one category, apply these in order:
 R8 crashing launch · a covariance bug blocking star saving and the Next-level button · rewarded-ad
 reward never granted · a replay button implying the daily challenge could be repeated. Details in
 each section.
+
+**Two more fixed on 13 September 2026** (PRs #2 and #3 — merged, not yet in a Play build):
+- **The daily challenge repeated every other day.** `SeededRandom` forced seeds odd with `| 1`, so
+  day numbers 2k and 2k+1 shuffled identically; and `DayKey.epochDay` depended on the time zone. The
+  day number is now computed in UTC. One-time effects when v1.0.4 ships: that day's set may change for
+  players who haven't played it yet, and level questions with an even id get a new option order once.
+- **Zero hearts let players replay levels.** The result screen's "Replay level" and "Next level"
+  buttons skipped the levels screen's check. **Every button that starts a level must go through
+  `NoHeartsDialog.ensureHearts`**; quick play and the daily challenge stay free.
 
 ### Store assets and docs
 
@@ -567,13 +585,10 @@ many different actions be rewarded with one currency, and lets prices stay fixed
 > together.
 
 ### 0. Bugs found by the codebase audit — visible in the Arabic app today
-Found by the read-only audit on 13 September 2026; file:line details and lower-priority items are in
-[docs/I18N_PLAN.md §0](docs/I18N_PLAN.md). **None is fixed yet.**
-- **The daily challenge repeats on two consecutive days.** `SeededRandom` does
-  `(seed & 0x7FFFFFFF) | 1` (`seeded_random.dart:5`), so day numbers 2k and 2k+1 give the same
-  shuffle — every other day, players get yesterday's 7 questions again and can ace them for a streak day.
-- **The daily seed depends on the time zone** (`day_key.dart:30`): the Gulf and UTC/west get different
-  sets on the same date.
+Found by the read-only audit on 13 September 2026; file:line details are in
+[docs/I18N_PLAN.md §0](docs/I18N_PLAN.md). The full prioritised audit from the same day is in
+**[docs/PLAN.md](docs/PLAN.md)** — treat it as the source of truth for what's open. The daily-challenge
+repeat and its time-zone seed were fixed in PR #2; the items below are still open.
 - **Wrong Arabic grammar on screen** — a count plus a noun with no agreement on 13 lines: «N يوم متتالية»
   (home, settings, score), «ستفقد N نجمة» (reset dialog), «نقطة» after any score, and the share text's
   «1 أيام» / «12 أيام». `settings_screen_test` and `share_text_test` currently assert the wrong forms.
