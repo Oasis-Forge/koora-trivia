@@ -1,253 +1,247 @@
-# قائمة ما قبل النشر — تحدي كرة القدم
+# Pre-publish checklist — Koora Trivia (تحدي كرة القدم)
 
-آخر تحقق شامل: **٨ سبتمبر ٢٠٢٦**
+Last full check: **13 September 2026** · Latest build: **v1.0.3+4**
+
+> Per-section Play Console status and the next steps live in **"Current status"** at the
+> top of [CLAUDE.md](../CLAUDE.md). This file keeps the details: what was verified, what
+> was entered in each form, the release procedure, and what's left before production.
 
 ---
 
-## حالة التحقق الآلي
+## 1. Verification status
 
-| الفحص | النتيجة |
+### Automated
+
+| Check | Result |
 |---|---|
-| `flutter analyze` | ✅ نظيف تماماً |
-| `flutter test` | ✅ **88 / 88** ناجحة |
-| `flutter build apk --debug` | ✅ |
-| `flutter build apk --release` | ✅ 51.4 ميغابايت |
-| `flutter build appbundle --release` | ✅ **ينجح** (٥٧ ميغابايت) — انظر الحاجز الأول أدناه |
+| `flutter analyze` | ✅ clean |
+| `flutter test` | ✅ **137 / 137** across 15 files |
+| `flutter build appbundle --release` | ✅ ≈57 MB (the *strip debug symbols* warning is non-fatal) |
+| `flutter build apk --release` | ✅ ≈60 MB |
+| Release signing | ✅ `CN=Oasis Forge`, not the debug key |
+| ABIs | ✅ `arm64-v8a` · `armeabi-v7a` · `x86_64` |
 
-### تغطية الاختبارات
+### On the emulator, release build (8 September 2026)
 
-| الملف | العدد | يغطي |
-|---|---|---|
-| `question_bank_test.dart` | 7 | البنك: العدد · المعرّفات · البنية · التوازن · الخيارات الممنوعة · التكرار |
-| `quiz_provider_test.dart` | 22 | النقاط · مكافأة السرعة · المضاعفات · المؤقّت · التسلسل · النتيجة |
-| `economy_test.dart` | 18 | تجديد القلوب · الحدود اليومية · الخصم والمنح · المساعدات |
-| `level_progress_test.dart` | 13 | النجوم · الفتح التدريجي · عدم التناقص |
-| `reminder_test.dart` | 9 | الإذن · الجدولة · حساب الموعد القادم |
-| `quiz_repository_test.dart` | 8 | المستويات · ثبات تحدي اليوم · التصفية |
-| `settings_screen_test.dart` | 5 | **widget** — العرض · حوار التأكيد · التصفير |
-| `update_streak_test.dart` | 6 | السلسلة اليومية بكل حالاتها |
+| Flow | Result |
+|---|---|
+| Launch | ✅ (after turning R8 off) |
+| Onboarding · home · categories · level grid | ✅ |
+| Question · timer · time-up · correct-answer highlight · explanation | ✅ |
+| Pass a level at 7/10 | ✅ one star · "level passed" · "next level unlocked" · Next Level button |
+| Fail a level | ✅ empty-stars banner · Replay Level button |
+| Level grid after passing | ✅ 1/10 complete · level 2 unlocked, the rest locked |
+| Answer review · share | ✅ share sheet opens |
+| Heart deduction · no-hearts dialog · regen countdown | ✅ |
+| Rewarded ad (test ad) | ✅ loads, plays, and **grants the heart** (0 → 1) |
+| Daily challenge | ✅ grants a heart and the streak · no replay button · card disabled with countdown |
+| Settings · daily tasks · shop | ✅ render |
+| State survives a restart | ✅ hearts and rounds played |
 
-**ما ليس مغطّى:** لا توجد اختبارات widget لشاشات الاختبار والمستويات والتصنيفات،
-ولا اختبارات تكامل شاملة (integration_test)، ولم يُجرَّب التطبيق على جهاز حقيقي.
+### Not verified yet
 
----
-
-## 🚧 حواجز حقيقية تمنع النشر
-
-### 1. ~~حزمة `.aab` لا تُبنى~~ — **مُنجز (٨ سبتمبر ٢٠٢٦)**
-
-الحزمة تُبنى بنجاح الآن (`flutter build appbundle --release` ⇒ ٥٧ ميغابايت في
-`build/app/outputs/bundle/release/app-release.aab`). كان التشخيص القديم قديماً:
-رسالة *"failed to strip debug symbols"* صارت **تحذيراً غير قاتل** في Flutter 3.44
-لا فشلاً. السبب الوحيد لعدم رفعها الآن أنها موقّعة بمفتاح التصحيح ← الحاجز ٣.
-
-### 2. ~~`applicationId`~~ — **مُنجز (٢٦ أغسطس ٢٠٢٦)**
-
-المعرّف الآن **`com.oasisforge.kooratrivia`**. النطاق `com.oasisforge` هو اسم
-متجر صاحب المشروع (Oasis Forge)، يُعاد استخدامه لكل تطبيقاته المستقبلية.
-
-غُيّر في ثلاثة مواضع: `namespace` و`applicationId` في
-`android/app/build.gradle.kts`، ونُقل مجلد Kotlin إلى
-`android/app/src/main/kotlin/com/oasisforge/kooratrivia/` مع سطر `package`.
-
-> **المعرّف ظاهر للمستخدم** في رابط المتجر (`…?id=com.oasisforge.kooratrivia`)
-> وفي إعدادات النظام — لكنه لا يحمل اسماً شخصياً. اسم التطبيق المعروض
-> (`android:label`) منفصل وقابل للتغيير في أي وقت.
->
-> ⚠️ **لا يمكن تغييره بعد أول نشر إطلاقاً.** الآن أمكن إعداد Play Games والشراء
-> داخل التطبيق (كانا محجوبين بانتظار هذا).
-
-### 3. ~~الإصدار يُوقَّع بمفتاح التصحيح~~ — **مُنجز (٨ سبتمبر ٢٠٢٦)**
-`build.gradle.kts` يقرأ التوقيع من `android/key.properties` (خارج Git)، ويعود
-لمفتاح التصحيح تلقائياً إن غاب الملف. المفتاح أُنشئ في
-`%USERPROFILE%/keys/koora-upload.jks` (alias: `upload`)، وبناء الإصدار صار
-موقّعاً به: تحقُّق الشهادة يُظهر `CN=Oasis Forge` لا مفتاح التصحيح.
-> ⚠️ **فقدان `koora-upload.jks` أو كلمة مروره = استحالة تحديث التطبيق للأبد.**
-> احتفظ بنسخة احتياطية آمنة خارج الجهاز. الملف وكلمة المرور خارج Git.
-
-### 4. ~~سياسة الخصوصية مفقودة~~ — **مُنجز ومنشور (٨ سبتمبر ٢٠٢٦)**
-سياسة ثنائية اللغة (إنجليزي + عربي) منشورة ومتحقَّق منها (HTTP 200) على:
-**https://thepromptkitchen-alt.github.io/koora-trivia-privacy/**
-المصدر في [privacy_policy.html](privacy_policy.html) وينشر من مجلد `privacy-site/`
-(مستودع مستقل: `thepromptkitchen-alt/koora-trivia-privacy` عبر GitHub Pages).
-**المتبقي:** لصق الرابط في Play Console (حقلا سياسة الخصوصية و Data Safety).
-
-### 5. ~~إفصاح Data Safety~~ — **الإجابات جاهزة**
-الإجابات المبنية على الحالة الفعلية في [DATA_SAFETY.md](DATA_SAFETY.md)، تُدخَل
-يدوياً في النموذج. الخلاصة: يُجمع «مُعرّف الإعلان» فقط بسبب AdMob، لا شيء غيره.
-
-### 6. الأصول والنصوص — **مُنجزة (٨ سبتمبر ٢٠٢٦)**
-- أيقونة احترافية + كل المقاسات + تكيّفية + متجر 512×512 في `assets/branding/`.
-- **٥ لقطات شاشة** ملتقطة من المحاكي ومقصوصة (بلا شريط الحالة) في `screenshots/store/`.
-- **صورة العرض 1024×500** (feature graphic) في
-  `assets/branding/feature_graphic_1024x500.png`.
-- **نصوص المتجر** (الاسم + الوصفان) جاهزة في [STORE_LISTING.md](STORE_LISTING.md).
-- المتبقي (اختياري): لقطات لجهاز لوحي، وإصلاح شاشة البداية `launch_background.xml`
-  التي ما زالت تستخدم `ic_ball` القديم — بند تجميل لا حاجز.
+- **A real phone** — everything above was on the emulator.
+- The daily reminder actually firing at its scheduled time.
+- The UMP consent form for a user in Europe.
+- Progress export/import on a device (the logic is covered by `backup_test`).
+- Buying from the shop with real coins · the shop's rewarded ad (+70).
+- Real production ads — **never tap them yourself**.
+- Tablet layouts.
 
 ---
 
-## ⚠️ نواقص وظيفية قبل اعتبار التطبيق «مكتملاً»
+## 2. Release procedure
 
-### الإعلانات — لم تُبنَ إطلاقاً
-منطق الاقتصاد جاهز بالكامل لكن **لا توجد أي إعلانات**. `grantRewardedHearts()`
-مُنفّذ ومختبَر وينتظر من يستدعيه.
+1. Bump `version` in `pubspec.yaml` (`1.0.3+4` ⇒ next is `1.0.4+5`).
+2. `flutter analyze` and `flutter test`.
+3. `flutter build appbundle --release` **then** `flutter build apk --release` — always both.
+4. `adb uninstall com.oasisforge.kooratrivia` → install the APK → exercise the affected flow.
+5. `dart run tool/archive_release.dart "reason"` → creates `releases/v<version>_<date>/`.
+6. Upload `app-release.aab` from the archive folder to the target track in Play Console.
 
-المطلوب:
-- حساب AdMob + معرّف تطبيق + وحدات إعلانية
-- حزمة `google_mobile_ads`
-- ملف `app-ads.txt` منشور على نطاقك
-- **UMP SDK لموافقة الخصوصية — إلزامي وليس اختيارياً**
-- إعلان مكافأ ← يُستدعى عنده `grantRewardedHearts()`
-- إعلان بيني كل 3 مستويات مع سقف 3 دقائق
-- **ممنوع أي إعلان بعد تحدي اليوم** (قرار تصميمي مقصود)
+**Release notes template** (the payload is Arabic because players see it; it deliberately
+mentions no fixed counts):
 
-### الشراء داخل التطبيق — لم يُبنَ
-**ثلاثة منتجات** (انظر [ECONOMY.md](ECONOMY.md#5-الشراء-داخل-التطبيق)):
-حزمتا قلوب **مستهلَكتان** + «إزالة الإعلانات» **غير مستهلَك**.
+```
+<ar>
+الإصدار الأول من «تحدي كرة القدم» 🎉
+• ثلاثة أنماط: المستويات، اللعب السريع، وتحدي اليوم.
+• تصنيفات متنوّعة ومستويات تتصاعد صعوبتها.
+• سلسلة أيام، نجوم، ومهامّ يومية.
+نتمنّى لك اللعب الممتع — رأيك يهمّنا!
+</ar>
+```
 
-⚠️ المنتجات المستهلَكة يجب **الإقرار باستلامها (acknowledge) خلال ثلاثة أيام**
-وإلا استردّت غوغل المبلغ تلقائياً. هذا أكثر خطأ شائع في تطبيقات الشراء.
+### Version history
 
-### التخزين محلي فقط — **قرار متّخذ، وهذه تبعاته**
+| Version | Contents |
+|---|---|
+| `1.0.0+1` | Generic onboarding copy · 3-column level grid · rewarded-ad fix. First internal-testing upload — **crashes on launch** (R8) |
+| `1.0.1+2` | R8 turned off, nothing else |
+| `1.0.2+3` | Covariance bug fix (stars · level unlocks · Next Level button) |
+| `1.0.3+4` | + replay button hidden after the daily challenge ← **latest** |
 
-**القرار:** لا حفظ سحابي ولا تسجيل دخول ولا خادم. كل التقدّم في
-`SharedPreferences` على الجهاز.
-
-**ما يُكسب:**
-- إفصاح Data Safety هو الأبسط الممكن: التطبيق لا يجمع أي بيانات ولا يتصل بالشبكة
-- لا تكلفة بنية تحتية ولا حساب Firebase ولا إعداد Play Console للألعاب
-- لا شاشة تسجيل دخول تُفسد تجربة العمل دون إنترنت
-
-**ما يُخسر — أخبِر المستخدمين به:**
-- **حذف التطبيق أو تغيير الجهاز أو مسح البيانات = ضياع كل شيء**
-- لا لوحات صدارة (تحتاج تسجيل دخول)
-- لا إنجازات Play Games
-- لا مزامنة بين جهازين
-
-**شبكة الأمان الوحيدة:** النسخ الاحتياطي التلقائي في أندرويد. فُعّل صراحةً في
-المانيفست عبر `backup_rules.xml` و`data_extraction_rules.xml` ليشمل
-`sharedpref`. لكنه يبقى **غير موثوق**: يعمل مرة يومياً تقريباً عند الشحن
-والاتصال بواي فاي، ويستعيد فقط عند تثبيت جديد من المتجر، ولا وسيلة للتطبيق
-لمعرفة نجاحه من فشله.
-
-> 💡 **اقتراح رخيص إن أردت تخفيف الخسارة لاحقاً:** تصدير/استيراد يدوي — زر في
-> الإعدادات ينسخ حالة التقدّم كنص مشفّر يحفظه المستخدم بنفسه ويلصقه في الجهاز
-> الجديد. يبقى محلياً بالكامل ولا يحتاج خادماً ولا حساباً.
-
-### الانتقال إلى Firebase لاحقاً — ما يجب ألا تكسره
-
-القرار مؤقت: الانتقال وارد إن نجح التطبيق. البنية الحالية تجعله رخيصاً، بشرط
-الحفاظ على أربع نقاط:
-
-1. **العقود المجرّدة هي بوابة التخزين.** `StatsRepository` و`ProgressRepository`
-   و`EconomyRepository` و`SettingsRepository` كلها واجهات مجرّدة. الانتقال يعني
-   كتابة تنفيذ جديد لكل منها فقط — **دون لمس أي Provider أو شاشة**.
-   لا تستدعِ `SharedPreferences` مباشرة من طبقة العرض أبداً.
-
-2. **مفاتيح التخزين مرقّمة بإصدار** (`user_stats_v1` … `economy_v1`). أبقِ هذا
-   العُرف؛ هو ما يسمح بترحيل البيانات لاحقاً دون تخمين.
-
-3. **خطة «تبنّي التقدّم المحلي» إلزامية عند إضافة الحسابات.** أول تسجيل دخول
-   يجب أن يرفع التقدّم المحلي الموجود إلى الحساب، لا أن يستبدله بحساب فارغ.
-   إهمال هذه النقطة يعني أن أوفى اللاعبين يفقدون كل شيء في لحظة إضافة الميزة —
-   أسوأ نتيجة ممكنة.
-
-4. **الأوقات محلية اليوم.** `lastRegenAtIso` ومفاتيح اليوم تعتمد ساعة الجهاز.
-   الخادم سيحتاج UTC، فخطّط للتحويل عند الترحيل.
-
-> ⚠️ القيم كلها محسوبة على الجهاز وغير موثّقة. عند الانتقال إلى خادم، **البيانات
-> المُرحَّلة لا يمكن الوثوق بها بأثر رجعي** — من زوّر ساعته سيصل بتقدّم مزيّف.
-> إن كانت لوحات الصدارة في الخطة، ابدأ العدّ من الصفر عند إطلاقها.
-
-### لا يوجد صوت ولا اهتزاز
-لعبة أسئلة بلا أي مؤثر صوتي عند الإجابة الصحيحة أو الخاطئة تبدو ناقصة.
-
-### مفاتيح مفقودة في الإعدادات
-لا يوجد مفتاح للصوت ولا للاهتزاز (لأنهما غير موجودين أصلاً).
+> ⚠️ In `releases/v1.0.1_build2_*` the `.apk` is **versionCode 1** (built two minutes before
+> the version bump) while the `.aab` is correct. Verified with `aapt2 dump badging`; the
+> v1.0.2 and v1.0.3 folders match. See the archive-tool trap in CLAUDE.md.
 
 ---
 
-## 🔍 نقاط تحتاج مراجعتك أنت — منطق وتصميم
+## 3. What was entered in Play Console
 
-### أ. الأرقام كلها تخمينات
-لم يُلعب التطبيق على جهاز حقيقي ولو مرة. هذه القيم في
-[`app_config.dart`](../lib/core/constants/app_config.dart) اختيرت نظرياً:
+### App creation and store settings
+- Name «تحدي كرة القدم» · default language Arabic · Game · Free.
+- Package `com.oasisforge.kooratrivia`.
+- Category **Trivia** · contact email `thepromptkitchen@gmail.com` · phone left blank ·
+  external marketing left on (default).
 
-| القيمة | الحالي | السؤال |
-|---|---|---|
-| مدة السؤال | 20 ثانية | كافية لسؤال عربي طويل في المستوى 10؟ |
-| اجتياز المستوى | 7 من 10 | صعبة جداً على المستويات 8-10؟ |
-| القلوب | 5 | تنفد بسرعة مع 3 أخطاء مسموحة فقط؟ |
-| تجديد القلب | 30 دقيقة | ساعتان ونصف للتعبئة الكاملة — مقبول؟ |
-| المساعدات المجانية | 3 يومياً | كثيرة أم قليلة؟ |
+### Store listing
+- Text: [STORE_LISTING.md](STORE_LISTING.md).
+- App icon: `assets/branding/play_store_icon_512.png` — full square, no pre-rounded corners.
+- Feature graphic: `assets/branding/feature_graphic_1024x500.png`.
+- Phone screenshots: `screenshots/store_9x16/` (5 × 1080×1920). **Not** `screenshots/store/`
+  — its 2.07 aspect ratio exceeds Play's limit.
+- ⚠️ A "Some languages have errors" warning appeared with only one language and was never
+  resolved — open the listing's **Review** step to read the actual error.
 
-**اختبر بنفسك قبل تثبيت أي رقم.**
+### AI asset declaration
+"Label assets as created or edited using AI" → label the **app icon** and the **feature
+graphic** only. The screenshots are real captures of the app, so they are not labeled.
 
-### ب. تناقض محتمل: القلوب مقابل الاجتياز
-المستوى يحتاج 7 صحيحة من 10، أي أن 3 أخطاء مسموحة — لكن كل خطأ يكلّف قلباً،
-والرصيد 5 قلوب. **يعني أن محاولتين فاشلتين تستهلكان كل القلوب تقريباً.**
-قد يكون هذا محبطاً أكثر من اللازم. خيارات:
-- رفع سقف القلوب
-- خصم قلب عند فشل المستوى كاملاً لا عند كل خطأ
-- تقليل عتبة الاجتياز
+### Data safety
+Full answers in [DATA_SAFETY_EN.md](DATA_SAFETY_EN.md). Summary:
+- Collects or shares data: **Yes** (because of AdMob) · encrypted in transit: **Yes**.
+- Account creation: **My app does not allow users to create an account**.
+- Only data type: **Device or other IDs** → collected and shared · not ephemeral · required ·
+  purposes: advertising · analytics · fraud prevention and security.
+- Do **not** select "App info and performance" (crash logs/diagnostics) — no crash tool is used.
 
-هذا **أهم قرار تصميمي متبقٍ** برأيي.
+### Advertising ID
+**Yes** — purposes: Advertising or marketing · Analytics · Fraud prevention, security, and
+compliance. The `AD_ID` permission is merged in automatically from the ads SDK.
 
-### ج. الثغرة الزمنية
-السلسلة والقلوب تعتمدان على ساعة الجهاز. تقديم التاريخ يمنح قلوباً ويكسر
-منطق السلسلة. الحماية الحالية: رفض القفزات للخلف فقط.
-الحل الحقيقي يحتاج خادماً — مقبول للإصدار الأول، لكن اعرف أنه موجود.
+### Merged permissions — verified on v1.0.3 with `aapt2`
+The source manifest declares only `POST_NOTIFICATIONS` and `RECEIVE_BOOT_COMPLETED`. The rest
+are merged in from packages (AdMob · WorkManager · notifications): `INTERNET` ·
+`ACCESS_NETWORK_STATE` · `AD_ID` · `ACCESS_ADSERVICES_AD_ID` · `ACCESS_ADSERVICES_ATTRIBUTION` ·
+`ACCESS_ADSERVICES_TOPICS` · `WAKE_LOCK` · `FOREGROUND_SERVICE` · `VIBRATE`. targetSdk = 36.
 
-### د. دقة الأسئلة
-1000 سؤال كُتبت بمعرفة حتى **مايو 2026** ولم يراجعها إنسان.
-الأسئلة التاريخية آمنة، لكن أي رقم قياسي حديث يستحق تدقيقاً.
-**راجع عيّنة من المستويات 9-10 في كل تصنيف** — هناك الأسئلة الأكثر عرضة للخطأ.
+**Foreground service permissions form:** the five merged services (AdMob's `AdService` · three
+from WorkManager including `SystemForegroundService` · Room's service) **none declares a
+`foregroundServiceType`**, and there are no type-specific `FOREGROUND_SERVICE_*` permissions —
+so Play shouldn't ask for it. If it does: the source is WorkManager, pulled in by AdMob, and the
+app itself never starts a foreground service.
 
-### هـ. صعوبة المستوى 10
-المستويات العليا تحوي أسئلة شديدة التخصص (لعنة غوتمان، ركلات ستيوا 1986،
-استبعاد جنوب أفريقيا 1957). قد تكون صعبة إلى حدّ الإحباط.
+### Financial and health features
+"My app doesn't provide any financial features" · "My app does not have any health features".
+In-game coins are not a financial feature.
 
-### ز. فراغ كبير في التخطيط — **مرصود على الجهاز**
-- ~~شاشة **المستويات**: الشبكة كانت 4 أعمدة (3 صفوف فقط لـ10 مستويات) تترك
-  فراغاً كبيراً أسفلها.~~ ← **مُصلَح (٨ سبتمبر ٢٠٢٦):** صارت 3 أعمدة (4 صفوف)
-  موسّطة عمودياً، تملأ الطول وتكبّر مساحة اللمس. انظر
-  [levels_screen.dart](../lib/presentation/screens/levels_screen.dart).
-- شاشة **الاختبار**: يبقى تحقُّق من الفراغ بين آخر خيار وشريط المساعدات على
-  الأجهزة الطويلة (لم يُلمس بعد).
+### Content rating — ❓ completion not confirmed
+Category **Game**; "No" to every violence, sexual content, drugs, gambling, and profanity
+question. Sharing through the system share sheet is not in-app user-to-user interaction.
+Expected result: Everyone / PEGI 3.
 
-### و. لا توجد شاشة ترحيب
-اللاعب الجديد يهبط مباشرة على الشاشة الرئيسية دون شرح للقلوب أو النجوم
-أو السلسلة.
-
----
-
-## ✅ ما تم بناؤه والتحقق منه
-
-- 1000 سؤال · 10 تصنيفات · 10 مستويات لكل تصنيف · بلا تكرار مؤكَّد آلياً
-- بنية Clean Architecture بثلاث طبقات، `domain` خالٍ من Flutter تماماً
-- ثلاثة أنماط لعب: المستويات · اللعب السريع · تحدي اليوم
-- تحدٍّ يومي حتمي بلا خادم
-- سلسلة أيام + نجوم + فتح تدريجي، محفوظة محلياً
-- اقتصاد كامل: قلوب متجددة + مساعدات + حدود يومية (بلا إعلانات بعد)
-- تنبيه يومي بتوقيت الجهاز الصحيح
-- شاشة إعدادات بإحصائيات كاملة وتصفير آمن
-- دعم RTL كامل وواجهة عربية بالكامل
-- 88 اختباراً ناجحاً · تحليل نظيف · بناء APK يعمل
+### Target audience — ❓ completion not confirmed
+**13 and over**, and "No" to appealing to children — matches the privacy policy. Choosing ages
+under 13 puts the app under the Families policy and requires child-directed ad settings.
 
 ---
 
-## الترتيب المقترح من هنا
+## 4. Closed testing — the gate to production
 
-1. **العب التطبيق بنفسك على جهاز حقيقي** — لا شيء يعوّض هذا
-2. اضبط الأرقام بناءً على تجربتك، خصوصاً تناقض القلوب/الاجتياز (نقطة ب)
-3. راجع عيّنة أسئلة من المستويات العليا
-4. أصلح الفراغ الكبير في شاشة الاختبار (نقطة ز)
-5. **حفظ التقدّم في السحابة** — قبل أن يتراكم لدى اللاعبين تقدّم يخسرونه
-6. أصلح حاجز `.aab` وثبّت `cmdline-tools`
-7. غيّر `applicationId` وأنشئ keystore حقيقياً
-8. أضف الصوت والاهتزاز وشاشة الترحيب
-9. أضف الإعلانات ثم الشراء داخل التطبيق
-10. سياسة الخصوصية + Data Safety + الأيقونة واللقطات
-11. إصدار تجريبي مغلق على بلاي قبل النشر العام
-12. لوحات الصدارة والإنجازات — بعد الإصدار الأول
+New **personal** developer accounts can't request production until a closed test has run with
+**at least 12 testers opted in for 14 consecutive days**. Internal testing **does not count**.
+
+1. Test and release → Testing → **Closed testing** → create the track.
+2. Upload the latest `.aab` and add the testers' email list (Google accounts).
+3. Copy the opt-in link and send it.
+4. Each tester: signs the phone into **the same account** that was added → opens the link →
+   "Become a tester" → installs from Play. The app can take minutes to hours to appear after
+   rollout.
+
+**Ready-to-send invite** (Arabic, for the testers):
+
+```
+جرّب لعبتي الجديدة «تحدي كرة القدم» ⚽
+
+1) افتح رابط الانضمام من هاتف أندرويد: [الصق رابط الـ opt-in هنا]
+2) اضغط "Become a tester" ثم حمّل التطبيق من متجر Play.
+3) العب واخبرني برأيك 🙏
+
+مهم: ابقَ منضمّاً لمدة أسبوعين على الأقل — غوغل تشترط ذلك قبل النشر العام.
+```
+
+---
+
+## 5. Before requesting production
+
+### Owner decisions
+- **Heart deduction** — one failed attempt drains all five hearts (observed). Proposal: one
+  heart per failed attempt instead of per wrong answer.
+- **Name and address shown publicly** — a personal account shows the legal name and address
+  from the payments profile on the store page. The alternative is an organization account
+  (D-U-N-S). At minimum set "Developer name" to Oasis Forge and use a non-home address if
+  possible. **Check Google's current requirement** before deciding — the rules change.
+
+### Reviews
+- **Audit bugs visible in Arabic today:** the daily challenge repeats every other day, wrong count
+  grammar («N يوم متتالية», «N نجمة»), raw exception text in a SnackBar, and a stale version string.
+  Details in [I18N_PLAN.md §0](I18N_PLAN.md) and CLAUDE.md "Remaining §0".
+- **Question accuracy:** 1000 questions written from knowledge up to May 2026, never reviewed
+  by a human. Historical questions are safe; any recent record deserves a check. Start with
+  levels 9–10.
+- **Level 10 difficulty:** highly specialized questions (the Guttmann curse, Steaua's 1986
+  penalties) may frustrate.
+- **Tuning on a phone:** 20-second question timer · 30-minute regen · 3 free hints a day.
+- **Quiz screen on tall devices:** possible gap between the last option and the hints bar.
+
+---
+
+## 6. Not built — deliberately or deferred
+
+| Item | Status |
+|---|---|
+| In-app purchases | Not built; "Remove ads" shows "Soon". ⚠️ Consumables must be acknowledged within 3 days |
+| Interstitial ads | Built, deliberately off at launch |
+| `app-ads.txt` | Ready in `docs/`, not published (needs a root domain) |
+| Tablet screenshots | None |
+| Splash screen | Still uses the old `ic_ball` drawing |
+| iOS | Out of scope |
+| Multiple languages | Deliberately deferred — plan and audit in [I18N_PLAN.md](I18N_PLAN.md) |
+| Cloud save · leaderboards · Play Games | Deferred (see next section) |
+
+---
+
+## 7. Local-only storage — a decided trade-off
+
+**Decision:** no cloud save, no sign-in, no server. All progress lives in `SharedPreferences`.
+
+**Gains:** the simplest possible Data safety disclosure · no infrastructure cost · no sign-in screen.
+
+**Losses:** uninstalling, switching phones, or clearing data = losing everything · no
+leaderboards · no Play Games achievements · no sync between devices.
+
+**Safety nets:** manual export/import with a Base64 code from Settings (built) · Android auto
+backup enabled via `backup_rules.xml` and `data_extraction_rules.xml` to include `sharedpref` —
+but it's unreliable (roughly once a day, restores only on a fresh install).
+
+### Moving to Firebase later — what not to break
+
+1. **The abstract contracts are the storage gateway.** `StatsRepository`, `ProgressRepository`,
+   `EconomyRepository`, and `SettingsRepository` are abstract interfaces; migrating means a new
+   implementation of each **without touching any Provider or screen**. Never call
+   `SharedPreferences` from the presentation layer.
+2. **Storage keys are versioned** (`user_stats_v1` … `economy_v1`) — keep the convention.
+3. **Adopting local progress is mandatory when accounts arrive** — the first sign-in uploads the
+   existing progress rather than replacing it with an empty account.
+4. **Times are device-local today.** `lastRegenAtIso` and day keys depend on the device clock;
+   a server will need UTC.
+
+> ⚠️ All values are computed on-device and untrusted. **Migrated data can't be trusted
+> retroactively** — anyone who changed their clock arrives with fake progress. If leaderboards
+> come, start counting from zero.
+
+### The clock exploit
+Streaks and hearts rely on the device clock: moving the date forward grants hearts and breaks
+streak logic. The current guard only rejects backward jumps. The real fix needs a server —
+acceptable for the first release.

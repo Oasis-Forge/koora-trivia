@@ -1,134 +1,159 @@
-# CLAUDE.md — سياق المشروع وتعليمات المتابعة
+# CLAUDE.md — Project context and handoff notes
 
-> **لماذا هذا الملف:** يُحمَّل تلقائياً في كل جلسة جديدة من Claude Code. الغرض منه
-> أن تتمكن من فتح محادثة جديدة والمتابعة دون إعادة شرح أي شيء.
+> **Why this file exists:** it's loaded automatically at the start of every Claude Code
+> session, so a new conversation can pick up without re-explaining anything.
 >
-> **⚠️ حدِّث هذا الملف كلما أنجزتَ عملاً.** انقل البند من "المتبقي" إلى "المنجز"،
-> وسجّل أي قرار تصميمي جديد أو مصيدة اكتشفتها. آخر تحديث: **١٣ سبتمبر ٢٠٢٦**.
+> **⚠️ Update this file whenever work is completed.** Move items from "Remaining" to
+> "Done", and record any new design decision or trap you discover.
+> Last updated: **13 September 2026**.
+
+## Working conventions
+Keep output minimal — this burns real tokens:
+
+Don't dump full command output (flutter test, flutter analyze,flutter build, git log, etc.) into responses; run with tail/grep
+for the relevant lines, or just state pass/fail and the error if any.
+Don't paste full file contents back after a Read/Edit/Write unless the
+user needs to review them — the tool result already confirms the
+change.
+Summarize instead of narrating every tool call; report outcomes, not
+process.
 
 ---
 
-## 🚦 الحالة الحالية — ابدأ من هنا
+## 🚦 Current status — start here
 
-**المرحلة:** اختبار داخلي على Google Play. **لم يُنشر للعامة بعد.**
+**Stage:** internal testing on Google Play. **Not published publicly yet.**
 
-**آخر بناء جاهز للرفع:** `v1.0.3+4` في `releases/v1.0.3_build4_2026-09-08/`
-(`app-release.aab` للرفع إلى Play، و`app-release.apk` للتثبيت المباشر على جهاز).
-يحوي كل الإصلاحات: تعطّل الإقلاع (R8) · حفظ النجوم وفتح المستويات · إخفاء زر
-الإعادة بعد تحدي اليوم · منح مكافأة الإعلان. تحقّقتُ منه على المحاكي ببناء الإصدار.
+**Latest build ready to upload:** `v1.0.3+4` in `releases/v1.0.3_build4_2026-09-08/`
+(`app-release.aab` to upload to Play, `app-release.apk` to install directly on a device).
+It contains every fix: launch crash (R8) · star saving and level unlocks · replay button
+hidden after the daily challenge · rewarded-ad reward granted. Verified on the emulator
+with a release build.
 
-### هوية النشر
+### Publishing identity
 
-| البند | القيمة |
+| Item | Value |
 |---|---|
-| اسم المتجر / المطوّر | **Oasis Forge** |
-| معرّف الحزمة | `com.oasisforge.kooratrivia` — **نهائي، لا يتغيّر بعد أول نشر** |
-| اسم التطبيق في المتجر | «تحدي كرة القدم» (العربية لغة القائمة الافتراضية) |
-| بريد التواصل العام | `thepromptkitchen@gmail.com` (نفسه في سياسة الخصوصية) |
-| AdMob | تطبيق «Koora Trivia» · ناشر `pub-8287765177319119` |
-| سياسة الخصوصية | https://thepromptkitchen-alt.github.io/koora-trivia-privacy/ |
-| مفتاح الرفع | `%USERPROFILE%/keys/koora-upload.jks` (alias `upload`) — كلمة المرور في `android/key.properties` خارج Git، **لا تنسخها إلى أي ملف آخر** |
-| المستودع | https://github.com/thepromptkitchen-alt/koora-trivia — **عام** · فرع `main` (أُنشئ ١٣ سبتمبر ٢٠٢٦) |
+| Store / developer name | **Oasis Forge** |
+| Package name | `com.oasisforge.kooratrivia` — **final, can never change after the first publish** |
+| App name on the store | «تحدي كرة القدم» (Arabic is the default listing language) |
+| Public contact email | `thepromptkitchen@gmail.com` (same as the privacy policy) |
+| AdMob | app "Koora Trivia" · publisher `pub-8287765177319119` |
+| Privacy policy | https://oasis-forge.github.io/koora-trivia-privacy/ — ⚠️ moved from the old personal-account URL (now 404) on 13 September 2026; **Play Console must use this one** |
+| Upload key | `%USERPROFILE%/keys/koora-upload.jks` (alias `upload`) — the password is in `android/key.properties`, outside Git. **Never copy it into any other file.** |
+| Repository | https://github.com/Oasis-Forge/koora-trivia — **public**, owned by the **Oasis-Forge organization** (transferred from the `thepromptkitchen-alt` account on 13 September 2026) · branch `main` |
 
-> **Git — ما يجب معرفته:** المستودع **عام**، فأي ملف يُضاف يراه الجميع. هوية الإيداع
-> محلية لهذا المستودع (`The Prompt Kitchen <thepromptkitchen@gmail.com>`) كي لا يظهر
-> البريد الشخصي. الدفع يمرّ عبر حساب `gh` (`thepromptkitchen-alt`) بمساعد اعتماد
-> محلي، لا عبر الحساب الشخصي المخزّن في Git Credential Manager.
-> `gh` مثبّت في `C:\Program Files\GitHub CLI\` وقد لا يكون في PATH.
-> مستثنى في `.gitignore` عمداً: حزم `.aab`/`.apk` (تبقى `NOTES.md`) · `privacy-site/`
-> (مستودع مستقل) · `key.properties` · `*.jks`.
+> **Git — what to know:** the repository is **public**, so every file added is visible to
+> everyone. The commit identity is local to this repo
+> (`The Prompt Kitchen <thepromptkitchen@gmail.com>`) so the owner's personal email doesn't
+> appear. Pushes go through the `gh` account (`thepromptkitchen-alt`) with a local credential
+> helper — **not** through the owner's personal GitHub account stored in Git Credential
+> Manager. `gh` is installed at `C:\Program Files\GitHub CLI\` and may not be on PATH.
+> Intentionally excluded in `.gitignore`: `.aab`/`.apk` bundles (`NOTES.md` is kept) ·
+> `privacy-site/` (a separate repo) · `key.properties` · `*.jks`.
+>
+> **Never write the owner's personal name, personal account names, or personal email into
+> tracked files.** The owner does not want their name public.
 
-### حالة Play Console
+### Play Console status
 
-| القسم | الحالة | ملاحظة |
+| Section | Status | Notes |
 |---|---|---|
-| تسجيل حساب المطوّر | ✅ | يظهر الاسم والعنوان القانونيان من ملف الدفع — انظر القرار ② أدناه |
-| إنشاء التطبيق | ✅ | لعبة · مجاني · العربية افتراضية |
-| إعدادات المتجر | ✅ | الفئة **Trivia** · بريد التواصل |
-| قائمة المتجر | ✅ مرفوعة | نصوص [STORE_LISTING.md](docs/STORE_LISTING.md) · أيقونة 512 · صورة عرض · 5 لقطات. ⚠️ ظهر تحذير «Some languages have errors» **ولم يُحسم** — افتح خطوة Review واقرأ الخطأ |
-| إفصاح أصول الذكاء الاصطناعي | ✅ | الأيقونة وصورة العرض موسومتان؛ اللقطات حقيقية فلا توسَم |
-| Data safety | ✅ | حسب [DATA_SAFETY_EN.md](docs/DATA_SAFETY_EN.md) |
-| الميزات المالية · الصحية | ✅ | لا توجد |
-| Advertising ID | ✅ نعم | إعلانات · تحليلات · منع الاحتيال |
-| تصنيف المحتوى · الجمهور المستهدف | ❓ **لم يؤكَّد اكتمالهما** | Everyone · 13+ |
-| اسم المطوّر المعروض | ❓ | يُفترض ضبطه إلى Oasis Forge في Account details |
-| الاختبار الداخلي | ⚠️ | رُفع versionCode 1 **وتعطّل عند الإقلاع** (R8). **لم يؤكَّد** أيّ versionCode حيّ الآن |
-| الاختبار المغلق | ⏳ لم يبدأ | شرط الحسابات الفردية الجديدة: **12 مختبِراً متصلين 14 يوماً** قبل طلب الإنتاج |
-| الإنتاج | ⏳ | |
+| Developer account registration | ✅ | Shows the legal name and address from the payments profile — see decision ② below |
+| App created | ✅ | Game · Free · Arabic default |
+| Store settings | ✅ | Category **Trivia** · contact email |
+| Store listing | ✅ uploaded | Text from [STORE_LISTING.md](docs/STORE_LISTING.md) · 512 icon · feature graphic · 5 screenshots. ⚠️ A "Some languages have errors" warning appeared and **was never resolved** — open the Review step and read the error |
+| AI asset declaration | ✅ | Icon and feature graphic labeled; screenshots are real captures, so not labeled |
+| Data safety | ✅ | Per [DATA_SAFETY_EN.md](docs/DATA_SAFETY_EN.md) |
+| Financial · health features | ✅ | None |
+| Advertising ID | ✅ Yes | Advertising · analytics · fraud prevention |
+| Content rating · target audience | ❓ **completion not confirmed** | Everyone · 13+ |
+| Displayed developer name | ❓ | Should be set to Oasis Forge in Account details |
+| Internal testing | ⚠️ | versionCode 1 was uploaded and **crashed on launch** (R8). **Unconfirmed** which versionCode is live now |
+| Closed testing | ⏳ not started | Rule for new personal accounts: **12 testers opted in for 14 consecutive days** before production can be requested |
+| Production | ⏳ | |
 
-### الخطوات التالية بالترتيب
-1. ارفع `v1.0.3+4` إلى الاختبار الداخلي وتحقّق على **هاتف حقيقي**: اجتياز مستوى ⇒
-   نجمة + زر «المستوى التالي» + فتح التالي؛ تحدي اليوم ⇒ لا زر إعادة.
-2. أكمل تصنيف المحتوى والجمهور المستهدف إن لم يكتملا، واحسم تحذير اللغات.
-3. انتظر قرارَي صاحب المشروع ① و② أدناه (قبل الإنتاج، لا قبل الاختبار المغلق).
-4. أنشئ مسار الاختبار المغلق، أضف 12+ مختبِراً، وابدأ عدّاد الـ14 يوماً مبكراً.
-5. أثناء العدّاد: راجع عيّنة أسئلة المستويات 9-10.
+### Next steps, in order
+> ⚠️ **Do first:** Play Console → App content → Privacy policy → change the URL to
+> https://oasis-forge.github.io/koora-trivia-privacy/. The old personal-account URL is **404** since
+> the repos moved to the Oasis-Forge organization (13 September 2026).
 
-### قرارات تنتظر صاحب المشروع
-- **① خصم القلوب.** حالياً قلب لكل خطأ؛ محاولة فاشلة واحدة استنزفت الخمسة على
-  المحاكي. الاقتراح المطروح: قلب واحد لكل **محاولة فاشلة**. قال «ليس الآن».
-- **② الاسم والعنوان الظاهران علناً.** الحساب الفردي يعرض اسم صاحب المشروع
-  وعنوانه في صفحة المتجر. البديل حساب منظمة (يحتاج D-U-N-S). لم يُحسم.
-- **③ تعدد اللغات** — مؤجّل عمداً حتى تثبت النسخة العربية. انظر قسم «تعدد اللغات».
+1. Upload `v1.0.3+4` to internal testing and verify on a **real phone**: pass a level ⇒
+   star + "Next level" button + next level unlocked; daily challenge ⇒ no replay button.
+2. Finish content rating and target audience if not done, and resolve the language warning.
+3. Wait for the owner's decisions ① and ② below (before production, not before closed testing).
+4. Create the closed testing track, add 12+ testers, and start the 14-day clock early.
+5. While the clock runs: review a sample of level 9–10 questions.
 
----
-
-## ما هو المشروع
-
-تطبيق Flutter عربي بالكامل (RTL) لأسئلة كرة القدم. بنك من **1000 سؤال** موزّع على
-عشرة تصنيفات، مع تحدٍّ يومي وسلسلة أيام محفوظة محلياً وزر مشاركة النتيجة.
-يستهدف أندرويد. **محتوى الأسئلة يعمل دون إنترنت، والإعلانات وحدها تحتاج اتصالاً.**
-
-> النصوص الظاهرة **لا تَعِد** بالعمل دون إنترنت **ولا تذكر عدداً ثابتاً** للأسئلة أو
-> التصنيفات — أُزيل ذلك عمداً (قرار صاحب المشروع) حتى تبقى صحيحة عند إضافة محتوى.
-> حافظ على ذلك في أي نص جديد، بما فيه ملاحظات الإصدار وقائمة المتجر.
+### Decisions waiting on the owner
+- **① Heart deduction.** Currently one heart per wrong answer; a single failed attempt drained
+  all five on the emulator. Proposal on the table: one heart per **failed attempt**. Owner said
+  "not now".
+- **② Name and address shown publicly.** A personal developer account shows the owner's name and
+  address on the store page. The alternative is an organization account (needs D-U-N-S).
+  Undecided.
+- **③ Multiple languages** — deliberately deferred until the Arabic version proves itself. The full plan,
+  the decisions it needs, and a verified codebase audit are in [docs/I18N_PLAN.md](docs/I18N_PLAN.md).
 
 ---
 
-## ⚙️ البيئة — اقرأ هذا أولاً
+## What the project is
 
-**Flutter مثبّت في `C:\src\flutter` لكنه غير مضاف إلى PATH.** صدّر المسار قبل أي أمر:
+A fully Arabic (RTL) Flutter football trivia app. A bank of **1000 questions** across ten
+categories, with a daily challenge, a locally saved day streak, and a share-your-score button.
+Targets Android. **Question content works offline; only ads need a connection.**
+
+> User-facing text **must not promise** offline play **nor state a fixed number** of questions
+> or categories — both were removed deliberately (owner's decision) so the text stays true as
+> content is added. Keep it that way in any new text, including release notes and the store
+> listing.
+
+---
+
+## ⚙️ Environment — read this first
+
+**Flutter is installed at `C:\src\flutter` but is not on PATH.** Export it before any command:
 
 ```bash
 $env:Path = "C:\src\flutter\bin;$env:Path"
 ```
 
-| العنصر | القيمة |
+| Component | Value |
 |---|---|
 | Flutter | 3.44.8 · Dart 3.12.2 |
-| JDK | **Java 25** (المرفق مع Android Studio) |
+| JDK | **Java 25** (bundled with Android Studio) |
 | Gradle / AGP / Kotlin | **9.1.0 / 9.0.1 / 2.3.20** |
-| نظام التشغيل | Windows 11 · PowerShell |
-| `adb` | `%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe` (غير مضاف إلى PATH) |
+| OS | Windows 11 · PowerShell |
+| `adb` | `%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe` (not on PATH) |
 | `keytool` | `C:\Program Files\Android\Android Studio\jbr\bin\keytool.exe` |
 
-**لا تُنزّل إصدار Gradle.** الـ JDK الوحيد على الجهاز هو Java 25، وGradle 8.x لا
-يدعمه ويفشل برسالة غامضة نصّها رقم إصدار Java فقط (`* What went wrong: 25.0.2`).
-هذه الرسالة تعني تعارض إصدارات ولا تعني شيئاً آخر.
+**Don't downgrade Gradle.** The only JDK on the machine is Java 25; Gradle 8.x doesn't support it
+and fails with a cryptic message that is just the Java version (`* What went wrong: 25.0.2`).
+That message means a version mismatch and nothing else.
 
-AGP 9 لا يقبل `kotlinOptions` — استخدم كتلة `kotlin { compilerOptions { … } }`
-على المستوى الأعلى في `android/app/build.gradle.kts`.
+AGP 9 doesn't accept `kotlinOptions` — use a top-level `kotlin { compilerOptions { … } }` block
+in `android/app/build.gradle.kts`.
 
-> 🐛 **تعطّل حرج في بناء الإصدار أُصلح (٨ سبتمبر ٢٠٢٦):** AGP 9 يفعّل R8
-> (التصغير والإخفاء) **افتراضياً** في `release` حتى دون `isMinifyEnabled`. هذا
-> يُعيد تسمية أصناف Room المولّدة (`WorkDatabase_Impl`) التي تحمّلها WorkManager
-> عبر الانعكاس (يجلبها SDK إعلانات AdMob)، فيتعطّل التطبيق **فور الإقلاع في
-> الإصدار فقط** بخطأ `Failed to create an instance of androidx.work.impl.WorkDatabase`
-> عبر `androidx.startup.InitializationProvider`. **لا يظهر في التطوير إطلاقاً**
-> (التطوير لا يشغّل R8). الإصلاح: `isMinifyEnabled = false` و`isShrinkResources = false`
-> في كتلة `release`. تحقّقتُ: بناء الإصدار صار يُقلع ويعمل. إن أردت إعادة تفعيل
-> R8 لاحقاً فأضف قواعد `-keep` لـ Room وWorkManager أولاً واختبر بناء الإصدار يدوياً.
+> 🐛 **Critical release-build crash, fixed (8 September 2026):** AGP 9 enables R8 (shrinking and
+> obfuscation) **by default** in `release`, even without `isMinifyEnabled`. That renames Room's
+> generated classes (`WorkDatabase_Impl`), which WorkManager loads by reflection (WorkManager is
+> pulled in by the AdMob SDK). Result: the app **crashes immediately on launch in release only**
+> with `Failed to create an instance of androidx.work.impl.WorkDatabase` via
+> `androidx.startup.InitializationProvider`. **It never shows in debug** (debug doesn't run R8).
+> Fix: `isMinifyEnabled = false` and `isShrinkResources = false` in the `release` block. Verified:
+> the release build launches and runs. To re-enable R8 later, add `-keep` rules for Room and
+> WorkManager first and test a release build by hand.
 
-> 🛡️ **Smart App Control مُطفأ على هذا الجهاز** (قرار صاحب المشروع، لا يمكن إعادة
-> تشغيله دون إعادة ضبط Windows). كان يحجب `gen_snapshot` لمعمارية `android-arm`
-> فيفشل بناء الإصدار بـ `An Application Control policy has blocked this file`.
-> على جهاز جديد: هذا العَرَض يعني السبب نفسه. بديل دون إطفائه:
-> `--target-platform android-arm64` (يُسقط دعم أجهزة 32-بت).
+> 🛡️ **Smart App Control is turned off on this machine** (owner's decision; it can't be turned back
+> on without resetting Windows). It was blocking `gen_snapshot` for `android-arm`, so release
+> builds failed with `An Application Control policy has blocked this file`. On a new machine,
+> that symptom means the same cause. Workaround without turning it off:
+> `--target-platform android-arm64` (drops 32-bit devices).
 
-**رسائل بناء غير قاتلة — تجاهلها:** `failed to strip debug symbols` (الحزمة تُنتَج
-رغمها) · تحذير Kotlin Gradle Plugin من `flutter_timezone` و`share_plus`.
+**Non-fatal build messages — ignore them:** `failed to strip debug symbols` (the bundle is still
+produced) · Kotlin Gradle Plugin warnings from `flutter_timezone` and `share_plus`.
 
-### أوامر متكررة
+### Common commands
 
 ```bash
 $env:Path = "C:\src\flutter\bin;$env:Path"; flutter test
@@ -146,429 +171,491 @@ $env:Path = "C:\src\flutter\bin;$env:Path"; flutter run
 $env:Path = "C:\src\flutter\bin;$env:Path"; dart run tool/rebalance_answers.dart
 ```
 
-### إصدار جديد إلى Play — بهذا الترتيب
+### Shipping a new version to Play — in this order
 
-1. ارفع `version` في `pubspec.yaml` — غوغل ترفض إعادة `versionCode`. الصيغة
-   `1.0.3+4` ⇒ versionName 1.0.3، versionCode 4.
-2. `flutter analyze` و`flutter test`.
-3. ابنِ **الاثنين**: `flutter build appbundle --release` ثم `flutter build apk --release`.
-4. **ثبّت الـ APK على المحاكي وجرّب المسار المتأثّر** — أخطاء R8 والتوقيع لا تظهر في التطوير.
-5. أرشِف:
+1. Bump `version` in `pubspec.yaml` — Google rejects a reused `versionCode`. Format:
+   `1.0.3+4` ⇒ versionName 1.0.3, versionCode 4.
+2. `flutter analyze` and `flutter test`.
+3. Build **both**: `flutter build appbundle --release` then `flutter build apk --release`.
+4. **Install the APK on the emulator and exercise the affected flow** — R8 and signing bugs don't
+   show in debug.
+5. Archive:
 
 ```bash
-$env:Path = "C:\src\flutter\bin;$env:Path"; dart run tool/archive_release.dart "سبب هذا الإصدار"
+$env:Path = "C:\src\flutter\bin;$env:Path"; dart run tool/archive_release.dart "reason for this release"
 ```
 
-> ⚠️ **الأداة تنسخ أي `.aab`/`.apk` موجود دون التحقق من أنه يطابق الإصدار الحالي.**
-> إن بنيت أحدهما فقط، يُؤرشَف الآخر القديم تحت اسم الإصدار الجديد (حدث فعلاً مع
-> v1.0.2). لهذا الخطوة 3 تبني الاثنين دائماً.
+> ⚠️ **The tool copies whatever `.aab`/`.apk` exists without checking that it matches the current
+> version.** Build only one of them and the stale other one gets archived under the new version's
+> name (this actually happened with v1.0.2). That's why step 3 always builds both.
 
-### الاختبار على المحاكي
+### Testing on the emulator
 
-- المحاكي: `Pixel_6_Pro` (1440×3120، كثافة 560، شريط الحالة 145 بكسل).
-  تشغيله: `flutter emulators --launch Pixel_6_Pro`.
-- **الانتقال بين نسخة التطوير ونسخة الإصدار على الجهاز نفسه** يفشل بـ
-  `INSTALL_FAILED_UPDATE_INCOMPATIBLE` (توقيعان مختلفان) ⇒
-  `adb uninstall com.oasisforge.kooratrivia` أولاً.
-- **أعطال الإقلاع:** `adb logcat -c` ← شغّل التطبيق ← `adb logcat -d` وابحث عن `AndroidRuntime`.
-- **واجهة Flutter غير مرئية لـ `uiautomator dump`.** لقيادة الشاشة بـ `adb shell input tap`
-  حدِّد موضع الزر بمسح ألوان لقطة الشاشة (الأزرار الذهبية ≈ RGB 245,197,66) — التخمين
-  بالعين يخطئ بعشرات البكسلات، وموضع الخيارات يتغيّر مع طول نص السؤال.
-- **اجتياز مستوى آلياً:** ترتيب خيارات المستوى حتمي (`SeededRandom(q.id)`، وأسئلته
-  مرتّبة بالمعرّف)، فيمكن حساب موضع الإجابة الصحيحة مسبقاً من ملف JSON.
-- المؤقّت 20 ثانية: أي أتمتة أبطأ من ذلك تُسجَّل «انتهى الوقت» وتُخصم قلوباً.
+- Emulator: `Pixel_6_Pro` (1440×3120, density 560, 145 px status bar).
+  Launch it: `flutter emulators --launch Pixel_6_Pro`.
+- **Switching between a debug and a release install on the same device** fails with
+  `INSTALL_FAILED_UPDATE_INCOMPATIBLE` (different signatures) ⇒
+  `adb uninstall com.oasisforge.kooratrivia` first.
+- **Launch crashes:** `adb logcat -c` → launch the app → `adb logcat -d` and look for `AndroidRuntime`.
+- **Flutter's UI is invisible to `uiautomator dump`.** To drive the screen with
+  `adb shell input tap`, locate buttons by scanning screenshot pixel colors (gold buttons ≈ RGB
+  245,197,66) — eyeballing is off by tens of pixels, and option positions shift with question
+  text length.
+- **Passing a level automatically:** level option order is deterministic (`SeededRandom(q.id)`,
+  questions sorted by id), so the correct answer's position can be computed from the JSON.
+- The timer is 20 seconds: any automation slower than that records "time's up" and costs hearts.
 
 ---
 
-## البنية
+## Architecture
 
 ```
 lib/
-├── core/          ثوابت · ثيم · أدوات · حاوية اعتماديات
-├── domain/        كيانات · عقود مجرّدة · حالات استخدام   ← لا يستورد Flutter إطلاقاً
-├── data/          نماذج · مصادر بيانات · تنفيذ العقود
-└── presentation/  Provider · شاشات · widgets
+├── core/          constants · theme · utils · dependency container
+├── domain/        entities · abstract contracts · use cases   ← never imports Flutter
+├── data/          models · data sources · contract implementations
+└── presentation/  Providers · screens · widgets
 ```
 
-اتجاه الاعتماد: `presentation → domain ← data`. **طبقة `domain` يجب أن تبقى خالية
-من أي استيراد لـ Flutter أو للحزم الخارجية.** هذا القيد صمد حتى الآن — حافظ عليه.
+Dependency direction: `presentation → domain ← data`. **The `domain` layer must stay free of any
+Flutter or third-party import.** That constraint has held so far — keep it.
 
-### مصائد معروفة
+### Known traps
 
-- **`Category` تتعارض مع `foundation.Category`.** أي ملف يستورد
-  `package:flutter/foundation.dart` مباشرة ويستخدم كيان `Category` يحتاج
-  `hide Category`. انظر [quiz_provider.dart](lib/presentation/providers/quiz_provider.dart).
-- **الأصول لا تُحدَّث بـ hot reload.** `AssetQuestionDataSource` يخزّن البنك في
-  الذاكرة، فأي تعديل على ملفات الأسئلة يحتاج إعادة تشغيل كاملة.
-- 🐛 **لا تُعِد خريطة نماذج (Model) من مستودع يَعِد بخريطة كيانات (Entity).**
-  `Map<String, XModel>` يقبلها المترجم مكان `Map<String, X>` بحكم التغاير، لكن
-  نوعها **وقت التشغيل** يبقى خريطة نماذج، فأي إسناد لكيان عادي داخلها يرمي
-  `TypeError`. حدث فعلاً في `ProgressRepositoryImpl.loadAll` وكسر حفظ النجوم
-  وفتح المستويات (٨ سبتمبر ٢٠٢٦) — والخطأ كان **يُبتلَع** داخل ردّ نداء غير
-  متزامن في شاشة النتيجة فلا يظهر شيء للاعب. الحل: `Map<String, X>.from(models)`
-  عند حدود المستودع. يحرسه الآن `test/progress_provider_test.dart`.
-- **ردود النداء غير المتزامنة في `addPostFrameCallback` تبتلع الاستثناءات.** شاشة
-  النتيجة تسجّل الإحصائيات والنجوم والمهام هناك؛ أي خطأ فيها يختفي بصمت ويترك
-  الواجهة ناقصة. عند إضافة منطق هناك اختبره عبر المزوّد مباشرة لا عبر الشاشة.
+- **`Category` clashes with `foundation.Category`.** Any file that imports
+  `package:flutter/foundation.dart` directly and uses the `Category` entity needs
+  `hide Category`. See [quiz_provider.dart](lib/presentation/providers/quiz_provider.dart).
+- **Assets don't refresh on hot reload.** `AssetQuestionDataSource` caches the bank in memory,
+  so any change to the question files needs a full restart.
+- 🐛 **Never return a map of Models from a repository that promises a map of Entities.**
+  The compiler accepts `Map<String, XModel>` where `Map<String, X>` is expected (covariance), but
+  its **runtime** type stays a model map, so assigning a plain entity into it throws a
+  `TypeError`. This actually happened in `ProgressRepositoryImpl.loadAll` and broke star saving
+  and level unlocks (8 September 2026) — and the error was **swallowed** inside an async callback
+  in the result screen, so the player saw nothing. Fix: `Map<String, X>.from(models)` at the
+  repository boundary. Now guarded by `test/progress_provider_test.dart`.
+- **Async callbacks in `addPostFrameCallback` swallow exceptions.** The result screen records
+  stats, stars, and tasks there; any error disappears silently and leaves the UI incomplete. When
+  adding logic there, test it through the provider directly, not through the screen.
 
 ---
 
-## بنك الأسئلة
+## Question bank
 
 ```
-assets/data/categories.json          فهرس التصنيفات العشرة
-assets/data/questions/<slug>.json    100 سؤال لكل تصنيف
+assets/data/categories.json          index of the ten categories
+assets/data/questions/<slug>.json    100 questions per category
 ```
 
-مخطط كل سؤال: `id` · `level` · `question` · `options` (4) · `answerIndex` · `explanation`.
+Question schema: `id` · `level` · `question` · `options` (4) · `answerIndex` · `explanation`.
 
-| # | slug | الاسم | نطاق المعرّفات |
-|---|---|---|---|
-| 1 | `world_cup` | كأس العالم | 1001–1100 |
-| 2 | `continental_cups` | البطولات القارية | 2001–2100 |
-| 3 | `champions_league` | دوري أبطال أوروبا | 3001–3100 |
-| 4 | `top_leagues` | الدوريات الكبرى | 4001–4100 |
-| 5 | `arab_football` | الكرة العربية | 5001–5100 |
-| 6 | `players` | اللاعبون | 6001–6100 |
-| 7 | `clubs` | الأندية | 7001–7100 |
-| 8 | `coaches` | المدربون | 8001–8100 |
-| 9 | `laws` | القوانين | 9001–9100 |
-| 10 | `moments_records` | لحظات وأرقام قياسية | 10001–10100 |
+| # | slug | Display name (Arabic) | English | ID range |
+|---|---|---|---|---|
+| 1 | `world_cup` | كأس العالم | World Cup | 1001–1100 |
+| 2 | `continental_cups` | البطولات القارية | Continental cups | 2001–2100 |
+| 3 | `champions_league` | دوري أبطال أوروبا | Champions League | 3001–3100 |
+| 4 | `top_leagues` | الدوريات الكبرى | Top leagues | 4001–4100 |
+| 5 | `arab_football` | الكرة العربية | Arab football | 5001–5100 |
+| 6 | `players` | اللاعبون | Players | 6001–6100 |
+| 7 | `clubs` | الأندية | Clubs | 7001–7100 |
+| 8 | `coaches` | المدربون | Coaches | 8001–8100 |
+| 9 | `laws` | القوانين | Laws of the game | 9001–9100 |
+| 10 | `moments_records` | لحظات وأرقام قياسية | Moments & records | 10001–10100 |
 
-كل تصنيف = **10 مستويات × 10 أسئلة**. المستوى مشتق من موضع السؤال داخل النطاق:
-`level = ((id − idBlock − 1) ÷ 10) + 1`. والصعوبة مشتقة من المستوى
-(1-3 سهل · 4-7 متوسط · 8-10 صعب) — **لا يوجد حقل `difficulty` في JSON**،
-ومصدر الحقيقة الوحيد هو المستوى.
+Each category = **10 levels × 10 questions**. Each question **stores** `level` in the JSON, and it
+must equal `((id − idBlock − 1) ÷ 10) + 1` — all 1000 match and `question_bank_test` enforces it.
+Difficulty derives from the level (1–3 easy · 4–7 medium · 8–10 hard) — **there is no `difficulty`
+field in the JSON**.
 
-**خلط الخيارات** (في `quiz_repository_impl.dart`): المستويات `SeededRandom(q.id)` ·
-تحدي اليوم `SeededRandom(seed + q.id)` · اللعب السريع عشوائي.
+**Option shuffling** (in `quiz_repository_impl.dart`): levels use `SeededRandom(q.id)` · the daily
+challenge uses `SeededRandom(seed + q.id)` · quick play is random.
 
-### قواعد كتابة الأسئلة — إلزامية
+### Rules for writing questions — mandatory
 
-1. **أربعة خيارات مختلفة**، بلا استثناء.
-2. **ممنوع «كل ما سبق» و«لا يوجد» و«كلاهما»** وما شابهها. التطبيق يخلط ترتيب
-   الخيارات قبل العرض، فتفقد هذه الصياغات معناها تماماً. يحرسها اختبار.
-3. **`answerIndex` متوازن** — شغّل `tool/rebalance_answers.dart` بعد أي إضافة.
-4. **لا تكرار بين التصنيفات** — لا في النص ولا في المعنى. يحرسه اختباران
-   (تطابق تام + بصمة تقريبية).
-5. **أسئلة دائمة لا تنتهي صلاحيتها.** «من فاز بمونديال 2022؟» صحيحة للأبد؛
-   «من هدّاف الدوري الإسباني؟» تحتاج صيانة كل موسم.
+1. **Four distinct options**, no exceptions.
+2. **No «كل ما سبق» (all of the above), «لا يوجد» (none), «كلاهما» (both)** or similar. The app
+   shuffles options before display, which makes that phrasing meaningless. Guarded by a test.
+3. **`answerIndex` balanced** — run `tool/rebalance_answers.dart` after any addition.
+4. **No duplicates across categories** — neither in wording nor in meaning. Guarded by two tests
+   (exact match + approximate fingerprint).
+5. **Evergreen questions only.** "Who won the 2022 World Cup?" stays true forever; "Who is La
+   Liga's top scorer?" needs maintenance every season.
+6. **No invisible direction or format characters** (U+200E/U+200F, U+061C, U+202A–U+202E,
+   U+2066–U+2069, U+200B–U+200D, U+FEFF). Harmless in Arabic, but they silently reorder text in a
+   left-to-right translation. One U+200F exists at `arab_football.json:120`; no test guards this yet.
 
-### قواعد فضّ التداخل بين التصنيفات
+> ⚠️ Rule 2's test lists only the masculine «كلاهما»; the feminine «كلتاهما» slipped through at
+> `laws.json:946` (question 9073). Rule 4's near-duplicate check is also weaker than it looks: the
+> stopwords «على» and «إلى» never match after normalisation (`question_bank_test.dart:256-263`).
 
-عند احتمال وقوع السؤال في أكثر من تصنيف، تُطبَّق بهذا الترتيب:
+### Rules for resolving category overlap
 
-1. **`arab_football` لها الأولوية المطلقة** — سؤال عن المغرب في المونديال يذهب
-   للكرة العربية لا لكأس العالم. مقصود: التصنيف الأهم للجمهور يجب أن يبقى غنياً.
-   *استثناء:* المحتوى الأفريقي والآسيوي **غير** العربي (السنغال، الكاميرون،
-   اليابان، إيران) يبقى في `continental_cups`.
-2. **البطولة تملك أرقامها** — الهدّاف التاريخي لكأس العالم يذهب لـ `world_cup`.
-3. **اللحظة الأيقونية تسبق البطولة** — «يد الله» و«ليلة إسطنبول» تذهبان
-   لـ `moments_records`.
-4. **`clubs` للهوية، `top_leagues` للمنافسة** — ملعب برشلونة مقابل من فاز بالدوري.
-5. **الأرقام العابرة للبطولات** تذهب لـ `moments_records`.
+When a question could fit more than one category, apply these in order:
 
-> ⚠️ `moments_records` و`coaches` هما الأكثر عرضة للتكرار مع تصنيفات المسابقات.
-> عند إضافة أسئلة إليهما شغّل الاختبارات فوراً — التقط الاختبار 26 تكراراً حقيقياً
-> عند بناء البنك أول مرة.
+1. **`arab_football` has absolute priority** — a question about Morocco at the World Cup goes to
+   Arab football, not World Cup. Deliberate: the most important category for this audience must
+   stay rich. *Exception:* non-Arab African and Asian content (Senegal, Cameroon, Japan, Iran)
+   stays in `continental_cups`.
+2. **A tournament owns its records** — the World Cup's all-time top scorer goes to `world_cup`.
+3. **Iconic moments beat the tournament** — the "Hand of God" and "the Istanbul night" go to
+   `moments_records`.
+4. **`clubs` for identity, `top_leagues` for competition** — Barcelona's stadium vs. who won the league.
+5. **Records spanning tournaments** go to `moments_records`.
+
+> ⚠️ `moments_records` and `coaches` are the most prone to duplicating the competition categories.
+> Run the tests immediately after adding to either — the test caught 26 real duplicates when the
+> bank was first built.
 
 ---
 
-## الاختبارات
+## Tests
 
-**137 اختباراً في 15 ملفاً، جميعها ناجحة.** `flutter analyze` نظيف.
+**137 tests across 15 files, all passing.** `flutter analyze` is clean.
 
-| الملف | العدد | يغطي |
+| File | Count | Covers |
 |---|---|---|
-| `quiz_provider_test.dart` | 22 | النقاط · مكافأة السرعة · المضاعفات · المؤقّت · التسلسل · بناء النتيجة |
-| `economy_test.dart` | 18 | تجديد القلوب (البقية · رجوع الساعة · تاريخ تالف) · الحدود اليومية · `EconomyProvider` (الخصم · منح تحدي اليوم · حدّ الإعلان المكافأ · المساعدات) |
-| `level_progress_test.dart` | 13 | حساب النجوم · الفتح التدريجي · عدم تناقص النجوم (الكيان وحالة الاستخدام) |
-| `tasks_coins_test.dart` | 12 | المهام اليومية (الاكتمال · الاستلام مرة واحدة · الصندوق · التصفير اليومي) · المتجر (ملء القلوب · عملات غير كافية · حزمة المساعدات وترتيب استهلاكها) |
-| `ads_test.dart` | 10 | `AdsProvider` (earned/dismissed · لا إعلانين معاً · isReady) · البيني (عدّ الجولات · إزالة الإعلانات) · مكافآت الإعلان — **عبر خدمة وهمية** |
-| `reminder_test.dart` | 9 | الإذن · الجدولة والإلغاء · سحب الإذن عند الإقلاع · حساب الموعد القادم |
-| `share_text_test.dart` | 8 | شبكة النتيجة · تاريخ تحدي اليوم · التصنيف والمستوى · المثنى العربي · عدم كشف الأسئلة |
-| `quiz_repository_test.dart` | 8 | المستويات · ثبات تحدي اليوم · التصفية |
-| `question_bank_test.dart` | 8 | سلامة البنك: العدد · المعرّفات · البنية · التوازن · الخيارات الممنوعة · **التكرار** · مطابقة `AppConfig` |
-| `update_streak_test.dart` | 5 | منطق السلسلة اليومية بكل حالاتها |
-| `settings_screen_test.dart` | 5 | **اختبار widget** — عرض الإحصائيات · حوار التأكيد · التصفير |
-| `progress_provider_test.dart` | 5 | **وصل المزوّد بالتخزين** — اجتياز ⇒ نجوم ⇒ فتح التالي · النجاة من إعادة التشغيل (يحرس خطأ التغاير) |
-| `daily_guard_test.dart` | 5 | `isDailyDone` بعد الإكمال · بقاؤه بعد إعادة التشغيل · اللعب السريع لا يُعلّمه |
-| `backup_test.dart` | 5 | التصدير ثم الاستيراد · رمز تالف · مسافات زائدة · إصدار أحدث مرفوض |
-| `economy_balance_test.dart` | 4 | الدخل اليومي أقل من أرخص شراء · الشراء خلال يومين · البيني مطفأ · الصندوق يستحق |
+| `quiz_provider_test.dart` | 22 | Scoring · speed bonus · multipliers · timer · sequencing · result building |
+| `economy_test.dart` | 18 | Heart regen (remainder · clock going backward · corrupt date) · daily limits · `EconomyProvider` (deduction · daily-challenge grant · rewarded-ad cap · hints) |
+| `level_progress_test.dart` | 13 | Star calculation · progressive unlocks · stars never decrease (entity and use case) |
+| `tasks_coins_test.dart` | 12 | Daily tasks (completion · claim once · chest · daily reset) · shop (heart refill · insufficient coins · hint pack and consumption order) |
+| `ads_test.dart` | 10 | `AdsProvider` (earned/dismissed · no two ads at once · isReady) · interstitials (round counting · remove-ads) · ad rewards — **through a fake service** |
+| `reminder_test.dart` | 9 | Permission · scheduling and cancel · permission revoked at launch · next-fire calculation |
+| `share_text_test.dart` | 8 | Result grid · daily-challenge date · category and level · Arabic dual form · doesn't leak questions |
+| `quiz_repository_test.dart` | 8 | Levels · daily-challenge stability · filtering |
+| `question_bank_test.dart` | 8 | Bank integrity: counts · IDs · structure · balance · banned options · **duplicates** · matches `AppConfig` |
+| `update_streak_test.dart` | 5 | Day-streak logic in every case |
+| `settings_screen_test.dart` | 5 | **Widget test** — stats display · confirmation dialog · reset |
+| `progress_provider_test.dart` | 5 | **Provider-to-storage wiring** — pass ⇒ stars ⇒ next unlocked · survives restart (guards the covariance bug) |
+| `daily_guard_test.dart` | 5 | `isDailyDone` after completion · persists across restart · quick play doesn't set it |
+| `backup_test.dart` | 5 | Export then import · corrupt code · extra whitespace · newer version rejected |
+| `economy_balance_test.dart` | 4 | Daily income below cheapest purchase · purchase within two days · interstitials off · chest is worth it |
 
-### ما ليس مغطّى — وقد عضّنا فعلاً
+### Not covered — and it has bitten us
 
-- **جسر AdMob الحقيقي (`AdMobAdService`).** `ads_test` يستخدم خدمة وهمية، لذلك مرّ
-  خطأ «المكافأة لا تُمنح أبداً» دون أن يلتقطه أي اختبار. اختبره يدوياً على المحاكي.
-- **شاشات الاختبار والنتيجة والمستويات** بلا اختبارات widget. ظهور زرَّي «المستوى
-  التالي» و«أعد المستوى» وإخفاء زر الإعادة بعد تحدي اليوم **غير مغطّاة آلياً**.
-- **أعطال بناء الإصدار وحده** (R8، التوقيع) — لا يلتقطها `flutter test`.
-- لا اختبارات تكامل (`integration_test`).
+- **The real AdMob bridge (`AdMobAdService`).** `ads_test` uses a fake service, which is why the
+  "reward is never granted" bug slipped through every test. Test it by hand on the emulator.
+- **The quiz, result, and levels screens** have no widget tests. The visibility of the "Next level"
+  and "Replay level" buttons, and hiding the replay button after the daily challenge, are
+  **not covered automatically**.
+- **Release-build-only failures** (R8, signing) — `flutter test` can't catch them.
+- No integration tests (`integration_test`).
+- No guard against hardcoded user-visible strings — 28 literal lines already bypass `app_strings.dart`.
+- `quiz_repository_test` "daily differs between two days" **only passes east of UTC** (see Remaining
+  §0); it would fail on a UTC or western CI machine.
 
-**اختبار المؤقّتات:** `quiz_provider_test.dart` يستخدم `fakeAsync` من حزمة
-`fake_async` (مُعلَنة في `dev_dependencies`) لتسريع الزمن بدل انتظاره فعلياً.
-أنماط لازمة: `async.flushMicrotasks()` بعد استدعاء `start*` غير المنتظَر،
-و`quiz.dispose()` **داخل** كتلة `fakeAsync` وإلا فشل الاختبار بمؤقّت معلّق.
+**Timer tests:** `quiz_provider_test.dart` uses `fakeAsync` from the `fake_async` package
+(declared in `dev_dependencies`) to fast-forward time instead of waiting. Required patterns:
+`async.flushMicrotasks()` after an un-awaited `start*` call, and `quiz.dispose()` **inside** the
+`fakeAsync` block, otherwise the test fails with a pending timer.
 
 ---
 
-## ✅ المنجز
+## ✅ Done
 
-**اللعبة**
-- بنك 1000 سؤال كامل ومتحقَّق منه · بنية Clean Architecture بثلاث طبقات + Provider
-- ثلاثة أنماط: المستويات (شبكة تصنيفات ← شبكة مستويات ← اختبار) · اللعب السريع · تحدي اليوم
-- تحدي يومي حتمي (نفس الأسئلة للجميع دون خادم، ببذرة مشتقة من التاريخ)، مرّة واحدة يومياً
-- سلسلة أيام `user_stats_v1` · تقدّم المستويات بالنجوم والفتح التدريجي `level_progress_v1`
-- شاشة النتيجة: نجوم المستوى · «المستوى التالي» عند الاجتياز · «أعد المستوى» · مراجعة الإجابات · مشاركة
-- اقتصاد: قلوب متجددة + مساعدات + حدود يومية · عملات + 3 مهام يومية + صندوق + متجر
-- إعلانات مكافأة (قلب · 70 عملة) وبينية (مطفأة) + موافقة UMP — معرّفات إنتاج في الإصدار
-- تنبيه يومي بتوقيت الجهاز · مؤثرات لمس وصوت عبر أصوات النظام (بلا ملفات) بمفتاحين
-- شاشة ترحيب مرة واحدة · إعدادات بإحصائيات وتصفير آمن · تصدير/استيراد التقدّم (Base64)
-- دعم RTL كامل + ثيم ملعب · شبكة المستويات 3 أعمدة موسّطة (كانت 4 بفراغ كبير)
+**The game**
+- Complete, verified 1000-question bank · three-layer Clean Architecture + Provider
+- Three modes: levels (category grid → level grid → quiz) · quick play · daily challenge
+- Deterministic daily challenge (same questions for everyone, no server, date-derived seed), once per day
+- Day streak `user_stats_v1` · level progress with stars and progressive unlocks `level_progress_v1`
+- Result screen: level stars · "Next level" on a pass · "Replay level" · answer review · share
+- Economy: regenerating hearts + hints + daily limits · coins + 3 daily tasks + chest + shop
+- Rewarded ads (heart · 70 coins) and interstitials (off) + UMP consent — production IDs in release
+- Daily reminder on device time · haptics and sound via system sounds (no audio files), two toggles
+- One-time onboarding · settings with stats and safe reset · progress export/import (Base64)
+- Full RTL + stadium theme · level grid is 3 centered columns (was 4 with a big empty gap)
 
-**النشر**
-- `applicationId` نهائي · توقيع الإصدار · `.aab` ≈57 م.ب و`.apk` ≈60 م.ب (R8 مطفأ)
-- أيقونة احترافية بكل المقاسات + تكيّفية · أصول المتجر · سياسة خصوصية منشورة
-- أرشيف الإصدارات `releases/` + أداة `tool/archive_release.dart`
-- تحقّق شامل على المحاكي ببناء الإصدار (٨ سبتمبر ٢٠٢٦) — انظر [PRE_PUBLISH.md](docs/PRE_PUBLISH.md)
+**Publishing**
+- Final `applicationId` · release signing · `.aab` ≈57 MB and `.apk` ≈60 MB (R8 off)
+- Professional icon in every size + adaptive · store assets · privacy policy published
+- Release archive `releases/` + `tool/archive_release.dart`
+- Full emulator verification on a release build (8 September 2026) — see [PRE_PUBLISH.md](docs/PRE_PUBLISH.md)
 
-**أربعة أخطاء حرجة أُصلحت بعد أول رفع** (كلها لم تكن تُرى في بناء التطوير أو الاختبارات):
-R8 يُعطّل الإقلاع · خطأ تغاير يمنع حفظ النجوم وزر المستوى التالي · مكافأة الإعلان
-لا تُمنح · زر إعادة يوحي بتكرار تحدي اليوم. تفاصيل كل منها في قسمه.
+**Four critical bugs fixed after the first upload** (none visible in debug or in tests):
+R8 crashing launch · a covariance bug blocking star saving and the Next-level button · rewarded-ad
+reward never granted · a replay button implying the daily challenge could be repeated. Details in
+each section.
 
-### أصول المتجر والوثائق
+### Store assets and docs
 
-| الملف | ما هو |
+| File | What it is |
 |---|---|
-| `assets/branding/play_store_icon_512.png` | أيقونة المتجر — **مربّع أخضر كامل حتى الحواف** (Play يدوّر الزوايا بنفسه؛ لا ترفع أيقونة مدوّرة مسبقاً) |
-| `assets/branding/app_icon_source.png` | مصدر أيقونة المشغّل · `app_icon_foreground.png` للتكيّفية · `app_icon_cutout.png` قصاصة شفافة |
-| `assets/branding/feature_graphic_1024x500.png` | صورة العرض بالعنوان · `feature_art.png` الفن الخام بلا نص |
-| `screenshots/store_9x16/` | **اللقطات المرفوعة** — 5 × 1080×1920 |
-| `screenshots/store/` | ⚠️ 1440×2975 (نسبة 2.07) **يرفضها Play** — لا تستخدمها |
-| [docs/STORE_LISTING.md](docs/STORE_LISTING.md) | اسم التطبيق · الوصف القصير · الوصف الكامل |
-| [docs/DATA_SAFETY_EN.md](docs/DATA_SAFETY_EN.md) | إجابات Data safety بمصطلحات Play Console الإنجليزية · النسخة العربية [DATA_SAFETY.md](docs/DATA_SAFETY.md) |
-| [docs/privacy_policy.html](docs/privacy_policy.html) | مصدر سياسة الخصوصية (إنجليزي + عربي) |
-| `docs/app-ads.txt` | جاهز، **غير منشور** (يحتاج نطاقاً جذرياً) |
-| [docs/ECONOMY.md](docs/ECONOMY.md) · [docs/PRE_PUBLISH.md](docs/PRE_PUBLISH.md) | تصميم الاقتصاد · قائمة النشر والتحقق |
+| `assets/branding/play_store_icon_512.png` | Store icon — **full green square to the edges** (Play rounds the corners itself; never upload a pre-rounded icon) |
+| `assets/branding/app_icon_source.png` | Launcher icon source · `app_icon_foreground.png` for adaptive · `app_icon_cutout.png` transparent cutout |
+| `assets/branding/feature_graphic_1024x500.png` | Feature graphic with title · `feature_art.png` raw art without text |
+| `screenshots/store_9x16/` | **The uploaded screenshots** — 5 × 1080×1920 |
+| `screenshots/store/` | ⚠️ 1440×2975 (ratio 2.07) — **rejected by Play**, don't use |
+| [docs/STORE_LISTING.md](docs/STORE_LISTING.md) | App name · short description · full description (Arabic payload) |
+| [docs/DATA_SAFETY_EN.md](docs/DATA_SAFETY_EN.md) | Data safety answers in Play Console's English terms · Arabic copy [DATA_SAFETY.md](docs/DATA_SAFETY.md) |
+| [docs/privacy_policy.html](docs/privacy_policy.html) | Privacy policy source (English + Arabic) |
+| `docs/app-ads.txt` | Ready, **not published** (needs a root domain) |
+| [docs/PRE_PUBLISH.md](docs/PRE_PUBLISH.md) | Publishing checklist and verification log |
+| [docs/ECONOMY.md](docs/ECONOMY.md) | Economy design — **still in Arabic** |
 
-- الأيقونة وصورة العرض **مولَّدتان بالذكاء الاصطناعي** (Higgsfield) ثم عولجتا بـ PIL —
-  لذلك موسومتان في إفصاح Play. العنوان العربي في صورة العرض رُسم بـ PIL مع
-  `arabic_reshaper` و`python-bidi` (المولّدات تُفسد الخط العربي).
-- **سياسة الخصوصية تُنشر من `privacy-site/`** — مستودع git مستقل يدفع إلى
-  `thepromptkitchen-alt/koora-trivia-privacy` (GitHub Pages). حساب git على الجهاز
-  هو الحساب الشخصي ومُضاف متعاوناً. للتحديث: عدّل `docs/privacy_policy.html` ←
-  انسخه إلى `privacy-site/index.html` ← commit ← push.
+- The icon and feature graphic were **AI-generated** (Higgsfield) and then processed with PIL —
+  hence labeled in Play's declaration. The Arabic title on the feature graphic was drawn with PIL
+  plus `arabic_reshaper` and `python-bidi` (generators garble Arabic script).
+- **The privacy policy is published from `privacy-site/`** — a separate git repo pushing to
+  `Oasis-Forge/koora-trivia-privacy` (GitHub Pages, served at
+  https://oasis-forge.github.io/koora-trivia-privacy/). Since 13 September 2026 it pushes through the
+  `gh` account with the same local credential helper as this repo, not the personal account in Git
+  Credential Manager. ⚠️ **Renaming or transferring that repo changes the public URL with no
+  redirect** — the old URL returned 404 after the move to the organization, so Play Console's
+  privacy policy link must be updated whenever that happens. To update the page: edit
+  `docs/privacy_policy.html` → copy it to `privacy-site/index.html` → commit → push.
 
-### الإعلانات — ما يجب معرفته
+### Ads — what to know
 
-> 🐛 **خطأ حرج أُصلح (٨ سبتمبر ٢٠٢٦):** كان `AdMobAdService.showRewarded` يعيد
-> النتيجة فور *عرض* الإعلان (`await ad.show`) لا عند إغلاقه، فتُقرأ راية المكافأة
-> قبل أن يصل ردّ نداء `onUserEarnedReward` ⇒ يعيد دائماً `dismissed` ولا تُمنح
-> المكافأة **أبداً** (قلب أو 70 عملة). الإصلاح: انتظار الإغلاق عبر `Completer`
-> يكتمل في `onAdDismissedFullScreenContent` ثم يقرأ الراية. تحقّقتُ منه على
-> المحاكي: مشاهدة الإعلان صارت تمنح القلب فعلاً (0 ← 1). لا يغطّيه اختبار آلي
-> لأنه يعتمد على SDK؛ اختبره يدوياً عند أي تعديل على مسار الإعلان المكافأ.
+> 🐛 **Critical bug, fixed (8 September 2026):** `AdMobAdService.showRewarded` returned as soon as
+> the ad was *shown* (`await ad.show`), not when it was dismissed, so the reward flag was read
+> before the `onUserEarnedReward` callback arrived ⇒ it always returned `dismissed` and the reward
+> was **never** granted (heart or 70 coins). Fix: wait for dismissal with a `Completer` completed
+> in `onAdDismissedFullScreenContent`, then read the flag. Verified on the emulator: watching the ad
+> now actually grants the heart (0 → 1). No automated test covers it because it depends on the SDK;
+> test by hand after any change to the rewarded-ad path.
 
-| النوع | الموضع | المكافأة |
+| Type | Where | Reward |
 |---|---|---|
-| مكافأ | حوار نفاد القلوب | +1 قلب (بحد 4 يومياً) |
-| مكافأ | المتجر | +70 🪙 (بلا حد) |
-| بيني | بعد النتيجة | كل 3 جولات، وسقف 3 دقائق — **مطفأ عند الإطلاق** |
+| Rewarded | No-hearts dialog | +1 heart (max 4 per day) |
+| Rewarded | Shop | +70 🪙 (no limit) |
+| Interstitial | After the result | Every 3 rounds, 3-minute cap — **off at launch** |
 
-- **`AppConfig.interstitialsEnabled = false` عند الإطلاق عمداً.** تقييمات الأيام
-  الأولى في بلاي لها وزن كبير، والإعلان البيني أكثر ما يخفضها. أطلق نظيفاً ثم
-  فعّله في تحديث لاحق بتغيير سطر واحد. يحرس هذا اختبار — اعكسه عند التفعيل.
-- **لا إعلان بيني بعد تحدي اليوم إطلاقاً** — قرار مقصود لحماية الطقس اليومي.
-- المكافأة تُمنح عند `RewardResult.earned` **فقط**، لا عند الإغلاق المبكر.
-- زر الإعلان المكافأ يظهر معطّلاً بنص «يتطلب اتصالاً بالإنترنت» حتى يُحمَّل الإعلان
-  (بضع ثوانٍ بعد الإقلاع أو بعد مشاهدة سابقة) — هذا متوقَّع لا عطل.
+- **`AppConfig.interstitialsEnabled = false` at launch, deliberately.** First-days ratings on Play
+  carry a lot of weight, and interstitials hurt them most. Launch clean, then enable in a later
+  update with a one-line change. A test guards this — flip it when enabling.
+- **Never an interstitial after the daily challenge** — deliberate, to protect the daily ritual.
+- The reward is granted on `RewardResult.earned` **only**, never on early dismissal.
+- The rewarded-ad button shows disabled with «يتطلب اتصالاً بالإنترنت» ("requires an internet
+  connection") until the ad has loaded (a few seconds after launch or after a previous watch) —
+  expected, not a bug.
 
-> ✅ **معرّفات الإنتاج مضبوطة (٨ سبتمبر ٢٠٢٦)** — معرّف التطبيق في
-> `AndroidManifest.xml`، ومعرّفا المكافأ والبيني في
-> [`admob_ad_service.dart`](lib/data/services/admob_ad_service.dart)، والاختيار
-> بين الاختبار والإنتاج في `injector.dart` عبر `useTestIds: !kReleaseMode`
-> (بناء التطوير يبقى على معرّفات الاختبار حمايةً للحساب).
-> **لا تنقر على إعلاناتك الحقيقية — يُوقَف الحساب.**
-> `com.google.android.gms.permission.AD_ID` يُدمج في المانيفست تلقائياً من SDK الإعلانات.
+> ✅ **Production IDs set (8 September 2026)** — the app ID is in `AndroidManifest.xml`, the
+> rewarded and interstitial unit IDs are in
+> [`admob_ad_service.dart`](lib/data/services/admob_ad_service.dart), and test-vs-production is
+> chosen in `injector.dart` via `useTestIds: !kReleaseMode` (debug builds stay on test IDs to
+> protect the account). **Never tap your own live ads — the account gets suspended.**
+> `com.google.android.gms.permission.AD_ID` is merged into the manifest automatically from the ads
+> SDK (verified with `aapt2 dump permissions` on v1.0.3 — it isn't in the source manifest). The
+> merge also brings `FOREGROUND_SERVICE` along with WorkManager's `SystemForegroundService`, but
+> **no service declares a `foregroundServiceType`** and there are no type-specific
+> `FOREGROUND_SERVICE_*` permissions — so Play shouldn't ask for the foreground-service form. If it
+> does: the source is WorkManager, pulled in by AdMob, and the app itself never starts a foreground
+> service.
 
-> ⚠️ **`google_mobile_ads` يجب أن يبقى على الإصدار 9 فما فوق.** الإصدار 6
-> يستخدم `configurations.all` الذي أزاله Gradle 9، فيفشل البناء برسالة
+> ⚠️ **`google_mobile_ads` must stay on version 9 or later.** Version 6 uses
+> `configurations.all`, which Gradle 9 removed, so the build fails with
 > `Could not get unknown property 'all'`.
 
-### العملات والمهام — كيف تعمل
+### Coins and tasks — how they work
 
-العملة طبقة وسيطة: أي فعل يمنح عملات، والعملات تشتري قلوباً أو مساعدات.
-هذا يسمح بمكافأة أفعال متعددة بعملة واحدة، وبتثبيت الأسعار لاحقاً.
+Coins are an intermediate currency: actions grant coins, and coins buy hearts or hints. That lets
+many different actions be rewarded with one currency, and lets prices stay fixed later.
 
-| المهمة اليومية | الهدف | المكافأة |
+| Daily task | Target | Reward |
 |---|---|---|
-| إجابات صحيحة | 10 | 20 🪙 |
-| إكمال تحدي اليوم | 1 | 40 🪙 |
-| اجتياز مستوى | 1 | 30 🪙 |
-| الصندوق | استلام الكل | 40 🪙 |
-| **المجموع اليومي** | | **130 🪙** |
+| Correct answers | 10 | 20 🪙 |
+| Complete the daily challenge | 1 | 40 🪙 |
+| Pass a level | 1 | 30 🪙 |
+| Chest | Claim all | 40 🪙 |
+| **Daily total** | | **130 🪙** |
 
-| المتجر | السعر |
+| Shop | Price |
 |---|---|
-| ملء القلوب حتى السقف | 200 🪙 |
-| حزمة 3 مساعدات | 200 🪙 |
-| إزالة الإعلانات | يظهر «قريباً» — الشراء داخل التطبيق غير مبنيّ |
+| Refill hearts to the cap | 200 🪙 |
+| Pack of 3 hints | 200 🪙 |
+| Remove ads | Shows «قريباً» ("Soon") — in-app purchases aren't built |
 
-> ⚖️ **قاعدة التوازن:** الدخل اليومي الكامل يبقى **أقل** من سعر شراء واحد
-> (130 مقابل 200 ⇒ نحو 1.5 يوم لكل شراء). لو تساويا لصار الشراء يومياً وفقدت
-> القلوب ندرتها، وفقد الإعلان المكافأ جدواه.
-> يحرس هذه النسبة `test/economy_balance_test.dart`.
-> **70 عملة للإعلان** = 200 − 130: من أنهى مهامه يحتاج إعلاناً واحداً ليشتري.
-> ناقش صاحب المشروع خفضها إلى 50 وقرّر الإبقاء على 70.
+> ⚖️ **Balance rule:** full daily income stays **below** one purchase (130 vs. 200 ⇒ about 1.5 days
+> per purchase). If they were equal, buying would happen daily, hearts would lose their scarcity,
+> and the rewarded ad would lose its point. Guarded by `test/economy_balance_test.dart`.
+> **70 coins per ad** = 200 − 130: a player who finished their tasks needs exactly one ad to buy.
+> The owner discussed lowering it to 50 and decided to keep 70.
 
-- **نبيع «ملء القلوب» لا عدداً ثابتاً** لأن السقف خمسة، فبيع عشرين قلباً بلا معنى.
-- المساعدات المشتراة (`bonusHints`) **لا تُصفَّر يومياً** بخلاف المجانية،
-  والاستهلاك يبدأ بالمجانية ثم المشتراة.
-- تقدّم المهام يُصفَّر يومياً داخل `RegenerateHearts`، أما العملات والمساعدات
-  المشتراة فتبقى.
-- مهمة الإجابات تُحتسب في **كل الأنماط**، ومهمة المستوى عند **الاجتياز** فقط.
-- المتجر يُفتح بالنقر على **شارة العملات في الرئيسية** (لا من شاشة المهام).
+- **We sell "refill hearts", not a fixed count**, because the cap is five — selling twenty hearts
+  would be meaningless.
+- Purchased hints (`bonusHints`) **don't reset daily**, unlike the free ones; free hints are
+  consumed first, then purchased.
+- Task progress resets daily inside `RegenerateHearts`; coins and purchased hints persist.
+- The correct-answers task counts in **every mode**; the level task counts only on a **pass**.
+- The shop opens by tapping the **coin badge on the home screen** (not from the tasks screen).
 
-### الاقتصاد — كيف يعمل
+### Economy — how it works
 
-| العنصر | القيمة |
+| Item | Value |
 |---|---|
-| القلوب | 5، تُخصم عند كل خطأ **في نمط المستويات فقط** |
-| التجديد | قلب كل 30 دقيقة، يُحسب عند القراءة لا بمؤقّت |
-| تحدي اليوم | يمنح قلباً مجانياً عند إكماله |
-| الإعلان المكافأ | +1 قلب، بحد 4 مرات يومياً (`heartsPerRewardedAdWatch`) |
-| المساعدات | 3 يومياً: حذف إجابتين · تخطٍّ · وقت إضافي |
+| Hearts | 5, deducted per wrong answer **in level mode only** |
+| Regen | One heart every 30 minutes, computed on read, not by a timer |
+| Daily challenge | Grants one free heart on completion |
+| Rewarded ad | +1 heart, max 4 per day (`heartsPerRewardedAdWatch`) |
+| Hints | 3 per day: remove two answers · skip · extra time |
 
-- **تحدي اليوم واللعب السريع مجانيان تماماً** — لا قلوب ولا مساعدات ولا إعلانات.
-  هذا يحمي السلسلة من الانكسار بسبب نظام تحقيق الدخل.
-- الرصيد يُحسب من `hearts + lastRegenAtIso`، والبقية محفوظة فلا تضيع دقائق
-  الانتظار بين القراءات.
-- رجوع ساعة الجهاز للخلف يُعيد ضبط المرجع بدل منح رصيد سالب.
-- التخزين تحت `economy_v1`.
-- القلوب تُفحص **قبل بدء** المستوى فقط؛ إن نفدت أثناء الجولة تُكمَل الجولة.
+- **The daily challenge and quick play are completely free** — no hearts, no hints, no ads. That
+  protects the streak from being broken by monetization.
+- The balance is computed from `hearts + lastRegenAtIso`, and the remainder is kept, so waiting
+  minutes aren't lost between reads.
+- A device clock going backward resets the reference instead of producing a negative balance.
+- Stored under `economy_v1`.
+- Hearts are checked only **before starting** a level; if they run out mid-round, the round finishes.
 
-### التنبيه اليومي — مصائد مهمّة
+### Daily reminder — important traps
 
-- **`tz.local` تساوي UTC افتراضياً.** `initializeTimeZones()` وحدها لا تكفي؛
-  لا بد من `flutter_timezone` لقراءة اسم المنطقة ثم `tz.setLocalLocation`.
-  بدونها يُطلق تنبيه الثامنة مساءً بتوقيت غرينتش لا بتوقيت المستخدم.
-- **`flutter_local_notifications` تتطلب core library desugaring** —
-  `isCoreLibraryDesugaringEnabled = true` + تبعية `desugar_jdk_libs`، وإلا فشل البناء.
-- **`flutter_timezone` تتعارض مع Gradle 9** (Java 11 مقابل Kotlin 1.8). الحل في
-  `android/build.gradle.kts`: كتلة `subprojects` توحّد هدف Kotlin لتلك الحزمة وحدها.
-- الجدولة **غير دقيقة** عمداً (`inexactAllowWhileIdle`) لتفادي إذن
-  `SCHEDULE_EXACT_ALARM` الثقيل على أندرويد 12+.
-- `SettingsProvider.init()` يتحقق من الإذن عند كل إقلاع ويُطفئ المفتاح إن
-  سُحب الإذن من إعدادات النظام والتطبيق مغلق.
-- تصميم الاقتصاد موثّق في [docs/ECONOMY.md](docs/ECONOMY.md)
+- **`tz.local` defaults to UTC.** `initializeTimeZones()` alone isn't enough; you need
+  `flutter_timezone` to read the zone name and then `tz.setLocalLocation`. Without it, an 8 pm
+  reminder fires at 8 pm GMT, not the user's time.
+- **`flutter_local_notifications` requires core library desugaring** —
+  `isCoreLibraryDesugaringEnabled = true` + the `desugar_jdk_libs` dependency, or the build fails.
+- **`flutter_timezone` conflicts with Gradle 9** (Java 11 vs. Kotlin 1.8). The fix is in
+  `android/build.gradle.kts`: a `subprojects` block that aligns the Kotlin target for that package
+  alone.
+- Scheduling is **inexact** on purpose (`inexactAllowWhileIdle`) to avoid the heavy
+  `SCHEDULE_EXACT_ALARM` permission on Android 12+.
+- `SettingsProvider.init()` re-checks the permission at every launch and turns the toggle off if
+  the permission was revoked in system settings while the app was closed.
+- The economy design is documented in [docs/ECONOMY.md](docs/ECONOMY.md).
 
-### تحدي اليوم — مرّة واحدة يومياً
+### Daily challenge — once per day
 
-- `StatsProvider.isDailyDone` (من `lastDailyDayKey`) هو مصدر الحقيقة، وبطاقة
-  الرئيسية تعطّل زر اللعب عليه وتعرض عدّاً تنازلياً لتحدي الغد.
-- 🐛 **أُصلح (٨ سبتمبر ٢٠٢٦):** شاشة النتيجة كانت تعرض زر «العب مرة أخرى» بعد
-  تحدي اليوم، وهو في الحقيقة يبدأ جولة **لعب سريع** عشوائية — فيظن اللاعب أنه
-  يعيد التحدي. الآن `_showReplayButton => !_result.isDaily` يُخفيه بعد التحدي
-  اليومي، ويبقى «أعد المستوى» في نمط المستويات و«العب مرة أخرى» في اللعب السريع.
-  `daily_guard_test` يغطّي `isDailyDone`؛ **ظهور الزر نفسه غير مغطّى باختبار widget**.
-- الخروج من التحدي قبل إنهائه لا يُعلّمه مكتملاً (مقصود).
+- `StatsProvider.isDailyDone` (from `lastDailyDayKey`) is the source of truth; the home card
+  disables its play button on it and shows a countdown to tomorrow's challenge.
+- 🐛 **Fixed (8 September 2026):** the result screen showed a "Play again" button after the daily
+  challenge, which actually started a random **quick play** round — so players thought they were
+  replaying the challenge. Now `_showReplayButton => !_result.isDaily` hides it after the daily
+  challenge; "Replay level" remains in level mode and "Play again" in quick play.
+  `daily_guard_test` covers `isDailyDone`; **the button's visibility itself has no widget test**.
+- Leaving the challenge before finishing doesn't mark it complete (deliberate).
 
-### نظام المستويات — كيف يعمل
+### Level system — how it works
 
-| العنصر | القيمة |
+| Item | Value |
 |---|---|
-| اجتياز المستوى | 7 من 10 (`AppConfig.passRatio`) |
-| نجمة واحدة | 7-8 صحيحة |
-| نجمتان | 9 صحيحة |
-| ثلاث نجوم | 10 صحيحة |
-| فتح التالي | باجتياز الحالي (نجمة فأكثر) |
+| Passing a level | 7 of 10 (`AppConfig.passRatio`) |
+| One star | 7–8 correct |
+| Two stars | 9 correct |
+| Three stars | 10 correct |
+| Unlocking the next | By passing the current one (one star or more) |
 
-- النجوم **لا تتناقص** عند إعادة المستوى بنتيجة أسوأ.
-- `highestUnlockedLevel` يعتمد على **أول مستوى غير مجتاز** لا على عدّ المجتازة،
-  حتى لا تؤدي فجوة في البيانات المحفوظة إلى فتح سلسلة مستويات كاملة.
-- التخزين تحت `level_progress_v1` بمفتاح **`slug`** لا الاسم العربي:
+- Stars **never decrease** when replaying a level with a worse score.
+- `highestUnlockedLevel` relies on the **first unpassed level**, not a count of passed ones, so a
+  gap in saved data can't unlock a whole run of levels.
+- Stored under `level_progress_v1`, keyed by **`slug`**, not the Arabic name:
   ```json
   { "version": 1, "categories": { "world_cup": [3,3,2,0,0,0,0,0,0,0] } }
   ```
-- `AppConfig.levelsPerCategory` يجب أن يطابق `categories.json` — يحرسه اختبار.
-- شاشة المستويات تُبنى عبر `onGenerateRoute` لأنها تحتاج `Category` كوسيط،
-  بخلاف باقي الشاشات في جدول `routes`.
-- شاشة المستويات تختار تلقائياً أول مستوى غير مجتاز عند فتحها.
+- `AppConfig.levelsPerCategory` must match `categories.json` — guarded by a test.
+- The levels screen is built via `onGenerateRoute` because it needs a `Category` argument, unlike
+  the other screens in the `routes` table.
+- The levels screen auto-selects the first unpassed level when opened.
 
 ---
 
-## 📋 المتبقي — مرتّب حسب الأولوية
+## 📋 Remaining — by priority
 
-> حالة Play Console وخطواتها في قسم **«الحالة الحالية»** أعلى هذا الملف. التحقق
-> التفصيلي وإجابات النماذج في **[docs/PRE_PUBLISH.md](docs/PRE_PUBLISH.md)**. حدِّثهما معاً.
+> Play Console status and steps are in **"Current status"** at the top of this file. Detailed
+> verification and form answers are in **[docs/PRE_PUBLISH.md](docs/PRE_PUBLISH.md)**. Update both
+> together.
 
-### 1. خصم القلوب ← **قرار صاحب المشروع ①**
-**مرصود على المحاكي:** محاولة فاشلة واحدة (١٠ أخطاء) استنزفت **كل** القلوب الخمسة ⇒
-اللاعب الجديد يُحبَط بسرعة. الخيارات: قلب لكل **محاولة فاشلة** بدل كل خطأ (المقترح) ·
-رفع السقف · خفض عتبة الاجتياز. باقي أرقام `AppConfig` (مدة السؤال، التجديد) لم
-تُضبط بعد على هاتف حقيقي.
+### 0. Bugs found by the codebase audit — visible in the Arabic app today
+Found by the read-only audit on 13 September 2026; file:line details and lower-priority items are in
+[docs/I18N_PLAN.md §0](docs/I18N_PLAN.md). **None is fixed yet.**
+- **The daily challenge repeats on two consecutive days.** `SeededRandom` does
+  `(seed & 0x7FFFFFFF) | 1` (`seeded_random.dart:5`), so day numbers 2k and 2k+1 give the same
+  shuffle — every other day, players get yesterday's 7 questions again and can ace them for a streak day.
+- **The daily seed depends on the time zone** (`day_key.dart:30`): the Gulf and UTC/west get different
+  sets on the same date.
+- **Wrong Arabic grammar on screen** — a count plus a noun with no agreement on 13 lines: «N يوم متتالية»
+  (home, settings, score), «ستفقد N نجمة» (reset dialog), «نقطة» after any score, and the share text's
+  «1 أيام» / «12 أيام». `settings_screen_test` and `share_text_test` currently assert the wrong forms.
+- **Raw exception text reaches players:** `quiz_provider.dart:150` shows `e.toString()` in a SnackBar.
+- **Stale version string:** Settings → About shows «الإصدار 1.0.0» (`app_strings.dart:88`).
+- **Misspelled names in the Arabic bank** — e.g. Koeman «روناد كومان» on 4 lines, «ويين روني»,
+  «باساريا», «ياي توريه» — and the ambiguous «تشابي» in the 2010 final question (`world_cup.json:649`:
+  Xavi or Xabi Alonso?).
 
-### 2. النشر على Play
-انظر «الحالة الحالية». أهم ما فيه: الاختبار المغلق (12 × 14 يوماً) لم يبدأ.
+### 1. Heart deduction ← **owner decision ①**
+**Observed on the emulator:** one failed attempt (10 wrong answers) drained **all** five hearts ⇒
+new players get frustrated fast. Options: one heart per **failed attempt** instead of per wrong
+answer (the proposal) · raise the cap · lower the pass threshold. The other `AppConfig` numbers
+(question timer, regen) haven't been tuned on a real phone yet.
 
-### 3. مراجعة دقة الأسئلة
-1000 سؤال لم يراجعها إنسان. ابدأ بعيّنة من المستويات 9-10 في كل تصنيف.
+### 2. Publishing on Play
+See "Current status". The most important part: closed testing (12 × 14 days) hasn't started.
 
-### 4. شاشة الاختبار على الأجهزة الطويلة
-قد يظهر فراغ بين آخر خيار وشريط المساعدات في نمط المستويات. لم يُعالَج.
+### 3. Question accuracy review
+No human has reviewed the 1000 questions. Start with a sample of levels 9–10 in each category.
 
-### 5. الشراء داخل التطبيق
-لم يُبنَ. ثلاثة منتجات (حزمتا قلوب مستهلَكتان + إزالة إعلانات غير مستهلَك).
-⚠️ المنتجات المستهلَكة تحتاج **إقراراً باستلامها خلال 3 أيام** وإلا استُردّ المبلغ.
+### 4. Quiz screen on tall devices
+There may be a gap between the last option and the hints bar in level mode. Not addressed.
+
+### 5. In-app purchases
+Not built. Three products (two consumable heart packs + a non-consumable remove-ads).
+⚠️ Consumables must be **acknowledged within 3 days** or the payment is refunded.
 
 ### 6. `app-ads.txt`
-الملف جاهز في `docs/`؛ يحتاج نطاقاً جذرياً مُعلَناً في Play/AdMob. غير مانع لعرض الإعلانات.
+The file is ready in `docs/`; it needs a root domain declared in Play/AdMob. Doesn't block ads
+from serving.
 
-### كنس متفرّق
-- R8 مطفأ ⇒ الحزمة أكبر. أعِده لاحقاً مع قواعد `-keep` لـ Room/WorkManager واختبار بناء الإصدار.
-- أداة الأرشفة بلا حارس للحِزم القديمة (انظر «إصدار جديد إلى Play»).
-- شاشة البداية `launch_background.xml` ما زالت تستخدم رسم `ic_ball` القديم.
-- `UserStats.lastPlayedDayKey` يُحفظ ولا يُعرض.
-- `cmdline-tools` ناقصة في Android SDK (البناء يعمل بدونها) · `share_plus` 10.x بينما 13.x متاح.
+### Housekeeping
+- R8 is off ⇒ a bigger bundle. Re-enable later with `-keep` rules for Room/WorkManager and a
+  release-build test.
+- The archive tool has no guard against stale artifacts (see "Shipping a new version to Play").
+- The splash screen `launch_background.xml` still uses the old `ic_ball` drawing.
+- `UserStats.lastPlayedDayKey` is saved but never displayed.
+- 13 `AppStrings` constants are never used (listed in `docs/I18N_PLAN.md`).
+- Back buttons use `arrow_forward` and the quiz Next button uses `arrow_back`; both auto-mirror, so
+  Arabic shows ← for Back — the reverse of Material's RTL convention. Fixing it changes Arabic
+  visuals, so it needs owner approval.
+- Icon-only back and quit buttons have no tooltip, so TalkBack gives them no name.
+- `docs/ECONOMY.md` and `docs/DATA_SAFETY.md` are still in Arabic.
+- `cmdline-tools` missing from the Android SDK (builds work without it) · `share_plus` is 10.x
+  while 13.x is available.
 
 ---
 
-## قرارات تصميمية مُتّخذة — لا تُعِد فتحها دون سبب
+## Design decisions already made — don't reopen without a reason
 
-| القرار | السبب |
+| Decision | Why |
 |---|---|
-| فتح المستويات **تدريجي** | يمنح الـ100 سؤال إحساس التدرّج |
-| الصعوبة **تتصاعد** مع رقم المستوى | ما يتوقّعه اللاعب من نظام مستويات |
-| الاحتفاظ بالأنماط الثلاثة (مستويات · سريع · يومي) | كلٌّ يخدم حاجة مختلفة |
-| القلوب في **نمط المستويات فقط** | حماية السلسلة اليومية من الانكسار بسبب تحقيق الدخل |
-| ملف لكل تصنيف لا ملف واحد | ملف من 10 آلاف سطر غير قابل للمراجعة |
-| الصعوبة **مشتقة** لا مخزّنة | يستحيل أن تتناقض مع المستوى |
-| ترتيب خيارات المستوى مبذور بالمعرّف | ثبات موضع الإجابة بين محاولات إعادة نفس المستوى |
-| النجوم لا تتناقص | إعادة المستوى للتحسين لا يجب أن تعاقب اللاعب |
-| الفتح يعتمد على أول مستوى ناقص | فجوة في البيانات لا تفتح سلسلة كاملة |
-| مفتاح التخزين هو `slug` | الأسماء العربية قابلة للتغيير، الـ slug لا |
-| **التخزين محلي فقط — مؤقتاً** | قرار صاحب المشروع (٤ أغسطس ٢٠٢٦): نبدأ محلياً، وننتقل إلى Firebase/خادم **إن أثبت التطبيق نجاحه**. لا تبنِ شيئاً يصعّب هذا الانتقال. |
-| نطاق الحزمة `com.oasisforge` | اسم متجر صاحب المشروع، يُعاد لكل تطبيقاته، ولا يكشف اسمه الشخصي |
-| اسم المتجر عربي «تحدي كرة القدم» | الجمهور عربي ويبحث بالعربية؛ «Koora Trivia» يُضاف كقائمة إنجليزية إن فُتحت |
-| لا ذكر للعمل دون إنترنت ولا لعدد ثابت في النصوص | يبقى النص صحيحاً عند إضافة محتوى، والإعلانات تحتاج اتصالاً أصلاً |
-| 70 عملة للإعلان | تسدّ الفجوة 200−130 بإعلان واحد؛ أكّدها صاحب المشروع بعد نقاش خفضها إلى 50 |
-| البيني مطفأ عند الإطلاق | تقييمات الأيام الأولى أهم من دخله |
-| R8 مطفأ في الإصدار | أُطفئ لإصلاح تعطّل الإقلاع؛ إعادته تحتاج قواعد keep واختباراً |
+| Levels unlock **progressively** | Gives each category's 100 questions a sense of progression |
+| Difficulty **rises** with the level number | What players expect from a level system |
+| Keep all three modes (levels · quick · daily) | Each serves a different need |
+| Hearts in **level mode only** | Protects the daily streak from being broken by monetization |
+| One file per category, not one file | A 10,000-line file can't be reviewed |
+| Difficulty is **derived**, not stored | It can never contradict the level |
+| Level option order is seeded by the question ID | The answer position stays stable across replays of the same level |
+| Stars never decrease | Replaying to improve shouldn't punish the player |
+| Unlocking relies on the first incomplete level | A gap in the data can't unlock a whole run |
+| Storage is keyed by `slug` | Arabic names can change; the slug can't |
+| **Local storage only — for now** | Owner's decision (4 August 2026): start local, move to Firebase/a server **if the app proves successful**. Don't build anything that makes that move harder. |
+| Package namespace `com.oasisforge` | The owner's store name, reused for all their apps, and it doesn't reveal their personal name |
+| Arabic store name «تحدي كرة القدم» | The audience is Arabic and searches in Arabic; "Koora Trivia" gets added as an English listing if one is ever opened |
+| No offline promise and no fixed counts in any text | Text stays true as content is added, and ads need a connection anyway |
+| 70 coins per ad | Closes the 200−130 gap with one ad; confirmed by the owner after discussing 50 |
+| Interstitials off at launch | First-days ratings matter more than their revenue |
+| R8 off in release | Turned off to fix the launch crash; re-enabling needs keep rules and a release-build test |
 
 ---
 
-## أسلوب العمل المتوقّع
+## Expected way of working
 
-- **المحادثة مع صاحب المشروع بالإنجليزية.** العربية لغة المنتج لا لغة العمل —
-  لا تستنتج لغة الحوار من لغة هذا الملف. الوثائق في `docs/` بالعربية، عدا ما يُلصق
-  في Play Console فبالإنجليزية.
-- كل النصوص الظاهرة للمستخدم **بالعربية**، ومجمّعة في
-  [app_strings.dart](lib/core/constants/app_strings.dart)
-- التعليقات في الكود بالعربية، تشرح **لماذا** لا **ماذا**
-- شغّل `flutter analyze` و`flutter test` قبل إعلان أي شيء منجزاً
-- **قبل القول إن إصلاحاً وصل للمستخدم، جرّبه ببناء الإصدار على المحاكي.** ثلاثة من
-  الأخطاء الأربعة الحرجة لم تكن تظهر في التطوير ولا في الاختبارات.
-- صاحب المشروع يختبر بنفسه على هاتفه ويبلّغ عن الأعطال — عند بلاغ، أعِد إنتاج
-  العطل قبل الإصلاح، ولا تفترض السبب من قراءة الكود وحدها.
-- الأرقام القابلة للضبط تذهب إلى
-  [app_config.dart](lib/core/constants/app_config.dart) لا مبعثرة في الكود
+- **Every new feature or fix gets exactly one branch off `main` and a PR (pull request)** —
+  owner's rule, 13 September 2026. Never commit straight to `main`, never stack branches, and
+  never leave a superseded branch behind: one branch per piece of work.
+  1. `git fetch origin`, then branch from the **latest `origin/main`**:
+     `git switch --no-track -c <type>/<short-name> origin/main` (`feature/…` · `fix/…` · `docs/…`).
+  2. Commit the work on that branch.
+  3. Push it and open a pull request against `main` with `gh pr create` — summary plus how it was
+     tested.
+  4. Merging is the owner's call: don't merge or enable auto-merge unless asked.
+- **Talk to the owner in English, and write `CLAUDE.md` and everything in `docs/` in English.**
+  Arabic is the product's language, not the working language — only text players read is Arabic
+  (app strings, the question bank, store listing text, release notes, tester invites). Never infer
+  a language rule from a file's current language; ask.
+- All user-facing text is **Arabic**, collected in
+  [app_strings.dart](lib/core/constants/app_strings.dart).
+- Code comments are in Arabic (existing codebase convention) and explain **why**, not **what**.
+- Run `flutter analyze` and `flutter test` before calling anything done.
+- **Before saying a fix has reached users, try it on a release build on the emulator.** Three of
+  the four critical bugs showed neither in debug nor in tests.
+- The owner tests on their own phone and reports bugs — when they report one, reproduce it before
+  fixing, and don't assume the cause from reading the code alone.
+- Tunable numbers go in [app_config.dart](lib/core/constants/app_config.dart), not scattered
+  through the code.
