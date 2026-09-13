@@ -113,4 +113,19 @@ class AppConfig {
 
   /// سقف زمني صارم بين إعلانين بينيين مهما بلغ عدد الجولات.
   static const int minSecondsBetweenInterstitials = 180;
+
+  /// مهل إعادة محاولة تحميل إعلان فشل، بالثواني. آخر قيمة تتكرر كسقف.
+  ///
+  /// تصاعدية حتى لا نُغرق الشبكة أثناء انقطاع طويل، والعودة إلى التطبيق
+  /// تعيد المحاولة فوراً دون انتظار المهلة.
+  static const List<int> adRetryDelaysSeconds = [15, 30, 60, 120, 300];
+
+  // ── الروابط ──
+
+  /// صفحة سياسة الخصوصية المنشورة.
+  ///
+  /// ⚠️ نقل مستودع الصفحة أو تغيير اسمه يغيّر الرابط دون تحويل — حدّثه هنا وفي
+  /// Play Console معاً.
+  static const String privacyPolicyUrl =
+      'https://oasis-forge.github.io/koora-trivia-privacy/';
 }

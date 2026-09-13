@@ -20,6 +20,8 @@ dependencies:
   timezone: ^0.9.4
   # لقراءة المنطقة الزمنية للجهاز — بدونها يفترض timezone أن المحلي هو UTC.
   flutter_timezone: ^3.0.1
+  # لفتح سياسة الخصوصية في المتصفح من الإعدادات.
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:

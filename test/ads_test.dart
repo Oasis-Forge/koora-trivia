@@ -6,45 +6,7 @@ import 'package:football_trivia/domain/repositories/economy_repository.dart';
 import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
 
-class _FakeAdService implements AdService {
-  _FakeAdService({this.ready = true, this.result = RewardResult.earned});
-
-  bool ready;
-  RewardResult result;
-
-  bool adsRemovedValue = false;
-  int showRewardedCalls = 0;
-  int interstitialsShown = 0;
-  int rounds = 0;
-
-  @override
-  Future<void> init() async {}
-
-  @override
-  bool get isRewardedReady => ready;
-
-  @override
-  Future<RewardResult> showRewarded() async {
-    showRewardedCalls++;
-    return result;
-  }
-
-  @override
-  void recordRoundFinished() => rounds++;
-
-  /// المزيّف يتجاهل مفتاح الإطلاق عمداً ليختبر منطق العدّ نفسه.
-  @override
-  Future<bool> maybeShowInterstitial() async {
-    if (adsRemovedValue) return false;
-    if (rounds < AppConfig.roundsBetweenInterstitials) return false;
-    rounds = 0;
-    interstitialsShown++;
-    return true;
-  }
-
-  @override
-  set adsRemoved(bool value) => adsRemovedValue = value;
-}
+import 'fakes/fake_ad_service.dart';
 
 class _FakeEconomyRepo implements EconomyRepository {
   _FakeEconomyRepo([this.economy = const Economy()]);
@@ -60,7 +22,7 @@ class _FakeEconomyRepo implements EconomyRepository {
 void main() {
   group('AdsProvider', () {
     test('الإعلان المكتمل يعيد earned', () async {
-      final service = _FakeAdService();
+      final service = FakeAdService();
       final ads = AdsProvider(service: service);
 
       expect(await ads.showRewarded(), RewardResult.earned);
@@ -69,14 +31,14 @@ void main() {
 
     test('الإغلاق المبكر يعيد dismissed لا earned', () async {
       final ads = AdsProvider(
-        service: _FakeAdService(result: RewardResult.dismissed),
+        service: FakeAdService(result: RewardResult.dismissed),
       );
 
       expect(await ads.showRewarded(), RewardResult.dismissed);
     });
 
     test('لا يُعرض إعلانان في وقت واحد', () async {
-      final service = _FakeAdService();
+      final service = FakeAdService();
       final ads = AdsProvider(service: service);
 
       // الاستدعاء الثاني أثناء العرض يُرفض.
@@ -89,14 +51,54 @@ void main() {
     });
 
     test('عدم جاهزية الإعلان تظهر في isReady', () {
-      final ads = AdsProvider(service: _FakeAdService(ready: false));
+      final ads = AdsProvider(service: FakeAdService(ready: false));
       expect(ads.isReady, isFalse);
+    });
+
+    test('اكتمال تحميل الإعلان يُخطر الواجهة', () {
+      final service = FakeAdService(ready: false);
+      final ads = AdsProvider(service: service);
+      var notified = 0;
+      ads.addListener(() => notified++);
+
+      service.setReady(true);
+
+      expect(notified, 1);
+      expect(ads.isReady, isTrue);
+    });
+
+    test('خيارات الخصوصية تمرّ إلى الخدمة', () async {
+      final service = FakeAdService(
+        privacyOptionsRequired: true,
+        privacyFormShown: false,
+      );
+      final ads = AdsProvider(service: service);
+
+      expect(ads.isPrivacyOptionsRequired, isTrue);
+      expect(await ads.showPrivacyOptions(), isFalse);
+      expect(service.privacyFormCalls, 1);
+    });
+
+    test('العودة إلى التطبيق تُمرَّر إلى الخدمة', () {
+      final service = FakeAdService();
+      AdsProvider(service: service).onAppResumed();
+
+      expect(service.resumeCalls, 1);
+    });
+
+    test('إتلاف المزوّد يفصله عن الخدمة', () {
+      final service = FakeAdService(ready: false);
+      AdsProvider(service: service).dispose();
+
+      expect(service.listener, isNull);
+      // إخطار بعد الإتلاف كان سيرمي خطأ لو بقي المستمع موصولاً.
+      expect(() => service.setReady(true), returnsNormally);
     });
   });
 
   group('الإعلان البيني', () {
     test('لا يظهر قبل اكتمال عدد الجولات', () async {
-      final service = _FakeAdService();
+      final service = FakeAdService();
       final ads = AdsProvider(service: service);
 
       for (var i = 0; i < AppConfig.roundsBetweenInterstitials - 1; i++) {
@@ -107,7 +109,7 @@ void main() {
     });
 
     test('يظهر عند بلوغ عدد الجولات ثم يُعاد العدّ', () async {
-      final service = _FakeAdService();
+      final service = FakeAdService();
       final ads = AdsProvider(service: service);
 
       for (var i = 0; i < AppConfig.roundsBetweenInterstitials; i++) {
@@ -123,7 +125,7 @@ void main() {
     });
 
     test('إزالة الإعلانات توقف البينيّ', () async {
-      final service = _FakeAdService();
+      final service = FakeAdService();
       final ads = AdsProvider(service: service)..adsRemoved = true;
 
       for (var i = 0; i < AppConfig.roundsBetweenInterstitials * 2; i++) {

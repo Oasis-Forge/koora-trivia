@@ -137,7 +137,19 @@ class _FakeAdService implements AdService {
   Future<void> init() async {}
 
   @override
+  set onChanged(void Function()? listener) {}
+
+  @override
   bool get isRewardedReady => false;
+
+  @override
+  bool get isPrivacyOptionsRequired => false;
+
+  @override
+  Future<bool> showPrivacyOptions() async => false;
+
+  @override
+  void onAppResumed() {}
 
   @override
   Future<RewardResult> showRewarded() async => RewardResult.unavailable;

@@ -165,6 +165,14 @@ class AppStrings {
   static const String importFailed = 'رمز غير صالح';
   static const String importConfirm = 'استيراد';
 
+  // الخصوصية
+  static const String privacySection = 'الخصوصية';
+  static const String adPrivacyOptions = 'خيارات خصوصية الإعلانات';
+  static const String privacyPolicy = 'سياسة الخصوصية';
+  static const String privacyOptionsFailed =
+      'تعذّر فتح خيارات الخصوصية. حاول لاحقاً.';
+  static const String linkOpenFailed = 'تعذّر فتح الرابط';
+
   // شاشة الترحيب
   static const String onboardSkip = 'تخطٍّ';
   static const String onboardNext = 'التالي';

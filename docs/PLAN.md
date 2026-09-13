@@ -5,6 +5,7 @@
 ## Done since the audit
 - Daily challenge repeating on consecutive days, and its seed depending on the time zone: PR #2, merged 13 September 2026.
 - "Replay level" and "Next level" on the result screen starting a level with zero hearts: PR #3, merged 13 September 2026.
+- PR #5, open: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
 
 ---
 
@@ -12,7 +13,6 @@
 
 ### Bugs
 - **P1 · S**: The daily reminder never fires. Declare `ScheduledNotificationReceiver` and the boot receiver in `AndroidManifest.xml`, and add a one-colour status-bar icon (the launcher icon shows as a blank shape). Verify on a release build, including after a reboot.
-- **P1 · M**: The rewarded-ad button never re-enables once an ad loads, and failed loads are never retried. Have AdService report load state so `AdsProvider` notifies, and retry with backoff and on resume *(admob_ad_service.dart, ads_provider.dart, rewarded_button.dart)*.
 - **P1 · S**: Hearts, the refill countdown and tasks stay frozen on screen. Refresh `EconomyProvider` when the app resumes and every ~30 s while hearts are below max. Compute the countdown from `lastRegenAtIso`, which also fixes the 30-minute reset after a granted heart.
 - **P1 · S**: An imported backup gets overwritten by the next save. After import, reload every provider, check each value against its model, and catch TypeError in the local datasources *(backup_repository_impl.dart, settings_screen.dart)*.
 - **P1 · S**: The levels grid hides level 10 on 360×640 and 411×731 phones. Size the tiles with `LayoutBuilder` and let the grid scroll *(levels_screen.dart)*.
@@ -34,10 +34,10 @@
 - **P2 · S**: Question-bank tests. Ban «كلتاهما», add a test for invisible characters, and run the duplicate check's noise words through `_normalize`. Owner to confirm a bare «لا شيء» is acceptable in laws *(question_bank_test.dart)*.
 
 ### Release & tech debt
-- **P0 · S**: The Data safety form under-declares what AdMob collects. Add Approximate location, App interactions and Diagnostics, each for advertising, analytics and fraud prevention. Make DATA_SAFETY_EN.md and PRE_PUBLISH.md match.
-- **P0 · M**: Ad consent. Wait for the consent check (UMP) to finish and load ads only when `canRequestAds()` is true. Add a Settings privacy row that opens `showPrivacyOptionsForm`, plus an in-app privacy policy link. Test with the EEA debug geography *(admob_ad_service.dart, settings_screen.dart)*.
+- **P0 · S**: The live Data safety form under-declares what AdMob collects. The docs are fixed (PR #5); the owner updates the form in Play Console to the four types in DATA_SAFETY_EN.md.
+- **P0 · S**: AdMob has no consent message for the app. On the emulator the consent SDK reports `Publisher misconfiguration … no form(s) configured for the input app ID`, so users in Europe and the UK never see a consent form. The owner creates and publishes a *European regulations* message in AdMob → Privacy & messaging, then re-tests with `--dart-define=UMP_DEBUG_EEA=true` (PRE_PUBLISH §1).
 - **P0 · M**: Production gate. Only 5 of the 12 required testers have joined. Recruit 15–20 as a buffer and record the date the 12th joins. Replace the crashing versionCode 1 on the internal track.
-- **P1 · S**: Privacy policy. Remove the offline promise, disclose Android Auto Backup, add IP address and diagnostics, and describe the privacy options. Update the date, deploy to privacy-site, and check the live page (it still shows 6 September).
+- **P1 · S**: Privacy policy. The source is updated (PR #5). After merging, copy it to privacy-site, push, and check the live page (it still shows 6 September).
 - **P1 · S**: Play Console and GitHub tasks:
   - Read and fix the "Some languages have errors" warning.
   - Set the displayed developer name to Oasis Forge.
@@ -102,12 +102,10 @@
 - **P2 · M**: Docs:
   - Replace the stale public README (offline claim, 11 tests, debug key).
   - Rewrite ECONOMY.md in English to match AppConfig.
-  - Delete the Arabic DATA_SAFETY.md copy.
   - Add a release-notes template for updates.
 - **P3 · S**: Release guardrails:
   - The archive tool checks that both files exist and that versionCode and signer are correct.
   - Release builds fail when key.properties is missing.
-  - Fix the manifest comment that calls the live AdMob ID a test ID.
 
 ### Features
 - **P1 · M**: Daily challenge: no repeated questions within a cycle and an even difficulty mix (e.g. 2 easy, 3 medium, 2 hard) *(quiz_repository_impl.dart)*. Ship soon after the seed fix so daily sets change only once.
