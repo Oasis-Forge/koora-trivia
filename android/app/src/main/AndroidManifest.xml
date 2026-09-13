@@ -37,6 +37,23 @@
             </intent-filter>
         </activity>
 
+        <!-- مستقبِلا flutter_local_notifications. بدونهما يُجدول التنبيه ولا يُطلق
+             أبداً، ولا يُعاد جدولته بعد إعادة تشغيل الجهاز.
+             MY_PACKAGE_REPLACED محذوف عمداً: المنبّهات تبقى بعد التحديث، وإعلانه
+             كان يعيد تنبيه الإصدار 1.0.3 القديم المخزّن قبل أن يُفتح الإصدار الجديد. -->
+        <receiver
+            android:exported="false"
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+        <receiver
+            android:exported="false"
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />

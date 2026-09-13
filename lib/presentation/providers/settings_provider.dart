@@ -1,25 +1,43 @@
 import 'package:flutter/foundation.dart';
 
 import '../../core/services/feedback_service.dart';
+import '../../core/utils/day_key.dart';
 import '../../domain/entities/app_settings.dart';
+import '../../domain/entities/user_stats.dart';
 import '../../domain/repositories/reminder_scheduler.dart';
 import '../../domain/repositories/settings_repository.dart';
+import '../../domain/usecases/plan_reminders.dart';
+import '../../domain/usecases/update_streak.dart';
 
 class SettingsProvider extends ChangeNotifier {
   SettingsProvider({
     required SettingsRepository repository,
     required ReminderScheduler scheduler,
+    PlanReminders planReminders = const PlanReminders(),
+    DateTime Function()? clock,
   })  : _repository = repository,
-        _scheduler = scheduler;
+        _scheduler = scheduler,
+        _planReminders = planReminders,
+        _clock = clock ?? DateTime.now;
 
   final SettingsRepository _repository;
   final ReminderScheduler _scheduler;
+  final PlanReminders _planReminders;
+  final DateTime Function() _clock;
 
   AppSettings _settings = const AppSettings();
   bool _loading = true;
 
   /// يصبح `true` إذا رفض المستخدم إذن الإشعارات.
   bool _permissionDenied = false;
+
+  /// الإحصائيات التي يُبنى عليها موعد التنبيه ونصّه. نحفظها كاملة لا كـ«أُنجز
+  /// اليوم» جاهزة، لأن «اليوم» يُحسب لحظة الجدولة وقد يكون تغيّر منذ المزامنة.
+  UserStats _stats = const UserStats();
+
+  /// بصمة آخر خطة جُدولت، حتى لا تُعاد جدولة خطة مطابقة عند كل تغيّر في
+  /// الإحصائيات.
+  String? _scheduledKey;
 
   AppSettings get settings => _settings;
   bool get isLoading => _loading;
@@ -37,8 +55,11 @@ class SettingsProvider extends ChangeNotifier {
     // قد يُلغي المستخدم الإذن من إعدادات النظام والتطبيق مغلق، فنتحقق دائماً.
     if (_settings.reminderEnabled) {
       if (await _scheduler.hasPermission()) {
-        await _reschedule();
+        // دائماً عند الإقلاع: التنبيه الأول مبني على حالة آخر فتح للتطبيق.
+        await _reschedule(force: true);
       } else {
+        await _scheduler.cancelAll();
+        _scheduledKey = null;
         await _persist(_settings.copyWith(reminderEnabled: false));
       }
     }
@@ -47,7 +68,8 @@ class SettingsProvider extends ChangeNotifier {
   /// تشغيل التنبيه أو إيقافه. يعيد `false` إذا رُفض الإذن.
   Future<bool> setReminderEnabled(bool enabled) async {
     if (!enabled) {
-      await _scheduler.cancelDaily();
+      await _scheduler.cancelAll();
+      _scheduledKey = null;
       await _persist(_settings.copyWith(reminderEnabled: false));
       _permissionDenied = false;
       notifyListeners();
@@ -66,8 +88,17 @@ class SettingsProvider extends ChangeNotifier {
 
     _permissionDenied = false;
     await _persist(_settings.copyWith(reminderEnabled: true));
-    await _reschedule();
+    await _reschedule(force: true);
     return true;
+  }
+
+  /// يُستدعى عند تغيّر الإحصائيات وعند العودة إلى التطبيق (قد يكون اليوم تغيّر).
+  ///
+  /// إنجاز تحدي اليوم ينقل أول تنبيه إلى الغد، والسلسلة تدخل نصّه.
+  Future<void> syncReminder(UserStats stats) async {
+    _stats = stats;
+    if (_loading || !_settings.reminderEnabled) return;
+    await _reschedule();
   }
 
   bool get soundEnabled => _settings.soundEnabled;
@@ -93,13 +124,29 @@ class SettingsProvider extends ChangeNotifier {
     await _persist(
       _settings.copyWith(reminderHour: hour, reminderMinute: minute),
     );
-    if (_settings.reminderEnabled) await _reschedule();
+    if (_settings.reminderEnabled) await _reschedule(force: true);
   }
 
-  Future<void> _reschedule() => _scheduler.scheduleDaily(
-        hour: _settings.reminderHour,
-        minute: _settings.reminderMinute,
-      );
+  Future<void> _reschedule({bool force = false}) async {
+    final now = _clock();
+    // «اليوم» من ساعة الجدولة نفسها: التطبيق قد يبقى مفتوحاً بعد منتصف الليل
+    // دون أي حدث يحدّث حالة التحدي، فيُعامَل اليوم الجديد كأنه أُنجز.
+    final today = DayKey.from(now);
+    final plans = _planReminders(
+      now: now,
+      hour: _settings.reminderHour,
+      minute: _settings.reminderMinute,
+      dailyDoneToday: _stats.isDailyDoneOn(today),
+      streak: UpdateStreak.visibleStreak(_stats, today),
+    );
+
+    // أول تنبيه يحدد الخطة كلها: يومه وساعته والسلسلة في نصّه.
+    final key = '${plans.first.at.toIso8601String()}|${plans.first.streak}';
+    if (!force && key == _scheduledKey) return;
+
+    _scheduledKey = key;
+    await _scheduler.schedule(plans);
+  }
 
   Future<void> _persist(AppSettings next) async {
     _settings = next;

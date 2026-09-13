@@ -8,6 +8,7 @@ import '../../domain/repositories/link_opener.dart';
 import '../../core/constants/app_config.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/utils/arabic_count.dart';
 import '../providers/ads_provider.dart';
 import '../providers/progress_provider.dart';
 import '../providers/quiz_provider.dart';
@@ -45,7 +46,7 @@ class SettingsScreen extends StatelessWidget {
                         (
                           Icons.whatshot_rounded,
                           AppStrings.streak,
-                          '${stats.streak} ${AppStrings.day}',
+                          ArabicCount.format(stats.streak, ArabicNoun.day),
                         ),
                         (
                           Icons.emoji_events_rounded,
@@ -112,8 +113,18 @@ class SettingsScreen extends StatelessWidget {
                       enabled: progress.hasProgress,
                       // نذكر الخسارة بالأرقام لأن هذا الإجراء يمحو كل النجوم.
                       body: '${AppStrings.resetProgressBody}\n\n'
-                          'ستفقد ${progress.totalStars} نجمة و'
-                          '${progress.totalCompletedLevels} مستوى مكتملاً.',
+                          '${AppStrings.resetProgressLoss(
+                        ArabicCount.format(
+                          progress.totalStars,
+                          ArabicNoun.star,
+                          object: true,
+                        ),
+                        ArabicCount.format(
+                          progress.totalCompletedLevels,
+                          ArabicNoun.level,
+                          object: true,
+                        ),
+                      )}',
                       onConfirmed: () =>
                           context.read<ProgressProvider>().resetAll(),
                     ),

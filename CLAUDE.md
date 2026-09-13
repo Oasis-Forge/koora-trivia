@@ -95,16 +95,14 @@ Update it as items ship.
 1. **Get 7+ more testers opted in** to the closed test (5 of 12; aim for 15–20 as a buffer). This is
    the critical path to production.
 2. **Internal testing:** replace the crashing versionCode 1 with versionCode 4, or stop using that track.
-3. **The plan's code P0s are in PR #5** (ad consent gate, privacy row in Settings, Data safety docs,
-   rewarded-ad retries — not merged, not in a Play build). After merging: **update the live Data
-   safety form** to the four types in DATA_SAFETY_EN.md, and deploy the updated privacy policy to
-   `privacy-site/`. **Owner, now:** in AdMob → Privacy & messaging, create and publish a *European
-   regulations* (GDPR) message for Koora Trivia. Without it the consent SDK fails with
-   `Publisher misconfiguration … no form(s) configured for the input app ID` (seen on the emulator
-   on 13 September 2026), so users in Europe and the UK never see a consent form.
-4. **Fix the daily reminder**, which never fires (the notification receivers aren't declared in the
-   manifest). Ship it in **v1.0.4** with the merged daily-challenge and hearts fixes, after a
-   release-build check on the emulator.
+3. **PR #5 is merged** (ad consent gate, privacy row in Settings, Data safety docs, rewarded-ad
+   retries — not yet in a Play build), and the owner published the AdMob *European regulations*
+   message on 13 September 2026 (the EEA form now appears on the emulator). Still to do: **update the
+   live Data safety form** to the four types in DATA_SAFETY_EN.md, and deploy the updated privacy
+   policy to `privacy-site/` (waiting on the owner's go-ahead — it's public content).
+4. **PR #6** (open): the daily reminder fires, hearts and the countdown stay live, the no-hearts dialog
+   offers every way to get a heart, and Arabic count grammar is fixed. Ship it in **v1.0.4** with
+   PRs #2, #3 and #5, after a release-build check on the emulator.
 5. Install from the closed test on a **real phone** and verify: pass a level ⇒ star + "Next level" +
    next level unlocked; daily challenge ⇒ no replay button; zero hearts ⇒ replay blocked.
 6. Resolve the store listing's "Some languages have errors" warning, and start the plan's content
@@ -340,7 +338,7 @@ When a question could fit more than one category, apply these in order:
 
 ## Tests
 
-**190 tests across 20 files, all passing.** `flutter analyze` is clean. `test/fakes/fake_ad_service.dart`
+**245 tests across 26 files, all passing.** `flutter analyze` is clean. `test/fakes/fake_ad_service.dart`
 is the shared fake `AdService` — add any new `AdService` member there.
 
 | File | Count | Covers |
@@ -352,19 +350,25 @@ is the shared fake `AdService` — add any new `AdService` member there.
 | `ads_test.dart` | 14 | `AdsProvider` (earned/dismissed · no two ads at once · isReady · notifies when an ad loads · privacy options and resume pass through · dispose detaches) · interstitials (round counting · remove-ads) · ad rewards — **through a fake service** |
 | `admob_ad_service_test.dart` | 21 | **Consent gate** — no SDK init or ad request before the consent form closes · previous-session consent loads at once · nothing loads when consent disallows · consent withdrawn during SDK init · a failed consent update retried on resume or ad request, never two at once, not re-run after a successful one · load retry after the delay and on resume · privacy-options changes applied both ways · unsupported platform · init once · **rewarded show path with a fake `RewardedAd`**: result decided on dismissal, not on show (the 8 September bug) · earned · dismissed · failed to show · reload afterwards |
 | `retrying_ad_loader_test.dart` | 11 | Load once · rising retry delays capped at the last · success resets the delay · take once · retry now · stop cancels and disposes · an ad arriving after stop is disposed · a stale callback after stop and a new load · synchronous SDK error |
-| `reminder_test.dart` | 9 | Permission · scheduling and cancel · permission revoked at launch · next-fire calculation |
-| `share_text_test.dart` | 8 | Result grid · daily-challenge date · category and level · Arabic dual form · doesn't leak questions |
+| `reminder_test.dart` | 16 | `SettingsProvider` — permission · schedule and cancel · permission revoked at launch cancels · launch always reschedules · finishing the daily moves the first reminder to tomorrow with the streak · a broken streak isn't named · no reschedule for an unchanged plan · after midnight the new day isn't treated as done · reminder body names the streak and the question count from `AppConfig` |
+| `plan_reminders_test.dart` | 8 | Which days get a reminder: today before the time · tomorrow after the daily or after the time · consecutive days, streak only in the first · month end · minutes |
+| `arabic_count_test.dart` | 17 | Count-noun forms for 0 · 1 · 2 · 3–10 · 11–99 · 100+ · dual after a verb · every noun has distinct forms |
+| `android_config_test.dart` | 3 | Notification receivers declared, without `MY_PACKAGE_REPLACED` · status-bar icon in every density · kept from resource shrinking |
+| `hearts_refresh_test.dart` | 8 | Countdown moves and notifies without saving · a regenerated heart saves · a granted heart keeps the countdown · the first lost heart shows the countdown · **widget:** the hearts bar updates itself every 30 s, and does nothing when hearts are full |
+| `no_hearts_dialog_test.dart` | 8 | **Widget test** — no dialog with hearts · daily-challenge button starts the daily · hidden once the daily is done · refill disabled without coins · refill buys and closes · closes by itself when a heart regenerates · a save finishing after it closed doesn't pop the screen underneath · «حسناً» closes only the dialog |
+| `daily_challenge_card_test.dart` | 1 | **Widget test** — the card's question count and multiplier line |
+| `share_text_test.dart` | 8 | Result grid · daily-challenge date · category and level · streak count forms (1 · 2 · 5 · 11) · doesn't leak questions |
 | `quiz_repository_test.dart` | 11 | Levels · daily-challenge stability · **a full year with no day sharing more than 2 of 7 questions with the day before** · epoch day independent of time zone · neighbouring seeds shuffle differently · filtering |
 | `question_bank_test.dart` | 8 | Bank integrity: counts · IDs · structure · balance · banned options · **duplicates** · matches `AppConfig` |
 | `update_streak_test.dart` | 5 | Day-streak logic in every case |
-| `settings_screen_test.dart` | 10 | **Widget test** — stats display · confirmation dialog · reset · privacy: ad-options row only where required, opens the form, failure message · policy link opens the published URL, failure message |
+| `settings_screen_test.dart` | 11 | **Widget test** — stats display · confirmation dialog with the loss in correct Arabic, including the dual after a verb · reset · privacy: ad-options row only where required, opens the form, failure message · policy link opens the published URL, failure message |
 | `progress_provider_test.dart` | 5 | **Provider-to-storage wiring** — pass ⇒ stars ⇒ next unlocked · survives restart (guards the covariance bug) |
 | `daily_guard_test.dart` | 5 | `isDailyDone` after completion · persists across restart · quick play doesn't set it |
 | `backup_test.dart` | 5 | Export then import · corrupt code · extra whitespace · newer version rejected |
 | `economy_balance_test.dart` | 4 | Daily income below cheapest purchase · purchase within two days · interstitials off · chest is worth it |
 | `score_screen_hearts_test.dart` | 4 | **Widget test** — result screen: "Replay level" and "Next level" with zero hearts show the no-hearts dialog and don't start · replay with hearts starts · quick play stays free |
 | `rewarded_button_test.dart` | 4 | **Widget test** — enables by itself when the ad loads and disables again if it's lost · daily limit · reward only on earned |
-| `app_lifecycle_hooks_test.dart` | 1 | Returning to the app retries ad loading · no listener left after removal |
+| `app_lifecycle_hooks_test.dart` | 3 | Returning to the app retries ads, regenerates hearts and reschedules the reminder for a new day · finishing the daily reschedules at once · no lifecycle or stats listener left after removal |
 
 ### Not covered — and it has bitten us
 
@@ -378,8 +382,9 @@ is the shared fake `AdService` — add any new `AdService` member there.
 - **Release-build-only failures** (R8, signing) — `flutter test` can't catch them.
 - No integration tests (`integration_test`).
 - No guard against hardcoded user-visible strings — 28 literal lines already bypass `app_strings.dart`.
-- **Real notification delivery.** `reminder_test` uses a fake scheduler, so it didn't catch that the
-  reminder never fires (receivers missing from the manifest, see docs/PLAN.md). Check on a device.
+- **Real notification delivery.** `reminder_test` uses a fake scheduler, which is how the missing
+  manifest receivers went unnoticed until PR #6. `android_config_test` now guards the receivers and
+  the icon, but actual firing still needs a check on a device after any change to the reminder.
 
 **Timer tests:** `quiz_provider_test.dart` uses `fakeAsync` from the `fake_async` package
 (declared in `dev_dependencies`) to fast-forward time instead of waiting. Required patterns:
@@ -399,7 +404,7 @@ is the shared fake `AdService` — add any new `AdService` member there.
 - Economy: regenerating hearts + hints + daily limits · coins + 3 daily tasks + chest + shop
 - Rewarded ads (heart · 70 coins) and interstitials (off) — production IDs in release · UMP consent
   gate, privacy row in Settings and retried ad loads (PR #5)
-- Daily reminder on device time · haptics and sound via system sounds (no audio files), two toggles
+- Daily reminder on device time, one per day that skips days the daily is done (PR #6) · haptics and sound via system sounds (no audio files), two toggles
 - One-time onboarding · settings with stats and safe reset · progress export/import (Base64)
 - Full RTL + stadium theme · level grid is 3 centered columns (was 4 with a big empty gap)
 
@@ -500,9 +505,9 @@ each section.
   `loadInterstitial`). Production passes only `consent`.
 - `AdsProvider` is created with `lazy: false` in `app.dart`, so all of this starts at launch — see
   the lazy-provider trap in "Known traps".
-- ⚠️ **The EEA form can't appear until AdMob has a European regulations message** for the app (see
-  "Next steps"). Until then the consent update fails with `Publisher misconfiguration`, and the
-  gate falls back to whatever `canRequestAds()` answers.
+- ⚠️ **The EEA form needs a published European regulations message in AdMob** → Privacy & messaging.
+  The owner published one on 13 September 2026. Without it the consent update fails with
+  `Publisher misconfiguration`, and the gate falls back to whatever `canRequestAds()` answers.
 
 > ✅ **Production IDs set (8 September 2026)** — the app ID is in `AndroidManifest.xml`, the
 > rewarded and interstitial unit IDs are in
@@ -571,6 +576,28 @@ many different actions be rewarded with one currency, and lets prices stay fixed
 - A device clock going backward resets the reference instead of producing a negative balance.
 - Stored under `economy_v1`.
 - Hearts are checked only **before starting** a level; if they run out mid-round, the round finishes.
+- **Keeping the screen live (PR #6):** `HeartsTicker` (inside `HeartsBar` and `NoHeartsDialog`) calls
+  `EconomyProvider.refresh()` every `AppConfig.heartsRefreshSeconds` while hearts are below max, and
+  `AppLifecycleHooks` calls it on resume. `refresh()` notifies when the displayed minute changes, not
+  only when something is saved. Granting or losing a heart recomputes the countdown from
+  `lastRegenAtIso` — it used to jump back to 30 minutes after every granted heart.
+- `EconomyProvider` takes a `clock` for tests; production uses `DateTime.now`.
+- **No-hearts dialog:** «العب تحدي اليوم» (hidden, with different body text, once the daily is done) ·
+  the rewarded ad · «ملء القلوب · 200» (disabled with «عملاتك لا تكفي») · «حسناً» to close. It
+  closes itself as soon as a heart exists (regenerated, earned or bought). Every close goes through
+  `_close`, which pops only while the dialog is still the top route — an unguarded `pop` after an
+  `await` would close the screen underneath.
+
+### Arabic counts — how to write a number with a noun (PR #6)
+
+- **Never write `'$n يوم'`, `'$n نقطة'` or similar.** Use `ArabicCount.format(n, ArabicNoun.day)`
+  ⇒ «يوم واحد» · «يومان» · «5 أيام» · «11 يوماً» · «100 يوم».
+- After a verb or in an idafa, pass `object: true` for the accusative dual: «ستفقد نجمتين».
+- When the number is shown separately (the big score with «نقطة» under it), use `ArabicCount.nounFor`.
+- Nouns available: day · star · point · level · question · correctAnswer. Add new ones to
+  `ArabicNoun` with all six forms; `arabic_count_test` checks their forms differ.
+- Strings that embed a count are functions in `AppStrings` taking the already-formatted count
+  (`taskAnswers`, `resetProgressLoss`, `streakKeptFor`, `reminderBody`, `reminderBodyStreak`).
 
 ### Daily reminder — important traps
 
@@ -584,8 +611,36 @@ many different actions be rewarded with one currency, and lets prices stay fixed
   alone.
 - Scheduling is **inexact** on purpose (`inexactAllowWhileIdle`) to avoid the heavy
   `SCHEDULE_EXACT_ALARM` permission on Android 12+.
-- `SettingsProvider.init()` re-checks the permission at every launch and turns the toggle off if
-  the permission was revoked in system settings while the app was closed.
+- `SettingsProvider.init()` re-checks the permission at every launch and turns the toggle off (and
+  cancels the reminders) if the permission was revoked in system settings while the app was closed.
+- 🐛 **The reminder never fired up to v1.0.3 (fixed in PR #6):** `flutter_local_notifications` needs
+  `ScheduledNotificationReceiver` and `ScheduledNotificationBootReceiver` declared in
+  `AndroidManifest.xml`. Without them `zonedSchedule` succeeds silently and nothing is ever shown.
+  `android_config_test` guards both.
+- **`MY_PACKAGE_REPLACED` is deliberately not declared.** The plugin's example manifest has it, but on
+  an update it would re-arm v1.0.3's cached repeating reminder before v1.0.4 is ever opened. Alarms
+  survive an update anyway, and the app reschedules at launch. Remaining edge: a tester who had the
+  reminder on in v1.0.3 and **reboots** before first opening v1.0.4 gets the old reminder (old text,
+  launcher icon) daily until they open the app, which cancels id 1001.
+- **One notification per day, not a repeating one (PR #6):** `PlanReminders` plans one-shot reminders
+  for the next `AppConfig.reminderDaysAhead` days (7), skipping today once the daily is done or once
+  today's time has passed, and naming the streak only in the first (when it's still alive).
+  `SettingsProvider` reschedules at launch, when the time or toggle changes, and via
+  `syncReminder(UserStats)` whenever `StatsProvider` changes or the app resumes
+  (`AppLifecycleHooks`); "today" is computed at scheduling time, not at sync time. A player who
+  stays away a week stops getting reminders. Ids are 1001–1007; 1001 is also v1.0.3's repeating
+  reminder, so rescheduling cancels it.
+- 🧪 **Don't mix a one-shot with a repeating reminder.** Tried on 13 September 2026: a one-shot for
+  tomorrow plus a `matchDateTimeComponents: time` reminder dated the day after. On Android the
+  plugin **ignores the repeating reminder's date** and arms it for the next occurrence of the time,
+  so both fired on the same day (seen on the emulator) — and a repeating reminder can't skip a day
+  the daily is done.
+- ⚠️ **Accepted risk:** before Android 12, an inexact alarm may be delayed by up to 75% of the time
+  left until it, with no one-hour cap. Reminders several days out (a player who hasn't opened the app
+  since) may arrive hours late. Raising `reminderDaysAhead` makes it worse.
+- **Status-bar icon:** `res/drawable-*/ic_stat_notification.png`, a white football on transparent
+  (drawn from the Material `sports_soccer` glyph). The launcher icon shows as a blank shape in the
+  status bar. `res/raw/keep.xml` keeps it if resource shrinking is turned on later.
 - The economy design is documented in [docs/ECONOMY.md](docs/ECONOMY.md).
 
 ### Daily challenge — once per day
@@ -634,9 +689,6 @@ Found by the read-only audit on 13 September 2026; file:line details are in
 [docs/I18N_PLAN.md §0](docs/I18N_PLAN.md). The full prioritised audit from the same day is in
 **[docs/PLAN.md](docs/PLAN.md)** — treat it as the source of truth for what's open. The daily-challenge
 repeat and its time-zone seed were fixed in PR #2; the items below are still open.
-- **Wrong Arabic grammar on screen** — a count plus a noun with no agreement on 13 lines: «N يوم متتالية»
-  (home, settings, score), «ستفقد N نجمة» (reset dialog), «نقطة» after any score, and the share text's
-  «1 أيام» / «12 أيام». `settings_screen_test` and `share_text_test` currently assert the wrong forms.
 - **Raw exception text reaches players:** `quiz_provider.dart:150` shows `e.toString()` in a SnackBar.
 - **Stale version string:** Settings → About shows «الإصدار 1.0.0» (`app_strings.dart:88`).
 - **Misspelled names in the Arabic bank** — e.g. Koeman «روناد كومان» on 4 lines, «ويين روني»,

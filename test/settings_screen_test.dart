@@ -6,6 +6,7 @@ import 'package:football_trivia/domain/repositories/link_opener.dart';
 import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/domain/entities/app_settings.dart';
 import 'package:football_trivia/domain/entities/category_progress.dart';
+import 'package:football_trivia/domain/entities/reminder_plan.dart';
 import 'package:football_trivia/domain/entities/user_stats.dart';
 import 'package:football_trivia/domain/repositories/reminder_scheduler.dart';
 import 'package:football_trivia/domain/repositories/settings_repository.dart';
@@ -94,10 +95,10 @@ class _FakeScheduler implements ReminderScheduler {
   Future<bool> requestPermission() async => true;
 
   @override
-  Future<void> scheduleDaily({required int hour, required int minute}) async {}
+  Future<void> schedule(List<ReminderPlan> plans) async {}
 
   @override
-  Future<void> cancelDaily() async {}
+  Future<void> cancelAll() async {}
 }
 
 class _FakeQuizRepository implements QuizRepository {
@@ -288,7 +289,10 @@ void main() {
     await tester.pumpAndSettle();
 
     // الحوار يذكر الخسارة بالأرقام قبل التأكيد.
-    expect(find.textContaining('9 نجمة'), findsOneWidget);
+    expect(
+      find.textContaining('ستفقد 9 نجوم وتقدّم 3 مستويات.'),
+      findsOneWidget,
+    );
 
     await tester.tap(find.text(AppStrings.confirmReset));
     await tester.pumpAndSettle();
@@ -297,6 +301,29 @@ void main() {
 
     await _scrollToTop(tester);
     expect(find.text('0 / 30'), findsOneWidget);
+  });
+
+  testWidgets('الحوار يكتب المثنى منصوباً: «ستفقد نجمتين وتقدّم مستويين»',
+      (tester) async {
+    await _pumpSettings(
+      tester,
+      statsRepo: _FakeStatsRepository(const UserStats(gamesPlayed: 5)),
+      progressRepo: _FakeProgressRepository({
+        'alpha': const CategoryProgress(
+          slug: 'alpha',
+          stars: [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+        ),
+      }),
+    );
+
+    await _scrollToBottom(tester);
+    await tester.tap(find.text(AppStrings.resetProgress));
+    await tester.pumpAndSettle();
+
+    expect(
+      find.textContaining('ستفقد نجمتين وتقدّم مستويين.'),
+      findsOneWidget,
+    );
   });
 
   testWidgets('تصفير الإحصائيات يحفظ حالة فارغة', (tester) async {

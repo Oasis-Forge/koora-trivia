@@ -1,4 +1,6 @@
-/// عقد مجرّد لجدولة تنبيه التحدي اليومي.
+import '../entities/reminder_plan.dart';
+
+/// عقد مجرّد لجدولة تنبيهات التحدي اليومي.
 ///
 /// يبقى `domain` خالياً من أي اعتماد على حزمة الإشعارات أو على Flutter.
 abstract class ReminderScheduler {
@@ -11,9 +13,9 @@ abstract class ReminderScheduler {
   /// هل الإذن ممنوح حالياً؟
   Future<bool> hasPermission();
 
-  /// جدولة تنبيه يومي متكرر عند الساعة والدقيقة المحددتين.
-  Future<void> scheduleDaily({required int hour, required int minute});
+  /// يستبدل كل التنبيهات المجدولة بهذه الخطة، تنبيهاً واحداً لكل يوم فيها.
+  Future<void> schedule(List<ReminderPlan> plans);
 
-  /// إلغاء التنبيه اليومي.
-  Future<void> cancelDaily();
+  /// إلغاء كل التنبيهات المجدولة.
+  Future<void> cancelAll();
 }

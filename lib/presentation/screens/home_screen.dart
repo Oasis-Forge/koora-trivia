@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/utils/arabic_count.dart';
 import '../providers/quiz_provider.dart';
 import '../providers/stats_provider.dart';
 import '../widgets/category_chips.dart';
@@ -94,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: StatTile(
                       icon: Icons.whatshot_rounded,
-                      value: '${stats.streak} ${AppStrings.day}',
+                      value: ArabicCount.format(stats.streak, ArabicNoun.day),
                       label: AppStrings.streak,
                     ),
                   ),

@@ -57,7 +57,7 @@ void main() {
     expect(text, contains('4 أغسطس'));
     expect(text, contains('🟩🟩🟥🟩🟩🟩🟥'));
     expect(text, contains('5/7'));
-    expect(text, contains('🔥 12 أيام متتالية'));
+    expect(text, contains('🔥 السلسلة: 12 يوماً'));
   });
 
   test('المستوى يعرض التصنيف ورقم المستوى', () {
@@ -84,9 +84,12 @@ void main() {
     expect(build(_result('cc'), streak: 0), isNot(contains('🔥')));
   });
 
-  test('المثنى العربي يُكتب صحيحاً', () {
-    expect(build(_result('c'), streak: 2), contains('يومان'));
-    expect(build(_result('c'), streak: 5), contains('5 أيام'));
+  test('العدد مع «يوم» يُكتب بصيغته الصحيحة', () {
+    expect(build(_result('c'), streak: 1), contains('السلسلة: يوم واحد'));
+    expect(build(_result('c'), streak: 2), contains('السلسلة: يومان'));
+    expect(build(_result('c'), streak: 5), contains('السلسلة: 5 أيام'));
+    expect(build(_result('c'), streak: 11), contains('السلسلة: 11 يوماً'));
+    expect(build(_result('c'), streak: 12), isNot(contains('أيام')));
   });
 
   test('النص لا يكشف أي سؤال أو إجابة', () {
