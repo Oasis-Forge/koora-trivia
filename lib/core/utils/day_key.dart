@@ -26,8 +26,15 @@ class DayKey {
   }
 
   /// رقم اليوم منذ حقبة يونكس — يُستخدم كبذرة عشوائية ثابتة لكل يوم.
-  static int epochDay(String key) =>
-      parse(key).difference(DateTime.utc(1970)).inDays;
+  ///
+  /// يُحسب من مكوّنات التاريخ بتوقيت UTC: طرح التاريخ المحلي من منتصف ليل UTC
+  /// كان يُنقص يوماً شرق غرينتش، فيحصل بلدان مختلفان على تحدٍّ مختلف في نفس التاريخ.
+  static int epochDay(String key) {
+    final date = parse(key);
+    return DateTime.utc(date.year, date.month, date.day)
+        .difference(DateTime.utc(1970))
+        .inDays;
+  }
 
   static const List<String> _arabicMonths = [
     'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
