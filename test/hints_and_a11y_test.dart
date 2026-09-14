@@ -164,7 +164,7 @@ void main() {
         .where((f) => f.path.endsWith('.dart'));
     for (final file in files) {
       final source = file.readAsStringSync();
-      for (final match in RegExp(r'IconButton\(').allMatches(source)) {
+      for (final match in RegExp(r'\bIconButton\(').allMatches(source)) {
         final end = (match.start + 400).clamp(0, source.length);
         if (!source.substring(match.start, end).contains('tooltip:')) {
           final line = '\n'.allMatches(source.substring(0, match.start)).length;

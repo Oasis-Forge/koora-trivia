@@ -18,9 +18,11 @@ import '../providers/record_round.dart';
 import '../providers/settings_provider.dart';
 import '../providers/stats_provider.dart';
 import '../widgets/hearts_bar.dart';
+import '../widgets/koora_buttons.dart';
 import '../widgets/pitch_background.dart';
 import '../widgets/report_question_button.dart';
 import '../widgets/stat_tile.dart';
+import '../widgets/surface.dart';
 import 'categories_screen.dart';
 import 'levels_screen.dart';
 import 'quiz_screen.dart';
@@ -275,14 +277,14 @@ class _ScoreScreenState extends State<ScoreScreen>
               ),
               if (_earnedHeart || _lostHeart) ...[
                 const SizedBox(height: 14),
-                Container(
+                Surface(
                   padding: const EdgeInsets.all(14),
-                  decoration: BoxDecoration(
-                    color: AppColors.wrong.withValues(alpha: 0.12),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: AppColors.wrong.withValues(alpha: 0.5),
-                    ),
+                  color: Color.alphaBlend(
+                    AppColors.wrong.withValues(alpha: 0.12),
+                    AppColors.cardSurface,
+                  ),
+                  border: Border.all(
+                    color: AppColors.wrong.withValues(alpha: 0.5),
                   ),
                   child: Row(
                     children: [
@@ -305,14 +307,14 @@ class _ScoreScreenState extends State<ScoreScreen>
               ],
               if (_result.isDaily && stats.streak > 0) ...[
                 const SizedBox(height: 14),
-                Container(
+                Surface(
                   padding: const EdgeInsets.all(14),
-                  decoration: BoxDecoration(
-                    color: AppColors.gold.withValues(alpha: 0.12),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: AppColors.gold.withValues(alpha: 0.5),
-                    ),
+                  color: Color.alphaBlend(
+                    AppColors.gold.withValues(alpha: 0.12),
+                    AppColors.cardSurface,
+                  ),
+                  border: Border.all(
+                    color: AppColors.gold.withValues(alpha: 0.5),
                   ),
                   child: Row(
                     children: [
@@ -339,45 +341,35 @@ class _ScoreScreenState extends State<ScoreScreen>
               ],
               if (_result.isDaily) const _DailyReminderCard(),
               const SizedBox(height: 24),
-              FilledButton.icon(
+              GoldButton(
+                label: AppStrings.shareScore,
+                icon: Icons.share_rounded,
                 onPressed: _share,
-                icon: const Icon(Icons.share_rounded),
-                label: const Text(AppStrings.shareScore),
               ),
               const SizedBox(height: 12),
               if (_result.isDaily) ...[
-                FilledButton.icon(
+                SolidButton(
+                  label: AppStrings.playLevel,
+                  icon: Icons.sports_soccer_rounded,
                   onPressed: _playLevel,
-                  style: FilledButton.styleFrom(
-                    backgroundColor: AppColors.pitchLight,
-                    foregroundColor: AppColors.chalk,
-                  ),
-                  icon: const Icon(Icons.sports_soccer_rounded),
-                  label: const Text(AppStrings.playLevel),
                 ),
                 const SizedBox(height: 12),
               ],
               if (_showNextLevelButton) ...[
-                FilledButton.icon(
+                SolidButton(
+                  label: AppStrings.nextLevel,
+                  icon: Icons.skip_next_rounded,
                   onPressed: _playNextLevel,
-                  style: FilledButton.styleFrom(
-                    backgroundColor: AppColors.pitchLight,
-                    foregroundColor: AppColors.chalk,
-                  ),
-                  icon: const Icon(Icons.skip_next_rounded),
-                  label: const Text(AppStrings.nextLevel),
                 ),
                 const SizedBox(height: 12),
               ],
               if (_showReplayButton) ...[
-                OutlinedButton.icon(
+                OutlineButton(
+                  label: _result.isLevel
+                      ? AppStrings.replayLevel
+                      : AppStrings.playAgain,
+                  icon: Icons.replay_rounded,
                   onPressed: _playAgain,
-                  icon: const Icon(Icons.replay_rounded),
-                  label: Text(
-                    _result.isLevel
-                        ? AppStrings.replayLevel
-                        : AppStrings.playAgain,
-                  ),
                 ),
                 const SizedBox(height: 12),
               ],
@@ -453,13 +445,8 @@ class _DailyReminderCardState extends State<_DailyReminderCard> {
 
     return Padding(
       padding: const EdgeInsets.only(top: 14),
-      child: Container(
+      child: Surface(
         padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
-        decoration: BoxDecoration(
-          color: AppColors.cardSurface,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.cardBorder),
-        ),
         child: Row(
           children: [
             Icon(
@@ -580,14 +567,10 @@ class _ReviewRow extends StatelessWidget {
             ? AppColors.gold
             : AppColors.wrong;
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Surface(
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: AppColors.cardSurface,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.cardBorder),
-      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -637,6 +620,7 @@ class _ReviewRow extends StatelessWidget {
           ),
           ReportQuestionButton(question: answer.question, compact: true),
         ],
+      ),
       ),
     );
   }

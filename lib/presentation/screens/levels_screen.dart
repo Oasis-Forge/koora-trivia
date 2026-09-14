@@ -13,9 +13,12 @@ import '../../domain/usecases/evaluate_level.dart';
 import '../providers/progress_provider.dart';
 import '../providers/quiz_provider.dart';
 import '../widgets/hearts_bar.dart';
+import '../widgets/koora_app_bar.dart';
+import '../widgets/koora_buttons.dart';
 import '../widgets/level_tile.dart';
 import '../widgets/pitch_background.dart';
 import '../widgets/star_row.dart';
+import '../widgets/surface.dart';
 import 'quiz_screen.dart';
 
 class LevelsScreen extends StatefulWidget {
@@ -31,21 +34,21 @@ class LevelsScreen extends StatefulWidget {
 
 class _LevelsScreenState extends State<LevelsScreen> {
   static const int _columns = 3;
-  static const double _spacing = 14;
-  static const EdgeInsets _gridPadding = EdgeInsets.fromLTRB(20, 8, 20, 16);
-  static const double _preferredAspectRatio = 0.95;
+  static const double _spacing = 12;
+  static const EdgeInsets _gridPadding = EdgeInsets.fromLTRB(20, 8, 20, 8);
+  static const double _preferredAspectRatio = 1;
 
   /// أقصر مربّع يبقى مقروءاً (الرقم والنجوم). دونه تُمرَّر الشبكة بدل تقصيره.
-  static const double _minTileHeight = 64;
+  static const double _minTileHeight = 56;
 
   int? _selected;
   bool _starting = false;
 
   /// نسبة عرض المربّع إلى طوله بحيث تتسع الشبكة كلها للمساحة المتاحة.
   ///
-  /// النسبة الثابتة (0.95) جعلت الشبكة أطول من المساحة على شاشات 360×640
-  /// و411×731، والشبكة لم تكن قابلة للتمرير، فاختفى المستوى العاشر تحت الشريط
-  /// السفلي. الآن يقصر المربّع حتى تتسع الصفوف، ولا يقصر عن حد أدنى.
+  /// النسبة الثابتة جعلت الشبكة أطول من المساحة على شاشات 360×640 و411×731،
+  /// والشبكة لم تكن قابلة للتمرير، فاختفى المستوى العاشر تحت الشريط السفلي. الآن
+  /// يقصر المربّع حتى تتسع الصفوف، ولا يقصر عن حد أدنى.
   static double _tileAspectRatio(BoxConstraints constraints, int levelCount) {
     final rows = (levelCount / _columns).ceil();
     if (rows == 0) return _preferredAspectRatio;
@@ -117,18 +120,37 @@ class _LevelsScreenState extends State<LevelsScreen> {
     return Scaffold(
       body: PitchBackground(
         child: SafeArea(
+          bottom: false,
           child: Column(
             children: [
-              _Header(
-                title: widget.category.name,
-                done: categoryProgress.completedLevels,
-                total: levelCount,
-                stars: categoryProgress.totalStars,
-                maxStars: categoryProgress.maxStars,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
+                child: Column(
+                  children: [
+                    KooraAppBar(
+                      title: widget.category.name,
+                      subtitle: AppStrings.levelsProgress(
+                        categoryProgress.completedLevels,
+                        levelCount,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      children: [
+                        const HeartsBar(compact: true),
+                        const SizedBox(width: 8),
+                        StatusPill(
+                          icon: Icons.star_rounded,
+                          label:
+                              '${categoryProgress.totalStars} / ${categoryProgress.maxStars}',
+                          labelColor: AppColors.gold,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              // شبكة المستويات موسّطة عمودياً: ثلاثة أعمدة تملأ الطول أفضل من
-              // أربعة (التي تترك صفوفاً قليلة وفراغاً كبيراً أسفلها)، والتوسيط
-              // يوزّع أي مساحة فائضة بدل تكديس البطاقات في الأعلى.
+              // شبكة المستويات موسّطة عمودياً، ويقصر المربّع حتى تتسع الصفوف كلها.
               Expanded(
                 child: LayoutBuilder(
                   builder: (context, constraints) => Center(
@@ -170,7 +192,6 @@ class _LevelsScreenState extends State<LevelsScreen> {
               ),
               _Footer(
                 level: selected,
-                canStart: canStart,
                 starting: _starting,
                 allDone: categoryProgress.isFullyCompleted,
                 onStart: canStart ? () => _start(selected) : null,
@@ -194,99 +215,16 @@ class _LevelsScreenState extends State<LevelsScreen> {
   }
 }
 
-class _Header extends StatelessWidget {
-  const _Header({
-    required this.title,
-    required this.done,
-    required this.total,
-    required this.stars,
-    required this.maxStars,
-  });
-
-  final String title;
-  final int done;
-  final int total;
-  final int stars;
-  final int maxStars;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(20, 8, 8, 4),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              IconButton(
-                onPressed: () => Navigator.of(context).pop(),
-                tooltip: AppStrings.back,
-                icon: const Icon(Icons.arrow_forward_rounded),
-                color: AppColors.chalk,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 21,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      AppStrings.levelsProgress(done, total),
-                      style: TextStyle(
-                        fontSize: 12.5,
-                        color: AppColors.chalkMuted,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  const HeartsBar(compact: true),
-                  const SizedBox(height: 4),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.star_rounded,
-                          size: 15, color: AppColors.gold),
-                      const SizedBox(width: 3),
-                      Text(
-                        '$stars / $maxStars',
-                        style: TextStyle(
-                          color: AppColors.gold,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 13,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
+/// الشريط السفلي: المستوى المختار، عتبات الاجتياز والنجوم، كلفة المحاولة، وزر البدء.
 class _Footer extends StatelessWidget {
   const _Footer({
     required this.level,
-    required this.canStart,
     required this.starting,
     required this.allDone,
     required this.onStart,
   });
 
   final int? level;
-  final bool canStart;
   final bool starting;
   final bool allDone;
   final VoidCallback? onStart;
@@ -298,13 +236,25 @@ class _Footer extends StatelessWidget {
     // العتبات من التقييم نفسه لا أرقاماً مكتوبة، فتتبع أي تعديل في AppConfig.
     const evaluate = EvaluateLevel();
     const total = AppConfig.questionsPerLevel;
-    final infoStyle = TextStyle(color: AppColors.chalkMuted, fontSize: 12);
+    final infoStyle = TextStyle(
+      color: AppColors.chalkMuted,
+      fontSize: 12,
+      fontWeight: FontWeight.w700,
+    );
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 14, 20, 20),
+      width: double.infinity,
+      padding: EdgeInsets.fromLTRB(
+        20,
+        12,
+        20,
+        16 + MediaQuery.paddingOf(context).bottom,
+      ),
       decoration: BoxDecoration(
-        color: Colors.black.withValues(alpha: 0.22),
-        border: Border(top: BorderSide(color: AppColors.cardBorder)),
+        color: AppColors.pitchDark.withValues(alpha: 0.72),
+        border: Border(
+          top: BorderSide(color: Colors.white.withValues(alpha: 0.12)),
+        ),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -317,51 +267,45 @@ class _Footer extends StatelessWidget {
                 fontWeight: FontWeight.w800,
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 8),
           ],
-          if (level != null && difficulty != null)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Column(
-                children: [
-                  Text(
-                    '${AppStrings.level} $level  ·  ${difficulty.arabicLabel}'
-                    '  ·  ${ArabicCount.format(total, ArabicNoun.question)}',
-                    style: TextStyle(
-                      color: AppColors.chalkMuted,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    AppStrings.levelGoal(
-                      pass: evaluate.minCorrectFor(1, total: total),
-                      twoStars: evaluate.minCorrectFor(2, total: total),
-                      threeStars: evaluate.minCorrectFor(3, total: total),
-                      total: total,
-                    ),
-                    textAlign: TextAlign.center,
-                    style: infoStyle,
-                  ),
-                  Text(
+          if (level != null && difficulty != null) ...[
+            Text(
+              '${AppStrings.level} $level  ·  ${difficulty.arabicLabel}',
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              AppStrings.levelGoal(
+                pass: evaluate.minCorrectFor(1, total: total),
+                twoStars: evaluate.minCorrectFor(2, total: total),
+                threeStars: evaluate.minCorrectFor(3, total: total),
+                total: total,
+              ),
+              textAlign: TextAlign.center,
+              style: infoStyle,
+            ),
+            const SizedBox(height: 6),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.favorite_rounded, size: 14, color: AppColors.wrong),
+                const SizedBox(width: 6),
+                Flexible(
+                  child: Text(
                     AppStrings.levelHeartCost,
                     textAlign: TextAlign.center,
-                    style: infoStyle,
+                    style: infoStyle.copyWith(fontWeight: FontWeight.w600),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          FilledButton.icon(
+            const SizedBox(height: 12),
+          ],
+          GoldButton(
+            label: AppStrings.startLevel,
+            icon: Icons.play_arrow_rounded,
             onPressed: starting ? null : onStart,
-            icon: starting
-                ? const SizedBox(
-                    width: 18,
-                    height: 18,
-                    child: CircularProgressIndicator(strokeWidth: 2.4),
-                  )
-                : const Icon(Icons.play_arrow_rounded),
-            label: const Text(AppStrings.startLevel),
           ),
         ],
       ),
@@ -386,13 +330,10 @@ class LevelStarsBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = passed ? AppColors.gold : AppColors.wrong;
 
-    return Container(
+    return Surface(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: color.withValues(alpha: 0.55)),
-      ),
+      border: Border.all(color: color.withValues(alpha: 0.55)),
+      color: Color.alphaBlend(color.withValues(alpha: 0.12), AppColors.cardSurface),
       child: Column(
         children: [
           StarRow(earned: stars, size: 32),

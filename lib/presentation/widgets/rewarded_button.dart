@@ -5,6 +5,7 @@ import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/repositories/ad_service.dart';
 import '../providers/ads_provider.dart';
+import 'koora_buttons.dart';
 
 /// زر إعلان مكافأ بحالاته الثلاث.
 ///
@@ -46,23 +47,10 @@ class RewardedButton extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        FilledButton.icon(
+        GoldButton(
+          label: ads.isShowing ? AppStrings.adLoading : label,
+          icon: ads.isShowing ? null : icon,
           onPressed: enabled ? () => _watch(context) : null,
-          style: FilledButton.styleFrom(
-            backgroundColor: AppColors.gold,
-            foregroundColor: AppColors.pitchDark,
-            disabledBackgroundColor: Colors.white.withValues(alpha: 0.07),
-            disabledForegroundColor: AppColors.chalkMuted,
-            minimumSize: const Size.fromHeight(48),
-          ),
-          icon: ads.isShowing
-              ? const SizedBox(
-                  width: 18,
-                  height: 18,
-                  child: CircularProgressIndicator(strokeWidth: 2.4),
-                )
-              : Icon(icon),
-          label: Text(ads.isShowing ? AppStrings.adLoading : label),
         ),
         if (disabledReason != null)
           Padding(
@@ -72,6 +60,7 @@ class RewardedButton extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 12,
+                fontWeight: FontWeight.w600,
                 color: AppColors.chalkMuted,
               ),
             ),

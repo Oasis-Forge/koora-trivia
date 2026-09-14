@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import 'star_row.dart';
-import '../../core/constants/app_strings.dart';
 
 enum LevelState { locked, available, completed }
 
@@ -46,49 +46,58 @@ class LevelTile extends StatelessWidget {
         foreground = AppColors.chalk;
     }
 
+    final shape = BorderRadius.circular(16);
+
     return Semantics(
       label: AppStrings.levelLabel(level),
       enabled: !locked,
       selected: isSelected,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(16),
-          onTap: onTap,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 180),
-            decoration: BoxDecoration(
-              color: background,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: isSelected ? AppColors.gold : border,
-                width: isSelected ? 2.2 : 1.3,
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (locked)
-                  Icon(
-                    Icons.lock_rounded,
-                    size: 19,
-                    color: foreground.withValues(alpha: 0.7),
-                  )
-                else
-                  Text(
-                    '$level',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900,
-                      color: foreground,
-                    ),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        decoration: BoxDecoration(
+          color: background,
+          borderRadius: shape,
+          border: Border.all(
+            color: isSelected ? AppColors.gold : border,
+            width: isSelected ? 2.2 : 1,
+          ),
+          // حلقة ذهبية باهتة حول المستوى المختار.
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: AppColors.gold.withValues(alpha: 0.12),
+                    spreadRadius: 4,
                   ),
-                const SizedBox(height: 4),
-                if (!locked)
-                  StarRow(earned: stars, size: 11)
-                else
-                  const SizedBox(height: 11),
-              ],
+                ]
+              : null,
+        ),
+        child: Material(
+          color: Colors.transparent,
+          borderRadius: shape,
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            onTap: onTap,
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (locked)
+                    Icon(Icons.lock_rounded, size: 20, color: foreground)
+                  else ...[
+                    Text(
+                      '$level',
+                      style: TextStyle(
+                        fontSize: 20,
+                        height: 1,
+                        fontWeight: FontWeight.w900,
+                        color: foreground,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    StarRow(earned: stars, size: 12),
+                  ],
+                ],
+              ),
             ),
           ),
         ),

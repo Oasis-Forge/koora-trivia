@@ -13,6 +13,9 @@ import '../providers/quiz_provider.dart';
 import '../providers/settings_provider.dart';
 import '../widgets/answer_option.dart';
 import '../widgets/hint_bar.dart';
+import '../widgets/koora_app_bar.dart';
+import '../widgets/koora_buttons.dart';
+import '../widgets/surface.dart';
 import '../widgets/pitch_background.dart';
 import '../widgets/report_question_button.dart';
 import '../widgets/timer_ring.dart';
@@ -59,23 +62,54 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
     final isLevel = context.read<QuizProvider>().isLevelMode;
     final leave = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
+      barrierColor: const Color(0xB8031410),
+      builder: (context) => Dialog(
         backgroundColor: AppColors.cardSurface,
-        title: const Text(AppStrings.quitTitle),
-        content: Text(isLevel ? AppStrings.quitBodyLevel : AppStrings.quitBody),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text(AppStrings.quitCancel),
+        insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(28),
+          side: BorderSide(color: AppColors.cardBorder),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 22, 16, 12),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                AppStrings.quitTitle,
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                isLevel ? AppStrings.quitBodyLevel : AppStrings.quitBody,
+                style: TextStyle(
+                  fontSize: 14.5,
+                  height: 1.5,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.chalkMuted,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  _DialogButton(
+                    label: AppStrings.quitCancel,
+                    color: AppColors.chalk,
+                    filled: true,
+                    onPressed: () => Navigator.of(context).pop(false),
+                  ),
+                  const SizedBox(width: 8),
+                  _DialogButton(
+                    label: AppStrings.quitConfirm,
+                    color: AppColors.wrong,
+                    onPressed: () => Navigator.of(context).pop(true),
+                  ),
+                ],
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: Text(
-              AppStrings.quitConfirm,
-              style: TextStyle(color: AppColors.wrong),
-            ),
-          ),
-        ],
+        ),
       ),
     );
     return leave ?? false;
@@ -233,19 +267,15 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
                       if (quiz.isAnswerRevealed)
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-                          child: FilledButton.icon(
+                          child: GoldButton(
+                            label: quiz.isLastQuestion
+                                ? AppStrings.finish
+                                : AppStrings.next,
+                            icon: quiz.isLastQuestion
+                                ? Icons.flag_rounded
+                                : Icons.arrow_back_rounded,
                             onPressed: () =>
                                 context.read<QuizProvider>().next(),
-                            icon: Icon(
-                              quiz.isLastQuestion
-                                  ? Icons.flag_rounded
-                                  : Icons.arrow_back_rounded,
-                            ),
-                            label: Text(
-                              quiz.isLastQuestion
-                                  ? AppStrings.finish
-                                  : AppStrings.next,
-                            ),
                           ),
                         ),
                     ],
@@ -298,16 +328,15 @@ class _TopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+      padding: const EdgeInsets.fromLTRB(20, 18, 20, 4),
       child: Column(
         children: [
           Row(
             children: [
-              IconButton(
-                onPressed: onQuit,
+              RoundIconButton(
+                icon: Icons.close_rounded,
                 tooltip: AppStrings.quitRound,
-                icon: const Icon(Icons.close_rounded),
-                color: AppColors.chalkMuted,
+                onPressed: onQuit,
               ),
               Expanded(
                 child: Column(
@@ -324,7 +353,7 @@ class _TopBar extends StatelessWidget {
                       ArabicCount.format(quiz.score, ArabicNoun.point),
                       style: TextStyle(
                         color: AppColors.gold,
-                        fontSize: 13,
+                        fontSize: 12,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -334,15 +363,29 @@ class _TopBar extends StatelessWidget {
               TimerRing(secondsLeft: quiz.secondsLeft),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 12),
+          // شريط التقدّم ذهبي رفيع يكتمل مع آخر سؤال.
           ClipRRect(
             borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
-              value: quiz.progress,
-              minHeight: 7,
-              backgroundColor: Colors.white.withValues(alpha: 0.10),
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(AppColors.pitchLight),
+            child: SizedBox(
+              height: 5,
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: ColoredBox(
+                      color: Colors.white.withValues(alpha: 0.12),
+                    ),
+                  ),
+                  FractionallySizedBox(
+                    widthFactor: quiz.progress.clamp(0, 1),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: AppColors.goldGradient,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -359,67 +402,113 @@ class _QuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // عرض كامل صراحةً: صف الوسوم كان يمدّ البطاقة ضمناً، و`Wrap` لا يفعل،
-      // فتضيق بطاقة السؤال القصير عن الخيارات تحتها.
+    // عرض كامل صراحةً: صف الوسوم كان يمدّ البطاقة ضمناً، و`Wrap` لا يفعل،
+    // فتضيق بطاقة السؤال القصير عن الخيارات تحتها.
+    return SizedBox(
       width: double.infinity,
-      padding: EdgeInsets.all(compact ? 16 : 20),
-      decoration: BoxDecoration(
-        color: AppColors.cardSurface,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: AppColors.cardBorder),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // `Wrap` لا `Row`: اسم تصنيف طويل مع خط نظام كبير لا يتسع لسطر واحد.
-          Wrap(
-            spacing: 8,
-            runSpacing: 6,
-            children: [
-              _Tag(text: question.categoryName, color: AppColors.pitchLight),
-              _Tag(
-                text: question.difficulty.arabicLabel,
-                color: AppColors.gold,
-              ),
-            ],
-          ),
-          SizedBox(height: compact ? 10 : 16),
-          Text(
-            question.text,
-            style: TextStyle(
-              fontSize: compact ? 18 : 21,
-              fontWeight: FontWeight.w800,
-              height: compact ? 1.45 : 1.55,
+      child: Surface(
+        padding: EdgeInsets.symmetric(
+          horizontal: 14,
+          vertical: compact ? 14 : 16,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // `Wrap` لا `Row`: اسم تصنيف طويل مع خط نظام كبير لا يتسع لسطر واحد.
+            Wrap(
+              spacing: 8,
+              runSpacing: 6,
+              children: [
+                _Tag(text: question.categoryName, gold: false),
+                _Tag(text: question.difficulty.arabicLabel, gold: true),
+              ],
             ),
-          ),
-        ],
+            SizedBox(height: compact ? 10 : 12),
+            Text(
+              question.text,
+              style: TextStyle(
+                fontSize: compact ? 18 : 21,
+                fontWeight: FontWeight.w800,
+                height: 1.45,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
+/// وسم صغير في بطاقة السؤال: التصنيف باهت، والصعوبة ذهبية.
 class _Tag extends StatelessWidget {
-  const _Tag({required this.text, required this.color});
+  const _Tag({required this.text, required this.gold});
 
   final String text;
-  final Color color;
+  final bool gold;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      height: 32,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.18),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: color.withValues(alpha: 0.5)),
+        border: Border.all(
+          color: gold
+              ? AppColors.gold.withValues(alpha: 0.6)
+              : AppColors.cardBorder,
+        ),
       ),
       child: Text(
         text,
         style: TextStyle(
-          color: color,
+          color: gold ? AppColors.gold : AppColors.chalkMuted,
           fontSize: 12,
           fontWeight: FontWeight.w700,
+        ),
+      ),
+    );
+  }
+}
+
+/// زر حوار الخروج: «متابعة اللعب» بتعبئة خفيفة، و«خروج» نصاً أحمر.
+class _DialogButton extends StatelessWidget {
+  const _DialogButton({
+    required this.label,
+    required this.color,
+    required this.onPressed,
+    this.filled = false,
+  });
+
+  final String label;
+  final Color color;
+  final VoidCallback onPressed;
+  final bool filled;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: filled ? Colors.white.withValues(alpha: 0.07) : Colors.transparent,
+      borderRadius: BorderRadius.circular(999),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onPressed,
+        child: SizedBox(
+          height: 48,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18),
+            child: Center(
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w800,
+                  color: color,
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );

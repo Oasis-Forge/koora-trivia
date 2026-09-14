@@ -9,6 +9,8 @@ import '../providers/quiz_provider.dart';
 import '../providers/stats_provider.dart';
 import '../screens/quiz_screen.dart';
 import 'hearts_ticker.dart';
+import 'koora_buttons.dart';
+import 'surface.dart';
 import 'rewarded_button.dart';
 
 /// شارة القلوب مع الوقت المتبقي للقلب التالي.
@@ -33,50 +35,13 @@ class HeartsBar extends StatelessWidget {
           nextIn: untilNext == null ? null : _format(untilNext),
         ),
         excludeSemantics: true,
-        child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: compact ? 10 : 12,
-          vertical: compact ? 6 : 8,
+        child: StatusPill(
+          icon: empty ? Icons.heart_broken_rounded : Icons.favorite_rounded,
+          iconColor: AppColors.wrong,
+          label: '${economy.hearts}/${economy.maxHearts}',
+          // الشاشات الضيقة تعرض الرصيد وحده دون وقت القلب التالي.
+          trailing: compact || untilNext == null ? null : _format(untilNext),
         ),
-        decoration: BoxDecoration(
-          color: (empty ? AppColors.wrong : AppColors.cardSurface)
-              .withValues(alpha: empty ? 0.18 : 1),
-          borderRadius: BorderRadius.circular(999),
-          border: Border.all(
-            color: empty ? AppColors.wrong : AppColors.cardBorder,
-          ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              empty ? Icons.heart_broken_rounded : Icons.favorite_rounded,
-              size: compact ? 15 : 17,
-              color: AppColors.wrong,
-            ),
-            const SizedBox(width: 5),
-            Text(
-              '${economy.hearts}/${economy.maxHearts}',
-              style: TextStyle(
-                fontSize: compact ? 13 : 14,
-                fontWeight: FontWeight.w800,
-                color: AppColors.chalk,
-              ),
-            ),
-            if (!compact && economy.untilNextHeart != null) ...[
-              const SizedBox(width: 8),
-              Text(
-                _format(economy.untilNextHeart!),
-                style: TextStyle(
-                  fontSize: 11.5,
-                  color: AppColors.chalkMuted,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ],
-        ),
-      ),
       ),
     );
   }
@@ -182,10 +147,10 @@ class NoHeartsDialog extends StatelessWidget {
             ],
             const SizedBox(height: 18),
             if (!dailyDone) ...[
-              FilledButton.icon(
+              SolidButton(
+                label: AppStrings.playDailyForHeart,
+                icon: Icons.local_fire_department_rounded,
                 onPressed: () => _playDaily(context),
-                icon: const Icon(Icons.local_fire_department_rounded),
-                label: const Text(AppStrings.playDailyForHeart),
               ),
               const SizedBox(height: 10),
             ],

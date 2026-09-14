@@ -28,7 +28,7 @@
 | `android_config_test.dart` | 5 | Notification receivers declared, without `MY_PACKAGE_REPLACED` · `appCategory="game"` · `mailto` and `https` queries · status-bar icon in every density · kept from resource shrinking |
 | `hearts_refresh_test.dart` | 8 | Countdown moves and notifies without saving · a regenerated heart saves · a granted heart keeps the countdown · the first lost heart shows the countdown · **widget:** the hearts bar updates itself every 30 s, and does nothing when hearts are full |
 | `no_hearts_dialog_test.dart` | 8 | **Widget test** — no dialog with hearts · daily-challenge button starts the daily · hidden once the daily is done · refill disabled without coins · refill buys and closes · closes by itself when a heart regenerates · a save finishing after it closed doesn't pop the screen underneath · «حسناً» closes only the dialog |
-| `daily_challenge_card_test.dart` | 1 | **Widget test** — the card's question count and multiplier line |
+| `daily_challenge_card_test.dart` | 1 | **Widget test** — the card's multiplier-and-reset line and its start button text |
 | `share_text_test.dart` | 9 | Result grid · daily-challenge date · category and level · streak count forms (1 · 2 · 5 · 11) · the Play Store link with referrer on the last line · doesn't leak questions |
 | `quiz_repository_test.dart` | 11 | Levels · daily-challenge stability · **a full year with no day sharing more than 2 of 7 questions with the day before** · epoch day independent of time zone · neighbouring seeds shuffle differently · filtering |
 | `question_bank_test.dart` | 9 | Bank integrity: counts · IDs · structure · balance · banned options, including bare «لا شيء», «لا أحد» and «لم يحدث» · no hidden direction characters · **duplicates** · matches `AppConfig` |

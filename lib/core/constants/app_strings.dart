@@ -289,6 +289,12 @@ class AppStrings {
   static const String noQuestions = 'لا توجد أسئلة متاحة حالياً.';
   static const String errorTitle = 'حدث خطأ';
   static const String retry = 'إعادة المحاولة';
+  static const String more = 'المزيد';
+  static const String dailyStart = 'ابدأ التحدي';
+
+  /// سطر بطاقة تحدي اليوم: «نقاط مضاعفة ×1.5 • يتجدد بعد 7 س و 4 د».
+  static String dailyMeta(String multiplier, String time) =>
+      'نقاط مضاعفة ×$multiplier • يتجدد بعد $time';
   static const String updateDownloaded = 'نُزّل تحديث جديد للتطبيق';
   static const String updateRestart = 'إعادة التشغيل';
   static const String loadCategoriesFailed =

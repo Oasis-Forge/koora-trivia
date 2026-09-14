@@ -7,7 +7,11 @@ import '../../core/utils/arabic_count.dart';
 import '../../domain/entities/daily_task.dart';
 import '../providers/economy_provider.dart';
 import '../widgets/coin_badge.dart';
+import '../widgets/koora_app_bar.dart';
+import '../widgets/koora_buttons.dart';
 import '../widgets/pitch_background.dart';
+import '../widgets/rows_card.dart';
+import '../widgets/surface.dart';
 
 class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
@@ -21,54 +25,27 @@ class TasksScreen extends StatelessWidget {
     return Scaffold(
       body: PitchBackground(
         child: SafeArea(
-          child: Column(
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(20, 18, 20, 24),
             children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20, 8, 8, 12),
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      tooltip: AppStrings.back,
-                      icon: const Icon(Icons.arrow_forward_rounded),
-                      color: AppColors.chalk,
-                    ),
-                    const Expanded(
-                      child: Text(
-                        AppStrings.tasks,
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                    ),
-                    const CoinBadge(),
-                  ],
-                ),
+              const KooraAppBar(
+                title: AppStrings.tasks,
+                trailing: [CoinBadge()],
               ),
-              Expanded(
-                child: ListView(
-                  padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
-                  children: [
-                    for (final task in economy.tasks) ...[
-                      _TaskCard(task: task),
-                      const SizedBox(height: 12),
-                    ],
-                    const SizedBox(height: 12),
-                    _Chest(
-                      ready: economy.chestReady,
-                      opened: economy.chestClaimed,
-                    ),
-                    const SizedBox(height: 18),
-                    Text(
-                      AppStrings.tasksResetHint,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: AppColors.chalkMuted,
-                      ),
-                    ),
-                  ],
+              const SizedBox(height: 16),
+              for (final task in economy.tasks) ...[
+                _TaskCard(task: task),
+                const SizedBox(height: 12),
+              ],
+              _Chest(ready: economy.chestReady, opened: economy.chestClaimed),
+              const SizedBox(height: 16),
+              Text(
+                AppStrings.tasksResetHint,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.chalkMuted,
                 ),
               ),
             ],
@@ -98,16 +75,7 @@ class _TaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: AppColors.cardSurface,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(
-          color: task.isClaimable ? AppColors.gold : AppColors.cardBorder,
-          width: task.isClaimable ? 1.6 : 1,
-        ),
-      ),
+    return Surface(
       child: Column(
         children: [
           Row(
@@ -117,92 +85,41 @@ class _TaskCard extends StatelessWidget {
                   _title(task),
                   style: const TextStyle(
                     fontSize: 15,
-                    fontWeight: FontWeight.w700,
+                    height: 1.3,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
               ),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                decoration: BoxDecoration(
-                  color: AppColors.gold.withValues(alpha: 0.16),
-                  borderRadius: BorderRadius.circular(999),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      '${task.reward}',
-                      style: TextStyle(
-                        color: AppColors.gold,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                    const SizedBox(width: 3),
-                    Icon(
-                      Icons.monetization_on_rounded,
-                      size: 14,
-                      color: AppColors.gold,
-                    ),
-                  ],
-                ),
-              ),
+              const SizedBox(width: 12),
+              _RewardPill(reward: task.reward),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 10),
           Row(
             children: [
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(999),
-                      child: LinearProgressIndicator(
-                        value: task.ratio,
-                        minHeight: 8,
-                        backgroundColor: Colors.white.withValues(alpha: 0.10),
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          task.isComplete
-                              ? AppColors.correct
-                              : AppColors.pitchLight,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 5),
+                    KooraProgress(value: task.ratio),
+                    const SizedBox(height: 6),
                     Text(
                       '${task.progress} / ${task.target}',
                       style: TextStyle(
                         fontSize: 12,
-                        color: AppColors.chalkMuted,
                         fontWeight: FontWeight.w700,
+                        color: AppColors.chalkMuted,
                       ),
                     ),
                   ],
                 ),
               ),
               const SizedBox(width: 12),
-              SizedBox(
-                width: 96,
-                child: FilledButton(
-                  onPressed: task.isClaimable
-                      ? () => _claim(context, task.kind)
-                      : null,
-                  style: FilledButton.styleFrom(
-                    minimumSize: const Size.fromHeight(38),
-                    backgroundColor: AppColors.gold,
-                    disabledBackgroundColor:
-                        Colors.white.withValues(alpha: 0.07),
-                    disabledForegroundColor: AppColors.chalkMuted,
-                    textStyle: const TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  child: Text(
-                    task.claimed ? AppStrings.claimed : AppStrings.claim,
-                  ),
-                ),
+              _ClaimButton(
+                label: task.claimed ? AppStrings.claimed : AppStrings.claim,
+                onPressed: task.isClaimable
+                    ? () => _claim(context, task.kind)
+                    : null,
               ),
             ],
           ),
@@ -222,6 +139,97 @@ class _TaskCard extends StatelessWidget {
   }
 }
 
+class _RewardPill extends StatelessWidget {
+  const _RewardPill({required this.reward});
+
+  final int reward;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 34,
+      padding: const EdgeInsets.symmetric(horizontal: 11),
+      decoration: BoxDecoration(
+        color: AppColors.gold.withValues(alpha: 0.18),
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.monetization_on_rounded, size: 14, color: AppColors.gold),
+          const SizedBox(width: 5),
+          Text(
+            '$reward',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w900,
+              color: AppColors.gold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// زر «استلم»: ذهبي حين تكتمل المهمة، باهت قبلها وبعد الاستلام.
+class _ClaimButton extends StatelessWidget {
+  const _ClaimButton({required this.label, required this.onPressed});
+
+  final String label;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final ready = onPressed != null;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(999),
+        boxShadow: ready
+            ? [
+                BoxShadow(
+                  color: AppColors.gold.withValues(alpha: 0.9),
+                  blurRadius: 18,
+                  spreadRadius: -12,
+                  offset: const Offset(0, 8),
+                ),
+              ]
+            : null,
+      ),
+      child: Material(
+        color: ready ? null : Colors.white.withValues(alpha: 0.07),
+        borderRadius: BorderRadius.circular(999),
+        clipBehavior: Clip.antiAlias,
+        child: Ink(
+          decoration: BoxDecoration(
+            gradient: ready ? AppColors.goldGradient : null,
+          ),
+          child: InkWell(
+            onTap: onPressed,
+            child: SizedBox(
+              height: 48,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18),
+                child: Center(
+                  child: Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
+                      color: ready ? AppColors.pitchDark : AppColors.chalkMuted,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _Chest extends StatelessWidget {
   const _Chest({required this.ready, required this.opened});
 
@@ -230,44 +238,51 @@ class _Chest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          opened ? AppStrings.chestOpened : AppStrings.chestHint,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 13,
-            height: 1.5,
-            color: opened ? AppColors.gold : AppColors.chalkMuted,
-            fontWeight: opened ? FontWeight.w700 : FontWeight.w400,
-          ),
-        ),
-        const SizedBox(height: 14),
-        Icon(
-          opened
-              ? Icons.card_giftcard_rounded
-              : ready
-                  ? Icons.inventory_2_rounded
-                  : Icons.lock_rounded,
-          size: 62,
-          color: ready || opened
-              ? AppColors.gold
-              : Colors.white.withValues(alpha: 0.22),
-        ),
-        const SizedBox(height: 14),
-        SizedBox(
-          width: 160,
-          child: FilledButton(
-            onPressed: ready ? () => _open(context) : null,
-            style: FilledButton.styleFrom(
-              minimumSize: const Size.fromHeight(44),
-              disabledBackgroundColor: Colors.white.withValues(alpha: 0.07),
-              disabledForegroundColor: AppColors.chalkMuted,
+    final lit = ready || opened;
+
+    return Surface(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          Container(
+            width: 72,
+            height: 72,
+            decoration: BoxDecoration(
+              color: lit
+                  ? AppColors.gold.withValues(alpha: 0.16)
+                  : Colors.white.withValues(alpha: 0.06),
+              borderRadius: BorderRadius.circular(22),
+              border: Border.all(color: AppColors.cardBorder),
             ),
-            child: const Text(AppStrings.openChest),
+            child: Icon(
+              opened
+                  ? Icons.card_giftcard_rounded
+                  : ready
+                      ? Icons.inventory_2_rounded
+                      : Icons.lock_rounded,
+              size: 32,
+              color: lit ? AppColors.gold : AppColors.chalkMuted,
+            ),
           ),
-        ),
-      ],
+          const SizedBox(height: 12),
+          Text(
+            opened ? AppStrings.chestOpened : AppStrings.chestHint,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 12,
+              height: 1.5,
+              fontWeight: FontWeight.w600,
+              color: opened ? AppColors.gold : AppColors.chalkMuted,
+            ),
+          ),
+          const SizedBox(height: 12),
+          GoldButton(
+            label: AppStrings.openChest,
+            icon: Icons.card_giftcard_rounded,
+            onPressed: ready ? () => _open(context) : null,
+          ),
+        ],
+      ),
     );
   }
 

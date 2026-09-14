@@ -52,8 +52,8 @@ The look comes from the owner's Claude Design project «تحدي كرة القد
 - **`SectionHeading`** (gold, 17 dp), **`RowsCard`** + **`KooraRow`** (48 dp rows with hairline dividers, gold lead
   icon, bold value) and **`KooraProgress`** (6 dp, green or gold).
 
-Screens are converted one PR at a time: home, then categories and levels, then the quiz and its quit dialog, then
-settings, tasks and shop, and finally the result screen (which the redesign didn't cover).
+Every screen uses them (one PR, owner's request): home, categories, levels, quiz and its quit dialog, settings (its extra
+sections kept), tasks, shop, plus the result screen, onboarding and the no-hearts dialog, which the redesign didn't cover.
 
 ### In-app updates (v1.0.6)
 

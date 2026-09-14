@@ -5,16 +5,16 @@ import 'package:provider/provider.dart';
 
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
-import '../../core/utils/arabic_count.dart';
+import '../providers/economy_provider.dart';
 import '../providers/quiz_provider.dart';
 import '../providers/stats_provider.dart';
 import '../widgets/category_chips.dart';
-import '../widgets/daily_challenge_card.dart';
-import '../widgets/pitch_background.dart';
-import '../providers/economy_provider.dart';
 import '../widgets/coin_badge.dart';
+import '../widgets/daily_challenge_card.dart';
 import '../widgets/hearts_bar.dart';
-import '../widgets/stat_tile.dart';
+import '../widgets/koora_buttons.dart';
+import '../widgets/pitch_background.dart';
+import '../widgets/surface.dart';
 import 'categories_screen.dart';
 import 'quiz_screen.dart';
 import 'settings_screen.dart';
@@ -79,77 +79,60 @@ class _HomeScreenState extends State<HomeScreen> {
       body: PitchBackground(
         child: SafeArea(
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
+            padding: const EdgeInsets.fromLTRB(20, 18, 20, 24),
             children: [
-              const _Header(),
-              const SizedBox(height: 22),
+              const _TopBar(),
+              const SizedBox(height: 16),
+              const _StatusRow(),
+              const SizedBox(height: 16),
               DailyChallengeCard(
                 isDone: stats.isDailyDone,
                 streak: stats.streak,
                 untilNext: stats.untilNextDaily,
                 onPlay: () => _play(daily: true),
               ),
-              const SizedBox(height: 22),
+              const SizedBox(height: 16),
+              _StatsCard(
+                bestScore: stats.stats.bestScore,
+                bestStreak: stats.bestStreak,
+                streak: stats.streak,
+              ),
+              const SizedBox(height: 16),
               Row(
                 children: [
-                  Expanded(
-                    child: StatTile(
-                      icon: Icons.whatshot_rounded,
-                      value: ArabicCount.format(stats.streak, ArabicNoun.day),
-                      label: AppStrings.streak,
+                  const Expanded(
+                    child: Text(
+                      AppStrings.chooseCategory,
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                   ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: StatTile(
-                      icon: Icons.emoji_events_rounded,
-                      value: '${stats.bestStreak}',
-                      label: AppStrings.bestStreak,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: StatTile(
-                      icon: Icons.star_rounded,
-                      value: '${stats.stats.bestScore}',
-                      label: AppStrings.bestScore,
-                    ),
+                  _MoreButton(
+                    onTap: () => Navigator.of(context)
+                        .pushNamed(CategoriesScreen.routeName),
                   ),
                 ],
               ),
-              const SizedBox(height: 26),
-              const Text(
-                AppStrings.chooseCategory,
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
-              ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 10),
               CategoryChips(
                 categories: quiz.categories,
                 selectedSlug: _categorySlug,
                 onSelected: (v) => setState(() => _categorySlug = v),
               ),
-              const SizedBox(height: 22),
-              FilledButton.icon(
+              const SizedBox(height: 16),
+              SolidButton(
+                label: AppStrings.quickPlay,
+                icon: Icons.sports_soccer_rounded,
                 onPressed: () => _play(daily: false),
-                icon: const Icon(Icons.sports_soccer_rounded),
-                label: const Text(AppStrings.quickPlay),
               ),
-              const SizedBox(height: 12),
-              OutlinedButton.icon(
-                onPressed: () => Navigator.of(context)
-                    .pushNamed(CategoriesScreen.routeName),
-                icon: const Icon(Icons.grid_view_rounded),
-                label: const Text(AppStrings.levels),
-              ),
-              const SizedBox(height: 14),
-              Center(
-                child: Text(
-                  '${AppStrings.gamesPlayed}: ${stats.stats.gamesPlayed}',
-                  style: TextStyle(
-                    color: AppColors.chalkMuted,
-                    fontSize: 13,
-                  ),
-                ),
+              const SizedBox(height: 10),
+              OutlineButton(
+                label: AppStrings.levels,
+                icon: Icons.grid_view_rounded,
+                onPressed: () =>
+                    Navigator.of(context).pushNamed(CategoriesScreen.routeName),
               ),
             ],
           ),
@@ -159,128 +142,236 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-/// زر المهام مع نقطة تنبيه حين توجد مكافأة جاهزة للاستلام.
-class _TasksButton extends StatelessWidget {
-  const _TasksButton();
+/// اسم التطبيق وزر الإعدادات.
+class _TopBar extends StatelessWidget {
+  const _TopBar();
 
   @override
   Widget build(BuildContext context) {
-    final claimable = context.watch<EconomyProvider>().claimableCount;
-
-    return Stack(
-      clipBehavior: Clip.none,
+    return Row(
       children: [
-        OutlinedButton.icon(
-          onPressed: () =>
-              Navigator.of(context).pushNamed(TasksScreen.routeName),
-          style: OutlinedButton.styleFrom(
-            minimumSize: const Size(0, 40),
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-          ),
-          icon: const Icon(Icons.checklist_rounded, size: 18),
-          label: const Text(
-            AppStrings.tasks,
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
+        const Expanded(
+          child: Text(
+            AppStrings.appName,
+            style: TextStyle(
+              fontSize: 22,
+              height: 1.15,
+              fontWeight: FontWeight.w900,
+            ),
           ),
         ),
-        if (claimable > 0)
-          PositionedDirectional(
-            top: -3,
-            end: -3,
-            child: Container(
-              width: 20,
-              height: 20,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: AppColors.wrong,
-                shape: BoxShape.circle,
-              ),
-              child: Text(
-                '$claimable',
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w900,
-                  color: AppColors.chalk,
-                ),
+        const SizedBox(width: 12),
+        Tooltip(
+          message: AppStrings.settings,
+          child: Surface(
+            radius: 999,
+            padding: EdgeInsets.zero,
+            onTap: () =>
+                Navigator.of(context).pushNamed(SettingsScreen.routeName),
+            child: SizedBox(
+              width: 48,
+              height: 48,
+              child: Icon(
+                Icons.settings_rounded,
+                size: 20,
+                color: AppColors.chalk,
               ),
             ),
           ),
+        ),
       ],
     );
   }
 }
 
-class _Header extends StatelessWidget {
-  const _Header();
+/// القلوب والعملات وزر المهام اليومية.
+class _StatusRow extends StatelessWidget {
+  const _StatusRow();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    final claimable = context.watch<EconomyProvider>().claimableCount;
+
+    return Row(
       children: [
-        Row(
-          children: [
-            Container(
-              width: 54,
-              height: 54,
-              decoration: BoxDecoration(
-                gradient: AppColors.goldGradient,
-                borderRadius: BorderRadius.circular(18),
-              ),
-              child: Icon(
-                Icons.sports_soccer_rounded,
-                color: AppColors.pitchDark,
-                size: 32,
-              ),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    AppStrings.appName,
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w900,
-                      height: 1.2,
-                    ),
-                  ),
-                  SizedBox(height: 4),
-                  Text(
-                    AppStrings.tagline,
-                    style: TextStyle(
-                      fontSize: 12.5,
-                      color: AppColors.chalkMuted,
-                      height: 1.4,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            IconButton(
-              onPressed: () => Navigator.of(context)
-                  .pushNamed(SettingsScreen.routeName),
-              icon: const Icon(Icons.settings_rounded),
-              color: AppColors.chalkMuted,
-              tooltip: AppStrings.settings,
-            ),
-          ],
+        const HeartsBar(),
+        const SizedBox(width: 8),
+        CoinBadge(
+          onTap: () => Navigator.of(context).pushNamed(ShopScreen.routeName),
         ),
-        const SizedBox(height: 14),
-        Row(
+        const Spacer(),
+        Stack(
+          clipBehavior: Clip.none,
           children: [
-            const HeartsBar(),
-            const SizedBox(width: 8),
-            CoinBadge(
+            StatusPill(
+              icon: Icons.checklist_rounded,
+              iconColor: AppColors.chalk,
+              label: AppStrings.tasks,
+              iconAtEnd: true,
               onTap: () =>
-                  Navigator.of(context).pushNamed(ShopScreen.routeName),
+                  Navigator.of(context).pushNamed(TasksScreen.routeName),
             ),
-            const Spacer(),
-            const _TasksButton(),
+            if (claimable > 0)
+              PositionedDirectional(
+                top: -2,
+                end: -2,
+                child: Container(
+                  width: 20,
+                  height: 20,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: AppColors.wrong,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Text(
+                    '$claimable',
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w900,
+                      color: AppColors.chalk,
+                    ),
+                  ),
+                ),
+              ),
           ],
         ),
       ],
+    );
+  }
+}
+
+/// إحصائيات اللاعب الثلاث في بطاقة واحدة تفصلها خطوط رفيعة.
+class _StatsCard extends StatelessWidget {
+  const _StatsCard({
+    required this.bestScore,
+    required this.bestStreak,
+    required this.streak,
+  });
+
+  final int bestScore;
+  final int bestStreak;
+  final int streak;
+
+  @override
+  Widget build(BuildContext context) {
+    return Surface(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 14),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Icon(
+            Icons.sports_soccer,
+            size: 170,
+            color: Colors.white.withValues(alpha: 0.035),
+          ),
+          Row(
+            children: [
+              _Stat(
+                icon: Icons.star_rounded,
+                value: '$bestScore',
+                label: AppStrings.bestScore,
+              ),
+              _divider(),
+              _Stat(
+                icon: Icons.emoji_events_rounded,
+                value: '$bestStreak',
+                label: AppStrings.bestStreak,
+              ),
+              _divider(),
+              _Stat(
+                icon: Icons.event_available_rounded,
+                value: '$streak',
+                label: AppStrings.streak,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _divider() => Container(
+        width: 1,
+        height: 44,
+        color: Colors.white.withValues(alpha: 0.11),
+      );
+}
+
+class _Stat extends StatelessWidget {
+  const _Stat({required this.icon, required this.value, required this.label});
+
+  final IconData icon;
+  final String value;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 19, color: AppColors.gold),
+          const SizedBox(height: 4),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 20,
+              height: 1.1,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: AppColors.chalkMuted,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// «المزيد» بجانب عنوان الفئات — يفتح شاشة التصنيفات.
+class _MoreButton extends StatelessWidget {
+  const _MoreButton({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final shape = BorderRadius.circular(999);
+
+    return Material(
+      color: Colors.white.withValues(alpha: 0.04),
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: shape,
+        side: BorderSide(color: AppColors.cardBorder),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        child: SizedBox(
+          height: 48,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18),
+            child: Center(
+              child: Text(
+                AppStrings.more,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.gold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:football_trivia/core/constants/app_strings.dart';
 import 'package:football_trivia/domain/repositories/ad_service.dart';
 import 'package:football_trivia/presentation/providers/ads_provider.dart';
+import 'package:football_trivia/presentation/widgets/koora_buttons.dart';
 import 'package:football_trivia/presentation/widgets/rewarded_button.dart';
 import 'package:provider/provider.dart';
 
@@ -36,7 +37,7 @@ Future<void> _pump(
 }
 
 VoidCallback? _onPressed(WidgetTester tester) => tester
-    .widget<FilledButton>(find.byWidgetPredicate((w) => w is FilledButton))
+    .widget<GoldButton>(find.byType(GoldButton))
     .onPressed;
 
 void main() {

@@ -61,17 +61,19 @@ class HintBar extends StatelessWidget {
             ),
             onTap: () => _use(context, () => quiz.addExtraTime()),
           ),
-          const SizedBox(width: 10),
+          const SizedBox(width: 12),
           Text(
             '${economy.hintsLeft}',
             style: TextStyle(
-              fontWeight: FontWeight.w800,
+              fontSize: 15,
+              fontWeight: FontWeight.w900,
               color: economy.hasHints ? AppColors.gold : AppColors.chalkMuted,
             ),
           ),
+          const SizedBox(width: 5),
           Icon(
             Icons.lightbulb_rounded,
-            size: 15,
+            size: 16,
             color: AppColors.gold,
           ),
         ],
@@ -113,9 +115,7 @@ class _HintButton extends StatelessWidget {
         button: true,
         enabled: enabled,
         child: Material(
-          color: enabled
-              ? AppColors.cardSurface
-              : Colors.white.withValues(alpha: 0.04),
+          color: Colors.white.withValues(alpha: enabled ? 0.05 : 0.02),
           borderRadius: BorderRadius.circular(12),
           child: InkWell(
             borderRadius: BorderRadius.circular(12),
