@@ -1,0 +1,1306 @@
+{
+  "version": 2,
+  "category": "world_cup",
+  "questions": [
+    {
+      "id": 1001,
+      "level": 1,
+      "question": "Who won the 2022 World Cup in Qatar?",
+      "options": [
+        "Brazil",
+        "France",
+        "Argentina",
+        "Croatia"
+      ],
+      "answerIndex": 2,
+      "explanation": "Argentina beat France 4-2 on penalties after a 3-3 draw."
+    },
+    {
+      "id": 1002,
+      "level": 1,
+      "question": "How many times has Brazil won the World Cup?",
+      "options": [
+        "4",
+        "6",
+        "5",
+        "3"
+      ],
+      "answerIndex": 2,
+      "explanation": "Five titles: 1958, 1962, 1970, 1994, 2002."
+    },
+    {
+      "id": 1003,
+      "level": 1,
+      "question": "How often is the World Cup held?",
+      "options": [
+        "Every two years",
+        "Every 3 years",
+        "Every 4 years",
+        "Every 5 years"
+      ],
+      "answerIndex": 2,
+      "explanation": "Held every four years since 1930, aside from the Second World War break."
+    },
+    {
+      "id": 1004,
+      "level": 1,
+      "question": "Which country hosted the 2022 World Cup?",
+      "options": [
+        "Qatar",
+        "UAE",
+        "Saudi Arabia",
+        "Kuwait"
+      ],
+      "answerIndex": 0,
+      "explanation": "The first World Cup held in the Middle East and in winter."
+    },
+    {
+      "id": 1005,
+      "level": 1,
+      "question": "Who won the 2018 World Cup in Russia?",
+      "options": [
+        "France",
+        "Belgium",
+        "Croatia",
+        "England"
+      ],
+      "answerIndex": 0,
+      "explanation": "France beat Croatia 4-2 in the final."
+    },
+    {
+      "id": 1006,
+      "level": 1,
+      "question": "Which side faced Argentina in the 2022 final?",
+      "options": [
+        "Croatia",
+        "Morocco",
+        "France",
+        "Portugal"
+      ],
+      "answerIndex": 2,
+      "explanation": "A final many called one of the greatest in history."
+    },
+    {
+      "id": 1007,
+      "level": 1,
+      "question": "How many teams took part in the 2022 World Cup?",
+      "options": [
+        "24",
+        "48",
+        "32",
+        "16"
+      ],
+      "answerIndex": 2,
+      "explanation": "32 teams in 8 groups, the last edition with that format."
+    },
+    {
+      "id": 1008,
+      "level": 1,
+      "question": "On which continent was the 2010 World Cup held?",
+      "options": [
+        "Africa",
+        "Europe",
+        "Asia",
+        "South America"
+      ],
+      "answerIndex": 0,
+      "explanation": "Hosted by South Africa, the first World Cup on African soil."
+    },
+    {
+      "id": 1009,
+      "level": 1,
+      "question": "Who was the top scorer at the 2022 World Cup?",
+      "options": [
+        "Lionel Messi",
+        "Julian Alvarez",
+        "Kylian Mbappe",
+        "Olivier Giroud"
+      ],
+      "answerIndex": 2,
+      "explanation": "Mbappe scored 8 goals and won the Golden Boot."
+    },
+    {
+      "id": 1010,
+      "level": 1,
+      "question": "Who won the 2014 World Cup in Brazil?",
+      "options": [
+        "Germany",
+        "Netherlands",
+        "Argentina",
+        "Brazil"
+      ],
+      "answerIndex": 0,
+      "explanation": "Germany beat Argentina 1-0 in extra time."
+    },
+    {
+      "id": 1011,
+      "level": 2,
+      "question": "Who won the 2010 World Cup?",
+      "options": [
+        "Spain",
+        "Netherlands",
+        "Germany",
+        "Uruguay"
+      ],
+      "answerIndex": 0,
+      "explanation": "Spain's first world title, beating the Netherlands 1-0."
+    },
+    {
+      "id": 1012,
+      "level": 2,
+      "question": "Where was the first World Cup held in 1930?",
+      "options": [
+        "Uruguay",
+        "Italy",
+        "Brazil",
+        "France"
+      ],
+      "answerIndex": 0,
+      "explanation": "Uruguay hosted the first tournament and were crowned champions."
+    },
+    {
+      "id": 1013,
+      "level": 2,
+      "question": "How many teams take part in the 2026 World Cup?",
+      "options": [
+        "32",
+        "40",
+        "48",
+        "24"
+      ],
+      "answerIndex": 2,
+      "explanation": "The tournament expanded to 48 teams for the first time."
+    },
+    {
+      "id": 1014,
+      "level": 2,
+      "question": "Which countries hosted the 2026 World Cup?",
+      "options": [
+        "China and Japan",
+        "Spain, Portugal and Morocco",
+        "Argentina and Uruguay",
+        "The United States, Canada and Mexico"
+      ],
+      "answerIndex": 3,
+      "explanation": "The first World Cup co-hosted by three countries."
+    },
+    {
+      "id": 1015,
+      "level": 2,
+      "question": "Who won the 2006 World Cup in Germany?",
+      "options": [
+        "Italy",
+        "France",
+        "Germany",
+        "Portugal"
+      ],
+      "answerIndex": 0,
+      "explanation": "Italy beat France on penalties."
+    },
+    {
+      "id": 1016,
+      "level": 2,
+      "question": "Which two countries co-hosted the 2002 World Cup?",
+      "options": [
+        "South Korea and Japan",
+        "China and Japan",
+        "Thailand and Malaysia",
+        "Australia and New Zealand"
+      ],
+      "answerIndex": 0,
+      "explanation": "The first World Cup held in Asia and the first ever co-hosted by two countries."
+    },
+    {
+      "id": 1017,
+      "level": 2,
+      "question": "Who won the 2002 World Cup?",
+      "options": [
+        "Germany",
+        "South Korea",
+        "Turkey",
+        "Brazil"
+      ],
+      "answerIndex": 3,
+      "explanation": "Brazil beat Germany 2-0 with two goals from Ronaldo."
+    },
+    {
+      "id": 1018,
+      "level": 2,
+      "question": "Who won the 1998 World Cup?",
+      "options": [
+        "France",
+        "Brazil",
+        "Croatia",
+        "Netherlands"
+      ],
+      "answerIndex": 0,
+      "explanation": "France's first title, won on home soil 3-0 against Brazil."
+    },
+    {
+      "id": 1019,
+      "level": 2,
+      "question": "How many World Cup titles does Germany have?",
+      "options": [
+        "3",
+        "5",
+        "4",
+        "2"
+      ],
+      "answerIndex": 2,
+      "explanation": "1954, 1974, 1990 and 2014."
+    },
+    {
+      "id": 1020,
+      "level": 2,
+      "question": "How many World Cup titles does Argentina have?",
+      "options": [
+        "2",
+        "4",
+        "3",
+        "1"
+      ],
+      "answerIndex": 2,
+      "explanation": "1978, 1986 and 2022."
+    },
+    {
+      "id": 1021,
+      "level": 3,
+      "question": "Who finished the 2026 World Cup as the all-time top scorer, with 22 goals?",
+      "options": [
+        "Ronaldo Nazario",
+        "Miroslav Klose",
+        "Gerd Muller",
+        "Kylian Mbappe"
+      ],
+      "answerIndex": 3,
+      "explanation": "Mbappe passed Klose's 16 goals and ended the tournament one ahead of Messi."
+    },
+    {
+      "id": 1022,
+      "level": 3,
+      "question": "Who is the youngest player to score in a World Cup final?",
+      "options": [
+        "Kylian Mbappe",
+        "Michael Owen",
+        "Pele",
+        "Ronaldo"
+      ],
+      "answerIndex": 2,
+      "explanation": "Pele scored in the 1958 final aged 17."
+    },
+    {
+      "id": 1023,
+      "level": 3,
+      "question": "How many World Cup titles does Italy have?",
+      "options": [
+        "3",
+        "5",
+        "2",
+        "4"
+      ],
+      "answerIndex": 3,
+      "explanation": "1934, 1938, 1982 and 2006."
+    },
+    {
+      "id": 1024,
+      "level": 3,
+      "question": "Who won the 1994 World Cup?",
+      "options": [
+        "Italy",
+        "Bulgaria",
+        "Sweden",
+        "Brazil"
+      ],
+      "answerIndex": 3,
+      "explanation": "Brazil won on penalties after a goalless final."
+    },
+    {
+      "id": 1025,
+      "level": 3,
+      "question": "Which country hosted the 1994 World Cup?",
+      "options": [
+        "United States",
+        "Mexico",
+        "Canada",
+        "Spain"
+      ],
+      "answerIndex": 0,
+      "explanation": "The tournament set the all-time record for average attendance."
+    },
+    {
+      "id": 1026,
+      "level": 3,
+      "question": "Who won the 1990 World Cup?",
+      "options": [
+        "Argentina",
+        "Italy",
+        "England",
+        "West Germany"
+      ],
+      "answerIndex": 3,
+      "explanation": "West Germany beat Argentina 1-0 with a penalty."
+    },
+    {
+      "id": 1027,
+      "level": 3,
+      "question": "Who won the 1986 World Cup in Mexico?",
+      "options": [
+        "West Germany",
+        "France",
+        "Argentina",
+        "Belgium"
+      ],
+      "answerIndex": 2,
+      "explanation": "Maradona's tournament, as he led Argentina to the title."
+    },
+    {
+      "id": 1028,
+      "level": 3,
+      "question": "Which side has played at every World Cup without ever missing one?",
+      "options": [
+        "Germany",
+        "Brazil",
+        "Italy",
+        "Argentina"
+      ],
+      "answerIndex": 1,
+      "explanation": "Brazil is the only side to have featured at every edition since 1930."
+    },
+    {
+      "id": 1029,
+      "level": 3,
+      "question": "How many World Cup titles does France have?",
+      "options": [
+        "1",
+        "4",
+        "3",
+        "2"
+      ],
+      "answerIndex": 3,
+      "explanation": "1998 and 2018."
+    },
+    {
+      "id": 1030,
+      "level": 3,
+      "question": "Who won the Golden Ball for best player at the 2022 World Cup?",
+      "options": [
+        "Kylian Mbappe",
+        "Emiliano Martinez",
+        "Luka Modric",
+        "Lionel Messi"
+      ],
+      "answerIndex": 3,
+      "explanation": "Messi became the first player to win the award twice (2014 and 2022)."
+    },
+    {
+      "id": 1031,
+      "level": 4,
+      "question": "Who scored the fastest goal in World Cup history?",
+      "options": [
+        "Hakan Sukur",
+        "Clint Dempsey",
+        "Bryan Robson",
+        "Vaclav Masek"
+      ],
+      "answerIndex": 0,
+      "explanation": "Turkey's Hakan Sukur scored after just 11 seconds in 2002."
+    },
+    {
+      "id": 1032,
+      "level": 4,
+      "question": "Who scored Germany's winning goal in the 2014 final?",
+      "options": [
+        "Thomas Muller",
+        "Miroslav Klose",
+        "Mario Gotze",
+        "Andre Schurrle"
+      ],
+      "answerIndex": 2,
+      "explanation": "Gotze scored in the 113th minute of extra time."
+    },
+    {
+      "id": 1033,
+      "level": 4,
+      "question": "By what score did Germany beat Brazil in the 2014 semi-final?",
+      "options": [
+        "5-0",
+        "6-1",
+        "4-2",
+        "7-1"
+      ],
+      "answerIndex": 3,
+      "explanation": "A match dubbed the \"Mineirazo\" that stunned Brazil on home soil."
+    },
+    {
+      "id": 1034,
+      "level": 4,
+      "question": "How many goals did Mbappe score in the 2022 World Cup final?",
+      "options": [
+        "Two",
+        "Four",
+        "One",
+        "Three"
+      ],
+      "answerIndex": 3,
+      "explanation": "Only the second player to score a hat-trick in a final, after Geoff Hurst in 1966."
+    },
+    {
+      "id": 1035,
+      "level": 4,
+      "question": "Which was the first African side to reach a World Cup quarter-final?",
+      "options": [
+        "Nigeria",
+        "Senegal",
+        "Cameroon",
+        "Ghana"
+      ],
+      "answerIndex": 2,
+      "explanation": "Cameroon reached the quarter-final in 1990, led by Roger Milla."
+    },
+    {
+      "id": 1036,
+      "level": 4,
+      "question": "Which country hosted the 1990 World Cup?",
+      "options": [
+        "Spain",
+        "Italy",
+        "Germany",
+        "France"
+      ],
+      "answerIndex": 1,
+      "explanation": "A tournament remembered for low scoring and defensive football."
+    },
+    {
+      "id": 1037,
+      "level": 4,
+      "question": "Who is the only goalkeeper to win the World Cup's Golden Ball for best player?",
+      "options": [
+        "Oliver Kahn",
+        "Lev Yashin",
+        "Dino Zoff",
+        "Iker Casillas"
+      ],
+      "answerIndex": 0,
+      "explanation": "Oliver Kahn won it at the 2002 World Cup despite losing the final."
+    },
+    {
+      "id": 1038,
+      "level": 4,
+      "question": "How many goals did Zinedine Zidane score in the 1998 final?",
+      "options": [
+        "One",
+        "Four",
+        "Three",
+        "Two"
+      ],
+      "answerIndex": 3,
+      "explanation": "Zidane scored twice with headers against Brazil."
+    },
+    {
+      "id": 1039,
+      "level": 4,
+      "question": "Why was Zidane sent off in the 2006 final?",
+      "options": [
+        "Headbutting Marco Materazzi",
+        "Protesting to the referee",
+        "A violent tackle",
+        "Two yellow cards"
+      ],
+      "answerIndex": 0,
+      "explanation": "It was the last match of his professional career."
+    },
+    {
+      "id": 1040,
+      "level": 4,
+      "question": "Who won the Golden Boot at the 2018 World Cup?",
+      "options": [
+        "Romelu Lukaku",
+        "Antoine Griezmann",
+        "Kylian Mbappe",
+        "Harry Kane"
+      ],
+      "answerIndex": 3,
+      "explanation": "Kane scored six goals for England."
+    },
+    {
+      "id": 1041,
+      "level": 5,
+      "question": "Why were the 1942 and 1946 World Cups not held?",
+      "options": [
+        "A financial crisis",
+        "Disputes within FIFA",
+        "The Second World War",
+        "A disease outbreak"
+      ],
+      "answerIndex": 2,
+      "explanation": "The tournament stopped for 12 years between 1938 and 1950."
+    },
+    {
+      "id": 1042,
+      "level": 5,
+      "question": "Which side has lost the most World Cup finals without ever winning the title?",
+      "options": [
+        "Hungary",
+        "Netherlands",
+        "Czechoslovakia",
+        "Sweden"
+      ],
+      "answerIndex": 1,
+      "explanation": "The Netherlands lost three finals: 1974, 1978 and 2010."
+    },
+    {
+      "id": 1043,
+      "level": 5,
+      "question": "Which was the last host nation to win the World Cup on home soil?",
+      "options": [
+        "Argentina 1978",
+        "Germany 1974",
+        "France 1998",
+        "Italy 1990"
+      ],
+      "answerIndex": 2,
+      "explanation": "It hasn't happened again since, despite several hosting turns."
+    },
+    {
+      "id": 1044,
+      "level": 5,
+      "question": "How many times had Mexico hosted the World Cup before 2026?",
+      "options": [
+        "Once",
+        "Three times",
+        "Twice",
+        "Never"
+      ],
+      "answerIndex": 2,
+      "explanation": "1970 and 1986, making 2026 its third time."
+    },
+    {
+      "id": 1045,
+      "level": 5,
+      "question": "Who won the 1978 World Cup?",
+      "options": [
+        "Argentina",
+        "Netherlands",
+        "Brazil",
+        "Italy"
+      ],
+      "answerIndex": 0,
+      "explanation": "Argentina's first title, won on home soil against the Netherlands."
+    },
+    {
+      "id": 1046,
+      "level": 5,
+      "question": "Who won the 1974 World Cup?",
+      "options": [
+        "Netherlands",
+        "Brazil",
+        "Poland",
+        "West Germany"
+      ],
+      "answerIndex": 3,
+      "explanation": "West Germany beat the Netherlands 2-1 in the Munich final."
+    },
+    {
+      "id": 1047,
+      "level": 5,
+      "question": "Who is the oldest player to appear at a World Cup finals?",
+      "options": [
+        "Dino Zoff",
+        "Essam El-Hadary",
+        "Faryd Mondragon",
+        "Peter Shilton"
+      ],
+      "answerIndex": 1,
+      "explanation": "The Egyptian goalkeeper played in 2018 aged 45."
+    },
+    {
+      "id": 1048,
+      "level": 5,
+      "question": "How many goals did Just Fontaine score at the 1958 World Cup?",
+      "options": [
+        "13",
+        "11",
+        "9",
+        "15"
+      ],
+      "answerIndex": 0,
+      "explanation": "A record for most goals in a single edition, still unbroken today."
+    },
+    {
+      "id": 1049,
+      "level": 5,
+      "question": "Which European side first won the World Cup outside Europe?",
+      "options": [
+        "Spain",
+        "Germany",
+        "Italy",
+        "France"
+      ],
+      "answerIndex": 0,
+      "explanation": "Spain achieved it in South Africa in 2010."
+    },
+    {
+      "id": 1050,
+      "level": 5,
+      "question": "Who scored Spain's winning goal in the 2010 final?",
+      "options": [
+        "David Villa",
+        "Fernando Torres",
+        "Xavi",
+        "Andres Iniesta"
+      ],
+      "answerIndex": 3,
+      "explanation": "Iniesta scored in the 116th minute against the Netherlands."
+    },
+    {
+      "id": 1051,
+      "level": 6,
+      "question": "Who overtook Lothar Matthaus's record of 25 World Cup finals appearances?",
+      "options": [
+        "Paolo Maldini",
+        "Miroslav Klose",
+        "Lionel Messi",
+        "Uwe Seeler"
+      ],
+      "answerIndex": 2,
+      "explanation": "Messi passed it in the 2022 final, then extended his tally further in 2026."
+    },
+    {
+      "id": 1052,
+      "level": 6,
+      "question": "Who scored the first goal in World Cup history?",
+      "options": [
+        "Guillermo Stabile",
+        "Bert Patenaude",
+        "Lucien Laurent",
+        "Pedro Cea"
+      ],
+      "answerIndex": 2,
+      "explanation": "France's Lucien Laurent scored it in 1930 against Mexico."
+    },
+    {
+      "id": 1053,
+      "level": 6,
+      "question": "Who scored the first hat-trick in World Cup history?",
+      "options": [
+        "Lucien Laurent",
+        "Guillermo Stabile",
+        "Bert Patenaude",
+        "Oldrich Nejedly"
+      ],
+      "answerIndex": 2,
+      "explanation": "American Bert Patenaude scored it in 1930 against Paraguay."
+    },
+    {
+      "id": 1054,
+      "level": 6,
+      "question": "What was the trophy awarded to the champion before 1974 called?",
+      "options": [
+        "Golden FIFA Cup",
+        "Jules Rimet Trophy",
+        "Nations Cup",
+        "Victory Cup"
+      ],
+      "answerIndex": 1,
+      "explanation": "Named after the FIFA president who founded the tournament."
+    },
+    {
+      "id": 1055,
+      "level": 6,
+      "question": "Why did Brazil keep the Jules Rimet Trophy permanently?",
+      "options": [
+        "For winning the title three times",
+        "A FIFA decision to reward them",
+        "For hosting the tournament",
+        "They bought the trophy"
+      ],
+      "answerIndex": 0,
+      "explanation": "The rule said the trophy would go permanently to the first team to win it three times, achieved in 1970."
+    },
+    {
+      "id": 1056,
+      "level": 6,
+      "question": "In which edition were coloured cards used for the first time?",
+      "options": [
+        "1966",
+        "1970",
+        "1974",
+        "1978"
+      ],
+      "answerIndex": 1,
+      "explanation": "Invented by referee Ken Aston and introduced at the 1970 Mexico World Cup."
+    },
+    {
+      "id": 1057,
+      "level": 6,
+      "question": "In which edition was VAR used for the first time?",
+      "options": [
+        "2014",
+        "2010",
+        "2022",
+        "2018"
+      ],
+      "answerIndex": 3,
+      "explanation": "It was first applied at the 2018 Russia World Cup."
+    },
+    {
+      "id": 1058,
+      "level": 6,
+      "question": "In which edition was goal-line technology used for the first time?",
+      "options": [
+        "2010",
+        "2006",
+        "2018",
+        "2014"
+      ],
+      "answerIndex": 3,
+      "explanation": "Introduced in Brazil 2014 after the controversy over Lampard's disallowed goal in 2010."
+    },
+    {
+      "id": 1059,
+      "level": 6,
+      "question": "Who was the first player sent off with a red card in World Cup history?",
+      "options": [
+        "Carlos Caszely",
+        "Jose Batista",
+        "Reginald Boyle",
+        "Peter Strouken"
+      ],
+      "answerIndex": 0,
+      "explanation": "Chile's Carlos Caszely was sent off in 1974 after red cards were introduced."
+    },
+    {
+      "id": 1060,
+      "level": 6,
+      "question": "How many stadiums were used at the 2022 Qatar World Cup?",
+      "options": [
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      "answerIndex": 1,
+      "explanation": "Eight stadiums close together made attending two matches in one day possible."
+    },
+    {
+      "id": 1061,
+      "level": 7,
+      "question": "What was the official match ball of the 2022 World Cup called?",
+      "options": [
+        "Al Rihla",
+        "Telstar",
+        "Jabulani",
+        "Brazuca"
+      ],
+      "answerIndex": 0,
+      "explanation": "\"Al Rihla\" was the first World Cup ball to carry an Arabic name."
+    },
+    {
+      "id": 1062,
+      "level": 7,
+      "question": "What was the official mascot of the 2022 World Cup called?",
+      "options": [
+        "Zabivaka",
+        "Gauchito",
+        "Fuleco",
+        "La'eeb"
+      ],
+      "answerIndex": 3,
+      "explanation": "\"La'eeb\" is an Arabic word meaning a skilful player."
+    },
+    {
+      "id": 1063,
+      "level": 7,
+      "question": "Which stadium hosted the 2022 World Cup final?",
+      "options": [
+        "Al Bayt Stadium",
+        "Khalifa International Stadium",
+        "Stadium 974",
+        "Lusail Stadium"
+      ],
+      "answerIndex": 3,
+      "explanation": "Lusail Stadium, the tournament's largest, holding around 88,000 spectators."
+    },
+    {
+      "id": 1064,
+      "level": 7,
+      "question": "Who was the World Cup's all-time top scorer before Klose passed him?",
+      "options": [
+        "Gerd Muller",
+        "Pele",
+        "Just Fontaine",
+        "Ronaldo Nazario"
+      ],
+      "answerIndex": 3,
+      "explanation": "Ronaldo held the record with 15 goals until 2014."
+    },
+    {
+      "id": 1065,
+      "level": 7,
+      "question": "How many goals did Pele score at World Cup finals?",
+      "options": [
+        "10",
+        "12",
+        "14",
+        "16"
+      ],
+      "answerIndex": 1,
+      "explanation": "12 goals across four editions, and the only player to win the title three times."
+    },
+    {
+      "id": 1066,
+      "level": 7,
+      "question": "How many times has Uruguay won the World Cup?",
+      "options": [
+        "Once",
+        "Twice",
+        "Three times",
+        "Never"
+      ],
+      "answerIndex": 1,
+      "explanation": "1930 and 1950."
+    },
+    {
+      "id": 1067,
+      "level": 7,
+      "question": "What does the \"Maracanazo\" refer to?",
+      "options": [
+        "Brazil's 1950 defeat to Uruguay",
+        "Brazil winning its first title",
+        "The opening of the Maracana Stadium",
+        "The 2014 \"Mineirazo\""
+      ],
+      "answerIndex": 0,
+      "explanation": "A historic shock in front of around 200,000 spectators in Rio."
+    },
+    {
+      "id": 1068,
+      "level": 7,
+      "question": "Which match is known as the \"Battle of Berne\"?",
+      "options": [
+        "Italy v Chile 1962",
+        "Hungary v Brazil 1954",
+        "Netherlands v Portugal 2006",
+        "Argentina v England 1986"
+      ],
+      "answerIndex": 1,
+      "explanation": "A 1954 quarter-final that turned into a brawl between the players."
+    },
+    {
+      "id": 1069,
+      "level": 7,
+      "question": "Which match is known as the \"Disgrace of Gijon\"?",
+      "options": [
+        "West Germany v Austria 1982",
+        "Italy v South Korea 2002",
+        "France v Kuwait 1982",
+        "Brazil v Sweden 1978"
+      ],
+      "answerIndex": 0,
+      "explanation": "A result that suited both sides and later led to final-round fixtures being played simultaneously."
+    },
+    {
+      "id": 1070,
+      "level": 7,
+      "question": "Which was the first Asian side to reach a World Cup semi-final?",
+      "options": [
+        "Japan",
+        "South Korea",
+        "North Korea",
+        "Saudi Arabia"
+      ],
+      "answerIndex": 1,
+      "explanation": "South Korea reached the semi-final in 2002 on home soil."
+    },
+    {
+      "id": 1071,
+      "level": 8,
+      "question": "Who won the World Cup as both a player and a manager?",
+      "options": [
+        "Johan Cruyff",
+        "Bobby Charlton",
+        "Franz Beckenbauer",
+        "Michel Platini"
+      ],
+      "answerIndex": 2,
+      "explanation": "Beckenbauer won it as a player in 1974 and as manager in 1990, both with West Germany."
+    },
+    {
+      "id": 1072,
+      "level": 8,
+      "question": "Who is the youngest player to appear at a World Cup finals?",
+      "options": [
+        "Norman Whiteside",
+        "Pele",
+        "Mbappe",
+        "Salomon Diawara"
+      ],
+      "answerIndex": 0,
+      "explanation": "Northern Ireland's Whiteside played in 1982 aged 17."
+    },
+    {
+      "id": 1073,
+      "level": 8,
+      "question": "How many teams took part in the first World Cup in 1930?",
+      "options": [
+        "20",
+        "16",
+        "13",
+        "10"
+      ],
+      "answerIndex": 2,
+      "explanation": "There was no qualifying process; teams were invited directly."
+    },
+    {
+      "id": 1074,
+      "level": 8,
+      "question": "In which edition was there no final match at all?",
+      "options": [
+        "1934",
+        "1950",
+        "1938",
+        "1954"
+      ],
+      "answerIndex": 1,
+      "explanation": "The title was decided by a final group stage, and its last match happened to settle the champion."
+    },
+    {
+      "id": 1075,
+      "level": 8,
+      "question": "Which side had the same player, Vava, score in two consecutive finals?",
+      "options": [
+        "Italy",
+        "Brazil",
+        "Uruguay",
+        "Hungary"
+      ],
+      "answerIndex": 1,
+      "explanation": "Vava scored for Brazil in the 1958 and 1962 finals."
+    },
+    {
+      "id": 1076,
+      "level": 8,
+      "question": "How many nations have won the World Cup so far?",
+      "options": [
+        "6",
+        "8",
+        "7",
+        "9"
+      ],
+      "answerIndex": 1,
+      "explanation": "Brazil, Germany, Italy, Argentina, France, Uruguay, England and Spain."
+    },
+    {
+      "id": 1077,
+      "level": 8,
+      "question": "Which of these sides has never won the World Cup?",
+      "options": [
+        "England",
+        "Netherlands",
+        "Spain",
+        "Uruguay"
+      ],
+      "answerIndex": 1,
+      "explanation": "The Netherlands is the most famous side never to have won the title, despite three finals."
+    },
+    {
+      "id": 1078,
+      "level": 8,
+      "question": "Which defending champion crashed out in the group stage of the following edition in 2018?",
+      "options": [
+        "Spain",
+        "Germany",
+        "Italy",
+        "France"
+      ],
+      "answerIndex": 1,
+      "explanation": "Germany, the holders, went out in the first round in Russia."
+    },
+    {
+      "id": 1079,
+      "level": 8,
+      "question": "How many goals were scored at the 2022 Qatar World Cup?",
+      "options": [
+        "150",
+        "161",
+        "180",
+        "172"
+      ],
+      "answerIndex": 3,
+      "explanation": "The highest tally in a single edition up to that point."
+    },
+    {
+      "id": 1080,
+      "level": 8,
+      "question": "Which goalkeeper kept a clean sheet for 10 World Cup matches between 1982 and 1990?",
+      "options": [
+        "Sepp Maier",
+        "Fabien Barthez",
+        "Iker Casillas",
+        "Peter Shilton"
+      ],
+      "answerIndex": 3,
+      "explanation": "England's Shilton kept a clean sheet in 10 matches."
+    },
+    {
+      "id": 1081,
+      "level": 9,
+      "question": "Who was the first player to appear at five World Cups?",
+      "options": [
+        "Lothar Matthaus",
+        "Antonio Carbajal",
+        "Rafael Marquez",
+        "Gianluigi Buffon"
+      ],
+      "answerIndex": 1,
+      "explanation": "Mexican goalkeeper Carbajal, between 1950 and 1966."
+    },
+    {
+      "id": 1082,
+      "level": 9,
+      "question": "Who was sent off with the fastest red card in World Cup history?",
+      "options": [
+        "Carlos Caszely",
+        "Jose Batista",
+        "Marcelo Trobbiani",
+        "Ramon Quiroga"
+      ],
+      "answerIndex": 1,
+      "explanation": "Uruguay's Batista was sent off after 56 seconds in 1986."
+    },
+    {
+      "id": 1083,
+      "level": 9,
+      "question": "Who scored the fastest goal in World Cup final history?",
+      "options": [
+        "Geoff Hurst",
+        "Paul Breitner",
+        "Johan Neeskens",
+        "Mario Kempes"
+      ],
+      "answerIndex": 2,
+      "explanation": "Dutchman Neeskens scored from a penalty in the second minute in 1974."
+    },
+    {
+      "id": 1084,
+      "level": 9,
+      "question": "Which manager passed Helmut Schon's record of 25 World Cup finals matches in 2026?",
+      "options": [
+        "Carlos Bilardo",
+        "Didier Deschamps",
+        "Mario Zagallo",
+        "Sepp Herberger"
+      ],
+      "answerIndex": 1,
+      "explanation": "Deschamps took charge of his 26th match, France's 2026 semi-final against Spain, passing Schon's tally with West Germany."
+    },
+    {
+      "id": 1085,
+      "level": 9,
+      "question": "What is the biggest winning margin recorded in a World Cup match?",
+      "options": [
+        "7 goals",
+        "8 goals",
+        "9 goals",
+        "10 goals"
+      ],
+      "answerIndex": 2,
+      "explanation": "Achieved more than once, most notably Hungary 9-0 South Korea in 1954."
+    },
+    {
+      "id": 1086,
+      "level": 9,
+      "question": "Why did most European teams withdraw from the 1930 edition?",
+      "options": [
+        "Political disputes",
+        "The long, gruelling sea voyage",
+        "Poor prize money",
+        "Clashes with domestic leagues"
+      ],
+      "answerIndex": 1,
+      "explanation": "The voyage to Uruguay took weeks by ship."
+    },
+    {
+      "id": 1087,
+      "level": 9,
+      "question": "Which African side reached the quarter-final in 2010?",
+      "options": [
+        "Nigeria",
+        "Ivory Coast",
+        "Cameroon",
+        "Ghana"
+      ],
+      "answerIndex": 3,
+      "explanation": "Ghana went out on penalties after Luis Suarez's famous handball."
+    },
+    {
+      "id": 1088,
+      "level": 9,
+      "question": "Who scored the golden goal that knocked out Italy in 2002?",
+      "options": [
+        "Park Ji-sung",
+        "Ahn Jung-hwan",
+        "Hong Myung-bo",
+        "Seol Ki-hyeon"
+      ],
+      "answerIndex": 1,
+      "explanation": "A headed goal by Ahn Jung-hwan in extra time."
+    },
+    {
+      "id": 1089,
+      "level": 9,
+      "question": "Which side won the 1954 title in what became known as the \"Miracle of Berne\"?",
+      "options": [
+        "Hungary",
+        "Uruguay",
+        "Austria",
+        "West Germany"
+      ],
+      "answerIndex": 3,
+      "explanation": "West Germany came back from 0-2 down to beat Hungary 3-2."
+    },
+    {
+      "id": 1090,
+      "level": 9,
+      "question": "How many matches are played under the expanded 2026 World Cup format?",
+      "options": [
+        "64",
+        "80",
+        "96",
+        "104"
+      ],
+      "answerIndex": 3,
+      "explanation": "The number rose from 64 to 104 matches with the expanded tournament."
+    },
+    {
+      "id": 1091,
+      "level": 10,
+      "question": "Who scored the \"Goal of the Century\" against England in 1986?",
+      "options": [
+        "Jorge Burruchaga",
+        "Jorge Valdano",
+        "Diego Maradona",
+        "Daniel Passarella"
+      ],
+      "answerIndex": 2,
+      "explanation": "Maradona dribbled past half the England team before scoring."
+    },
+    {
+      "id": 1092,
+      "level": 10,
+      "question": "Which referee took charge of the 2022 World Cup final?",
+      "options": [
+        "Antonio Mateu Lahoz",
+        "Szymon Marciniak",
+        "Daniele Orsato",
+        "Bjorn Kuipers"
+      ],
+      "answerIndex": 1,
+      "explanation": "Poland's Marciniak refereed the Lusail final between Argentina and France."
+    },
+    {
+      "id": 1093,
+      "level": 10,
+      "question": "Which German player scored at the 1958, 1962, 1966 and 1970 World Cups?",
+      "options": [
+        "Uwe Seeler",
+        "Pele",
+        "Miroslav Klose",
+        "Cristiano Ronaldo"
+      ],
+      "answerIndex": 0,
+      "explanation": "Pele shares the feat across those same four editions, both being the first to score in four different World Cups."
+    },
+    {
+      "id": 1094,
+      "level": 10,
+      "question": "Which side lost the 1938 final to Italy?",
+      "options": [
+        "Brazil",
+        "Hungary",
+        "Czechoslovakia",
+        "Austria"
+      ],
+      "answerIndex": 1,
+      "explanation": "Italy beat Hungary 4-2 in Paris."
+    },
+    {
+      "id": 1095,
+      "level": 10,
+      "question": "Who was the top scorer at the first World Cup in 1930?",
+      "options": [
+        "Lucien Laurent",
+        "Pedro Cea",
+        "Guillermo Stabile",
+        "Bert Patenaude"
+      ],
+      "answerIndex": 2,
+      "explanation": "Argentina's Stabile scored 8 goals."
+    },
+    {
+      "id": 1096,
+      "level": 10,
+      "question": "Which manager led Mexico, Costa Rica, the United States, Nigeria and China at the World Cup?",
+      "options": [
+        "Sven-Goran Eriksson",
+        "Bora Milutinovic",
+        "Carlos Queiroz",
+        "Guus Hiddink"
+      ],
+      "answerIndex": 1,
+      "explanation": "Bora Milutinovic led five different nations across five straight editions from 1986 to 2002."
+    },
+    {
+      "id": 1097,
+      "level": 10,
+      "question": "What is the match known as in which England won its only title in 1966?",
+      "options": [
+        "The Wembley final",
+        "The Miracle of London",
+        "The night of Old Trafford",
+        "The Highbury final"
+      ],
+      "answerIndex": 0,
+      "explanation": "England beat West Germany 4-2 at Wembley with a Geoff Hurst hat-trick."
+    },
+    {
+      "id": 1098,
+      "level": 10,
+      "question": "Which side finished third at the 2022 World Cup?",
+      "options": [
+        "Morocco",
+        "Netherlands",
+        "Brazil",
+        "Croatia"
+      ],
+      "answerIndex": 3,
+      "explanation": "Croatia beat Morocco 2-1 in the third-place play-off."
+    },
+    {
+      "id": 1099,
+      "level": 10,
+      "question": "In which edition did Pele score his first World Cup goals?",
+      "options": [
+        "1958",
+        "1954",
+        "1962",
+        "1966"
+      ],
+      "answerIndex": 0,
+      "explanation": "He scored in Sweden in 1958 aged 17, the start of his legend."
+    },
+    {
+      "id": 1100,
+      "level": 10,
+      "question": "Who is the only player to have won the World Cup three times?",
+      "options": [
+        "Garrincha",
+        "Pele",
+        "Cafu",
+        "Mario Zagallo"
+      ],
+      "answerIndex": 1,
+      "explanation": "Pele won titles in 1958, 1962 and 1970."
+    }
+  ]
+}

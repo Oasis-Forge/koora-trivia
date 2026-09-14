@@ -1,0 +1,67 @@
+{
+  "version": 2,
+  "levelsPerCategory": 10,
+  "questionsPerLevel": 10,
+  "categories": [
+    {
+      "slug": "world_cup",
+      "name": "World Cup",
+      "idBlock": 1000,
+      "order": 1
+    },
+    {
+      "slug": "continental_cups",
+      "name": "Continental Cups",
+      "idBlock": 2000,
+      "order": 2
+    },
+    {
+      "slug": "champions_league",
+      "name": "Champions League",
+      "idBlock": 3000,
+      "order": 3
+    },
+    {
+      "slug": "top_leagues",
+      "name": "Top Leagues",
+      "idBlock": 4000,
+      "order": 4
+    },
+    {
+      "slug": "arab_football",
+      "name": "Arab Football",
+      "idBlock": 5000,
+      "order": 5
+    },
+    {
+      "slug": "players",
+      "name": "Players",
+      "idBlock": 6000,
+      "order": 6
+    },
+    {
+      "slug": "clubs",
+      "name": "Clubs",
+      "idBlock": 7000,
+      "order": 7
+    },
+    {
+      "slug": "coaches",
+      "name": "Managers",
+      "idBlock": 8000,
+      "order": 8
+    },
+    {
+      "slug": "laws",
+      "name": "Laws of the Game",
+      "idBlock": 9000,
+      "order": 9
+    },
+    {
+      "slug": "moments_records",
+      "name": "Moments & Records",
+      "idBlock": 10000,
+      "order": 10
+    }
+  ]
+}
