@@ -205,7 +205,8 @@ many different actions be rewarded with one currency, and lets prices stay fixed
 - **Review prompt:** `ShouldAskForReview` — never after an interstitial; at most every
   `AppConfig.reviewPromptMinDaysBetween` (30) days; a daily with streak ≥ `reviewPromptMinStreak` (3)
   or a 3-star level, nothing else. The result screen checks it last, after stats and stars are saved.
-  **The quiz timer doesn't pause in the background**, so Play's sheet must never open over a new round:
+  Play's sheet must never open over a new round (the quiz timer pauses in the background, but the round would
+  still start under the sheet):
   no prompt once the result screen is no longer the current route, and «أعد المستوى» · «المستوى
   التالي» · «العب مرة أخرى» wait for a request already in progress (`_pendingReview`).
   `InAppReviewPrompter` records the time **before** calling Play, so a failed call isn't retried every

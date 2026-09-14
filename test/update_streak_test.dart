@@ -1,3 +1,4 @@
+import 'package:football_trivia/core/utils/day_key.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:football_trivia/domain/entities/user_stats.dart';
 import 'package:football_trivia/domain/usecases/update_streak.dart';
@@ -48,5 +49,19 @@ void main() {
     const stats = UserStats(currentStreak: 7, lastDailyDayKey: '2026-07-30');
     expect(UpdateStreak.visibleStreak(stats, '2026-08-03'), 0);
     expect(UpdateStreak.visibleStreak(stats, '2026-07-31'), 7);
+  });
+
+
+  test('يوم تغيير الساعة يُحسب يوماً واحداً', () {
+    // مواعيد 2026 الأوروبية والأمريكية. بالتوقيت المحلي كان اليوم القصير
+    // (23 ساعة) يُعدّ صفراً على الأجهزة في تلك البلدان.
+    for (final (a, b) in [
+      ('2026-03-28', '2026-03-29'),
+      ('2026-10-24', '2026-10-25'),
+      ('2026-03-07', '2026-03-08'),
+      ('2026-10-31', '2026-11-01'),
+    ]) {
+      expect(DayKey.daysBetween(a, b), 1, reason: '$a → $b');
+    }
   });
 }

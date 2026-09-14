@@ -273,4 +273,46 @@ void main() {
 
     await _finish(tester, quiz);
   });
+
+
+  testWidgets('لمستان سريعتان على خيار خاطئ تخصمان قلباً واحداً', (tester) async {
+    final quiz = await _pumpQuiz(tester, tall);
+    final economy = Provider.of<EconomyProvider>(
+      tester.element(find.byType(QuizScreen)),
+      listen: false,
+    );
+    final before = economy.hearts;
+
+    // الخيار الأول صحيح في هذا البنك، والثاني خاطئ. اللمسة الثانية قبل إعادة البناء.
+    await tester.tap(find.byType(AnswerOption).at(1));
+    await tester.tap(find.byType(AnswerOption).at(1), warnIfMissed: false);
+    await _settle(tester);
+
+    expect(economy.hearts, before - 1);
+    expect(quiz.answers, hasLength(1));
+    await _finish(tester, quiz);
+  });
+
+  testWidgets('مغادرة التطبيق توقف العدّاد وتخفي السؤال حتى العودة',
+      (tester) async {
+    final quiz = await _pumpQuiz(tester, tall);
+
+    // `inactive` أول حالة تصل عند مغادرة التطبيق، وما زالت الإطارات تُرسم فيها
+    // (بعد `paused` يتوقف الرسم، فلا تظهر شاشة الإيقاف في الاختبار).
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    await tester.pump();
+    expect(quiz.isPaused, isTrue);
+    expect(find.text(AppStrings.quizPaused), findsOneWidget);
+    expect(find.text(_questionText), findsNothing);
+
+    final left = quiz.secondsLeft;
+    await tester.pump(const Duration(seconds: 5));
+    expect(quiz.secondsLeft, left);
+
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pump();
+    expect(quiz.isPaused, isFalse);
+    expect(find.text(_questionText), findsOneWidget);
+    await _finish(tester, quiz);
+  });
 }

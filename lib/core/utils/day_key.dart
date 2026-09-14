@@ -20,8 +20,10 @@ class DayKey {
   static int daysBetween(String a, String b) {
     final da = parse(a);
     final db = parse(b);
-    return DateTime(db.year, db.month, db.day)
-        .difference(DateTime(da.year, da.month, da.day))
+    // بتوقيت UTC: يوم تغيير الساعة محلياً طوله 23 ساعة، فكان `inDays` يعدّه صفراً
+    // وتنقطع السلسلة في البلدان التي تغيّر ساعتها.
+    return DateTime.utc(db.year, db.month, db.day)
+        .difference(DateTime.utc(da.year, da.month, da.day))
         .inDays;
   }
 
