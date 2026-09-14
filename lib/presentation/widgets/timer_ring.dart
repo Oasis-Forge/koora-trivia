@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/constants/app_config.dart';
+import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 
 /// عدّاد دائري للوقت المتبقي، يتحول للأحمر في آخر خمس ثوانٍ.
@@ -15,7 +16,10 @@ class TimerRing extends StatelessWidget {
     final danger = secondsLeft <= 5;
     final color = danger ? AppColors.wrong : AppColors.gold;
 
-    return SizedBox(
+    return Semantics(
+      label: AppStrings.timeLeftLabel(secondsLeft),
+      excludeSemantics: true,
+      child: SizedBox(
       width: 52,
       height: 52,
       child: Stack(
@@ -40,6 +44,7 @@ class TimerRing extends StatelessWidget {
             ),
           ),
         ],
+      ),
       ),
     );
   }

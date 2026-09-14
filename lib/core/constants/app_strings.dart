@@ -178,6 +178,19 @@ class AppStrings {
 
   // الاقتصاد
   static const String hearts = 'القلوب';
+
+  // تسميات قارئ الشاشة
+  /// [nextIn] مثل «12 د» من `HeartsBar`.
+  static String heartsLabel(int hearts, int max, {String? nextIn}) =>
+      nextIn == null
+          ? 'القلوب: $hearts من $max'
+          : 'القلوب: $hearts من $max، القلب التالي بعد $nextIn';
+  static String timeLeftLabel(int seconds) => 'الوقت المتبقي: $seconds';
+
+  /// [earned] مكتوبة بـ `ArabicCount`: «نجمتان».
+  static String starsLabel(String earned, int total) => '$earned من $total';
+  static const String back = 'رجوع';
+  static const String quitRound = 'إنهاء الجولة';
   static const String noHeartsTitle = 'نفدت قلوبك';
   static const String noHeartsBody =
       'انتظر حتى يتجدّد قلب، أو العب تحدي اليوم لتكسب قلباً مجانياً.';
@@ -193,6 +206,8 @@ class AppStrings {
   static const String hintSkip = 'تخطّي السؤال';
   static const String hintExtraTime = 'وقت إضافي';
   static const String noHintsLeft = 'انتهت مساعداتك اليوم';
+  static const String hintFiftyFiftyUsed = 'حذفت إجابتين من هذا السؤال بالفعل';
+  static const String hintExtraTimeUsed = 'الوقت الإضافي مرة واحدة لكل سؤال';
   static const String hintsLeftLabel = 'مساعدات متبقية اليوم';
   static const String skippedAnswer = 'تخطّيت هذا السؤال';
 
@@ -201,6 +216,7 @@ class AppStrings {
 
   /// في قائمة مراجعة الإجابات، حيث المساحة أضيق.
   static String correctIs(String answer) => 'الصحيح: $answer';
+  static String yourAnswerIs(String answer) => 'إجابتك: $answer';
 
   // المهام والمتجر
   static const String coins = 'العملات';

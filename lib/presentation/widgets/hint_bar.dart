@@ -18,7 +18,15 @@ class HintBar extends StatelessWidget {
     final economy = context.watch<EconomyProvider>();
 
     final playing = quiz.status == QuizStatus.playing;
-    final enabled = playing && economy.hasHints;
+    final available = playing && economy.hasHints;
+
+    // سبب التعطيل يظهر عند لمس الزر — كان الزر المعطّل لا يقول لماذا. لا سبب بعد
+    // كشف الإجابة، فالتعطيل حينها واضح.
+    String? reason({bool usedOnThisQuestion = false, String? usedReason}) {
+      if (!playing) return null;
+      if (!economy.hasHints) return AppStrings.noHintsLeft;
+      return usedOnThisQuestion ? usedReason : null;
+    }
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
@@ -27,21 +35,30 @@ class HintBar extends StatelessWidget {
           _HintButton(
             icon: Icons.content_cut_rounded,
             label: AppStrings.hintFiftyFifty,
-            enabled: enabled && !quiz.isFiftyFiftyUsed,
+            enabled: available && !quiz.isFiftyFiftyUsed,
+            disabledReason: reason(
+              usedOnThisQuestion: quiz.isFiftyFiftyUsed,
+              usedReason: AppStrings.hintFiftyFiftyUsed,
+            ),
             onTap: () => _use(context, () => quiz.applyFiftyFifty()),
           ),
           const SizedBox(width: 8),
           _HintButton(
             icon: Icons.skip_next_rounded,
             label: AppStrings.hintSkip,
-            enabled: enabled,
+            enabled: available,
+            disabledReason: reason(),
             onTap: () => _use(context, () => quiz.skipQuestion()),
           ),
           const SizedBox(width: 8),
           _HintButton(
             icon: Icons.more_time_rounded,
             label: AppStrings.hintExtraTime,
-            enabled: enabled && !quiz.isExtraTimeUsed,
+            enabled: available && !quiz.isExtraTimeUsed,
+            disabledReason: reason(
+              usedOnThisQuestion: quiz.isExtraTimeUsed,
+              usedReason: AppStrings.hintExtraTimeUsed,
+            ),
             onTap: () => _use(context, () => quiz.addExtraTime()),
           ),
           const SizedBox(width: 10),
@@ -65,16 +82,7 @@ class HintBar extends StatelessWidget {
   /// نستهلك المساعدة فقط إذا نجح تطبيقها فعلاً على السؤال.
   Future<void> _use(BuildContext context, bool Function() apply) async {
     final economy = context.read<EconomyProvider>();
-    final messenger = ScaffoldMessenger.of(context);
-
-    if (!economy.hasHints) {
-      messenger
-        ..hideCurrentSnackBar()
-        ..showSnackBar(const SnackBar(content: Text(AppStrings.noHintsLeft)));
-      return;
-    }
-
-    if (!apply()) return;
+    if (!economy.hasHints || !apply()) return;
     await economy.consumeHint();
   }
 }
@@ -84,19 +92,26 @@ class _HintButton extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.enabled,
+    required this.disabledReason,
     required this.onTap,
   });
 
   final IconData icon;
   final String label;
   final bool enabled;
+
+  /// يُعرض عند لمس الزر المعطّل؛ `null` يعني أن اللمس لا يفعل شيئاً.
+  final String? disabledReason;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
+    final reason = disabledReason;
+
     return Expanded(
-      child: Tooltip(
-        message: label,
+      child: Semantics(
+        button: true,
+        enabled: enabled,
         child: Material(
           color: enabled
               ? AppColors.cardSurface
@@ -104,9 +119,15 @@ class _HintButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           child: InkWell(
             borderRadius: BorderRadius.circular(12),
-            onTap: enabled ? onTap : null,
+            onTap: enabled
+                ? onTap
+                : reason == null
+                    ? null
+                    : () => ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(SnackBar(content: Text(reason))),
             child: Container(
-              height: 42,
+              height: 50,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
@@ -114,10 +135,31 @@ class _HintButton extends StatelessWidget {
                   color: enabled ? AppColors.cardBorder : Colors.transparent,
                 ),
               ),
-              child: Icon(
-                icon,
-                size: 19,
-                color: enabled ? AppColors.gold : AppColors.chalkMuted,
+              // الاسم تحت الأيقونة: الأيقونات وحدها لم تكن مفهومة للاعب الجديد.
+              // يُصغَّر المحتوى ولا يفيض إن كبّر اللاعب خط النظام.
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    icon,
+                    size: 18,
+                    color: enabled ? AppColors.gold : AppColors.chalkMuted,
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 10.5,
+                      fontWeight: FontWeight.w600,
+                      color: enabled ? AppColors.chalk : AppColors.chalkMuted,
+                    ),
+                  ),
+                ],
+              ),
               ),
             ),
           ),

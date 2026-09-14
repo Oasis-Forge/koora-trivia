@@ -127,6 +127,7 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
 - **Colors:** read `AppColors.x` (getters over the current `AppPalette`) at build time — never inside `const`, never
   cached in a field or default parameter. A new color is a new `AppPalette` field in all four palettes.
 - Tunable numbers go in `app_config.dart`; player-facing text in `app_strings.dart`.
+- **Every `IconButton` has a `tooltip`** (screen readers; `hints_and_a11y_test` fails otherwise).
 
 ## Question bank
 `assets/data/questions/<slug>.json`, 10 levels × 10 questions per category. Before editing any

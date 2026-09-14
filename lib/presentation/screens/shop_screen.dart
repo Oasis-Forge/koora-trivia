@@ -33,6 +33,7 @@ class ShopScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () => Navigator.of(context).pop(),
+                      tooltip: AppStrings.back,
                       icon: const Icon(Icons.arrow_forward_rounded),
                       color: AppColors.chalk,
                     ),
@@ -167,27 +168,52 @@ class _Row extends StatelessWidget {
           ),
           SizedBox(
             width: 104,
-            child: FilledButton(
-              onPressed: enabled ? () => _buy(context) : null,
-              style: FilledButton.styleFrom(
-                minimumSize: const Size.fromHeight(40),
-                disabledBackgroundColor: Colors.white.withValues(alpha: 0.07),
-                disabledForegroundColor: AppColors.chalkMuted,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '$price',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 14,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                FilledButton(
+                  onPressed: enabled ? () => _buy(context) : null,
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size.fromHeight(40),
+                    disabledBackgroundColor:
+                        Colors.white.withValues(alpha: 0.07),
+                    disabledForegroundColor: AppColors.chalkMuted,
+                  ),
+                  // يُصغَّر السعر في الزر الضيّق بدل أن يفيض مع الخطوط الكبيرة.
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        '$price',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(width: 3),
+                      const Icon(Icons.monetization_on_rounded, size: 15),
+                    ],
+                  ),
+                  ),
+                ),
+                // الزر المعطّل يقول لماذا — كان السبب لا يظهر إلا بعد شراء فاشل
+                // لا يمكن الوصول إليه أصلاً.
+                if (!enabled)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4),
+                    child: Text(
+                      disabledReason,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: AppColors.chalkMuted,
+                      ),
                     ),
                   ),
-                  const SizedBox(width: 3),
-                  const Icon(Icons.monetization_on_rounded, size: 15),
-                ],
-              ),
+              ],
             ),
           ),
         ],
