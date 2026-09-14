@@ -40,11 +40,11 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
 
 ### Decisions waiting on the owner
 - **② Name and address on the store page** (personal account) vs. an organization account. Undecided.
-- **③ Multiple languages:** the groundwork is in v1.0.5 (status at the top of I18N_PLAN.md §2). Still open: which
-  language first, translated vs. native questions, and `arab_football` — [docs/I18N_PLAN.md](docs/I18N_PLAN.md).
 - **Decided 14 September 2026:** themes are color variations of the current design only · a bare «لا شيء»
   option is not acceptable · the language follows the phone, and a Settings choice overrides it · ① one heart
-  per failed attempt, not per wrong answer (built in v1.0.5) · no answer recap on the result screen, in any mode.
+  per failed attempt, not per wrong answer (built in v1.0.5) · no answer recap on the result screen, in any mode · ③ English is added now: Arabic and English only, the bank
+  translated with the same IDs, `arab_football` kept and translated, not waiting for the levels 7–10 review
+  ([docs/I18N_PLAN.md](docs/I18N_PLAN.md)).
 
 ### Identity and secrets — never break these
 - **Never write the owner's personal name, personal account names, or personal email into tracked
