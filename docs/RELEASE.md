@@ -34,7 +34,7 @@
 | Developer account registration | ✅ | Shows the legal name and address from the payments profile — see decision ② below |
 | App created | ✅ | Game · Free · Arabic default |
 | Store settings | ✅ | Category **Trivia** · contact email |
-| Store listing | ✅ uploaded | Text from [STORE_LISTING.md](STORE_LISTING.md) · 512 icon · feature graphic · 5 screenshots (Arabic). English (en-US) translation still to add with v1.0.6 — see "English on Play Console" below |
+| Store listing | ✅ uploaded | Text from [STORE_LISTING.md](STORE_LISTING.md) · 512 icon · feature graphic · 5 screenshots (Arabic). English (en-US) translation added by the owner with the v1.0.6 upload (14 September 2026, in Google's review) |
 | AI asset declaration | ✅ | Icon and feature graphic labeled; screenshots are real captures, so not labeled |
 | Data safety | ✅ submitted | Updated by the owner on 13 September 2026 to the four types in [DATA_SAFETY_EN.md](DATA_SAFETY_EN.md): Approximate location · App interactions · Diagnostics · Device or other IDs — sent for Google's review |
 | Financial · health features | ✅ | None |
