@@ -67,7 +67,7 @@
    `supportedLocales` (`ar`).
 5. **`arab_football` for non-Arab audiences.** 100 questions, ~83 of which name an Arab country or
    club directly. Keep and translate, rename, or hide from the grid. The overlap rule that funnels
-   Arab content into it (CLAUDE.md) may not hold for other audiences.
+   Arab content into it (QUESTION_BANK.md) may not hold for other audiences.
 6. **Digits.** Western digits today (and intl's `ar` default) vs Arabic-Indic.
 7. **Gendered address.** 36 strings address the player in the masculine. Keep generic masculine, or add
    an ICU `select` on a gender setting that doesn't exist yet.
@@ -252,7 +252,7 @@ release note; Play needs one per listing language (`<ar-SA>` / `<en-US>`).
   rendered from the textless `assets/branding/feature_art.png`, an English screenshot set, and an
   English release-notes block.
 - `docs/STORE_LISTING.md` claims the game is «عربية بالكامل» (fully Arabic) — false once English ships.
-- CLAUDE.md rules that contradict a second language and must be rewritten when this lands: all
+- CLAUDE.md and QUESTION_BANK.md rules that contradict a second language and must be rewritten when this lands: all
   user-visible text lives in `app_strings.dart`; the project is described as fully Arabic RTL; the
   question-bank rules are only test-guarded in Arabic; the English store name is still conditional.
 - `README.md` is stale (11 tests, a single `questions.json`, a `difficulty` field).

@@ -3,7 +3,7 @@
 Last full check: **13 September 2026** · Latest build: **v1.0.3+4**
 
 > Per-section Play Console status and the next steps live in **"Current status"** at the
-> top of [CLAUDE.md](../CLAUDE.md). This file keeps the details: what was verified, what
+> top of [CLAUDE.md](../CLAUDE.md); the full Play Console table is in [RELEASE.md](RELEASE.md). This file keeps the details: what was verified, what
 > was entered in each form, the release procedure, and what's left before production.
 
 ---
@@ -109,7 +109,7 @@ mentions no fixed counts):
 
 > ⚠️ In `releases/v1.0.1_build2_*` the `.apk` is **versionCode 1** (built two minutes before
 > the version bump) while the `.aab` is correct. Verified with `aapt2 dump badging`; the
-> v1.0.2 and v1.0.3 folders match. See the archive-tool trap in CLAUDE.md.
+> v1.0.2 and v1.0.3 folders match. See the archive-tool trap in [RELEASE.md](RELEASE.md).
 
 ---
 
@@ -220,7 +220,7 @@ New **personal** developer accounts can't request production until a closed test
 ### Reviews
 - **Audit bugs visible in Arabic today:** the daily challenge repeats every other day, wrong count
   grammar («N يوم متتالية», «N نجمة»), raw exception text in a SnackBar, and a stale version string.
-  Details in [I18N_PLAN.md §0](I18N_PLAN.md) and CLAUDE.md "Remaining §0".
+  Details in [I18N_PLAN.md §0](I18N_PLAN.md) and PLAN.md Phase 1 → Content.
 - **Question accuracy:** 1000 questions written from knowledge up to May 2026, never reviewed
   by a human. Historical questions are safe; any recent record deserves a check. Start with
   levels 9–10.
