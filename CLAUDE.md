@@ -24,8 +24,8 @@ Tokens cost the owner real money.
 
 **Stage:** closed testing on Google Play since 9 September 2026. **Not published publicly yet.**
 
-**On Play:** `v1.0.3+4` on the closed track. **Built, release-checked and archived, not uploaded yet:**
-`v1.0.4+5` in `releases/v1.0.4_build5_2026-09-14/` (release notes in its `NOTES.md`), with PRs #2, #3 and #5–#14.
+**On Play:** `v1.0.3+4` live on the closed track. `v1.0.4+5` (`releases/v1.0.4_build5_2026-09-14/`, PRs #2, #3
+and #5–#14) was uploaded by the owner on 14 September 2026 and is in Google's review.
 
 **Privacy policy:** the live page carries the 14 September 2026 text, including "Messages you send us".
 
@@ -33,8 +33,8 @@ Tokens cost the owner real money.
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content fixes** from PLAN.md Phase 1 → Content, one micro PR each: never-right answers (~5 per PR) → outdated answers (~5 per PR).
-3. **Upload v1.0.4 (owner):** `app-release.aab` from `releases/v1.0.4_build5_2026-09-14/` to the closed track,
-   with the release notes in its `NOTES.md`. Content fixes continue for v1.0.5.
+3. **v1.0.5, in this order:** the content fixes above · the two small Phase 1 bug fixes and the quiz timer pause ·
+   color themes · language groundwork (both in PLAN.md Phase 1 → Features).
 4. **Owner's Play Console tasks:** replace the crashing versionCode 1 on the internal track · the
    "Some languages have errors" warning · displayed developer name · app-ads.txt (PLAN.md P1 · S).
 
@@ -42,7 +42,10 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
 - **① Heart deduction:** one heart per wrong answer drains all five in one failed attempt; proposal is
   one per failed attempt. Owner said "not now".
 - **② Name and address on the store page** (personal account) vs. an organization account. Undecided.
-- **③ Multiple languages:** deferred — [docs/I18N_PLAN.md](docs/I18N_PLAN.md).
+- **③ Multiple languages:** v1.0.5 gets the groundwork only. Still open: which language first, translated vs.
+  native questions, and `arab_football` — [docs/I18N_PLAN.md](docs/I18N_PLAN.md).
+- **Decided 14 September 2026:** themes are color variations of the current design only · a bare «لا شيء»
+  option is not acceptable.
 
 ### Identity and secrets — never break these
 - **Never write the owner's personal name, personal account names, or personal email into tracked
