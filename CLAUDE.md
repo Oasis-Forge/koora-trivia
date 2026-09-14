@@ -24,20 +24,17 @@ Tokens cost the owner real money.
 
 **Stage:** closed testing on Google Play since 9 September 2026. **Not published publicly yet.**
 
-**On Play:** `v1.0.3+4` (`releases/v1.0.3_build4_2026-09-08/`) on the closed track. **On `main`, not in
-a Play build yet:** PRs #2, #3 and #5–#8 (daily-challenge seed, zero-heart replay, ad consent,
-reminders, small screens, backup import, reports/feedback/review prompt/error log). They ship as v1.0.4.
+**On Play:** `v1.0.3+4` on the closed track. **Built, release-checked and archived, not uploaded yet:**
+`v1.0.4+5` in `releases/v1.0.4_build5_2026-09-14/` (release notes in its `NOTES.md`), with PRs #2, #3 and #5–#14.
 
-**Privacy policy:** `docs/privacy_policy.html` gained "Messages you send us" in PR #8 (effective
-14 September 2026) but is **not published** — publish to `privacy-site/` only with the owner's go-ahead,
-before v1.0.4 reaches testers.
+**Privacy policy:** the live page carries the 14 September 2026 text, including "Messages you send us".
 
 ### Next steps, in order
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content fixes** from PLAN.md Phase 1 → Content, one micro PR each: never-right answers (~5 per PR) → outdated answers (~5 per PR).
-3. **Ship v1.0.4:** steps in [docs/RELEASE.md](docs/RELEASE.md); log the release-build check in
-   PRE_PUBLISH §1.
+3. **Upload v1.0.4 (owner):** `app-release.aab` from `releases/v1.0.4_build5_2026-09-14/` to the closed track,
+   with the release notes in its `NOTES.md`. Content fixes continue for v1.0.5.
 4. **Owner's Play Console tasks:** replace the crashing versionCode 1 on the internal track · the
    "Some languages have errors" warning · displayed developer name · app-ads.txt (PLAN.md P1 · S).
 

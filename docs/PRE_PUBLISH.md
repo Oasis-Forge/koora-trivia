@@ -1,6 +1,6 @@
 # Pre-publish checklist — Koora Trivia (تحدي كرة القدم)
 
-Last full check: **13 September 2026** · Latest build: **v1.0.3+4**
+Last full check: **14 September 2026** · Latest build: **v1.0.4+5** (archived, not uploaded yet)
 
 > Per-section Play Console status and the next steps live in **"Current status"** at the
 > top of [CLAUDE.md](../CLAUDE.md); the full Play Console table is in [RELEASE.md](RELEASE.md). This file keeps the details: what was verified, what
@@ -56,6 +56,23 @@ Last full check: **13 September 2026** · Latest build: **v1.0.3+4**
 | Release launch with PRs #5 and #6 | release | ✅ no crash · an ad is requested at launch |
 | Version, feedback email, question report (14 September 2026) | release (PR #8) | ✅ Settings shows «الإصدار 1.0.3 (4)» · «أرسل ملاحظاتك» and a chosen report reason both open Gmail with a `mailto:` link · «أبلغ عن خطأ» appears only after answering · a flag icon in every result-review row · a full quick-play round with no crash |
 
+### v1.0.4 release check on the emulator (14 September 2026)
+
+Build A is v1.0.4+5 from `main` before PR #14; build B is the final v1.0.4+5 (same code plus the button-icon theme).
+
+| Flow | Build | Result |
+|---|---|---|
+| Upgrade over the testers' v1.0.3+4 | A and B | ✅ versionCode 5 / 1.0.4 · data kept · no crash |
+| Pass a level | A | ✅ 10/10 → 3 stars · «اجتزت المستوى» · next level unlocked · «المستوى التالي» and «أعد المستوى» |
+| Fail a level | A | ✅ 0/10 → empty stars · only «أعد المستوى» |
+| Zero hearts | A | ✅ «أعد المستوى» opens the no-hearts dialog instead of starting the level |
+| Rewarded ad in the no-hearts dialog | A | ✅ test ad plays · the dialog closes · heart granted |
+| Daily challenge | A | ✅ no replay button · +1 heart · streak 1 · home card disabled with the countdown |
+| Daily tasks and chest | A | ✅ 20 + 40 + 30 and the chest's 40 → 130 coins |
+| Shop | A | ✅ purchases disabled below 200 · +70 test ad → 200 · heart refill 2/5 → 5/5 and 0 coins |
+| Button icons | B | ✅ icons sit left of the text on home, Settings and the daily card |
+| Backup export and import | B | ✅ copy code → reset stats → import restores streak, best score, rounds and the done daily without a restart. One earlier attempt showed «رمز غير صالح» right after a `KEYCODE_PASTE` keyevent; two clean repeats succeeded |
+
 To re-run the EEA check: clear the app's data, then `flutter run --dart-define=UMP_DEBUG_EEA=true`
 (ignored in release builds). To make a reminder fire without waiting: `adb shell settings put global
 auto_time 0`, then `adb shell cmd alarm set-time <epoch ms>` more than an hour past the reminder time
@@ -69,8 +86,6 @@ and `adb shell wm density 480`; undo with `adb shell wm size reset` and `adb she
   the ad loads, in the EEA simulation.
 - The reminder's streak text on a day with a streak, and skipping today after finishing the daily
   (covered by `plan_reminders_test` and `reminder_test`, not yet seen on a device).
-- Progress export/import on a device (the logic is covered by `backup_test`).
-- Buying from the shop with real coins · the shop's rewarded ad (+70).
 - Real production ads — **never tap them yourself**.
 - Tablet layouts.
 
@@ -78,7 +93,7 @@ and `adb shell wm density 480`; undo with `adb shell wm size reset` and `adb she
 
 ## 2. Release procedure
 
-1. Bump `version` in `pubspec.yaml` (`1.0.3+4` ⇒ next is `1.0.4+5`).
+1. Bump `version` in `pubspec.yaml` (`1.0.4+5` ⇒ next is `1.0.5+6`).
 2. `flutter analyze` and `flutter test`.
 3. `flutter build appbundle --release` **then** `flutter build apk --release` — always both.
 4. `adb uninstall com.oasisforge.kooratrivia` → install the APK → exercise the affected flow.
@@ -105,7 +120,8 @@ mentions no fixed counts):
 | `1.0.0+1` | Generic onboarding copy · 3-column level grid · rewarded-ad fix. First internal-testing upload — **crashes on launch** (R8) |
 | `1.0.1+2` | R8 turned off, nothing else |
 | `1.0.2+3` | Covariance bug fix (stars · level unlocks · Next Level button) |
-| `1.0.3+4` | + replay button hidden after the daily challenge ← **latest** |
+| `1.0.3+4` | + replay button hidden after the daily challenge |
+| `1.0.4+5` | PRs #2–#14: daily-challenge seed · zero-heart replay · ad consent · working reminders · small screens · backup import · reports, feedback, review prompt, error log · content fixes · button icons on the left ← **latest** (archived 14 September 2026, not uploaded yet) |
 
 > ⚠️ In `releases/v1.0.1_build2_*` the `.apk` is **versionCode 1** (built two minutes before
 > the version bump) while the `.aab` is correct. Verified with `aapt2 dump badging`; the
