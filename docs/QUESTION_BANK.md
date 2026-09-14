@@ -44,9 +44,8 @@ challenge uses `SeededRandom(seed + q.id)` · quick play is random.
    U+2066–U+2069, U+200B–U+200D, U+FEFF). Harmless in Arabic, but they silently reorder text in a
    left-to-right translation. Guarded by a test.
 
-> ⚠️ Rule 2's test lists only the masculine «كلاهما»; the feminine «كلتاهما» slipped through at
-> `laws.json:946` (question 9073). Rule 4's near-duplicate check is also weaker than it looks: the
-> stopwords «على» and «إلى» never match after normalisation (`question_bank_test.dart:256-263`).
+> ⚠️ Rule 4's near-duplicate check is weaker than it looks: the
+> stopwords «على» and «إلى» never match after normalisation (`_fingerprint` in `question_bank_test.dart`).
 
 ### Rules for resolving category overlap
 
