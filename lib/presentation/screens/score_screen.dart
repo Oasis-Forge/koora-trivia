@@ -6,16 +6,15 @@ import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/constants/app_config.dart';
 import '../../core/utils/arabic_count.dart';
-import '../../core/utils/day_key.dart';
 import '../../domain/entities/quiz_result.dart';
 import '../../domain/repositories/review_prompter.dart';
 import '../../domain/usecases/build_share_text.dart';
-import '../../domain/usecases/evaluate_level.dart';
 import '../../domain/usecases/should_ask_for_review.dart';
 import '../providers/ads_provider.dart';
 import '../providers/economy_provider.dart';
 import '../providers/progress_provider.dart';
 import '../providers/quiz_provider.dart';
+import '../providers/record_round.dart';
 import '../providers/settings_provider.dart';
 import '../providers/stats_provider.dart';
 import '../widgets/hearts_bar.dart';
@@ -70,53 +69,29 @@ class _ScoreScreenState extends State<ScoreScreen>
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
 
+      // الحفظ أولاً وفي مكان واحد (`RecordRound`): لا يتوقف إن غادر اللاعب الشاشة،
+      // ولا يضيع إن أُغلق التطبيق أثناء إعلان. الشاشة تعرض ما تغيّر فقط.
+      final record = await RecordRound(
+        stats: context.read<StatsProvider>(),
+        economy: context.read<EconomyProvider>(),
+        progress: context.read<ProgressProvider>(),
+      )(_result);
+
+      if (!mounted) return;
+      setState(() {
+        _earnedHeart = record.earnedHeart;
+        _lostHeart = record.lostHeart;
+        _levelOutcome = record.level;
+      });
+      if (record.level?.passed ?? false) {
+        context.read<SettingsProvider>().feedback.levelPassed();
+      }
+
       // إعلان بيني كل ثلاث جولات — **ولا إعلان بعد تحدي اليوم إطلاقاً**،
       // فهو الطقس اليومي الذي يجب أن يبقى نظيفاً.
       final ads = context.read<AdsProvider>();
       ads.recordRoundFinished();
       final adShown = !_result.isDaily && await ads.maybeShowInterstitial();
-
-      if (!mounted) return;
-      await context.read<StatsProvider>().recordResult(_result);
-
-      // إكمال تحدي اليوم يمنح قلباً مرة واحدة ليومه — يربط النمط المجاني بنمط
-      // المستويات. الرسالة تظهر فقط إن أُضيف قلب فعلاً.
-      if (_result.isDaily && mounted) {
-        final economy = context.read<EconomyProvider>();
-        final added = await economy.grantDailyChallengeHeart(
-          dayKey: _result.dailyDayKey ?? DayKey.today(),
-        );
-        await economy.recordDailyCompleted();
-        if (added && mounted) setState(() => _earnedHeart = true);
-      }
-
-      if (!mounted) return;
-      if (_result.isLevel) {
-        // قلب المحاولة خُصم عند بدئها ويعود عند الاجتياز. يُعاد قبل حفظ التقدّم
-        // حتى لا يضيع على من اجتاز إن تعثّر الحفظ.
-        final passed = const EvaluateLevel()
-            .passed(correct: _result.correctCount, total: _result.total);
-        final economy = context.read<EconomyProvider>();
-        if (passed) {
-          await economy.refundLevelHeart();
-        } else if (mounted) {
-          setState(() => _lostHeart = true);
-        }
-
-        if (!mounted) return;
-        final outcome =
-            await context.read<ProgressProvider>().recordLevelResult(_result);
-
-        if (!mounted) return;
-        // المهمة تُحتسب على اجتياز المستوى لا على مجرد لعبه.
-        if (outcome != null && outcome.passed) {
-          context.read<SettingsProvider>().feedback.levelPassed();
-          await context.read<EconomyProvider>().recordLevelCompleted();
-        }
-
-        if (!mounted) return;
-        setState(() => _levelOutcome = outcome);
-      }
 
       // آخر خطوة: بعد حفظ السلسلة والنجوم التي يُبنى عليها القرار.
       if (!mounted) return;
