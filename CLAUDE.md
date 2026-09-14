@@ -119,6 +119,8 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
 - **Reminders:** one-shot per day (ids 1001–1007); the manifest receivers are required;
   `MY_PACKAGE_REPLACED` stays undeclared; never mix one-shot and repeating reminders.
 - **Economy balance:** full daily income (130 🪙) stays below the cheapest purchase (200 🪙).
+- **Button icons sit on the left of their text** (after it in RTL) through `iconAlignment` in `AppTheme` —
+  owner's request, 14 September 2026. Don't override it per button.
 - Tunable numbers go in `app_config.dart`; player-facing text in `app_strings.dart`.
 
 ## Question bank
