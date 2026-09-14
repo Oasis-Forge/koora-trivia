@@ -1,10 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:football_trivia/core/constants/app_config.dart';
 import 'package:football_trivia/core/utils/day_key.dart';
+import 'package:football_trivia/data/datasources/economy_local_datasource.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
 import 'package:football_trivia/domain/repositories/economy_repository.dart';
 import 'package:football_trivia/domain/usecases/regenerate_hearts.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class _FakeEconomyRepository implements EconomyRepository {
   _FakeEconomyRepository([this.economy = const Economy()]);
@@ -186,17 +188,55 @@ void main() {
       final provider = EconomyProvider(repository: repo);
       await provider.init();
 
-      await provider.grantDailyChallengeHeart();
+      expect(
+        await provider.grantDailyChallengeHeart(dayKey: '2026-09-14'),
+        isTrue,
+      );
       expect(provider.hearts, 3);
     });
 
-    test('المنح لا يتجاوز الحد الأقصى', () async {
+    test('قلب تحدي اليوم مرة واحدة ليومه، ويُمنح ليوم جديد', () async {
+      final provider = EconomyProvider(
+        repository: _FakeEconomyRepository(
+          Economy(hearts: 2, lastRegenAtIso: DateTime.now().toIso8601String()),
+        ),
+      );
+      await provider.init();
+
+      expect(
+        await provider.grantDailyChallengeHeart(dayKey: '2026-09-14'),
+        isTrue,
+      );
+      expect(
+        await provider.grantDailyChallengeHeart(dayKey: '2026-09-14'),
+        isFalse,
+      );
+      expect(provider.hearts, 3);
+
+      expect(
+        await provider.grantDailyChallengeHeart(dayKey: '2026-09-15'),
+        isTrue,
+      );
+      expect(provider.hearts, 4);
+    });
+
+    test('المنح لا يتجاوز الحد الأقصى ولا يُعدّ قلباً مضافاً', () async {
       final provider =
           EconomyProvider(repository: _FakeEconomyRepository());
       await provider.init();
 
-      await provider.grantDailyChallengeHeart();
+      expect(
+        await provider.grantDailyChallengeHeart(dayKey: '2026-09-14'),
+        isFalse,
+      );
       expect(provider.hearts, AppConfig.maxHearts);
+    });
+
+    test('يوم آخر قلب تحدٍّ يُحفظ ويُقرأ', () async {
+      SharedPreferences.setMockInitialValues({});
+      final source = PrefsEconomyDataSource();
+      await source.write(const Economy(dailyHeartDayKey: '2026-09-14'));
+      expect((await source.read()).dailyHeartDayKey, '2026-09-14');
     });
 
     test('الإعلان المكافأ يمنح قلباً ويستهلك من الحد اليومي', () async {

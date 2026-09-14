@@ -2,21 +2,21 @@
 
 > Moved from CLAUDE.md on 14 September 2026. Update the count and the table when tests are added.
 
-**359 tests across 42 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+**367 tests across 43 files, all passing.** `flutter analyze` is clean. Shared test code lives in
 `test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
 (in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
 (`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
 
 | File | Count | Covers |
 |---|---|---|
-| `quiz_provider_test.dart` | 26 | Scoring · speed bonus · multipliers · timer · sequencing · result building · a load error shows a friendly message and is reported to `FlutterError` · an answer is recorded once, never after time-up · pause freezes the timer · the daily keeps the day it started |
+| `quiz_provider_test.dart` | 27 | Scoring · speed bonus (capped even with extra time) · extra time once per question · multipliers · timer · sequencing · result building · a load error shows a friendly message and is reported to `FlutterError` · an answer is recorded once, never after time-up · pause freezes the timer · the daily keeps the day it started |
 | `should_ask_for_review_test.dart` | 5 | Review prompt rules: daily streak threshold · 3 stars only · never after quick play · never after an ad · 30-day gap |
 | `score_screen_review_test.dart` | 9 | **Widget test** — the result screen asks for a review after a 3-day daily streak or 3 stars, not after a shorter streak, 2 stars, a failed level, a recent ask or an interstitial · not once the player has left for the next round · «أعد المستوى» waits for a review request in progress · every review row has «أبلغ عن خطأ» |
 | `email_builders_test.dart` | 7 | `mailto` encoding (`%20`, newlines, `&`) · question report: recipient, subject, id, category, level, text, options with the approved one marked, version · distinct reason labels · feedback email: version, "no errors", newest errors only with date and time, long ones cut |
 | `report_question_button_test.dart` | 6 | **Widget test** — reasons sheet, the chosen reason opens the email · dismissing opens nothing · no mail app shows the address · compact icon with tooltip · the sheet stays until the mail app is asked, and a second tap doesn't open twice · dismissing it meanwhile doesn't close the screen under it |
 | `error_log_test.dart` | 7 | `PrefsErrorLog`: newest first with stack top · cap · long messages cut · rapid writes all kept · corrupt log recovers · `installErrorHandlers`: framework errors logged and passed on · uncaught async errors logged and still printed by the engine |
 | `platform_services_test.dart` | 3 | Review prompt time recorded even when Play's dialog fails · none before the first ask · `PackageAppInfo` version and build |
-| `economy_test.dart` | 18 | Heart regen (remainder · clock going backward · corrupt date) · daily limits · `EconomyProvider` (deduction · daily-challenge grant · rewarded-ad cap · hints) |
+| `economy_test.dart` | 20 | Heart regen (remainder · clock going backward · corrupt date) · daily limits · `EconomyProvider` (deduction · daily-challenge grant once per daily, reporting whether a heart was added · rewarded-ad cap · hints) · the daily-heart day is saved and read back |
 | `level_progress_test.dart` | 13 | Star calculation · progressive unlocks · stars never decrease (entity and use case) |
 | `tasks_coins_test.dart` | 12 | Daily tasks (completion · claim once · chest · daily reset) · shop (heart refill · insufficient coins · hint pack and consumption order) |
 | `ads_test.dart` | 14 | `AdsProvider` (earned/dismissed · no two ads at once · isReady · notifies when an ad loads · privacy options and resume pass through · dispose detaches) · interstitials (round counting · remove-ads) · ad rewards — **through a fake service** |
@@ -42,6 +42,7 @@
 | `language_choice_test.dart` | 5 | New players get Arabic while it's the only language, the phone language once there are two · the phone language and a picked one are saved and read back, older settings read as Arabic · `copyWith` can switch to the phone language · the provider saves the choice · backups carry the phone-language choice |
 | `level_attempt_test.dart` | 4 | The thresholds shown before a level match the evaluation (no 0.7 × 10 rounding error) · **widget:** `NoHeartsDialog.startLevel` charges one heart when the level starts · with no hearts it shows the dialog and starts nothing · a level that fails to load charges nothing |
 | `categories_and_replay_test.dart` | 3 | A categories load failure is flagged and logged, and a retry succeeds · **widget:** the categories screen shows the error and a retry button instead of spinning · «العب مرة أخرى» after quick play in a category replays that category |
+| `daily_result_test.dart` | 5 | **Widget test** — daily result: «كسبت قلباً!» only when a heart was added, not with full hearts · the «ذكّرني» card turns the reminder on and confirms the time · «العب مستوى» opens the categories · neither appears after quick play |
 | `levels_screen_test.dart` | 6 | **Widget test** — completed, available and locked tiles · the first open level is auto-selected · a locked tap explains and keeps the selection · level 10 fully visible above the footer on 360×640 and 411×731 · the footer shows the pass mark, star thresholds and heart cost from the evaluation |
 | `quiz_screen_layout_test.dart` | 11 | **Widget test** — «أبلغ عن خطأ» appears in the feedback panel only after the answer · on 360×640 the 4th option sits above the hints bar in the compact size · on a tall screen the options sit right above the hints bar · the feedback panel scrolls fully into view · the next question starts at the top again · a panel taller than the screen shows its title · a short question's card is as wide as the options · Skip reads as a skip, time-up still as time-up · a quick double tap on a wrong option records one answer and charges no heart · leaving the app pauses the timer and hides the question |
 | `progress_provider_test.dart` | 5 | **Provider-to-storage wiring** — pass ⇒ stars ⇒ next unlocked · survives restart (guards the covariance bug) |

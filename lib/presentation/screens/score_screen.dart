@@ -6,6 +6,7 @@ import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/constants/app_config.dart';
 import '../../core/utils/arabic_count.dart';
+import '../../core/utils/day_key.dart';
 import '../../domain/entities/quiz_result.dart';
 import '../../domain/repositories/review_prompter.dart';
 import '../../domain/usecases/build_share_text.dart';
@@ -21,6 +22,7 @@ import '../widgets/hearts_bar.dart';
 import '../widgets/pitch_background.dart';
 import '../widgets/report_question_button.dart';
 import '../widgets/stat_tile.dart';
+import 'categories_screen.dart';
 import 'levels_screen.dart';
 import 'quiz_screen.dart';
 
@@ -77,12 +79,15 @@ class _ScoreScreenState extends State<ScoreScreen>
       if (!mounted) return;
       await context.read<StatsProvider>().recordResult(_result);
 
-      // إكمال تحدي اليوم يمنح قلباً — يربط النمط المجاني بنمط المستويات.
+      // إكمال تحدي اليوم يمنح قلباً مرة واحدة ليومه — يربط النمط المجاني بنمط
+      // المستويات. الرسالة تظهر فقط إن أُضيف قلب فعلاً.
       if (_result.isDaily && mounted) {
         final economy = context.read<EconomyProvider>();
-        await economy.grantDailyChallengeHeart();
+        final added = await economy.grantDailyChallengeHeart(
+          dayKey: _result.dailyDayKey ?? DayKey.today(),
+        );
         await economy.recordDailyCompleted();
-        if (mounted) setState(() => _earnedHeart = true);
+        if (added && mounted) setState(() => _earnedHeart = true);
       }
 
       if (!mounted) return;
@@ -224,6 +229,15 @@ class _ScoreScreenState extends State<ScoreScreen>
     Navigator.of(context).popUntil((route) => route.isFirst);
   }
 
+  /// بعد تحدي اليوم: إلى التصنيفات لبدء مستوى — كانت الشاشة طريقاً مسدوداً لا
+  /// يقدّم إلا الرئيسية.
+  Future<void> _playLevel() async {
+    await _pendingReview;
+    if (!mounted) return;
+    context.read<QuizProvider>().abandon();
+    Navigator.of(context).pushReplacementNamed(CategoriesScreen.routeName);
+  }
+
   @override
   Widget build(BuildContext context) {
     final stats = context.watch<StatsProvider>();
@@ -348,6 +362,7 @@ class _ScoreScreenState extends State<ScoreScreen>
                   ),
                 ),
               ],
+              if (_result.isDaily) const _DailyReminderCard(),
               const SizedBox(height: 24),
               FilledButton.icon(
                 onPressed: _share,
@@ -355,6 +370,18 @@ class _ScoreScreenState extends State<ScoreScreen>
                 label: const Text(AppStrings.shareScore),
               ),
               const SizedBox(height: 12),
+              if (_result.isDaily) ...[
+                FilledButton.icon(
+                  onPressed: _playLevel,
+                  style: FilledButton.styleFrom(
+                    backgroundColor: AppColors.pitchLight,
+                    foregroundColor: AppColors.chalk,
+                  ),
+                  icon: const Icon(Icons.sports_soccer_rounded),
+                  label: const Text(AppStrings.playLevel),
+                ),
+                const SizedBox(height: 12),
+              ],
               if (_showNextLevelButton) ...[
                 FilledButton.icon(
                   onPressed: _playNextLevel,
@@ -396,6 +423,85 @@ class _ScoreScreenState extends State<ScoreScreen>
               for (final answer in _result.answers) _ReviewRow(answer: answer),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// بعد تحدي اليوم: تذكير الغد بلمسة، والإذن يُطلب لحظتها. لا تظهر إن كان التنبيه
+/// مفعّلاً من قبل، وتؤكّد الموعد بعد التفعيل.
+class _DailyReminderCard extends StatefulWidget {
+  const _DailyReminderCard();
+
+  @override
+  State<_DailyReminderCard> createState() => _DailyReminderCardState();
+}
+
+class _DailyReminderCardState extends State<_DailyReminderCard> {
+  bool _enabledHere = false;
+  bool _busy = false;
+
+  Future<void> _enable() async {
+    if (_busy) return;
+    setState(() => _busy = true);
+    final settings = context.read<SettingsProvider>();
+    final messenger = ScaffoldMessenger.of(context);
+
+    final granted = await settings.setReminderEnabled(true);
+    if (!mounted) return;
+    setState(() {
+      _busy = false;
+      _enabledHere = granted;
+    });
+    if (!granted) {
+      messenger
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          const SnackBar(content: Text(AppStrings.reminderDenied)),
+        );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<SettingsProvider>();
+    if (settings.reminderEnabled && !_enabledHere) {
+      return const SizedBox.shrink();
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 14),
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+        decoration: BoxDecoration(
+          color: AppColors.cardSurface,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppColors.cardBorder),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              _enabledHere
+                  ? Icons.notifications_active_rounded
+                  : Icons.notifications_rounded,
+              color: AppColors.gold,
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                _enabledHere
+                    ? AppStrings.dailyReminderSet(settings.reminderLabel)
+                    : AppStrings.dailyReminderAsk,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
+            ),
+            if (!_enabledHere)
+              TextButton(
+                onPressed: _busy ? null : _enable,
+                child: const Text(AppStrings.dailyReminderButton),
+              ),
+          ],
         ),
       ),
     );

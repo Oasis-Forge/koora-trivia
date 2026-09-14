@@ -13,6 +13,7 @@ import 'package:football_trivia/presentation/providers/progress_provider.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
 import 'package:football_trivia/presentation/providers/settings_provider.dart';
 import 'package:football_trivia/presentation/providers/stats_provider.dart';
+import 'package:football_trivia/presentation/screens/categories_screen.dart';
 import 'package:football_trivia/presentation/screens/quiz_screen.dart';
 import 'package:football_trivia/presentation/screens/score_screen.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,9 @@ enum RoundMode { level, quickPlay, daily }
 
 /// نص شاشة السؤال البديلة — ظهوره يعني أن زراً بدأ جولة جديدة.
 const quizScreenStub = 'quiz-screen';
+
+/// نص شاشة التصنيفات البديلة.
+const categoriesScreenStub = 'categories-screen';
 
 /// يلعب جولة كاملة ثم يعرض شاشة النتيجة، مع بديل لشاشة السؤال يكشف أي انتقال إليها.
 ///
@@ -109,6 +113,8 @@ Future<QuizProvider> pumpScoreScreen(
         routes: {
           QuizScreen.routeName: (_) =>
               const Scaffold(body: Text(quizScreenStub)),
+          CategoriesScreen.routeName: (_) =>
+              const Scaffold(body: Text(categoriesScreenStub)),
         },
       ),
     ),

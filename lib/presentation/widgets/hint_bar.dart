@@ -41,7 +41,7 @@ class HintBar extends StatelessWidget {
           _HintButton(
             icon: Icons.more_time_rounded,
             label: AppStrings.hintExtraTime,
-            enabled: enabled,
+            enabled: enabled && !quiz.isExtraTimeUsed,
             onTap: () => _use(context, () => quiz.addExtraTime()),
           ),
           const SizedBox(width: 10),
