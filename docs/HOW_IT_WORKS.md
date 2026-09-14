@@ -9,7 +9,7 @@
 - Three modes: levels (category grid → level grid → quiz) · quick play · daily challenge
 - Deterministic daily challenge (same questions for everyone, no server, date-derived seed), once per day
 - Day streak `user_stats_v1` · level progress with stars and progressive unlocks `level_progress_v1`
-- Result screen: level stars · "Next level" on a pass · "Replay level" · answer review · share
+- Result screen: level stars · "Next level" on a pass · "Replay level" · answer review after quick play and the daily only, not after a level (owner, 14 September 2026) · share
 - Economy: regenerating hearts + hints + daily limits · coins + 3 daily tasks + chest + shop
 - Rewarded ads (heart · 70 coins) and interstitials (off) — production IDs in release · UMP consent
   gate, privacy row in Settings and retried ad loads (PR #5)

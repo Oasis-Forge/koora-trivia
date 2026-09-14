@@ -168,7 +168,9 @@ void main() {
 
   testWidgets('كل صف في مراجعة الإجابات فيه زر «أبلغ عن خطأ»', (tester) async {
     _showAllButtons(tester);
-    final quiz = await pumpScoreScreen(tester, correct: 4);
+    // المراجعة بعد اللعب السريع وتحدي اليوم فقط، لا بعد المستوى.
+    final quiz =
+        await pumpScoreScreen(tester, correct: 4, mode: RoundMode.quickPlay);
 
     expect(find.byTooltip(AppStrings.reportQuestion), findsNWidgets(10));
     quiz.abandon();

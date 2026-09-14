@@ -44,7 +44,7 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
   language first, translated vs. native questions, and `arab_football` — [docs/I18N_PLAN.md](docs/I18N_PLAN.md).
 - **Decided 14 September 2026:** themes are color variations of the current design only · a bare «لا شيء»
   option is not acceptable · the language follows the phone, and a Settings choice overrides it · ① one heart
-  per failed attempt, not per wrong answer (built in v1.0.5).
+  per failed attempt, not per wrong answer (built in v1.0.5) · no answer recap on the result screen after a level.
 
 ### Identity and secrets — never break these
 - **Never write the owner's personal name, personal account names, or personal email into tracked
