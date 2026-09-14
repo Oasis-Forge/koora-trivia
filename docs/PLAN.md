@@ -39,6 +39,7 @@
 - English, step 4 (on): `app_en.arb` makes English a supported language · new players follow the phone, players who started in Arabic stay on it · the Settings «اللغة» panel appears · `AppLanguageScope` applies `MaterialApp`'s language, so a phone-language change while the app runs is followed too · launcher name «Koora Trivia» in English and Android 13 per-app language (`locales_config.xml`) · English store listing text in `docs/STORE_LISTING.md` · checked on the emulator in English; the question card tags size to their text again (they stretched across the card since #35).
 - v1.0.6+7: full test run on `main` (analyze clean, 449 tests) · AAB and APK built · release-checked on the emulator (launch, a full quick-play round to the result screen, Settings version and language) · archived in `releases/v1.0.6_build7_2026-09-14/` with Arabic and English release notes · not uploaded yet.
 - English store screenshots: 5 × 1080×1920 in `screenshots/store_9x16_en/` (home, categories, levels, question, answer feedback) for the en-US listing. The Arabic set in `screenshots/store_9x16/` was recaptured the same way in the v1.0.6 design.
+- 14 September 2026 (owner): v1.0.6+7 uploaded to Play Console for review with the English (en-US) store listing; v1.0.5 was skipped.
 - PR #7, merged 14 September 2026: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
 - PR #6, merged 13 September 2026: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
 - PR #5, merged 13 September 2026: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
@@ -57,20 +58,19 @@
 ### Release & tech debt
 - **P0 · M**: Production gate. Only 5 of the 12 required testers have joined. Recruit 15–20 as a buffer and record the date the 12th joins.
 - **P1 · S**: Play Console and GitHub tasks:
-  - Host app-ads.txt at the oasis-forge.github.io root and set it as the listing's Website.
-  - With the v1.0.6 upload, paste the new daily line («بنقاط ×1.5») from `docs/STORE_LISTING.md` into the full description.
-- **P1 · M**: Check on a real phone (the emulator release check passed on 14 September 2026) and log results in PRE_PUBLISH §1:
+  - Host app-ads.txt at the oasis-forge.github.io root and set it as the listing's Website.- **P1 · M**: Check on a real phone (the emulator release check passed on 14 September 2026) and log results in PRE_PUBLISH §1:
   - The in-app review sheet, from a closed-test install.
   - Quiz screen and level grid on a real short phone and a real tall one.
 
 ### Features
-- **P1 · S**: English is built (steps 1–4, see Done). Left: the owner adds the English store listing from `docs/STORE_LISTING.md`, and a person fluent in English spot-checks the translated questions.
+- **P1 · S**: English is built (steps 1–4, see Done). Left: a person fluent in English spot-checks the translated questions (the English store listing went up with v1.0.6).
 
 ---
 
 ## Phase 2: first update after launch
 
 ### Bugs
+- **P3 · S**: A daily task's progress can read past its goal («21 / 10» after claiming); cap the shown count at the goal *(tasks_screen.dart)*.
 
 ### UI/UX
 - **P2 · S**: The coin badge looks like a shop button, has a 48 dp tap target, and also works on the Tasks screen.
@@ -90,7 +90,7 @@
 
 ### Release & tech debt
 - **P2 · S**: CI: GitHub Actions runs analyze and test on every PR with Flutter 3.44.8, once in UTC and once in a western time zone.
-- **P2 · M**: Upgrade plugins: flutter_timezone 5 (removes the Gradle workaround), share_plus 13, flutter_local_notifications 22, google_mobile_ads 9.1. Retest the reminder, sharing and ads on a release build.
+- **P2 · M**: Upgrade plugins: flutter_timezone 5 (removes the Gradle workaround), share_plus 13, flutter_local_notifications 22, google_mobile_ads 9.1. Retest the reminder, sharing and ads on a release build. Builds already warn that some plugins don't support Flutter's Built-in Kotlin yet.
 - **P2 · M**: Docs:
   - Replace the stale public README (offline claim, 11 tests, debug key).
   - Rewrite ECONOMY.md in English to match AppConfig.
@@ -164,9 +164,6 @@
 - After a level pass, make "Next level" the main button instead of Share.
 - The home category chips look like they apply to Levels too, and the app uses two different words for "category".
 - The splash screen still shows the old `ic_ball` drawing.
-- The Σ icon in Settings stats is mirrored.
-- The reminder time always shows in 24-hour format.
 - `UserStats.lastPlayedDayKey` is saved but never used. Keep it for a future cloud move.
 - New question formats: "Who am I?" clues and picture questions that avoid rights issues.
-- Back buttons use `arrow_forward` and the quiz Next button `arrow_back`; both auto-mirror, so Arabic shows ← for Back, the reverse of Material's RTL convention. Changing it needs owner approval.
 - `cmdline-tools` is missing from the Android SDK (builds work without it).

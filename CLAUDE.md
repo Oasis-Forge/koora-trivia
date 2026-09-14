@@ -26,9 +26,9 @@ Tokens cost the owner real money.
 
 **On Play:** `v1.0.3+4` live on the closed track. `v1.0.4+5` (`releases/v1.0.4_build5_2026-09-14/`, PRs #2, #3
 and #5–#14) was uploaded by the owner on 14 September 2026 to internal and closed testing. `v1.0.5+6`
-(`releases/v1.0.5_build6_2026-09-14/`, PRs #16–#29) is built, checked on the emulator and archived — not uploaded yet. `v1.0.6+7`
-(`releases/v1.0.6_build7_2026-09-14/`, PRs #31–#42: redesign, English, in-app updates) is built, release-checked and
-archived — not uploaded yet; it contains everything in v1.0.5.
+(`releases/v1.0.5_build6_2026-09-14/`, PRs #16–#29) was archived but never uploaded (skipped). `v1.0.6+7`
+(`releases/v1.0.6_build7_2026-09-14/`, PRs #31–#42: redesign, English, in-app updates) was uploaded by the owner on
+14 September 2026 with the English store listing and is in Google's review; it contains everything in v1.0.5.
 
 **Privacy policy:** the live page carries the 14 September 2026 text, including "Messages you send us".
 
@@ -36,10 +36,9 @@ archived — not uploaded yet; it contains everything in v1.0.5.
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
-3. **v1.0.6 (owner):** upload `releases/v1.0.6_build7_2026-09-14/app-release.aab` with the Arabic and English notes in
-   its `NOTES.md` (v1.0.5 can be skipped), and add the English listing — checklist in [docs/RELEASE.md](docs/RELEASE.md).
-4. **Owner's Play Console tasks:** app-ads.txt (PLAN.md P1 · S) · paste the new «بنقاط ×1.5» daily line from `docs/STORE_LISTING.md` into the store description with the v1.0.6 upload. Also add the English
-   listing from the same file, then re-check the "Some languages have errors" warning.
+3. **After Google approves v1.0.6 (owner):** check the pre-launch report and the "Some languages have errors" warning,
+   and make sure v1.0.6 reaches the closed track the testers use.
+4. **Owner's Play Console tasks:** app-ads.txt (PLAN.md P1 · S).
 
 ### Decisions waiting on the owner
 - **② Name and address on the store page** (personal account) vs. an organization account. Undecided.
