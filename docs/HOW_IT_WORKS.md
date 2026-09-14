@@ -146,9 +146,9 @@ many different actions be rewarded with one currency, and lets prices stay fixed
 |---|---|
 | Hearts | 5, **level mode only**: one per attempt, charged at the start by `NoHeartsDialog.startLevel` and refunded on a pass, so failing, quitting or closing the app costs one |
 | Regen | One heart every 30 minutes, computed on read, not by a timer |
-| Daily challenge | Grants one free heart on completion |
+| Daily challenge | Grants one free heart once per daily (`dailyHeartDayKey` in the economy); «كسبت قلباً!» only when a heart was added. The result screen offers a one-tap reminder card and «العب مستوى» |
 | Rewarded ad | +1 heart, max 4 per day (`heartsPerRewardedAdWatch`) |
-| Hints | 3 per day: remove two answers · skip · extra time |
+| Hints | 3 per day: remove two answers · skip · extra time (once per question; the speed bonus stays capped at 50) |
 
 - **The daily challenge and quick play are completely free** — no hearts, no hints, no ads. That
   protects the streak from being broken by monetization.

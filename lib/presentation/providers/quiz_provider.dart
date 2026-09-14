@@ -68,6 +68,9 @@ class QuizProvider extends ChangeNotifier {
   /// خيارات أزالتها مساعدة "حذف إجابتين" من السؤال الحالي.
   final Set<int> _eliminated = {};
 
+  /// الوقت الإضافي مرة واحدة لكل سؤال: تكراره كان يمدّ الوقت بلا حد.
+  bool _extraTimeUsed = false;
+
   Timer? _timer;
   int _secondsLeft = AppConfig.secondsPerQuestion;
   final Random _random = Random();
@@ -88,6 +91,7 @@ class QuizProvider extends ChangeNotifier {
 
   Set<int> get eliminatedOptions => Set.unmodifiable(_eliminated);
   bool get isFiftyFiftyUsed => _eliminated.isNotEmpty;
+  bool get isExtraTimeUsed => _extraTimeUsed;
   int get index => _index;
   int get total => _questions.length;
   int get score => _score;
@@ -189,6 +193,7 @@ class QuizProvider extends ChangeNotifier {
       _questions = questions;
       _answers.clear();
       _eliminated.clear();
+      _extraTimeUsed = false;
       _index = 0;
       _score = 0;
       _selectedIndex = null;
@@ -212,8 +217,8 @@ class QuizProvider extends ChangeNotifier {
     }
   }
 
-  /// يعيد `false` إن لم تُسجَّل الإجابة (كُشف السؤال أو انتهى وقته)، فلا تخصم
-  /// الشاشة قلباً على لمسة ثانية.
+  /// يعيد `false` إن لم تُسجَّل الإجابة (كُشف السؤال أو انتهى وقته)، فلا تُحتسب
+  /// لمسة ثانية.
   bool selectAnswer(int optionIndex) {
     if (_status != QuizStatus.playing) return false;
     _cancelTimer();
@@ -224,8 +229,10 @@ class QuizProvider extends ChangeNotifier {
     var earned = 0;
     if (question.isCorrect(optionIndex)) {
       final base = AppConfig.pointsPerCorrect * question.difficulty.multiplier;
+      // الوقت الإضافي يرفع الثواني فوق مدة السؤال، فالنسبة تُقصّ عند 1 حتى لا
+      // تتجاوز المكافأة حدّها (كانت تبلغ 75 وأكثر).
       final speedBonus = (AppConfig.maxSpeedBonus *
-              (_secondsLeft / AppConfig.secondsPerQuestion))
+              (_secondsLeft / AppConfig.secondsPerQuestion).clamp(0.0, 1.0))
           .round();
       earned = (base + speedBonus).round();
       if (_isDaily) earned = (earned * AppConfig.dailyMultiplier).round();
@@ -258,6 +265,7 @@ class QuizProvider extends ChangeNotifier {
     _index++;
     _selectedIndex = null;
     _eliminated.clear();
+    _extraTimeUsed = false;
     _status = QuizStatus.playing;
     _startTimer();
     notifyListeners();
@@ -301,9 +309,10 @@ class QuizProvider extends ChangeNotifier {
     return true;
   }
 
-  /// إضافة ثوانٍ إلى عدّاد السؤال الحالي.
+  /// إضافة ثوانٍ إلى عدّاد السؤال الحالي، مرة واحدة لكل سؤال.
   bool addExtraTime() {
-    if (_status != QuizStatus.playing) return false;
+    if (_status != QuizStatus.playing || _extraTimeUsed) return false;
+    _extraTimeUsed = true;
     _secondsLeft += AppConfig.extraTimeSeconds;
     notifyListeners();
     return true;

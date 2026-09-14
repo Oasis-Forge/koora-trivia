@@ -199,6 +199,29 @@ void main() {
       });
     });
 
+    test('الوقت الإضافي مرة واحدة لكل سؤال، ولا يرفع مكافأة السرعة فوق حدّها',
+        () {
+      fakeAsync((async) {
+        final quiz = _startedLevel(async, level: 1);
+
+        expect(quiz.addExtraTime(), isTrue);
+        expect(quiz.addExtraTime(), isFalse);
+        expect(quiz.isExtraTimeUsed, isTrue);
+        expect(quiz.secondsLeft,
+            AppConfig.secondsPerQuestion + AppConfig.extraTimeSeconds);
+
+        // 30 ثانية متبقية لا تمنح أكثر من المكافأة الكاملة (كانت 75).
+        quiz.selectAnswer(_rightIndex(quiz));
+        expect(quiz.score, AppConfig.pointsPerCorrect + AppConfig.maxSpeedBonus);
+
+        quiz.next();
+        expect(quiz.isExtraTimeUsed, isFalse);
+        expect(quiz.addExtraTime(), isTrue);
+
+        quiz.dispose();
+      });
+    });
+
     test('مضاعف تحدي اليوم يرفع النقاط بنسبة النصف', () {
       fakeAsync((async) {
         final quiz = _provider();

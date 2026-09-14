@@ -91,7 +91,7 @@ void main() {
       final h = _Harness();
       await h.start(_missing(2), after: const Duration(minutes: 10));
 
-      await h.provider.grantDailyChallengeHeart();
+      await h.provider.grantDailyChallengeHeart(dayKey: '2026-09-01');
 
       expect(h.provider.hearts, 3);
       expect(h.provider.untilNextHeart, const Duration(minutes: 20));
@@ -101,7 +101,7 @@ void main() {
       final h = _Harness();
       await h.start(_missing(4), after: const Duration(minutes: 10));
 
-      await h.provider.grantDailyChallengeHeart();
+      await h.provider.grantDailyChallengeHeart(dayKey: '2026-09-02');
 
       expect(h.provider.hearts, AppConfig.maxHearts);
       expect(h.provider.untilNextHeart, isNull);

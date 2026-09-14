@@ -21,6 +21,7 @@ class Economy {
     this.dailyDoneToday = false,
     this.claimedTaskIds = const {},
     this.chestClaimed = false,
+    this.dailyHeartDayKey,
   });
 
   final int hearts;
@@ -50,6 +51,9 @@ class Economy {
   final Set<String> claimedTaskIds;
   final bool chestClaimed;
 
+  /// يوم آخر تحدٍّ مُنح قلبه — قلب واحد لكل يوم تحدٍّ مهما عُرضت نتيجته.
+  final String? dailyHeartDayKey;
+
   Economy copyWith({
     int? hearts,
     String? lastRegenAtIso,
@@ -65,6 +69,7 @@ class Economy {
     bool? dailyDoneToday,
     Set<String>? claimedTaskIds,
     bool? chestClaimed,
+    String? dailyHeartDayKey,
   }) {
     return Economy(
       hearts: hearts ?? this.hearts,
@@ -81,6 +86,7 @@ class Economy {
       dailyDoneToday: dailyDoneToday ?? this.dailyDoneToday,
       claimedTaskIds: claimedTaskIds ?? this.claimedTaskIds,
       chestClaimed: chestClaimed ?? this.chestClaimed,
+      dailyHeartDayKey: dailyHeartDayKey ?? this.dailyHeartDayKey,
     );
   }
 }

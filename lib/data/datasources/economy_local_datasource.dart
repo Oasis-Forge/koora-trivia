@@ -37,6 +37,7 @@ class PrefsEconomyDataSource implements EconomyLocalDataSource {
                 .map((e) => e as String)
                 .toSet(),
         chestClaimed: map['chestClaimed'] as bool? ?? false,
+        dailyHeartDayKey: map['dailyHeartDayKey'] as String?,
       );
     } on TypeError catch (e) {
       throw FormatException('بنية اقتصاد غير متوقعة: $e');
@@ -79,6 +80,7 @@ class PrefsEconomyDataSource implements EconomyLocalDataSource {
         'dailyDoneToday': economy.dailyDoneToday,
         'claimedTaskIds': economy.claimedTaskIds.toList(),
         'chestClaimed': economy.chestClaimed,
+        'dailyHeartDayKey': economy.dailyHeartDayKey,
       }),
     );
   }

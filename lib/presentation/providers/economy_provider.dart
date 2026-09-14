@@ -141,9 +141,17 @@ class EconomyProvider extends ChangeNotifier {
   /// إعادة قلب المحاولة عند اجتياز المستوى: المحاولة الناجحة لا تكلّف شيئاً.
   Future<void> refundLevelHeart() => _grantHearts(1);
 
-  /// منح قلب مقابل إكمال تحدي اليوم.
-  Future<void> grantDailyChallengeHeart() =>
-      _grantHearts(AppConfig.heartsForDailyChallenge);
+  /// قلب إكمال تحدي اليوم، مرة واحدة لكل يوم تحدٍّ ([dayKey] يوم بدئه). يعيد
+  /// `true` إن أُضيف قلب فعلاً، فلا تظهر «كسبت قلباً!» مع قلوب ممتلئة أو منحٍ مكرر.
+  Future<bool> grantDailyChallengeHeart({required String dayKey}) async {
+    _refresh(persist: false);
+    if (_economy.dailyHeartDayKey == dayKey) return false;
+
+    final before = _economy.hearts;
+    _economy = _economy.copyWith(dailyHeartDayKey: dayKey);
+    await _grantHearts(AppConfig.heartsForDailyChallenge);
+    return _economy.hearts > before;
+  }
 
   /// منح قلب مقابل إعلان مكافأ. يعيد `false` إذا استُنفد الحد اليومي.
   Future<bool> grantRewardedHearts() async {

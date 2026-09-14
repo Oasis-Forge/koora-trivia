@@ -155,6 +155,13 @@ class AppStrings {
   static const String reminderToggleHint =
       'تنبيه يومي في الوقت الذي تختاره حتى لا تنكسر سلسلتك.';
   static const String reminderTime = 'وقت التنبيه';
+
+  // بعد تحدي اليوم
+  static const String dailyReminderAsk = 'نذكّرك بتحدي الغد؟';
+  static const String dailyReminderButton = 'ذكّرني';
+  static String dailyReminderSet(String time) =>
+      'سنذكّرك بتحدي الغد الساعة $time';
+  static const String playLevel = 'العب مستوى';
   static const String reminderDenied =
       'الإشعارات معطّلة. فعّلها من إعدادات النظام.';
   static const String reminderChannelName = 'تحدي اليوم';
