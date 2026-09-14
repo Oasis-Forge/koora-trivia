@@ -170,6 +170,27 @@ void main() {
     expect(offenders, isEmpty, reason: offenders.join('\n'));
   });
 
+  test('لا توجد محارف اتجاه أو تنسيق مخفية', () {
+    // لا تُرى بالعربية، لكنها تعيد ترتيب النص بصمت إن نُسخ إلى لغة تُكتب من
+    // اليسار، وتُفشل مطابقة النصوص.
+    final hidden = RegExp('[\u200B-\u200F\u061C\u202A-\u202E\u2066-\u2069\uFEFF]');
+
+    final offenders = <String>[];
+    for (final e in all) {
+      final text = [
+        e.q['question'],
+        ...(e.q['options'] as List<dynamic>),
+        e.q['explanation'] ?? '',
+      ].join('\n');
+      for (final m in hidden.allMatches(text)) {
+        final code = m.group(0)!.codeUnitAt(0).toRadixString(16).toUpperCase();
+        offenders.add('${e.q['id']} (${e.slug}): U+$code');
+      }
+    }
+
+    expect(offenders, isEmpty, reason: offenders.join('\n'));
+  });
+
   test('لا يوجد سؤال مكرر بين التصنيفات', () {
     final seen = <String, ({int id, String slug})>{};
     final duplicates = <String>[];

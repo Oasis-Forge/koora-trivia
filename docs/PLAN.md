@@ -27,9 +27,9 @@
 - **P1 · M**: Answers made wrong by 2024–26 events: 1021, 1051, 1084, 4030, 8083, 6037, 10009, 10091, 1079/10024, 1011, 3048, 5048, 6099, 5022, 2097, 8008, 1014, 1044. Re-check each fact on the day you edit it.
 - **P1 · M**: Answers that were never right, or that contradict their own explanation: 10086, 10063, 10082, 5040, 5056, 10092, 3072/10052, 3081, 4081, 7097, 5092, 10095, 9073, 3087, 5096, 3090, 6082, 6091, 7093.
 - **P1 · S**: Remove the second correct option from 1080/10043, 1096, 10081, 8089, 8088, 3083 and 2098. Weaker cases: 10099 and 5098.
-- **P1 · S**: Fix the spelling of Koeman, Rooney, Passarella, Yaya Touré, Rocco, Sepp Maier, Halilhodžić, Atalanta, Stupar, Barbados, Villalonga, Nándor and Xavi. Fix the wording of 3086, 5090, 5093, 5099 and 6098, and remove the invisible U+200F character.
+- **P1 · S**: Fix the wording of 3086, 5090, 5093, 5099 and 6098. (Name spellings and the U+200F were fixed on 14 September 2026.)
 - **P1 · L**: Have a person review levels 7–10 in every category; a sample of levels 9–10 found about 1 in 10 wrong. Reviewer checklist: a source for every answer, no wrong option that is also true, and no «الوحيد» or «حتى الآن» without a year.
-- **P2 · S**: Question-bank tests. Ban «كلتاهما», add a test for invisible characters, and run the duplicate check's noise words through `_normalize`. Owner to confirm a bare «لا شيء» is acceptable in laws *(question_bank_test.dart)*.
+- **P2 · S**: Question-bank tests. Ban «كلتاهما» and run the duplicate check's noise words through `_normalize`. Owner to confirm a bare «لا شيء» is acceptable in laws *(question_bank_test.dart)*.
 
 ### Release & tech debt
 - **P0 · M**: Production gate. Only 5 of the 12 required testers have joined. Recruit 15–20 as a buffer and record the date the 12th joins. Replace the crashing versionCode 1 on the internal track.

@@ -2,7 +2,7 @@
 
 > Moved from CLAUDE.md on 14 September 2026. Update the count and the table when tests are added.
 
-**323 tests across 36 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+**324 tests across 36 files, all passing.** `flutter analyze` is clean. Shared test code lives in
 `test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
 (in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
 (`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
@@ -31,7 +31,7 @@
 | `daily_challenge_card_test.dart` | 1 | **Widget test** — the card's question count and multiplier line |
 | `share_text_test.dart` | 9 | Result grid · daily-challenge date · category and level · streak count forms (1 · 2 · 5 · 11) · the Play Store link with referrer on the last line · doesn't leak questions |
 | `quiz_repository_test.dart` | 11 | Levels · daily-challenge stability · **a full year with no day sharing more than 2 of 7 questions with the day before** · epoch day independent of time zone · neighbouring seeds shuffle differently · filtering |
-| `question_bank_test.dart` | 8 | Bank integrity: counts · IDs · structure · balance · banned options · **duplicates** · matches `AppConfig` |
+| `question_bank_test.dart` | 9 | Bank integrity: counts · IDs · structure · balance · banned options · no hidden direction characters · **duplicates** · matches `AppConfig` |
 | `update_streak_test.dart` | 5 | Day-streak logic in every case |
 | `settings_screen_test.dart` | 16 | **Widget test** — stats display · the built version number · «أرسل ملاحظاتك» opens an email with the version and recent errors, or shows the address without a mail app · confirmation dialog with the loss in correct Arabic, including the dual after a verb · reset · privacy: ad-options row only where required, opens the form, failure message · policy link opens the published URL, failure message · backup import shows the imported progress without a restart · an invalid code changes nothing |
 | `restore_backup_test.dart` | 4 | **Real datasources over mock SharedPreferences** — imported data shows at once and survives the first save from every provider · without the reload the first save overwrites it (why `RestoreBackup` exists) · a code with reminders off cancels the device's reminders and nothing reschedules them · a corrupt code changes nothing |

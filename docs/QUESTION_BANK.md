@@ -42,7 +42,7 @@ challenge uses `SeededRandom(seed + q.id)` · quick play is random.
    Liga's top scorer?" needs maintenance every season.
 6. **No invisible direction or format characters** (U+200E/U+200F, U+061C, U+202A–U+202E,
    U+2066–U+2069, U+200B–U+200D, U+FEFF). Harmless in Arabic, but they silently reorder text in a
-   left-to-right translation. One U+200F exists at `arab_football.json:120`; no test guards this yet.
+   left-to-right translation. Guarded by a test.
 
 > ⚠️ Rule 2's test lists only the masculine «كلاهما»; the feminine «كلتاهما» slipped through at
 > `laws.json:946` (question 9073). Rule 4's near-duplicate check is also weaker than it looks: the
