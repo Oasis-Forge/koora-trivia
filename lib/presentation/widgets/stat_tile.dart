@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
+import 'surface.dart';
 
 class StatTile extends StatelessWidget {
   const StatTile({
@@ -21,31 +22,32 @@ class StatTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final accent = this.accent ?? AppColors.gold;
-    return Container(
+
+    return Surface(
       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-      decoration: BoxDecoration(
-        color: AppColors.cardSurface,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: AppColors.cardBorder),
-      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: accent, size: 22),
-          const SizedBox(height: 8),
+          Icon(icon, color: accent, size: 19),
+          const SizedBox(height: 4),
           Text(
             value,
             style: TextStyle(
               fontSize: 20,
-              fontWeight: FontWeight.w800,
+              height: 1.1,
+              fontWeight: FontWeight.w900,
               color: AppColors.chalk,
             ),
           ),
-          const SizedBox(height: 2),
+          const SizedBox(height: 3),
           Text(
             label,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 12, color: AppColors.chalkMuted),
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: AppColors.chalkMuted,
+            ),
           ),
         ],
       ),

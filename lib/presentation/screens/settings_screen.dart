@@ -20,7 +20,11 @@ import '../providers/quiz_provider.dart';
 import '../providers/restore_backup.dart';
 import '../providers/settings_provider.dart';
 import '../providers/stats_provider.dart';
+import '../widgets/koora_app_bar.dart';
+import '../widgets/koora_buttons.dart';
 import '../widgets/pitch_background.dart';
+import '../widgets/rows_card.dart';
+import '../widgets/surface.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({
@@ -158,13 +162,8 @@ class SettingsScreen extends StatelessWidget {
 
                     const SizedBox(height: 26),
                     const _SectionTitle(AppStrings.aboutSection),
-                    Container(
+                    Surface(
                       padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: AppColors.cardSurface,
-                        borderRadius: BorderRadius.circular(18),
-                        border: Border.all(color: AppColors.cardBorder),
-                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -234,10 +233,10 @@ class _FeedbackButton extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        OutlinedButton.icon(
+        OutlineButton(
+          label: AppStrings.sendFeedback,
+          icon: Icons.mail_outline_rounded,
           onPressed: () => _send(context),
-          icon: const Icon(Icons.mail_outline_rounded),
-          label: const Text(AppStrings.sendFeedback),
         ),
         Padding(
           padding: EdgeInsets.only(top: 6),
@@ -274,22 +273,9 @@ class _FeedbackButton extends StatelessWidget {
 class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(20, 8, 8, 12),
-      child: Row(
-        children: [
-          IconButton(
-            onPressed: () => Navigator.of(context).pop(),
-            tooltip: AppStrings.back,
-            icon: const Icon(Icons.arrow_forward_rounded),
-            color: AppColors.chalk,
-          ),
-          const Text(
-            AppStrings.settings,
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900),
-          ),
-        ],
-      ),
+    return const Padding(
+      padding: EdgeInsets.fromLTRB(20, 18, 20, 12),
+      child: KooraAppBar(title: AppStrings.settings),
     );
   }
 }
@@ -302,15 +288,8 @@ class _SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(bottom: 10, start: 4),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w800,
-          color: AppColors.gold,
-        ),
-      ),
+      padding: const EdgeInsets.only(bottom: 8),
+      child: SectionHeading(text),
     );
   }
 }
@@ -322,16 +301,16 @@ class _StatsPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.cardSurface,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: AppColors.cardBorder),
-      ),
+    return Surface(
+      padding: EdgeInsets.zero,
       child: Column(
         children: [
           for (var i = 0; i < rows.length; i++) ...[
-            if (i > 0) const Divider(height: 1, thickness: 1),
+            if (i > 0) Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.white.withValues(alpha: 0.09),
+              ),
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16,
@@ -374,15 +353,10 @@ class _ReminderPanel extends StatelessWidget {
 
     // اللون على `Material` لا على `Container`، وإلا اختفى أثر اللمس في
     // عناصر ListTile لأنها ترسمه على أقرب Material أعلاها.
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: AppColors.cardBorder),
-      ),
+    return Surface(
+      padding: EdgeInsets.zero,
       child: Material(
-        color: AppColors.cardSurface,
-        borderRadius: BorderRadius.circular(18),
-        clipBehavior: Clip.antiAlias,
+        type: MaterialType.transparency,
         child: Column(
           children: [
             SwitchListTile(
@@ -403,7 +377,11 @@ class _ReminderPanel extends StatelessWidget {
               ),
             ),
             if (settings.reminderEnabled) ...[
-              const Divider(height: 1, thickness: 1),
+              Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.white.withValues(alpha: 0.09),
+              ),
               ListTile(
                 onTap: () => _pickTime(context, settings),
                 leading: Icon(
@@ -471,15 +449,10 @@ class _EffectsPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final settings = context.watch<SettingsProvider>();
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: AppColors.cardBorder),
-      ),
+    return Surface(
+      padding: EdgeInsets.zero,
       child: Material(
-        color: AppColors.cardSurface,
-        borderRadius: BorderRadius.circular(18),
-        clipBehavior: Clip.antiAlias,
+        type: MaterialType.transparency,
         child: Column(
           children: [
             SwitchListTile(
@@ -497,7 +470,11 @@ class _EffectsPanel extends StatelessWidget {
                 style: TextStyle(fontSize: 14.5),
               ),
             ),
-            const Divider(height: 1, thickness: 1),
+            Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.white.withValues(alpha: 0.09),
+              ),
             SwitchListTile(
               value: settings.hapticsEnabled,
               activeThumbColor: AppColors.gold,
@@ -634,19 +611,18 @@ class _LanguagePanel extends StatelessWidget {
         (locale.languageCode, AppStrings.languageName(locale.languageCode)),
     ];
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: AppColors.cardBorder),
-      ),
+    return Surface(
+      padding: EdgeInsets.zero,
       child: Material(
-        color: AppColors.cardSurface,
-        borderRadius: BorderRadius.circular(18),
-        clipBehavior: Clip.antiAlias,
+        type: MaterialType.transparency,
         child: Column(
           children: [
             for (final (index, (code, name)) in options.indexed) ...[
-              if (index > 0) const Divider(height: 1, thickness: 1),
+              if (index > 0) Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.white.withValues(alpha: 0.09),
+              ),
               ListTile(
                 selected: code == selected,
                 selectedColor: AppColors.chalk,
@@ -680,15 +656,10 @@ class _PrivacyPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final ads = context.watch<AdsProvider>();
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: AppColors.cardBorder),
-      ),
+    return Surface(
+      padding: EdgeInsets.zero,
       child: Material(
-        color: AppColors.cardSurface,
-        borderRadius: BorderRadius.circular(18),
-        clipBehavior: Clip.antiAlias,
+        type: MaterialType.transparency,
         child: Column(
           children: [
             // غوغل تشترط مدخلاً دائماً لتعديل الموافقة حيث تكون مطلوبة (أوروبا
@@ -706,7 +677,11 @@ class _PrivacyPanel extends StatelessWidget {
                   style: TextStyle(fontSize: 14.5),
                 ),
               ),
-              const Divider(height: 1, thickness: 1),
+              Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.white.withValues(alpha: 0.09),
+              ),
             ],
             ListTile(
               onTap: () => _openPolicy(context),
@@ -775,16 +750,16 @@ class _BackupPanel extends StatelessWidget {
             ),
           ),
         ),
-        OutlinedButton.icon(
+        OutlineButton(
+          label: AppStrings.exportBackup,
+          icon: Icons.copy_rounded,
           onPressed: () => _export(context),
-          icon: const Icon(Icons.copy_rounded),
-          label: const Text(AppStrings.exportBackup),
         ),
         const SizedBox(height: 10),
-        OutlinedButton.icon(
+        OutlineButton(
+          label: AppStrings.importBackup,
+          icon: Icons.download_rounded,
           onPressed: () => _import(context),
-          icon: const Icon(Icons.download_rounded),
-          label: const Text(AppStrings.importBackup),
         ),
       ],
     );
@@ -888,8 +863,12 @@ class _DangerButton extends StatelessWidget {
     return OutlinedButton.icon(
       onPressed: enabled ? () => _confirm(context) : null,
       style: OutlinedButton.styleFrom(
+        minimumSize: const Size.fromHeight(52),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+        backgroundColor: Colors.white.withValues(alpha: 0.03),
         foregroundColor: AppColors.wrong,
         side: BorderSide(
+          width: 1.4,
           color: enabled
               ? AppColors.wrong.withValues(alpha: 0.55)
               : AppColors.cardBorder,

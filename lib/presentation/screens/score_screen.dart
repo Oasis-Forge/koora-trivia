@@ -18,9 +18,10 @@ import '../providers/record_round.dart';
 import '../providers/settings_provider.dart';
 import '../providers/stats_provider.dart';
 import '../widgets/hearts_bar.dart';
+import '../widgets/koora_buttons.dart';
 import '../widgets/pitch_background.dart';
-import '../widgets/report_question_button.dart';
 import '../widgets/stat_tile.dart';
+import '../widgets/surface.dart';
 import 'categories_screen.dart';
 import 'levels_screen.dart';
 import 'quiz_screen.dart';
@@ -275,14 +276,14 @@ class _ScoreScreenState extends State<ScoreScreen>
               ),
               if (_earnedHeart || _lostHeart) ...[
                 const SizedBox(height: 14),
-                Container(
+                Surface(
                   padding: const EdgeInsets.all(14),
-                  decoration: BoxDecoration(
-                    color: AppColors.wrong.withValues(alpha: 0.12),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: AppColors.wrong.withValues(alpha: 0.5),
-                    ),
+                  color: Color.alphaBlend(
+                    AppColors.wrong.withValues(alpha: 0.12),
+                    AppColors.cardSurface,
+                  ),
+                  border: Border.all(
+                    color: AppColors.wrong.withValues(alpha: 0.5),
                   ),
                   child: Row(
                     children: [
@@ -305,14 +306,14 @@ class _ScoreScreenState extends State<ScoreScreen>
               ],
               if (_result.isDaily && stats.streak > 0) ...[
                 const SizedBox(height: 14),
-                Container(
+                Surface(
                   padding: const EdgeInsets.all(14),
-                  decoration: BoxDecoration(
-                    color: AppColors.gold.withValues(alpha: 0.12),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: AppColors.gold.withValues(alpha: 0.5),
-                    ),
+                  color: Color.alphaBlend(
+                    AppColors.gold.withValues(alpha: 0.12),
+                    AppColors.cardSurface,
+                  ),
+                  border: Border.all(
+                    color: AppColors.gold.withValues(alpha: 0.5),
                   ),
                   child: Row(
                     children: [
@@ -339,45 +340,35 @@ class _ScoreScreenState extends State<ScoreScreen>
               ],
               if (_result.isDaily) const _DailyReminderCard(),
               const SizedBox(height: 24),
-              FilledButton.icon(
+              GoldButton(
+                label: AppStrings.shareScore,
+                icon: Icons.share_rounded,
                 onPressed: _share,
-                icon: const Icon(Icons.share_rounded),
-                label: const Text(AppStrings.shareScore),
               ),
               const SizedBox(height: 12),
               if (_result.isDaily) ...[
-                FilledButton.icon(
+                SolidButton(
+                  label: AppStrings.playLevel,
+                  icon: Icons.sports_soccer_rounded,
                   onPressed: _playLevel,
-                  style: FilledButton.styleFrom(
-                    backgroundColor: AppColors.pitchLight,
-                    foregroundColor: AppColors.chalk,
-                  ),
-                  icon: const Icon(Icons.sports_soccer_rounded),
-                  label: const Text(AppStrings.playLevel),
                 ),
                 const SizedBox(height: 12),
               ],
               if (_showNextLevelButton) ...[
-                FilledButton.icon(
+                SolidButton(
+                  label: AppStrings.nextLevel,
+                  icon: Icons.skip_next_rounded,
                   onPressed: _playNextLevel,
-                  style: FilledButton.styleFrom(
-                    backgroundColor: AppColors.pitchLight,
-                    foregroundColor: AppColors.chalk,
-                  ),
-                  icon: const Icon(Icons.skip_next_rounded),
-                  label: const Text(AppStrings.nextLevel),
                 ),
                 const SizedBox(height: 12),
               ],
               if (_showReplayButton) ...[
-                OutlinedButton.icon(
+                OutlineButton(
+                  label: _result.isLevel
+                      ? AppStrings.replayLevel
+                      : AppStrings.playAgain,
+                  icon: Icons.replay_rounded,
                   onPressed: _playAgain,
-                  icon: const Icon(Icons.replay_rounded),
-                  label: Text(
-                    _result.isLevel
-                        ? AppStrings.replayLevel
-                        : AppStrings.playAgain,
-                  ),
                 ),
                 const SizedBox(height: 12),
               ],
@@ -389,19 +380,6 @@ class _ScoreScreenState extends State<ScoreScreen>
                   style: TextStyle(color: AppColors.chalkMuted),
                 ),
               ),
-              // لا مراجعة للإجابات بعد المستوى (قرار المالك، 14 سبتمبر 2026)؛
-              // تبقى بعد اللعب السريع وتحدي اليوم. الإبلاغ عن سؤال متاح في لوحة
-              // الشرح أثناء الجولة.
-              if (!_result.isLevel) ...[
-                const SizedBox(height: 24),
-                const Text(
-                  AppStrings.reviewAnswers,
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
-                ),
-                const SizedBox(height: 12),
-                for (final answer in _result.answers)
-                  _ReviewRow(answer: answer),
-              ],
             ],
           ),
         ),
@@ -453,13 +431,8 @@ class _DailyReminderCardState extends State<_DailyReminderCard> {
 
     return Padding(
       padding: const EdgeInsets.only(top: 14),
-      child: Container(
+      child: Surface(
         padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
-        decoration: BoxDecoration(
-          color: AppColors.cardSurface,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.cardBorder),
-        ),
         child: Row(
           children: [
             Icon(
@@ -564,80 +537,3 @@ class _ScoreMedal extends StatelessWidget {
   }
 }
 
-class _ReviewRow extends StatelessWidget {
-  const _ReviewRow({required this.answer});
-
-  final AnswerRecord answer;
-
-  @override
-  Widget build(BuildContext context) {
-    final correct = answer.isCorrect;
-    // التخطّي بمساعدة ليس خطأ: لا أحمر ولا علامة إلغاء.
-    final skipped = answer.skipped;
-    final color = correct
-        ? AppColors.correct
-        : skipped
-            ? AppColors.gold
-            : AppColors.wrong;
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: AppColors.cardSurface,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.cardBorder),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(
-            correct
-                ? Icons.check_circle_rounded
-                : skipped
-                    ? Icons.skip_next_rounded
-                    : Icons.cancel_rounded,
-            color: color,
-            size: 20,
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  answer.question.text,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w700,
-                    height: 1.4,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                // ما حدث بلونه، والإجابة الصحيحة بالأخضر دائماً — كانت تُكتب بالأحمر
-                // بعد الخطأ فتبدو كأنها الخطأ.
-                if (!correct)
-                  Text(
-                    skipped
-                        ? AppStrings.skippedAnswer
-                        : answer.timedOut
-                            ? AppStrings.timeUp
-                            : AppStrings.yourAnswerIs(
-                                answer.question.options[answer.selectedIndex],
-                              ),
-                    style: TextStyle(color: color, fontSize: 13),
-                  ),
-                Text(
-                  correct
-                      ? answer.question.correctAnswer
-                      : AppStrings.correctIs(answer.question.correctAnswer),
-                  style: TextStyle(color: AppColors.correct, fontSize: 13),
-                ),
-              ],
-            ),
-          ),
-          ReportQuestionButton(question: answer.question, compact: true),
-        ],
-      ),
-    );
-  }
-}

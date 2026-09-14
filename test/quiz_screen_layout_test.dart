@@ -12,6 +12,7 @@ import 'package:football_trivia/presentation/providers/settings_provider.dart';
 import 'package:football_trivia/presentation/screens/quiz_screen.dart';
 import 'package:football_trivia/presentation/widgets/answer_option.dart';
 import 'package:football_trivia/presentation/widgets/hint_bar.dart';
+import 'package:football_trivia/presentation/widgets/surface.dart';
 import 'package:provider/provider.dart';
 
 import 'fakes/fake_repositories.dart';
@@ -239,7 +240,7 @@ void main() {
     final quiz = await _pumpQuiz(tester, short, text: text);
 
     final card = find
-        .ancestor(of: find.text(text), matching: find.byType(Container))
+        .ancestor(of: find.text(text), matching: find.byType(Surface))
         .first;
     expect(
       tester.getSize(card).width,

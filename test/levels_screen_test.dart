@@ -10,6 +10,7 @@ import 'package:football_trivia/presentation/providers/economy_provider.dart';
 import 'package:football_trivia/presentation/providers/progress_provider.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
 import 'package:football_trivia/presentation/screens/levels_screen.dart';
+import 'package:football_trivia/presentation/widgets/koora_buttons.dart';
 import 'package:football_trivia/presentation/widgets/level_tile.dart';
 import 'package:provider/provider.dart';
 
@@ -145,7 +146,7 @@ void main() {
       final startButton = tester.getRect(
         find.ancestor(
           of: find.text(AppStrings.startLevel),
-          matching: find.byWidgetPredicate((w) => w is FilledButton),
+          matching: find.byType(GoldButton),
         ),
       );
 

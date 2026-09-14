@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:football_trivia/core/constants/app_config.dart';
 import 'package:football_trivia/core/constants/app_strings.dart';
-import 'package:football_trivia/core/theme/app_colors.dart';
 import 'package:football_trivia/core/utils/arabic_count.dart';
 import 'package:football_trivia/core/utils/day_key.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
@@ -20,7 +19,6 @@ import 'package:provider/provider.dart';
 
 import 'fakes/fake_ad_service.dart';
 import 'fakes/fake_repositories.dart';
-import 'fakes/score_screen_harness.dart';
 
 EconomyProvider _economy({int hintsUsed = 0}) => EconomyProvider(
       repository: FakeEconomyRepository(
@@ -134,28 +132,6 @@ void main() {
         findsOneWidget);
   });
 
-  testWidgets('المراجعة: إجابة اللاعب الخاطئة بالأحمر والصحيحة بالأخضر',
-      (tester) async {
-    tester.view.physicalSize = const Size(800, 4000);
-    tester.view.devicePixelRatio = 1;
-    addTearDown(tester.view.reset);
-
-    // ثلاث صحيحة ثم سبع خاطئة يختار فيها اللاعب الخيار الثاني «ب».
-    final quiz =
-        await pumpScoreScreen(tester, correct: 3, mode: RoundMode.quickPlay);
-
-    final correctLines = find.text(AppStrings.correctIs('أ'));
-    expect(correctLines, findsNWidgets(7));
-    expect(tester.widget<Text>(correctLines.first).style!.color,
-        AppColors.correct);
-
-    final picked = find.text(AppStrings.yourAnswerIs('ب'));
-    expect(picked, findsNWidgets(7));
-    expect(tester.widget<Text>(picked.first).style!.color, AppColors.wrong);
-
-    quiz.abandon();
-  });
-
   test('لكل IconButton تلميح يقرؤه قارئ الشاشة', () {
     final missing = <String>[];
     final files = Directory('lib')
@@ -164,7 +140,7 @@ void main() {
         .where((f) => f.path.endsWith('.dart'));
     for (final file in files) {
       final source = file.readAsStringSync();
-      for (final match in RegExp(r'IconButton\(').allMatches(source)) {
+      for (final match in RegExp(r'\bIconButton\(').allMatches(source)) {
         final end = (match.start + 400).clamp(0, source.length);
         if (!source.substring(match.start, end).contains('tooltip:')) {
           final line = '\n'.allMatches(source.substring(0, match.start)).length;

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import '../providers/settings_provider.dart';
+import '../widgets/koora_buttons.dart';
 import '../widgets/pitch_background.dart';
 
 /// ثلاث بطاقات تشرح الأنماط والقلوب والسلسلة. تُعرض مرة واحدة فقط.
@@ -157,11 +158,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(28, 24, 28, 24),
-                child: FilledButton(
+                child: GoldButton(
+                  label: _isLast
+                      ? AppStrings.onboardStart
+                      : AppStrings.onboardNext,
                   onPressed: _next,
-                  child: Text(
-                    _isLast ? AppStrings.onboardStart : AppStrings.onboardNext,
-                  ),
                 ),
               ),
             ],

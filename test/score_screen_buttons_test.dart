@@ -12,7 +12,6 @@ Future<QuizProvider> _pump(
   required int correct,
   RoundMode mode = RoundMode.level,
   int level = 1,
-  bool skipFirst = false,
 }) async {
   tester.view.physicalSize = const Size(800, 4000);
   tester.view.devicePixelRatio = 1;
@@ -23,15 +22,12 @@ Future<QuizProvider> _pump(
     correct: correct,
     mode: mode,
     level: level,
-    skipFirst: skipFirst,
   );
-  // آخر عنصر مبني = كل ما فوقه مبني أيضاً: آخر صف في المراجعة، أو زر الرئيسية
-  // بعد المستوى الذي لا مراجعة فيه.
-  if (mode == RoundMode.level) {
-    expect(find.text(AppStrings.backHome), findsOneWidget);
-  } else {
-    expect(find.text('سؤال ${quiz.total}'), findsOneWidget);
-  }
+  // زر الرئيسية آخر عنصر في الشاشة: ظهوره يعني أن كل ما فوقه مبني.
+  expect(find.text(AppStrings.backHome), findsOneWidget);
+  // لا مراجعة للإجابات بعد أي جولة (قرار المالك): لا يظهر نص أي سؤال.
+  expect(find.text('سؤال 1'), findsNothing);
+  expect(find.text('سؤال ${quiz.total}'), findsNothing);
   return quiz;
 }
 
@@ -43,9 +39,6 @@ void main() {
     expect(find.text(AppStrings.nextLevel), findsOneWidget);
     expect(find.text(AppStrings.replayLevel), findsOneWidget);
     expect(find.text(AppStrings.playAgain), findsNothing);
-    // لا مراجعة للإجابات بعد المستوى.
-    expect(find.text(AppStrings.reviewAnswers), findsNothing);
-    expect(find.text('سؤال 1'), findsNothing);
     quiz.abandon();
   });
 
@@ -81,8 +74,6 @@ void main() {
     expect(find.text(AppStrings.replayLevel), findsNothing);
     expect(find.text(AppStrings.nextLevel), findsNothing);
     expect(find.text(AppStrings.shareScore), findsOneWidget);
-    expect(find.text(AppStrings.backHome), findsOneWidget);
-    expect(find.text(AppStrings.reviewAnswers), findsOneWidget);
     quiz.abandon();
   });
 
@@ -92,22 +83,6 @@ void main() {
     expect(find.text(AppStrings.playAgain), findsOneWidget);
     expect(find.text(AppStrings.replayLevel), findsNothing);
     expect(find.text(AppStrings.nextLevel), findsNothing);
-    expect(find.text(AppStrings.reviewAnswers), findsOneWidget);
-    quiz.abandon();
-  });
-
-  testWidgets('السؤال المتخطّى يظهر في المراجعة كتخطٍّ لا كخطأ', (tester) async {
-    // الأول متخطّى، ثم أربع صحيحة، ثم خمس خاطئة.
-    final quiz = await _pump(
-      tester,
-      correct: 5,
-      mode: RoundMode.quickPlay,
-      skipFirst: true,
-    );
-
-    expect(find.textContaining(AppStrings.skippedAnswer), findsOneWidget);
-    expect(find.byIcon(Icons.skip_next_rounded), findsOneWidget);
-    expect(find.byIcon(Icons.cancel_rounded), findsNWidgets(5));
     quiz.abandon();
   });
 }

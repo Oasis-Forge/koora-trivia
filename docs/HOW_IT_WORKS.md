@@ -9,7 +9,7 @@
 - Three modes: levels (category grid → level grid → quiz) · quick play · daily challenge
 - Deterministic daily challenge (same questions for everyone, no server, date-derived seed), once per day
 - Day streak `user_stats_v1` · level progress with stars and progressive unlocks `level_progress_v1`
-- Result screen: level stars · "Next level" on a pass · "Replay level" · answer review after quick play and the daily only, not after a level (owner, 14 September 2026) · share
+- Result screen: level stars · "Next level" on a pass · "Replay level" · no answer review after any round (owner, 14 September 2026) · share
 - Economy: regenerating hearts + hints + daily limits · coins + 3 daily tasks + chest + shop
 - Rewarded ads (heart · 70 coins) and interstitials (off) — production IDs in release · UMP consent
   gate, privacy row in Settings and retried ad loads (PR #5)
@@ -52,8 +52,8 @@ The look comes from the owner's Claude Design project «تحدي كرة القد
 - **`SectionHeading`** (gold, 17 dp), **`RowsCard`** + **`KooraRow`** (48 dp rows with hairline dividers, gold lead
   icon, bold value) and **`KooraProgress`** (6 dp, green or gold).
 
-Screens are converted one PR at a time: home, then categories and levels, then the quiz and its quit dialog, then
-settings, tasks and shop, and finally the result screen (which the redesign didn't cover).
+Every screen uses them (one PR, owner's request): home, categories, levels, quiz and its quit dialog, settings (its extra
+sections kept), tasks, shop, plus the result screen, onboarding and the no-hearts dialog, which the redesign didn't cover.
 
 ### In-app updates (v1.0.6)
 

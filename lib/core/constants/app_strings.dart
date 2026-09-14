@@ -85,7 +85,6 @@ class AppStrings {
   static String streakKeptFor(String days) =>
       'حافظت على سلسلتك لمدة $days!';
   static const String streakLabel = 'السلسلة';
-  static const String reviewAnswers = 'مراجعة الإجابات';
 
   // رسائل الأداء
   static const String rankLegend = 'أسطورة الملاعب! 🏆';
@@ -108,14 +107,14 @@ class AppStrings {
       'تحتاج $correctAnswers على الأقل';
   static const String nextLevelUnlocked = 'فُتح المستوى التالي 🔓';
 
-  /// عتبات المستوى قبل بدئه: «للاجتياز 7 من 10 · ⭐⭐ 9 · ⭐⭐⭐ 10».
+  /// عتبات المستوى قبل بدئه: «للاجتياز ⭐ 7 من 10 · ⭐⭐ 9 · ⭐⭐⭐ 10».
   static String levelGoal({
     required int pass,
     required int twoStars,
     required int threeStars,
     required int total,
   }) =>
-      'للاجتياز $pass من $total  ·  ⭐⭐ $twoStars  ·  ⭐⭐⭐ $threeStars';
+      'للاجتياز ⭐ $pass من $total  ·  ⭐⭐ $twoStars  ·  ⭐⭐⭐ $threeStars';
   static const String levelHeartCost =
       'تخسر قلباً إن لم تجتز المستوى أو خرجت منه';
   static const String newBest = 'أفضل نتيجة جديدة!';
@@ -214,10 +213,6 @@ class AppStrings {
   /// تحت السؤال بعد كشف الإجابة.
   static String correctAnswerIs(String answer) => 'الإجابة الصحيحة: $answer';
 
-  /// في قائمة مراجعة الإجابات، حيث المساحة أضيق.
-  static String correctIs(String answer) => 'الصحيح: $answer';
-  static String yourAnswerIs(String answer) => 'إجابتك: $answer';
-
   // المهام والمتجر
   static const String coins = 'العملات';
   static const String tasks = 'المهام اليومية';
@@ -289,6 +284,12 @@ class AppStrings {
   static const String noQuestions = 'لا توجد أسئلة متاحة حالياً.';
   static const String errorTitle = 'حدث خطأ';
   static const String retry = 'إعادة المحاولة';
+  static const String more = 'المزيد';
+  static const String dailyStart = 'ابدأ التحدي';
+
+  /// سطر بطاقة تحدي اليوم: «نقاط مضاعفة ×1.5 • يتجدد بعد 7 س و 4 د».
+  static String dailyMeta(String multiplier, String time) =>
+      'نقاط مضاعفة ×$multiplier • يتجدد بعد $time';
   static const String updateDownloaded = 'نُزّل تحديث جديد للتطبيق';
   static const String updateRestart = 'إعادة التشغيل';
   static const String loadCategoriesFailed =

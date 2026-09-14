@@ -402,6 +402,9 @@ void main() {
     );
 
     await _scrollToBottom(tester);
+    // الأقسام أطول في التصميم الجديد، فسحبة واحدة قد لا تبلغ الزر.
+    await tester.ensureVisible(find.text(AppStrings.resetStats));
+    await tester.pumpAndSettle();
     await tester.tap(find.text(AppStrings.resetStats));
     await tester.pumpAndSettle();
     await tester.tap(find.text(AppStrings.confirmReset));

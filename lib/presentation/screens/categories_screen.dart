@@ -7,7 +7,10 @@ import '../../domain/entities/category.dart';
 import '../providers/progress_provider.dart';
 import '../providers/quiz_provider.dart';
 import '../widgets/category_card.dart';
+import '../widgets/koora_app_bar.dart';
+import '../widgets/koora_buttons.dart';
 import '../widgets/pitch_background.dart';
+import '../widgets/surface.dart';
 import 'levels_screen.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -53,7 +56,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              _Header(totalStars: progress.totalStars),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 18, 20, 16),
+                child: KooraAppBar(
+                  title: AppStrings.chooseCategoryTitle,
+                  trailing: [
+                    StatusPill(
+                      icon: Icons.star_rounded,
+                      label: '${progress.totalStars}',
+                      labelColor: AppColors.gold,
+                    ),
+                  ],
+                ),
+              ),
               Expanded(
                 child: categories.isEmpty
                     ? quiz.categoriesFailed
@@ -72,10 +87,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                     ),
                                   ),
                                   const SizedBox(height: 14),
-                                  FilledButton.icon(
+                                  GoldButton(
+                                    label: AppStrings.retry,
+                                    icon: Icons.refresh_rounded,
                                     onPressed: quiz.loadCategories,
-                                    icon: const Icon(Icons.refresh_rounded),
-                                    label: const Text(AppStrings.retry),
                                   ),
                                 ],
                               ),
@@ -83,13 +98,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           )
                         : const Center(child: CircularProgressIndicator())
                     : GridView.builder(
-                        padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 12,
                           mainAxisSpacing: 12,
-                          childAspectRatio: 0.95,
+                          childAspectRatio: 1,
                         ),
                         itemCount: categories.length,
                         itemBuilder: (context, i) {
@@ -115,57 +130,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     Navigator.of(context).pushNamed(
       LevelsScreen.routeName,
       arguments: category,
-    );
-  }
-}
-
-class _Header extends StatelessWidget {
-  const _Header({required this.totalStars});
-
-  final int totalStars;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(20, 8, 8, 12),
-      child: Row(
-        children: [
-          IconButton(
-            onPressed: () => Navigator.of(context).pop(),
-            tooltip: AppStrings.back,
-            icon: const Icon(Icons.arrow_forward_rounded),
-            color: AppColors.chalk,
-          ),
-          const Expanded(
-            child: Text(
-              AppStrings.chooseCategoryTitle,
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
-            decoration: BoxDecoration(
-              color: AppColors.gold.withValues(alpha: 0.16),
-              borderRadius: BorderRadius.circular(999),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.star_rounded,
-                    size: 16, color: AppColors.gold),
-                const SizedBox(width: 4),
-                Text(
-                  '$totalStars',
-                  style: TextStyle(
-                    color: AppColors.gold,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
