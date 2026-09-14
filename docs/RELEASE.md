@@ -62,6 +62,8 @@
 6. **Pre-launch report:** check crashes and its screenshots, which run in several device languages.
 7. **No change needed:** Data safety, content rating, target audience, ads declaration, category, and the privacy
    policy (already in English and Arabic).
+8. **Arabic screenshots:** in the default (Arabic) listing, replace the 5 phone screenshots with the v1.0.6-design ones
+   in `screenshots/store_9x16/`.
 
 ## ⚙️ Environment — read this first
 
@@ -172,7 +174,7 @@ API (`inAppUpdatePriority`); the Play Console website can't set it. Details in [
 | `assets/branding/play_store_icon_512.png` | Store icon — **full green square to the edges** (Play rounds the corners itself; never upload a pre-rounded icon) |
 | `assets/branding/app_icon_source.png` | Launcher icon source · `app_icon_foreground.png` for adaptive · `app_icon_cutout.png` transparent cutout |
 | `assets/branding/feature_graphic_1024x500.png` | Feature graphic with title · `feature_art.png` raw art without text |
-| `screenshots/store_9x16/` | **The uploaded screenshots (Arabic)** — 5 × 1080×1920, still the design before v1.0.6 |
+| `screenshots/store_9x16/` | **Arabic screenshots** — 5 × 1080×1920 in the v1.0.6 design, same screens and method as the English set (replaced the pre-redesign set on 14 September 2026) |
 | `screenshots/store_9x16_en/` | **English screenshots for the en-US listing** — 5 × 1080×1920 in the v1.0.6 design: home · categories · levels · question · answer feedback (emulator set to 1080×2000 with `adb shell wm size`, status bar cropped, size reset after) |
 | `screenshots/store/` | ⚠️ 1440×2975 (ratio 2.07) — **rejected by Play**, don't use |
 | [docs/STORE_LISTING.md](STORE_LISTING.md) | App name · short description · full description (Arabic payload) |
