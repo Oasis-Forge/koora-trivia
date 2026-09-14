@@ -7,7 +7,9 @@ import '../../core/theme/app_colors.dart';
 import '../../core/constants/app_config.dart';
 import '../../core/utils/arabic_count.dart';
 import '../../domain/entities/quiz_result.dart';
+import '../../domain/repositories/review_prompter.dart';
 import '../../domain/usecases/build_share_text.dart';
+import '../../domain/usecases/should_ask_for_review.dart';
 import '../providers/ads_provider.dart';
 import '../providers/economy_provider.dart';
 import '../providers/progress_provider.dart';
@@ -16,6 +18,7 @@ import '../providers/settings_provider.dart';
 import '../providers/stats_provider.dart';
 import '../widgets/hearts_bar.dart';
 import '../widgets/pitch_background.dart';
+import '../widgets/report_question_button.dart';
 import '../widgets/stat_tile.dart';
 import 'levels_screen.dart';
 import 'quiz_screen.dart';
@@ -65,7 +68,7 @@ class _ScoreScreenState extends State<ScoreScreen>
       // فهو الطقس اليومي الذي يجب أن يبقى نظيفاً.
       final ads = context.read<AdsProvider>();
       ads.recordRoundFinished();
-      if (!_result.isDaily) await ads.maybeShowInterstitial();
+      final adShown = !_result.isDaily && await ads.maybeShowInterstitial();
 
       if (!mounted) return;
       await context.read<StatsProvider>().recordResult(_result);
@@ -78,20 +81,51 @@ class _ScoreScreenState extends State<ScoreScreen>
         if (mounted) setState(() => _earnedHeart = true);
       }
 
-      if (!mounted || !_result.isLevel) return;
-      final outcome =
-          await context.read<ProgressProvider>().recordLevelResult(_result);
-
       if (!mounted) return;
-      // المهمة تُحتسب على اجتياز المستوى لا على مجرد لعبه.
-      if (outcome != null && outcome.passed) {
-        context.read<SettingsProvider>().feedback.levelPassed();
-        await context.read<EconomyProvider>().recordLevelCompleted();
+      if (_result.isLevel) {
+        final outcome =
+            await context.read<ProgressProvider>().recordLevelResult(_result);
+
+        if (!mounted) return;
+        // المهمة تُحتسب على اجتياز المستوى لا على مجرد لعبه.
+        if (outcome != null && outcome.passed) {
+          context.read<SettingsProvider>().feedback.levelPassed();
+          await context.read<EconomyProvider>().recordLevelCompleted();
+        }
+
+        if (!mounted) return;
+        setState(() => _levelOutcome = outcome);
       }
 
+      // آخر خطوة: بعد حفظ السلسلة والنجوم التي يُبنى عليها القرار.
       if (!mounted) return;
-      setState(() => _levelOutcome = outcome);
+      await _maybeAskForReview(adShown: adShown);
     });
+  }
+
+  /// طلب التقييم الجاري — أزرار بدء جولة جديدة تنتظر اكتماله.
+  Future<void>? _pendingReview;
+
+  /// طلب تقييم التطبيق بعد لحظة رضا فقط (انظر `ShouldAskForReview`).
+  Future<void> _maybeAskForReview({required bool adShown}) async {
+    final prompter = context.read<ReviewPrompter>();
+    final streak = context.read<StatsProvider>().streak;
+    final levelStars = _levelOutcome?.stars;
+
+    final lastAskedAt = await prompter.lastAskedAt();
+    // غادر اللاعب إلى جولة أخرى: نافذة Play فوقها تترك عدّاد السؤال يجري تحتها.
+    if (!mounted || !(ModalRoute.of(context)?.isCurrent ?? false)) return;
+    final shouldAsk = const ShouldAskForReview()(
+      result: _result,
+      streak: streak,
+      levelStars: levelStars,
+      adShown: adShown,
+      lastAskedAt: lastAskedAt,
+      now: DateTime.now(),
+    );
+    if (!shouldAsk) return;
+    _pendingReview = prompter.ask();
+    await _pendingReview;
   }
 
   @override
@@ -122,6 +156,9 @@ class _ScoreScreenState extends State<ScoreScreen>
   }
 
   Future<void> _playAgain() async {
+    // لا تبدأ جولة ونافذة التقييم ما زالت ستظهر فوقها.
+    await _pendingReview;
+    if (!mounted) return;
     final quiz = context.read<QuizProvider>();
 
     // في نمط المستويات نعيد نفس المستوى بدل جولة عشوائية — والمستوى يحتاج قلباً،
@@ -142,6 +179,8 @@ class _ScoreScreenState extends State<ScoreScreen>
   }
 
   Future<void> _playNextLevel() async {
+    await _pendingReview;
+    if (!mounted) return;
     if (!await NoHeartsDialog.ensureHearts(context)) return;
     if (!mounted) return;
     final quiz = context.read<QuizProvider>();
@@ -473,6 +512,7 @@ class _ReviewRow extends StatelessWidget {
               ],
             ),
           ),
+          ReportQuestionButton(question: answer.question, compact: true),
         ],
       ),
     );

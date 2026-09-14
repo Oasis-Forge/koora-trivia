@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import '../../domain/repositories/app_info.dart';
 import '../../domain/repositories/backup_repository.dart';
+import '../../domain/repositories/error_log.dart';
 import '../../domain/repositories/link_opener.dart';
+import '../../domain/usecases/build_feedback_email.dart';
 
 import '../../core/constants/app_config.dart';
 import '../../core/constants/app_strings.dart';
@@ -155,13 +158,7 @@ class SettingsScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 6),
-                          Text(
-                            AppStrings.appVersion,
-                            style: TextStyle(
-                              color: AppColors.chalkMuted,
-                              fontSize: 13,
-                            ),
-                          ),
+                          _VersionText(),
                           SizedBox(height: 10),
                           Text(
                             AppStrings.bankSummary,
@@ -174,6 +171,8 @@ class SettingsScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 12),
+                    const _FeedbackButton(),
                   ],
                 ),
               ),
@@ -182,6 +181,75 @@ class SettingsScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+/// رقم الإصدار كما بُني فعلاً — كان نصاً ثابتاً «1.0.0» لم يُحدَّث قط.
+class _VersionText extends StatefulWidget {
+  const _VersionText();
+
+  @override
+  State<_VersionText> createState() => _VersionTextState();
+}
+
+class _VersionTextState extends State<_VersionText> {
+  late final Future<String> _version = context.read<AppInfo>().version();
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<String>(
+      future: _version,
+      builder: (context, snapshot) => Text(
+        snapshot.hasData ? AppStrings.appVersion(snapshot.data!) : '',
+        style: const TextStyle(color: AppColors.chalkMuted, fontSize: 13),
+      ),
+    );
+  }
+}
+
+/// رسالة ملاحظات إلى المطوّر، مع رقم الإصدار وآخر الأخطاء المسجّلة على الجهاز.
+class _FeedbackButton extends StatelessWidget {
+  const _FeedbackButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        OutlinedButton.icon(
+          onPressed: () => _send(context),
+          icon: const Icon(Icons.mail_outline_rounded),
+          label: const Text(AppStrings.sendFeedback),
+        ),
+        const Padding(
+          padding: EdgeInsets.only(top: 6),
+          child: Text(
+            AppStrings.sendFeedbackHint,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 12, color: AppColors.chalkMuted),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _send(BuildContext context) async {
+    final linkOpener = context.read<LinkOpener>();
+    final appInfo = context.read<AppInfo>();
+    final errorLog = context.read<ErrorLog>();
+    final messenger = ScaffoldMessenger.of(context);
+
+    final draft = const BuildFeedbackEmail()(
+      version: await appInfo.version(),
+      errors: await errorLog.recent(),
+    );
+    if (await linkOpener.open(draft.toMailtoUri())) return;
+
+    messenger
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(content: Text(AppStrings.noEmailApp(AppConfig.contactEmail))),
+      );
   }
 }
 

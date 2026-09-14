@@ -32,6 +32,16 @@ void main() {
     );
   });
 
+  test('التطبيق مصنّف لعبة، فيبقى قفل الاتجاه على الأجهزة اللوحية', () {
+    expect(manifest, contains('android:appCategory="game"'));
+  });
+
+  test('url_launcher يرى تطبيقات البريد والمتصفح (أندرويد 11+)', () {
+    expect(manifest, contains('android.intent.action.SENDTO'));
+    expect(manifest, contains('android:scheme="mailto"'));
+    expect(manifest, contains('android:scheme="https"'));
+  });
+
   test('أيقونة شريط الحالة موجودة بكل الكثافات', () {
     for (final density in ['mdpi', 'hdpi', 'xhdpi', 'xxhdpi', 'xxxhdpi']) {
       final icon = File(

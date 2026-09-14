@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart' show kReleaseMode;
 
 import '../../data/datasources/economy_local_datasource.dart';
+import '../../data/datasources/prefs_error_log.dart';
 import '../../data/datasources/progress_local_datasource.dart';
 import '../../data/datasources/question_local_datasource.dart';
 import '../../data/datasources/settings_local_datasource.dart';
@@ -13,15 +14,20 @@ import '../../data/repositories/settings_repository_impl.dart';
 import '../../data/repositories/stats_repository_impl.dart';
 import '../../data/services/ad_consent.dart';
 import '../../data/services/admob_ad_service.dart';
+import '../../data/services/in_app_review_prompter.dart';
 import '../../data/services/local_notification_scheduler.dart';
+import '../../data/services/package_app_info.dart';
 import '../../data/services/url_link_opener.dart';
 import '../../domain/repositories/ad_service.dart';
+import '../../domain/repositories/app_info.dart';
 import '../../domain/repositories/backup_repository.dart';
 import '../../domain/repositories/economy_repository.dart';
+import '../../domain/repositories/error_log.dart';
 import '../../domain/repositories/link_opener.dart';
 import '../../domain/repositories/progress_repository.dart';
 import '../../domain/repositories/quiz_repository.dart';
 import '../../domain/repositories/reminder_scheduler.dart';
+import '../../domain/repositories/review_prompter.dart';
 import '../../domain/repositories/settings_repository.dart';
 import '../../domain/repositories/stats_repository.dart';
 
@@ -46,7 +52,10 @@ class Injector {
           ),
         ),
         reminderScheduler = LocalNotificationScheduler(),
-        linkOpener = UrlLinkOpener();
+        linkOpener = UrlLinkOpener(),
+        errorLog = PrefsErrorLog(),
+        appInfo = PackageAppInfo(),
+        reviewPrompter = InAppReviewPrompter();
 
   final QuizRepository quizRepository;
   final StatsRepository statsRepository;
@@ -57,4 +66,7 @@ class Injector {
   final AdService adService;
   final ReminderScheduler reminderScheduler;
   final LinkOpener linkOpener;
+  final ErrorLog errorLog;
+  final AppInfo appInfo;
+  final ReviewPrompter reviewPrompter;
 }

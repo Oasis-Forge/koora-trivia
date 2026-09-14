@@ -8,7 +8,8 @@
 - The owner published a *European regulations* consent message in AdMob on 13 September 2026; the EEA consent form now appears on the emulator (debug build with `UMP_DEBUG_EEA=true`), and the Settings privacy-options row shows.
 - Data safety form updated by the owner to Approximate location, App interactions, Diagnostics and Device or other IDs, and sent for review: 13 September 2026.
 - Privacy policy page updated to the PR #5 text and checked live: 13 September 2026.
-- PR #7, open: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
+- PR #8, open: the share text ends with the Play Store link and a UTM referrer · the in-app review prompt after a 3-day daily streak or a 3-star level, at most every 30 days, never after an ad · «أبلغ عن خطأ» on the answer panel and in the review list opens a ready email with the question id, reason and version · a local error log fed by `FlutterError.onError` and `PlatformDispatcher.onError`, and «أرسل ملاحظاتك» in Settings emails the version and recent errors · Settings shows the real version · players no longer see raw exception text · `android:appCategory="game"` · privacy policy source mentions feedback emails (publishing needs the owner's go-ahead).
+- PR #7, merged 14 September 2026: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
 - PR #6, merged 13 September 2026: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
 - PR #5, merged 13 September 2026: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
 
@@ -37,19 +38,14 @@
   - Set the displayed developer name to Oasis Forge.
   - Confirm content rating.
   - Host app-ads.txt at the oasis-forge.github.io root and set it as the listing's Website.
-- **P1 · M**: Error visibility (see the Telemetry decision). Set `FlutterError.onError` and `PlatformDispatcher.onError` in main.dart, and send errors at least to a local log and a "send feedback" email.
 - **P1 · M**: Check on a release build or real phone and log results in PRE_PUBLISH §1:
   - Level pass and fail.
   - Daily challenge shows no replay button.
   - Backup import and export.
   - Shop purchases and the +70-coin ad.
-- **P2 · S**: Settings → About shows «الإصدار 1.0.0». Read the real version with `package_info_plus` *(app_strings.dart, settings_screen.dart)*.
-- **P2 · S**: Add `android:appCategory="game"` so Android 16 keeps the portrait lock on tablets and foldables *(AndroidManifest.xml)*.
 
 ### Features
-- **P1 · S**: The share text has no link to the app. Add the Play Store URL with a UTM referrer on its own line *(build_share_text.dart, share_text_test)*.
-- **P1 · S**: Ask for an in-app review only at good moments (3rd daily with a streak of 3 or more, or a 3-star pass), at least 30 days apart, never after a failed level or an ad.
-- **P1 · S**: Add a "report this question" flag after the answer is revealed and in the review list. It opens the share sheet or an email with the question id, reason and app version; nothing is sent automatically.
+- All Phase 1 features are in PR #8.
 
 ---
 
@@ -58,7 +54,7 @@
 ### Bugs
 - **P2 · S**: The quiz timer keeps running while the app is in the background, so a phone call costs the question. Pause and resume with the app lifecycle and hide the question while paused *(quiz_provider.dart, quiz_screen.dart)*.
 - **P2 · S**: «العب مرة أخرى» after a quick-play round ignores the chosen category. Keep the category and pass it back *(quiz_provider.dart, score_screen.dart)*.
-- **P2 · S**: Raw exception text shows in SnackBars, and the categories screen spins forever if loading fails. Show a friendly error with a retry button *(quiz_provider.dart, categories_screen.dart)*.
+- **P2 · S**: The categories screen spins forever if loading fails. Show a friendly error with a retry button *(categories_screen.dart)*. The raw exception text in SnackBars was fixed in PR #8.
 - **P3 · S**: Economy leaks. Allow Extra time once per question and cap the speed bonus at 50. Grant the daily heart only if it wasn't already granted today, and show «كسبت قلباً! ❤️» only when a heart was actually added.
 - **P3 · M**: Move end-of-round saving out of ScoreScreen's post-frame callback into one provider method with error logging. That callback is what hid the star-saving bug.
 

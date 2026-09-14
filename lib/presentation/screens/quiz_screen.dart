@@ -15,6 +15,7 @@ import '../widgets/answer_option.dart';
 import '../widgets/hearts_bar.dart';
 import '../widgets/hint_bar.dart';
 import '../widgets/pitch_background.dart';
+import '../widgets/report_question_button.dart';
 import '../widgets/timer_ring.dart';
 import 'score_screen.dart';
 
@@ -499,6 +500,12 @@ class _FeedbackPanelState extends State<_FeedbackPanel> {
               ),
             ),
           ],
+          // بعد كشف الإجابة فقط: الآن يعرف اللاعب إن كان يرى خطأً في السؤال،
+          // والمؤقّت متوقف فلا يخسر وقتاً.
+          Align(
+            alignment: AlignmentDirectional.centerEnd,
+            child: ReportQuestionButton(question: question),
+          ),
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:football_trivia/core/constants/app_config.dart';
 import 'package:football_trivia/domain/entities/question.dart';
 import 'package:football_trivia/domain/entities/quiz_result.dart';
 import 'package:football_trivia/domain/usecases/build_share_text.dart';
@@ -103,6 +104,23 @@ void main() {
         expect(text, isNot(contains(option)));
       }
     }
+  });
+
+  test('رابط التطبيق في آخر سطر وحده، ومعه مصدر التثبيت', () {
+    for (final result in [
+      _result('ccwcccw', isDaily: true),
+      _result('ccw'),
+    ]) {
+      final lines = build(result, streak: 4).split('\n');
+
+      expect(lines.last, BuildShareText.shareLink);
+    }
+
+    expect(BuildShareText.shareLink, startsWith(AppConfig.playStoreUrl));
+    expect(
+      Uri.parse(BuildShareText.shareLink).queryParameters['referrer'],
+      AppConfig.shareReferrer,
+    );
   });
 
   test('طول الشبكة يساوي عدد الأسئلة دائماً', () {

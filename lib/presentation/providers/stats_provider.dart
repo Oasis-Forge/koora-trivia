@@ -10,11 +10,16 @@ class StatsProvider extends ChangeNotifier {
   StatsProvider({
     required StatsRepository repository,
     UpdateStreak updateStreak = const UpdateStreak(),
+    DateTime Function()? clock,
   })  : _repository = repository,
-        _updateStreak = updateStreak;
+        _updateStreak = updateStreak,
+        _clock = clock ?? DateTime.now;
 
   final StatsRepository _repository;
   final UpdateStreak _updateStreak;
+
+  /// ساعة ثابتة في الاختبارات حتى لا يتغير «اليوم» بين تجهيز الاختبار وتنفيذه.
+  final DateTime Function() _clock;
 
   UserStats _stats = const UserStats();
   bool _loading = true;
@@ -22,7 +27,7 @@ class StatsProvider extends ChangeNotifier {
   UserStats get stats => _stats;
   bool get isLoading => _loading;
 
-  String get todayKey => DayKey.today();
+  String get todayKey => DayKey.today(_clock());
 
   /// السلسلة الحالية بعد احتساب الانقطاع.
   int get streak => UpdateStreak.visibleStreak(_stats, todayKey);
@@ -30,7 +35,7 @@ class StatsProvider extends ChangeNotifier {
   bool get isDailyDone => _stats.isDailyDoneOn(todayKey);
 
   /// الوقت المتبقي حتى تحدي الغد.
-  Duration get untilNextDaily => DayKey.untilTomorrow();
+  Duration get untilNextDaily => DayKey.untilTomorrow(_clock());
 
   Future<void> init() async {
     _stats = await _repository.load();

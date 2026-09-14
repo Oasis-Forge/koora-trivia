@@ -150,4 +150,31 @@ class AppConfig {
   /// Play Console معاً.
   static const String privacyPolicyUrl =
       'https://oasis-forge.github.io/koora-trivia-privacy/';
+
+  /// صفحة التطبيق على غوغل بلاي.
+  static const String playStoreUrl =
+      'https://play.google.com/store/apps/details?id=com.oasisforge.kooratrivia';
+
+  /// مصدر التثبيت الملحق برابط المشاركة، فتظهر التثبيتات القادمة من المشاركة
+  /// منفصلة في تقارير غوغل بلاي.
+  static const String shareReferrer = 'utm_source=share&utm_medium=result';
+
+  /// البريد العام للملاحظات والبلاغات — نفسه في سياسة الخصوصية.
+  static const String contactEmail = 'thepromptkitchen@gmail.com';
+
+  // ── طلب التقييم ──
+
+  /// أقل عدد أيام بين طلبين للتقييم. غوغل بلاي يحدّ الظهور من جهته أيضاً.
+  static const int reviewPromptMinDaysBetween = 30;
+
+  /// سلسلة أيام تجعل إكمال تحدي اليوم لحظة مناسبة لطلب التقييم.
+  static const int reviewPromptMinStreak = 3;
+
+  // ── سجل الأخطاء ──
+
+  /// عدد الأخطاء المحفوظة على الجهاز؛ الأقدم يُحذف.
+  static const int errorLogMaxEntries = 20;
+
+  /// عدد الأخطاء المرفقة برسالة الملاحظات.
+  static const int feedbackEmailErrors = 5;
 }
