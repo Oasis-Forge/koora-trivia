@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,8 +29,41 @@ class LevelsScreen extends StatefulWidget {
 }
 
 class _LevelsScreenState extends State<LevelsScreen> {
+  static const int _columns = 3;
+  static const double _spacing = 14;
+  static const EdgeInsets _gridPadding = EdgeInsets.fromLTRB(20, 8, 20, 16);
+  static const double _preferredAspectRatio = 0.95;
+
+  /// أقصر مربّع يبقى مقروءاً (الرقم والنجوم). دونه تُمرَّر الشبكة بدل تقصيره.
+  static const double _minTileHeight = 64;
+
   int? _selected;
   bool _starting = false;
+
+  /// نسبة عرض المربّع إلى طوله بحيث تتسع الشبكة كلها للمساحة المتاحة.
+  ///
+  /// النسبة الثابتة (0.95) جعلت الشبكة أطول من المساحة على شاشات 360×640
+  /// و411×731، والشبكة لم تكن قابلة للتمرير، فاختفى المستوى العاشر تحت الشريط
+  /// السفلي. الآن يقصر المربّع حتى تتسع الصفوف، ولا يقصر عن حد أدنى.
+  static double _tileAspectRatio(BoxConstraints constraints, int levelCount) {
+    final rows = (levelCount / _columns).ceil();
+    if (rows == 0) return _preferredAspectRatio;
+
+    final tileWidth = (constraints.maxWidth -
+            _gridPadding.horizontal -
+            _spacing * (_columns - 1)) /
+        _columns;
+    final fitHeight = (constraints.maxHeight -
+            _gridPadding.vertical -
+            _spacing * (rows - 1)) /
+        rows;
+
+    final height = math.max(
+      _minTileHeight,
+      math.min(tileWidth / _preferredAspectRatio, fitHeight),
+    );
+    return tileWidth / height;
+  }
 
   @override
   void initState() {
@@ -92,40 +127,41 @@ class _LevelsScreenState extends State<LevelsScreen> {
               // أربعة (التي تترك صفوفاً قليلة وفراغاً كبيراً أسفلها)، والتوسيط
               // يوزّع أي مساحة فائضة بدل تكديس البطاقات في الأعلى.
               Expanded(
-                child: Center(
-                  child: GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 14,
-                    mainAxisSpacing: 14,
-                    childAspectRatio: 0.95,
-                  ),
-                  itemCount: levelCount,
-                  itemBuilder: (context, i) {
-                    final level = i + 1;
-                    final stars = categoryProgress.starsFor(level);
-                    final unlocked = categoryProgress.isUnlocked(level);
+                child: LayoutBuilder(
+                  builder: (context, constraints) => Center(
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      padding: _gridPadding,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: _columns,
+                        crossAxisSpacing: _spacing,
+                        mainAxisSpacing: _spacing,
+                        childAspectRatio:
+                            _tileAspectRatio(constraints, levelCount),
+                      ),
+                      itemCount: levelCount,
+                      itemBuilder: (context, i) {
+                        final level = i + 1;
+                        final stars = categoryProgress.starsFor(level);
+                        final unlocked = categoryProgress.isUnlocked(level);
 
-                    final state = !unlocked
-                        ? LevelState.locked
-                        : stars > 0
-                            ? LevelState.completed
-                            : LevelState.available;
+                        final state = !unlocked
+                            ? LevelState.locked
+                            : stars > 0
+                                ? LevelState.completed
+                                : LevelState.available;
 
-                    return LevelTile(
-                      level: level,
-                      state: state,
-                      stars: stars,
-                      isSelected: selected == level,
-                      onTap: unlocked
-                          ? () => setState(() => _selected = level)
-                          : () => _showLockedHint(),
-                    );
-                  },
+                        return LevelTile(
+                          level: level,
+                          state: state,
+                          stars: stars,
+                          isSelected: selected == level,
+                          onTap: unlocked
+                              ? () => setState(() => _selected = level)
+                              : () => _showLockedHint(),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),

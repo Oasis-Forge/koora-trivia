@@ -134,6 +134,12 @@ class AppStrings {
   static const String hintsLeftLabel = 'مساعدات متبقية اليوم';
   static const String skippedAnswer = 'تخطّيت هذا السؤال';
 
+  /// تحت السؤال بعد كشف الإجابة.
+  static String correctAnswerIs(String answer) => 'الإجابة الصحيحة: $answer';
+
+  /// في قائمة مراجعة الإجابات، حيث المساحة أضيق.
+  static String correctIs(String answer) => 'الصحيح: $answer';
+
   // المهام والمتجر
   static const String coins = 'العملات';
   static const String tasks = 'المهام اليومية';
@@ -176,7 +182,7 @@ class AppStrings {
   static const String importTitle = 'استيراد التقدّم';
   static const String importBody =
       'الصق الرمز هنا. سيُستبدل تقدّمك الحالي بالكامل.';
-  static const String importSuccess = 'تم الاستيراد — أعد تشغيل التطبيق';
+  static const String importSuccess = 'تم الاستيراد';
   static const String importFailed = 'رمز غير صالح';
   static const String importConfirm = 'استيراد';
 

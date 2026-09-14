@@ -62,6 +62,11 @@ class SettingsProvider extends ChangeNotifier {
         _scheduledKey = null;
         await _persist(_settings.copyWith(reminderEnabled: false));
       }
+    } else {
+      // التنبيه مطفأ في الإعدادات المحمّلة — ومنها نسخة احتياطية مستوردة بعد أن
+      // كان مفعّلاً: لا يبقى تنبيه قديم مجدولاً لا يطفئه شيء.
+      await _scheduler.cancelAll();
+      _scheduledKey = null;
     }
   }
 

@@ -10,14 +10,11 @@ abstract class SettingsLocalDataSource {
 }
 
 class PrefsSettingsDataSource implements SettingsLocalDataSource {
-  static const String _key = 'app_settings_v1';
+  static const String key = 'app_settings_v1';
 
-  @override
-  Future<AppSettings> read() async {
-    final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_key);
-    if (raw == null || raw.isEmpty) return const AppSettings();
-
+  /// يحوّل النص المحفوظ إلى إعدادات، ويرمي [FormatException] لأي بنية غير
+  /// متوقعة (انظر `PrefsStatsDataSource.decode`).
+  static AppSettings decode(String raw) {
     try {
       final map = json.decode(raw) as Map<String, dynamic>;
       return AppSettings(
@@ -28,8 +25,21 @@ class PrefsSettingsDataSource implements SettingsLocalDataSource {
         hapticsEnabled: map['hapticsEnabled'] as bool? ?? true,
         onboardingSeen: map['onboardingSeen'] as bool? ?? false,
       );
+    } on TypeError catch (e) {
+      throw FormatException('بنية إعدادات غير متوقعة: $e');
+    }
+  }
+
+  @override
+  Future<AppSettings> read() async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(key);
+    if (raw == null || raw.isEmpty) return const AppSettings();
+
+    try {
+      return decode(raw);
     } on FormatException {
-      await prefs.remove(_key);
+      await prefs.remove(key);
       return const AppSettings();
     }
   }
@@ -38,7 +48,7 @@ class PrefsSettingsDataSource implements SettingsLocalDataSource {
   Future<void> write(AppSettings settings) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(
-      _key,
+      key,
       json.encode({
         'reminderEnabled': settings.reminderEnabled,
         'reminderHour': settings.reminderHour,

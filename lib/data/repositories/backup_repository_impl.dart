@@ -3,19 +3,24 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/repositories/backup_repository.dart';
+import '../datasources/economy_local_datasource.dart';
+import '../datasources/progress_local_datasource.dart';
+import '../datasources/settings_local_datasource.dart';
+import '../datasources/stats_local_datasource.dart';
 
 /// ينسخ مفاتيح التخزين الأربعة إلى نص Base64 والعكس.
 ///
 /// هذا هو البديل المحلي عن الحفظ السحابي: ينسخ المستخدم النص ويلصقه في الجهاز
 /// الجديد. بلا حساب وبلا خادم وبلا إنترنت.
 class BackupRepositoryImpl implements BackupRepository {
-  /// كل المفاتيح التي تُشكّل تقدّم المستخدم.
-  static const List<String> _keys = [
-    'user_stats_v1',
-    'level_progress_v1',
-    'economy_v1',
-    'app_settings_v1',
-  ];
+  /// كل المفاتيح التي تُشكّل تقدّم المستخدم، ومع كل مفتاح المحلّل الذي يقرؤه
+  /// به التطبيق — فالقيمة المستوردة تُفحص بنفس القواعد قبل كتابتها.
+  static const Map<String, Object Function(String raw)> _decoders = {
+    PrefsStatsDataSource.key: PrefsStatsDataSource.decode,
+    PrefsProgressDataSource.key: PrefsProgressDataSource.decode,
+    PrefsEconomyDataSource.key: PrefsEconomyDataSource.decode,
+    PrefsSettingsDataSource.key: PrefsSettingsDataSource.decode,
+  };
 
   /// إصدار صيغة النسخة — يرتفع إن تغيّرت بنية المفاتيح.
   static const int _formatVersion = 1;
@@ -27,7 +32,7 @@ class BackupRepositoryImpl implements BackupRepository {
     final payload = <String, dynamic>{
       'v': _formatVersion,
       'data': {
-        for (final key in _keys)
+        for (final key in _decoders.keys)
           if (prefs.getString(key) != null) key: prefs.getString(key),
       },
     };
@@ -50,14 +55,23 @@ class BackupRepositoryImpl implements BackupRepository {
       if (version == null || version > _formatVersion) return false;
 
       final data = decoded['data'] as Map<String, dynamic>?;
-      if (data == null || data.isEmpty) return false;
+      if (data == null) return false;
+
+      // نفحص كل القيم قبل كتابة أي منها: نسخة نصفها تالف لا تُكتب نصفَ كتابة،
+      // وقيمة بنوع خاطئ لا تصل إلى التخزين لتُسقط التطبيق عند قراءتها.
+      final values = <String, String>{};
+      for (final MapEntry(:key, value: decode) in _decoders.entries) {
+        final value = data[key];
+        if (value == null) continue;
+        if (value is! String) return false;
+        decode(value);
+        values[key] = value;
+      }
+      if (values.isEmpty) return false;
 
       final prefs = await SharedPreferences.getInstance();
-      for (final key in _keys) {
-        final value = data[key];
-        if (value is String) {
-          await prefs.setString(key, value);
-        }
+      for (final MapEntry(:key, :value) in values.entries) {
+        await prefs.setString(key, value);
       }
       return true;
     } catch (_) {

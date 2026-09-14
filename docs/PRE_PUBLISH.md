@@ -49,12 +49,17 @@ Last full check: **13 September 2026** · Latest build: **v1.0.3+4**
 | Reminder fires | release, clock moved past 20:00 the next day | ✅ «تحدي اليوم بانتظارك ⚽» · «العب الآن — 7 أسئلة فقط!» · white football status-bar icon · channel `daily_challenge` |
 | Reminder, final PR #6 build | release, reboot, then clock moved two days ahead | ✅ 7 alarms before and after reboot · days 1 and 2 fired (ids 1001, 1002) · the other 5 stay scheduled · no crash |
 | Tomorrow one-shot + daily-repeating reminder (design tried, dropped) | release | ❌ the plugin armed the repeating one for the next 20:00, ignoring its date, so both fired the same day |
+| Level grid, emulated 360×640 | release (PR #7) | ✅ all ten levels above «ابدأ المستوى» |
+| Quiz screen, emulated 360×640 | release | ✅ question and all four options above the hints bar |
+| Skip hint, emulated 360×640 | release | ✅ «تخطّيت هذا السؤال» in gold with the correct answer · the panel scrolls fully above «التالي» · the result review row shows a skip icon |
+| Quiz screen and level grid at the Pixel 6 Pro's own size | release | ✅ options directly above the hints bar, no gap · level grid looks as before |
 | Release launch with PRs #5 and #6 | release | ✅ no crash · an ad is requested at launch |
 
 To re-run the EEA check: clear the app's data, then `flutter run --dart-define=UMP_DEBUG_EEA=true`
 (ignored in release builds). To make a reminder fire without waiting: `adb shell settings put global
 auto_time 0`, then `adb shell cmd alarm set-time <epoch ms>` more than an hour past the reminder time
-(inexact alarms have a one-hour window), and set `auto_time` back to 1 afterwards.
+(inexact alarms have a one-hour window), and set `auto_time` back to 1 afterwards. To emulate a 360×640 phone: `adb shell wm size 1080x1920`
+and `adb shell wm density 480`; undo with `adb shell wm size reset` and `adb shell wm density reset`.
 
 ### Not verified yet
 

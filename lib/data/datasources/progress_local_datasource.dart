@@ -19,14 +19,11 @@ abstract class ProgressLocalDataSource {
 /// ```
 /// المفتاح هو `slug` لا الاسم العربي — الأسماء قد تتغيّر، الـ slug ثابت.
 class PrefsProgressDataSource implements ProgressLocalDataSource {
-  static const String _key = 'level_progress_v1';
+  static const String key = 'level_progress_v1';
 
-  @override
-  Future<Map<String, CategoryProgressModel>> read() async {
-    final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_key);
-    if (raw == null || raw.isEmpty) return {};
-
+  /// يحوّل النص المحفوظ إلى تقدّم، ويرمي [FormatException] لأي بنية غير متوقعة
+  /// (انظر `PrefsStatsDataSource.decode`).
+  static Map<String, CategoryProgressModel> decode(String raw) {
     try {
       final decoded = json.decode(raw) as Map<String, dynamic>;
       final categories = decoded['categories'] as Map<String, dynamic>? ?? {};
@@ -39,9 +36,22 @@ class PrefsProgressDataSource implements ProgressLocalDataSource {
             AppConfig.levelsPerCategory,
           ),
       };
+    } on TypeError catch (e) {
+      throw FormatException('بنية تقدّم غير متوقعة: $e');
+    }
+  }
+
+  @override
+  Future<Map<String, CategoryProgressModel>> read() async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(key);
+    if (raw == null || raw.isEmpty) return {};
+
+    try {
+      return decode(raw);
     } on FormatException {
       // بيانات تالفة — نبدأ من جديد بدل إسقاط التطبيق.
-      await prefs.remove(_key);
+      await prefs.remove(key);
       return {};
     }
   }
@@ -53,7 +63,7 @@ class PrefsProgressDataSource implements ProgressLocalDataSource {
     current[progress.slug] = progress;
 
     await prefs.setString(
-      _key,
+      key,
       json.encode({
         'version': 1,
         'categories': {
@@ -66,6 +76,6 @@ class PrefsProgressDataSource implements ProgressLocalDataSource {
   @override
   Future<void> clear() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_key);
+    await prefs.remove(key);
   }
 }

@@ -1,0 +1,263 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:football_trivia/core/constants/app_strings.dart';
+import 'package:football_trivia/domain/entities/app_settings.dart';
+import 'package:football_trivia/domain/entities/category.dart';
+import 'package:football_trivia/domain/entities/economy.dart';
+import 'package:football_trivia/domain/entities/question.dart';
+import 'package:football_trivia/domain/repositories/quiz_repository.dart';
+import 'package:football_trivia/presentation/providers/economy_provider.dart';
+import 'package:football_trivia/presentation/providers/quiz_provider.dart';
+import 'package:football_trivia/presentation/providers/settings_provider.dart';
+import 'package:football_trivia/presentation/screens/quiz_screen.dart';
+import 'package:football_trivia/presentation/widgets/answer_option.dart';
+import 'package:football_trivia/presentation/widgets/hint_bar.dart';
+import 'package:provider/provider.dart';
+
+import 'fakes/fake_repositories.dart';
+
+/// بطول سؤال حقيقي متوسط.
+const _questionText = 'من سجّل أكثر الأهداف في تاريخ كأس العالم؟';
+
+/// شرح طويل بما يكفي ليقع خارج الشاشة القصيرة تحت الخيارات.
+const _explanation =
+    'سجّل ميروسلاف كلوزه ستة عشر هدفاً في أربع نسخ متتالية من البطولة.';
+
+class _QuizRepository implements QuizRepository {
+  _QuizRepository({this.text = _questionText});
+
+  final String text;
+
+  @override
+  Future<List<Category>> getCategories() async => const [];
+
+  @override
+  Future<List<Question>> getLevelQuestions({
+    required String categorySlug,
+    required int level,
+  }) async =>
+      [
+        for (var i = 1; i <= 10; i++)
+          Question(
+            id: 1000 + i,
+            category: categorySlug,
+            categoryName: 'ألفا',
+            level: level,
+            text: text,
+            options: const ['أ', 'ب', 'ج', 'د'],
+            answerIndex: 0,
+            explanation: _explanation,
+          ),
+      ];
+
+  @override
+  Future<int> getLevelCount(String categorySlug) async => 10;
+
+  @override
+  Future<List<Question>> getRandomQuestions({
+    required int count,
+    String? categorySlug,
+  }) async =>
+      const [];
+
+  @override
+  Future<List<Question>> getDailyQuestions({
+    required String dayKey,
+    required int count,
+  }) async =>
+      const [];
+}
+
+/// شاشة سؤال في نمط المستويات (أضيق حالة: فيها شريط المساعدات) بمقاس [size].
+Future<QuizProvider> _pumpQuiz(
+  WidgetTester tester,
+  Size size, {
+  String text = _questionText,
+}) async {
+  tester.view.physicalSize = size;
+  tester.view.devicePixelRatio = 1;
+  tester.view.padding = const FakeViewPadding(top: 24);
+  addTearDown(tester.view.reset);
+
+  final quiz = QuizProvider(repository: _QuizRepository(text: text));
+  final economy = EconomyProvider(
+    repository: FakeEconomyRepository(
+      Economy(lastRegenAtIso: DateTime.now().toIso8601String()),
+    ),
+  );
+  final settings = SettingsProvider(
+    repository: FakeSettingsRepository(
+      const AppSettings(soundEnabled: false, hapticsEnabled: false),
+    ),
+    scheduler: FakeScheduler(),
+  );
+  await economy.init();
+  await settings.init();
+  await quiz.startLevel(categorySlug: 'alpha', level: 1);
+
+  await tester.pumpWidget(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: quiz),
+        ChangeNotifierProvider.value(value: economy),
+        ChangeNotifierProvider.value(value: settings),
+      ],
+      child: const MaterialApp(
+        home: Directionality(
+          textDirection: TextDirection.rtl,
+          child: QuizScreen(),
+        ),
+      ),
+    ),
+  );
+  await tester.pump();
+  return quiz;
+}
+
+/// مؤقّت السؤال يعيش في المزوّد لا في الشجرة، فيُتلف صراحةً.
+Future<void> _finish(WidgetTester tester, QuizProvider quiz) async {
+  await tester.pumpWidget(const SizedBox());
+  quiz.dispose();
+}
+
+double _scrollPixels(WidgetTester tester) =>
+    tester.state<ScrollableState>(find.byType(Scrollable)).position.pixels;
+
+double _questionFontSize(WidgetTester tester) =>
+    tester.widget<Text>(find.text(_questionText)).style!.fontSize!;
+
+Future<void> _settle(WidgetTester tester) async {
+  // اللوحة تنتظر انتهاء حركة الخيارات ثم تمرّر نفسها إلى المنطقة المرئية.
+  await tester.pump(const Duration(milliseconds: 300));
+  await tester.pumpAndSettle();
+}
+
+void main() {
+  const short = Size(360, 640);
+  const tall = Size(412, 915);
+
+  testWidgets('على 360×640 يظهر الخيار الرابع فوق شريط المساعدات دون تمرير',
+      (tester) async {
+    final quiz = await _pumpQuiz(tester, short);
+
+    final lastOption = tester.getRect(find.byType(AnswerOption).last);
+    final hintBar = tester.getRect(find.byType(HintBar));
+    expect(lastOption.bottom, lessThanOrEqualTo(hintBar.top));
+    expect(_questionFontSize(tester), 18);
+
+    await _finish(tester, quiz);
+  });
+
+  testWidgets('على الشاشة الطويلة: المقاس العادي، والخيارات ملاصقة للمساعدات',
+      (tester) async {
+    final quiz = await _pumpQuiz(tester, tall);
+
+    expect(_questionFontSize(tester), 21);
+    final lastOption = tester.getRect(find.byType(AnswerOption).last);
+    final hintBar = tester.getRect(find.byType(HintBar));
+    // الفاصل هو هامش المحتوى السفلي وحده، لا فراغ موزّع فوقه.
+    expect(hintBar.top - lastOption.bottom, lessThanOrEqualTo(20));
+
+    await _finish(tester, quiz);
+  });
+
+  testWidgets('بعد الإجابة تُمرَّر لوحة الشرح حتى تظهر كاملة فوق زر التالي',
+      (tester) async {
+    final quiz = await _pumpQuiz(tester, short);
+
+    await tester.tap(find.byType(AnswerOption).first);
+    await tester.pump();
+    await _settle(tester);
+
+    final explanation = tester.getRect(find.text(_explanation));
+    final next = tester.getRect(find.text(AppStrings.next));
+    expect(explanation.bottom, lessThanOrEqualTo(next.top));
+
+    await _finish(tester, quiz);
+  });
+
+  testWidgets('مساعدة التخطّي تُعرض كتخطٍّ لا كانتهاء وقت', (tester) async {
+    final quiz = await _pumpQuiz(tester, short);
+
+    quiz.skipQuestion();
+    await tester.pump();
+
+    expect(find.text(AppStrings.skippedAnswer), findsOneWidget);
+    expect(find.text(AppStrings.timeUp), findsNothing);
+    await _settle(tester);
+
+    await _finish(tester, quiz);
+  });
+
+  testWidgets('السؤال التالي يبدأ من أعلى الشاشة بعد تمرير لوحة الشرح',
+      (tester) async {
+    // خط نظام كبير يجعل السؤال نفسه أطول من الشاشة، فيبقى أي إزاح قديم ظاهراً.
+    tester.platformDispatcher.textScaleFactorTestValue = 2;
+    addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+    final quiz = await _pumpQuiz(tester, short);
+
+    quiz.selectAnswer(1);
+    await tester.pump();
+    await _settle(tester);
+    expect(_scrollPixels(tester), greaterThan(0), reason: 'اللوحة مُرِّرت');
+
+    await tester.tap(find.text(AppStrings.next));
+    await tester.pump();
+
+    expect(_scrollPixels(tester), 0);
+    await _finish(tester, quiz);
+  });
+
+  testWidgets('لوحة أطول من الشاشة تُظهر أعلاها: الحكم والإجابة الصحيحة',
+      (tester) async {
+    tester.platformDispatcher.textScaleFactorTestValue = 2;
+    addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+    final quiz = await _pumpQuiz(tester, const Size(320, 480));
+
+    quiz.selectAnswer(1);
+    await tester.pump();
+    await _settle(tester);
+
+    final viewport = tester.getRect(find.byType(CustomScrollView));
+    final panel = find.byWidgetPredicate(
+      (w) => w.runtimeType.toString() == '_FeedbackPanel',
+    );
+    expect(
+      tester.getSize(panel).height,
+      greaterThan(viewport.height),
+      reason: 'اللوحة أطول من المنطقة المرئية',
+    );
+    expect(
+      tester.getRect(find.text(AppStrings.wrong)).top,
+      greaterThanOrEqualTo(viewport.top),
+    );
+    await _finish(tester, quiz);
+  });
+
+  testWidgets('بطاقة سؤال قصير تملأ العرض كالخيارات تحتها', (tester) async {
+    const text = 'من فاز؟';
+    final quiz = await _pumpQuiz(tester, short, text: text);
+
+    final card = find
+        .ancestor(of: find.text(text), matching: find.byType(Container))
+        .first;
+    expect(
+      tester.getSize(card).width,
+      tester.getSize(find.byType(AnswerOption).first).width,
+    );
+
+    await _finish(tester, quiz);
+  });
+
+  testWidgets('انتهاء الوقت ما زال يُعرض كانتهاء وقت', (tester) async {
+    final quiz = await _pumpQuiz(tester, short);
+
+    await tester.pump(const Duration(seconds: 21));
+
+    expect(find.text(AppStrings.timeUp), findsOneWidget);
+    expect(find.text(AppStrings.skippedAnswer), findsNothing);
+    await _settle(tester);
+
+    await _finish(tester, quiz);
+  });
+}

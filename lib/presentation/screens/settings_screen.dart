@@ -10,8 +10,10 @@ import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/arabic_count.dart';
 import '../providers/ads_provider.dart';
+import '../providers/economy_provider.dart';
 import '../providers/progress_provider.dart';
 import '../providers/quiz_provider.dart';
+import '../providers/restore_backup.dart';
 import '../providers/settings_provider.dart';
 import '../providers/stats_provider.dart';
 import '../widgets/pitch_background.dart';
@@ -562,7 +564,13 @@ class _BackupPanel extends StatelessWidget {
   Future<void> _import(BuildContext context) async {
     final controller = TextEditingController();
     final messenger = ScaffoldMessenger.of(context);
-    final repository = context.read<BackupRepository>();
+    final restore = RestoreBackup(
+      repository: context.read<BackupRepository>(),
+      stats: context.read<StatsProvider>(),
+      progress: context.read<ProgressProvider>(),
+      economy: context.read<EconomyProvider>(),
+      settings: context.read<SettingsProvider>(),
+    );
 
     final confirmed = await showDialog<bool>(
       context: context,
@@ -607,7 +615,7 @@ class _BackupPanel extends StatelessWidget {
 
     if (confirmed != true) return;
 
-    final ok = await repository.import(controller.text);
+    final ok = await restore(controller.text);
     messenger
       ..hideCurrentSnackBar()
       ..showSnackBar(

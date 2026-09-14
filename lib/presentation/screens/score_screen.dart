@@ -419,7 +419,14 @@ class _ReviewRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = answer.isCorrect ? AppColors.correct : AppColors.wrong;
+    final correct = answer.isCorrect;
+    // التخطّي بمساعدة ليس خطأ: لا أحمر ولا علامة إلغاء.
+    final skipped = answer.skipped;
+    final color = correct
+        ? AppColors.correct
+        : skipped
+            ? AppColors.gold
+            : AppColors.wrong;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -433,9 +440,11 @@ class _ReviewRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(
-            answer.isCorrect
+            correct
                 ? Icons.check_circle_rounded
-                : Icons.cancel_rounded,
+                : skipped
+                    ? Icons.skip_next_rounded
+                    : Icons.cancel_rounded,
             color: color,
             size: 20,
           ),
@@ -453,9 +462,12 @@ class _ReviewRow extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  answer.isCorrect
+                  correct
                       ? answer.question.correctAnswer
-                      : 'الصحيح: ${answer.question.correctAnswer}',
+                      : skipped
+                          ? '${AppStrings.skippedAnswer} · '
+                              '${AppStrings.correctIs(answer.question.correctAnswer)}'
+                          : AppStrings.correctIs(answer.question.correctAnswer),
                   style: TextStyle(color: color, fontSize: 13),
                 ),
               ],
