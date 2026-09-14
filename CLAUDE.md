@@ -95,7 +95,8 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
 - **Never return `Map<String, XModel>` where `Map<String, X>` is promised** — its runtime type rejects
   entities (broke star saving). Use `Map<String, X>.from(...)` at the repository boundary.
 - Errors inside async `addPostFrameCallback` callbacks go unnoticed on screen — test that logic through
-  the provider. Since PR #8 the local error log records them.
+  the provider. Since PR #8 the local error log records them. End-of-round saving lives in `RecordRound`, not
+  `ScoreScreen`.
 - `ChangeNotifierProvider` is **lazy** — anything that must start at launch needs `lazy: false`.
 - **Providers write all their in-memory data on the next save** — reload them after changing
   SharedPreferences behind their back (see `RestoreBackup`).

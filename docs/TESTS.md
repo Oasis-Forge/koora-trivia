@@ -2,7 +2,7 @@
 
 > Moved from CLAUDE.md on 14 September 2026. Update the count and the table when tests are added.
 
-**374 tests across 44 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+**378 tests across 45 files, all passing.** `flutter analyze` is clean. Shared test code lives in
 `test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
 (in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
 (`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
@@ -44,6 +44,7 @@
 | `categories_and_replay_test.dart` | 3 | A categories load failure is flagged and logged, and a retry succeeds · **widget:** the categories screen shows the error and a retry button instead of spinning · «العب مرة أخرى» after quick play in a category replays that category |
 | `daily_result_test.dart` | 5 | **Widget test** — daily result: «كسبت قلباً!» only when a heart was added, not with full hearts · the «ذكّرني» card turns the reminder on and confirms the time · «العب مستوى» opens the categories · neither appears after quick play |
 | `hints_and_a11y_test.dart` | 7 | **Widget test** — every hint has its name under the icon · a used Extra time is disabled and tapping it explains why · with no hints left, tapping explains and applies nothing · disabled shop buttons show their reason · the review list shows the player's wrong pick in red and the correct answer in green · hearts, timer and stars carry screen-reader labels · every `IconButton` in `lib` has a tooltip |
+| `record_round_test.dart` | 4 | `RecordRound` — a passed level refunds the attempt's heart and saves stars, the level task and stats · a failed level keeps the heart and saves no stars or task · a daily grants its heart and streak once however often it's saved · a failing step is reported to the error log and the other steps still save |
 | `levels_screen_test.dart` | 6 | **Widget test** — completed, available and locked tiles · the first open level is auto-selected · a locked tap explains and keeps the selection · level 10 fully visible above the footer on 360×640 and 411×731 · the footer shows the pass mark, star thresholds and heart cost from the evaluation |
 | `quiz_screen_layout_test.dart` | 11 | **Widget test** — «أبلغ عن خطأ» appears in the feedback panel only after the answer · on 360×640 the 4th option sits above the hints bar in the compact size · on a tall screen the options sit right above the hints bar · the feedback panel scrolls fully into view · the next question starts at the top again · a panel taller than the screen shows its title · a short question's card is as wide as the options · Skip reads as a skip, time-up still as time-up · a quick double tap on a wrong option records one answer and charges no heart · leaving the app pauses the timer and hides the question |
 | `progress_provider_test.dart` | 5 | **Provider-to-storage wiring** — pass ⇒ stars ⇒ next unlocked · survives restart (guards the covariance bug) |
