@@ -123,6 +123,15 @@ class AppConfig {
   /// ثوانٍ بين إعادة احتساب القلوب على الشاشة ما دامت ناقصة.
   static const int heartsRefreshSeconds = 30;
 
+  // ── تحديث التطبيق من داخله (Play In-App Updates) ──
+
+  /// أولوية إصدار (0–5) تفرض التحديث بشاشة Play الكاملة. تُضبط للإصدار عبر Google
+  /// Play Developer API عند النشر، ولإصلاح انهيار أو فقدان بيانات فقط.
+  static const int forceUpdatePriority = 4;
+
+  /// أيام بين عرضين لنافذة التحديث المرن لمن لم يحدّث.
+  static const int flexibleUpdateAskEveryDays = 3;
+
   // ── التنبيه اليومي ──
 
   /// عدد الأيام القادمة التي تُجدول تنبيهاتها مسبقاً.

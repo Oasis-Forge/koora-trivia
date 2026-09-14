@@ -1,7 +1,10 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/constants/app_strings.dart';
+import '../../domain/repositories/app_updater.dart';
 import '../providers/ads_provider.dart';
+import '../providers/check_for_update.dart';
 import '../providers/economy_provider.dart';
 import '../providers/settings_provider.dart';
 import '../providers/stats_provider.dart';
@@ -23,6 +26,10 @@ class _AppLifecycleHooksState extends State<AppLifecycleHooks> {
   late final AppLifecycleListener _listener;
   late final StatsProvider _stats;
 
+  /// سؤال Play واحد في كل مرة: تنزيل التحديث المرن قد يستمر دقائق، والعودة إلى
+  /// التطبيق أثناءه لا تبدأ سؤالاً ثانياً.
+  bool _checkingUpdate = false;
+
   @override
   void initState() {
     super.initState();
@@ -30,7 +37,10 @@ class _AppLifecycleHooksState extends State<AppLifecycleHooks> {
 
     // إنجاز تحدي اليوم أو تغيّر السلسلة يغيّر أيام التنبيه ونصّه.
     _stats = context.read<StatsProvider>()..addListener(_syncReminder);
-    WidgetsBinding.instance.addPostFrameCallback((_) => _syncReminder());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _syncReminder();
+      _checkForUpdate();
+    });
   }
 
   void _onResume() {
@@ -44,11 +54,42 @@ class _AppLifecycleHooksState extends State<AppLifecycleHooks> {
 
     // قد يكون اليوم تغيّر أثناء الغياب: تحدي الأمس لم يعد «تحدي اليوم».
     _syncReminder();
+
+    // تحديث إلزامي أُغلقت شاشته يُستأنف، وتحديث نُزّل في الغياب يُعرض تثبيته.
+    _checkForUpdate();
   }
 
   void _syncReminder() {
     if (!mounted || _stats.isLoading) return;
     context.read<SettingsProvider>().syncReminder(_stats.stats);
+  }
+
+  Future<void> _checkForUpdate() async {
+    if (_checkingUpdate || !mounted) return;
+    _checkingUpdate = true;
+    final updater = context.read<AppUpdater>();
+    try {
+      final downloaded = await CheckForUpdate(updater: updater)();
+      if (downloaded && mounted) _offerRestart(updater);
+    } finally {
+      _checkingUpdate = false;
+    }
+  }
+
+  /// التحديث المنزَّل لا يُثبَّت دون إذن اللاعب: قد يكون وسط جولة.
+  void _offerRestart(AppUpdater updater) {
+    ScaffoldMessenger.maybeOf(context)
+      ?..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: const Text(AppStrings.updateDownloaded),
+          duration: const Duration(seconds: 10),
+          action: SnackBarAction(
+            label: AppStrings.updateRestart,
+            onPressed: updater.completeFlexibleUpdate,
+          ),
+        ),
+      );
   }
 
   @override

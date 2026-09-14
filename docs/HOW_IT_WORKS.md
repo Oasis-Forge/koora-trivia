@@ -37,6 +37,21 @@ each section.
   buttons skipped the levels screen's check. **Every button that starts a level must go through
   `NoHeartsDialog.startLevel`** (checks hearts, charges one heart at the start, refunded on a pass); quick play and the daily challenge stay free.
 
+### In-app updates (v1.0.6)
+
+- `AppLifecycleHooks` asks Play at launch and on every resume (`CheckForUpdate` → `PlayAppUpdater`, plugin
+  `in_app_update`). `ChooseUpdateMode` decides:
+  - **Normal release (priority 0–3):** Play's flexible update — a Play dialog, a background download, then a
+    «نُزّل تحديث جديد للتطبيق · إعادة التشغيل» snackbar. Offered at most every `AppConfig.flexibleUpdateAskEveryDays`
+    (3) days; the last offer time is device-local (`update_prompt_v1`, not in backups).
+  - **Priority ≥ `AppConfig.forceUpdatePriority` (4):** Play's full-screen immediate update, shown again on every resume
+    until the player updates. Use it only for crash or data-loss fixes.
+- **Priority can't be set in the Play Console website** — only through the Google Play Developer API when creating the
+  release (`edits.tracks.update` → `releases[].inAppUpdatePriority`).
+- **Only apps installed from Play** get updates; on the emulator or a sideloaded APK Play answers with an error that
+  is swallowed (debug print only). Test through internal app sharing or a testing track with an older build installed.
+- Players on v1.0.5 or older can't be forced — they don't have this code.
+
 ### Ads — what to know
 
 > 🐛 **Critical bug, fixed (8 September 2026):** `AdMobAdService.showRewarded` returned as soon as

@@ -289,6 +289,8 @@ class AppStrings {
   static const String noQuestions = 'لا توجد أسئلة متاحة حالياً.';
   static const String errorTitle = 'حدث خطأ';
   static const String retry = 'إعادة المحاولة';
+  static const String updateDownloaded = 'نُزّل تحديث جديد للتطبيق';
+  static const String updateRestart = 'إعادة التشغيل';
   static const String loadCategoriesFailed =
       'تعذّر تحميل التصنيفات. حاول مرة أخرى.';
   static const String ok = 'حسناً';
