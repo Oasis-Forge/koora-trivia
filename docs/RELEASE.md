@@ -34,16 +34,16 @@
 | Developer account registration | ✅ | Shows the legal name and address from the payments profile — see decision ② below |
 | App created | ✅ | Game · Free · Arabic default |
 | Store settings | ✅ | Category **Trivia** · contact email |
-| Store listing | ✅ uploaded | Text from [STORE_LISTING.md](STORE_LISTING.md) · 512 icon · feature graphic · 5 screenshots. ⚠️ A "Some languages have errors" warning appeared and **was never resolved** — open the Review step and read the error |
+| Store listing | ✅ uploaded | Text from [STORE_LISTING.md](STORE_LISTING.md) · 512 icon · feature graphic · 5 screenshots. A "Some languages have errors" warning is left for when a second language is added (owner, 14 September 2026) |
 | AI asset declaration | ✅ | Icon and feature graphic labeled; screenshots are real captures, so not labeled |
 | Data safety | ✅ submitted | Updated by the owner on 13 September 2026 to the four types in [DATA_SAFETY_EN.md](DATA_SAFETY_EN.md): Approximate location · App interactions · Diagnostics · Device or other IDs — sent for Google's review |
 | Financial · health features | ✅ | None |
 | Advertising ID | ✅ Yes | Advertising · analytics · fraud prevention |
 | Content rating · target audience | ✅ | Everyone · 13+. App content shows nothing needing attention (checked 13 September 2026) |
-| Displayed developer name | ❓ | Should be set to Oasis Forge in Account details |
+| Displayed developer name | ✅ | Set to Oasis Forge by the owner (14 September 2026) |
 | Developer verification | ✅ | Play reports all apps registered (deadline 30 September 2026) |
 | Privacy policy URL | ✅ | Changed to the oasis-forge.github.io URL by the owner on 13 September 2026. The page itself now carries the PR #5 text (effective 13 September 2026), deployed and checked live the same day |
-| Internal testing | ⚠️ | Still serves the 6 September release — the bundle list shows `1.0.0` (versionCode 1, the **launch-crash** build) still active. Replace it with versionCode 4 or stop using the track |
+| Internal testing | ✅ | The crashing versionCode 1 was replaced by the owner (14 September 2026) |
 | Closed testing | ✅ running · ⚠️ testers | Track **Alpha**: v1.0.3 (versionCode 4), available since **9 September 2026**, 177 countries. Only **5 of 12** testers opted in (13 September). New personal accounts need **12 testers opted in for 14 consecutive days** before requesting production, so the clock hasn't started |
 | Production | ⏳ | |
 
