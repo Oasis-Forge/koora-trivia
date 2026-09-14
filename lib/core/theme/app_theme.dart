@@ -5,6 +5,10 @@ import 'app_colors.dart';
 class AppTheme {
   const AppTheme._();
 
+  /// أيقونة الزر بعد نصه: في العربية (من اليمين) تقع على يسار النص — طلب
+  /// صاحب التطبيق. لا تُلغَ لزر بعينه.
+  static const _iconAfterLabel = IconAlignment.end;
+
   static ThemeData get dark {
     final base = ThemeData.dark(useMaterial3: true);
 
@@ -31,6 +35,7 @@ class AppTheme {
           backgroundColor: AppColors.gold,
           foregroundColor: AppColors.pitchDark,
           minimumSize: const Size.fromHeight(56),
+          iconAlignment: _iconAfterLabel,
           textStyle: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -44,11 +49,15 @@ class AppTheme {
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.chalk,
           minimumSize: const Size.fromHeight(56),
+          iconAlignment: _iconAfterLabel,
           side: const BorderSide(color: AppColors.cardBorder, width: 1.4),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18),
           ),
         ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(iconAlignment: _iconAfterLabel),
       ),
       snackBarTheme: const SnackBarThemeData(
         backgroundColor: AppColors.cardSurface,
