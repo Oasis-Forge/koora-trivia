@@ -34,7 +34,7 @@
 | Developer account registration | ✅ | Shows the legal name and address from the payments profile — see decision ② below |
 | App created | ✅ | Game · Free · Arabic default |
 | Store settings | ✅ | Category **Trivia** · contact email |
-| Store listing | ✅ uploaded | Text from [STORE_LISTING.md](STORE_LISTING.md) · 512 icon · feature graphic · 5 screenshots. A "Some languages have errors" warning is left for when a second language is added (owner, 14 September 2026) |
+| Store listing | ✅ uploaded | Text from [STORE_LISTING.md](STORE_LISTING.md) · 512 icon · feature graphic · 5 screenshots (Arabic). English (en-US) translation still to add with v1.0.6 — see "English on Play Console" below |
 | AI asset declaration | ✅ | Icon and feature graphic labeled; screenshots are real captures, so not labeled |
 | Data safety | ✅ submitted | Updated by the owner on 13 September 2026 to the four types in [DATA_SAFETY_EN.md](DATA_SAFETY_EN.md): Approximate location · App interactions · Diagnostics · Device or other IDs — sent for Google's review |
 | Financial · health features | ✅ | None |
@@ -46,6 +46,21 @@
 | Internal testing | ✅ | The crashing versionCode 1 was replaced by the owner (14 September 2026) |
 | Closed testing | ✅ running · ⚠️ testers | Track **Alpha**: v1.0.3 (versionCode 4), available since **9 September 2026**, 177 countries. Only **5 of 12** testers opted in (13 September). New personal accounts need **12 testers opted in for 14 consecutive days** before requesting production, so the clock hasn't started |
 | Production | ⏳ | |
+
+### English on Play Console (with v1.0.6)
+
+1. **Listing translation:** Store listings → main listing → Manage translations → add your own → English (United
+   States). Paste the name, short and full description from [STORE_LISTING.md](STORE_LISTING.md) — not machine
+   translation.
+2. **English graphics for that translation:** at least 2 English phone screenshots (the 5 uploaded are Arabic), and
+   optionally a feature graphic without Arabic text (`assets/branding/feature_art.png` is textless).
+3. **Release notes:** paste both the `<ar>` and `<en-US>` blocks from the release's `NOTES.md`.
+4. **"Some languages have errors":** after saving, fix or remove any language the Store listings page still flags.
+5. **Upload:** v1.0.6 (versionCode 7) to internal, then closed testing. It contains everything in v1.0.5, so v1.0.5
+   can be skipped if it was never uploaded.
+6. **Pre-launch report:** check crashes and its screenshots, which run in several device languages.
+7. **No change needed:** Data safety, content rating, target audience, ads declaration, category, and the privacy
+   policy (already in English and Arabic).
 
 ## ⚙️ Environment — read this first
 
