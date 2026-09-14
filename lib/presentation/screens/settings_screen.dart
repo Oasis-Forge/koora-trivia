@@ -261,7 +261,7 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8, 8, 20, 12),
+      padding: const EdgeInsetsDirectional.fromSTEB(20, 8, 8, 12),
       child: Row(
         children: [
           IconButton(
@@ -287,7 +287,7 @@ class _SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10, right: 4),
+      padding: const EdgeInsetsDirectional.only(bottom: 10, start: 4),
       child: Text(
         text,
         style: TextStyle(

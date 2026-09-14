@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
-import 'core/constants/app_strings.dart';
 import 'core/di/injector.dart';
 import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
@@ -28,6 +26,7 @@ import 'presentation/screens/shop_screen.dart';
 import 'presentation/screens/tasks_screen.dart';
 import 'presentation/widgets/app_lifecycle_hooks.dart';
 import 'presentation/widgets/palette_scope.dart';
+import 'l10n/app_localizations.dart';
 
 class FootballTriviaApp extends StatelessWidget {
   const FootballTriviaApp({super.key, required this.injector});
@@ -82,24 +81,18 @@ class FootballTriviaApp extends StatelessWidget {
           return PaletteScope(
             themeId: themeId,
             child: MaterialApp(
-        title: AppStrings.appName,
+        onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.dark,
         themeMode: ThemeMode.dark,
 
-        // دعم العربية واتجاه RTL على مستوى التطبيق كاملاً.
-        locale: const Locale('ar'),
-        supportedLocales: const [Locale('ar'), Locale('en')],
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
+        // اللغات من ملفات الترجمة في lib/l10n (العربية وحدها حالياً)، واتجاه
+        // الكتابة يتبع اللغة. لا لغة ولا اتجاه مفروضان هنا: جهاز بلغة غير مدعومة
+        // يحصل على العربية، وإضافة لغة لا تتطلب تعديل هذا الملف.
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
         builder: (context, child) => AppLifecycleHooks(
-          child: Directionality(
-            textDirection: TextDirection.rtl,
-            child: child ?? const SizedBox.shrink(),
-          ),
+          child: child ?? const SizedBox.shrink(),
         ),
 
         initialRoute: RootScreen.routeName,

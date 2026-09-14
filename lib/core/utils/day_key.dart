@@ -1,3 +1,5 @@
+import '../constants/app_strings.dart';
+
 /// أدوات التعامل مع "اليوم" كمفتاح ثابت للتحدي اليومي والسلسلة.
 ///
 /// نستخدم التاريخ المحلي (بدون وقت) حتى يبدأ اليوم عند منتصف الليل لدى المستخدم.
@@ -38,15 +40,10 @@ class DayKey {
         .inDays;
   }
 
-  static const List<String> _arabicMonths = [
-    'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
-    'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر',
-  ];
-
   /// تاريخ مقروء بالعربية مثل `4 أغسطس`، يُستخدم في نص المشاركة.
   static String arabicShortDate([DateTime? date]) {
     final d = date ?? DateTime.now();
-    return '${d.day} ${_arabicMonths[d.month - 1]}';
+    return '${d.day} ${AppStrings.monthNames[d.month - 1]}';
   }
 
   /// الوقت المتبقي حتى منتصف الليل المحلي.

@@ -209,7 +209,7 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8, 8, 20, 4),
+      padding: const EdgeInsetsDirectional.fromSTEB(20, 8, 8, 4),
       child: Column(
         children: [
           Row(
@@ -232,7 +232,7 @@ class _Header extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      '$done من $total ${AppStrings.levelsDone}',
+                      AppStrings.levelsProgress(done, total),
                       style: TextStyle(
                         fontSize: 12.5,
                         color: AppColors.chalkMuted,

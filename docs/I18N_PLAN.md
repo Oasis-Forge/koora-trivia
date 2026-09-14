@@ -80,6 +80,14 @@
 
 ## 2. Engineering work (≈1–2 weeks)
 
+> **Done in v1.0.5 (groundwork, invisible to players):** §2.2's forced `Locale('ar')` and RTL builder removed — direction
+> now follows the language · `intl` as a direct dependency, `flutter: generate: true`, `l10n.yaml` and `lib/l10n/app_ar.arb`
+> (only `appTitle`, used by `onGenerateTitle`) · the player-facing literals from §2.1 moved into `AppStrings`
+> (developer messages in `lib/data` stay) · `android:label` → `@string/app_name` · §2.5's side-encoded paddings, the Tasks
+> badge and both gradients made directional (the arrows are untouched: bug 10 needs the owner) ·
+> `localization_groundwork_test` blocks new hard-coded player text. **Still to do:** convert `AppStrings` to ARB and
+> `AppLocalizations` (§2.1), §2.2's picker and `languageCode`, §2.3–2.4, §2.6–2.7.
+
 ### 2.1 Localization infrastructure
 - `pubspec.yaml`: add `intl` as a **direct** dependency (it only arrives transitively today, 0.20.2)
   and `flutter: generate: true`; add `l10n.yaml`, `lib/l10n/app_ar.arb` (template) and `app_en.arb`.

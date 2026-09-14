@@ -121,8 +121,8 @@ class AppColors {
       );
 
   static LinearGradient get goldGradient => LinearGradient(
-        begin: Alignment.topRight,
-        end: Alignment.bottomLeft,
+        begin: AlignmentDirectional.topStart,
+        end: AlignmentDirectional.bottomEnd,
         colors: [gold, goldDeep],
       );
 }

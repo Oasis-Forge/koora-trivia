@@ -78,6 +78,7 @@ Build A is v1.0.4+5 from `main` before PR #14; build B is the final v1.0.4+5 (sa
 | Flow | Build | Result |
 |---|---|---|
 | Color themes | release (PR #22) | ✅ green unchanged · switching green → blue → purple → red in Settings recolors the open screen at once · home and quiz follow · red keeps wrong (coral) and correct (green) distinct · the choice survives force-stop and relaunch · no crash |
+| Language groundwork, device language English | release (PR #23) | ✅ still Arabic, right to left, on home, categories, level grid, tasks and Settings (headers unchanged) · recents title and launcher label «تحدي كرة القدم» · no crash |
 
 To re-run the EEA check: clear the app's data, then `flutter run --dart-define=UMP_DEBUG_EEA=true`
 (ignored in release builds). To make a reminder fire without waiting: `adb shell settings put global
