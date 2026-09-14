@@ -171,7 +171,8 @@ API (`inAppUpdatePriority`); the Play Console website can't set it. Details in [
 | `assets/branding/play_store_icon_512.png` | Store icon — **full green square to the edges** (Play rounds the corners itself; never upload a pre-rounded icon) |
 | `assets/branding/app_icon_source.png` | Launcher icon source · `app_icon_foreground.png` for adaptive · `app_icon_cutout.png` transparent cutout |
 | `assets/branding/feature_graphic_1024x500.png` | Feature graphic with title · `feature_art.png` raw art without text |
-| `screenshots/store_9x16/` | **The uploaded screenshots** — 5 × 1080×1920 |
+| `screenshots/store_9x16/` | **The uploaded screenshots (Arabic)** — 5 × 1080×1920, still the design before v1.0.6 |
+| `screenshots/store_9x16_en/` | **English screenshots for the en-US listing** — 5 × 1080×1920 in the v1.0.6 design: home · categories · levels · question · answer feedback (emulator set to 1080×2000 with `adb shell wm size`, status bar cropped, size reset after) |
 | `screenshots/store/` | ⚠️ 1440×2975 (ratio 2.07) — **rejected by Play**, don't use |
 | [docs/STORE_LISTING.md](STORE_LISTING.md) | App name · short description · full description (Arabic payload) |
 | [docs/DATA_SAFETY_EN.md](DATA_SAFETY_EN.md) | Data safety answers in Play Console's English terms, with the AdMob disclosure source |
