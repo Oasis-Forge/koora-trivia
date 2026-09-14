@@ -34,17 +34,16 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
 3. **v1.0.5:** the release — version bump, both builds, one release-build check on the emulator, archive.
-4. **Owner's Play Console tasks:** replace the crashing versionCode 1 on the internal track · the
-   "Some languages have errors" warning · displayed developer name · app-ads.txt (PLAN.md P1 · S).
+4. **Owner's Play Console tasks:** app-ads.txt (PLAN.md P1 · S). The "Some languages
+   have errors" warning is handled when a second language is added.
 
 ### Decisions waiting on the owner
-- **① Heart deduction:** one heart per wrong answer drains all five in one failed attempt; proposal is
-  one per failed attempt. Owner said "not now".
 - **② Name and address on the store page** (personal account) vs. an organization account. Undecided.
 - **③ Multiple languages:** the groundwork is in v1.0.5 (status at the top of I18N_PLAN.md §2). Still open: which
   language first, translated vs. native questions, and `arab_football` — [docs/I18N_PLAN.md](docs/I18N_PLAN.md).
 - **Decided 14 September 2026:** themes are color variations of the current design only · a bare «لا شيء»
-  option is not acceptable · the language follows the phone, and a Settings choice overrides it.
+  option is not acceptable · the language follows the phone, and a Settings choice overrides it · ① one heart
+  per failed attempt, not per wrong answer (not built yet — PLAN.md Phase 1).
 
 ### Identity and secrets — never break these
 - **Never write the owner's personal name, personal account names, or personal email into tracked

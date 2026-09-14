@@ -22,6 +22,7 @@
 - B2: four color themes (ملعب أخضر · ليلي أزرق · بنفسجي · كلاسيكو أحمر) with a «المظهر» picker in Settings, saved with the settings and the backup.
 - Language groundwork: no forced locale or RTL (direction follows the language) · side-based paddings, the Tasks badge and gradients made directional · the last hard-coded player text moved into `AppStrings` · `lib/l10n` translation files (Arabic only, used for the app title) · launcher name from `strings.xml` · a test that blocks new hard-coded player text.
 - Language choice: the app follows the phone's language unless the player picks one in a «اللغة» panel in Settings, hidden while Arabic is the only language · settings saved before it, and new players until a second language ships, are stored as Arabic so nobody's app switches language later.
+- 14 September 2026 (owner, Play Console): the crashing versionCode 1 replaced on the internal track · displayed developer name set to Oasis Forge · the "Some languages have errors" warning is left for when a second language is added.
 - PR #7, merged 14 September 2026: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
 - PR #6, merged 13 September 2026: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
 - PR #5, merged 13 September 2026: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
@@ -38,18 +39,15 @@
 - **P1 · L**: Have a person review levels 7–10 in every category; a sample of levels 9–10 found about 1 in 10 wrong. Reviewer checklist: a source for every answer, no wrong option that is also true, and no «الوحيد» or «حتى الآن» without a year.
 
 ### Release & tech debt
-- **P0 · M**: Production gate. Only 5 of the 12 required testers have joined. Recruit 15–20 as a buffer and record the date the 12th joins. Replace the crashing versionCode 1 on the internal track.
+- **P0 · M**: Production gate. Only 5 of the 12 required testers have joined. Recruit 15–20 as a buffer and record the date the 12th joins.
 - **P1 · S**: Play Console and GitHub tasks:
-  - Read and fix the "Some languages have errors" warning.
-  - Set the displayed developer name to Oasis Forge.
-  - Confirm content rating.
   - Host app-ads.txt at the oasis-forge.github.io root and set it as the listing's Website.
 - **P1 · M**: Check on a real phone (the emulator release check passed on 14 September 2026) and log results in PRE_PUBLISH §1:
   - The in-app review sheet, from a closed-test install.
   - Quiz screen and level grid on a real short phone and a real tall one.
 
 ### Features
-- All Phase 1 features are in PR #8.
+- **P1 · S**: One heart per failed attempt instead of per wrong answer (owner's decision ①, 14 September 2026). Update the onboarding text to match.
 
 ---
 
@@ -128,21 +126,15 @@
 ---
 
 ## Decisions only the owner can make
-1. **① Heart deduction** (before production).
-   - Options: one heart per wrong answer (and then timeouts should cost one too; today they are free) · one per failed attempt · raise the cap or lower the pass mark.
-   - **Recommend:** one per failed attempt, and update the onboarding text.
+1. **① Heart deduction** — **decided 14 September 2026:** one heart per failed attempt (Phase 1 item).
 2. **② Name and address on the store page** (before production).
    - Options: personal account with a non-home address · organization account (needs a D-U-N-S number, which takes weeks).
    - **Recommend:** if your name must stay private, apply for D-U-N-S now.
 3. **Skip hint scoring.**
    - Options: counts as a miss (and say so in the app) · left out of the level total · replaced by another question.
    - **Recommend:** leave it out of the total, as the code's own comment intends, but no 3 stars on a level with a skip.
-4. **Telemetry.**
-   - Options: none · local error log plus a feedback email · Firebase Crashlytics and Analytics (needs Data safety and privacy policy updates).
-   - **Recommend:** the local log now; Crashlytics and about 8 analytics events in the first update.
-5. **Timer while the app is in the background.**
-   - Options: keep it running · pause and hide the question · keep it running and show a resume screen.
-   - **Recommend:** pause and hide the question.
+4. **Telemetry.** The local error log and feedback email shipped (PR #8). Still open: Crashlytics and about 8 analytics events in the first update (needs Data safety and privacy policy updates).
+5. **Timer while the app is in the background** — done in v1.0.5 (B1): the quiz pauses and hides the question.
 6. **Shop and monetization.**
    - Options: keep or hide the «قريباً» Remove-ads row · sell heart packs or coins for money · add hint-for-ad and replay-level ads.
    - **Recommend:** hide the row at launch, sell only heart packs, and add hint-for-ad.
