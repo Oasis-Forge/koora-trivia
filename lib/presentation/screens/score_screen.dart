@@ -474,7 +474,12 @@ class _DailyReminderCardState extends State<_DailyReminderCard> {
             if (!_enabledHere)
               TextButton(
                 onPressed: _busy ? null : _enable,
-                child: const Text(AppStrings.dailyReminderButton),
+                // لون الزر الافتراضي أخضر يذوب في البطاقة الخضراء (رُئي على المحاكي).
+                style: TextButton.styleFrom(foregroundColor: AppColors.gold),
+                child: const Text(
+                  AppStrings.dailyReminderButton,
+                  style: TextStyle(fontWeight: FontWeight.w800),
+                ),
               ),
           ],
         ),

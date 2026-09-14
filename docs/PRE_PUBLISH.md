@@ -1,6 +1,6 @@
 # Pre-publish checklist — Koora Trivia (تحدي كرة القدم)
 
-Last full check: **14 September 2026** · Latest build: **v1.0.4+5** (archived, not uploaded yet)
+Last full check: **14 September 2026** · Latest build: **v1.0.5+6** (archived 14 September 2026, not uploaded yet)
 
 > Per-section Play Console status and the next steps live in **"Current status"** at the
 > top of [CLAUDE.md](../CLAUDE.md); the full Play Console table is in [RELEASE.md](RELEASE.md). This file keeps the details: what was verified, what
@@ -79,6 +79,7 @@ Build A is v1.0.4+5 from `main` before PR #14; build B is the final v1.0.4+5 (sa
 |---|---|---|
 | Color themes | release (PR #22) | ✅ green unchanged · switching green → blue → purple → red in Settings recolors the open screen at once · home and quiz follow · red keeps wrong (coral) and correct (green) distinct · the choice survives force-stop and relaunch · no crash |
 | Language groundwork, device language English | release (PR #23) | ✅ still Arabic, right to left, on home, categories, level grid, tasks and Settings (headers unchanged) · recents title and launcher label «تحدي كرة القدم» · no crash |
+| **v1.0.5 release check**, installed over v1.0.4 | release `1.0.5+6` | ✅ progress kept (best score 821, rounds, hearts) · level footer «للاجتياز 7 من 10 · ⭐⭐ 9 · ⭐⭐⭐ 10» and the heart cost on one line each · starting level 1 takes a heart (5 → 4), quitting keeps it taken, with the new quit text · hint captions · extra time once (30 s, then greyed) · the timer holds in the background (28 → 26 across ~10 s away) · a timed-out daily: «انتهى الوقت!» in red with the correct answer in green in the review, «كسبت قلباً!» (4 → 5), streak card, reminder card, «العب مستوى» · «ذكّرني» opens Android's notification prompt, then confirms «سنذكّرك بتحدي الغد الساعة 20:00» and the alarm is scheduled for 20:00 tomorrow · no crash. Found: «ذكّرني» was green on the green card — made gold and rebuilt; the colour is covered by `daily_result_test`, not re-seen on the emulator (today's daily is done) |
 
 To re-run the EEA check: clear the app's data, then `flutter run --dart-define=UMP_DEBUG_EEA=true`
 (ignored in release builds). To make a reminder fire without waiting: `adb shell settings put global
@@ -100,11 +101,13 @@ and `adb shell wm density 480`; undo with `adb shell wm size reset` and `adb she
 
 ## 2. Release procedure
 
-1. Bump `version` in `pubspec.yaml` (`1.0.4+5` ⇒ next is `1.0.5+6`).
+1. Bump `version` in `pubspec.yaml` (`1.0.5+6` ⇒ next is `1.0.6+7`).
 2. `flutter analyze` and `flutter test`.
 3. `flutter build appbundle --release` **then** `flutter build apk --release` — always both.
 4. `adb uninstall com.oasisforge.kooratrivia` → install the APK → exercise the affected flow.
-5. `dart run tool/archive_release.dart "reason"` → creates `releases/v<version>_<date>/`.
+5. `dart run tool/archive_release.dart "reason"` → creates `releases/v<version>_<date>/`. Since v1.0.5 it
+   refuses a missing or stale build, an APK whose version differs from `pubspec.yaml`, and debug-signed or
+   mismatched signing.
 6. Upload `app-release.aab` from the archive folder to the target track in Play Console.
 
 **Release notes template** (the payload is Arabic because players see it; it deliberately
@@ -128,7 +131,8 @@ mentions no fixed counts):
 | `1.0.1+2` | R8 turned off, nothing else |
 | `1.0.2+3` | Covariance bug fix (stars · level unlocks · Next Level button) |
 | `1.0.3+4` | + replay button hidden after the daily challenge |
-| `1.0.4+5` | PRs #2–#14: daily-challenge seed · zero-heart replay · ad consent · working reminders · small screens · backup import · reports, feedback, review prompt, error log · content fixes · button icons on the left ← **latest** (archived 14 September 2026, not uploaded yet) |
+| `1.0.4+5` | PRs #2–#14: daily-challenge seed · zero-heart replay · ad consent · working reminders · small screens · backup import · reports, feedback, review prompt, error log · content fixes · button icons on the left (uploaded by the owner 14 September 2026 to internal and closed testing) |
+| `1.0.5+6` | PRs #16–#29: content fixes (section A) · daily start-day, one heart per answer charge, quiz pause in the background · four color themes · language groundwork and choice · one heart per failed level attempt with thresholds in the level footer · quick-play replay keeps the category · categories load retry · extra time once per question and a capped speed bonus · daily heart once per daily · reminder card and «العب مستوى» after the daily · hint captions and disabled reasons · review colors, tooltips, screen-reader labels · `RecordRound` · archive-tool checks ← **latest** (archived 14 September 2026, not uploaded yet) |
 
 > ⚠️ In `releases/v1.0.1_build2_*` the `.apk` is **versionCode 1** (built two minutes before
 > the version bump) while the `.aab` is correct. Verified with `aapt2 dump badging`; the

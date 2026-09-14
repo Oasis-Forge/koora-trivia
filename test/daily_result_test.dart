@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:football_trivia/core/constants/app_strings.dart';
+import 'package:football_trivia/core/theme/app_colors.dart';
 import 'package:football_trivia/presentation/providers/settings_provider.dart';
 import 'package:football_trivia/presentation/screens/score_screen.dart';
 import 'package:provider/provider.dart';
@@ -45,6 +47,11 @@ void main() {
     final quiz =
         await pumpScoreScreen(tester, correct: 5, mode: RoundMode.daily);
     expect(_settings(tester).reminderEnabled, isFalse);
+    // ذهبي مقروء على البطاقة الخضراء، لا لون الزر الافتراضي.
+    final button = tester.widget<TextButton>(
+      find.widgetWithText(TextButton, AppStrings.dailyReminderButton),
+    );
+    expect(button.style?.foregroundColor?.resolve({}), AppColors.gold);
 
     await _tap(tester, AppStrings.dailyReminderButton);
 
