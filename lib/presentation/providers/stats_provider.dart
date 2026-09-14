@@ -55,8 +55,13 @@ class StatsProvider extends ChangeNotifier {
       lastPlayedDayKey: today,
     );
 
-    if (result.isDaily && !next.isDailyDoneOn(today)) {
-      next = _updateStreak(next, todayKey: today);
+    if (result.isDaily) {
+      // يوم بدء التحدي لا يوم انتهائه: من بدأ قبل منتصف الليل وأنهى بعده كانت
+      // سلسلته تُعاد إلى 1 (انظر `QuizProvider.startDaily`).
+      final dayKey = result.dailyDayKey ?? today;
+      if (!next.isDailyDoneOn(dayKey)) {
+        next = _updateStreak(next, todayKey: dayKey);
+      }
     }
 
     _stats = next;

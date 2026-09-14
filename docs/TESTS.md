@@ -2,14 +2,14 @@
 
 > Moved from CLAUDE.md on 14 September 2026. Update the count and the table when tests are added.
 
-**325 tests across 37 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+**332 tests across 37 files, all passing.** `flutter analyze` is clean. Shared test code lives in
 `test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
 (in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
 (`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
 
 | File | Count | Covers |
 |---|---|---|
-| `quiz_provider_test.dart` | 23 | Scoring · speed bonus · multipliers · timer · sequencing · result building · a load error shows a friendly message and is reported to `FlutterError` |
+| `quiz_provider_test.dart` | 26 | Scoring · speed bonus · multipliers · timer · sequencing · result building · a load error shows a friendly message and is reported to `FlutterError` · an answer is recorded once, never after time-up · pause freezes the timer · the daily keeps the day it started |
 | `should_ask_for_review_test.dart` | 5 | Review prompt rules: daily streak threshold · 3 stars only · never after quick play · never after an ad · 30-day gap |
 | `score_screen_review_test.dart` | 9 | **Widget test** — the result screen asks for a review after a 3-day daily streak or 3 stars, not after a shorter streak, 2 stars, a failed level, a recent ask or an interstitial · not once the player has left for the next round · «أعد المستوى» waits for a review request in progress · every review row has «أبلغ عن خطأ» |
 | `email_builders_test.dart` | 7 | `mailto` encoding (`%20`, newlines, `&`) · question report: recipient, subject, id, category, level, text, options with the approved one marked, version · distinct reason labels · feedback email: version, "no errors", newest errors only with date and time, long ones cut |
@@ -32,15 +32,15 @@
 | `share_text_test.dart` | 9 | Result grid · daily-challenge date · category and level · streak count forms (1 · 2 · 5 · 11) · the Play Store link with referrer on the last line · doesn't leak questions |
 | `quiz_repository_test.dart` | 11 | Levels · daily-challenge stability · **a full year with no day sharing more than 2 of 7 questions with the day before** · epoch day independent of time zone · neighbouring seeds shuffle differently · filtering |
 | `question_bank_test.dart` | 9 | Bank integrity: counts · IDs · structure · balance · banned options, including bare «لا شيء», «لا أحد» and «لم يحدث» · no hidden direction characters · **duplicates** · matches `AppConfig` |
-| `update_streak_test.dart` | 5 | Day-streak logic in every case |
+| `update_streak_test.dart` | 6 | Day-streak logic in every case · daylight-saving days count as one day |
 | `settings_screen_test.dart` | 16 | **Widget test** — stats display · the built version number · «أرسل ملاحظاتك» opens an email with the version and recent errors, or shows the address without a mail app · confirmation dialog with the loss in correct Arabic, including the dual after a verb · reset · privacy: ad-options row only where required, opens the form, failure message · policy link opens the published URL, failure message · backup import shows the imported progress without a restart · an invalid code changes nothing |
 | `restore_backup_test.dart` | 4 | **Real datasources over mock SharedPreferences** — imported data shows at once and survives the first save from every provider · without the reload the first save overwrites it (why `RestoreBackup` exists) · a code with reminders off cancels the device's reminders and nothing reschedules them · a corrupt code changes nothing |
 | `score_screen_buttons_test.dart` | 6 | **Widget test** — result screen: level pass shows "Next level" and "Replay level" · fail shows only "Replay level" · last level has no "Next level" · daily has no replay or next · quick play shows "Play again" · a skipped question reads as a skip in the review |
 | `button_icons_test.dart` | 1 | **Widget test** — with the app theme in RTL, the icon of every filled, outlined and text button sits left of its label |
 | `levels_screen_test.dart` | 5 | **Widget test** — completed, available and locked tiles · the first open level is auto-selected · a locked tap explains and keeps the selection · level 10 fully visible above the footer on 360×640 and 411×731 |
-| `quiz_screen_layout_test.dart` | 9 | **Widget test** — «أبلغ عن خطأ» appears in the feedback panel only after the answer · on 360×640 the 4th option sits above the hints bar in the compact size · on a tall screen the options sit right above the hints bar · the feedback panel scrolls fully into view · the next question starts at the top again · a panel taller than the screen shows its title · a short question's card is as wide as the options · Skip reads as a skip, time-up still as time-up |
+| `quiz_screen_layout_test.dart` | 11 | **Widget test** — «أبلغ عن خطأ» appears in the feedback panel only after the answer · on 360×640 the 4th option sits above the hints bar in the compact size · on a tall screen the options sit right above the hints bar · the feedback panel scrolls fully into view · the next question starts at the top again · a panel taller than the screen shows its title · a short question's card is as wide as the options · Skip reads as a skip, time-up still as time-up · a quick double tap on a wrong option charges one heart · leaving the app pauses the timer and hides the question |
 | `progress_provider_test.dart` | 5 | **Provider-to-storage wiring** — pass ⇒ stars ⇒ next unlocked · survives restart (guards the covariance bug) |
-| `daily_guard_test.dart` | 5 | `isDailyDone` after completion · persists across restart · quick play doesn't set it |
+| `daily_guard_test.dart` | 6 | `isDailyDone` after completion · persists across restart · quick play doesn't set it · a daily started before midnight counts for its start day |
 | `backup_test.dart` | 13 | Export then import · corrupt code · extra whitespace · newer version rejected · one badly typed value rejects the whole code and writes nothing · non-string value · unreadable day key · no known key · every datasource reads a badly typed stored value as defaults instead of throwing |
 | `economy_balance_test.dart` | 4 | Daily income below cheapest purchase · purchase within two days · interstitials off · chest is worth it |
 | `score_screen_hearts_test.dart` | 4 | **Widget test** — result screen: "Replay level" and "Next level" with zero hearts show the no-hearts dialog and don't start · replay with hearts starts · quick play stays free |
@@ -53,8 +53,8 @@
   show path through fakes (including a fake `RewardedAd` that fires callbacks in the SDK's order),
   but the real UMP form and the SDK's own callback timing still need a hand test on the emulator.
   Before PR #5 nothing covered this, which is how the "reward is never granted" bug slipped through.
-- **The quiz screen's gameplay through the UI** — heart deduction on a wrong tap, the hints bar, the
-  quit dialog — has no widget test; only its layout and feedback panel do (`quiz_screen_layout_test`).
+- **The quiz screen's gameplay through the UI** — the hints bar and the quit dialog — has no widget test
+  (a double tap's heart charge and the background pause do); only its layout and feedback panel do (`quiz_screen_layout_test`).
   Result-screen buttons and the level grid are covered since PR #7.
 - **Release-build-only failures** (R8, signing) — `flutter test` can't catch them.
 - No integration tests (`integration_test`).

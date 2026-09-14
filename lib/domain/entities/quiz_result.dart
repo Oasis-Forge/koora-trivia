@@ -32,6 +32,7 @@ class QuizResult {
     required this.playedAt,
     this.categorySlug,
     this.level,
+    this.dailyDayKey,
   });
 
   final List<AnswerRecord> answers;
@@ -42,6 +43,9 @@ class QuizResult {
   /// التصنيف والمستوى — يُملآن في نمط المستويات فقط.
   final String? categorySlug;
   final int? level;
+
+  /// يوم تحدي اليوم الذي بدأه اللاعب (`yyyy-MM-dd`) — قد يسبق يوم انتهاء الجولة.
+  final String? dailyDayKey;
 
   bool get isLevel => categorySlug != null && level != null;
 

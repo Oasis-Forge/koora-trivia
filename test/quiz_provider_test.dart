@@ -459,4 +459,59 @@ void main() {
       });
     });
   });
+
+
+  group('لمسة مكررة وإيقاف مؤقت وتحدي منتصف الليل', () {
+    test('الإجابة تُسجَّل مرة واحدة، ولا تُسجَّل بعد انتهاء الوقت', () {
+      fakeAsync((async) {
+        final quiz = _startedLevel(async);
+        final wrong = _wrongIndex(quiz);
+
+        expect(quiz.selectAnswer(wrong), isTrue);
+        expect(quiz.selectAnswer(wrong), isFalse);
+        expect(quiz.answers, hasLength(1));
+
+        quiz.next();
+        async.elapse(Duration(seconds: AppConfig.secondsPerQuestion));
+        expect(quiz.selectAnswer(0), isFalse);
+        quiz.dispose();
+      });
+    });
+
+    test('الإيقاف المؤقت يجمّد العدّاد حتى الاستئناف', () {
+      fakeAsync((async) {
+        final quiz = _startedLevel(async);
+        async.elapse(const Duration(seconds: 5));
+        final left = quiz.secondsLeft;
+
+        quiz.pause();
+        async.elapse(const Duration(minutes: 2));
+        expect(quiz.isPaused, isTrue);
+        expect(quiz.secondsLeft, left);
+        expect(quiz.status, QuizStatus.playing);
+
+        quiz.resume();
+        async.elapse(const Duration(seconds: 1));
+        expect(quiz.isPaused, isFalse);
+        expect(quiz.secondsLeft, left - 1);
+        quiz.dispose();
+      });
+    });
+
+    test('تحدي اليوم يُنسب إلى يوم بدئه ولو انتهى بعد منتصف الليل', () {
+      fakeAsync((async) {
+        var now = DateTime(2026, 9, 14, 23, 59);
+        final quiz = QuizProvider(
+          repository: QuizRepositoryImpl(_FakeDataSource()),
+          clock: () => now,
+        );
+        quiz.startDaily();
+        async.flushMicrotasks();
+
+        now = DateTime(2026, 9, 15, 0, 1);
+        expect(quiz.buildResult().dailyDayKey, '2026-09-14');
+        quiz.dispose();
+      });
+    });
+  });
 }

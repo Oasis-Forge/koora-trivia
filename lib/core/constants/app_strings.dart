@@ -31,6 +31,9 @@ class AppStrings {
   static const String quitBody = 'ستفقد تقدمك في هذه الجولة.';
   static const String quitConfirm = 'خروج';
   static const String quitCancel = 'متابعة اللعب';
+  static const String quizPaused = 'الجولة متوقفة مؤقتاً';
+  static const String quizPausedHint =
+      'يعود السؤال والوقت كما تركتهما حين ترجع إلى التطبيق.';
   static const String timeUp = 'انتهى الوقت!';
 
   // النتيجة

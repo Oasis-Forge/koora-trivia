@@ -18,6 +18,7 @@
 - 14 September 2026 (answers batch 4): 10082, 10092, 3081, 10091, 2097 and 5022 corrected.
 - 14 September 2026 (answers batches 5–7): 4081, 7097, 5092, 10095, 3087, 5096, 3090, 6082, 6091, 7093, 1011, 5048, 8008, 1014 and 1044 corrected. Both answer lists from the audit are done.
 - 14 September 2026: the bank test bans bare «لا شيء», «لا أحد» and «لم يحدث» options (9006, 9052, 9053, 9060, 9085, 9089, 10048 fixed), normalises the duplicate check's filler words, and 1093 has a single correct answer. Section A of v1.0.5 is done.
+- 14 September 2026 (B1): a daily challenge counts for the day it started · day gaps are counted in UTC · a heart is charged only when the answer is recorded · the quiz timer pauses and hides the question while the app is in the background.
 - PR #7, merged 14 September 2026: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
 - PR #6, merged 13 September 2026: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
 - PR #5, merged 13 September 2026: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
@@ -27,8 +28,6 @@
 ## Phase 1: before production (during the 14-day closed test)
 
 ### Bugs
-- **P2 · S**: Follow-ups to the day-key fix (PR #2). Record the day key when the daily starts (finishing after midnight resets the streak), and use UTC dates in `daysBetween` so daylight-saving days count correctly *(day_key.dart, stats_provider.dart)*.
-- **P2 · S**: Charge a heart only when `QuizProvider` actually records the answer (`selectAnswer` returns bool). This closes the double-tap and timeout-frame race. Ship it with decision ① *(quiz_screen.dart, quiz_provider.dart)*.
 
 ### UI/UX
 
@@ -56,7 +55,6 @@
 ## Phase 2: first update after launch
 
 ### Bugs
-- **P2 · S**: The quiz timer keeps running while the app is in the background, so a phone call costs the question. Pause and resume with the app lifecycle and hide the question while paused *(quiz_provider.dart, quiz_screen.dart)*.
 - **P2 · S**: «العب مرة أخرى» after a quick-play round ignores the chosen category. Keep the category and pass it back *(quiz_provider.dart, score_screen.dart)*.
 - **P2 · S**: The categories screen spins forever if loading fails. Show a friendly error with a retry button *(categories_screen.dart)*. The raw exception text in SnackBars was fixed in PR #8.
 - **P3 · S**: Economy leaks. Allow Extra time once per question and cap the speed bonus at 50. Grant the daily heart only if it wasn't already granted today, and show «كسبت قلباً! ❤️» only when a heart was actually added.

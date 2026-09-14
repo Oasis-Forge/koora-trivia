@@ -33,8 +33,7 @@ and #5–#14) was uploaded by the owner on 14 September 2026 and is in Google's 
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
-3. **v1.0.5, in this order:** the content fixes above · the two small Phase 1 bug fixes and the quiz timer pause ·
-   color themes · language groundwork (both in PLAN.md Phase 1 → Features).
+3. **v1.0.5, in this order:** color themes · language groundwork (both in PLAN.md Phase 1 → Features).
 4. **Owner's Play Console tasks:** replace the crashing versionCode 1 on the internal track · the
    "Some languages have errors" warning · displayed developer name · app-ads.txt (PLAN.md P1 · S).
 
@@ -104,8 +103,9 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
 - `map['x'] as int?` throws `TypeError`, not `FormatException` — datasources' static `decode` converts it.
 - An unguarded `Navigator.pop` after an `await` can close the screen underneath — check the route is
   still current.
-- **The quiz timer doesn't pause in the background** — nothing (Play's review sheet, the mail app) may
-  open over a running question.
+- **The quiz timer pauses while the app is in the background** and the question is hidden (`QuizScreen`
+  observes the lifecycle). `QuizProvider.selectAnswer` returns `false` when nothing was recorded — charge a
+  heart only on `true`.
 - Question assets don't refresh on hot reload — full restart.
 
 ### Rules that are easy to break — details in [docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md)

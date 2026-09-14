@@ -28,8 +28,32 @@ class QuizScreen extends StatefulWidget {
   State<QuizScreen> createState() => _QuizScreenState();
 }
 
-class _QuizScreenState extends State<QuizScreen> {
+class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
   bool _navigated = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  /// مغادرة التطبيق (مكالمة، تطبيق البريد، نافذة التقييم) توقف العدّاد وتخفي
+  /// السؤال حتى العودة، فلا يضيع السؤال ولا يُبحث عن إجابته في الأثناء.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final quiz = context.read<QuizProvider>();
+    if (state == AppLifecycleState.resumed) {
+      quiz.resume();
+    } else {
+      quiz.pause();
+    }
+  }
 
   Future<bool> _confirmQuit() async {
     final leave = await showDialog<bool>(
@@ -66,7 +90,9 @@ class _QuizScreenState extends State<QuizScreen> {
     final correct = question.isCorrect(index);
     final feedback = context.read<SettingsProvider>().feedback;
 
-    quiz.selectAnswer(index);
+    // لمسة ثانية قبل إعادة البناء، أو لمسة في إطار انتهاء الوقت، لا تُسجَّل —
+    // وكانت تخصم قلباً ثانياً.
+    if (!quiz.selectAnswer(index)) return;
     if (correct) {
       feedback.correct();
     } else {
@@ -137,7 +163,9 @@ class _QuizScreenState extends State<QuizScreen> {
                       // ثم يتحول إلى تمرير إن طال. `ConstrainedBox` وحده لا
                       // يمدّد الـ Column، فيبقى ملتصقاً بالأعلى مع فراغ أسفله.
                       Expanded(
-                        child: CustomScrollView(
+                        child: quiz.isPaused
+                            ? const _PausedView()
+                            : CustomScrollView(
                           // موضع تمرير جديد لكل سؤال: لوحة الشرح تمرّر الشاشة
                           // إلى أسفل، وبدون مفتاح يبقى ذلك الإزاح فيبدأ السؤال
                           // التالي مقصوص الأعلى والوقت يجري.
@@ -204,7 +232,9 @@ class _QuizScreenState extends State<QuizScreen> {
                         ),
                       ),
                       // المساعدات في نمط المستويات وحده — الأنماط الأخرى مجانية.
-                      if (quiz.isLevelMode && !quiz.isAnswerRevealed)
+                      if (quiz.isLevelMode &&
+                          !quiz.isAnswerRevealed &&
+                          !quiz.isPaused)
                         const HintBar(),
                       if (quiz.isAnswerRevealed)
                         Padding(
@@ -227,6 +257,38 @@ class _QuizScreenState extends State<QuizScreen> {
                     ],
                   ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// ما يظهر مكان السؤال والخيارات أثناء الإيقاف المؤقت.
+class _PausedView extends StatelessWidget {
+  const _PausedView();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Padding(
+        padding: EdgeInsets.all(32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.pause_circle_rounded, size: 64, color: AppColors.gold),
+            SizedBox(height: 16),
+            Text(
+              AppStrings.quizPaused,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+            ),
+            SizedBox(height: 8),
+            Text(
+              AppStrings.quizPausedHint,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: AppColors.chalkMuted, height: 1.5),
+            ),
+          ],
         ),
       ),
     );

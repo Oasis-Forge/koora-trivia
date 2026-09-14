@@ -1,3 +1,5 @@
+import 'fakes/fake_repositories.dart';
+import 'package:football_trivia/domain/entities/user_stats.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -98,5 +100,35 @@ void main() {
     ));
 
     expect(p.isDailyDone, isFalse);
+  });
+
+
+  test('تحدٍّ بدأ قبل منتصف الليل وانتهى بعده يُحسب ليوم بدئه', () async {
+    // أنهى اللاعب تحدي 13 سبتمبر بسلسلة 2، ثم بدأ تحدي 14 قبل منتصف الليل.
+    final p = StatsProvider(
+      repository: FakeStatsRepository(
+        const UserStats(
+          currentStreak: 2,
+          bestStreak: 2,
+          lastDailyDayKey: '2026-09-13',
+        ),
+      ),
+      clock: () => DateTime(2026, 9, 15, 0, 1),
+    );
+    await p.init();
+
+    final played = dailyResult();
+    await p.recordResult(QuizResult(
+      answers: played.answers,
+      score: played.score,
+      isDaily: true,
+      playedAt: DateTime(2026, 9, 15, 0, 1),
+      dailyDayKey: '2026-09-14',
+    ));
+
+    expect(p.stats.lastDailyDayKey, '2026-09-14');
+    expect(p.stats.currentStreak, 3,
+        reason: 'كانت تُعاد إلى 1 لأن يوم الانتهاء يبعد يومين عن آخر تحدٍّ');
+    expect(p.isDailyDone, isFalse, reason: 'تحدي 15 سبتمبر نفسه ما زال متاحاً');
   });
 }

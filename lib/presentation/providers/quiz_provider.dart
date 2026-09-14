@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart' hide Category;
 
 import '../../core/constants/app_config.dart';
 import '../../core/constants/app_strings.dart';
+import '../../core/utils/day_key.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/entities/question.dart';
 import '../../domain/entities/quiz_result.dart';
@@ -22,7 +23,9 @@ class QuizProvider extends ChangeNotifier {
     GetQuizQuestions? getQuizQuestions,
     GetDailyQuestions? getDailyQuestions,
     GetLevelQuestions? getLevelQuestions,
+    DateTime Function()? clock,
   })  : _repository = repository,
+        _clock = clock ?? DateTime.now,
         _getQuizQuestions = getQuizQuestions ?? GetQuizQuestions(repository),
         _getDailyQuestions = getDailyQuestions ?? GetDailyQuestions(repository),
         _getLevelQuestions =
@@ -33,6 +36,9 @@ class QuizProvider extends ChangeNotifier {
   final GetDailyQuestions _getDailyQuestions;
   final GetLevelQuestions _getLevelQuestions;
 
+  /// ساعة ثابتة في الاختبارات؛ الإنتاج يستخدم `DateTime.now`.
+  final DateTime Function() _clock;
+
   QuizStatus _status = QuizStatus.idle;
   List<Question> _questions = const [];
   final List<AnswerRecord> _answers = [];
@@ -41,6 +47,12 @@ class QuizProvider extends ChangeNotifier {
   int? _selectedIndex;
   bool _isDaily = false;
   String? _errorMessage;
+
+  /// يوم تحدي اليوم الجاري لعبه، مثبّت عند البدء.
+  String? _dailyDayKey;
+
+  /// العدّاد متوقف لأن اللاعب غادر التطبيق.
+  bool _paused = false;
 
   /// التصنيف والمستوى الجاري لعبهما (فارغان في اللعب السريع والتحدي اليومي).
   String? _activeCategory;
@@ -74,6 +86,7 @@ class QuizProvider extends ChangeNotifier {
   int? get selectedIndex => _selectedIndex;
   bool get isDaily => _isDaily;
   String? get errorMessage => _errorMessage;
+  bool get isPaused => _paused;
   bool get isAnswerRevealed => _status == QuizStatus.revealing;
   bool get isLastQuestion => _index >= _questions.length - 1;
 
@@ -99,7 +112,14 @@ class QuizProvider extends ChangeNotifier {
   }
 
   Future<void> startDaily() async {
-    await _start(() => _getDailyQuestions(), isDaily: true);
+    // يُثبَّت اليوم عند البدء: من يبدأ قبل منتصف الليل ويُنهي بعده يُحسب له
+    // التحدي الذي لعبه فعلاً، لا تحدي الغد.
+    final dayKey = DayKey.today(_clock());
+    await _start(
+      () => _getDailyQuestions(dayKey: dayKey),
+      isDaily: true,
+      dailyDayKey: dayKey,
+    );
   }
 
   Future<void> startLevel({
@@ -119,8 +139,11 @@ class QuizProvider extends ChangeNotifier {
     required bool isDaily,
     String? categorySlug,
     int? level,
+    String? dailyDayKey,
   }) async {
     _cancelTimer();
+    _dailyDayKey = dailyDayKey;
+    _paused = false;
     _status = QuizStatus.loading;
     _errorMessage = null;
     _isDaily = isDaily;
@@ -163,8 +186,10 @@ class QuizProvider extends ChangeNotifier {
     }
   }
 
-  void selectAnswer(int optionIndex) {
-    if (_status != QuizStatus.playing) return;
+  /// يعيد `false` إن لم تُسجَّل الإجابة (كُشف السؤال أو انتهى وقته)، فلا تخصم
+  /// الشاشة قلباً على لمسة ثانية.
+  bool selectAnswer(int optionIndex) {
+    if (_status != QuizStatus.playing) return false;
     _cancelTimer();
 
     final question = _questions[_index];
@@ -192,6 +217,7 @@ class QuizProvider extends ChangeNotifier {
 
     _status = QuizStatus.revealing;
     notifyListeners();
+    return true;
   }
 
   void next() {
@@ -257,18 +283,39 @@ class QuizProvider extends ChangeNotifier {
     return true;
   }
 
+  // ── الإيقاف المؤقت ──
+
+  /// يوقف عدّاد السؤال حين يغادر اللاعب التطبيق: مكالمة أو تطبيق البريد أو نافذة
+  /// التقييم كانت تُضيّع السؤال والوقت يجري في الخلفية.
+  void pause() {
+    if (_status != QuizStatus.playing || _paused) return;
+    _cancelTimer();
+    _paused = true;
+    notifyListeners();
+  }
+
+  /// يستأنف العدّاد من حيث توقف.
+  void resume() {
+    if (!_paused) return;
+    _paused = false;
+    if (_status == QuizStatus.playing) _runTimer();
+    notifyListeners();
+  }
+
   /// النتيجة النهائية — تُقرأ في شاشة النتيجة.
   QuizResult buildResult() => QuizResult(
         answers: List.unmodifiable(_answers),
         score: _score,
         isDaily: _isDaily,
-        playedAt: DateTime.now(),
+        playedAt: _clock(),
         categorySlug: _activeCategory,
         level: _activeLevel,
+        dailyDayKey: _isDaily ? _dailyDayKey : null,
       );
 
   void abandon() {
     _cancelTimer();
+    _paused = false;
     _status = QuizStatus.idle;
     _questions = const [];
     _answers.clear();
@@ -279,8 +326,13 @@ class QuizProvider extends ChangeNotifier {
   }
 
   void _startTimer() {
-    _cancelTimer();
     _secondsLeft = AppConfig.secondsPerQuestion;
+    _runTimer();
+  }
+
+  /// يشغّل العدّاد دون إعادة ضبط الثواني — للبدء وللاستئناف بعد الإيقاف.
+  void _runTimer() {
+    _cancelTimer();
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       _secondsLeft--;
       if (_secondsLeft <= 0) {
