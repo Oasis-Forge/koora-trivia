@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:football_trivia/core/constants/app_config.dart';
 import 'package:football_trivia/core/utils/arabic_count.dart';
@@ -138,7 +139,7 @@ void main() {
       // مطفأ: يُحفظ الوقت دون جدولة.
       await provider.setReminderTime(hour: 9, minute: 30);
       expect(scheduler.scheduleCount, 0);
-      expect(provider.reminderLabel, '09:30');
+      expect(provider.reminderTime, const TimeOfDay(hour: 9, minute: 30));
 
       await provider.setReminderEnabled(true);
       final afterEnable = scheduler.scheduleCount;

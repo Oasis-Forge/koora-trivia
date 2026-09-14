@@ -91,6 +91,9 @@ class StatusPill extends StatelessWidget {
     final iconWidget = Icon(icon, size: 18, color: iconColor ?? AppColors.gold);
     final text = Text(
       label,
+      maxLines: 1,
+      softWrap: false,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: 15,
         fontWeight: FontWeight.w800,
@@ -104,11 +107,14 @@ class StatusPill extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 14),
       child: SizedBox(
         height: 48, // هدف لمس مريح في كل الحبّات.
-        child: Row(
+        // النص يتقلّص فقط حين يحدّ الأبُ العرض (حبّة «المهام» في صف الرئيسية)؛
+        // `Flexible` داخل صف بلا حد للعرض يُسقط التخطيط كله.
+        child: LayoutBuilder(
+          builder: (context, constraints) => Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             if (!iconAtEnd) ...[iconWidget, const SizedBox(width: 7)],
-            text,
+            if (constraints.maxWidth.isFinite) Flexible(child: text) else text,
             if (trailing != null) ...[
               const SizedBox(width: 7),
               Text(
@@ -122,6 +128,7 @@ class StatusPill extends StatelessWidget {
             ],
             if (iconAtEnd) ...[const SizedBox(width: 7), iconWidget],
           ],
+          ),
         ),
       ),
     );

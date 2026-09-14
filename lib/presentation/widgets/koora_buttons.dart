@@ -45,22 +45,32 @@ class _ActionButton extends StatelessWidget {
               child: SizedBox(
                 height: height,
                 width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      label,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: fontWeight,
-                        color: foreground,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // نص طويل (الإنجليزية على هاتف ضيق) يصغر قليلاً بدل أن يفيض.
+                      Flexible(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            label,
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: fontWeight,
+                              color: foreground,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                    if (icon != null) ...[
-                      const SizedBox(width: 10),
-                      Icon(icon, size: 20, color: foreground),
+                      if (icon != null) ...[
+                        const SizedBox(width: 10),
+                        Icon(icon, size: 20, color: foreground),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
             ),

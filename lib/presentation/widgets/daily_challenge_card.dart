@@ -157,12 +157,19 @@ class _Cta extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                isDone ? AppStrings.dailyDone : AppStrings.dailyStart,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: foreground,
+              // يصغر النص الطويل قليلاً بدل أن يفيض على هاتف ضيق.
+              Flexible(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    isDone ? AppStrings.dailyDone : AppStrings.dailyStart,
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      color: foreground,
+                    ),
+                  ),
                 ),
               ),
               // نص «أكملت» يحمل علامته، فلا أيقونة ثانية بجانبه.

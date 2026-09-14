@@ -61,7 +61,7 @@ class KooraAppBar extends StatelessWidget {
         children: [
           RoundIconButton(
             // في العربية يشير سهم الرجوع إلى اليمين.
-            icon: Icons.arrow_forward_rounded,
+            icon: Icons.arrow_back_rounded,
             tooltip: AppStrings.back,
             onPressed: () => Navigator.of(context).pop(),
           ),

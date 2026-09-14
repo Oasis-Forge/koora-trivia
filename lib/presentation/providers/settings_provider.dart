@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 import '../../core/services/feedback_service.dart';
 import '../../core/utils/day_key.dart';
@@ -44,7 +44,15 @@ class SettingsProvider extends ChangeNotifier {
   bool get isLoading => _loading;
   bool get reminderEnabled => _settings.reminderEnabled;
   bool get permissionDenied => _permissionDenied;
-  String get reminderLabel => _settings.reminderLabel;
+  TimeOfDay get reminderTime =>
+      TimeOfDay(hour: _settings.reminderHour, minute: _settings.reminderMinute);
+
+  /// وقت التنبيه بصيغة الهاتف ولغته، كما يعرضه منتقي الوقت: «8:00 م» أو «20:00».
+  String reminderTimeLabel(BuildContext context) =>
+      MaterialLocalizations.of(context).formatTimeOfDay(
+        reminderTime,
+        alwaysUse24HourFormat: MediaQuery.alwaysUse24HourFormatOf(context),
+      );
 
   Future<void> init() async {
     _settings = await _repository.load();

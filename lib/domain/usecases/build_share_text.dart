@@ -25,7 +25,7 @@ class BuildShareText {
     // العنوان: التحدي اليومي يحمل تاريخه لأن أسئلته واحدة لكل اللاعبين.
     if (result.isDaily) {
       buffer.writeln(
-        '⚽ ${AppStrings.appName} · ${DayKey.arabicShortDate(result.playedAt)}',
+        '⚽ ${AppStrings.appName} · ${DayKey.shortDate(result.playedAt)}',
       );
     } else if (result.isLevel && categoryName != null) {
       buffer.writeln('⚽ ${AppStrings.appName}');

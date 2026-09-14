@@ -199,41 +199,47 @@ class _StatusRow extends StatelessWidget {
         CoinBadge(
           onTap: () => Navigator.of(context).pushNamed(ShopScreen.routeName),
         ),
-        const Spacer(),
-        Stack(
-          clipBehavior: Clip.none,
-          children: [
-            StatusPill(
-              icon: Icons.checklist_rounded,
-              iconColor: AppColors.chalk,
-              label: AppStrings.tasks,
-              iconAtEnd: true,
-              onTap: () =>
-                  Navigator.of(context).pushNamed(TasksScreen.routeName),
-            ),
-            if (claimable > 0)
-              PositionedDirectional(
-                top: -2,
-                end: -2,
-                child: Container(
-                  width: 20,
-                  height: 20,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: AppColors.wrong,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Text(
-                    '$claimable',
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w900,
-                      color: AppColors.chalk,
+        const SizedBox(width: 8),
+        // مرن لا `Spacer`: على الهاتف الضيق يتقلّص نص الحبّة بدل أن يفيض الصف.
+        Flexible(
+          child: Align(
+            alignment: AlignmentDirectional.centerEnd,
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                StatusPill(
+                  icon: Icons.checklist_rounded,
+                  iconColor: AppColors.chalk,
+                  label: AppStrings.tasks,
+                  iconAtEnd: true,
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(TasksScreen.routeName),
+                ),
+                if (claimable > 0)
+                  PositionedDirectional(
+                    top: -2,
+                    end: -2,
+                    child: Container(
+                      width: 20,
+                      height: 20,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: AppColors.wrong,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Text(
+                        '$claimable',
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w900,
+                          color: AppColors.chalk,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-          ],
+              ],
+            ),
+          ),
         ),
       ],
     );
@@ -262,7 +268,11 @@ class _StatsCard extends StatelessWidget {
           // الكرة خلفية فقط: كانت تحدد ارتفاع البطاقة (170) فتبدو فارغة، والآن
           // تُقص عند حدود البطاقة ويحدد الصفُّ الارتفاع.
           Positioned.fill(
+            // الحد الأدنى صفر: بدونه يرث عرض البطاقة (أكبر من 170) فتصير القيود
+            // متناقضة، وهو خطأ لا يظهر إلا في نسخة التطوير.
             child: OverflowBox(
+              minWidth: 0,
+              minHeight: 0,
               maxWidth: 170,
               maxHeight: 170,
               child: Icon(

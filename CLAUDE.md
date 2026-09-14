@@ -44,7 +44,8 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
   option is not acceptable · the language follows the phone, and a Settings choice overrides it · ① one heart
   per failed attempt, not per wrong answer (built in v1.0.5) · no answer recap on the result screen, in any mode · ③ English is added now: Arabic and English only, the bank
   translated with the same IDs, `arab_football` kept and translated, not waiting for the levels 7–10 review
-  ([docs/I18N_PLAN.md](docs/I18N_PLAN.md)).
+  ([docs/I18N_PLAN.md](docs/I18N_PLAN.md)) · arrows follow Android's right-to-left convention: Back is `arrow_back`
+  (points right in Arabic), Next is `arrow_forward`; media icons (play, skip) don't flip.
 
 ### Identity and secrets — never break these
 - **Never write the owner's personal name, personal account names, or personal email into tracked
@@ -148,7 +149,8 @@ facts only · no invisible direction characters · `level` matches the id. Run `
 after any change.
 
 ## Tests
-Shared fakes are in `test/fakes/`. Per-file coverage, the current count and what isn't covered:
+Shared fakes are in `test/fakes/`. `small_screen_layout_test` renders every screen at 320 and 360 dp in Arabic and
+English — add new screens there. Per-file coverage, the current count and what isn't covered:
 [docs/TESTS.md](docs/TESTS.md).
 
 ## Docs map

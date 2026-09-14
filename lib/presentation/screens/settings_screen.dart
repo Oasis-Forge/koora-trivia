@@ -75,7 +75,7 @@ class SettingsScreen extends StatelessWidget {
                           '${stats.stats.bestScore}',
                         ),
                         (
-                          Icons.functions_rounded,
+                          Icons.scoreboard_rounded,
                           AppStrings.totalScore,
                           '${stats.stats.totalScore}',
                         ),
@@ -394,7 +394,7 @@ class _ReminderPanel extends StatelessWidget {
                   style: TextStyle(fontSize: 14.5),
                 ),
                 trailing: Text(
-                  settings.reminderLabel,
+                  settings.reminderTimeLabel(context),
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w800,

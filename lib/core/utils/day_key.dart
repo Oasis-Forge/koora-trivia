@@ -40,8 +40,8 @@ class DayKey {
         .inDays;
   }
 
-  /// تاريخ مقروء بالعربية مثل `4 أغسطس`، يُستخدم في نص المشاركة.
-  static String arabicShortDate([DateTime? date]) {
+  /// تاريخ مقروء بلغة التطبيق مثل «4 أغسطس» أو «4 August»، يُستخدم في نص المشاركة.
+  static String shortDate([DateTime? date]) {
     final d = date ?? DateTime.now();
     return '${d.day} ${AppStrings.monthNames[d.month - 1]}';
   }
