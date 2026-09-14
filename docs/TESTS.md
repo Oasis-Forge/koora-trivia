@@ -2,7 +2,7 @@
 
 > Moved from CLAUDE.md on 14 September 2026. Update the count and the table when tests are added.
 
-**391 tests across 47 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+**398 tests across 48 files, all passing.** `flutter analyze` is clean. Shared test code lives in
 `test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
 (in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
 (`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
@@ -44,6 +44,7 @@
 | `categories_and_replay_test.dart` | 3 | A categories load failure is flagged and logged, and a retry succeeds · **widget:** the categories screen shows the error and a retry button instead of spinning · «العب مرة أخرى» after quick play in a category replays that category |
 | `daily_result_test.dart` | 5 | **Widget test** — daily result: «كسبت قلباً!» only when a heart was added, not with full hearts · the «ذكّرني» card turns the reminder on and confirms the time · «العب مستوى» opens the categories · neither appears after quick play |
 | `hints_and_a11y_test.dart` | 7 | **Widget test** — every hint has its name under the icon · a used Extra time is disabled and tapping it explains why · with no hints left, tapping explains and applies nothing · disabled shop buttons show their reason · the review list shows the player's wrong pick in red and the correct answer in green · hearts, timer and stars carry screen-reader labels · every `IconButton` in `lib` has a tooltip |
+| `design_widgets_test.dart` | 7 | **Widget test** — the shared design pieces: button heights (56/56/52) and the icon left of the label in Arabic · a gold button taps when enabled and dims when disabled · a status pill is 48 tall and shows its value and the next-heart time · a surface card shows its content and takes taps · rows are separated by dividers and the section heading is gold · the progress bar fills by value at 6 px · the pitch background draws content above it with the ball watermark |
 | `record_round_test.dart` | 4 | `RecordRound` — a passed level refunds the attempt's heart and saves stars, the level task and stats · a failed level keeps the heart and saves no stars or task · a daily grants its heart and streak once however often it's saved · a failing step is reported to the error log and the other steps still save |
 | `choose_update_mode_test.dart` | 6 | No update → nothing · a normal release is flexible · priority ≥ `forceUpdatePriority` forces, one below doesn't · urgent but immediate not allowed → flexible · an unfinished immediate update resumes · flexible isn't re-offered within the wait, immediate doesn't wait |
 | `check_for_update_test.dart` | 5 | `CheckForUpdate` with a fake updater — no update opens nothing · a normal update opens the flexible flow once, not again within the wait · a declined flexible update isn't re-asked · an urgent one opens the immediate flow every time · a downloaded update reports restart without a new dialog |

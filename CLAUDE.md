@@ -128,6 +128,9 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
   the app in a `Directionality`.
 - **Colors:** read `AppColors.x` (getters over the current `AppPalette`) at build time — never inside `const`, never
   cached in a field or default parameter. A new color is a new `AppPalette` field in all four palettes.
+- **Screens use the shared design widgets** — `Surface` / `StatusPill` (`surface.dart`), `GoldButton` ·
+  `SolidButton` · `OutlineButton` (`koora_buttons.dart`), `SectionHeading` · `RowsCard` · `KooraRow` ·
+  `KooraProgress` (`rows_card.dart`). Don't hand-roll card or button styling (v1.0.6 redesign).
 - Tunable numbers go in `app_config.dart`; player-facing text in `app_strings.dart`.
 - **Every `IconButton` has a `tooltip`** (screen readers; `hints_and_a11y_test` fails otherwise).
 - **In-app updates** (`PlayAppUpdater`, checked at launch and resume): flexible by default; only a release with Play

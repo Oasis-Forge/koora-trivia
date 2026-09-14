@@ -37,6 +37,24 @@ each section.
   buttons skipped the levels screen's check. **Every button that starts a level must go through
   `NoHeartsDialog.startLevel`** (checks hearts, charges one heart at the start, refunded on a pass); quick play and the daily challenge stay free.
 
+### Design system (v1.0.6 redesign)
+
+The look comes from the owner's Claude Design project «تحدي كرة القدم تصميم جديد», built on the app's own tokens
+(exported as «Koora Trivia — current design»). Shared pieces, all palette-driven so the four themes still work:
+
+- **`PitchBackground`** — pitch gradient, mowing stripes every 120 dp at 2% white, halfway line and circle at 42% of
+  the height, a penalty box at the bottom, a 520 dp ball watermark at 1.8% white, and a soft glow from the top.
+- **`Surface`** — card colour, thin border, a white sheen over the top 46%, and a soft shadow. `StatusPill` is the
+  48 dp pill built on it (hearts, coins, stars, and short buttons).
+- **`GoldButton`** (56 dp, gold gradient, sheen, warm glow), **`SolidButton`** (56 dp, pitch-light gradient) and
+  **`OutlineButton`** (52 dp, 3% fill, 1.4 dp border). The icon is written after the label, so it sits on its left in
+  Arabic.
+- **`SectionHeading`** (gold, 17 dp), **`RowsCard`** + **`KooraRow`** (48 dp rows with hairline dividers, gold lead
+  icon, bold value) and **`KooraProgress`** (6 dp, green or gold).
+
+Screens are converted one PR at a time: home, then categories and levels, then the quiz and its quit dialog, then
+settings, tasks and shop, and finally the result screen (which the redesign didn't cover).
+
 ### In-app updates (v1.0.6)
 
 - `AppLifecycleHooks` asks Play at launch and on every resume (`CheckForUpdate` → `PlayAppUpdater`, plugin

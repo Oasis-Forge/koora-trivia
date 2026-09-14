@@ -125,4 +125,57 @@ class AppColors {
         end: AlignmentDirectional.bottomEnd,
         colors: [gold, goldDeep],
       );
+
+  // ── لمسات التصميم الجديد (Claude Design، 14 سبتمبر 2026) ──
+
+  /// لمعة خفيفة أعلى البطاقة تعطيها عمقاً.
+  static LinearGradient get surfaceHighlight => LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [Colors.white.withValues(alpha: 0.09), Colors.transparent],
+        stops: const [0, 0.46],
+      );
+
+  /// ظل ناعم تحت البطاقات يفصلها عن أرضية الملعب.
+  static List<BoxShadow> get cardShadow => [
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.6),
+          blurRadius: 20,
+          spreadRadius: -12,
+          offset: const Offset(0, 8),
+        ),
+      ];
+
+  /// زر أخضر بارز: تدرّج من لون الملعب الفاتح إلى أغمق منه قليلاً.
+  static LinearGradient get solidGradient => LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [pitchLight, Color.lerp(pitchLight, Colors.black, 0.18)!],
+      );
+
+  /// لمعة أعلى الأزرار الممتلئة.
+  static LinearGradient buttonSheen(double alpha) => LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [Colors.white.withValues(alpha: alpha), Colors.transparent],
+        stops: const [0, 0.5],
+      );
+
+  static List<BoxShadow> get goldButtonShadow => [
+        BoxShadow(
+          color: gold.withValues(alpha: 0.9),
+          blurRadius: 24,
+          spreadRadius: -14,
+          offset: const Offset(0, 10),
+        ),
+      ];
+
+  static List<BoxShadow> get solidButtonShadow => [
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.8),
+          blurRadius: 22,
+          spreadRadius: -14,
+          offset: const Offset(0, 10),
+        ),
+      ];
 }
