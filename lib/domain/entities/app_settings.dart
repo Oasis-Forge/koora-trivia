@@ -43,10 +43,6 @@ class AppSettings {
   /// رمز اللغة التي اختارها اللاعب (`ar`)، أو `null` لاتباع لغة الهاتف.
   final String? languageCode;
 
-  /// صيغة عرض 24 ساعة، مثل `20:00`.
-  String get reminderLabel =>
-      '${reminderHour.toString().padLeft(2, '0')}:'
-      '${reminderMinute.toString().padLeft(2, '0')}';
 
   AppSettings copyWith({
     bool? reminderEnabled,

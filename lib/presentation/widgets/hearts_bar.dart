@@ -122,7 +122,7 @@ class NoHeartsDialog extends StatelessWidget {
           children: [
             Icon(Icons.heart_broken_rounded, color: AppColors.wrong),
             SizedBox(width: 8),
-            Text(AppStrings.noHeartsTitle),
+            Flexible(child: Text(AppStrings.noHeartsTitle)),
           ],
         ),
         content: Column(

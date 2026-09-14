@@ -57,7 +57,9 @@ void main() {
 
     expect(_settings(tester).reminderEnabled, isTrue);
     expect(
-      find.text(AppStrings.dailyReminderSet(_settings(tester).reminderLabel)),
+      find.text(AppStrings.dailyReminderSet(
+        _settings(tester).reminderTimeLabel(tester.element(find.byType(Scaffold).first)),
+      )),
       findsOneWidget,
     );
     expect(find.text(AppStrings.dailyReminderAsk), findsNothing);

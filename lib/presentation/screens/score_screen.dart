@@ -445,7 +445,7 @@ class _DailyReminderCardState extends State<_DailyReminderCard> {
             Expanded(
               child: Text(
                 _enabledHere
-                    ? AppStrings.dailyReminderSet(settings.reminderLabel)
+                    ? AppStrings.dailyReminderSet(settings.reminderTimeLabel(context))
                     : AppStrings.dailyReminderAsk,
                 style: const TextStyle(fontWeight: FontWeight.w700),
               ),

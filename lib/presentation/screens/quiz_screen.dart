@@ -273,7 +273,7 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
                                 : AppStrings.next,
                             icon: quiz.isLastQuestion
                                 ? Icons.flag_rounded
-                                : Icons.arrow_back_rounded,
+                                : Icons.arrow_forward_rounded,
                             onPressed: () =>
                                 context.read<QuizProvider>().next(),
                           ),
