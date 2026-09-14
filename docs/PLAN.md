@@ -12,6 +12,7 @@
 - 14 September 2026: 13 misspelled names and the U+200F fixed (PR #10); wording of 3086, 5090, 5093, 5099, 6098 and 9073 fixed and «كلتاهما» banned by the bank test.
 - 14 September 2026: second correct options removed from 1080, 10043, 1096, 10081, 8089, 8088, 3083, 2098, 10099 and 5098.
 - 14 September 2026 (answers batch 1): 10086, 10063, 4030, 8083 and 3048 corrected.
+- 14 September 2026: button icons moved to the left (PR #14) · privacy policy published · v1.0.4+5 built, release-checked on the emulator and archived.
 - PR #7, merged 14 September 2026: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
 - PR #6, merged 13 September 2026: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
 - PR #5, merged 13 September 2026: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
@@ -39,11 +40,8 @@
   - Set the displayed developer name to Oasis Forge.
   - Confirm content rating.
   - Host app-ads.txt at the oasis-forge.github.io root and set it as the listing's Website.
-- **P1 · M**: Check on a release build or real phone and log results in PRE_PUBLISH §1:
-  - Level pass and fail.
-  - Daily challenge shows no replay button.
-  - Backup import and export.
-  - Shop purchases and the +70-coin ad.
+- **P1 · M**: Check on a real phone (the emulator release check passed on 14 September 2026) and log results in PRE_PUBLISH §1:
+  - The in-app review sheet, from a closed-test install.
   - Quiz screen and level grid on a real short phone and a real tall one.
 
 ### Features
