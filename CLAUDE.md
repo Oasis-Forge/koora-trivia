@@ -122,7 +122,9 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
 - **Economy balance:** full daily income (130 🪙) stays below the cheapest purchase (200 🪙).
 - **Button icons sit on the left of their text** (after it in RTL) through `iconAlignment` in `AppTheme` —
   owner's request, 14 September 2026. Don't override it per button.
-- **Player text lives only in `AppStrings`** (`localization_groundwork_test` fails otherwise). Layout sides use
+- **Player text lives only in `AppStrings`** (`localization_groundwork_test` fails otherwise): Arabic in `AppText`
+  (`app_strings.dart`), English in `EnglishText` (`app_strings_en.dart`; a missing string won't compile). Never keep text in a
+  `static const`/`static final` field — it freezes the first language; use a getter. Layout sides use
   `EdgeInsetsDirectional` / `AlignmentDirectional` / `PositionedDirectional`. The locale comes only from
   `AppSettings.languageCode` (`null` = phone language; the picker hides with one language) — never hard-code one or wrap
   the app in a `Directionality`.

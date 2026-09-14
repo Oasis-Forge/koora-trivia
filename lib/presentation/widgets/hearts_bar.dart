@@ -186,7 +186,7 @@ class NoHeartsDialog extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => _close(context),
-            child: const Text(AppStrings.ok),
+            child: Text(AppStrings.ok),
           ),
         ],
       ),
@@ -228,6 +228,6 @@ class NoHeartsDialog extends StatelessWidget {
     if (context.mounted) _close(context);
     messenger
       ..hideCurrentSnackBar()
-      ..showSnackBar(const SnackBar(content: Text(AppStrings.purchased)));
+      ..showSnackBar(SnackBar(content: Text(AppStrings.purchased)));
   }
 }

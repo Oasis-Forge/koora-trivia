@@ -207,7 +207,7 @@ class _LevelsScreenState extends State<LevelsScreen> {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(AppStrings.lockedLevel),
           duration: Duration(seconds: 2),
         ),

@@ -39,7 +39,7 @@ class ReportQuestionButton extends StatelessWidget {
       onPressed: () => _report(context),
       style: TextButton.styleFrom(foregroundColor: AppColors.chalkMuted),
       icon: const Icon(Icons.flag_outlined, size: 18),
-      label: const Text(AppStrings.reportQuestion),
+      label: Text(AppStrings.reportQuestion),
     );
   }
 
@@ -106,7 +106,7 @@ class _ReasonSheetState extends State<_ReasonSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.fromLTRB(20, 8, 20, 8),
               child: Text(
                 AppStrings.reportQuestionTitle,

@@ -76,7 +76,7 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 AppStrings.quitTitle,
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
               ),

@@ -56,7 +56,7 @@ class SettingsScreen extends StatelessWidget {
                 child: ListView(
                   padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
                   children: [
-                    const _SectionTitle(AppStrings.yourStats),
+                    _SectionTitle(AppStrings.yourStats),
                     _StatsPanel(
                       rows: [
                         (
@@ -102,30 +102,30 @@ class SettingsScreen extends StatelessWidget {
                     ),
 
                     const SizedBox(height: 26),
-                    const _SectionTitle(AppStrings.reminderSection),
+                    _SectionTitle(AppStrings.reminderSection),
                     const _ReminderPanel(),
 
                     const SizedBox(height: 26),
-                    const _SectionTitle(AppStrings.effectsSection),
+                    _SectionTitle(AppStrings.effectsSection),
                     const _EffectsPanel(),
 
                     const SizedBox(height: 26),
-                    const _SectionTitle(AppStrings.themeSection),
+                    _SectionTitle(AppStrings.themeSection),
                     const _ThemePanel(),
 
                     // لا يظهر مع لغة واحدة: خيار لا يغيّر شيئاً يربك اللاعب.
                     if (languages.length > 1) ...[
                       const SizedBox(height: 26),
-                      const _SectionTitle(AppStrings.languageSection),
+                      _SectionTitle(AppStrings.languageSection),
                       _LanguagePanel(languages: languages),
                     ],
 
                     const SizedBox(height: 26),
-                    const _SectionTitle(AppStrings.backupSection),
+                    _SectionTitle(AppStrings.backupSection),
                     const _BackupPanel(),
 
                     const SizedBox(height: 26),
-                    const _SectionTitle(AppStrings.dataSection),
+                    _SectionTitle(AppStrings.dataSection),
                     _DangerButton(
                       icon: Icons.restart_alt_rounded,
                       label: AppStrings.resetStats,
@@ -157,11 +157,11 @@ class SettingsScreen extends StatelessWidget {
                     ),
 
                     const SizedBox(height: 26),
-                    const _SectionTitle(AppStrings.privacySection),
+                    _SectionTitle(AppStrings.privacySection),
                     const _PrivacyPanel(),
 
                     const SizedBox(height: 26),
-                    const _SectionTitle(AppStrings.aboutSection),
+                    _SectionTitle(AppStrings.aboutSection),
                     Surface(
                       padding: const EdgeInsets.all(16),
                       child: Column(
@@ -273,7 +273,7 @@ class _FeedbackButton extends StatelessWidget {
 class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.fromLTRB(20, 18, 20, 12),
       child: KooraAppBar(title: AppStrings.settings),
     );
@@ -363,7 +363,7 @@ class _ReminderPanel extends StatelessWidget {
               value: settings.reminderEnabled,
               onChanged: (value) => _toggle(context, value),
               activeThumbColor: AppColors.gold,
-              title: const Text(
+              title: Text(
                 AppStrings.reminderToggle,
                 style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.w700),
               ),
@@ -389,7 +389,7 @@ class _ReminderPanel extends StatelessWidget {
                   size: 20,
                   color: AppColors.gold,
                 ),
-                title: const Text(
+                title: Text(
                   AppStrings.reminderTime,
                   style: TextStyle(fontSize: 14.5),
                 ),
@@ -418,7 +418,7 @@ class _ReminderPanel extends StatelessWidget {
       messenger
         ..hideCurrentSnackBar()
         ..showSnackBar(
-          const SnackBar(content: Text(AppStrings.reminderDenied)),
+          SnackBar(content: Text(AppStrings.reminderDenied)),
         );
     }
   }
@@ -465,7 +465,7 @@ class _EffectsPanel extends StatelessWidget {
                 color: AppColors.gold,
                 size: 20,
               ),
-              title: const Text(
+              title: Text(
                 AppStrings.soundToggle,
                 style: TextStyle(fontSize: 14.5),
               ),
@@ -485,7 +485,7 @@ class _EffectsPanel extends StatelessWidget {
                 color: AppColors.gold,
                 size: 20,
               ),
-              title: const Text(
+              title: Text(
                 AppStrings.hapticsToggle,
                 style: TextStyle(fontSize: 14.5),
               ),
@@ -501,7 +501,8 @@ class _EffectsPanel extends StatelessWidget {
 class _ThemePanel extends StatelessWidget {
   const _ThemePanel();
 
-  static const Map<String, String> _names = {
+  // دالة لا خريطة ثابتة، حتى تتبع الأسماء لغة التطبيق الحالية.
+  static Map<String, String> get _names => {
     'green': AppStrings.themeGreen,
     'blue': AppStrings.themeBlue,
     'purple': AppStrings.themePurple,
@@ -672,7 +673,7 @@ class _PrivacyPanel extends StatelessWidget {
                   size: 20,
                   color: AppColors.gold,
                 ),
-                title: const Text(
+                title: Text(
                   AppStrings.adPrivacyOptions,
                   style: TextStyle(fontSize: 14.5),
                 ),
@@ -690,7 +691,7 @@ class _PrivacyPanel extends StatelessWidget {
                 size: 20,
                 color: AppColors.gold,
               ),
-              title: const Text(
+              title: Text(
                 AppStrings.privacyPolicy,
                 style: TextStyle(fontSize: 14.5),
               ),
@@ -714,7 +715,7 @@ class _PrivacyPanel extends StatelessWidget {
     messenger
       ..hideCurrentSnackBar()
       ..showSnackBar(
-        const SnackBar(content: Text(AppStrings.privacyOptionsFailed)),
+        SnackBar(content: Text(AppStrings.privacyOptionsFailed)),
       );
   }
 
@@ -727,7 +728,7 @@ class _PrivacyPanel extends StatelessWidget {
 
     messenger
       ..hideCurrentSnackBar()
-      ..showSnackBar(const SnackBar(content: Text(AppStrings.linkOpenFailed)));
+      ..showSnackBar(SnackBar(content: Text(AppStrings.linkOpenFailed)));
   }
 }
 
@@ -772,7 +773,7 @@ class _BackupPanel extends StatelessWidget {
     await Clipboard.setData(ClipboardData(text: code));
     messenger
       ..hideCurrentSnackBar()
-      ..showSnackBar(const SnackBar(content: Text(AppStrings.backupCopied)));
+      ..showSnackBar(SnackBar(content: Text(AppStrings.backupCopied)));
   }
 
   Future<void> _import(BuildContext context) async {
@@ -790,11 +791,11 @@ class _BackupPanel extends StatelessWidget {
       context: context,
       builder: (dialogContext) => AlertDialog(
         backgroundColor: AppColors.cardSurface,
-        title: const Text(AppStrings.importTitle),
+        title: Text(AppStrings.importTitle),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(AppStrings.importBody, style: TextStyle(height: 1.6)),
+            Text(AppStrings.importBody, style: TextStyle(height: 1.6)),
             const SizedBox(height: 14),
             TextField(
               controller: controller,
@@ -811,7 +812,7 @@ class _BackupPanel extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: const Text(AppStrings.cancel),
+            child: Text(AppStrings.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(true),
@@ -892,7 +893,7 @@ class _DangerButton extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: const Text(AppStrings.cancel),
+            child: Text(AppStrings.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(true),
@@ -913,6 +914,6 @@ class _DangerButton extends StatelessWidget {
     await onConfirmed();
     messenger
       ..hideCurrentSnackBar()
-      ..showSnackBar(const SnackBar(content: Text(AppStrings.resetDone)));
+      ..showSnackBar(SnackBar(content: Text(AppStrings.resetDone)));
   }
 }

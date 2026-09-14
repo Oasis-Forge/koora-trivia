@@ -417,7 +417,7 @@ class _DailyReminderCardState extends State<_DailyReminderCard> {
       messenger
         ..hideCurrentSnackBar()
         ..showSnackBar(
-          const SnackBar(content: Text(AppStrings.reminderDenied)),
+          SnackBar(content: Text(AppStrings.reminderDenied)),
         );
     }
   }
@@ -455,7 +455,7 @@ class _DailyReminderCardState extends State<_DailyReminderCard> {
                 onPressed: _busy ? null : _enable,
                 // لون الزر الافتراضي أخضر يذوب في البطاقة الخضراء (رُئي على المحاكي).
                 style: TextButton.styleFrom(foregroundColor: AppColors.gold),
-                child: const Text(
+                child: Text(
                   AppStrings.dailyReminderButton,
                   style: TextStyle(fontWeight: FontWeight.w800),
                 ),

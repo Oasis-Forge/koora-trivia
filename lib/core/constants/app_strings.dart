@@ -1,311 +1,328 @@
-/// كل النصوص الظاهرة للمستخدم في مكان واحد (عربي).
-class AppStrings {
-  const AppStrings._();
+import 'app_strings_en.dart';
 
-  static const String appName = 'تحدي كرة القدم';
+/// نصوص التطبيق بلغته الحالية. الشاشات تكتب `AppStrings.x` كما كانت، واللغة
+/// تُختار مرة واحدة في `app.dart` عبر `AppText.use` قبل بناء الواجهة.
+// ignore: non_constant_identifier_names
+AppText get AppStrings => AppText.current;
+
+/// كل النصوص الظاهرة للمستخدم في مكان واحد. هذا الأصل العربي، و`EnglishText`
+/// يطبّقه (`implements`) فيرفض المترجم أي نص إنجليزي ناقص.
+class AppText {
+  const AppText();
+
+  /// اللغة الحالية: تبدأ عربية ولا تتغيّر إلا من `use`.
+  static AppText current = const AppText();
+
+  /// `en` للإنجليزية، وأي رمز آخر للعربية.
+  static void use(String languageCode) =>
+      current = languageCode == 'en' ? const EnglishText() : const AppText();
+
+  String get languageCode => 'ar';
+
+  String get appName => 'تحدي كرة القدم';
 
   // الرئيسية
-  static const String quickPlay = 'لعب سريع';
+  String get quickPlay => 'لعب سريع';
 
   /// صيغة اسمية تُستخدم في نص المشاركة، بخلاف تسمية الزر.
-  static const String quickRound = 'جولة سريعة';
-  static const String dailyChallenge = 'تحدي اليوم';
-  static const String dailyDone = 'أكملت تحدي اليوم ✅';
-  static const String chooseCategory = 'اختر الفئة';
-  static const String allCategories = 'كل الفئات';
-  static const String streak = 'سلسلة الأيام';
-  static const String bestStreak = 'أفضل سلسلة';
-  static const String bestScore = 'أفضل نتيجة';
-  static const String gamesPlayed = 'عدد الجولات';
+  String get quickRound => 'جولة سريعة';
+  String get dailyChallenge => 'تحدي اليوم';
+  String get dailyDone => 'أكملت تحدي اليوم ✅';
+  String get chooseCategory => 'اختر الفئة';
+  String get allCategories => 'كل الفئات';
+  String get streak => 'سلسلة الأيام';
+  String get bestStreak => 'أفضل سلسلة';
+  String get bestScore => 'أفضل نتيجة';
+  String get gamesPlayed => 'عدد الجولات';
 
   // الاختبار
-  static const String question = 'سؤال';
-  static const String of = 'من';
-  static const String next = 'التالي';
-  static const String finish = 'إنهاء';
-  static const String correct = 'إجابة صحيحة!';
-  static const String wrong = 'إجابة خاطئة';
-  static const String quitTitle = 'إنهاء الجولة؟';
-  static const String quitBody = 'ستفقد تقدمك في هذه الجولة.';
-  static const String quitConfirm = 'خروج';
-  static const String quitCancel = 'متابعة اللعب';
-  static const String quitBodyLevel =
+  String get question => 'سؤال';
+  String get of => 'من';
+  String get next => 'التالي';
+  String get finish => 'إنهاء';
+  String get correct => 'إجابة صحيحة!';
+  String get wrong => 'إجابة خاطئة';
+  String get quitTitle => 'إنهاء الجولة؟';
+  String get quitBody => 'ستفقد تقدمك في هذه الجولة.';
+  String get quitConfirm => 'خروج';
+  String get quitCancel => 'متابعة اللعب';
+  String get quitBodyLevel =>
       'ستفقد تقدمك في هذا المستوى، والخروج يكلّفك قلباً.';
-  static const String quizPaused = 'الجولة متوقفة مؤقتاً';
-  static const String quizPausedHint =
+  String get quizPaused => 'الجولة متوقفة مؤقتاً';
+  String get quizPausedHint =>
       'يعود السؤال والوقت كما تركتهما حين ترجع إلى التطبيق.';
 
   // المظهر
-  static const String themeSection = 'المظهر';
-  static const String themeGreen = 'ملعب أخضر';
-  static const String themeBlue = 'ليلي أزرق';
-  static const String themePurple = 'بنفسجي';
-  static const String themeRed = 'كلاسيكو أحمر';
+  String get themeSection => 'المظهر';
+  String get themeGreen => 'ملعب أخضر';
+  String get themeBlue => 'ليلي أزرق';
+  String get themePurple => 'بنفسجي';
+  String get themeRed => 'كلاسيكو أحمر';
 
   // اللغة — كل لغة باسمها في لغتها، فلا تُترجم هذه الأسماء.
-  static const String languageSection = 'اللغة';
-  static const String languageSystem = 'لغة الهاتف';
-  static const Map<String, String> languageNames = {
+  String get languageSection => 'اللغة';
+  String get languageSystem => 'لغة الهاتف';
+  Map<String, String> get languageNames => const {
     'ar': 'العربية',
     'en': 'English',
   };
-  static String languageName(String code) => languageNames[code] ?? code;
+  String languageName(String code) => languageNames[code] ?? code;
 
   // صيغ كانت مكتوبة داخل الودجات والكيانات — مكانها هنا حتى تُترجم يوماً.
-  static const List<String> optionLetters = ['أ', 'ب', 'ج', 'د'];
-  static const List<String> monthNames = [
+  List<String> get optionLetters => const ['أ', 'ب', 'ج', 'د'];
+  List<String> get monthNames => const [
     'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
     'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر',
   ];
-  static const String difficultyEasy = 'سهل';
-  static const String difficultyMedium = 'متوسط';
-  static const String difficultyHard = 'صعب';
-  static String levelLabel(int level) => 'المستوى $level';
-  static String levelsProgress(int done, int total) =>
+  String get difficultyEasy => 'سهل';
+  String get difficultyMedium => 'متوسط';
+  String get difficultyHard => 'صعب';
+  String levelLabel(int level) => 'المستوى $level';
+  String levelsProgress(int done, int total) =>
       '$done من $total $levelsDone';
-  static String hoursMinutes(int hours, int minutes) => '$hours س و $minutes د';
-  static String hoursShort(int hours) => '$hours س';
-  static String minutesShort(int minutes) => '$minutes د';
-  static const String timeUp = 'انتهى الوقت!';
+  String hoursMinutes(int hours, int minutes) => '$hours س و $minutes د';
+  String hoursShort(int hours) => '$hours س';
+  String minutesShort(int minutes) => '$minutes د';
+  String get timeUp => 'انتهى الوقت!';
 
   // النتيجة
-  static const String yourScore = 'نتيجتك';
-  static const String correctAnswers = 'إجابات صحيحة';
-  static const String accuracy = 'نسبة الدقة';
-  static const String playAgain = 'العب مرة أخرى';
-  static const String backHome = 'الرئيسية';
-  static const String shareScore = 'شارك النتيجة';
+  String get yourScore => 'نتيجتك';
+  String get correctAnswers => 'إجابات صحيحة';
+  String get accuracy => 'نسبة الدقة';
+  String get playAgain => 'العب مرة أخرى';
+  String get backHome => 'الرئيسية';
+  String get shareScore => 'شارك النتيجة';
   /// [days] مكتوبة بـ `ArabicCount` بصيغة المجرور بعد «لمدة»: «يومين».
-  static String streakKeptFor(String days) =>
+  String streakKeptFor(String days) =>
       'حافظت على سلسلتك لمدة $days!';
-  static const String streakLabel = 'السلسلة';
+  String get streakLabel => 'السلسلة';
 
   // رسائل الأداء
-  static const String rankLegend = 'أسطورة الملاعب! 🏆';
-  static const String rankPro = 'محترف حقيقي ⚽';
-  static const String rankGood = 'أداء جيد، واصل! 👏';
-  static const String rankRookie = 'بداية الطريق، تدرّب أكثر 💪';
+  String get rankLegend => 'أسطورة الملاعب! 🏆';
+  String get rankPro => 'محترف حقيقي ⚽';
+  String get rankGood => 'أداء جيد، واصل! 👏';
+  String get rankRookie => 'بداية الطريق، تدرّب أكثر 💪';
 
   // المستويات
-  static const String levels = 'المستويات';
-  static const String chooseCategoryTitle = 'اختر التصنيف';
-  static const String level = 'المستوى';
-  static const String levelsDone = 'مستويات مكتملة';
-  static const String startLevel = 'ابدأ المستوى';
-  static const String lockedLevel = 'أكمل المستوى السابق لفتحه';
-  static const String levelPassed = 'اجتزت المستوى!';
-  static const String levelFailed = 'لم تجتز المستوى';
+  String get levels => 'المستويات';
+  String get chooseCategoryTitle => 'اختر التصنيف';
+  String get level => 'المستوى';
+  String get levelsDone => 'مستويات مكتملة';
+  String get startLevel => 'ابدأ المستوى';
+  String get lockedLevel => 'أكمل المستوى السابق لفتحه';
+  String get levelPassed => 'اجتزت المستوى!';
+  String get levelFailed => 'لم تجتز المستوى';
   /// [correctAnswers] مكتوبة بـ `ArabicCount`: «7 إجابات صحيحة».
-  static String levelFailedHint(String correctAnswers) =>
+  String levelFailedHint(String correctAnswers) =>
       'تحتاج $correctAnswers على الأقل';
-  static const String nextLevelUnlocked = 'فُتح المستوى التالي 🔓';
+  String get nextLevelUnlocked => 'فُتح المستوى التالي 🔓';
 
   /// عتبات المستوى قبل بدئه: «للاجتياز ⭐ 7 من 10 · ⭐⭐ 9 · ⭐⭐⭐ 10».
-  static String levelGoal({
+  String levelGoal({
     required int pass,
     required int twoStars,
     required int threeStars,
     required int total,
   }) =>
       'للاجتياز ⭐ $pass من $total  ·  ⭐⭐ $twoStars  ·  ⭐⭐⭐ $threeStars';
-  static const String levelHeartCost =
+  String get levelHeartCost =>
       'تخسر قلباً إن لم تجتز المستوى أو خرجت منه';
-  static const String replayLevel = 'أعد المستوى';
-  static const String nextLevel = 'المستوى التالي';
-  static const String allLevelsDone = 'أكملت كل مستويات هذا التصنيف 🏆';
-  static const String totalStars = 'مجموع النجوم';
+  String get replayLevel => 'أعد المستوى';
+  String get nextLevel => 'المستوى التالي';
+  String get allLevelsDone => 'أكملت كل مستويات هذا التصنيف 🏆';
+  String get totalStars => 'مجموع النجوم';
 
   // الإعدادات
-  static const String settings = 'الإعدادات';
-  static const String yourStats = 'إحصائياتك';
-  static const String dataSection = 'البيانات';
-  static const String aboutSection = 'عن التطبيق';
-  static const String totalScore = 'مجموع النقاط';
-  static const String completedLevels = 'مستويات مكتملة';
-  static const String resetStats = 'تصفير الإحصائيات';
-  static const String resetStatsBody =
+  String get settings => 'الإعدادات';
+  String get yourStats => 'إحصائياتك';
+  String get dataSection => 'البيانات';
+  String get aboutSection => 'عن التطبيق';
+  String get totalScore => 'مجموع النقاط';
+  String get completedLevels => 'مستويات مكتملة';
+  String get resetStats => 'تصفير الإحصائيات';
+  String get resetStatsBody =>
       'ستُحذف السلسلة وأفضل نتيجة وعدد الجولات نهائياً. لا يمكن التراجع.';
-  static const String resetProgress = 'تصفير تقدّم المستويات';
-  static const String resetProgressBody =
+  String get resetProgress => 'تصفير تقدّم المستويات';
+  String get resetProgressBody =>
       'ستُقفل كل المستويات من جديد وتُحذف كل النجوم. لا يمكن التراجع.';
 
   /// [stars] و[levels] مكتوبان بـ `ArabicCount` بصيغة المفعول: «نجمتين».
-  static String resetProgressLoss(String stars, String levels) =>
+  String resetProgressLoss(String stars, String levels) =>
       'ستفقد $stars وتقدّم $levels.';
-  static const String confirmReset = 'تصفير';
-  static const String cancel = 'إلغاء';
-  static const String resetDone = 'تم التصفير';
+  String get confirmReset => 'تصفير';
+  String get cancel => 'إلغاء';
+  String get resetDone => 'تم التصفير';
   /// [version] من `AppInfo`، مثل «1.0.4 (5)».
-  static String appVersion(String version) => 'الإصدار $version';
-  static const String bankSummary = 'تصنيفات متنوّعة · مستويات متدرّجة لكل تصنيف';
+  String appVersion(String version) => 'الإصدار $version';
+  String get bankSummary => 'تصنيفات متنوّعة · مستويات متدرّجة لكل تصنيف';
 
   // التنبيه اليومي
-  static const String reminderSection = 'التنبيه اليومي';
-  static const String reminderToggle = 'تذكيري بتحدي اليوم';
-  static const String reminderToggleHint =
+  String get reminderSection => 'التنبيه اليومي';
+  String get reminderToggle => 'تذكيري بتحدي اليوم';
+  String get reminderToggleHint =>
       'تنبيه يومي في الوقت الذي تختاره حتى لا تنكسر سلسلتك.';
-  static const String reminderTime = 'وقت التنبيه';
+  String get reminderTime => 'وقت التنبيه';
 
   // بعد تحدي اليوم
-  static const String dailyReminderAsk = 'نذكّرك بتحدي الغد؟';
-  static const String dailyReminderButton = 'ذكّرني';
-  static String dailyReminderSet(String time) =>
+  String get dailyReminderAsk => 'نذكّرك بتحدي الغد؟';
+  String get dailyReminderButton => 'ذكّرني';
+  String dailyReminderSet(String time) =>
       'سنذكّرك بتحدي الغد الساعة $time';
-  static const String playLevel = 'العب مستوى';
-  static const String reminderDenied =
+  String get playLevel => 'العب مستوى';
+  String get reminderDenied =>
       'الإشعارات معطّلة. فعّلها من إعدادات النظام.';
-  static const String reminderChannelName = 'تحدي اليوم';
-  static const String reminderChannelDescription =
+  String get reminderChannelName => 'تحدي اليوم';
+  String get reminderChannelDescription =>
       'تذكير يومي بلعب تحدي اليوم والحفاظ على السلسلة.';
-  static const String reminderTitle = 'تحدي اليوم بانتظارك ⚽';
+  String get reminderTitle => 'تحدي اليوم بانتظارك ⚽';
   /// [questions] عدد أسئلة التحدي مكتوباً بـ `ArabicCount`: «7 أسئلة».
-  static String reminderBody(String questions) =>
+  String reminderBody(String questions) =>
       'العب الآن — $questions فقط!';
 
   /// [streak] مكتوبة بـ `ArabicCount`: «5 أيام».
-  static String reminderBodyStreak(String streak, String questions) =>
+  String reminderBodyStreak(String streak, String questions) =>
       'سلسلتك: $streak — لا تدعها تنكسر، $questions فقط!';
 
   // الاقتصاد
-  static const String hearts = 'القلوب';
+  String get hearts => 'القلوب';
 
   // تسميات قارئ الشاشة
   /// [nextIn] مثل «12 د» من `HeartsBar`.
-  static String heartsLabel(int hearts, int max, {String? nextIn}) =>
+  String heartsLabel(int hearts, int max, {String? nextIn}) =>
       nextIn == null
           ? 'القلوب: $hearts من $max'
           : 'القلوب: $hearts من $max، القلب التالي بعد $nextIn';
-  static String timeLeftLabel(int seconds) => 'الوقت المتبقي: $seconds';
+  String timeLeftLabel(int seconds) => 'الوقت المتبقي: $seconds';
 
   /// [earned] مكتوبة بـ `ArabicCount`: «نجمتان».
-  static String starsLabel(String earned, int total) => '$earned من $total';
-  static const String back = 'رجوع';
-  static const String quitRound = 'إنهاء الجولة';
-  static const String noHeartsTitle = 'نفدت قلوبك';
-  static const String noHeartsBody =
+  String starsLabel(String earned, int total) => '$earned من $total';
+  String get back => 'رجوع';
+  String get quitRound => 'إنهاء الجولة';
+  String get noHeartsTitle => 'نفدت قلوبك';
+  String get noHeartsBody =>
       'انتظر حتى يتجدّد قلب، أو العب تحدي اليوم لتكسب قلباً مجانياً.';
-  static const String noHeartsBodyDailyDone =
+  String get noHeartsBodyDailyDone =>
       'انتظر حتى يتجدّد قلب، أو احصل على قلب الآن بإعلان أو بالعملات.';
-  static const String nextHeartIn = 'القلب التالي بعد';
-  static const String playDailyForHeart = 'العب تحدي اليوم';
-  static const String heartLost = 'فقدت قلباً';
-  static const String heartEarned = 'كسبت قلباً! ❤️';
-  static const String hintFiftyFifty = 'حذف إجابتين';
-  static const String hintSkip = 'تخطّي السؤال';
-  static const String hintExtraTime = 'وقت إضافي';
-  static const String noHintsLeft = 'انتهت مساعداتك اليوم';
-  static const String hintFiftyFiftyUsed = 'حذفت إجابتين من هذا السؤال بالفعل';
-  static const String hintExtraTimeUsed = 'الوقت الإضافي مرة واحدة لكل سؤال';
-  static const String skippedAnswer = 'تخطّيت هذا السؤال';
+  String get nextHeartIn => 'القلب التالي بعد';
+  String get playDailyForHeart => 'العب تحدي اليوم';
+  String get heartLost => 'فقدت قلباً';
+  String get heartEarned => 'كسبت قلباً! ❤️';
+  String get hintFiftyFifty => 'حذف إجابتين';
+  String get hintSkip => 'تخطّي السؤال';
+  String get hintExtraTime => 'وقت إضافي';
+  String get noHintsLeft => 'انتهت مساعداتك اليوم';
+  String get hintFiftyFiftyUsed => 'حذفت إجابتين من هذا السؤال بالفعل';
+  String get hintExtraTimeUsed => 'الوقت الإضافي مرة واحدة لكل سؤال';
+  String get skippedAnswer => 'تخطّيت هذا السؤال';
 
   /// تحت السؤال بعد كشف الإجابة.
-  static String correctAnswerIs(String answer) => 'الإجابة الصحيحة: $answer';
+  String correctAnswerIs(String answer) => 'الإجابة الصحيحة: $answer';
 
   // المهام والمتجر
-  static const String tasks = 'المهام اليومية';
+  String get tasks => 'المهام اليومية';
   /// [count] الهدف مكتوباً بـ `ArabicCount` بصيغة المفعول: «10 إجابات صحيحة».
-  static String taskAnswers(String count) => 'أجب $count';
-  static const String taskDaily = 'أكمل تحدي اليوم';
-  static const String taskLevel = 'اجتز مستوى واحداً';
-  static const String claim = 'استلم';
-  static const String claimed = 'استُلمت';
-  static const String chestHint = 'يُفتح الصندوق بعد استلام كل المهام';
-  static const String openChest = 'افتح';
-  static const String chestOpened = 'فُتح الصندوق!';
-  static const String tasksResetHint = 'تتجدّد المهام كل يوم عند منتصف الليل';
-  static const String shop = 'المتجر';
-  static const String refillHearts = 'ملء القلوب';
-  static const String hintsPack = 'حزمة مساعدات';
-  static const String notEnoughCoins = 'عملاتك لا تكفي';
-  static const String heartsAlreadyFull = 'قلوبك ممتلئة';
-  static const String purchased = 'تم الشراء';
-  static const String comingSoon = 'قريباً';
-  static const String watchAdForCoins = 'شاهد إعلاناً واكسب عملات';
-  static const String watchAdForHeart = 'شاهد إعلاناً واحصل على قلب';
-  static const String removeAdsSoon = 'إزالة الإعلانات';
-  static const String adUnavailable = 'يتطلب اتصالاً بالإنترنت';
-  static const String adDailyLimitReached = 'استنفدت إعادة التعبئة اليوم';
-  static const String adDismissed = 'يجب إكمال الإعلان للحصول على المكافأة';
-  static const String adLoading = 'جارٍ التحميل…';
-  static const String rewardGranted = 'تم!';
+  String taskAnswers(String count) => 'أجب $count';
+  String get taskDaily => 'أكمل تحدي اليوم';
+  String get taskLevel => 'اجتز مستوى واحداً';
+  String get claim => 'استلم';
+  String get claimed => 'استُلمت';
+  String get chestHint => 'يُفتح الصندوق بعد استلام كل المهام';
+  String get openChest => 'افتح';
+  String get chestOpened => 'فُتح الصندوق!';
+  String get tasksResetHint => 'تتجدّد المهام كل يوم عند منتصف الليل';
+  String get shop => 'المتجر';
+  String get refillHearts => 'ملء القلوب';
+  String get hintsPack => 'حزمة مساعدات';
+  String get notEnoughCoins => 'عملاتك لا تكفي';
+  String get heartsAlreadyFull => 'قلوبك ممتلئة';
+  String get purchased => 'تم الشراء';
+  String get comingSoon => 'قريباً';
+  String get watchAdForCoins => 'شاهد إعلاناً واكسب عملات';
+  String get watchAdForHeart => 'شاهد إعلاناً واحصل على قلب';
+  String get removeAdsSoon => 'إزالة الإعلانات';
+  String get adUnavailable => 'يتطلب اتصالاً بالإنترنت';
+  String get adDailyLimitReached => 'استنفدت إعادة التعبئة اليوم';
+  String get adDismissed => 'يجب إكمال الإعلان للحصول على المكافأة';
+  String get adLoading => 'جارٍ التحميل…';
+  String get rewardGranted => 'تم!';
 
   // المؤثرات والنسخ الاحتياطي
-  static const String effectsSection = 'المؤثرات';
-  static const String soundToggle = 'أصوات';
-  static const String hapticsToggle = 'اهتزاز';
-  static const String backupSection = 'نقل التقدّم';
-  static const String backupHint =
+  String get effectsSection => 'المؤثرات';
+  String get soundToggle => 'أصوات';
+  String get hapticsToggle => 'اهتزاز';
+  String get backupSection => 'نقل التقدّم';
+  String get backupHint =>
       'تقدّمك محفوظ على هذا الجهاز فقط. انسخ الرمز واحتفظ به لنقله إلى جهاز آخر.';
-  static const String exportBackup = 'نسخ رمز التقدّم';
-  static const String importBackup = 'استيراد رمز';
-  static const String backupCopied = 'نُسخ الرمز';
-  static const String importTitle = 'استيراد التقدّم';
-  static const String importBody =
+  String get exportBackup => 'نسخ رمز التقدّم';
+  String get importBackup => 'استيراد رمز';
+  String get backupCopied => 'نُسخ الرمز';
+  String get importTitle => 'استيراد التقدّم';
+  String get importBody =>
       'الصق الرمز هنا. سيُستبدل تقدّمك الحالي بالكامل.';
-  static const String importSuccess = 'تم الاستيراد';
-  static const String importFailed = 'رمز غير صالح';
-  static const String importConfirm = 'استيراد';
+  String get importSuccess => 'تم الاستيراد';
+  String get importFailed => 'رمز غير صالح';
+  String get importConfirm => 'استيراد';
 
   // الخصوصية
-  static const String privacySection = 'الخصوصية';
-  static const String adPrivacyOptions = 'خيارات خصوصية الإعلانات';
-  static const String privacyPolicy = 'سياسة الخصوصية';
-  static const String privacyOptionsFailed =
+  String get privacySection => 'الخصوصية';
+  String get adPrivacyOptions => 'خيارات خصوصية الإعلانات';
+  String get privacyPolicy => 'سياسة الخصوصية';
+  String get privacyOptionsFailed =>
       'تعذّر فتح خيارات الخصوصية. حاول لاحقاً.';
-  static const String linkOpenFailed = 'تعذّر فتح الرابط';
+  String get linkOpenFailed => 'تعذّر فتح الرابط';
 
   // شاشة الترحيب
-  static const String onboardSkip = 'تخطٍّ';
-  static const String onboardNext = 'التالي';
-  static const String onboardStart = 'ابدأ اللعب';
-  static const String onboard1Title = 'عالم كرة القدم بين يديك';
-  static const String onboard1Body =
+  String get onboardSkip => 'تخطٍّ';
+  String get onboardNext => 'التالي';
+  String get onboardStart => 'ابدأ اللعب';
+  String get onboard1Title => 'عالم كرة القدم بين يديك';
+  String get onboard1Body =>
       'تصنيفات متنوّعة ومستويات تتصاعد صعوبتها معك كلما تقدّمت. اختبر معلوماتك وارتقِ بمستواك.';
-  static const String onboard2Title = 'قلوب ومساعدات';
-  static const String onboard2Body =
+  String get onboard2Title => 'قلوب ومساعدات';
+  String get onboard2Body =>
       'المستوى الذي لا تجتازه يكلّفك قلباً، والقلوب تتجدّد مع الوقت. استعن بالمساعدات عند الحاجة — تحدي اليوم واللعب السريع مجانيان دائماً.';
-  static const String onboard3Title = 'حافظ على سلسلتك';
-  static const String onboard3Body =
+  String get onboard3Title => 'حافظ على سلسلتك';
+  String get onboard3Body =>
       'العب تحدي اليوم يومياً لتنمو سلسلتك وتكسب قلباً وعملات. أكمل المهام اليومية لتفتح الصندوق.';
 
-  static const String noQuestions = 'لا توجد أسئلة متاحة حالياً.';
-  static const String errorTitle = 'حدث خطأ';
-  static const String retry = 'إعادة المحاولة';
-  static const String more = 'المزيد';
-  static const String dailyStart = 'ابدأ التحدي';
+  String get noQuestions => 'لا توجد أسئلة متاحة حالياً.';
+  String get errorTitle => 'حدث خطأ';
+  String get retry => 'إعادة المحاولة';
+  String get more => 'المزيد';
+  String get dailyStart => 'ابدأ التحدي';
 
   /// سطر بطاقة تحدي اليوم: «نقاط ×1.5 • يتجدد بعد 7 س و 4 د».
-  static String dailyMeta(String multiplier, String time) =>
+  String dailyMeta(String multiplier, String time) =>
       'نقاط ×$multiplier • يتجدد بعد $time';
-  static const String updateDownloaded = 'نُزّل تحديث جديد للتطبيق';
-  static const String updateRestart = 'إعادة التشغيل';
-  static const String loadCategoriesFailed =
+  String get updateDownloaded => 'نُزّل تحديث جديد للتطبيق';
+  String get updateRestart => 'إعادة التشغيل';
+  String get loadCategoriesFailed =>
       'تعذّر تحميل التصنيفات. حاول مرة أخرى.';
-  static const String ok = 'حسناً';
-  static const String loadQuestionsFailed =
+  String get ok => 'حسناً';
+  String get loadQuestionsFailed =>
       'تعذّر تحميل الأسئلة. حاول مرة أخرى.';
 
   // الملاحظات والبلاغات
-  static const String sendFeedback = 'أرسل ملاحظاتك';
-  static const String sendFeedbackHint =
+  String get sendFeedback => 'أرسل ملاحظاتك';
+  String get sendFeedbackHint =>
       'رسالة بريد إلى المطوّر، ترى محتواها كاملاً قبل إرسالها.';
-  static String noEmailApp(String email) =>
+  String noEmailApp(String email) =>
       'تعذّر فتح تطبيق البريد. راسلنا على $email';
-  static const String feedbackSubject = 'ملاحظات على تطبيق $appName';
-  static const String feedbackBodyPrompt = 'اكتب ملاحظتك هنا:';
-  static const String feedbackDiagnostics = '— معلومات تساعدنا على الإصلاح —';
-  static const String versionLabel = 'الإصدار';
-  static const String recentErrors = 'آخر الأخطاء';
-  static const String noRecentErrors = 'لا أخطاء مسجّلة';
-  static const String reportQuestion = 'أبلغ عن خطأ';
-  static const String reportQuestionTitle = 'ما المشكلة في هذا السؤال؟';
-  static const String reportWrongAnswer = 'الإجابة المعتمدة خاطئة';
-  static const String reportTwoCorrect = 'أكثر من إجابة صحيحة';
-  static const String reportTypo = 'خطأ إملائي أو في الصياغة';
-  static const String reportOther = 'مشكلة أخرى';
-  static String reportSubject(int questionId) => 'بلاغ عن السؤال $questionId';
-  static const String reportReasonLabel = 'السبب';
-  static const String reportQuestionLabel = 'السؤال';
-  static const String reportOptionsLabel = 'الخيارات';
-  static const String reportNotePrompt = 'تفاصيل إضافية (اختياري):';
+  String get feedbackSubject => 'ملاحظات على تطبيق $appName';
+  String get feedbackBodyPrompt => 'اكتب ملاحظتك هنا:';
+  String get feedbackDiagnostics => '— معلومات تساعدنا على الإصلاح —';
+  String get versionLabel => 'الإصدار';
+  String get recentErrors => 'آخر الأخطاء';
+  String get noRecentErrors => 'لا أخطاء مسجّلة';
+  String get reportQuestion => 'أبلغ عن خطأ';
+  String get reportQuestionTitle => 'ما المشكلة في هذا السؤال؟';
+  String get reportWrongAnswer => 'الإجابة المعتمدة خاطئة';
+  String get reportTwoCorrect => 'أكثر من إجابة صحيحة';
+  String get reportTypo => 'خطأ إملائي أو في الصياغة';
+  String get reportOther => 'مشكلة أخرى';
+  String reportSubject(int questionId) => 'بلاغ عن السؤال $questionId';
+  String get reportReasonLabel => 'السبب';
+  String get reportQuestionLabel => 'السؤال';
+  String get reportOptionsLabel => 'الخيارات';
+  String get reportNotePrompt => 'تفاصيل إضافية (اختياري):';
 }

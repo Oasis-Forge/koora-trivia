@@ -88,7 +88,7 @@
 > `localization_groundwork_test` blocks new hard-coded player text. §2.2's `languageCode` and picker are done too (owner,
 > 14 September 2026): `null` follows the phone; the panel stays hidden with one language; older settings read as `ar`, and
 > new players are saved as `ar` until a second language ships — then `AppSettings.defaultLanguageCode` becomes `null`
-> (`language_choice_test` fails until it does). **Still to do:** convert `AppStrings` to ARB and `AppLocalizations` (§2.1),
+> (`language_choice_test` fails until it does). **App text:** `AppStrings` returns `AppText` (Arabic) or `EnglishText`, not ARB files (owner, 14 September 2026). **Still to do:**
 > §2.3–2.4, §2.6–2.7, and an Android 13 `locales_config.xml` when the second language ships.
 
 ### 2.1 Localization infrastructure

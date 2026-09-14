@@ -79,7 +79,7 @@ class LocalNotificationScheduler implements ReminderScheduler {
     await init();
     await cancelAll();
 
-    const details = NotificationDetails(
+    final details = NotificationDetails(
       android: AndroidNotificationDetails(
         _channelId,
         AppStrings.reminderChannelName,

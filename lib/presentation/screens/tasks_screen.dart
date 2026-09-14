@@ -28,7 +28,7 @@ class TasksScreen extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 18, 20, 24),
             children: [
-              const KooraAppBar(
+              KooraAppBar(
                 title: AppStrings.tasks,
                 trailing: [CoinBadge()],
               ),
