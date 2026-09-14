@@ -157,7 +157,7 @@ class _Row extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   sublabel,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 12,
                     color: AppColors.chalkMuted,
                   ),
@@ -231,13 +231,13 @@ class _ComingSoonRow extends StatelessWidget {
           Expanded(
             child: Text(
               label,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 14,
                 color: AppColors.chalkMuted,
               ),
             ),
           ),
-          const Text(
+          Text(
             AppStrings.comingSoon,
             style: TextStyle(
               fontSize: 12,

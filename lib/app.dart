@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'core/constants/app_strings.dart';
 import 'core/di/injector.dart';
+import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
 import 'domain/entities/category.dart';
 import 'domain/repositories/app_info.dart';
@@ -26,6 +27,7 @@ import 'presentation/screens/settings_screen.dart';
 import 'presentation/screens/shop_screen.dart';
 import 'presentation/screens/tasks_screen.dart';
 import 'presentation/widgets/app_lifecycle_hooks.dart';
+import 'presentation/widgets/palette_scope.dart';
 
 class FootballTriviaApp extends StatelessWidget {
   const FootballTriviaApp({super.key, required this.injector});
@@ -72,7 +74,14 @@ class FootballTriviaApp extends StatelessWidget {
           )..init(),
         ),
       ],
-      child: MaterialApp(
+      // الثيم والشاشات تقرأ الألوان الحالية، فيُضبط المظهر قبل بناء `MaterialApp`.
+      child: Selector<SettingsProvider, String>(
+        selector: (_, settings) => settings.themeId,
+        builder: (context, themeId, _) {
+          AppColors.use(AppPalette.byId(themeId));
+          return PaletteScope(
+            themeId: themeId,
+            child: MaterialApp(
         title: AppStrings.appName,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.dark,
@@ -114,6 +123,9 @@ class FootballTriviaApp extends StatelessWidget {
           return MaterialPageRoute<void>(
             builder: (_) => LevelsScreen(category: category),
             settings: settings,
+          );
+        },
+      ),
           );
         },
       ),

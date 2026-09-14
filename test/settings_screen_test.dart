@@ -226,7 +226,11 @@ Future<void> _scrollToBottom(WidgetTester tester) async {
 }
 
 Future<void> _scrollToTop(WidgetTester tester) async {
-  await tester.drag(find.byType(ListView), const Offset(0, 600));
+  // قفزة لا سحب بمسافة ثابتة: طول الشاشة يتغيّر كلما أُضيف قسم.
+  tester
+      .state<ScrollableState>(find.byType(Scrollable).first)
+      .position
+      .jumpTo(0);
   await tester.pumpAndSettle();
 }
 
@@ -298,7 +302,12 @@ void main() {
       progressRepo: progressRepo,
     );
 
-    await _scrollToBottom(tester);
+    // قسم المظهر أطال الشاشة: أسفلها لم يعد يُظهر زر التصفير.
+    await tester.scrollUntilVisible(
+      find.text(AppStrings.resetProgress),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
     await tester.tap(find.text(AppStrings.resetProgress));
     await tester.pumpAndSettle();
 
@@ -327,7 +336,12 @@ void main() {
 
     expect(find.text('9 / 30'), findsOneWidget);
 
-    await _scrollToBottom(tester);
+    // قسم المظهر أطال الشاشة: أسفلها لم يعد يُظهر زر التصفير.
+    await tester.scrollUntilVisible(
+      find.text(AppStrings.resetProgress),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
     await tester.tap(find.text(AppStrings.resetProgress));
     await tester.pumpAndSettle();
 
@@ -359,7 +373,12 @@ void main() {
       }),
     );
 
-    await _scrollToBottom(tester);
+    // قسم المظهر أطال الشاشة: أسفلها لم يعد يُظهر زر التصفير.
+    await tester.scrollUntilVisible(
+      find.text(AppStrings.resetProgress),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
     await tester.tap(find.text(AppStrings.resetProgress));
     await tester.pumpAndSettle();
 
@@ -603,5 +622,28 @@ void main() {
       await backToTop(tester);
       expect(find.text('23'), findsOneWidget);
     });
+  });
+
+  testWidgets('اختيار «ليلي أزرق» في المظهر يحفظه ويعلّم عيّنته', (tester) async {
+    await _pumpSettings(
+      tester,
+      statsRepo: _FakeStatsRepository(const UserStats()),
+      progressRepo: _FakeProgressRepository({}),
+    );
+
+    await tester.scrollUntilVisible(
+      find.text(AppStrings.themeBlue),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.tap(find.text(AppStrings.themeBlue));
+    await tester.pumpAndSettle();
+
+    final settings = Provider.of<SettingsProvider>(
+      tester.element(find.byType(SettingsScreen)),
+      listen: false,
+    );
+    expect(settings.themeId, 'blue');
+    expect(find.byIcon(Icons.check_rounded), findsOneWidget);
   });
 }

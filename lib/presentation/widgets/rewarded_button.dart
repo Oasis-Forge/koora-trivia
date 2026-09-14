@@ -70,7 +70,7 @@ class RewardedButton extends StatelessWidget {
             child: Text(
               disabledReason,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 12,
                 color: AppColors.chalkMuted,
               ),

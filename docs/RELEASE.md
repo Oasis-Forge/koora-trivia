@@ -128,8 +128,8 @@ $env:Path = "C:\src\flutter\bin;$env:Path"; dart run tool/archive_release.dart "
 
 ### Testing on the emulator
 
-- Emulator: `Pixel_6_Pro` (1440×3120, density 560, 145 px status bar).
-  Launch it: `flutter emulators --launch Pixel_6_Pro`.
+- Emulator: `Medium_Phone` (1080×2400, density 420, Play Store image) — replaced `Pixel_6_Pro` in September 2026.
+  Launch it: `flutter emulators --launch Medium_Phone`.
 - **Switching between a debug and a release install on the same device** fails with
   `INSTALL_FAILED_UPDATE_INCOMPATIBLE` (different signatures) ⇒
   `adb uninstall com.oasisforge.kooratrivia` first.

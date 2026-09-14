@@ -73,7 +73,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 alignment: AlignmentDirectional.centerStart,
                 child: TextButton(
                   onPressed: _finish,
-                  child: const Text(
+                  child: Text(
                     AppStrings.onboardSkip,
                     style: TextStyle(color: AppColors.chalkMuted),
                   ),
@@ -125,7 +125,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           Text(
                             page.body,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                               height: 1.8,
                               color: AppColors.chalkMuted,

@@ -57,7 +57,7 @@ class CategoryCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   if (complete)
-                    const Icon(
+                    Icon(
                       Icons.verified_rounded,
                       color: AppColors.gold,
                       size: 20,
@@ -92,14 +92,14 @@ class CategoryCard extends StatelessWidget {
                 children: [
                   Text(
                     '$done / $total',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
                       color: AppColors.chalkMuted,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   const Spacer(),
-                  const Icon(
+                  Icon(
                     Icons.star_rounded,
                     size: 13,
                     color: AppColors.gold,
@@ -107,7 +107,7 @@ class CategoryCard extends StatelessWidget {
                   const SizedBox(width: 2),
                   Text(
                     '${progress.totalStars}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
                       color: AppColors.chalkMuted,
                       fontWeight: FontWeight.w700,

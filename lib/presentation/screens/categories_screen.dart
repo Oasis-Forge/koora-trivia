@@ -124,12 +124,12 @@ class _Header extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.star_rounded,
+                Icon(Icons.star_rounded,
                     size: 16, color: AppColors.gold),
                 const SizedBox(width: 4),
                 Text(
                   '$totalStars',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.gold,
                     fontWeight: FontWeight.w800,
                   ),

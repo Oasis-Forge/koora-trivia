@@ -59,7 +59,7 @@ class TasksScreen extends StatelessWidget {
                       opened: economy.chestClaimed,
                     ),
                     const SizedBox(height: 18),
-                    const Text(
+                    Text(
                       AppStrings.tasksResetHint,
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -132,13 +132,13 @@ class _TaskCard extends StatelessWidget {
                   children: [
                     Text(
                       '${task.reward}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.gold,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
                     const SizedBox(width: 3),
-                    const Icon(
+                    Icon(
                       Icons.monetization_on_rounded,
                       size: 14,
                       color: AppColors.gold,
@@ -171,7 +171,7 @@ class _TaskCard extends StatelessWidget {
                     const SizedBox(height: 5),
                     Text(
                       '${task.progress} / ${task.target}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12,
                         color: AppColors.chalkMuted,
                         fontWeight: FontWeight.w700,

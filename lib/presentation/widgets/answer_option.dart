@@ -87,7 +87,7 @@ class AnswerOption extends StatelessWidget {
                       index < _letters.length
                           ? _letters[index]
                           : '${index + 1}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.gold,
                         fontWeight: FontWeight.w800,
                       ),

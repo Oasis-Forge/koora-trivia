@@ -43,7 +43,7 @@ class CategoryChips extends StatelessWidget {
               color: isActive ? AppColors.pitchDark : AppColors.chalk,
               fontWeight: FontWeight.w700,
             ),
-            side: const BorderSide(color: AppColors.cardBorder),
+            side: BorderSide(color: AppColors.cardBorder),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(999),
             ),

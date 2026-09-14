@@ -145,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Center(
                 child: Text(
                   '${AppStrings.gamesPlayed}: ${stats.stats.gamesPlayed}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.chalkMuted,
                     fontSize: 13,
                   ),
@@ -191,13 +191,13 @@ class _TasksButton extends StatelessWidget {
               width: 20,
               height: 20,
               alignment: Alignment.center,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: AppColors.wrong,
                 shape: BoxShape.circle,
               ),
               child: Text(
                 '$claimable',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w900,
                   color: AppColors.chalk,
@@ -227,14 +227,14 @@ class _Header extends StatelessWidget {
                 gradient: AppColors.goldGradient,
                 borderRadius: BorderRadius.circular(18),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.sports_soccer_rounded,
                 color: AppColors.pitchDark,
                 size: 32,
               ),
             ),
             const SizedBox(width: 14),
-            const Expanded(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

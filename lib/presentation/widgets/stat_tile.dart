@@ -8,16 +8,19 @@ class StatTile extends StatelessWidget {
     required this.icon,
     required this.value,
     required this.label,
-    this.accent = AppColors.gold,
+    this.accent,
   });
 
   final IconData icon;
   final String value;
   final String label;
-  final Color accent;
+
+  /// ذهبي المظهر الحالي إن لم يُمرَّر — القيمة الافتراضية لا تكون من مظهر متغيّر.
+  final Color? accent;
 
   @override
   Widget build(BuildContext context) {
+    final accent = this.accent ?? AppColors.gold;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
       decoration: BoxDecoration(
@@ -32,7 +35,7 @@ class StatTile extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             value,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w800,
               color: AppColors.chalk,
@@ -42,7 +45,7 @@ class StatTile extends StatelessWidget {
           Text(
             label,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 12, color: AppColors.chalkMuted),
+            style: TextStyle(fontSize: 12, color: AppColors.chalkMuted),
           ),
         ],
       ),

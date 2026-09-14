@@ -52,7 +52,7 @@ class HintBar extends StatelessWidget {
               color: economy.hasHints ? AppColors.gold : AppColors.chalkMuted,
             ),
           ),
-          const Icon(
+          Icon(
             Icons.lightbulb_rounded,
             size: 15,
             color: AppColors.gold,

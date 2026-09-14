@@ -57,7 +57,7 @@ class HeartsBar extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 _format(economy.untilNextHeart!),
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 11.5,
                   color: AppColors.chalkMuted,
                   fontWeight: FontWeight.w600,
@@ -123,7 +123,7 @@ class NoHeartsDialog extends StatelessWidget {
         backgroundColor: AppColors.cardSurface,
         // أربعة خيارات قد لا تتسع لها الشاشات الصغيرة.
         scrollable: true,
-        title: const Row(
+        title: Row(
           children: [
             Icon(Icons.heart_broken_rounded, color: AppColors.wrong),
             SizedBox(width: 8),
@@ -144,7 +144,7 @@ class NoHeartsDialog extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 '${AppStrings.nextHeartIn} ${HeartsBar._format(untilNext)}',
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.gold,
                   fontWeight: FontWeight.w700,
                 ),
@@ -178,7 +178,7 @@ class NoHeartsDialog extends StatelessWidget {
               ),
             ),
             if (!economy.canBuyHeartsRefill)
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 6),
                 child: Text(
                   AppStrings.notEnoughCoins,

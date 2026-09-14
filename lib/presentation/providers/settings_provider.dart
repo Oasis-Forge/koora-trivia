@@ -125,6 +125,11 @@ class SettingsProvider extends ChangeNotifier {
   Future<void> markOnboardingSeen() =>
       _persist(_settings.copyWith(onboardingSeen: true));
 
+  String get themeId => _settings.themeId;
+
+  Future<void> setThemeId(String id) =>
+      _persist(_settings.copyWith(themeId: id));
+
   Future<void> setReminderTime({required int hour, required int minute}) async {
     await _persist(
       _settings.copyWith(reminderHour: hour, reminderMinute: minute),

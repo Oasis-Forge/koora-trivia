@@ -116,7 +116,7 @@ class _ReasonSheetState extends State<_ReasonSheet> {
             for (final reason in ReportReason.values)
               ListTile(
                 onTap: () => _pick(reason),
-                leading: const Icon(
+                leading: Icon(
                   Icons.flag_outlined,
                   size: 20,
                   color: AppColors.gold,

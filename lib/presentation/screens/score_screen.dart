@@ -281,7 +281,7 @@ class _ScoreScreenState extends State<ScoreScreen>
                       color: AppColors.wrong.withValues(alpha: 0.5),
                     ),
                   ),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Icon(Icons.favorite_rounded, color: AppColors.wrong),
                       SizedBox(width: 10),
@@ -306,7 +306,7 @@ class _ScoreScreenState extends State<ScoreScreen>
                   ),
                   child: Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.local_fire_department_rounded,
                         color: AppColors.gold,
                       ),
@@ -360,8 +360,8 @@ class _ScoreScreenState extends State<ScoreScreen>
               ],
               TextButton.icon(
                 onPressed: _goHome,
-                icon: const Icon(Icons.home_rounded, color: AppColors.chalkMuted),
-                label: const Text(
+                icon: Icon(Icons.home_rounded, color: AppColors.chalkMuted),
+                label: Text(
                   AppStrings.backHome,
                   style: TextStyle(color: AppColors.chalkMuted),
                 ),
@@ -408,14 +408,14 @@ class _ScoreMedal extends StatelessWidget {
           child: Container(
             width: 172,
             height: 172,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: AppColors.pitchDark,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   AppStrings.yourScore,
                   style: TextStyle(
                     color: AppColors.chalkMuted,
@@ -427,7 +427,7 @@ class _ScoreMedal extends StatelessWidget {
                   animation: animation,
                   builder: (context, _) => Text(
                     '${(result.score * animation.value).round()}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 46,
                       fontWeight: FontWeight.w900,
                       color: AppColors.gold,
@@ -437,7 +437,7 @@ class _ScoreMedal extends StatelessWidget {
                 ),
                 Text(
                   ArabicCount.nounFor(result.score, ArabicNoun.point),
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.chalkMuted,
                     fontSize: 13,
                   ),
