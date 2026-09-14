@@ -20,6 +20,7 @@
 - 14 September 2026: the bank test bans bare «لا شيء», «لا أحد» and «لم يحدث» options (9006, 9052, 9053, 9060, 9085, 9089, 10048 fixed), normalises the duplicate check's filler words, and 1093 has a single correct answer. Section A of v1.0.5 is done.
 - 14 September 2026 (B1): a daily challenge counts for the day it started · day gaps are counted in UTC · a heart is charged only when the answer is recorded · the quiz timer pauses and hides the question while the app is in the background.
 - B2: four color themes (ملعب أخضر · ليلي أزرق · بنفسجي · كلاسيكو أحمر) with a «المظهر» picker in Settings, saved with the settings and the backup.
+- Language groundwork: no forced locale or RTL (direction follows the language) · side-based paddings, the Tasks badge and gradients made directional · the last hard-coded player text moved into `AppStrings` · `lib/l10n` translation files (Arabic only, used for the app title) · launcher name from `strings.xml` · a test that blocks new hard-coded player text.
 - PR #7, merged 14 September 2026: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
 - PR #6, merged 13 September 2026: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
 - PR #5, merged 13 September 2026: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
@@ -48,7 +49,6 @@
 
 ### Features
 - All Phase 1 features are in PR #8.
-- **P2 · M** (v1.0.5, owner's decision): language groundwork, no second language yet — remove the forced Arabic locale, move the 28 hard-coded lines into `AppStrings`, set up translation files and fix layouts that break left-to-right (I18N_PLAN.md §2).
 
 ---
 

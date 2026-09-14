@@ -184,9 +184,9 @@ class _TasksButton extends StatelessWidget {
           ),
         ),
         if (claimable > 0)
-          Positioned(
+          PositionedDirectional(
             top: -3,
-            left: -3,
+            end: -3,
             child: Container(
               width: 20,
               height: 20,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
 import 'star_row.dart';
+import '../../core/constants/app_strings.dart';
 
 enum LevelState { locked, available, completed }
 
@@ -46,7 +47,7 @@ class LevelTile extends StatelessWidget {
     }
 
     return Semantics(
-      label: 'المستوى $level',
+      label: AppStrings.levelLabel(level),
       enabled: !locked,
       selected: isSelected,
       child: Material(

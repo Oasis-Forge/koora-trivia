@@ -41,6 +41,26 @@ class AppStrings {
   static const String themeBlue = 'ليلي أزرق';
   static const String themePurple = 'بنفسجي';
   static const String themeRed = 'كلاسيكو أحمر';
+
+  // صيغ كانت مكتوبة داخل الودجات والكيانات — مكانها هنا حتى تُترجم يوماً.
+  static const List<String> optionLetters = ['أ', 'ب', 'ج', 'د'];
+  static const List<String> monthNames = [
+    'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+    'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر',
+  ];
+  static const String difficultyEasy = 'سهل';
+  static const String difficultyMedium = 'متوسط';
+  static const String difficultyHard = 'صعب';
+  static String levelLabel(int level) => 'المستوى $level';
+  static String levelsProgress(int done, int total) =>
+      '$done من $total $levelsDone';
+  static String hoursMinutes(int hours, int minutes) => '$hours س و $minutes د';
+  static String hoursShort(int hours) => '$hours س';
+  static String minutesShort(int minutes) => '$minutes د';
+  static String dailyNextIn(String duration) =>
+      '$dailyDone  •  التحدي القادم بعد $duration';
+  static String dailyQuestionsLine(String questions, String multiplier) =>
+      '$questions • نقاط مضاعفة ×$multiplier';
   static const String timeUp = 'انتهى الوقت!';
 
   // النتيجة

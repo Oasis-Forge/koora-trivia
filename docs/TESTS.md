@@ -2,7 +2,7 @@
 
 > Moved from CLAUDE.md on 14 September 2026. Update the count and the table when tests are added.
 
-**340 tests across 38 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+**344 tests across 39 files, all passing.** `flutter analyze` is clean. Shared test code lives in
 `test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
 (in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
 (`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
@@ -38,6 +38,7 @@
 | `score_screen_buttons_test.dart` | 6 | **Widget test** — result screen: level pass shows "Next level" and "Replay level" · fail shows only "Replay level" · last level has no "Next level" · daily has no replay or next · quick play shows "Play again" · a skipped question reads as a skip in the review |
 | `button_icons_test.dart` | 1 | **Widget test** — with the app theme in RTL, the icon of every filled, outlined and text button sits left of its label |
 | `theme_test.dart` | 7 | Four themes, unknown id falls back to green · text contrast in every theme, none less readable than the original green · theme saved and read back, old settings stay green · the provider saves the choice · backups carry it · **widget:** a switch rebuilds const widgets with the new colors · the result screen builds under every theme |
+| `localization_groundwork_test.dart` | 4 | No Arabic player text in string literals outside `AppStrings` (developer messages and the `ArabicCount` table excepted) · translation files hold Arabic only and the app title matches `AppStrings.appName`, as does the launcher name · **widget:** an English device still gets Arabic, right to left · the formats moved into `AppStrings` produce the same text |
 | `levels_screen_test.dart` | 5 | **Widget test** — completed, available and locked tiles · the first open level is auto-selected · a locked tap explains and keeps the selection · level 10 fully visible above the footer on 360×640 and 411×731 |
 | `quiz_screen_layout_test.dart` | 11 | **Widget test** — «أبلغ عن خطأ» appears in the feedback panel only after the answer · on 360×640 the 4th option sits above the hints bar in the compact size · on a tall screen the options sit right above the hints bar · the feedback panel scrolls fully into view · the next question starts at the top again · a panel taller than the screen shows its title · a short question's card is as wide as the options · Skip reads as a skip, time-up still as time-up · a quick double tap on a wrong option charges one heart · leaving the app pauses the timer and hides the question |
 | `progress_provider_test.dart` | 5 | **Provider-to-storage wiring** — pass ⇒ stars ⇒ next unlocked · survives restart (guards the covariance bug) |

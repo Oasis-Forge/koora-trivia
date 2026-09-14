@@ -1,0 +1,7 @@
+{
+  "@@locale": "ar",
+  "appTitle": "تحدي كرة القدم",
+  "@appTitle": {
+    "description": "App name shown in the Android task switcher. Must match AppStrings.appName and android res/values/strings.xml."
+  }
+}

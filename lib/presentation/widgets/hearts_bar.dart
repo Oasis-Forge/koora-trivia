@@ -72,8 +72,8 @@ class HeartsBar extends StatelessWidget {
 
   static String _format(Duration d) {
     final minutes = d.inMinutes;
-    if (minutes >= 60) return '${d.inHours} س';
-    return '${minutes < 1 ? 1 : minutes} د';
+    if (minutes >= 60) return AppStrings.hoursShort(d.inHours);
+    return AppStrings.minutesShort(minutes < 1 ? 1 : minutes);
   }
 }
 

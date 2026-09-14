@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../core/constants/app_strings.dart';
 
 /// زر خيار الإجابة — يتلوّن بالأخضر/الأحمر بعد الكشف عن الإجابة.
 class AnswerOption extends StatelessWidget {
@@ -29,8 +30,6 @@ class AnswerOption extends StatelessWidget {
   final bool compact;
 
   final VoidCallback? onTap;
-
-  static const List<String> _letters = ['أ', 'ب', 'ج', 'د'];
 
   @override
   Widget build(BuildContext context) {
@@ -84,8 +83,8 @@ class AnswerOption extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
-                      index < _letters.length
-                          ? _letters[index]
+                      index < AppStrings.optionLetters.length
+                          ? AppStrings.optionLetters[index]
                           : '${index + 1}',
                       style: TextStyle(
                         color: AppColors.gold,

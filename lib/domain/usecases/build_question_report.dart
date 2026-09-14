@@ -10,8 +10,6 @@ enum ReportReason { wrongAnswer, twoCorrect, typo, other }
 class BuildQuestionReport {
   const BuildQuestionReport();
 
-  static const List<String> _letters = ['أ', 'ب', 'ج', 'د'];
-
   static String label(ReportReason reason) => switch (reason) {
         ReportReason.wrongAnswer => AppStrings.reportWrongAnswer,
         ReportReason.twoCorrect => AppStrings.reportTwoCorrect,
@@ -27,7 +25,7 @@ class BuildQuestionReport {
     final options = [
       for (var i = 0; i < question.options.length; i++)
         // الخيارات بترتيب ظهورها للاعب، والمعتمدة معلّمة.
-        '${i < _letters.length ? _letters[i] : i + 1}) ${question.options[i]}'
+        '${i < AppStrings.optionLetters.length ? AppStrings.optionLetters[i] : i + 1}) ${question.options[i]}'
             '${i == question.answerIndex ? ' ✓' : ''}',
     ];
 

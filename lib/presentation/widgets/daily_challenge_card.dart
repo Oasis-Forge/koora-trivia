@@ -26,8 +26,8 @@ class DailyChallengeCard extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
+          begin: AlignmentDirectional.topStart,
+          end: AlignmentDirectional.bottomEnd,
           colors: isDone
               ? [AppColors.pitchMid, AppColors.pitchDeep]
               : [AppColors.gold, AppColors.goldDeep],
@@ -71,8 +71,14 @@ class DailyChallengeCard extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             isDone
-                ? '${AppStrings.dailyDone}  •  التحدي القادم بعد ${_format(untilNext)}'
-                : '${ArabicCount.format(AppConfig.dailyQuestionCount, ArabicNoun.question)} • نقاط مضاعفة ×${AppConfig.dailyMultiplier}',
+                ? AppStrings.dailyNextIn(_format(untilNext))
+                : AppStrings.dailyQuestionsLine(
+                    ArabicCount.format(
+                      AppConfig.dailyQuestionCount,
+                      ArabicNoun.question,
+                    ),
+                    '${AppConfig.dailyMultiplier}',
+                  ),
             style: TextStyle(
               fontSize: 14,
               height: 1.5,
@@ -106,8 +112,8 @@ class DailyChallengeCard extends StatelessWidget {
   static String _format(Duration d) {
     final h = d.inHours;
     final m = d.inMinutes % 60;
-    if (h > 0) return '$h س و $m د';
-    return '$m د';
+    if (h > 0) return AppStrings.hoursMinutes(h, m);
+    return AppStrings.minutesShort(m);
   }
 }
 

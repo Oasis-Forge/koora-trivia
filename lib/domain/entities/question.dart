@@ -1,10 +1,12 @@
+import '../../core/constants/app_strings.dart';
+
 enum Difficulty { easy, medium, hard }
 
 extension DifficultyLabel on Difficulty {
   String get arabicLabel => switch (this) {
-        Difficulty.easy => 'سهل',
-        Difficulty.medium => 'متوسط',
-        Difficulty.hard => 'صعب',
+        Difficulty.easy => AppStrings.difficultyEasy,
+        Difficulty.medium => AppStrings.difficultyMedium,
+        Difficulty.hard => AppStrings.difficultyHard,
       };
 
   /// مضاعف النقاط حسب الصعوبة.
