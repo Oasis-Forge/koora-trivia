@@ -165,12 +165,11 @@ class _Cta extends StatelessWidget {
                   color: foreground,
                 ),
               ),
-              const SizedBox(width: 10),
-              Icon(
-                isDone ? Icons.check_rounded : Icons.play_arrow_rounded,
-                size: 20,
-                color: foreground,
-              ),
+              // نص «أكملت» يحمل علامته، فلا أيقونة ثانية بجانبه.
+              if (!isDone) ...[
+                const SizedBox(width: 10),
+                Icon(Icons.play_arrow_rounded, size: 20, color: foreground),
+              ],
             ],
           ),
         ),

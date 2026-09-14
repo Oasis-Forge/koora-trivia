@@ -255,35 +255,46 @@ class _StatsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Surface(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 14),
+      padding: EdgeInsets.zero,
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Icon(
-            Icons.sports_soccer,
-            size: 170,
-            color: Colors.white.withValues(alpha: 0.035),
+          // الكرة خلفية فقط: كانت تحدد ارتفاع البطاقة (170) فتبدو فارغة، والآن
+          // تُقص عند حدود البطاقة ويحدد الصفُّ الارتفاع.
+          Positioned.fill(
+            child: OverflowBox(
+              maxWidth: 170,
+              maxHeight: 170,
+              child: Icon(
+                Icons.sports_soccer,
+                size: 170,
+                color: Colors.white.withValues(alpha: 0.035),
+              ),
+            ),
           ),
-          Row(
-            children: [
-              _Stat(
-                icon: Icons.star_rounded,
-                value: '$bestScore',
-                label: AppStrings.bestScore,
-              ),
-              _divider(),
-              _Stat(
-                icon: Icons.emoji_events_rounded,
-                value: '$bestStreak',
-                label: AppStrings.bestStreak,
-              ),
-              _divider(),
-              _Stat(
-                icon: Icons.event_available_rounded,
-                value: '$streak',
-                label: AppStrings.streak,
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            child: Row(
+              children: [
+                _Stat(
+                  icon: Icons.star_rounded,
+                  value: '$bestScore',
+                  label: AppStrings.bestScore,
+                ),
+                _divider(),
+                _Stat(
+                  icon: Icons.emoji_events_rounded,
+                  value: '$bestStreak',
+                  label: AppStrings.bestStreak,
+                ),
+                _divider(),
+                _Stat(
+                  icon: Icons.event_available_rounded,
+                  value: '$streak',
+                  label: AppStrings.streak,
+                ),
+              ],
+            ),
           ),
         ],
       ),

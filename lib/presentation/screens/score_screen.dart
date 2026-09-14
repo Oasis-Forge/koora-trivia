@@ -20,7 +20,6 @@ import '../providers/stats_provider.dart';
 import '../widgets/hearts_bar.dart';
 import '../widgets/koora_buttons.dart';
 import '../widgets/pitch_background.dart';
-import '../widgets/report_question_button.dart';
 import '../widgets/stat_tile.dart';
 import '../widgets/surface.dart';
 import 'categories_screen.dart';
@@ -381,19 +380,6 @@ class _ScoreScreenState extends State<ScoreScreen>
                   style: TextStyle(color: AppColors.chalkMuted),
                 ),
               ),
-              // لا مراجعة للإجابات بعد المستوى (قرار المالك، 14 سبتمبر 2026)؛
-              // تبقى بعد اللعب السريع وتحدي اليوم. الإبلاغ عن سؤال متاح في لوحة
-              // الشرح أثناء الجولة.
-              if (!_result.isLevel) ...[
-                const SizedBox(height: 24),
-                const Text(
-                  AppStrings.reviewAnswers,
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
-                ),
-                const SizedBox(height: 12),
-                for (final answer in _result.answers)
-                  _ReviewRow(answer: answer),
-              ],
             ],
           ),
         ),
@@ -551,77 +537,3 @@ class _ScoreMedal extends StatelessWidget {
   }
 }
 
-class _ReviewRow extends StatelessWidget {
-  const _ReviewRow({required this.answer});
-
-  final AnswerRecord answer;
-
-  @override
-  Widget build(BuildContext context) {
-    final correct = answer.isCorrect;
-    // التخطّي بمساعدة ليس خطأ: لا أحمر ولا علامة إلغاء.
-    final skipped = answer.skipped;
-    final color = correct
-        ? AppColors.correct
-        : skipped
-            ? AppColors.gold
-            : AppColors.wrong;
-
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Surface(
-      padding: const EdgeInsets.all(14),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(
-            correct
-                ? Icons.check_circle_rounded
-                : skipped
-                    ? Icons.skip_next_rounded
-                    : Icons.cancel_rounded,
-            color: color,
-            size: 20,
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  answer.question.text,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w700,
-                    height: 1.4,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                // ما حدث بلونه، والإجابة الصحيحة بالأخضر دائماً — كانت تُكتب بالأحمر
-                // بعد الخطأ فتبدو كأنها الخطأ.
-                if (!correct)
-                  Text(
-                    skipped
-                        ? AppStrings.skippedAnswer
-                        : answer.timedOut
-                            ? AppStrings.timeUp
-                            : AppStrings.yourAnswerIs(
-                                answer.question.options[answer.selectedIndex],
-                              ),
-                    style: TextStyle(color: color, fontSize: 13),
-                  ),
-                Text(
-                  correct
-                      ? answer.question.correctAnswer
-                      : AppStrings.correctIs(answer.question.correctAnswer),
-                  style: TextStyle(color: AppColors.correct, fontSize: 13),
-                ),
-              ],
-            ),
-          ),
-          ReportQuestionButton(question: answer.question, compact: true),
-        ],
-      ),
-      ),
-    );
-  }
-}
