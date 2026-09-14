@@ -1,6 +1,6 @@
 # Multilingual plan — Koora Trivia (تحدي كرة القدم)
 
-> **Status: approved by the owner on 14 September 2026 — English is being added now.** The app is Arabic and English
+> **Status: English is on (steps 1–4, 14 September 2026).** The app is Arabic and English
 > only · the bank is translated with the same question IDs (one daily challenge for everyone) · `arab_football` is kept
 > and translated · code and content start now, without waiting for the levels 7–10 review (its fixes go into both
 > banks). The v1.0.5 groundwork is listed at the top of §2.
@@ -91,7 +91,7 @@
 > 14 September 2026): `null` follows the phone; the panel stays hidden with one language; older settings read as `ar`, and
 > new players are saved as `ar` until a second language ships — then `AppSettings.defaultLanguageCode` becomes `null`
 > (`language_choice_test` fails until it does). **App text:** `AppStrings` returns `AppText` (Arabic) or `EnglishText`, not ARB files (owner, 14 September 2026). **Still to do:**
-> an Android 13 `locales_config.xml` when the second language ships. §2.3 isn't needed (`AppStrings` is plain Dart) ·
+> nothing in §2 (step 4 added `app_en.arb`, `locales_config.xml` and `values-en`). §2.3 isn't needed (`AppStrings` is plain Dart) ·
 > §2.4's reloads are done (step 2: one bank per language, open screens rebuilt, categories and reminder refreshed) ·
 > §2.5–2.7 are done (step 3: Android's arrow convention, the phone's time format, text that shrinks on 320 dp phones).
 

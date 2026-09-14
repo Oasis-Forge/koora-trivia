@@ -14,11 +14,9 @@ class AppSettings {
   /// المظهر الأصلي «ملعب أخضر» (`AppPalette.green`).
   static const String defaultThemeId = 'green';
 
-  /// لغة اللاعب الجديد. ما دامت العربية اللغة الوحيدة تُحفظ العربية صراحةً، حتى
-  /// لا تنقلب لغة من بدأ بالعربية وهاتفه بالإنجليزية يوم تُضاف لغة ثانية. مع
-  /// اللغة الثانية تصبح `String?` بقيمة `null` (لغة الهاتف) — `language_choice_test`
-  /// يفرض ذلك.
-  static const String defaultLanguageCode = 'ar';
+  /// اللاعب الجديد يتبع لغة هاتفه (`null`) منذ أُضيفت الإنجليزية. الإعدادات المحفوظة قبل
+  /// ذلك تحمل `ar` صراحةً، فلا تنقلب لغة من بدأ بالعربية وهاتفه بالإنجليزية.
+  static const String? defaultLanguageCode = null;
 
   /// لغة من حُفظت إعداداته قبل خيار اللغة: كان يلعب بالعربية فيبقى عليها.
   static const String languageBeforeChoice = 'ar';

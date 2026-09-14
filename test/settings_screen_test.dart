@@ -23,7 +23,6 @@ import 'package:football_trivia/domain/repositories/quiz_repository.dart';
 import 'package:football_trivia/domain/entities/category.dart';
 import 'package:football_trivia/domain/entities/question.dart';
 import 'package:football_trivia/domain/repositories/stats_repository.dart';
-import 'package:football_trivia/l10n/app_localizations.dart';
 import 'package:football_trivia/presentation/providers/progress_provider.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
 import 'package:football_trivia/presentation/providers/stats_provider.dart';
@@ -173,7 +172,8 @@ Future<void> _pumpSettings(
   LinkOpener? linkOpener,
   BackupRepository? backupRepository,
   ErrorLog? errorLog,
-  List<Locale> languages = AppLocalizations.supportedLocales,
+  // لوحة اللغة مخفية افتراضياً كما كُتبت معظم الاختبارات؛ اختبارات اللغة تمرّر لغتين.
+  List<Locale> languages = const [Locale('ar')],
 }) async {
   final stats = StatsProvider(repository: statsRepo);
   final progress = ProgressProvider(repository: progressRepo);
@@ -701,18 +701,21 @@ void main() {
           );
 
       expect(find.text(AppStrings.languageSection), findsOneWidget);
-      expect(checkOn(AppStrings.languageName('ar')), findsOneWidget);
-
-      await tester.tap(find.text(AppStrings.languageSystem));
-      await tester.pumpAndSettle();
+      // اللاعب الجديد يتبع لغة هاتفه منذ أُضيفت الإنجليزية.
       expect(settings.languageCode, isNull);
       expect(checkOn(AppStrings.languageSystem), findsOneWidget);
+
+      await tester.tap(find.text(AppStrings.languageName('ar')));
+      await tester.pumpAndSettle();
+      expect(settings.languageCode, 'ar');
+      expect(checkOn(AppStrings.languageName('ar')), findsOneWidget);
+      expect(checkOn(AppStrings.languageSystem), findsNothing);
 
       await tester.tap(find.text(AppStrings.languageName('en')));
       await tester.pumpAndSettle();
       expect(settings.languageCode, 'en');
       expect(checkOn(AppStrings.languageName('en')), findsOneWidget);
-      expect(checkOn(AppStrings.languageSystem), findsNothing);
+      expect(checkOn(AppStrings.languageName('ar')), findsNothing);
     });
   });
 }

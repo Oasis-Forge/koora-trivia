@@ -26,7 +26,6 @@ class AppLifecycleHooks extends StatefulWidget {
 class _AppLifecycleHooksState extends State<AppLifecycleHooks> {
   late final AppLifecycleListener _listener;
   late final StatsProvider _stats;
-  late final SettingsProvider _settings;
 
   /// لغة النصوص عند آخر تحميل للتصنيفات وجدولة للتنبيه.
   late String _language;
@@ -43,8 +42,6 @@ class _AppLifecycleHooksState extends State<AppLifecycleHooks> {
     // إنجاز تحدي اليوم أو تغيّر السلسلة يغيّر أيام التنبيه ونصّه.
     _stats = context.read<StatsProvider>()..addListener(_syncReminder);
     _language = AppStrings.languageCode;
-    _settings = context.read<SettingsProvider>()
-      ..addListener(_onSettingsChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _syncReminder();
       _checkForUpdate();
@@ -67,9 +64,12 @@ class _AppLifecycleHooksState extends State<AppLifecycleHooks> {
     _checkForUpdate();
   }
 
-  /// تبديل اللغة يُطبَّق في بناء التطبيق التالي، فتُقارَن اللغة بعد الإطار. التصنيفات
-  /// المحمّلة تحمل أسماءها باللغة السابقة، والتنبيه المجدول نصّه بها.
-  void _onSettingsChanged() {
+  /// `AppLanguageScope` فوق هذا الغلاف يعيد بناءه مع كل تغيير لغة (من الإعدادات أو من
+  /// الهاتف)، فتُقارَن اللغة بعد الإطار لا أثناء البناء: التصنيفات المحمّلة تحمل
+  /// أسماءها باللغة السابقة، والتنبيه المجدول نصّه بها.
+  @override
+  void didUpdateWidget(AppLifecycleHooks oldWidget) {
+    super.didUpdateWidget(oldWidget);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || AppStrings.languageCode == _language) return;
       _language = AppStrings.languageCode;
@@ -114,7 +114,6 @@ class _AppLifecycleHooksState extends State<AppLifecycleHooks> {
   @override
   void dispose() {
     _stats.removeListener(_syncReminder);
-    _settings.removeListener(_onSettingsChanged);
     _listener.dispose();
     super.dispose();
   }

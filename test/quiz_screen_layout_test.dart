@@ -247,6 +247,21 @@ void main() {
       tester.getSize(find.byType(AnswerOption).first).width,
     );
 
+    // الوسمان (التصنيف والصعوبة) بعرض نصّهما لا بعرض البطاقة.
+    final tags = find.descendant(
+      of: card,
+      matching: find.byWidgetPredicate(
+        (w) => w is Container && w.constraints?.minHeight == 32,
+      ),
+    );
+    expect(tags, findsNWidgets(2));
+    for (final tag in tags.evaluate()) {
+      expect(
+        tag.size!.width,
+        lessThan(tester.getSize(card).width * 0.6),
+      );
+    }
+
     await _finish(tester, quiz);
   });
 

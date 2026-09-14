@@ -308,7 +308,7 @@ class EnglishText implements AppText {
   @override
   String get tasks => 'Daily tasks';
   @override
-  String taskAnswers(String count) => 'Answer $count';
+  String taskAnswers(String count) => 'Get $count';
   @override
   String get taskDaily => 'Complete the daily challenge';
   @override

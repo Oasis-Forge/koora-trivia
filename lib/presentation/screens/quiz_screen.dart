@@ -448,10 +448,10 @@ class _Tag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // بعرض النص: `alignment` في Container كان يمدّ الوسم على عرض البطاقة كله.
     return Container(
       height: 32,
       padding: const EdgeInsets.symmetric(horizontal: 12),
-      alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
         border: Border.all(
@@ -460,12 +460,15 @@ class _Tag extends StatelessWidget {
               : AppColors.cardBorder,
         ),
       ),
-      child: Text(
-        text,
-        style: TextStyle(
-          color: gold ? AppColors.gold : AppColors.chalkMuted,
-          fontSize: 12,
-          fontWeight: FontWeight.w700,
+      child: Center(
+        widthFactor: 1,
+        child: Text(
+          text,
+          style: TextStyle(
+            color: gold ? AppColors.gold : AppColors.chalkMuted,
+            fontSize: 12,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
     );

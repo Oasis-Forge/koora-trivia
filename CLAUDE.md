@@ -35,8 +35,8 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
 3. **v1.0.5 (owner):** upload `releases/v1.0.5_build6_2026-09-14/app-release.aab` with the Arabic notes in its `NOTES.md`.
-4. **Owner's Play Console tasks:** app-ads.txt (PLAN.md P1 · S) · paste the new «بنقاط ×1.5» daily line from `docs/STORE_LISTING.md` into the store description with the v1.0.6 upload. The "Some languages
-   have errors" warning is handled when a second language is added.
+4. **Owner's Play Console tasks:** app-ads.txt (PLAN.md P1 · S) · paste the new «بنقاط ×1.5» daily line from `docs/STORE_LISTING.md` into the store description with the v1.0.6 upload. Also add the English
+   listing from the same file, then re-check the "Some languages have errors" warning.
 
 ### Decisions waiting on the owner
 - **② Name and address on the store page** (personal account) vs. an organization account. Undecided.
@@ -63,7 +63,7 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
 ---
 
 ## What the project is
-A fully Arabic (RTL) Flutter football trivia app for Android: 1000 questions across ten categories,
+An Arabic (RTL) and English Flutter football trivia app for Android: 1000 questions across ten categories,
 levels · quick play · daily challenge, a local day streak, hearts/coins economy, rewarded ads.
 Storage is local only for now (owner's decision). **User-facing text must not promise offline play nor
 state a fixed number of questions or categories.**
@@ -128,7 +128,8 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
   (`app_strings.dart`), English in `EnglishText` (`app_strings_en.dart`; a missing string won't compile). Never keep text in a
   `static const`/`static final` field — it freezes the first language; use a getter. Layout sides use
   `EdgeInsetsDirectional` / `AlignmentDirectional` / `PositionedDirectional`. The locale comes only from
-  `AppSettings.languageCode` (`null` = phone language; the picker hides with one language) — never hard-code one or wrap
+  `AppSettings.languageCode` (`null` = phone language, the default for new players; `AppLanguageScope` in `MaterialApp.builder` applies the
+  resolved language to `AppStrings`) — never hard-code one or wrap
   the app in a `Directionality`.
 - **Colors:** read `AppColors.x` (getters over the current `AppPalette`) at build time — never inside `const`, never
   cached in a field or default parameter. A new color is a new `AppPalette` field in all four palettes.
