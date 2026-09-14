@@ -30,7 +30,7 @@ class ShopScreen extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 18, 20, 24),
             children: [
-              const KooraAppBar(title: AppStrings.shop),
+              KooraAppBar(title: AppStrings.shop),
               const SizedBox(height: 16),
               const Row(
                 children: [
@@ -78,7 +78,7 @@ class ShopScreen extends StatelessWidget {
                     context.read<EconomyProvider>().grantRewardedCoins(),
               ),
               const SizedBox(height: 12),
-              const _ComingSoonRow(
+              _ComingSoonRow(
                 icon: Icons.block_rounded,
                 label: AppStrings.removeAdsSoon,
               ),

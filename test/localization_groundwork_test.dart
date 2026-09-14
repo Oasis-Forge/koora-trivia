@@ -21,6 +21,7 @@ void main() {
     // جدول صيغ العدد العربية نفسها (انظر ArabicCount) ومصدر النصوص.
     const allowed = {
       'lib/core/constants/app_strings.dart',
+      'lib/core/constants/app_strings_en.dart',
       'lib/core/utils/arabic_count.dart',
     };
 

@@ -82,7 +82,7 @@ class _AppLifecycleHooksState extends State<AppLifecycleHooks> {
       ?..hideCurrentSnackBar()
       ..showSnackBar(
         SnackBar(
-          content: const Text(AppStrings.updateDownloaded),
+          content: Text(AppStrings.updateDownloaded),
           duration: const Duration(seconds: 10),
           action: SnackBarAction(
             label: AppStrings.updateRestart,

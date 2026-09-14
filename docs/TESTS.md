@@ -2,7 +2,7 @@
 
 > Moved from CLAUDE.md on 14 September 2026. Update the count and the table when tests are added.
 
-**395 tests across 48 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+**399 tests across 49 files, all passing.** `flutter analyze` is clean. Shared test code lives in
 `test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
 (in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
 (`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
@@ -29,6 +29,7 @@
 | `hearts_refresh_test.dart` | 8 | Countdown moves and notifies without saving · a regenerated heart saves · a granted heart keeps the countdown · the first lost heart shows the countdown · **widget:** the hearts bar updates itself every 30 s, and does nothing when hearts are full |
 | `no_hearts_dialog_test.dart` | 8 | **Widget test** — no dialog with hearts · daily-challenge button starts the daily · hidden once the daily is done · refill disabled without coins · refill buys and closes · closes by itself when a heart regenerates · a save finishing after it closed doesn't pop the screen underneath · «حسناً» closes only the dialog |
 | `daily_challenge_card_test.dart` | 1 | **Widget test** — the card's multiplier-and-reset line and its start button text |
+| `english_text_test.dart` | 4 | **Unit test** — Arabic by default, English when chosen, any other code falls back to Arabic · English counts («1 day», «2 stars») with Arabic unchanged · no Arabic letters in the English text except the language list · the text language follows `MaterialApp`'s rule, and English stays off until its translation file exists |
 | `share_text_test.dart` | 9 | Result grid · daily-challenge date · category and level · streak count forms (1 · 2 · 5 · 11) · the Play Store link with referrer on the last line · doesn't leak questions |
 | `quiz_repository_test.dart` | 11 | Levels · daily-challenge stability · **a full year with no day sharing more than 2 of 7 questions with the day before** · epoch day independent of time zone · neighbouring seeds shuffle differently · filtering |
 | `question_bank_test.dart` | 9 | Bank integrity: counts · IDs · structure · balance · banned options, including bare «لا شيء», «لا أحد» and «لم يحدث» · no hidden direction characters · **duplicates** · matches `AppConfig` |

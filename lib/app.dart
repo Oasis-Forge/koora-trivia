@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'core/constants/app_strings.dart';
 import 'core/di/injector.dart';
 import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
@@ -28,6 +29,18 @@ import 'presentation/screens/tasks_screen.dart';
 import 'presentation/widgets/app_lifecycle_hooks.dart';
 import 'presentation/widgets/palette_scope.dart';
 import 'l10n/app_localizations.dart';
+
+/// لغة نصوص التطبيق بقاعدة `MaterialApp` نفسها: اللغة المختارة إن كانت مدعومة،
+/// وإلا أول لغة مدعومة في قائمة لغات الهاتف، وإلا أول لغة مدعومة (العربية).
+String resolveLanguage(String? chosen, List<Locale> phoneLocales) {
+  final supported =
+      AppLocalizations.supportedLocales.map((l) => l.languageCode).toList();
+  if (chosen != null && supported.contains(chosen)) return chosen;
+  for (final locale in phoneLocales) {
+    if (supported.contains(locale.languageCode)) return locale.languageCode;
+  }
+  return supported.first;
+}
 
 class FootballTriviaApp extends StatelessWidget {
   const FootballTriviaApp({super.key, required this.injector});
@@ -82,6 +95,10 @@ class FootballTriviaApp extends StatelessWidget {
         builder: (context, choice, _) {
           final (themeId, languageCode) = choice;
           AppColors.use(AppPalette.byId(themeId));
+          AppText.use(resolveLanguage(
+            languageCode,
+            WidgetsBinding.instance.platformDispatcher.locales,
+          ));
           return PaletteScope(
             themeId: themeId,
             child: MaterialApp(

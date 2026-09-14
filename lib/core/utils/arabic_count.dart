@@ -1,4 +1,6 @@
-/// اسم معدود بصيغه العربية.
+import '../constants/app_strings.dart';
+
+/// اسم معدود بصيغه العربية، ومعه صيغتا الإنجليزية.
 ///
 /// العدد يغيّر صيغة الاسم في العربية: «يوم واحد» · «يومان» · «5 أيام» ·
 /// «11 يوماً». كتابة «N يوم» لكل الأعداد خطأ نحوي يراه كل لاعب.
@@ -10,6 +12,8 @@ class ArabicNoun {
     required this.dualObject,
     required this.plural,
     required this.accusative,
+    required this.english,
+    required this.englishPlural,
   });
 
   /// المفرد بعد الصفر ومضاعفات المئة: «0 يوم» · «100 يوم».
@@ -30,6 +34,10 @@ class ArabicNoun {
   /// المفرد المنصوب بعد 11–99: «يوماً».
   final String accusative;
 
+  /// الإنجليزية: المفرد مع 1 وحده، والجمع مع كل عدد آخر (0 days · 1 day · 2 days).
+  final String english;
+  final String englishPlural;
+
   static const day = ArabicNoun(
     singular: 'يوم',
     one: 'يوم واحد',
@@ -37,6 +45,8 @@ class ArabicNoun {
     dualObject: 'يومين',
     plural: 'أيام',
     accusative: 'يوماً',
+    english: 'day',
+    englishPlural: 'days',
   );
 
   static const star = ArabicNoun(
@@ -46,6 +56,8 @@ class ArabicNoun {
     dualObject: 'نجمتين',
     plural: 'نجوم',
     accusative: 'نجمة',
+    english: 'star',
+    englishPlural: 'stars',
   );
 
   static const point = ArabicNoun(
@@ -55,6 +67,8 @@ class ArabicNoun {
     dualObject: 'نقطتين',
     plural: 'نقاط',
     accusative: 'نقطة',
+    english: 'point',
+    englishPlural: 'points',
   );
 
   static const level = ArabicNoun(
@@ -64,6 +78,8 @@ class ArabicNoun {
     dualObject: 'مستويين',
     plural: 'مستويات',
     accusative: 'مستوىً',
+    english: 'level',
+    englishPlural: 'levels',
   );
 
   static const question = ArabicNoun(
@@ -73,6 +89,8 @@ class ArabicNoun {
     dualObject: 'سؤالين',
     plural: 'أسئلة',
     accusative: 'سؤالاً',
+    english: 'question',
+    englishPlural: 'questions',
   );
 
   static const correctAnswer = ArabicNoun(
@@ -82,17 +100,20 @@ class ArabicNoun {
     dualObject: 'إجابتين صحيحتين',
     plural: 'إجابات صحيحة',
     accusative: 'إجابة صحيحة',
+    english: 'correct answer',
+    englishPlural: 'correct answers',
   );
 }
 
-/// يكتب العدد مع اسمه بالصيغة الصحيحة.
+/// يكتب العدد مع اسمه بالصيغة الصحيحة في لغة التطبيق الحالية.
 class ArabicCount {
   const ArabicCount._();
 
-  /// العدد مع اسمه: «يوم واحد» · «يومان» · «5 أيام» · «11 يوماً».
+  /// العدد مع اسمه: «يوم واحد» · «يومان» · «5 أيام» · «11 يوماً» · «5 days».
   ///
   /// [object] يختار المثنى المنصوب حين يأتي بعد فعل أو مضاف: «ستفقد نجمتين».
   static String format(int count, ArabicNoun noun, {bool object = false}) {
+    if (_english) return '$count ${nounFor(count, noun)}';
     final n = count.abs();
     if (n == 1) return noun.one;
     if (n == 2) return object ? noun.dualObject : noun.dual;
@@ -103,9 +124,12 @@ class ArabicCount {
   ///
   /// الصيغة تتبع آخر رقمين: 3–10 جمع، 11–99 مفرد منصوب، وما عداها مفرد.
   static String nounFor(int count, ArabicNoun noun) {
+    if (_english) return count.abs() == 1 ? noun.english : noun.englishPlural;
     final lastTwo = count.abs() % 100;
     if (lastTwo >= 3 && lastTwo <= 10) return noun.plural;
     if (lastTwo >= 11) return noun.accusative;
     return noun.singular;
   }
+
+  static bool get _english => AppStrings.languageCode == 'en';
 }

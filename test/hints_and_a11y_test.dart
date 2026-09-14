@@ -68,7 +68,7 @@ void main() {
     testWidgets('كل مساعدة مكتوب اسمها تحت أيقونتها', (tester) async {
       final (quiz, _) = await _pumpHintBar(tester);
 
-      for (final label in const [
+      for (final label in [
         AppStrings.hintFiftyFifty,
         AppStrings.hintSkip,
         AppStrings.hintExtraTime,

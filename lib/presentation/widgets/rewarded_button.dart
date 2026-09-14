@@ -79,19 +79,19 @@ class RewardedButton extends StatelessWidget {
         messenger
           ..hideCurrentSnackBar()
           ..showSnackBar(
-            const SnackBar(content: Text(AppStrings.rewardGranted)),
+            SnackBar(content: Text(AppStrings.rewardGranted)),
           );
       case RewardResult.dismissed:
         messenger
           ..hideCurrentSnackBar()
           ..showSnackBar(
-            const SnackBar(content: Text(AppStrings.adDismissed)),
+            SnackBar(content: Text(AppStrings.adDismissed)),
           );
       case RewardResult.unavailable:
         messenger
           ..hideCurrentSnackBar()
           ..showSnackBar(
-            const SnackBar(content: Text(AppStrings.adUnavailable)),
+            SnackBar(content: Text(AppStrings.adUnavailable)),
           );
     }
   }

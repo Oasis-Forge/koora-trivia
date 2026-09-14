@@ -21,7 +21,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _controller = PageController();
   int _page = 0;
 
-  static const List<({IconData icon, String title, String body})> _pages = [
+  // دالة لا قائمة ثابتة: النصوص بلغة التطبيق الحالية، والثابتة تحفظ أول لغة.
+  static List<({IconData icon, String title, String body})> get _pages => [
     (
       icon: Icons.sports_soccer_rounded,
       title: AppStrings.onboard1Title,

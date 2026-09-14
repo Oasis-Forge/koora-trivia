@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 16),
               Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: Text(
                       AppStrings.chooseCategory,
                       style: TextStyle(
@@ -150,7 +150,7 @@ class _TopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Expanded(
+        Expanded(
           child: Text(
             AppStrings.appName,
             style: TextStyle(
