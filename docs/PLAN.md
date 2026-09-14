@@ -16,6 +16,7 @@
 - 14 September 2026 (answers batch 2): 5040, 3072, 10052, 1021, 1051 and 6099 corrected.
 - 14 September 2026 (answers batch 3): 1084, 6037, 10009, 5056, 1079 and 10024 corrected.
 - 14 September 2026 (answers batch 4): 10082, 10092, 3081, 10091, 2097 and 5022 corrected.
+- 14 September 2026 (answers batches 5–7): 4081, 7097, 5092, 10095, 3087, 5096, 3090, 6082, 6091, 7093, 1011, 5048, 8008, 1014 and 1044 corrected. Both answer lists from the audit are done.
 - PR #7, merged 14 September 2026: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
 - PR #6, merged 13 September 2026: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
 - PR #5, merged 13 September 2026: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
@@ -31,8 +32,6 @@
 ### UI/UX
 
 ### Content
-- **P1 · M**: Answers made wrong by 2024–26 events: 1011, 5048, 8008, 1014, 1044. Re-check each fact on the day you edit it.
-- **P1 · M**: Answers that were never right, or that contradict their own explanation: 4081, 7097, 5092, 10095, 3087, 5096, 3090, 6082, 6091, 7093.
 - **P1 · L**: Have a person review levels 7–10 in every category; a sample of levels 9–10 found about 1 in 10 wrong. Reviewer checklist: a source for every answer, no wrong option that is also true, and no «الوحيد» or «حتى الآن» without a year.
 - **P2 · S**: Question-bank tests. Run the duplicate check's noise words through `_normalize`. Ban a bare «لا شيء» option (owner's decision, 14 September 2026) and fix the laws questions that use one. Also 1093: Pelé scored in four World Cups too, so «أول لاعب يسجل في أربع نسخ» has two correct options *(question_bank_test.dart)*.
 
