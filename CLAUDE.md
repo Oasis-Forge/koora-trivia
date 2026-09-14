@@ -32,7 +32,8 @@ and #5–#14) was uploaded by the owner on 14 September 2026 and is in Google's 
 ### Next steps, in order
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
-2. **Content fixes** from PLAN.md Phase 1 → Content, one micro PR each: never-right answers (~5 per PR) → outdated answers (~5 per PR).
+2. **Content:** the audit's answer lists are done; next is the question-bank test PR (no bare «لا شيء» options,
+   filler words in the duplicate check, question 1093).
 3. **v1.0.5, in this order:** the content fixes above · the two small Phase 1 bug fixes and the quiz timer pause ·
    color themes · language groundwork (both in PLAN.md Phase 1 → Features).
 4. **Owner's Play Console tasks:** replace the crashing versionCode 1 on the internal track · the
