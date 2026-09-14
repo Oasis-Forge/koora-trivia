@@ -1,0 +1,1306 @@
+{
+  "version": 2,
+  "category": "top_leagues",
+  "questions": [
+    {
+      "id": 4001,
+      "level": 1,
+      "question": "In which country is the Premier League played?",
+      "options": [
+        "Germany",
+        "Spain",
+        "Italy",
+        "England"
+      ],
+      "answerIndex": 3,
+      "explanation": "The most watched league in the world."
+    },
+    {
+      "id": 4002,
+      "level": 1,
+      "question": "What is Spain's top football division called?",
+      "options": [
+        "Serie A",
+        "La Liga",
+        "Bundesliga",
+        "Ligue 1"
+      ],
+      "answerIndex": 1,
+      "explanation": "La Liga is the common name for the Spanish league."
+    },
+    {
+      "id": 4003,
+      "level": 1,
+      "question": "What is Italy's top football division called?",
+      "options": [
+        "La Liga",
+        "Serie A",
+        "Bundesliga",
+        "Eredivisie"
+      ],
+      "answerIndex": 1,
+      "explanation": "Serie A is Italy's top flight."
+    },
+    {
+      "id": 4004,
+      "level": 1,
+      "question": "What is Germany's top football division called?",
+      "options": [
+        "Ligue 1",
+        "Serie A",
+        "Bundesliga",
+        "Premier League"
+      ],
+      "answerIndex": 2,
+      "explanation": "Bundesliga literally means \"federal league\"."
+    },
+    {
+      "id": 4005,
+      "level": 1,
+      "question": "Which club has won the German league the most times?",
+      "options": [
+        "Dortmund",
+        "Bayern Munich",
+        "Schalke",
+        "Hamburg"
+      ],
+      "answerIndex": 1,
+      "explanation": "An unmatched historical dominance in Europe."
+    },
+    {
+      "id": 4006,
+      "level": 1,
+      "question": "Which club has won La Liga the most times?",
+      "options": [
+        "Real Madrid",
+        "Barcelona",
+        "Atletico Madrid",
+        "Valencia"
+      ],
+      "answerIndex": 0,
+      "explanation": "Real Madrid lead Barcelona by a clear margin."
+    },
+    {
+      "id": 4007,
+      "level": 1,
+      "question": "What is France's top football division called?",
+      "options": [
+        "Ligue 1",
+        "La Liga",
+        "Serie A",
+        "Primera"
+      ],
+      "answerIndex": 0,
+      "explanation": "Ligue 1 is France's top flight."
+    },
+    {
+      "id": 4008,
+      "level": 1,
+      "question": "How many clubs take part in the Premier League?",
+      "options": [
+        "20",
+        "18",
+        "22",
+        "24"
+      ],
+      "answerIndex": 0,
+      "explanation": "Twenty clubs, each playing 38 matches."
+    },
+    {
+      "id": 4009,
+      "level": 1,
+      "question": "Which French club has won the league the most in the last decade?",
+      "options": [
+        "Marseille",
+        "Lyon",
+        "Paris Saint-Germain",
+        "Monaco"
+      ],
+      "answerIndex": 2,
+      "explanation": "Near-total dominance since 2013."
+    },
+    {
+      "id": 4010,
+      "level": 1,
+      "question": "Which Italian club has won Serie A the most times?",
+      "options": [
+        "Milan",
+        "Juventus",
+        "Inter Milan",
+        "Roma"
+      ],
+      "answerIndex": 1,
+      "explanation": "Juventus hold the record for Italian league titles."
+    },
+    {
+      "id": 4011,
+      "level": 2,
+      "question": "In what year was the Premier League founded in its current form?",
+      "options": [
+        "1988",
+        "1996",
+        "1992",
+        "2000"
+      ],
+      "answerIndex": 2,
+      "explanation": "Top-flight clubs broke away to form the Premier League in 1992."
+    },
+    {
+      "id": 4012,
+      "level": 2,
+      "question": "Which English club went unbeaten in the 2003-2004 season?",
+      "options": [
+        "Manchester United",
+        "Chelsea",
+        "Arsenal",
+        "Liverpool"
+      ],
+      "answerIndex": 2,
+      "explanation": "The side known as \"The Invincibles\"."
+    },
+    {
+      "id": 4013,
+      "level": 2,
+      "question": "Which club stunned the world by winning the Premier League in 2015-2016?",
+      "options": [
+        "Southampton",
+        "Tottenham",
+        "Everton",
+        "Leicester City"
+      ],
+      "answerIndex": 3,
+      "explanation": "They began the season at 5000-1 odds to win the title."
+    },
+    {
+      "id": 4014,
+      "level": 2,
+      "question": "How many clubs take part in the Bundesliga?",
+      "options": [
+        "16",
+        "18",
+        "20",
+        "22"
+      ],
+      "answerIndex": 1,
+      "explanation": "Eighteen clubs, each playing 34 matches."
+    },
+    {
+      "id": 4015,
+      "level": 2,
+      "question": "Who is La Liga's all-time top scorer?",
+      "options": [
+        "Lionel Messi",
+        "Cristiano Ronaldo",
+        "Telmo Zarra",
+        "Raul"
+      ],
+      "answerIndex": 0,
+      "explanation": "Messi scored 474 goals in La Liga with Barcelona."
+    },
+    {
+      "id": 4016,
+      "level": 2,
+      "question": "Who is the Premier League's all-time top scorer?",
+      "options": [
+        "Wayne Rooney",
+        "Thierry Henry",
+        "Harry Kane",
+        "Alan Shearer"
+      ],
+      "answerIndex": 3,
+      "explanation": "Shearer scored 260 Premier League goals."
+    },
+    {
+      "id": 4017,
+      "level": 2,
+      "question": "Which German club won the league eleven times in a row?",
+      "options": [
+        "Bayern Munich",
+        "Dortmund",
+        "Leipzig",
+        "Leverkusen"
+      ],
+      "answerIndex": 0,
+      "explanation": "A run that lasted from 2013 to 2023."
+    },
+    {
+      "id": 4018,
+      "level": 2,
+      "question": "Which club ended Bayern Munich's dominance by winning the 2023-2024 Bundesliga?",
+      "options": [
+        "Bayer Leverkusen",
+        "Dortmund",
+        "Leipzig",
+        "Stuttgart"
+      ],
+      "answerIndex": 0,
+      "explanation": "Leverkusen's first ever title, completed without a single defeat."
+    },
+    {
+      "id": 4019,
+      "level": 2,
+      "question": "Who managed Bayer Leverkusen in their historic 2023-2024 title-winning season?",
+      "options": [
+        "Marco Rose",
+        "Julian Nagelsmann",
+        "Thomas Tuchel",
+        "Xabi Alonso"
+      ],
+      "answerIndex": 3,
+      "explanation": "The first major trophy of Xabi Alonso's managerial career."
+    },
+    {
+      "id": 4020,
+      "level": 2,
+      "question": "Which Italian club were crowned Serie A champions in 2022-2023?",
+      "options": [
+        "Inter",
+        "Napoli",
+        "Milan",
+        "Juventus"
+      ],
+      "answerIndex": 1,
+      "explanation": "Napoli's first title since the Maradona era in 1990."
+    },
+    {
+      "id": 4021,
+      "level": 3,
+      "question": "Which English club won the league four times in a row between 2021 and 2024?",
+      "options": [
+        "Liverpool",
+        "Arsenal",
+        "Chelsea",
+        "Manchester City"
+      ],
+      "answerIndex": 3,
+      "explanation": "An unprecedented feat in English football history."
+    },
+    {
+      "id": 4022,
+      "level": 3,
+      "question": "What is the \"Pichichi\" award?",
+      "options": [
+        "La Liga's top scorer",
+        "La Liga's best player",
+        "Best goalkeeper",
+        "Best manager"
+      ],
+      "answerIndex": 0,
+      "explanation": "Given to La Liga's top scorer, named after an Athletic Bilbao player."
+    },
+    {
+      "id": 4023,
+      "level": 3,
+      "question": "What is the \"Zamora Trophy\"?",
+      "options": [
+        "La Liga's top scorer",
+        "Best playmaker",
+        "La Liga's best goalkeeper",
+        "Best young player"
+      ],
+      "answerIndex": 2,
+      "explanation": "Given to the keeper who concedes fewest goals per match played."
+    },
+    {
+      "id": 4024,
+      "level": 3,
+      "question": "Which three Spanish clubs have never been relegated from La Liga?",
+      "options": [
+        "Real, Barcelona and Atletico",
+        "Barcelona, Atletico and Valencia",
+        "Real, Valencia and Sevilla",
+        "Real, Barcelona and Athletic Bilbao"
+      ],
+      "answerIndex": 3,
+      "explanation": "Athletic Bilbao are the third, while Atletico Madrid were relegated in 2000."
+    },
+    {
+      "id": 4025,
+      "level": 3,
+      "question": "How many points did Manchester City collect in their record-breaking 2017-2018 season?",
+      "options": [
+        "100",
+        "98",
+        "95",
+        "102"
+      ],
+      "answerIndex": 0,
+      "explanation": "The first side to reach the 100-point mark in the Premier League."
+    },
+    {
+      "id": 4026,
+      "level": 3,
+      "question": "Who is the Bundesliga's all-time top scorer?",
+      "options": [
+        "Gerd Muller",
+        "Robert Lewandowski",
+        "Klaus Fischer",
+        "Jupp Heynckes"
+      ],
+      "answerIndex": 0,
+      "explanation": "Gerd Muller scored 365 Bundesliga goals."
+    },
+    {
+      "id": 4027,
+      "level": 3,
+      "question": "How many goals did Lewandowski score in 2020-2021, breaking Muller's record?",
+      "options": [
+        "39",
+        "41",
+        "40",
+        "43"
+      ],
+      "answerIndex": 1,
+      "explanation": "41 goals, surpassing Muller's record of 40."
+    },
+    {
+      "id": 4028,
+      "level": 3,
+      "question": "Which club won Serie A in 2023-2024?",
+      "options": [
+        "Milan",
+        "Atalanta",
+        "Juventus",
+        "Inter Milan"
+      ],
+      "answerIndex": 3,
+      "explanation": "Inter's twentieth title, earning them a second star on the kit."
+    },
+    {
+      "id": 4029,
+      "level": 3,
+      "question": "What is the award for Serie A's top scorer called?",
+      "options": [
+        "Scarpa d'Oro",
+        "Pichichi",
+        "Torcatori",
+        "Capocannoniere"
+      ],
+      "answerIndex": 3,
+      "explanation": "Capocannoniere means \"top gunner\"."
+    },
+    {
+      "id": 4030,
+      "level": 3,
+      "question": "Which French club won the Champions League in 2025?",
+      "options": [
+        "Marseille",
+        "Saint-Etienne",
+        "Lyon",
+        "Paris Saint-Germain"
+      ],
+      "answerIndex": 3,
+      "explanation": "They beat Inter 5-0 in the final, the second French club to win it after Marseille in 1993."
+    },
+    {
+      "id": 4031,
+      "level": 4,
+      "question": "Who scored the first ever Premier League goal in 1992?",
+      "options": [
+        "Alan Shearer",
+        "Teddy Sheringham",
+        "Eric Cantona",
+        "Brian Deane"
+      ],
+      "answerIndex": 3,
+      "explanation": "Brian Deane scored it for Sheffield United against Manchester United."
+    },
+    {
+      "id": 4032,
+      "level": 4,
+      "question": "How many goals did Messi score in all competitions for Barcelona in 2011-2012?",
+      "options": [
+        "61",
+        "68",
+        "79",
+        "73"
+      ],
+      "answerIndex": 3,
+      "explanation": "73 goals, a record for a single European season."
+    },
+    {
+      "id": 4033,
+      "level": 4,
+      "question": "Which Italian club was stripped of two titles over the 2006 \"Calciopoli\" scandal?",
+      "options": [
+        "Milan",
+        "Fiorentina",
+        "Lazio",
+        "Juventus"
+      ],
+      "answerIndex": 3,
+      "explanation": "Juventus were relegated to Serie B and stripped of two titles."
+    },
+    {
+      "id": 4034,
+      "level": 4,
+      "question": "Who managed Leicester City in their title-winning 2015-2016 season?",
+      "options": [
+        "Brendan Rodgers",
+        "Nigel Pearson",
+        "Claudio Ranieri",
+        "Roberto Mancini"
+      ],
+      "answerIndex": 2,
+      "explanation": "Ranieri's story became one of the most famous in modern football."
+    },
+    {
+      "id": 4035,
+      "level": 4,
+      "question": "Who was Leicester City's top scorer in their title-winning season?",
+      "options": [
+        "Riyad Mahrez",
+        "Leonardo Ulloa",
+        "Shinji Okazaki",
+        "Jamie Vardy"
+      ],
+      "answerIndex": 3,
+      "explanation": "Vardy scored in 11 consecutive matches, breaking a record."
+    },
+    {
+      "id": 4036,
+      "level": 4,
+      "question": "Which French club shocked everyone by winning Ligue 1 in 2011-2012?",
+      "options": [
+        "Lille",
+        "Montpellier",
+        "Bordeaux",
+        "Nice"
+      ],
+      "answerIndex": 1,
+      "explanation": "Montpellier overcame Paris Saint-Germain on a modest budget."
+    },
+    {
+      "id": 4037,
+      "level": 4,
+      "question": "Which French club won the league ten times in a row during the 1970s and 1980s?",
+      "options": [
+        "Saint-Etienne",
+        "Nantes",
+        "Bordeaux",
+        "Marseille"
+      ],
+      "answerIndex": 3,
+      "explanation": "Marseille dominated in the early nineties, but Saint-Etienne hold ten historic titles."
+    },
+    {
+      "id": 4038,
+      "level": 4,
+      "question": "How many matches does each club play in the Bundesliga?",
+      "options": [
+        "30",
+        "34",
+        "38",
+        "42"
+      ],
+      "answerIndex": 1,
+      "explanation": "18 clubs means 34 matchdays per season."
+    },
+    {
+      "id": 4039,
+      "level": 4,
+      "question": "What is the \"50+1\" rule in German football?",
+      "options": [
+        "A minimum number of homegrown players",
+        "A points-calculation system",
+        "A salary cap",
+        "Club members keeping a majority of the votes"
+      ],
+      "answerIndex": 3,
+      "explanation": "A rule that stops an outside investor taking control of a club."
+    },
+    {
+      "id": 4040,
+      "level": 4,
+      "question": "Which German club won the Bundesliga in 2011 and 2012?",
+      "options": [
+        "Borussia Dortmund",
+        "Schalke",
+        "Wolfsburg",
+        "Stuttgart"
+      ],
+      "answerIndex": 0,
+      "explanation": "Jurgen Klopp's side, who briefly broke Bayern's dominance."
+    },
+    {
+      "id": 4041,
+      "level": 5,
+      "question": "Who holds the record for most Premier League appearances?",
+      "options": [
+        "Ryan Giggs",
+        "James Milner",
+        "Frank Lampard",
+        "Gareth Barry"
+      ],
+      "answerIndex": 3,
+      "explanation": "Gareth Barry played 653 Premier League matches."
+    },
+    {
+      "id": 4042,
+      "level": 5,
+      "question": "Who has won the most Premier League titles as a player?",
+      "options": [
+        "Ryan Giggs",
+        "Paul Scholes",
+        "Gary Neville",
+        "Wayne Rooney"
+      ],
+      "answerIndex": 0,
+      "explanation": "Giggs won thirteen titles with Manchester United."
+    },
+    {
+      "id": 4043,
+      "level": 5,
+      "question": "Who is Serie A's all-time top scorer?",
+      "options": [
+        "Francesco Totti",
+        "Gonzalo Higuain",
+        "Silvio Piola",
+        "Giuseppe Meazza"
+      ],
+      "answerIndex": 2,
+      "explanation": "Piola scored 274 Serie A goals."
+    },
+    {
+      "id": 4044,
+      "level": 5,
+      "question": "How many goals did Higuain score in 2015-2016, setting a Serie A record?",
+      "options": [
+        "33",
+        "38",
+        "36",
+        "31"
+      ],
+      "answerIndex": 2,
+      "explanation": "36 goals for Napoli in a 38-match season."
+    },
+    {
+      "id": 4045,
+      "level": 5,
+      "question": "What is the \"European Golden Shoe\"?",
+      "options": [
+        "Europe's best player",
+        "Goal of the season",
+        "Top scorer across Europe's leagues, weighted by league strength",
+        "Europe's best manager"
+      ],
+      "answerIndex": 2,
+      "explanation": "It is calculated using points that vary with how strong each league is."
+    },
+    {
+      "id": 4046,
+      "level": 5,
+      "question": "Which English club won the league three times in a row between 2007 and 2009?",
+      "options": [
+        "Manchester United",
+        "Chelsea",
+        "Arsenal",
+        "Liverpool"
+      ],
+      "answerIndex": 0,
+      "explanation": "Ferguson's side, led by Ronaldo, Rooney and Tevez."
+    },
+    {
+      "id": 4047,
+      "level": 5,
+      "question": "When did Liverpool win the league title, ending a long wait?",
+      "options": [
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022"
+      ],
+      "answerIndex": 1,
+      "explanation": "Their first league title since 1990, after thirty years."
+    },
+    {
+      "id": 4048,
+      "level": 5,
+      "question": "Which Spanish club won La Liga in 2020-2021?",
+      "options": [
+        "Real Madrid",
+        "Sevilla",
+        "Barcelona",
+        "Atletico Madrid"
+      ],
+      "answerIndex": 3,
+      "explanation": "Atletico's title, led by Simeone and Luis Suarez."
+    },
+    {
+      "id": 4049,
+      "level": 5,
+      "question": "Which Spanish club won La Liga in 2013-2014?",
+      "options": [
+        "Barcelona",
+        "Atletico Madrid",
+        "Real Madrid",
+        "Valencia"
+      ],
+      "answerIndex": 1,
+      "explanation": "Atletico sealed the title with a draw at the Camp Nou on the final matchday."
+    },
+    {
+      "id": 4050,
+      "level": 5,
+      "question": "Which French club won Ligue 1 in 2020-2021?",
+      "options": [
+        "Paris Saint-Germain",
+        "Lyon",
+        "Monaco",
+        "Lille"
+      ],
+      "answerIndex": 3,
+      "explanation": "Lille finished a point ahead of Paris Saint-Germain."
+    },
+    {
+      "id": 4051,
+      "level": 6,
+      "question": "Which manager won the Premier League with two different clubs in the last decade?",
+      "options": [
+        "Pep Guardiola",
+        "Jose Mourinho",
+        "Jurgen Klopp",
+        "Antonio Conte"
+      ],
+      "answerIndex": 1,
+      "explanation": "Mourinho lifted trophies with Chelsea and then Manchester United, and won the league with Chelsea across two spells."
+    },
+    {
+      "id": 4052,
+      "level": 6,
+      "question": "Who has won the most Premier League titles as a manager?",
+      "options": [
+        "Alex Ferguson",
+        "Arsene Wenger",
+        "Pep Guardiola",
+        "Jose Mourinho"
+      ],
+      "answerIndex": 0,
+      "explanation": "Ferguson won thirteen titles with Manchester United."
+    },
+    {
+      "id": 4053,
+      "level": 6,
+      "question": "How many seasons did Arsene Wenger spend as Arsenal manager?",
+      "options": [
+        "18",
+        "20",
+        "25",
+        "22"
+      ],
+      "answerIndex": 3,
+      "explanation": "From 1996 to 2018, the longest managerial spell at the club."
+    },
+    {
+      "id": 4054,
+      "level": 6,
+      "question": "What is the derby between Liverpool and Everton called?",
+      "options": [
+        "The Manchester derby",
+        "The North West derby",
+        "The Merseyside derby",
+        "The London derby"
+      ],
+      "answerIndex": 2,
+      "explanation": "Also known as \"the friendly derby\" for families who share their loyalties."
+    },
+    {
+      "id": 4055,
+      "level": 6,
+      "question": "What is the derby between Inter and Milan called?",
+      "options": [
+        "Derby della Madonnina",
+        "Derby of the city",
+        "Derby of the North",
+        "Derby d'Italia"
+      ],
+      "answerIndex": 0,
+      "explanation": "Named after the statue of the Madonna atop Milan Cathedral."
+    },
+    {
+      "id": 4056,
+      "level": 6,
+      "question": "What is the meeting between Juventus and Inter called?",
+      "options": [
+        "The Italian Clasico",
+        "Derby della Mole",
+        "Derby of the North",
+        "Derby d'Italia"
+      ],
+      "answerIndex": 3,
+      "explanation": "Journalist Gianni Brera coined the name."
+    },
+    {
+      "id": 4057,
+      "level": 6,
+      "question": "What is the derby between Borussia Dortmund and Schalke called?",
+      "options": [
+        "Derby of the North",
+        "Revierderby",
+        "Bavarian derby",
+        "Der Klassiker"
+      ],
+      "answerIndex": 1,
+      "explanation": "The fiercest local rivalry in Germany, between two clubs from the Ruhr region."
+    },
+    {
+      "id": 4058,
+      "level": 6,
+      "question": "What is the Bayern Munich vs Dortmund fixture known as?",
+      "options": [
+        "Revierderby",
+        "Bavarian derby",
+        "Der Klassiker",
+        "Southern derby"
+      ],
+      "answerIndex": 2,
+      "explanation": "Der Klassiker is the Bundesliga's marquee fixture."
+    },
+    {
+      "id": 4059,
+      "level": 6,
+      "question": "Roughly how many La Liga titles does Real Madrid hold?",
+      "options": [
+        "30",
+        "36",
+        "33",
+        "40"
+      ],
+      "answerIndex": 1,
+      "explanation": "Thirty-six titles, making them the most successful club by a wide margin."
+    },
+    {
+      "id": 4060,
+      "level": 6,
+      "question": "Roughly how many La Liga titles does Barcelona hold?",
+      "options": [
+        "24",
+        "30",
+        "27",
+        "22"
+      ],
+      "answerIndex": 2,
+      "explanation": "Twenty-seven titles, second on the all-time list."
+    },
+    {
+      "id": 4061,
+      "level": 7,
+      "question": "How many clubs have played in every Premier League season since 1992?",
+      "options": [
+        "4",
+        "6",
+        "7",
+        "9"
+      ],
+      "answerIndex": 1,
+      "explanation": "Arsenal, Chelsea, Everton, Liverpool, Manchester United and Tottenham."
+    },
+    {
+      "id": 4062,
+      "level": 7,
+      "question": "Which club won the Premier League in 1995, outside the usual big names?",
+      "options": [
+        "Nottingham Forest",
+        "Aston Villa",
+        "Blackburn Rovers",
+        "Newcastle"
+      ],
+      "answerIndex": 2,
+      "explanation": "Blackburn won it led by Alan Shearer and Kenny Dalglish."
+    },
+    {
+      "id": 4063,
+      "level": 7,
+      "question": "What was Manchester City's \"last-second title win\" in 2012?",
+      "options": [
+        "Tevez's goal against United",
+        "Aguero's goal against QPR",
+        "Balotelli's goal",
+        "Kompany's goal"
+      ],
+      "answerIndex": 1,
+      "explanation": "Sergio Aguero's 94th-minute goal snatched the title from United."
+    },
+    {
+      "id": 4064,
+      "level": 7,
+      "question": "How many Serie A titles does Juventus officially hold?",
+      "options": [
+        "32",
+        "36",
+        "34",
+        "38"
+      ],
+      "answerIndex": 1,
+      "explanation": "Thirty-six recognised titles, after two were stripped over Calciopoli."
+    },
+    {
+      "id": 4065,
+      "level": 7,
+      "question": "Which Italian club won Serie A nine times in a row between 2012 and 2020?",
+      "options": [
+        "Inter",
+        "Juventus",
+        "Milan",
+        "Napoli"
+      ],
+      "answerIndex": 1,
+      "explanation": "The longest run of dominance in Serie A history."
+    },
+    {
+      "id": 4066,
+      "level": 7,
+      "question": "Which Italian club won Serie A in 2021-2022?",
+      "options": [
+        "Inter",
+        "Atalanta",
+        "Napoli",
+        "Milan"
+      ],
+      "answerIndex": 3,
+      "explanation": "Milan's first title since 2011, led by Stefano Pioli."
+    },
+    {
+      "id": 4067,
+      "level": 7,
+      "question": "Who is Ligue 1's all-time top scorer?",
+      "options": [
+        "Kylian Mbappe",
+        "Bernard Lacombe",
+        "Edinson Cavani",
+        "Delio Onnis"
+      ],
+      "answerIndex": 3,
+      "explanation": "Argentine Delio Onnis scored more than 290 goals."
+    },
+    {
+      "id": 4068,
+      "level": 7,
+      "question": "Who is Paris Saint-Germain's all-time top scorer?",
+      "options": [
+        "Zlatan Ibrahimovic",
+        "Edinson Cavani",
+        "Kylian Mbappe",
+        "Pauleta"
+      ],
+      "answerIndex": 2,
+      "explanation": "Mbappe passed Cavani's record before leaving the club."
+    },
+    {
+      "id": 4069,
+      "level": 7,
+      "question": "How many points does a winning team get in the major European leagues?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "It varies by league"
+      ],
+      "answerIndex": 0,
+      "explanation": "Three points was adopted worldwide to encourage attacking football."
+    },
+    {
+      "id": 4070,
+      "level": 7,
+      "question": "When did the Premier League adopt the three-points-for-a-win system?",
+      "options": [
+        "1981",
+        "1975",
+        "1992",
+        "1988"
+      ],
+      "answerIndex": 0,
+      "explanation": "England was ahead of the curve before it spread worldwide."
+    },
+    {
+      "id": 4071,
+      "level": 8,
+      "question": "Which Spanish club won La Liga in 2002, outside the usual top three?",
+      "options": [
+        "Valencia",
+        "Deportivo La Coruna",
+        "Sevilla",
+        "Real Sociedad"
+      ],
+      "answerIndex": 0,
+      "explanation": "Valencia won it under Rafael Benitez."
+    },
+    {
+      "id": 4072,
+      "level": 8,
+      "question": "Which Spanish club won La Liga in 2000 in a major upset?",
+      "options": [
+        "Valencia",
+        "Celta Vigo",
+        "Deportivo La Coruna",
+        "Real Betis"
+      ],
+      "answerIndex": 2,
+      "explanation": "The only league title in Deportivo's history."
+    },
+    {
+      "id": 4073,
+      "level": 8,
+      "question": "How many La Liga titles does Athletic Bilbao hold?",
+      "options": [
+        "6",
+        "8",
+        "10",
+        "4"
+      ],
+      "answerIndex": 1,
+      "explanation": "Eight titles, despite their policy of signing Basque players only."
+    },
+    {
+      "id": 4074,
+      "level": 8,
+      "question": "What is Athletic Bilbao's distinctive transfer policy?",
+      "options": [
+        "Signing only players from the Basque Country",
+        "Never buying players for a fee",
+        "Signing only youth players",
+        "Never signing other Europeans"
+      ],
+      "answerIndex": 0,
+      "explanation": "A policy that has held for more than a century."
+    },
+    {
+      "id": 4075,
+      "level": 8,
+      "question": "Which German club won the Bundesliga in 2009?",
+      "options": [
+        "Bremen",
+        "Bayern Munich",
+        "Stuttgart",
+        "Wolfsburg"
+      ],
+      "answerIndex": 3,
+      "explanation": "Wolfsburg's one and only title, led by Felix Magath."
+    },
+    {
+      "id": 4076,
+      "level": 8,
+      "question": "Which German club won the Bundesliga in 1998?",
+      "options": [
+        "Kaiserslautern",
+        "Bayern Munich",
+        "Dortmund",
+        "Bremen"
+      ],
+      "answerIndex": 0,
+      "explanation": "They won the title in the same season they came straight up from the second division."
+    },
+    {
+      "id": 4077,
+      "level": 8,
+      "question": "How many goals did Atletico Madrid concede in their title-winning 2013-2014 season?",
+      "options": [
+        "31",
+        "26",
+        "37",
+        "42"
+      ],
+      "answerIndex": 1,
+      "explanation": "Simeone's rock-solid defence was the foundation of the title."
+    },
+    {
+      "id": 4078,
+      "level": 8,
+      "question": "Which English club finished 2007-2008 with both the league title and the Champions League?",
+      "options": [
+        "Chelsea",
+        "Liverpool",
+        "Manchester United",
+        "Arsenal"
+      ],
+      "answerIndex": 2,
+      "explanation": "A domestic and European double for Ferguson's side."
+    },
+    {
+      "id": 4079,
+      "level": 8,
+      "question": "Who is the youngest player ever to score in the Premier League?",
+      "options": [
+        "Wayne Rooney",
+        "James Vaughan",
+        "Cesc Fabregas",
+        "Harvey Elliott"
+      ],
+      "answerIndex": 1,
+      "explanation": "James Vaughan scored for Everton in 2005 aged 16."
+    },
+    {
+      "id": 4080,
+      "level": 8,
+      "question": "Who is the oldest player to have played in the Premier League?",
+      "options": [
+        "Peter Shilton",
+        "Ryan Giggs",
+        "John Burridge",
+        "Brad Friedel"
+      ],
+      "answerIndex": 2,
+      "explanation": "Goalkeeper Burridge played for Sunderland aged 43."
+    },
+    {
+      "id": 4081,
+      "level": 9,
+      "question": "Which Italian club won the league unbeaten in 1991-1992 under Fabio Capello?",
+      "options": [
+        "Milan",
+        "Sampdoria",
+        "Napoli",
+        "Inter"
+      ],
+      "answerIndex": 0,
+      "explanation": "Milan began a 58-match unbeaten run in that era."
+    },
+    {
+      "id": 4082,
+      "level": 9,
+      "question": "How many matches did Milan's unbeaten Serie A run last in the early nineties?",
+      "options": [
+        "58",
+        "52",
+        "45",
+        "62"
+      ],
+      "answerIndex": 0,
+      "explanation": "A record that stood for decades in Italian football."
+    },
+    {
+      "id": 4083,
+      "level": 9,
+      "question": "Which Italian club won Serie A in 1991 in a historic upset?",
+      "options": [
+        "Parma",
+        "Sampdoria",
+        "Fiorentina",
+        "Udinese"
+      ],
+      "answerIndex": 1,
+      "explanation": "Sampdoria's only title, led by Mancini and Vialli."
+    },
+    {
+      "id": 4084,
+      "level": 9,
+      "question": "Which English club retained the league title in the Premier League's first two seasons?",
+      "options": [
+        "Arsenal",
+        "Liverpool",
+        "Blackburn",
+        "Manchester United"
+      ],
+      "answerIndex": 3,
+      "explanation": "United won both the 1992-1993 and 1993-1994 seasons."
+    },
+    {
+      "id": 4085,
+      "level": 9,
+      "question": "How many times has Manchester United won the Premier League?",
+      "options": [
+        "13",
+        "11",
+        "15",
+        "17"
+      ],
+      "answerIndex": 0,
+      "explanation": "Thirteen titles, all under Alex Ferguson."
+    },
+    {
+      "id": 4086,
+      "level": 9,
+      "question": "Who was the first overseas player to win the Premier League Player of the Season award?",
+      "options": [
+        "Gianfranco Zola",
+        "Dennis Bergkamp",
+        "Eric Cantona",
+        "Roy Keane"
+      ],
+      "answerIndex": 2,
+      "explanation": "Frenchman Cantona with Manchester United in 1996."
+    },
+    {
+      "id": 4087,
+      "level": 9,
+      "question": "Which French club won Ligue 1 seven times in a row between 2002 and 2008?",
+      "options": [
+        "Paris Saint-Germain",
+        "Marseille",
+        "Bordeaux",
+        "Lyon"
+      ],
+      "answerIndex": 3,
+      "explanation": "Lyon's dominance, which preceded the Paris Saint-Germain era."
+    },
+    {
+      "id": 4088,
+      "level": 9,
+      "question": "Which French club won Ligue 1 in 2017?",
+      "options": [
+        "Paris Saint-Germain",
+        "Lyon",
+        "Monaco",
+        "Nice"
+      ],
+      "answerIndex": 2,
+      "explanation": "Monaco's young side featuring Mbappe and Bernardo Silva."
+    },
+    {
+      "id": 4089,
+      "level": 9,
+      "question": "Which German club completed a domestic and European treble in 2013?",
+      "options": [
+        "Dortmund",
+        "Bayern Munich",
+        "Schalke",
+        "Leverkusen"
+      ],
+      "answerIndex": 1,
+      "explanation": "The first treble in German football history, under Jupp Heynckes."
+    },
+    {
+      "id": 4090,
+      "level": 9,
+      "question": "Which German club repeated the treble in 2020?",
+      "options": [
+        "Bayern Munich",
+        "Dortmund",
+        "Leipzig",
+        "Wolfsburg"
+      ],
+      "answerIndex": 0,
+      "explanation": "A second treble for Bayern, under Hansi Flick."
+    },
+    {
+      "id": 4091,
+      "level": 10,
+      "question": "Which English club won the league in 1978, their only title in the modern era?",
+      "options": [
+        "Derby County",
+        "Ipswich Town",
+        "Nottingham Forest",
+        "Queens Park Rangers"
+      ],
+      "answerIndex": 2,
+      "explanation": "Forest won it under Brian Clough in the season they were promoted."
+    },
+    {
+      "id": 4092,
+      "level": 10,
+      "question": "Which Spanish club were relegated from La Liga after years of title challenges in the early 2000s?",
+      "options": [
+        "Sevilla",
+        "Valencia",
+        "Deportivo La Coruna",
+        "Villarreal"
+      ],
+      "answerIndex": 2,
+      "explanation": "Deportivo declined gradually until relegation in 2011, then collapsed financially."
+    },
+    {
+      "id": 4093,
+      "level": 10,
+      "question": "Which goalkeeper holds the record for most clean sheets in Premier League history?",
+      "options": [
+        "Edwin van der Sar",
+        "David de Gea",
+        "Petr Cech",
+        "Peter Schmeichel"
+      ],
+      "answerIndex": 2,
+      "explanation": "Cech kept a clean sheet in 202 matches."
+    },
+    {
+      "id": 4094,
+      "level": 10,
+      "question": "How many consecutive matches did Edwin van der Sar go without conceding in 2009?",
+      "options": [
+        "14",
+        "12",
+        "10",
+        "16"
+      ],
+      "answerIndex": 0,
+      "explanation": "1311 minutes without conceding, a Premier League record."
+    },
+    {
+      "id": 4095,
+      "level": 10,
+      "question": "Which Italian club rose from the third division to Serie A within a few years in the nineties?",
+      "options": [
+        "Chievo Verona",
+        "Parma",
+        "Empoli",
+        "Piacenza"
+      ],
+      "answerIndex": 0,
+      "explanation": "Chievo Verona's rise is one of Italian football's most famous stories."
+    },
+    {
+      "id": 4096,
+      "level": 10,
+      "question": "Which manager won the Italian league with Inter and then the Spanish league with Real Madrid?",
+      "options": [
+        "Carlo Ancelotti",
+        "Jose Mourinho",
+        "Antonio Conte",
+        "Rafael Benitez"
+      ],
+      "answerIndex": 1,
+      "explanation": "Mourinho won the treble with Inter in 2010, then La Liga with Real in 2012."
+    },
+    {
+      "id": 4097,
+      "level": 10,
+      "question": "Which manager has won the league title in each of the five major European leagues?",
+      "options": [
+        "Jose Mourinho",
+        "Pep Guardiola",
+        "Carlo Ancelotti",
+        "Fabio Capello"
+      ],
+      "answerIndex": 2,
+      "explanation": "Ancelotti is the only manager to have achieved this."
+    },
+    {
+      "id": 4098,
+      "level": 10,
+      "question": "How many clubs have won the Premier League since 1992?",
+      "options": [
+        "5",
+        "9",
+        "7",
+        "11"
+      ],
+      "answerIndex": 2,
+      "explanation": "United, Arsenal, Chelsea, City, Liverpool, Blackburn and Leicester."
+    },
+    {
+      "id": 4099,
+      "level": 10,
+      "question": "Which Italian club won Serie A in 2001?",
+      "options": [
+        "Lazio",
+        "Roma",
+        "Juventus",
+        "Inter"
+      ],
+      "answerIndex": 1,
+      "explanation": "Roma's third title, led by Totti and Batistuta."
+    },
+    {
+      "id": 4100,
+      "level": 10,
+      "question": "Which Italian club won Serie A in 2000?",
+      "options": [
+        "Roma",
+        "Milan",
+        "Lazio",
+        "Parma"
+      ],
+      "answerIndex": 2,
+      "explanation": "Lazio's second title in their history, under Sven-Goran Eriksson."
+    }
+  ]
+}

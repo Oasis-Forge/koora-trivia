@@ -1,0 +1,1306 @@
+{
+  "version": 2,
+  "category": "arab_football",
+  "questions": [
+    {
+      "id": 5001,
+      "level": 1,
+      "question": "Which Egyptian club is nicknamed \"The Red Castle\"?",
+      "options": [
+        "Zamalek",
+        "Al Ahly",
+        "Pyramids",
+        "Ismaily"
+      ],
+      "answerIndex": 1,
+      "explanation": "Al Ahly of Egypt, Africa's most successful club."
+    },
+    {
+      "id": 5002,
+      "level": 1,
+      "question": "Which Saudi club is nicknamed \"The Leader\"?",
+      "options": [
+        "Al Nassr",
+        "Al Ittihad",
+        "Al Hilal",
+        "Al Ahli"
+      ],
+      "answerIndex": 2,
+      "explanation": "Al Hilal, Asia's most decorated club."
+    },
+    {
+      "id": 5003,
+      "level": 1,
+      "question": "Which Arab team beat Argentina at the 2022 World Cup?",
+      "options": [
+        "Morocco",
+        "Tunisia",
+        "Egypt",
+        "Saudi Arabia"
+      ],
+      "answerIndex": 3,
+      "explanation": "Saudi Arabia won 2-1 in the group-stage opener."
+    },
+    {
+      "id": 5004,
+      "level": 1,
+      "question": "Which Arab team reached the semi-finals of the 2022 World Cup?",
+      "options": [
+        "Morocco",
+        "Tunisia",
+        "Saudi Arabia",
+        "Qatar"
+      ],
+      "answerIndex": 0,
+      "explanation": "Morocco became the first Arab and African team to reach the final four."
+    },
+    {
+      "id": 5005,
+      "level": 1,
+      "question": "Who is the Egyptian star of Liverpool?",
+      "options": [
+        "Mohamed Salah",
+        "Mohamed Elneny",
+        "Amr Warda",
+        "Ahmed Hegazi"
+      ],
+      "answerIndex": 0,
+      "explanation": "He joined Liverpool in 2017 and became a club icon."
+    },
+    {
+      "id": 5006,
+      "level": 1,
+      "question": "Which Egyptian club is nicknamed \"The White Castle\"?",
+      "options": [
+        "Zamalek",
+        "Al Ahly",
+        "Al Masry",
+        "Ittihad of Alexandria"
+      ],
+      "answerIndex": 0,
+      "explanation": "Zamalek, Al Ahly's traditional rival."
+    },
+    {
+      "id": 5007,
+      "level": 1,
+      "question": "Which Arab team has won the Africa Cup of Nations the most times?",
+      "options": [
+        "Algeria",
+        "Egypt",
+        "Morocco",
+        "Tunisia"
+      ],
+      "answerIndex": 1,
+      "explanation": "Egypt holds the record with seven titles."
+    },
+    {
+      "id": 5008,
+      "level": 1,
+      "question": "Which Arab country hosted the 2022 World Cup?",
+      "options": [
+        "UAE",
+        "Qatar",
+        "Saudi Arabia",
+        "Bahrain"
+      ],
+      "answerIndex": 1,
+      "explanation": "The first World Cup held in the Middle East and the Arab world."
+    },
+    {
+      "id": 5009,
+      "level": 1,
+      "question": "What is the famous name for the Al Ahly vs Zamalek derby in Egypt?",
+      "options": [
+        "The Nile Derby",
+        "The Egyptian Summit",
+        "The Cairo Clasico",
+        "The Battle of the Pyramids"
+      ],
+      "answerIndex": 1,
+      "explanation": "Known for short as \"The Summit\", one of the world's most famous derbies."
+    },
+    {
+      "id": 5010,
+      "level": 1,
+      "question": "Which Arab team won the 2019 Asian Cup?",
+      "options": [
+        "Saudi Arabia",
+        "Iraq",
+        "UAE",
+        "Qatar"
+      ],
+      "answerIndex": 3,
+      "explanation": "Qatar's first ever Asian title."
+    },
+    {
+      "id": 5011,
+      "level": 2,
+      "question": "Which Arab club has won the CAF Champions League the most times?",
+      "options": [
+        "Esperance of Tunis",
+        "Al Ahly",
+        "Zamalek",
+        "Wydad of Morocco"
+      ],
+      "answerIndex": 1,
+      "explanation": "Al Ahly is the competition's all-time record holder."
+    },
+    {
+      "id": 5012,
+      "level": 2,
+      "question": "Who managed the Morocco national team at the 2022 World Cup?",
+      "options": [
+        "Vahid Halilhodzic",
+        "Walid Regragui",
+        "Houcine Ammouta",
+        "Rachid Taoussi"
+      ],
+      "answerIndex": 1,
+      "explanation": "Regragui led Morocco to a historic achievement."
+    },
+    {
+      "id": 5013,
+      "level": 2,
+      "question": "Which Arab team won the 2019 Africa Cup of Nations?",
+      "options": [
+        "Egypt",
+        "Tunisia",
+        "Morocco",
+        "Algeria"
+      ],
+      "answerIndex": 3,
+      "explanation": "Algeria beat Senegal 1-0 with a goal from Baghdad Bounedjah."
+    },
+    {
+      "id": 5014,
+      "level": 2,
+      "question": "Which Algerian player won the African Footballer of the Year award in 2016?",
+      "options": [
+        "Riyad Mahrez",
+        "Islam Slimani",
+        "Yacine Brahimi",
+        "Sofiane Feghouli"
+      ],
+      "answerIndex": 0,
+      "explanation": "Mahrez won the award after Leicester City's historic title."
+    },
+    {
+      "id": 5015,
+      "level": 2,
+      "question": "Which Saudi club is nicknamed \"The Global Club\"?",
+      "options": [
+        "Al Hilal",
+        "Al Shabab",
+        "Al Ittihad",
+        "Al Nassr"
+      ],
+      "answerIndex": 3,
+      "explanation": "Al Nassr of Saudi Arabia."
+    },
+    {
+      "id": 5016,
+      "level": 2,
+      "question": "Which Arab team won the 2007 Asian Cup?",
+      "options": [
+        "Saudi Arabia",
+        "Kuwait",
+        "UAE",
+        "Iraq"
+      ],
+      "answerIndex": 3,
+      "explanation": "Iraq's historic achievement amid extremely difficult circumstances."
+    },
+    {
+      "id": 5017,
+      "level": 2,
+      "question": "How many times has Mohamed Salah won African Footballer of the Year?",
+      "options": [
+        "Once",
+        "Twice",
+        "Three times",
+        "Never"
+      ],
+      "answerIndex": 1,
+      "explanation": "He won the award in 2017 and 2018."
+    },
+    {
+      "id": 5018,
+      "level": 2,
+      "question": "Which Moroccan club is nicknamed \"The Red Wydad\"?",
+      "options": [
+        "Raja",
+        "FAR Rabat",
+        "Wydad",
+        "Maghreb of Fes"
+      ],
+      "answerIndex": 2,
+      "explanation": "Wydad of Casablanca, one of Morocco's most successful clubs."
+    },
+    {
+      "id": 5019,
+      "level": 2,
+      "question": "Which Arab team won the 2004 Africa Cup of Nations?",
+      "options": [
+        "Egypt",
+        "Tunisia",
+        "Morocco",
+        "Algeria"
+      ],
+      "answerIndex": 1,
+      "explanation": "Tunisia won on home soil for their only title."
+    },
+    {
+      "id": 5020,
+      "level": 2,
+      "question": "Which Qatari club is regarded as one of the country's most successful?",
+      "options": [
+        "Al Rayyan",
+        "Al Sadd",
+        "Al Gharafa",
+        "Al Arabi"
+      ],
+      "answerIndex": 1,
+      "explanation": "Al Sadd hold the record for Qatari league titles."
+    },
+    {
+      "id": 5021,
+      "level": 3,
+      "question": "Which Arab team won the Africa Cup of Nations three times in a row?",
+      "options": [
+        "Algeria",
+        "Morocco",
+        "Tunisia",
+        "Egypt"
+      ],
+      "answerIndex": 3,
+      "explanation": "Egypt won in 2006, 2008 and 2010."
+    },
+    {
+      "id": 5022,
+      "level": 3,
+      "question": "Which Arab team won the 1976 Africa Cup of Nations?",
+      "options": [
+        "Sudan",
+        "Algeria",
+        "Egypt",
+        "Morocco"
+      ],
+      "answerIndex": 3,
+      "explanation": "Morocco's first African title, decided by a final group stage with no final match."
+    },
+    {
+      "id": 5023,
+      "level": 3,
+      "question": "Which Arab team won the 1990 Africa Cup of Nations?",
+      "options": [
+        "Algeria",
+        "Egypt",
+        "Tunisia",
+        "Morocco"
+      ],
+      "answerIndex": 0,
+      "explanation": "Algeria won on home soil for their first title."
+    },
+    {
+      "id": 5024,
+      "level": 3,
+      "question": "Which Saudi club has won the AFC Champions League the most times?",
+      "options": [
+        "Al Ittihad",
+        "Al Nassr",
+        "Al Ahli",
+        "Al Hilal"
+      ],
+      "answerIndex": 3,
+      "explanation": "Al Hilal are the most decorated club in the Asian continental competition."
+    },
+    {
+      "id": 5025,
+      "level": 3,
+      "question": "How many Asian titles has the Saudi Arabia national team won?",
+      "options": [
+        "2",
+        "4",
+        "3",
+        "1"
+      ],
+      "answerIndex": 2,
+      "explanation": "In 1984, 1988 and 1996."
+    },
+    {
+      "id": 5026,
+      "level": 3,
+      "question": "Which Tunisian club is nicknamed \"Esperance\"?",
+      "options": [
+        "Esperance Sportive de Tunis",
+        "Etoile du Sahel",
+        "Club Africain",
+        "Sfaxien"
+      ],
+      "answerIndex": 0,
+      "explanation": "One of the most successful clubs in Tunisia and Africa."
+    },
+    {
+      "id": 5027,
+      "level": 3,
+      "question": "Which Moroccan club is nicknamed \"The Green Eagles\"?",
+      "options": [
+        "Wydad",
+        "Olympic Safi",
+        "Fath Union Sport",
+        "Raja"
+      ],
+      "answerIndex": 3,
+      "explanation": "Raja of Casablanca, Wydad's traditional rival."
+    },
+    {
+      "id": 5028,
+      "level": 3,
+      "question": "Which Moroccan defender played for Paris Saint-Germain and Inter Milan?",
+      "options": [
+        "Noussair Mazraoui",
+        "Nayef Aguerd",
+        "Romain Saiss",
+        "Achraf Hakimi"
+      ],
+      "answerIndex": 3,
+      "explanation": "One of the best full-backs in the world in his position."
+    },
+    {
+      "id": 5029,
+      "level": 3,
+      "question": "Which Arab team won the 2023 Asian Cup?",
+      "options": [
+        "Qatar",
+        "Saudi Arabia",
+        "Jordan",
+        "Iraq"
+      ],
+      "answerIndex": 0,
+      "explanation": "Qatar retained the title by beating Jordan in the final."
+    },
+    {
+      "id": 5030,
+      "level": 3,
+      "question": "Which Arab team reached the 2023 Asian Cup final for the first time in their history?",
+      "options": [
+        "Jordan",
+        "Iraq",
+        "UAE",
+        "Oman"
+      ],
+      "answerIndex": 0,
+      "explanation": "A historic achievement for Jordan despite losing the final."
+    },
+    {
+      "id": 5031,
+      "level": 4,
+      "question": "Who scored Saudi Arabia's decisive second goal against Argentina at the 2022 World Cup?",
+      "options": [
+        "Saleh Al-Shehri",
+        "Mohamed Kanno",
+        "Firas Al-Buraikan",
+        "Salem Al-Dawsari"
+      ],
+      "answerIndex": 3,
+      "explanation": "A superb strike from Salem Al-Dawsari settled the match."
+    },
+    {
+      "id": 5032,
+      "level": 4,
+      "question": "Which two teams did Morocco knock out on their way to the 2022 semi-finals?",
+      "options": [
+        "Spain and Portugal",
+        "Belgium and Croatia",
+        "Germany and France",
+        "Switzerland and Netherlands"
+      ],
+      "answerIndex": 0,
+      "explanation": "They eliminated Spain on penalties, then Portugal 1-0."
+    },
+    {
+      "id": 5033,
+      "level": 4,
+      "question": "Who scored Morocco's goal against Portugal in the 2022 quarter-final?",
+      "options": [
+        "Hakim Ziyech",
+        "Youssef En-Nesyri",
+        "Sofiane Boufal",
+        "Achraf Hakimi"
+      ],
+      "answerIndex": 1,
+      "explanation": "A headed goal from En-Nesyri after an outstanding leap."
+    },
+    {
+      "id": 5034,
+      "level": 4,
+      "question": "Who was the Moroccan goalkeeper who shone at the 2022 World Cup?",
+      "options": [
+        "Munir Mohamedi",
+        "Yassine Bounou",
+        "Ahmed Reda Tagnaouti",
+        "Anas Zniti"
+      ],
+      "answerIndex": 1,
+      "explanation": "His saves against Spain were key to qualification."
+    },
+    {
+      "id": 5035,
+      "level": 4,
+      "question": "Which Arab team recorded Africa's first ever World Cup win in 1978?",
+      "options": [
+        "Morocco",
+        "Tunisia",
+        "Algeria",
+        "Egypt"
+      ],
+      "answerIndex": 1,
+      "explanation": "Tunisia beat Mexico 3-1."
+    },
+    {
+      "id": 5036,
+      "level": 4,
+      "question": "Which Arab team beat West Germany at the 1982 World Cup?",
+      "options": [
+        "Tunisia",
+        "Kuwait",
+        "Morocco",
+        "Algeria"
+      ],
+      "answerIndex": 3,
+      "explanation": "A historic 2-1 win over the reigning European champions."
+    },
+    {
+      "id": 5037,
+      "level": 4,
+      "question": "Which Arab team was the first to top its group at the 1986 World Cup?",
+      "options": [
+        "Morocco",
+        "Algeria",
+        "Iraq",
+        "Tunisia"
+      ],
+      "answerIndex": 0,
+      "explanation": "Morocco topped a group that included England, Portugal and Poland."
+    },
+    {
+      "id": 5038,
+      "level": 4,
+      "question": "Who scored Saudi Arabia's famous goal at the 1994 World Cup after dribbling past half the Belgian team?",
+      "options": [
+        "Sami Al-Jaber",
+        "Majed Abdullah",
+        "Fouad Anwar",
+        "Saeed Al-Owairan"
+      ],
+      "answerIndex": 3,
+      "explanation": "One of the finest goals in World Cup history."
+    },
+    {
+      "id": 5039,
+      "level": 4,
+      "question": "How far did Saudi Arabia advance at the 1994 World Cup?",
+      "options": [
+        "Group stage",
+        "Quarter-final",
+        "Round of 16",
+        "Semi-final"
+      ],
+      "answerIndex": 2,
+      "explanation": "Saudi Arabia's best World Cup result to date."
+    },
+    {
+      "id": 5040,
+      "level": 4,
+      "question": "Who held the world record for international caps until Kuwait's Bader Al-Mutawa passed him in 2021?",
+      "options": [
+        "Mohamed El Daeay",
+        "Ahmed Hassan",
+        "Hossam Hassan",
+        "Essam El Hadary"
+      ],
+      "answerIndex": 1,
+      "explanation": "Egypt's Ahmed Hassan played 184 international matches, and Al-Mutawa passed him with his 185th cap, against Bahrain."
+    },
+    {
+      "id": 5041,
+      "level": 5,
+      "question": "Which Algerian player scored the famous \"backheel\" in a 1987 European final?",
+      "options": [
+        "Rabah Madjer",
+        "Lakhdar Belloumi",
+        "Mustapha Dahleb",
+        "Salim Oujani"
+      ],
+      "answerIndex": 0,
+      "explanation": "Madjer scored with a backheel for Porto in the European Cup final."
+    },
+    {
+      "id": 5042,
+      "level": 5,
+      "question": "Which Moroccan player won the African Footballer of the Year award in 1998?",
+      "options": [
+        "Noureddine Naybet",
+        "Mustapha Hadji",
+        "Salim Rejraji",
+        "Abdelmajid Dolmy"
+      ],
+      "answerIndex": 1,
+      "explanation": "The first Moroccan to win the award."
+    },
+    {
+      "id": 5043,
+      "level": 5,
+      "question": "Who is the Saudi football legend nicknamed \"The Legend\"?",
+      "options": [
+        "Sami Al-Jaber",
+        "Majed Abdullah",
+        "Mohamed El Daeay",
+        "Yousef Al-Thunayan"
+      ],
+      "answerIndex": 1,
+      "explanation": "The Saudi national team's all-time top scorer."
+    },
+    {
+      "id": 5044,
+      "level": 5,
+      "question": "Who is the legendary Saudi goalkeeper with over 170 international caps?",
+      "options": [
+        "Waleed Abdullah",
+        "Mohamed El Daeay",
+        "Yasser Al-Mosailem",
+        "Abdullah El Daeay"
+      ],
+      "answerIndex": 1,
+      "explanation": "One of the most famous goalkeepers in Asian history."
+    },
+    {
+      "id": 5045,
+      "level": 5,
+      "question": "Who is the Egyptian football star nicknamed \"Bibo\"?",
+      "options": [
+        "Magdi Abdelghani",
+        "Hossam Hassan",
+        "Mahmoud El Khatib",
+        "Taher Abouzeid"
+      ],
+      "answerIndex": 2,
+      "explanation": "An Al Ahly legend and later its club chairman."
+    },
+    {
+      "id": 5046,
+      "level": 5,
+      "question": "Which Arab team won the 1980 Asian Cup?",
+      "options": [
+        "Qatar",
+        "Saudi Arabia",
+        "Kuwait",
+        "Iraq"
+      ],
+      "answerIndex": 2,
+      "explanation": "Kuwait's only Asian title, won on home soil."
+    },
+    {
+      "id": 5047,
+      "level": 5,
+      "question": "Which Arab team took part in the 1990 World Cup?",
+      "options": [
+        "Kuwait",
+        "Oman",
+        "Qatar",
+        "UAE"
+      ],
+      "answerIndex": 3,
+      "explanation": "The UAE's first and, to date, only World Cup appearance."
+    },
+    {
+      "id": 5048,
+      "level": 5,
+      "question": "Which Arab Asian team took part in the 1986 World Cup?",
+      "options": [
+        "Qatar",
+        "Kuwait",
+        "Iraq",
+        "Jordan"
+      ],
+      "answerIndex": 2,
+      "explanation": "It was Iraq's first ever World Cup appearance."
+    },
+    {
+      "id": 5049,
+      "level": 5,
+      "question": "How many Arab teams took part in the 1982 World Cup?",
+      "options": [
+        "Two",
+        "One",
+        "Three",
+        "Four"
+      ],
+      "answerIndex": 0,
+      "explanation": "Algeria and Kuwait both took part in that edition."
+    },
+    {
+      "id": 5050,
+      "level": 5,
+      "question": "Which Arab team was the first to take part in a World Cup, in 1934?",
+      "options": [
+        "Egypt",
+        "Morocco",
+        "Tunisia",
+        "Algeria"
+      ],
+      "answerIndex": 0,
+      "explanation": "Egypt were the first African and Arab team to play at a World Cup."
+    },
+    {
+      "id": 5051,
+      "level": 6,
+      "question": "Which Emirati club won the AFC Champions League in 2003?",
+      "options": [
+        "Al Wahda",
+        "Al Ain",
+        "Al Jazira",
+        "Al Ahli"
+      ],
+      "answerIndex": 1,
+      "explanation": "The first Asian title for an Emirati club."
+    },
+    {
+      "id": 5052,
+      "level": 6,
+      "question": "Which Qatari club won the AFC Champions League in 2011?",
+      "options": [
+        "Al Rayyan",
+        "Al Gharafa",
+        "Al Sadd",
+        "Al Duhail"
+      ],
+      "answerIndex": 2,
+      "explanation": "Al Sadd won on penalties against South Korea's Jeonbuk."
+    },
+    {
+      "id": 5053,
+      "level": 6,
+      "question": "How many CAF Champions League titles has Esperance of Tunis won?",
+      "options": [
+        "2",
+        "3",
+        "5",
+        "4"
+      ],
+      "answerIndex": 3,
+      "explanation": "Four titles make them one of North Africa's most successful clubs."
+    },
+    {
+      "id": 5054,
+      "level": 6,
+      "question": "How many CAF Champions League titles has Zamalek won?",
+      "options": [
+        "5",
+        "4",
+        "3",
+        "6"
+      ],
+      "answerIndex": 0,
+      "explanation": "Five titles, second among Arab clubs behind Al Ahly."
+    },
+    {
+      "id": 5055,
+      "level": 6,
+      "question": "Which Moroccan club won the CAF Champions League in 2022?",
+      "options": [
+        "Wydad",
+        "Raja",
+        "FAR Rabat",
+        "Moghreb Tetouan"
+      ],
+      "answerIndex": 0,
+      "explanation": "Wydad beat Al Ahly in the final in Casablanca."
+    },
+    {
+      "id": 5056,
+      "level": 6,
+      "question": "Which Egyptian forward scored more than 65 international goals between 1985 and 2006?",
+      "options": [
+        "Hossam Hassan",
+        "Mohamed Salah",
+        "Hassan El Shazly",
+        "Emad Moteab"
+      ],
+      "answerIndex": 0,
+      "explanation": "Egypt's Hossam Hassan played 177 internationals between 1985 and 2006."
+    },
+    {
+      "id": 5057,
+      "level": 6,
+      "question": "Who is Algeria's all-time top scorer?",
+      "options": [
+        "Abdelhafid Tasfaout",
+        "Rabah Madjer",
+        "Islam Slimani",
+        "Baghdad Bounedjah"
+      ],
+      "answerIndex": 2,
+      "explanation": "Slimani leads the list by a clear margin."
+    },
+    {
+      "id": 5058,
+      "level": 6,
+      "question": "Which Egyptian midfielder played for Arsenal?",
+      "options": [
+        "Amr Zaki",
+        "Ahmed Hossam Mido",
+        "Mohamed Elneny",
+        "Mohamed El-Shenawy"
+      ],
+      "answerIndex": 2,
+      "explanation": "Elneny joined Arsenal in 2016."
+    },
+    {
+      "id": 5059,
+      "level": 6,
+      "question": "Which Moroccan player played for Chelsea and Ajax?",
+      "options": [
+        "Noussair Mazraoui",
+        "Sofyan Amrabat",
+        "Hakim Ziyech",
+        "Ezzedine Ounaji"
+      ],
+      "answerIndex": 2,
+      "explanation": "Ziyech shone at Ajax before his move to Chelsea."
+    },
+    {
+      "id": 5060,
+      "level": 6,
+      "question": "Who is the Egyptian goalkeeper who played at the 2018 World Cup aged 45?",
+      "options": [
+        "Essam El Hadary",
+        "Mohamed El-Shenawy",
+        "Sherif Ekramy",
+        "Ahmed El-Shenawy"
+      ],
+      "answerIndex": 0,
+      "explanation": "The oldest player ever to appear at a World Cup finals."
+    },
+    {
+      "id": 5061,
+      "level": 7,
+      "question": "Which Arab team won the 1970 Africa Cup of Nations?",
+      "options": [
+        "Egypt",
+        "Sudan",
+        "Morocco",
+        "Algeria"
+      ],
+      "answerIndex": 1,
+      "explanation": "Sudan's only title, won on home soil."
+    },
+    {
+      "id": 5062,
+      "level": 7,
+      "question": "Which Arab country hosted the first Africa Cup of Nations in 1957?",
+      "options": [
+        "Egypt",
+        "Morocco",
+        "Tunisia",
+        "Sudan"
+      ],
+      "answerIndex": 3,
+      "explanation": "Held in Khartoum with three teams taking part."
+    },
+    {
+      "id": 5063,
+      "level": 7,
+      "question": "Who won the first Africa Cup of Nations?",
+      "options": [
+        "Egypt",
+        "Sudan",
+        "Ethiopia",
+        "South Africa"
+      ],
+      "answerIndex": 0,
+      "explanation": "Egypt won the inaugural title in 1957."
+    },
+    {
+      "id": 5064,
+      "level": 7,
+      "question": "What is the name of the tournament for Arab Gulf national teams?",
+      "options": [
+        "WAFF Championship",
+        "Arab Cup",
+        "Arabian Gulf Cup",
+        "Gulf Federation Cup"
+      ],
+      "answerIndex": 2,
+      "explanation": "It began in 1970 in Bahrain."
+    },
+    {
+      "id": 5065,
+      "level": 7,
+      "question": "Which team has won the Arabian Gulf Cup the most times?",
+      "options": [
+        "Kuwait",
+        "Saudi Arabia",
+        "Qatar",
+        "UAE"
+      ],
+      "answerIndex": 0,
+      "explanation": "Kuwait hold the record for tournament titles."
+    },
+    {
+      "id": 5066,
+      "level": 7,
+      "question": "Who won the 2021 Arab Cup in Qatar?",
+      "options": [
+        "Qatar",
+        "Egypt",
+        "Tunisia",
+        "Algeria"
+      ],
+      "answerIndex": 3,
+      "explanation": "Algeria beat Tunisia 2-0 in extra time."
+    },
+    {
+      "id": 5067,
+      "level": 7,
+      "question": "Who was Algeria's star at the 1982 and 1986 World Cups?",
+      "options": [
+        "Lakhdar Belloumi",
+        "Rabah Madjer",
+        "Salah Assad",
+        "Mustapha Dahleb"
+      ],
+      "answerIndex": 0,
+      "explanation": "One of the leading names of Algeria's golden generation."
+    },
+    {
+      "id": 5068,
+      "level": 7,
+      "question": "How far did Algeria advance at the 2014 World Cup?",
+      "options": [
+        "Group stage",
+        "Round of 16",
+        "Quarter-final",
+        "Semi-final"
+      ],
+      "answerIndex": 1,
+      "explanation": "They went out to eventual champions Germany in extra time."
+    },
+    {
+      "id": 5069,
+      "level": 7,
+      "question": "Which Arab team reached the round of 16 at the 2022 World Cup besides Morocco?",
+      "options": [
+        "Saudi Arabia",
+        "Tunisia",
+        "Qatar",
+        "No other Arab team did"
+      ],
+      "answerIndex": 3,
+      "explanation": "Morocco was the only Arab team to advance past the group stage."
+    },
+    {
+      "id": 5070,
+      "level": 7,
+      "question": "Which Arab team beat France at the 2022 World Cup despite being eliminated?",
+      "options": [
+        "Tunisia",
+        "Morocco",
+        "Saudi Arabia",
+        "Qatar"
+      ],
+      "answerIndex": 0,
+      "explanation": "Tunisia won 1-0 but missed out on goal difference."
+    },
+    {
+      "id": 5071,
+      "level": 8,
+      "question": "Who scored Tunisia's goal against France at the 2022 World Cup?",
+      "options": [
+        "Wahbi Khazri",
+        "Youssef Msakni",
+        "Aymen Dahmen",
+        "Naim Sliti"
+      ],
+      "answerIndex": 0,
+      "explanation": "A superb goal from Wahbi Khazri in the second half."
+    },
+    {
+      "id": 5072,
+      "level": 8,
+      "question": "Who was the first Arab player to score in a European Cup final?",
+      "options": [
+        "Mohamed Salah",
+        "Rabah Madjer",
+        "Samuel Eto'o",
+        "Marouane Chamakh"
+      ],
+      "answerIndex": 1,
+      "explanation": "Madjer scored for Porto in the 1987 final against Bayern Munich."
+    },
+    {
+      "id": 5073,
+      "level": 8,
+      "question": "Which Algerian club has won the CAF Champions League twice?",
+      "options": [
+        "USM Alger",
+        "MC Alger",
+        "JS Kabylie",
+        "ES Setif"
+      ],
+      "answerIndex": 3,
+      "explanation": "ES Setif won in 1988 and 2014."
+    },
+    {
+      "id": 5074,
+      "level": 8,
+      "question": "Which Algerian club won Algeria's first African title in 1981?",
+      "options": [
+        "USM Alger",
+        "MC Alger",
+        "ES Setif",
+        "JS Kabylie"
+      ],
+      "answerIndex": 3,
+      "explanation": "JS Kabylie is one of Algeria's most storied clubs."
+    },
+    {
+      "id": 5075,
+      "level": 8,
+      "question": "Which Egyptian coach led Al Ahly to multiple African titles?",
+      "options": [
+        "Hossam El-Badry",
+        "Manuel Jose",
+        "Mahmoud El Gohary",
+        "Pitso Mosimane"
+      ],
+      "answerIndex": 1,
+      "explanation": "Portugal's Manuel Jose led Al Ahly to four continental titles."
+    },
+    {
+      "id": 5076,
+      "level": 8,
+      "question": "Who coached the Egypt national team at the 2006 and 2008 Africa Cup of Nations?",
+      "options": [
+        "Mahmoud El Gohary",
+        "Hassan Shehata",
+        "Hossam El-Badry",
+        "Shawky Gharib"
+      ],
+      "answerIndex": 1,
+      "explanation": "Hassan Shehata led Egypt to three titles in a row."
+    },
+    {
+      "id": 5077,
+      "level": 8,
+      "question": "Who coached the Egypt national team at the 1990 World Cup?",
+      "options": [
+        "Taha Ismail",
+        "Hassan Shehata",
+        "Mahmoud El Gohary",
+        "Mohsen Saleh"
+      ],
+      "answerIndex": 2,
+      "explanation": "El Gohary brought Egypt back to the World Cup after a 56-year absence."
+    },
+    {
+      "id": 5078,
+      "level": 8,
+      "question": "Who scored Egypt's only goal at the 1990 World Cup?",
+      "options": [
+        "Ahmed Al Kass",
+        "Hossam Hassan",
+        "Magdi Abdelghani",
+        "Gamal Abdel Hamid"
+      ],
+      "answerIndex": 2,
+      "explanation": "A penalty against the Netherlands."
+    },
+    {
+      "id": 5079,
+      "level": 8,
+      "question": "Which Arab team was the first to reach the round of 16 at a World Cup?",
+      "options": [
+        "Saudi Arabia 1994",
+        "Morocco 1986",
+        "Algeria 2014",
+        "Egypt 1934"
+      ],
+      "answerIndex": 1,
+      "explanation": "Morocco were the first Arab and African team to get past the group stage."
+    },
+    {
+      "id": 5080,
+      "level": 8,
+      "question": "Who was the first Arab player to win the European Cup with his club?",
+      "options": [
+        "Noureddine Naybet",
+        "Mustapha Hadji",
+        "Mohamed Salah",
+        "Rabah Madjer"
+      ],
+      "answerIndex": 3,
+      "explanation": "Madjer won it with Porto in 1987."
+    },
+    {
+      "id": 5081,
+      "level": 9,
+      "question": "How many CAF Champions League titles has Al Ahly of Egypt won?",
+      "options": [
+        "9",
+        "12",
+        "10",
+        "14"
+      ],
+      "answerIndex": 1,
+      "explanation": "A record no other African club comes close to."
+    },
+    {
+      "id": 5082,
+      "level": 9,
+      "question": "Which Arab club finished third at the FIFA Club World Cup?",
+      "options": [
+        "Raja of Morocco",
+        "Al Hilal",
+        "Al Ahly",
+        "Esperance of Tunis"
+      ],
+      "answerIndex": 2,
+      "explanation": "Al Ahly have finished third at the tournament more than once."
+    },
+    {
+      "id": 5083,
+      "level": 9,
+      "question": "Which Arab club reached the final of the FIFA Club World Cup?",
+      "options": [
+        "Wydad",
+        "Al Ahly",
+        "Esperance",
+        "Raja of Morocco"
+      ],
+      "answerIndex": 3,
+      "explanation": "Raja reached the 2013 final on home soil and lost to Bayern Munich."
+    },
+    {
+      "id": 5084,
+      "level": 9,
+      "question": "Which Saudi club reached the final of the 2022 FIFA Club World Cup?",
+      "options": [
+        "Al Ittihad",
+        "Al Nassr",
+        "Al Hilal",
+        "Al Shabab"
+      ],
+      "answerIndex": 2,
+      "explanation": "Al Hilal lost to Real Madrid in the final."
+    },
+    {
+      "id": 5085,
+      "level": 9,
+      "question": "Which Tunisian player played in the English Premier League with Sunderland?",
+      "options": [
+        "Ferjani Sassi",
+        "Youssef Msakni",
+        "Wahbi Khazri",
+        "Anis Badri"
+      ],
+      "answerIndex": 2,
+      "explanation": "Khazri moved to Sunderland in 2016."
+    },
+    {
+      "id": 5086,
+      "level": 9,
+      "question": "Which Moroccan player played for Bayern Munich and Juventus?",
+      "options": [
+        "Noureddine Amrabat",
+        "Marouane Chamakh",
+        "Medhi Benatia",
+        "Munir El Haddadi"
+      ],
+      "answerIndex": 2,
+      "explanation": "A prominent Moroccan defender in Europe over the past decade."
+    },
+    {
+      "id": 5087,
+      "level": 9,
+      "question": "Who was the first Arab player to score at a World Cup?",
+      "options": [
+        "Abdulrahman Fawzi",
+        "Mokhtar El Tetsh",
+        "Ahmed Beraika",
+        "Mahmoud Mokhtar"
+      ],
+      "answerIndex": 0,
+      "explanation": "Egypt's Abdulrahman Fawzi scored twice in 1934."
+    },
+    {
+      "id": 5088,
+      "level": 9,
+      "question": "Which Arab country has hosted the Africa Cup of Nations the most times?",
+      "options": [
+        "Tunisia",
+        "Morocco",
+        "Egypt",
+        "Algeria"
+      ],
+      "answerIndex": 2,
+      "explanation": "Egypt has hosted it five times, more than any other African country."
+    },
+    {
+      "id": 5089,
+      "level": 9,
+      "question": "Which team did Kuwait face in their opening match at the 1982 World Cup?",
+      "options": [
+        "Czechoslovakia",
+        "France",
+        "England",
+        "Algeria"
+      ],
+      "answerIndex": 0,
+      "explanation": "Kuwait drew 1-1 in their first ever World Cup match."
+    },
+    {
+      "id": 5090,
+      "level": 9,
+      "question": "What famous incident occurred in the Kuwait vs France match at the 1982 World Cup?",
+      "options": [
+        "Four players were sent off",
+        "Kuwait withdrew from the match",
+        "The Kuwaiti federation president walked onto the pitch and had a goal disallowed",
+        "The match was stopped for an hour"
+      ],
+      "answerIndex": 2,
+      "explanation": "Sheikh Fahad Al-Ahmad, head of the Kuwaiti federation, walked onto the pitch, and the referee disallowed a French goal."
+    },
+    {
+      "id": 5091,
+      "level": 10,
+      "question": "Who was the referee who disallowed France's goal against Kuwait in 1982?",
+      "options": [
+        "Romero Diaz",
+        "Pierre George",
+        "Antonio Garrido",
+        "Miroslav Stupar"
+      ],
+      "answerIndex": 3,
+      "explanation": "The Soviet referee Stupar reversed his decision and never took charge of an international match again."
+    },
+    {
+      "id": 5092,
+      "level": 10,
+      "question": "Which club was the first Algerian side to win the African Cup of Champions Clubs?",
+      "options": [
+        "MC Alger",
+        "JS Kabylie",
+        "ES Setif",
+        "USM Alger"
+      ],
+      "answerIndex": 0,
+      "explanation": "MC Alger lost the 1976 final first leg 3-0 to Hafia Conakry, then won the second leg 3-0 and prevailed on penalties 4-1."
+    },
+    {
+      "id": 5093,
+      "level": 10,
+      "question": "Which was the first Egyptian club to win the African Cup of Champions Clubs?",
+      "options": [
+        "Al Ahly",
+        "Zamalek",
+        "Ismaily",
+        "Al Masry"
+      ],
+      "answerIndex": 2,
+      "explanation": "Ismaily won the 1969 title, the first continental title for an Egyptian club."
+    },
+    {
+      "id": 5094,
+      "level": 10,
+      "question": "How many CAF Champions League titles has Wydad of Morocco won?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answerIndex": 2,
+      "explanation": "In 1992, 2017 and 2022."
+    },
+    {
+      "id": 5095,
+      "level": 10,
+      "question": "Who is the Egyptian player nicknamed \"The Magician\"?",
+      "options": [
+        "Hazem Emam",
+        "Mahmoud El Khatib",
+        "Ahmed Hassan",
+        "Mohamed Aboutrika"
+      ],
+      "answerIndex": 3,
+      "explanation": "An icon of Al Ahly and the Egyptian national team in the new millennium."
+    },
+    {
+      "id": 5096,
+      "level": 10,
+      "question": "How did Aboutrika celebrate his goal against Sudan at the 2008 Africa Cup of Nations?",
+      "options": [
+        "He kissed the national team badge",
+        "He revealed a shirt with a message of solidarity with Gaza",
+        "He pointed to his son's name on his wrist",
+        "He sat on the ball at the corner flag"
+      ],
+      "answerIndex": 1,
+      "explanation": "He lifted his shirt to reveal a message of solidarity with Gaza and received a yellow card."
+    },
+    {
+      "id": 5097,
+      "level": 10,
+      "question": "Which Arab team reached the final of the Confederations Cup?",
+      "options": [
+        "Tunisia",
+        "Egypt",
+        "Saudi Arabia",
+        "Morocco"
+      ],
+      "answerIndex": 2,
+      "explanation": "Saudi Arabia reached the 1992 final and lost to Argentina."
+    },
+    {
+      "id": 5098,
+      "level": 10,
+      "question": "Which Arab player took part in four World Cup finals?",
+      "options": [
+        "Majed Abdullah",
+        "Ahmed Hassan",
+        "Sami Al-Jaber",
+        "Lakhdar Belloumi"
+      ],
+      "answerIndex": 2,
+      "explanation": "Sami Al-Jaber played in the 1994, 1998, 2002 and 2006 editions."
+    },
+    {
+      "id": 5099,
+      "level": 10,
+      "question": "Which Kuwaiti player scored four goals at the 1980 Asian Cup, which Kuwait won?",
+      "options": [
+        "Bashar Abdullah",
+        "Jasem Al-Huwaidi",
+        "Bader Al-Mutawa",
+        "Jassem Yaqoub"
+      ],
+      "answerIndex": 3,
+      "explanation": "He scored two against Malaysia and one each against Iran and South Korea."
+    },
+    {
+      "id": 5100,
+      "level": 10,
+      "question": "Who is the Arab player with the most international caps in Asia?",
+      "options": [
+        "Mohamed El Daeay",
+        "Sami Al-Jaber",
+        "Bader Al-Mutawa",
+        "Younis Mahmoud"
+      ],
+      "answerIndex": 2,
+      "explanation": "Kuwait's Bader Al-Mutawa passed 190 international caps."
+    }
+  ]
+}

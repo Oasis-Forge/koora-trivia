@@ -1,0 +1,1306 @@
+{
+  "version": 2,
+  "category": "continental_cups",
+  "questions": [
+    {
+      "id": 2001,
+      "level": 1,
+      "question": "Who won Euro 2024?",
+      "options": [
+        "Spain",
+        "England",
+        "France",
+        "Germany"
+      ],
+      "answerIndex": 0,
+      "explanation": "Spain beat England 2-1 in the Berlin final."
+    },
+    {
+      "id": 2002,
+      "level": 1,
+      "question": "Who won Euro 2020 (held in 2021)?",
+      "options": [
+        "England",
+        "Spain",
+        "Italy",
+        "Denmark"
+      ],
+      "answerIndex": 2,
+      "explanation": "Italy won on penalties at Wembley."
+    },
+    {
+      "id": 2003,
+      "level": 1,
+      "question": "Who won the 2021 Copa America?",
+      "options": [
+        "Brazil",
+        "Colombia",
+        "Argentina",
+        "Uruguay"
+      ],
+      "answerIndex": 2,
+      "explanation": "Messi's first major title with the national team."
+    },
+    {
+      "id": 2004,
+      "level": 1,
+      "question": "Who won Euro 2016?",
+      "options": [
+        "France",
+        "Portugal",
+        "Germany",
+        "Wales"
+      ],
+      "answerIndex": 1,
+      "explanation": "Portugal beat France 1-0 after extra time."
+    },
+    {
+      "id": 2005,
+      "level": 1,
+      "question": "How often is the European Championship held?",
+      "options": [
+        "Every 2 years",
+        "Every 3 years",
+        "Every 4 years",
+        "Every 5 years"
+      ],
+      "answerIndex": 2,
+      "explanation": "It's held every four years, midway between World Cups."
+    },
+    {
+      "id": 2006,
+      "level": 1,
+      "question": "Copa America is a tournament for which continent?",
+      "options": [
+        "North America",
+        "Africa",
+        "South America",
+        "Asia"
+      ],
+      "answerIndex": 2,
+      "explanation": "It's the CONMEBOL championship."
+    },
+    {
+      "id": 2007,
+      "level": 1,
+      "question": "Which country hosted Euro 2024?",
+      "options": [
+        "France",
+        "Germany",
+        "Italy",
+        "England"
+      ],
+      "answerIndex": 1,
+      "explanation": "It was held across ten German cities."
+    },
+    {
+      "id": 2008,
+      "level": 1,
+      "question": "Who won Euro 2012?",
+      "options": [
+        "Spain",
+        "Germany",
+        "Italy",
+        "Portugal"
+      ],
+      "answerIndex": 0,
+      "explanation": "Spain beat Italy 4-0, the biggest win in a European final."
+    },
+    {
+      "id": 2009,
+      "level": 1,
+      "question": "Who won the 2024 Copa America?",
+      "options": [
+        "Argentina",
+        "Colombia",
+        "Brazil",
+        "Uruguay"
+      ],
+      "answerIndex": 0,
+      "explanation": "Argentina beat Colombia 1-0 after extra time."
+    },
+    {
+      "id": 2010,
+      "level": 1,
+      "question": "How often is the Africa Cup of Nations held?",
+      "options": [
+        "Every 4 years",
+        "Every 3 years",
+        "Every 2 years",
+        "Every year"
+      ],
+      "answerIndex": 2,
+      "explanation": "It's held every two years, unlike most continental championships."
+    },
+    {
+      "id": 2011,
+      "level": 2,
+      "question": "Who won Euro 2008?",
+      "options": [
+        "Spain",
+        "Germany",
+        "Russia",
+        "Turkey"
+      ],
+      "answerIndex": 0,
+      "explanation": "The start of Spain's era of dominance led by Xavi and Iniesta."
+    },
+    {
+      "id": 2012,
+      "level": 2,
+      "question": "Who won Euro 2004 in a historic upset?",
+      "options": [
+        "Greece",
+        "Portugal",
+        "Czech Republic",
+        "Netherlands"
+      ],
+      "answerIndex": 0,
+      "explanation": "Greece beat host nation Portugal 1-0."
+    },
+    {
+      "id": 2013,
+      "level": 2,
+      "question": "Who won the 2019 Copa America?",
+      "options": [
+        "Brazil",
+        "Argentina",
+        "Peru",
+        "Chile"
+      ],
+      "answerIndex": 0,
+      "explanation": "Brazil beat Peru 3-1 on home soil."
+    },
+    {
+      "id": 2014,
+      "level": 2,
+      "question": "Who won Euro 2000?",
+      "options": [
+        "Italy",
+        "Netherlands",
+        "France",
+        "Spain"
+      ],
+      "answerIndex": 2,
+      "explanation": "France won with a golden goal from David Trezeguet."
+    },
+    {
+      "id": 2015,
+      "level": 2,
+      "question": "Which side lost the Euro 2024 final?",
+      "options": [
+        "France",
+        "Netherlands",
+        "England",
+        "Germany"
+      ],
+      "answerIndex": 2,
+      "explanation": "England's second straight European final defeat."
+    },
+    {
+      "id": 2016,
+      "level": 2,
+      "question": "Who won the 2011 Asian Cup?",
+      "options": [
+        "South Korea",
+        "Australia",
+        "Japan",
+        "Iran"
+      ],
+      "answerIndex": 2,
+      "explanation": "Japan beat Australia after extra time."
+    },
+    {
+      "id": 2017,
+      "level": 2,
+      "question": "Who won the 2016 Copa America Centenario?",
+      "options": [
+        "Chile",
+        "Argentina",
+        "Colombia",
+        "United States"
+      ],
+      "answerIndex": 0,
+      "explanation": "Chile beat Argentina on penalties for the second year running."
+    },
+    {
+      "id": 2018,
+      "level": 2,
+      "question": "Who won Euro 1996?",
+      "options": [
+        "Czech Republic",
+        "England",
+        "Germany",
+        "France"
+      ],
+      "answerIndex": 2,
+      "explanation": "Germany won with a golden goal from Oliver Bierhoff."
+    },
+    {
+      "id": 2019,
+      "level": 2,
+      "question": "Who won the 2021 Africa Cup of Nations?",
+      "options": [
+        "Egypt",
+        "Cameroon",
+        "Senegal",
+        "Burkina Faso"
+      ],
+      "answerIndex": 2,
+      "explanation": "Senegal's first-ever title, won on penalties."
+    },
+    {
+      "id": 2020,
+      "level": 2,
+      "question": "How many teams took part in Euro 2024?",
+      "options": [
+        "24",
+        "20",
+        "16",
+        "32"
+      ],
+      "answerIndex": 0,
+      "explanation": "24 teams split into six groups."
+    },
+    {
+      "id": 2021,
+      "level": 3,
+      "question": "Which side has won the European Championship the most times?",
+      "options": [
+        "Germany",
+        "Italy",
+        "France",
+        "Spain"
+      ],
+      "answerIndex": 3,
+      "explanation": "Spain has four titles: 1964, 2008, 2012 and 2024."
+    },
+    {
+      "id": 2022,
+      "level": 3,
+      "question": "Which side has won the Copa America the most times?",
+      "options": [
+        "Brazil",
+        "Uruguay",
+        "Argentina",
+        "Chile"
+      ],
+      "answerIndex": 2,
+      "explanation": "Argentina moved ahead of Uruguay after the 2021 and 2024 titles."
+    },
+    {
+      "id": 2023,
+      "level": 3,
+      "question": "Who won Euro 1992?",
+      "options": [
+        "Germany",
+        "Netherlands",
+        "Denmark",
+        "Sweden"
+      ],
+      "answerIndex": 2,
+      "explanation": "One of the most famous upsets in football history."
+    },
+    {
+      "id": 2024,
+      "level": 3,
+      "question": "Who won Euro 1988?",
+      "options": [
+        "Soviet Union",
+        "Netherlands",
+        "West Germany",
+        "Italy"
+      ],
+      "answerIndex": 1,
+      "explanation": "The Netherlands' only title, capped by a legendary Van Basten strike."
+    },
+    {
+      "id": 2025,
+      "level": 3,
+      "question": "Who won the 2015 Copa America?",
+      "options": [
+        "Chile",
+        "Argentina",
+        "Brazil",
+        "Paraguay"
+      ],
+      "answerIndex": 0,
+      "explanation": "Chile's first title, won on home soil on penalties."
+    },
+    {
+      "id": 2026,
+      "level": 3,
+      "question": "Who won the 2023 Africa Cup of Nations?",
+      "options": [
+        "Nigeria",
+        "South Africa",
+        "Ivory Coast",
+        "Congo"
+      ],
+      "answerIndex": 2,
+      "explanation": "Ivory Coast won on home soil after a disastrous start in the groups."
+    },
+    {
+      "id": 2027,
+      "level": 3,
+      "question": "Who won Euro 1984?",
+      "options": [
+        "Spain",
+        "Denmark",
+        "France",
+        "Portugal"
+      ],
+      "answerIndex": 2,
+      "explanation": "Michel Platini's tournament, held on French soil."
+    },
+    {
+      "id": 2028,
+      "level": 3,
+      "question": "Who is the European Championship's all-time top scorer?",
+      "options": [
+        "Michel Platini",
+        "Antoine Griezmann",
+        "Alan Shearer",
+        "Cristiano Ronaldo"
+      ],
+      "answerIndex": 3,
+      "explanation": "Ronaldo holds the record for goals in the finals."
+    },
+    {
+      "id": 2029,
+      "level": 3,
+      "question": "Which side has won the Asian Cup the most times?",
+      "options": [
+        "Japan",
+        "Iran",
+        "South Korea",
+        "Australia"
+      ],
+      "answerIndex": 0,
+      "explanation": "Japan has four titles."
+    },
+    {
+      "id": 2030,
+      "level": 3,
+      "question": "Where was the 2024 Copa America held?",
+      "options": [
+        "United States",
+        "Argentina",
+        "Brazil",
+        "Colombia"
+      ],
+      "answerIndex": 0,
+      "explanation": "It was held outside South America as a build-up to the 2026 World Cup."
+    },
+    {
+      "id": 2031,
+      "level": 4,
+      "question": "Why did Denmark even take part in Euro 1992?",
+      "options": [
+        "They won qualifying",
+        "They hosted the tournament",
+        "They replaced a banned Yugoslavia",
+        "A special invitation"
+      ],
+      "answerIndex": 2,
+      "explanation": "Called up days before the tournament, they went on to win it."
+    },
+    {
+      "id": 2032,
+      "level": 4,
+      "question": "Who scored Portugal's winning goal in the 2016 final?",
+      "options": [
+        "Cristiano Ronaldo",
+        "Ricardo Quaresma",
+        "Nani",
+        "Eder"
+      ],
+      "answerIndex": 3,
+      "explanation": "Substitute Eder scored in the 109th minute."
+    },
+    {
+      "id": 2033,
+      "level": 4,
+      "question": "Why did Cristiano Ronaldo leave the 2016 final early?",
+      "options": [
+        "A red card",
+        "A knee injury",
+        "A tactical decision",
+        "Illness"
+      ],
+      "answerIndex": 1,
+      "explanation": "He went off in tears in the 25th minute after a challenge from Dimitri Payet."
+    },
+    {
+      "id": 2034,
+      "level": 4,
+      "question": "Who scored Argentina's winning goal in the 2021 Copa America final?",
+      "options": [
+        "Angel Di Maria",
+        "Lionel Messi",
+        "Lautaro Martinez",
+        "Rodrigo De Paul"
+      ],
+      "answerIndex": 0,
+      "explanation": "Di Maria scored the only goal against Brazil."
+    },
+    {
+      "id": 2035,
+      "level": 4,
+      "question": "Where was the 2021 Copa America final played?",
+      "options": [
+        "Maracana",
+        "Azteca",
+        "Monumental",
+        "Centenario"
+      ],
+      "answerIndex": 0,
+      "explanation": "A historic win for Argentina on Brazil's home turf."
+    },
+    {
+      "id": 2036,
+      "level": 4,
+      "question": "How many goals did Michel Platini score at Euro 1984?",
+      "options": [
+        "7",
+        "11",
+        "5",
+        "9"
+      ],
+      "answerIndex": 3,
+      "explanation": "Nine goals in five matches, a record for a single edition."
+    },
+    {
+      "id": 2037,
+      "level": 4,
+      "question": "How many cities hosted Euro 2020?",
+      "options": [
+        "8",
+        "11",
+        "13",
+        "6"
+      ],
+      "answerIndex": 1,
+      "explanation": "A one-off edition spread across 11 cities to mark the 60th anniversary."
+    },
+    {
+      "id": 2038,
+      "level": 4,
+      "question": "Why was Euro 2020 played in 2021?",
+      "options": [
+        "The Covid-19 pandemic",
+        "Organisational disputes",
+        "A clash with the Olympics",
+        "Stadium problems"
+      ],
+      "answerIndex": 0,
+      "explanation": "It was postponed a full year but kept the 2020 name."
+    },
+    {
+      "id": 2039,
+      "level": 4,
+      "question": "Who won the very first European Championship in 1960?",
+      "options": [
+        "Yugoslavia",
+        "Soviet Union",
+        "France",
+        "Czechoslovakia"
+      ],
+      "answerIndex": 1,
+      "explanation": "The Soviet Union beat Yugoslavia in Paris."
+    },
+    {
+      "id": 2040,
+      "level": 4,
+      "question": "Who won Euro 1976?",
+      "options": [
+        "Czechoslovakia",
+        "West Germany",
+        "Netherlands",
+        "Yugoslavia"
+      ],
+      "answerIndex": 0,
+      "explanation": "Czechoslovakia won on penalties against West Germany."
+    },
+    {
+      "id": 2041,
+      "level": 5,
+      "question": "What is the famous \"Panenka\" penalty?",
+      "options": [
+        "A direct free kick",
+        "A penalty chipped gently down the middle",
+        "A short corner kick",
+        "A shot from the halfway line"
+      ],
+      "answerIndex": 1,
+      "explanation": "Antonin Panenka scored it in the 1976 final and it has carried his name ever since."
+    },
+    {
+      "id": 2042,
+      "level": 5,
+      "question": "Who won Euro 1980?",
+      "options": [
+        "Belgium",
+        "West Germany",
+        "Italy",
+        "Netherlands"
+      ],
+      "answerIndex": 1,
+      "explanation": "West Germany's second title after 1972."
+    },
+    {
+      "id": 2043,
+      "level": 5,
+      "question": "Who won Euro 1972?",
+      "options": [
+        "Soviet Union",
+        "West Germany",
+        "Belgium",
+        "Hungary"
+      ],
+      "answerIndex": 1,
+      "explanation": "A generation of Beckenbauer and Muller at their peak."
+    },
+    {
+      "id": 2044,
+      "level": 5,
+      "question": "Who won Euro 1968?",
+      "options": [
+        "Yugoslavia",
+        "Italy",
+        "England",
+        "Soviet Union"
+      ],
+      "answerIndex": 1,
+      "explanation": "Italy's only European title before 2020, decided by a coin toss in the semi-final."
+    },
+    {
+      "id": 2045,
+      "level": 5,
+      "question": "Who won Euro 1964?",
+      "options": [
+        "Soviet Union",
+        "Spain",
+        "Hungary",
+        "Denmark"
+      ],
+      "answerIndex": 1,
+      "explanation": "Spain's first title, won on home soil."
+    },
+    {
+      "id": 2046,
+      "level": 5,
+      "question": "When was the first Copa America held?",
+      "options": [
+        "1916",
+        "1930",
+        "1924",
+        "1901"
+      ],
+      "answerIndex": 0,
+      "explanation": "It was held in Argentina, fourteen years before the World Cup began."
+    },
+    {
+      "id": 2047,
+      "level": 5,
+      "question": "What is the oldest international continental football tournament in the world?",
+      "options": [
+        "Copa America",
+        "European Championship",
+        "Africa Cup of Nations",
+        "Asian Cup"
+      ],
+      "answerIndex": 0,
+      "explanation": "It began in 1916 and is still running."
+    },
+    {
+      "id": 2048,
+      "level": 5,
+      "question": "How many Copa America titles does Uruguay have?",
+      "options": [
+        "12",
+        "10",
+        "17",
+        "15"
+      ],
+      "answerIndex": 3,
+      "explanation": "They led for decades before Argentina overtook them."
+    },
+    {
+      "id": 2049,
+      "level": 5,
+      "question": "Who won the first UEFA Nations League in 2019?",
+      "options": [
+        "Portugal",
+        "Netherlands",
+        "England",
+        "Switzerland"
+      ],
+      "answerIndex": 0,
+      "explanation": "Portugal won on home soil against the Netherlands."
+    },
+    {
+      "id": 2050,
+      "level": 5,
+      "question": "Who won the 2021 UEFA Nations League?",
+      "options": [
+        "France",
+        "Spain",
+        "Italy",
+        "Belgium"
+      ],
+      "answerIndex": 0,
+      "explanation": "France came back from behind against Spain in the final."
+    },
+    {
+      "id": 2051,
+      "level": 6,
+      "question": "Who won the 2023 UEFA Nations League?",
+      "options": [
+        "Croatia",
+        "Italy",
+        "Spain",
+        "Netherlands"
+      ],
+      "answerIndex": 2,
+      "explanation": "Spain beat Croatia on penalties."
+    },
+    {
+      "id": 2052,
+      "level": 6,
+      "question": "Who was the last team to win the Confederations Cup?",
+      "options": [
+        "Brazil",
+        "Chile",
+        "France",
+        "Germany"
+      ],
+      "answerIndex": 3,
+      "explanation": "Germany won the 2017 edition in Russia, the last in the tournament's history."
+    },
+    {
+      "id": 2053,
+      "level": 6,
+      "question": "Why was the Confederations Cup discontinued?",
+      "options": [
+        "Low public interest",
+        "A restructuring of the FIFA and Club World Cup calendar",
+        "Financial problems",
+        "Opposition from European clubs"
+      ],
+      "answerIndex": 1,
+      "explanation": "It was scrapped after 2017 as part of a shake-up of the international calendar."
+    },
+    {
+      "id": 2054,
+      "level": 6,
+      "question": "Which side has won the CONCACAF Gold Cup the most times?",
+      "options": [
+        "United States",
+        "Costa Rica",
+        "Canada",
+        "Mexico"
+      ],
+      "answerIndex": 3,
+      "explanation": "Mexico is the historic dominant force in the North American tournament."
+    },
+    {
+      "id": 2055,
+      "level": 6,
+      "question": "Who won the 2017 Africa Cup of Nations?",
+      "options": [
+        "Egypt",
+        "Cameroon",
+        "Burkina Faso",
+        "Ghana"
+      ],
+      "answerIndex": 1,
+      "explanation": "Cameroon beat Egypt 2-1 in the final."
+    },
+    {
+      "id": 2056,
+      "level": 6,
+      "question": "How many Africa Cup of Nations titles does Cameroon have?",
+      "options": [
+        "4",
+        "3",
+        "6",
+        "5"
+      ],
+      "answerIndex": 3,
+      "explanation": "Five titles put them second behind Egypt."
+    },
+    {
+      "id": 2057,
+      "level": 6,
+      "question": "Who is the Africa Cup of Nations' all-time top scorer?",
+      "options": [
+        "Didier Drogba",
+        "Laurent Pokou",
+        "Hossam Hassan",
+        "Samuel Eto'o"
+      ],
+      "answerIndex": 3,
+      "explanation": "Cameroon's Eto'o scored 18 goals in the tournament."
+    },
+    {
+      "id": 2058,
+      "level": 6,
+      "question": "When was the first Africa Cup of Nations held?",
+      "options": [
+        "1962",
+        "1957",
+        "1950",
+        "1968"
+      ],
+      "answerIndex": 1,
+      "explanation": "It was held in Sudan with just three teams taking part."
+    },
+    {
+      "id": 2059,
+      "level": 6,
+      "question": "Who won the first Asian Cup in 1956?",
+      "options": [
+        "Japan",
+        "South Korea",
+        "Iran",
+        "India"
+      ],
+      "answerIndex": 1,
+      "explanation": "It was held in Hong Kong, and South Korea were crowned champions."
+    },
+    {
+      "id": 2060,
+      "level": 6,
+      "question": "How many Asian Cup titles does Japan have?",
+      "options": [
+        "3",
+        "2",
+        "5",
+        "4"
+      ],
+      "answerIndex": 3,
+      "explanation": "1992, 2000, 2004 and 2011."
+    },
+    {
+      "id": 2061,
+      "level": 7,
+      "question": "How many teams currently take part in the Africa Cup of Nations finals?",
+      "options": [
+        "16",
+        "20",
+        "32",
+        "24"
+      ],
+      "answerIndex": 3,
+      "explanation": "It expanded from 16 to 24 teams from the 2019 edition onward."
+    },
+    {
+      "id": 2062,
+      "level": 7,
+      "question": "Who won the 2015 Africa Cup of Nations?",
+      "options": [
+        "Ghana",
+        "Ivory Coast",
+        "Congo",
+        "Equatorial Guinea"
+      ],
+      "answerIndex": 1,
+      "explanation": "Ivory Coast won a marathon penalty shootout against Ghana."
+    },
+    {
+      "id": 2063,
+      "level": 7,
+      "question": "Who won the 2013 Africa Cup of Nations?",
+      "options": [
+        "Burkina Faso",
+        "Nigeria",
+        "Mali",
+        "Ghana"
+      ],
+      "answerIndex": 1,
+      "explanation": "Nigeria's third title, led by manager Stephen Keshi."
+    },
+    {
+      "id": 2064,
+      "level": 7,
+      "question": "How many Africa Cup of Nations titles does Ghana have?",
+      "options": [
+        "3",
+        "2",
+        "5",
+        "4"
+      ],
+      "answerIndex": 3,
+      "explanation": "Four titles, the most recent in 1982."
+    },
+    {
+      "id": 2065,
+      "level": 7,
+      "question": "Who won the 2011 Copa America?",
+      "options": [
+        "Uruguay",
+        "Brazil",
+        "Argentina",
+        "Paraguay"
+      ],
+      "answerIndex": 0,
+      "explanation": "A then-record fifteenth title for Uruguay."
+    },
+    {
+      "id": 2066,
+      "level": 7,
+      "question": "What was special about the 2016 Copa America?",
+      "options": [
+        "It was held in Europe",
+        "A one-off Centenario edition held in the United States",
+        "20 nations took part",
+        "Its final was cancelled"
+      ],
+      "answerIndex": 1,
+      "explanation": "A special extra edition to mark the tournament's hundredth anniversary."
+    },
+    {
+      "id": 2067,
+      "level": 7,
+      "question": "What was the scoreline when Spain won the Euro 2012 final?",
+      "options": [
+        "2-0",
+        "3-1",
+        "4-0",
+        "1-0"
+      ],
+      "answerIndex": 2,
+      "explanation": "The biggest win in the history of the tournament's finals."
+    },
+    {
+      "id": 2068,
+      "level": 7,
+      "question": "Which side won three major tournaments in a row between 2008 and 2012?",
+      "options": [
+        "Germany",
+        "Italy",
+        "Brazil",
+        "Spain"
+      ],
+      "answerIndex": 3,
+      "explanation": "Euro 2008, then the 2010 World Cup, then Euro 2012."
+    },
+    {
+      "id": 2069,
+      "level": 7,
+      "question": "Who has made the most appearances at the European Championship finals?",
+      "options": [
+        "Gianluigi Buffon",
+        "Cristiano Ronaldo",
+        "Pepe",
+        "Toni Kroos"
+      ],
+      "answerIndex": 1,
+      "explanation": "Ronaldo played in six straight editions between 2004 and 2024."
+    },
+    {
+      "id": 2070,
+      "level": 7,
+      "question": "How many European Championships has Cristiano Ronaldo played in?",
+      "options": [
+        "4",
+        "5",
+        "7",
+        "6"
+      ],
+      "answerIndex": 3,
+      "explanation": "From 2004 to 2024, a tournament record."
+    },
+    {
+      "id": 2071,
+      "level": 8,
+      "question": "Which was the last team to win the European Championship on home soil?",
+      "options": [
+        "England 1996",
+        "France 1984",
+        "Portugal 2004",
+        "Italy 1968"
+      ],
+      "answerIndex": 1,
+      "explanation": "It hasn't happened again since Platini's tournament in 1984."
+    },
+    {
+      "id": 2072,
+      "level": 8,
+      "question": "Who scored Greece's winning goal in the 2004 final?",
+      "options": [
+        "Theodoros Zagorakis",
+        "Dimitris Papadopoulos",
+        "Traianos Dellas",
+        "Angelos Charisteas"
+      ],
+      "answerIndex": 3,
+      "explanation": "Charisteas headed it in in the 57th minute."
+    },
+    {
+      "id": 2073,
+      "level": 8,
+      "question": "Who managed Greece at Euro 2004?",
+      "options": [
+        "Claudio Ranieri",
+        "Fernando Santos",
+        "Otto Rehhagel",
+        "Dick Advocaat"
+      ],
+      "answerIndex": 2,
+      "explanation": "German coach Rehhagel built a famously stubborn defence."
+    },
+    {
+      "id": 2074,
+      "level": 8,
+      "question": "How many teams took part in the Euro 1960 finals?",
+      "options": [
+        "6",
+        "8",
+        "16",
+        "4"
+      ],
+      "answerIndex": 3,
+      "explanation": "In its early editions, the finals were just a four-team mini-tournament."
+    },
+    {
+      "id": 2075,
+      "level": 8,
+      "question": "When did the European Championship expand to 24 teams?",
+      "options": [
+        "2008",
+        "2012",
+        "2016",
+        "2020"
+      ],
+      "answerIndex": 2,
+      "explanation": "The expansion began at the 2016 edition in France."
+    },
+    {
+      "id": 2076,
+      "level": 8,
+      "question": "Who won the 1993 Copa America?",
+      "options": [
+        "Argentina",
+        "Brazil",
+        "Mexico",
+        "Colombia"
+      ],
+      "answerIndex": 0,
+      "explanation": "A title that preceded a long drought lasting until 2021."
+    },
+    {
+      "id": 2077,
+      "level": 8,
+      "question": "How many years passed between Argentina's Copa America titles in 1993 and 2021?",
+      "options": [
+        "24",
+        "26",
+        "30",
+        "28"
+      ],
+      "answerIndex": 3,
+      "explanation": "Twenty-eight years of waiting ended at the Maracana."
+    },
+    {
+      "id": 2078,
+      "level": 8,
+      "question": "Who won the 2012 Africa Cup of Nations?",
+      "options": [
+        "Ivory Coast",
+        "Zambia",
+        "Ghana",
+        "Mali"
+      ],
+      "answerIndex": 1,
+      "explanation": "Zambia won on penalties against Ivory Coast."
+    },
+    {
+      "id": 2079,
+      "level": 8,
+      "question": "Why was Zambia's 2012 win especially moving?",
+      "options": [
+        "It was their first appearance",
+        "They played with ten men",
+        "The final was held near the site of their 1993 plane disaster",
+        "They won without conceding a goal"
+      ],
+      "answerIndex": 2,
+      "explanation": "The final was held in Libreville, where their team's plane had gone down 19 years earlier."
+    },
+    {
+      "id": 2080,
+      "level": 8,
+      "question": "Who won the 2015 Asian Cup?",
+      "options": [
+        "South Korea",
+        "United Arab Emirates",
+        "Japan",
+        "Australia"
+      ],
+      "answerIndex": 3,
+      "explanation": "Australia's first title, won on home soil."
+    },
+    {
+      "id": 2081,
+      "level": 9,
+      "question": "When did Australia move from the Oceania confederation to the Asian confederation?",
+      "options": [
+        "2002",
+        "2010",
+        "2006",
+        "1998"
+      ],
+      "answerIndex": 2,
+      "explanation": "The move gave them a stronger path to World Cup qualification."
+    },
+    {
+      "id": 2082,
+      "level": 9,
+      "question": "Which side won the Asian Cup in both 2000 and 2004?",
+      "options": [
+        "South Korea",
+        "Japan",
+        "Iran",
+        "China"
+      ],
+      "answerIndex": 1,
+      "explanation": "Back-to-back titles for Japan in a golden era."
+    },
+    {
+      "id": 2083,
+      "level": 9,
+      "question": "How many Asian Cup titles does Iran have?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "1"
+      ],
+      "answerIndex": 1,
+      "explanation": "Three straight titles in 1968, 1972 and 1976."
+    },
+    {
+      "id": 2084,
+      "level": 9,
+      "question": "Who won the first CONCACAF Gold Cup in 1991?",
+      "options": [
+        "Mexico",
+        "Costa Rica",
+        "Honduras",
+        "United States"
+      ],
+      "answerIndex": 3,
+      "explanation": "The United States won the inaugural edition."
+    },
+    {
+      "id": 2085,
+      "level": 9,
+      "question": "Which side has won the OFC Nations Cup the most times?",
+      "options": [
+        "New Zealand",
+        "Tahiti",
+        "Solomon Islands",
+        "Fiji"
+      ],
+      "answerIndex": 0,
+      "explanation": "New Zealand is the tournament's biggest force."
+    },
+    {
+      "id": 2086,
+      "level": 9,
+      "question": "Which two nations from outside South America have traditionally been invited as guests to the Copa America?",
+      "options": [
+        "United States and Canada",
+        "Mexico and Japan",
+        "Spain and Portugal",
+        "Australia and South Korea"
+      ],
+      "answerIndex": 1,
+      "explanation": "They were repeatedly invited to fill out the field."
+    },
+    {
+      "id": 2087,
+      "level": 9,
+      "question": "Which guest nation has reached the Copa America final twice?",
+      "options": [
+        "Mexico",
+        "Japan",
+        "United States",
+        "Costa Rica"
+      ],
+      "answerIndex": 0,
+      "explanation": "Mexico lost the 1993 and 2001 finals."
+    },
+    {
+      "id": 2088,
+      "level": 9,
+      "question": "Where was the final of the first European Championship in 1960 held?",
+      "options": [
+        "Rome",
+        "London",
+        "Madrid",
+        "Paris"
+      ],
+      "answerIndex": 3,
+      "explanation": "It was held at the Parc des Princes in Paris."
+    },
+    {
+      "id": 2089,
+      "level": 9,
+      "question": "Who was the Soviet Union's goalkeeper when they won the 1960 title?",
+      "options": [
+        "Anatoliy Bashashkin",
+        "Rinat Dasayev",
+        "Lev Yashin",
+        "Viktor Ponedelnik"
+      ],
+      "answerIndex": 2,
+      "explanation": "The \"Black Spider\" at the peak of his powers."
+    },
+    {
+      "id": 2090,
+      "level": 9,
+      "question": "How many goals has Cristiano Ronaldo scored at the European Championship finals?",
+      "options": [
+        "11",
+        "12",
+        "16",
+        "14"
+      ],
+      "answerIndex": 3,
+      "explanation": "A record total, ahead of Michel Platini."
+    },
+    {
+      "id": 2091,
+      "level": 10,
+      "question": "Who is the Copa America's all-time top scorer?",
+      "options": [
+        "Lionel Messi",
+        "Pele",
+        "Norberto Mendez and Zizinho",
+        "Gabriel Batistuta"
+      ],
+      "answerIndex": 2,
+      "explanation": "They share the top spot with seventeen goals each."
+    },
+    {
+      "id": 2092,
+      "level": 10,
+      "question": "Who won the 1996 Africa Cup of Nations?",
+      "options": [
+        "Ghana",
+        "Tunisia",
+        "Zambia",
+        "South Africa"
+      ],
+      "answerIndex": 3,
+      "explanation": "South Africa won on home soil in their first appearance after the end of apartheid."
+    },
+    {
+      "id": 2093,
+      "level": 10,
+      "question": "Who won the 2002 Africa Cup of Nations?",
+      "options": [
+        "Cameroon",
+        "Senegal",
+        "Nigeria",
+        "Mali"
+      ],
+      "answerIndex": 0,
+      "explanation": "A second straight title for Cameroon, won on penalties."
+    },
+    {
+      "id": 2094,
+      "level": 10,
+      "question": "How many teams took part in the first Africa Cup of Nations in 1957?",
+      "options": [
+        "4",
+        "3",
+        "6",
+        "8"
+      ],
+      "answerIndex": 1,
+      "explanation": "Just three teams, after a fourth was excluded."
+    },
+    {
+      "id": 2095,
+      "level": 10,
+      "question": "Why was South Africa excluded from the 1957 edition?",
+      "options": [
+        "They refused to field non-white players under apartheid",
+        "They withdrew for financial reasons",
+        "They registered too late",
+        "A FIFA punishment"
+      ],
+      "answerIndex": 0,
+      "explanation": "The first sporting exclusion caused by apartheid policy."
+    },
+    {
+      "id": 2096,
+      "level": 10,
+      "question": "Who is the youngest player to score at a European Championship finals?",
+      "options": [
+        "Wayne Rooney",
+        "Kylian Mbappe",
+        "Rinaldo",
+        "Lamine Yamal"
+      ],
+      "answerIndex": 3,
+      "explanation": "Yamal scored in the 2024 semi-final against France aged 16."
+    },
+    {
+      "id": 2097,
+      "level": 10,
+      "question": "Who was the oldest player ever to appear at a European Championship finals, before Pepe broke his record at Euro 2024?",
+      "options": [
+        "Lothar Matthaus",
+        "Gianluigi Buffon",
+        "Gabor Kiraly",
+        "Peter Schmeichel"
+      ],
+      "answerIndex": 2,
+      "explanation": "The Hungarian goalkeeper played in 2016 aged 40, in his famous grey tracksuit bottoms."
+    },
+    {
+      "id": 2098,
+      "level": 10,
+      "question": "Which side lost the European Championship finals of 1976, 1992 and 2008?",
+      "options": [
+        "Portugal",
+        "Belgium",
+        "Soviet Union",
+        "Germany"
+      ],
+      "answerIndex": 3,
+      "explanation": "Germany lost to Czechoslovakia, then Denmark, then Spain."
+    },
+    {
+      "id": 2099,
+      "level": 10,
+      "question": "Who managed Portugal at Euro 2016?",
+      "options": [
+        "Paulo Bento",
+        "Roberto Martinez",
+        "Fernando Santos",
+        "Carlos Queiroz"
+      ],
+      "answerIndex": 2,
+      "explanation": "Santos led Portugal to the first major title in their history."
+    },
+    {
+      "id": 2100,
+      "level": 10,
+      "question": "Which side lost the Euro 2020 final on penalties on home soil?",
+      "options": [
+        "Italy",
+        "Spain",
+        "Denmark",
+        "England"
+      ],
+      "answerIndex": 3,
+      "explanation": "England lost to Italy at Wembley."
+    }
+  ]
+}

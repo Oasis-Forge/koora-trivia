@@ -1,0 +1,1306 @@
+{
+  "version": 2,
+  "category": "coaches",
+  "questions": [
+    {
+      "id": 8001,
+      "level": 1,
+      "question": "Who managed Barcelona during the \"tiki-taka\" era between 2008 and 2012?",
+      "options": [
+        "Luis Enrique",
+        "Tito Vilanova",
+        "Pep Guardiola",
+        "Frank Rijkaard"
+      ],
+      "answerIndex": 2,
+      "explanation": "He led the team to fourteen trophies in four years."
+    },
+    {
+      "id": 8002,
+      "level": 1,
+      "question": "Which manager is nicknamed \"The Special One\"?",
+      "options": [
+        "Carlo Ancelotti",
+        "Jose Mourinho",
+        "Jurgen Klopp",
+        "Antonio Conte"
+      ],
+      "answerIndex": 1,
+      "explanation": "He gave himself the nickname when he arrived at Chelsea in 2004."
+    },
+    {
+      "id": 8003,
+      "level": 1,
+      "question": "What is Pep Guardiola's nationality?",
+      "options": [
+        "Italian",
+        "Spanish",
+        "Portuguese",
+        "Argentine"
+      ],
+      "answerIndex": 1,
+      "explanation": "He was born in Catalonia and played for Barcelona before managing them."
+    },
+    {
+      "id": 8004,
+      "level": 1,
+      "question": "What is Jurgen Klopp's nationality?",
+      "options": [
+        "Swiss",
+        "Austrian",
+        "Dutch",
+        "German"
+      ],
+      "answerIndex": 3,
+      "explanation": "He managed Mainz, Dortmund and Liverpool."
+    },
+    {
+      "id": 8005,
+      "level": 1,
+      "question": "Which club did Alex Ferguson manage for more than 25 years?",
+      "options": [
+        "Liverpool",
+        "Manchester United",
+        "Arsenal",
+        "Chelsea"
+      ],
+      "answerIndex": 1,
+      "explanation": "From 1986 until his retirement in 2013."
+    },
+    {
+      "id": 8006,
+      "level": 1,
+      "question": "Who managed Liverpool between 2015 and 2024?",
+      "options": [
+        "Brendan Rodgers",
+        "Rafael Benitez",
+        "Jurgen Klopp",
+        "Arne Slot"
+      ],
+      "answerIndex": 2,
+      "explanation": "Klopp brought the club back to the top of England and Europe."
+    },
+    {
+      "id": 8007,
+      "level": 1,
+      "question": "What is Jose Mourinho's nationality?",
+      "options": [
+        "Spanish",
+        "Portuguese",
+        "Brazilian",
+        "Italian"
+      ],
+      "answerIndex": 1,
+      "explanation": "He started his career as an interpreter for Bobby Robson at Porto and Barcelona."
+    },
+    {
+      "id": 8008,
+      "level": 1,
+      "question": "Who took charge of Manchester City in 2016?",
+      "options": [
+        "Manuel Pellegrini",
+        "Antonio Conte",
+        "Roberto Mancini",
+        "Pep Guardiola"
+      ],
+      "answerIndex": 3,
+      "explanation": "He led the club to consecutive titles and a historic treble in 2023."
+    },
+    {
+      "id": 8009,
+      "level": 1,
+      "question": "What is Carlo Ancelotti's nationality?",
+      "options": [
+        "Italian",
+        "French",
+        "Spanish",
+        "Portuguese"
+      ],
+      "answerIndex": 0,
+      "explanation": "He played for Milan and Roma before his long managerial career."
+    },
+    {
+      "id": 8010,
+      "level": 1,
+      "question": "Who managed Arsenal between 1996 and 2018?",
+      "options": [
+        "George Graham",
+        "Unai Emery",
+        "Mikel Arteta",
+        "Arsene Wenger"
+      ],
+      "answerIndex": 3,
+      "explanation": "He transformed the club's diet and training culture completely."
+    },
+    {
+      "id": 8011,
+      "level": 2,
+      "question": "What is Arsene Wenger's nationality?",
+      "options": [
+        "English",
+        "Belgian",
+        "French",
+        "Swiss"
+      ],
+      "answerIndex": 2,
+      "explanation": "He was nicknamed \"The Professor\" for his scientific approach to coaching."
+    },
+    {
+      "id": 8012,
+      "level": 2,
+      "question": "Who managed Real Madrid to three consecutive European titles from 2016 to 2018?",
+      "options": [
+        "Carlo Ancelotti",
+        "Zinedine Zidane",
+        "Jose Mourinho",
+        "Rafael Benitez"
+      ],
+      "answerIndex": 1,
+      "explanation": "An unprecedented feat in his first major managerial job."
+    },
+    {
+      "id": 8013,
+      "level": 2,
+      "question": "Who has managed Atletico Madrid since 2011?",
+      "options": [
+        "Quique Flores",
+        "Marcelino",
+        "Diego Simeone",
+        "Unai Emery"
+      ],
+      "answerIndex": 2,
+      "explanation": "The longest recent spell of any manager at a big Spanish club."
+    },
+    {
+      "id": 8014,
+      "level": 2,
+      "question": "Who managed the French side that won the 2018 World Cup?",
+      "options": [
+        "Didier Deschamps",
+        "Laurent Blanc",
+        "Raymond Domenech",
+        "Zinedine Zidane"
+      ],
+      "answerIndex": 0,
+      "explanation": "He won the title as a player in 1998 and as a manager in 2018."
+    },
+    {
+      "id": 8015,
+      "level": 2,
+      "question": "Who managed the Argentina side that won the 2022 World Cup?",
+      "options": [
+        "Jorge Sampaoli",
+        "Lionel Scaloni",
+        "Edgardo Bauza",
+        "Gerardo Martino"
+      ],
+      "answerIndex": 1,
+      "explanation": "He led Argentina to the title after a 36-year wait."
+    },
+    {
+      "id": 8016,
+      "level": 2,
+      "question": "Who managed the German side that won the 2014 World Cup?",
+      "options": [
+        "Joachim Low",
+        "Jurgen Klinsmann",
+        "Hansi Flick",
+        "Oliver Bierhoff"
+      ],
+      "answerIndex": 0,
+      "explanation": "He built a long-term project that started back in 2006."
+    },
+    {
+      "id": 8017,
+      "level": 2,
+      "question": "Who managed the Spanish side that won the 2010 World Cup?",
+      "options": [
+        "Luis Aragones",
+        "Vicente del Bosque",
+        "Luis Enrique",
+        "Julen Lopetegui"
+      ],
+      "answerIndex": 1,
+      "explanation": "He led Spain's golden generation to their first World title."
+    },
+    {
+      "id": 8018,
+      "level": 2,
+      "question": "Who managed the Spanish side that won Euro 2008?",
+      "options": [
+        "Javier Clemente",
+        "Vicente del Bosque",
+        "Luis Aragones",
+        "Luis Enrique"
+      ],
+      "answerIndex": 2,
+      "explanation": "Aragones laid the foundations of Spain's style of play."
+    },
+    {
+      "id": 8019,
+      "level": 2,
+      "question": "Who managed Inter Milan to their historic treble in 2010?",
+      "options": [
+        "Roberto Mancini",
+        "Claudio Ranieri",
+        "Rafael Benitez",
+        "Jose Mourinho"
+      ],
+      "answerIndex": 3,
+      "explanation": "The club's only treble to date."
+    },
+    {
+      "id": 8020,
+      "level": 2,
+      "question": "Which Italian manager has coached Inter, Chelsea, Tottenham and Juventus?",
+      "options": [
+        "Roberto Mancini",
+        "Massimiliano Allegri",
+        "Antonio Conte",
+        "Claudio Ranieri"
+      ],
+      "answerIndex": 2,
+      "explanation": "Known for his three-at-the-back system and strict discipline."
+    },
+    {
+      "id": 8021,
+      "level": 3,
+      "question": "Who managed Manchester United straight after Alex Ferguson's retirement?",
+      "options": [
+        "Louis van Gaal",
+        "Ryan Giggs",
+        "Jose Mourinho",
+        "David Moyes"
+      ],
+      "answerIndex": 3,
+      "explanation": "He did not finish his first season despite being Ferguson's personal choice."
+    },
+    {
+      "id": 8022,
+      "level": 3,
+      "question": "Who managed the Italian side that won the 2006 World Cup?",
+      "options": [
+        "Cesare Prandelli",
+        "Roberto Donadoni",
+        "Giovanni Trapattoni",
+        "Marcello Lippi"
+      ],
+      "answerIndex": 3,
+      "explanation": "He led Italy to their fourth World title."
+    },
+    {
+      "id": 8023,
+      "level": 3,
+      "question": "Who managed the Italian side that won Euro 2020?",
+      "options": [
+        "Antonio Conte",
+        "Luciano Spalletti",
+        "Gian Piero Ventura",
+        "Roberto Mancini"
+      ],
+      "answerIndex": 3,
+      "explanation": "He rebuilt the national team after they failed to qualify for the 2018 World Cup."
+    },
+    {
+      "id": 8024,
+      "level": 3,
+      "question": "Who managed the Spanish side that won Euro 2024?",
+      "options": [
+        "Luis Enrique",
+        "Robert Moreno",
+        "Luis de la Fuente",
+        "Julen Lopetegui"
+      ],
+      "answerIndex": 2,
+      "explanation": "He led a young generation to Spain's fourth European title."
+    },
+    {
+      "id": 8025,
+      "level": 3,
+      "question": "Who is credited as the architect of Dutch \"Total Football\"?",
+      "options": [
+        "Johan Cruyff",
+        "Rinus Michels",
+        "Louis van Gaal",
+        "Guus Hiddink"
+      ],
+      "answerIndex": 1,
+      "explanation": "He applied it with Ajax and the Netherlands in the early 1970s."
+    },
+    {
+      "id": 8026,
+      "level": 3,
+      "question": "Who managed Milan during the era of the Dutch trio in the late 1980s?",
+      "options": [
+        "Nils Liedholm",
+        "Fabio Capello",
+        "Arrigo Sacchi",
+        "Carlo Ancelotti"
+      ],
+      "answerIndex": 2,
+      "explanation": "Sacchi revolutionised tactics with high pressing and a high defensive line."
+    },
+    {
+      "id": 8027,
+      "level": 3,
+      "question": "Who succeeded Arrigo Sacchi at Milan and won consecutive titles?",
+      "options": [
+        "Ancelotti",
+        "Fabio Capello",
+        "Zaccheroni",
+        "Tabarez"
+      ],
+      "answerIndex": 1,
+      "explanation": "He led Milan to a long unbeaten run in Serie A."
+    },
+    {
+      "id": 8028,
+      "level": 3,
+      "question": "What is Diego Simeone's nationality?",
+      "options": [
+        "Spanish",
+        "Uruguayan",
+        "Argentine",
+        "Chilean"
+      ],
+      "answerIndex": 2,
+      "explanation": "He played for Atletico Madrid before managing them."
+    },
+    {
+      "id": 8029,
+      "level": 3,
+      "question": "Which German manager is known for his high-pressing \"Gegenpressing\" style?",
+      "options": [
+        "Felix Magath",
+        "Joachim Low",
+        "Ottmar Hitzfeld",
+        "Jurgen Klopp"
+      ],
+      "answerIndex": 3,
+      "explanation": "His style was once described as \"the best playmaker in the world\"."
+    },
+    {
+      "id": 8030,
+      "level": 3,
+      "question": "Who managed Bayern Munich to their 2013 treble?",
+      "options": [
+        "Ottmar Hitzfeld",
+        "Pep Guardiola",
+        "Louis van Gaal",
+        "Jupp Heynckes"
+      ],
+      "answerIndex": 3,
+      "explanation": "The first treble in German football history."
+    },
+    {
+      "id": 8031,
+      "level": 4,
+      "question": "Which Dutch manager coached Barcelona, Bayern Munich and Manchester United?",
+      "options": [
+        "Ronald Koeman",
+        "Frank Rijkaard",
+        "Louis van Gaal",
+        "Erik ten Hag"
+      ],
+      "answerIndex": 2,
+      "explanation": "One of the most influential figures in the Dutch coaching school."
+    },
+    {
+      "id": 8032,
+      "level": 4,
+      "question": "Who managed Porto to the 2004 Champions League title?",
+      "options": [
+        "Andre Villas-Boas",
+        "Vitor Pereira",
+        "Jose Mourinho",
+        "Sergio Conceicao"
+      ],
+      "answerIndex": 2,
+      "explanation": "The shock success that launched his global career."
+    },
+    {
+      "id": 8033,
+      "level": 4,
+      "question": "Who managed Bayern Munich to their 2020 treble?",
+      "options": [
+        "Niko Kovac",
+        "Julian Nagelsmann",
+        "Hansi Flick",
+        "Thomas Tuchel"
+      ],
+      "answerIndex": 2,
+      "explanation": "He took the job on an interim basis and then won six trophies in one year."
+    },
+    {
+      "id": 8034,
+      "level": 4,
+      "question": "Who managed Chelsea to the 2021 Champions League title?",
+      "options": [
+        "Frank Lampard",
+        "Antonio Conte",
+        "Maurizio Sarri",
+        "Thomas Tuchel"
+      ],
+      "answerIndex": 3,
+      "explanation": "He took over mid-season and turned results around."
+    },
+    {
+      "id": 8035,
+      "level": 4,
+      "question": "Who managed Greece to their Euro 2004 title?",
+      "options": [
+        "Fernando Santos",
+        "Otto Rehhagel",
+        "Claudio Ranieri",
+        "Dick Advocaat"
+      ],
+      "answerIndex": 1,
+      "explanation": "He built a defensive system that became legendary."
+    },
+    {
+      "id": 8036,
+      "level": 4,
+      "question": "Who managed Portugal to their Euro 2016 title?",
+      "options": [
+        "Roberto Martinez",
+        "Fernando Santos",
+        "Paulo Bento",
+        "Carlos Queiroz"
+      ],
+      "answerIndex": 1,
+      "explanation": "Portugal's first ever major title."
+    },
+    {
+      "id": 8037,
+      "level": 4,
+      "question": "Who managed the Brazil side that won the 2002 World Cup?",
+      "options": [
+        "Luiz Felipe Scolari",
+        "Carlos Alberto Parreira",
+        "Dunga",
+        "Tite"
+      ],
+      "answerIndex": 0,
+      "explanation": "He led the generation of Ronaldo, Rivaldo and Ronaldinho."
+    },
+    {
+      "id": 8038,
+      "level": 4,
+      "question": "Who managed the Brazil side that won the 1994 World Cup?",
+      "options": [
+        "Carlos Alberto Parreira",
+        "Luiz Felipe Scolari",
+        "Mario Zagallo",
+        "Telê Santana"
+      ],
+      "answerIndex": 0,
+      "explanation": "He ended a 24-year wait for Brazil."
+    },
+    {
+      "id": 8039,
+      "level": 4,
+      "question": "Who managed the Argentina side that won the 1986 World Cup?",
+      "options": [
+        "Cesar Luis Menotti",
+        "Carlos Bilardo",
+        "Daniel Passarella",
+        "Alfio Basile"
+      ],
+      "answerIndex": 1,
+      "explanation": "He built the team around Maradona with a three-at-the-back system."
+    },
+    {
+      "id": 8040,
+      "level": 4,
+      "question": "Who managed the Argentina side that won the 1978 World Cup?",
+      "options": [
+        "Juan Carlos Lorenzo",
+        "Carlos Bilardo",
+        "Cesar Luis Menotti",
+        "Osvaldo Zubeldia"
+      ],
+      "answerIndex": 2,
+      "explanation": "His attacking philosophy stood in contrast to Bilardo's school."
+    },
+    {
+      "id": 8041,
+      "level": 5,
+      "question": "Who managed Liverpool to three European Cups between 1977 and 1981?",
+      "options": [
+        "Bob Paisley",
+        "Bill Shankly",
+        "Joe Fagan",
+        "Kenny Dalglish"
+      ],
+      "answerIndex": 0,
+      "explanation": "The most successful manager in the club's European history."
+    },
+    {
+      "id": 8042,
+      "level": 5,
+      "question": "Which manager laid the foundations of the modern Liverpool club in the 1960s?",
+      "options": [
+        "Bill Shankly",
+        "Bob Paisley",
+        "Matt Busby",
+        "Bill Nicholson"
+      ],
+      "answerIndex": 0,
+      "explanation": "He took the club from the second division to the top of England."
+    },
+    {
+      "id": 8043,
+      "level": 5,
+      "question": "Who managed Manchester United to their first European Cup in 1968?",
+      "options": [
+        "Alex Ferguson",
+        "Matt Busby",
+        "Ron Atkinson",
+        "Tony Barton"
+      ],
+      "answerIndex": 1,
+      "explanation": "It came ten years after the Munich air disaster."
+    },
+    {
+      "id": 8044,
+      "level": 5,
+      "question": "Who managed Nottingham Forest to their European Cups in 1979 and 1980?",
+      "options": [
+        "Brian Clough",
+        "Peter Taylor",
+        "Bill Nicholson",
+        "Don Revie"
+      ],
+      "answerIndex": 0,
+      "explanation": "One of England's most divisive and admired managers."
+    },
+    {
+      "id": 8045,
+      "level": 5,
+      "question": "Who managed England to the 1966 World Cup title?",
+      "options": [
+        "Walter Winterbottom",
+        "Bobby Robson",
+        "Ron Greenwood",
+        "Alf Ramsey"
+      ],
+      "answerIndex": 3,
+      "explanation": "His side were nicknamed \"the wingless wonders\"."
+    },
+    {
+      "id": 8046,
+      "level": 5,
+      "question": "Who managed Ajax to their three consecutive European Cups in the 1970s?",
+      "options": [
+        "Louis van Gaal",
+        "Rinus Michels and Stefan Kovacs",
+        "Johan Cruyff",
+        "Leo Beenhakker"
+      ],
+      "answerIndex": 1,
+      "explanation": "Michels started the run and the Romanian Kovacs completed it."
+    },
+    {
+      "id": 8047,
+      "level": 5,
+      "question": "Who managed Ajax to their 1995 European Cup title?",
+      "options": [
+        "Johan Cruyff",
+        "Rinus Michels",
+        "Louis van Gaal",
+        "Frank Rijkaard"
+      ],
+      "answerIndex": 2,
+      "explanation": "A young side including Kluivert, Davids and Seedorf."
+    },
+    {
+      "id": 8048,
+      "level": 5,
+      "question": "What is Marcelo Bielsa's nationality?",
+      "options": [
+        "Chilean",
+        "Brazilian",
+        "Uruguayan",
+        "Argentine"
+      ],
+      "answerIndex": 3,
+      "explanation": "Nicknamed \"El Loco\", he shaped an entire generation of coaches."
+    },
+    {
+      "id": 8049,
+      "level": 5,
+      "question": "Which manager do Guardiola and Simeone both cite as a major inspiration?",
+      "options": [
+        "Marcelo Bielsa",
+        "Carlos Bilardo",
+        "Cesar Menotti",
+        "Osvaldo Ardiles"
+      ],
+      "answerIndex": 0,
+      "explanation": "His ideas shaped high pressing and rapid transitions."
+    },
+    {
+      "id": 8050,
+      "level": 5,
+      "question": "Who managed the Netherlands in the 2010 World Cup final?",
+      "options": [
+        "Marco van Basten",
+        "Louis van Gaal",
+        "Bert van Marwijk",
+        "Danny Blind"
+      ],
+      "answerIndex": 2,
+      "explanation": "They lost the final to Spain in extra time."
+    },
+    {
+      "id": 8051,
+      "level": 6,
+      "question": "Which manager is nicknamed \"Il Trap\" in Italy?",
+      "options": [
+        "Nereo Rocco",
+        "Giovanni Trapattoni",
+        "Marcello Lippi",
+        "Arrigo Sacchi"
+      ],
+      "answerIndex": 1,
+      "explanation": "The most successful manager in Serie A history by trophy count."
+    },
+    {
+      "id": 8052,
+      "level": 6,
+      "question": "Which Argentine coach devised the \"catenaccio\" system at Inter?",
+      "options": [
+        "Carlo Baretti",
+        "Nereo Rocco",
+        "Giovanni Trapattoni",
+        "Helenio Herrera"
+      ],
+      "answerIndex": 3,
+      "explanation": "He led Inter to two European titles in the 1960s with strict defensive football."
+    },
+    {
+      "id": 8053,
+      "level": 6,
+      "question": "What does the term \"catenaccio\" mean?",
+      "options": [
+        "High press",
+        "Short passing",
+        "The bolt, or defensive lock",
+        "Total attack"
+      ],
+      "answerIndex": 2,
+      "explanation": "An Italian system built on a tight defence and swift counterattacks."
+    },
+    {
+      "id": 8054,
+      "level": 6,
+      "question": "Who managed the German side that won the 1990 World Cup?",
+      "options": [
+        "Franz Beckenbauer",
+        "Berti Vogts",
+        "Jupp Derwall",
+        "Helmut Schon"
+      ],
+      "answerIndex": 0,
+      "explanation": "He won the title as a player in 1974 and as manager in 1990."
+    },
+    {
+      "id": 8055,
+      "level": 6,
+      "question": "Who managed West Germany to their 1972 and 1974 titles?",
+      "options": [
+        "Sepp Herberger",
+        "Helmut Schon",
+        "Jupp Derwall",
+        "Franz Beckenbauer"
+      ],
+      "answerIndex": 1,
+      "explanation": "He led the golden generation captained by Beckenbauer and Muller."
+    },
+    {
+      "id": 8056,
+      "level": 6,
+      "question": "Who managed West Germany to the \"Miracle of Bern\" in 1954?",
+      "options": [
+        "Sepp Herberger",
+        "Helmut Schon",
+        "Otto Nerz",
+        "Jupp Derwall"
+      ],
+      "answerIndex": 0,
+      "explanation": "Germany's first World title after the war."
+    },
+    {
+      "id": 8057,
+      "level": 6,
+      "question": "Which manager took five different national teams to the World Cup finals?",
+      "options": [
+        "Carlos Queiroz",
+        "Sven-Goran Eriksson",
+        "Bora Milutinovic",
+        "Guus Hiddink"
+      ],
+      "answerIndex": 2,
+      "explanation": "He reached the second round with almost every side he coached."
+    },
+    {
+      "id": 8058,
+      "level": 6,
+      "question": "Who managed South Korea to their surprise run at the 2002 World Cup?",
+      "options": [
+        "Dick Advocaat",
+        "Guus Hiddink",
+        "Pim Verbeek",
+        "Bora Milutinovic"
+      ],
+      "answerIndex": 1,
+      "explanation": "He led South Korea to the semi-finals on home soil."
+    },
+    {
+      "id": 8059,
+      "level": 6,
+      "question": "Who managed Juventus to the 1996 Champions League title?",
+      "options": [
+        "Giovanni Trapattoni",
+        "Marcello Lippi",
+        "Carlo Ancelotti",
+        "Fabio Capello"
+      ],
+      "answerIndex": 1,
+      "explanation": "He beat Ajax on penalties in Rome."
+    },
+    {
+      "id": 8060,
+      "level": 6,
+      "question": "Who managed Barcelona to their first European title in 1992?",
+      "options": [
+        "Terry Venables",
+        "Louis van Gaal",
+        "Bobby Robson",
+        "Johan Cruyff"
+      ],
+      "answerIndex": 3,
+      "explanation": "He built the \"Dream Team\" and shaped the club's philosophy."
+    },
+    {
+      "id": 8061,
+      "level": 7,
+      "question": "Who managed Barcelona to their 2015 Champions League title?",
+      "options": [
+        "Tito Vilanova",
+        "Luis Enrique",
+        "Gerardo Martino",
+        "Ernesto Valverde"
+      ],
+      "answerIndex": 1,
+      "explanation": "The club's second treble, led by their famous attacking trio."
+    },
+    {
+      "id": 8062,
+      "level": 7,
+      "question": "Who managed Real Madrid to \"La Decima\" in 2014?",
+      "options": [
+        "Rafael Benitez",
+        "Jose Mourinho",
+        "Zinedine Zidane",
+        "Carlo Ancelotti"
+      ],
+      "answerIndex": 3,
+      "explanation": "Their tenth European title after a twelve-year wait."
+    },
+    {
+      "id": 8063,
+      "level": 7,
+      "question": "Who managed Real Madrid to their 2002 European title?",
+      "options": [
+        "Jose Antonio Camacho",
+        "Vicente del Bosque",
+        "John Toshack",
+        "Fabio Capello"
+      ],
+      "answerIndex": 1,
+      "explanation": "The Galacticos era at its peak."
+    },
+    {
+      "id": 8064,
+      "level": 7,
+      "question": "Who managed Borussia Dortmund to their 1997 European title?",
+      "options": [
+        "Jurgen Klopp",
+        "Matthias Sammer",
+        "Thomas Tuchel",
+        "Ottmar Hitzfeld"
+      ],
+      "answerIndex": 3,
+      "explanation": "He beat holders Juventus in Munich."
+    },
+    {
+      "id": 8065,
+      "level": 7,
+      "question": "Which manager won the Champions League with both Dortmund and Bayern Munich?",
+      "options": [
+        "Jurgen Klopp",
+        "Jupp Heynckes",
+        "Louis van Gaal",
+        "Ottmar Hitzfeld"
+      ],
+      "answerIndex": 3,
+      "explanation": "One of very few to win the title with two German clubs."
+    },
+    {
+      "id": 8066,
+      "level": 7,
+      "question": "Who managed Valencia in the 2000 and 2001 European finals?",
+      "options": [
+        "Claudio Ranieri",
+        "Rafael Benitez",
+        "Hector Cuper",
+        "Quique Flores"
+      ],
+      "answerIndex": 2,
+      "explanation": "He lost both finals despite building a very strong side."
+    },
+    {
+      "id": 8067,
+      "level": 7,
+      "question": "Who managed Liverpool on the famous night in Istanbul in 2005?",
+      "options": [
+        "Gerard Houllier",
+        "Rafael Benitez",
+        "Roy Evans",
+        "Kenny Dalglish"
+      ],
+      "answerIndex": 1,
+      "explanation": "His second-half changes turned the match around."
+    },
+    {
+      "id": 8068,
+      "level": 7,
+      "question": "Who managed Milan in the 2003 and 2007 European finals?",
+      "options": [
+        "Massimiliano Allegri",
+        "Alberto Zaccheroni",
+        "Leonardo",
+        "Carlo Ancelotti"
+      ],
+      "answerIndex": 3,
+      "explanation": "He won both, having also lost the 2005 final."
+    },
+    {
+      "id": 8069,
+      "level": 7,
+      "question": "What is the nationality of Unai Emery, known for his Europa League titles?",
+      "options": [
+        "Italian",
+        "Portuguese",
+        "Argentine",
+        "Spanish"
+      ],
+      "answerIndex": 3,
+      "explanation": "He won the competition four times, with Sevilla and Villarreal."
+    },
+    {
+      "id": 8070,
+      "level": 7,
+      "question": "Who managed England at the 2018 World Cup and Euro 2020?",
+      "options": [
+        "Roy Hodgson",
+        "Gareth Southgate",
+        "Sam Allardyce",
+        "Fabio Capello"
+      ],
+      "answerIndex": 1,
+      "explanation": "He brought England back to the latter stages after years of disappointment."
+    },
+    {
+      "id": 8071,
+      "level": 8,
+      "question": "Which manager won the World Cup with Brazil as both a player and a coach?",
+      "options": [
+        "Telê Santana",
+        "Carlos Alberto Parreira",
+        "Mario Zagallo",
+        "Dunga"
+      ],
+      "answerIndex": 2,
+      "explanation": "He won as a player in 1958 and 1962, and as manager in 1970."
+    },
+    {
+      "id": 8072,
+      "level": 8,
+      "question": "Who managed the Brazil side that won the 1970 World Cup?",
+      "options": [
+        "Mario Zagallo",
+        "Joao Saldanha",
+        "Telê Santana",
+        "Carlos Alberto"
+      ],
+      "answerIndex": 0,
+      "explanation": "He took charge just months before the tournament."
+    },
+    {
+      "id": 8073,
+      "level": 8,
+      "question": "Who managed the Brazil side at the 1982 World Cup, often called the finest team never to win it?",
+      "options": [
+        "Carlos Alberto Parreira",
+        "Mario Zagallo",
+        "Claudio Coutinho",
+        "Telê Santana"
+      ],
+      "answerIndex": 3,
+      "explanation": "The side of Socrates, Zico and Falcao, knocked out by Italy."
+    },
+    {
+      "id": 8074,
+      "level": 8,
+      "question": "Who managed the Italian side that won the 1982 World Cup?",
+      "options": [
+        "Arrigo Sacchi",
+        "Azeglio Vicini",
+        "Enzo Bearzot",
+        "Ferruccio Valcareggi"
+      ],
+      "answerIndex": 2,
+      "explanation": "He led Italy behind Paolo Rossi, the tournament's top scorer."
+    },
+    {
+      "id": 8075,
+      "level": 8,
+      "question": "Who managed the French side that won the 1998 World Cup?",
+      "options": [
+        "Gerard Houllier",
+        "Roger Lemerre",
+        "Michel Platini",
+        "Aime Jacquet"
+      ],
+      "answerIndex": 3,
+      "explanation": "He built a balanced side around Zidane, Djorkaeff and Deschamps."
+    },
+    {
+      "id": 8076,
+      "level": 8,
+      "question": "Who managed France to their Euro 2000 title?",
+      "options": [
+        "Roger Lemerre",
+        "Aime Jacquet",
+        "Jacques Santini",
+        "Raymond Domenech"
+      ],
+      "answerIndex": 0,
+      "explanation": "He completed the World and European double."
+    },
+    {
+      "id": 8077,
+      "level": 8,
+      "question": "Who managed Denmark's surprise Euro 1992 title?",
+      "options": [
+        "Morten Olsen",
+        "Richard Moller Nielsen",
+        "Bo Johansson",
+        "Sepp Piontek"
+      ],
+      "answerIndex": 1,
+      "explanation": "He led a squad called up just days before the tournament began."
+    },
+    {
+      "id": 8078,
+      "level": 8,
+      "question": "Who managed PSV Eindhoven to their 1988 European title?",
+      "options": [
+        "Guus Hiddink",
+        "Dick Advocaat",
+        "Bobby Robson",
+        "Leo Beenhakker"
+      ],
+      "answerIndex": 0,
+      "explanation": "The start of a long, global managerial career."
+    },
+    {
+      "id": 8079,
+      "level": 8,
+      "question": "Who managed Steaua Bucharest to their 1986 European title?",
+      "options": [
+        "Anghel Iordanescu",
+        "Emerich Jenei",
+        "Mircea Lucescu",
+        "Victor Piturca"
+      ],
+      "answerIndex": 1,
+      "explanation": "The first European title for a club from Eastern Europe."
+    },
+    {
+      "id": 8080,
+      "level": 8,
+      "question": "Which manager won all three major European competitions with different clubs?",
+      "options": [
+        "Giovanni Trapattoni",
+        "Ottmar Hitzfeld",
+        "Arrigo Sacchi",
+        "Louis van Gaal"
+      ],
+      "answerIndex": 0,
+      "explanation": "He won the European Cup, the Cup Winners' Cup and the UEFA Cup."
+    },
+    {
+      "id": 8081,
+      "level": 9,
+      "question": "Who managed Celtic to their 1967 European Cup title?",
+      "options": [
+        "Willie Maley",
+        "Billy McNeill",
+        "Jock Stein",
+        "David Hay"
+      ],
+      "answerIndex": 2,
+      "explanation": "The first British manager to win the competition."
+    },
+    {
+      "id": 8082,
+      "level": 9,
+      "question": "Who managed Aston Villa to their 1982 European Cup title?",
+      "options": [
+        "Tony Barton",
+        "Ron Saunders",
+        "Graham Taylor",
+        "Joe Mercer"
+      ],
+      "answerIndex": 0,
+      "explanation": "He took over mid-season after Saunders resigned."
+    },
+    {
+      "id": 8083,
+      "level": 9,
+      "question": "Who managed Marseille to their 1993 European Cup title?",
+      "options": [
+        "Bernard Tapie",
+        "Gerard Houllier",
+        "Armand de Palmen",
+        "Raymond Goethals"
+      ],
+      "answerIndex": 3,
+      "explanation": "The first title in the competition for a French club."
+    },
+    {
+      "id": 8084,
+      "level": 9,
+      "question": "Who managed Red Star Belgrade to their 1991 title?",
+      "options": [
+        "Ljupko Petrovic",
+        "Dragan Stojkovic",
+        "Vladimir Petrovic",
+        "Bora Milutinovic"
+      ],
+      "answerIndex": 0,
+      "explanation": "The only European title won by a Yugoslav club."
+    },
+    {
+      "id": 8085,
+      "level": 9,
+      "question": "Who managed Hamburg to their 1983 European title?",
+      "options": [
+        "Ernst Happel",
+        "Udo Lattek",
+        "Berti Vogts",
+        "Hennes Weisweiler"
+      ],
+      "answerIndex": 0,
+      "explanation": "The Austrian Happel was one of Europe's most successful coaches of his time."
+    },
+    {
+      "id": 8086,
+      "level": 9,
+      "question": "Who managed Bayern Munich's three consecutive titles in the 1970s?",
+      "options": [
+        "Branko Zebec",
+        "Hennes Weisweiler",
+        "Udo Lattek, then Dettmar Cramer",
+        "Gyula Lorant"
+      ],
+      "answerIndex": 2,
+      "explanation": "Lattek started the run and Cramer completed it."
+    },
+    {
+      "id": 8087,
+      "level": 9,
+      "question": "Who managed Benfica to their 1961 and 1962 European titles?",
+      "options": [
+        "Milorad Pavic",
+        "Otto Gloria",
+        "Fernando Riera",
+        "Bela Guttmann"
+      ],
+      "answerIndex": 3,
+      "explanation": "The manager whose name is linked to the club's famous curse."
+    },
+    {
+      "id": 8088,
+      "level": 9,
+      "question": "Who managed Real Madrid to their first two European titles, in 1956 and 1957?",
+      "options": [
+        "Jose Villalonga",
+        "Helenio Herrera",
+        "Luis Carniglia",
+        "Miguel Munoz"
+      ],
+      "answerIndex": 0,
+      "explanation": "Villalonga won the 1956 and 1957 titles, then Carniglia won in 1958 and 1959, and Munoz won in 1960."
+    },
+    {
+      "id": 8089,
+      "level": 9,
+      "question": "Which manager won the European Cup with Real Madrid as both a player and a coach?",
+      "options": [
+        "Vicente del Bosque",
+        "Fabio Capello",
+        "Miguel Munoz",
+        "Jose Antonio Camacho"
+      ],
+      "answerIndex": 2,
+      "explanation": "The first person to achieve this in the competition's history."
+    },
+    {
+      "id": 8090,
+      "level": 9,
+      "question": "Who managed Feyenoord to their 1970 European title?",
+      "options": [
+        "Ernst Happel",
+        "Rinus Michels",
+        "Leo Beenhakker",
+        "Kor van der Hart"
+      ],
+      "answerIndex": 0,
+      "explanation": "The first Dutch club to win the competition."
+    },
+    {
+      "id": 8091,
+      "level": 10,
+      "question": "Who managed Zambia to the 2012 Africa Cup of Nations title?",
+      "options": [
+        "Patrice Beaumelle",
+        "Herve Renard",
+        "Claude Le Roy",
+        "Florent Ibenge"
+      ],
+      "answerIndex": 1,
+      "explanation": "The Frenchman Renard also led Ivory Coast to the 2015 title."
+    },
+    {
+      "id": 8092,
+      "level": 10,
+      "question": "Which manager won the Africa Cup of Nations with two different national teams?",
+      "options": [
+        "Herve Renard",
+        "Claude Le Roy",
+        "Bruno Metsu",
+        "Hector Cuper"
+      ],
+      "answerIndex": 0,
+      "explanation": "He won with Zambia in 2012 and Ivory Coast in 2015."
+    },
+    {
+      "id": 8093,
+      "level": 10,
+      "question": "Who managed Japan at the 2011 Asian Cup?",
+      "options": [
+        "Vahid Halilhodzic",
+        "Ivica Osim",
+        "Takeshi Okada",
+        "Alberto Zaccheroni"
+      ],
+      "answerIndex": 3,
+      "explanation": "The Italian Zaccheroni led Japan to their fourth title."
+    },
+    {
+      "id": 8094,
+      "level": 10,
+      "question": "Who managed Australia to their 2015 Asian Cup title?",
+      "options": [
+        "Graham Arnold",
+        "Holger Osieck",
+        "Ange Postecoglou",
+        "Pim Verbeek"
+      ],
+      "answerIndex": 2,
+      "explanation": "He later managed Celtic and Tottenham in Europe."
+    },
+    {
+      "id": 8095,
+      "level": 10,
+      "question": "Which Italian manager won the league title with Juventus, Inter and Milan?",
+      "options": [
+        "Roberto Mancini",
+        "Antonio Conte",
+        "Massimiliano Allegri",
+        "Giovanni Trapattoni"
+      ],
+      "answerIndex": 3,
+      "explanation": "One of the broadest managerial records in Italian football history."
+    },
+    {
+      "id": 8096,
+      "level": 10,
+      "question": "Which manager led Atletico Madrid to the 1996 league and cup double?",
+      "options": [
+        "Radomir Antic",
+        "Luis Aragones",
+        "Quique Flores",
+        "Javier Irureta"
+      ],
+      "answerIndex": 0,
+      "explanation": "The Serbian Antic managed all three Madrid clubs plus Barcelona."
+    },
+    {
+      "id": 8097,
+      "level": 10,
+      "question": "Which manager coached Real Madrid, Barcelona and Atletico Madrid?",
+      "options": [
+        "Radomir Antic",
+        "Luis Aragones",
+        "Fabio Capello",
+        "Jose Mourinho"
+      ],
+      "answerIndex": 0,
+      "explanation": "A very rare case in Spanish football."
+    },
+    {
+      "id": 8098,
+      "level": 10,
+      "question": "Who managed the Nigerian side that won the 2013 Africa Cup of Nations?",
+      "options": [
+        "Stephen Keshi",
+        "Samuel Okwaraji",
+        "Austin Eguavoen",
+        "Shaibu Amodu"
+      ],
+      "answerIndex": 0,
+      "explanation": "He won the title as a player in 1994 and as manager in 2013."
+    },
+    {
+      "id": 8099,
+      "level": 10,
+      "question": "Who managed Senegal to their 2021 Africa Cup of Nations title?",
+      "options": [
+        "Herve Renard",
+        "Bruno Metsu",
+        "Aliou Cisse",
+        "Amara Traore"
+      ],
+      "answerIndex": 2,
+      "explanation": "He lost the 2019 final before winning it two years later."
+    },
+    {
+      "id": 8100,
+      "level": 10,
+      "question": "Who managed Senegal's surprise run at the 2002 World Cup?",
+      "options": [
+        "Bruno Metsu",
+        "Aliou Cisse",
+        "Claude Le Roy",
+        "Herve Renard"
+      ],
+      "answerIndex": 0,
+      "explanation": "He led Senegal to the quarter-finals in their first ever appearance."
+    }
+  ]
+}

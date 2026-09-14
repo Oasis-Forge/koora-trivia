@@ -1,0 +1,1306 @@
+{
+  "version": 2,
+  "category": "clubs",
+  "questions": [
+    {
+      "id": 7001,
+      "level": 1,
+      "question": "What is the name of Barcelona's stadium?",
+      "options": [
+        "Santiago Bernabéu",
+        "Anfield",
+        "Camp Nou",
+        "San Siro"
+      ],
+      "answerIndex": 2,
+      "explanation": "Barcelona's stronghold since 1957."
+    },
+    {
+      "id": 7002,
+      "level": 1,
+      "question": "What is the name of Real Madrid's stadium?",
+      "options": [
+        "Santiago Bernabéu",
+        "Camp Nou",
+        "Metropolitano",
+        "Mestalla"
+      ],
+      "answerIndex": 0,
+      "explanation": "Named after the club's legendary president."
+    },
+    {
+      "id": 7003,
+      "level": 1,
+      "question": "What is the name of Liverpool's stadium?",
+      "options": [
+        "Anfield",
+        "Goodison Park",
+        "Old Trafford",
+        "The Etihad"
+      ],
+      "answerIndex": 0,
+      "explanation": "One of England's most storied grounds, famous for its atmosphere."
+    },
+    {
+      "id": 7004,
+      "level": 1,
+      "question": "What is the name of Manchester United's stadium?",
+      "options": [
+        "Anfield",
+        "Old Trafford",
+        "Stamford Bridge",
+        "The Emirates"
+      ],
+      "answerIndex": 1,
+      "explanation": "Nicknamed \"the Theatre of Dreams\"."
+    },
+    {
+      "id": 7005,
+      "level": 1,
+      "question": "Which city does Bayern Munich play in?",
+      "options": [
+        "Berlin",
+        "Hamburg",
+        "Munich",
+        "Dortmund"
+      ],
+      "answerIndex": 2,
+      "explanation": "The capital of the German state of Bavaria."
+    },
+    {
+      "id": 7006,
+      "level": 1,
+      "question": "What is Juventus's nickname?",
+      "options": [
+        "The Red Devils",
+        "The Eagles",
+        "The Old Lady",
+        "The Blues"
+      ],
+      "answerIndex": 2,
+      "explanation": "La Vecchia Signora, a nickname tied to the club for decades."
+    },
+    {
+      "id": 7007,
+      "level": 1,
+      "question": "What is Manchester United's nickname?",
+      "options": [
+        "The Red Devils",
+        "The Gunners",
+        "The Citizens",
+        "The Reds"
+      ],
+      "answerIndex": 0,
+      "explanation": "Inspired by a local rugby team."
+    },
+    {
+      "id": 7008,
+      "level": 1,
+      "question": "What is Chelsea's nickname?",
+      "options": [
+        "The Gunners",
+        "The Reds",
+        "The Blues",
+        "The Roosters"
+      ],
+      "answerIndex": 2,
+      "explanation": "After the blue colour of the club's kit."
+    },
+    {
+      "id": 7009,
+      "level": 1,
+      "question": "What is the name of Arsenal's current stadium?",
+      "options": [
+        "The Emirates Stadium",
+        "Highbury",
+        "White Hart Lane",
+        "Craven Cottage"
+      ],
+      "answerIndex": 0,
+      "explanation": "The club moved there in 2006."
+    },
+    {
+      "id": 7010,
+      "level": 1,
+      "question": "Which two clubs share the San Siro?",
+      "options": [
+        "Roma and Lazio",
+        "Juventus and Torino",
+        "Milan and Inter",
+        "Napoli and Salernitana"
+      ],
+      "answerIndex": 2,
+      "explanation": "One of the rare cases of two rivals sharing a ground."
+    },
+    {
+      "id": 7011,
+      "level": 2,
+      "question": "What is Arsenal's nickname?",
+      "options": [
+        "The Wolves",
+        "The Reds",
+        "The Gunners",
+        "The Hammers"
+      ],
+      "answerIndex": 2,
+      "explanation": "After the club's origins at a munitions factory."
+    },
+    {
+      "id": 7012,
+      "level": 2,
+      "question": "What is the name of Borussia Dortmund's stadium?",
+      "options": [
+        "Signal Iduna Park",
+        "Allianz Arena",
+        "Veltins-Arena",
+        "Red Bull Arena"
+      ],
+      "answerIndex": 0,
+      "explanation": "Germany's largest stadium by capacity."
+    },
+    {
+      "id": 7013,
+      "level": 2,
+      "question": "Which city does Ajax play in?",
+      "options": [
+        "Rotterdam",
+        "Utrecht",
+        "Eindhoven",
+        "Amsterdam"
+      ],
+      "answerIndex": 3,
+      "explanation": "The most successful club in Dutch history."
+    },
+    {
+      "id": 7014,
+      "level": 2,
+      "question": "What is the name of Bayern Munich's stadium?",
+      "options": [
+        "Mercedes-Benz Arena",
+        "Olympiastadion",
+        "Volksparkstadion",
+        "Allianz Arena"
+      ],
+      "answerIndex": 3,
+      "explanation": "Its outer shell changes colour depending on the home team."
+    },
+    {
+      "id": 7015,
+      "level": 2,
+      "question": "What is Inter Milan's nickname?",
+      "options": [
+        "Rossoneri",
+        "Bianconeri",
+        "Nerazzurri",
+        "Giallorossi"
+      ],
+      "answerIndex": 2,
+      "explanation": "After the club's blue and black colours."
+    },
+    {
+      "id": 7016,
+      "level": 2,
+      "question": "What is Milan's nickname?",
+      "options": [
+        "Bianconeri",
+        "Nerazzurri",
+        "Rossoneri",
+        "Viola"
+      ],
+      "answerIndex": 2,
+      "explanation": "After the club's red and black colours."
+    },
+    {
+      "id": 7017,
+      "level": 2,
+      "question": "What nickname is Barcelona known by, tied to its colours?",
+      "options": [
+        "Blaugrana",
+        "Merengues",
+        "Rojiblancos",
+        "Chorimblanco"
+      ],
+      "answerIndex": 0,
+      "explanation": "From the club's claret and blue colours."
+    },
+    {
+      "id": 7018,
+      "level": 2,
+      "question": "What is the name of Atlético Madrid's current stadium?",
+      "options": [
+        "Vicente Calderón",
+        "Boot Farm",
+        "Santiago Bernabéu",
+        "Metropolitano"
+      ],
+      "answerIndex": 3,
+      "explanation": "The club moved there in 2017."
+    },
+    {
+      "id": 7019,
+      "level": 2,
+      "question": "In what year was Paris Saint-Germain founded?",
+      "options": [
+        "1904",
+        "1932",
+        "1970",
+        "1985"
+      ],
+      "answerIndex": 2,
+      "explanation": "One of Europe's relatively newer major clubs."
+    },
+    {
+      "id": 7020,
+      "level": 2,
+      "question": "What is Liverpool's nickname?",
+      "options": [
+        "The Reds",
+        "The Blues",
+        "The Gunners",
+        "The Toffees"
+      ],
+      "answerIndex": 0,
+      "explanation": "After their all-red kit."
+    },
+    {
+      "id": 7021,
+      "level": 3,
+      "question": "What is the oldest football club still in existence in the world?",
+      "options": [
+        "Sheffield FC",
+        "Notts County",
+        "Stoke City",
+        "Aston Villa"
+      ],
+      "answerIndex": 0,
+      "explanation": "Recognised by FIFA as the world's oldest club."
+    },
+    {
+      "id": 7022,
+      "level": 3,
+      "question": "In what year was Sheffield FC founded?",
+      "options": [
+        "1857",
+        "1863",
+        "1878",
+        "1889"
+      ],
+      "answerIndex": 0,
+      "explanation": "Six years before the English FA was founded."
+    },
+    {
+      "id": 7023,
+      "level": 3,
+      "question": "What is Borussia Dortmund's nickname?",
+      "options": [
+        "The Black Blues",
+        "The Black Eagles",
+        "The Yellow Bees",
+        "The Knights"
+      ],
+      "answerIndex": 2,
+      "explanation": "Die Schwarzgelben, after their black and yellow colours."
+    },
+    {
+      "id": 7024,
+      "level": 3,
+      "question": "What is the name of the famous terrace at Dortmund's stadium?",
+      "options": [
+        "The Yellow Wall",
+        "The Kop",
+        "The Red North",
+        "The Slope"
+      ],
+      "answerIndex": 0,
+      "explanation": "The largest standing terrace in Europe, holding around 25,000 fans."
+    },
+    {
+      "id": 7025,
+      "level": 3,
+      "question": "What is Roma's nickname?",
+      "options": [
+        "Viola",
+        "The Eagles",
+        "The Wolves",
+        "Partenopei"
+      ],
+      "answerIndex": 2,
+      "explanation": "I Lupi, after the legend of Rome's founding."
+    },
+    {
+      "id": 7026,
+      "level": 3,
+      "question": "What is Lazio's nickname?",
+      "options": [
+        "The Eagles",
+        "The Wolves",
+        "The Zebras",
+        "Rossoneri"
+      ],
+      "answerIndex": 0,
+      "explanation": "Le Aquile, the eagle being the club's emblem."
+    },
+    {
+      "id": 7027,
+      "level": 3,
+      "question": "Which two clubs share the Stadio Olimpico in Rome?",
+      "options": [
+        "Milan and Inter",
+        "Juventus and Torino",
+        "Roma and Lazio",
+        "Genoa and Sampdoria"
+      ],
+      "answerIndex": 2,
+      "explanation": "The capital derby is one of Italian football's fiercest."
+    },
+    {
+      "id": 7028,
+      "level": 3,
+      "question": "What is Napoli's nickname?",
+      "options": [
+        "Granata",
+        "Giallorossi",
+        "Viola",
+        "Partenopei"
+      ],
+      "answerIndex": 3,
+      "explanation": "After the city's ancient Greek name."
+    },
+    {
+      "id": 7029,
+      "level": 3,
+      "question": "What is the name of Tottenham's new stadium?",
+      "options": [
+        "White Hart Lane",
+        "Tottenham Hotspur Stadium",
+        "Wembley",
+        "London Stadium"
+      ],
+      "answerIndex": 1,
+      "explanation": "Opened in 2019 with a retractable pitch."
+    },
+    {
+      "id": 7030,
+      "level": 3,
+      "question": "What is Manchester City's nickname?",
+      "options": [
+        "The Hammers",
+        "The Devils",
+        "The Citizens",
+        "The Magpies"
+      ],
+      "answerIndex": 2,
+      "explanation": "Also known as \"the Sky Blues\" after their kit colour."
+    },
+    {
+      "id": 7031,
+      "level": 4,
+      "question": "In what year was Real Madrid founded?",
+      "options": [
+        "1899",
+        "1910",
+        "1902",
+        "1920"
+      ],
+      "answerIndex": 2,
+      "explanation": "It later earned the \"Real\" title by royal decree from the King of Spain."
+    },
+    {
+      "id": 7032,
+      "level": 4,
+      "question": "In what year was Barcelona founded?",
+      "options": [
+        "1908",
+        "1902",
+        "1899",
+        "1912"
+      ],
+      "answerIndex": 2,
+      "explanation": "Founded by a group of Swiss, English and Catalan residents."
+    },
+    {
+      "id": 7033,
+      "level": 4,
+      "question": "Who founded Barcelona?",
+      "options": [
+        "Arthur Witty",
+        "José Samitier",
+        "Joan Gamper",
+        "Walter Wild"
+      ],
+      "answerIndex": 2,
+      "explanation": "Swiss-born, he is regarded as the club's founding father."
+    },
+    {
+      "id": 7034,
+      "level": 4,
+      "question": "What motto does Barcelona carry?",
+      "options": [
+        "You'll Never Walk Alone",
+        "More Than a Club",
+        "Glory Forever",
+        "We Are the Best"
+      ],
+      "answerIndex": 1,
+      "explanation": "Més que un club, a motto reflecting the club's Catalan identity."
+    },
+    {
+      "id": 7035,
+      "level": 4,
+      "question": "What is the name of the famous anthem sung by Liverpool fans?",
+      "options": [
+        "Blue Moon",
+        "Glory Glory",
+        "You'll Never Walk Alone",
+        "Bubbles"
+      ],
+      "answerIndex": 2,
+      "explanation": "The most famous fan anthem in world football."
+    },
+    {
+      "id": 7036,
+      "level": 4,
+      "question": "In what year was Liverpool founded?",
+      "options": [
+        "1878",
+        "1886",
+        "1892",
+        "1900"
+      ],
+      "answerIndex": 2,
+      "explanation": "Formed after a split from Everton."
+    },
+    {
+      "id": 7037,
+      "level": 4,
+      "question": "What was Manchester United originally called when it was founded?",
+      "options": [
+        "Lancashire United",
+        "Manchester Central",
+        "Old Trafford FC",
+        "Newton Heath"
+      ],
+      "answerIndex": 3,
+      "explanation": "Founded in 1878 as a team for railway workers."
+    },
+    {
+      "id": 7038,
+      "level": 4,
+      "question": "What is the nickname of Spanish club Valencia?",
+      "options": [
+        "The Yellow Submarine",
+        "The Bats",
+        "The Eagles",
+        "The Lions"
+      ],
+      "answerIndex": 1,
+      "explanation": "The bat is a historic symbol of the city of Valencia."
+    },
+    {
+      "id": 7039,
+      "level": 4,
+      "question": "What is the nickname of Spanish club Villarreal?",
+      "options": [
+        "The Yellow Submarine",
+        "The Bats",
+        "Merengues",
+        "The Lions"
+      ],
+      "answerIndex": 0,
+      "explanation": "El Submarino Amarillo, after the colour of their kit."
+    },
+    {
+      "id": 7040,
+      "level": 4,
+      "question": "What is Atlético Madrid's nickname?",
+      "options": [
+        "Rojiblancos",
+        "Merengues",
+        "Blaugrana",
+        "The Bats"
+      ],
+      "answerIndex": 0,
+      "explanation": "After the red and white stripes on the kit."
+    },
+    {
+      "id": 7041,
+      "level": 5,
+      "question": "In what year did the Munich air disaster occur?",
+      "options": [
+        "1958",
+        "1954",
+        "1962",
+        "1966"
+      ],
+      "answerIndex": 0,
+      "explanation": "The plane crashed while taking off from Munich airport."
+    },
+    {
+      "id": 7042,
+      "level": 5,
+      "question": "Which club lost eight of its players in the Munich air disaster?",
+      "options": [
+        "Manchester City",
+        "Manchester United",
+        "Liverpool",
+        "Arsenal"
+      ],
+      "answerIndex": 1,
+      "explanation": "The club lost its golden generation, the \"Busby Babes\"."
+    },
+    {
+      "id": 7043,
+      "level": 5,
+      "question": "In what year did the Hillsborough disaster occur?",
+      "options": [
+        "1985",
+        "1991",
+        "1989",
+        "1993"
+      ],
+      "answerIndex": 2,
+      "explanation": "It led to the removal of standing terraces in England."
+    },
+    {
+      "id": 7044,
+      "level": 5,
+      "question": "Which club lost 97 fans in the Hillsborough disaster?",
+      "options": [
+        "Nottingham Forest",
+        "Liverpool",
+        "Sheffield Wednesday",
+        "Everton"
+      ],
+      "answerIndex": 1,
+      "explanation": "A tragedy whose investigation lasted decades."
+    },
+    {
+      "id": 7045,
+      "level": 5,
+      "question": "In what year did the Heysel Stadium disaster occur?",
+      "options": [
+        "1985",
+        "1982",
+        "1988",
+        "1990"
+      ],
+      "answerIndex": 0,
+      "explanation": "It led to a five-year ban on English clubs in European competition."
+    },
+    {
+      "id": 7046,
+      "level": 5,
+      "question": "Which Spanish club has won the most Europa League titles?",
+      "options": [
+        "Valencia",
+        "Villarreal",
+        "Atlético Madrid",
+        "Sevilla"
+      ],
+      "answerIndex": 3,
+      "explanation": "An exceptional record in this particular competition."
+    },
+    {
+      "id": 7047,
+      "level": 5,
+      "question": "What is the nickname of Portuguese club Benfica?",
+      "options": [
+        "The Roosters",
+        "The Dragons",
+        "The Lions",
+        "The Eagles"
+      ],
+      "answerIndex": 3,
+      "explanation": "An eagle flies over the stadium before every match."
+    },
+    {
+      "id": 7048,
+      "level": 5,
+      "question": "What is the nickname of Portuguese club Porto?",
+      "options": [
+        "The Eagles",
+        "The Dragons",
+        "The Lions",
+        "The Wolves"
+      ],
+      "answerIndex": 1,
+      "explanation": "Os Dragões, with the dragon part of the club crest."
+    },
+    {
+      "id": 7049,
+      "level": 5,
+      "question": "What is the nickname of Sporting Lisbon?",
+      "options": [
+        "The Eagles",
+        "The Dragons",
+        "The Tigers",
+        "The Lions"
+      ],
+      "answerIndex": 3,
+      "explanation": "Os Leões, the lion being the club's symbol."
+    },
+    {
+      "id": 7050,
+      "level": 5,
+      "question": "Which city do Celtic and Rangers play in?",
+      "options": [
+        "Edinburgh",
+        "Dundee",
+        "Aberdeen",
+        "Glasgow"
+      ],
+      "answerIndex": 3,
+      "explanation": "Scotland's largest city and home to its most famous derby."
+    },
+    {
+      "id": 7051,
+      "level": 6,
+      "question": "What is the derby between Celtic and Rangers called?",
+      "options": [
+        "The Old Firm",
+        "The Northern Derby",
+        "The Scotland Derby",
+        "The Grand Battle"
+      ],
+      "answerIndex": 0,
+      "explanation": "One of the oldest and fiercest derbies in the world."
+    },
+    {
+      "id": 7052,
+      "level": 6,
+      "question": "What is the derby between Galatasaray and Fenerbahçe called?",
+      "options": [
+        "The Bosphorus Derby",
+        "The Intercontinental Derby",
+        "The Istanbul Derby",
+        "The Ottoman Battle"
+      ],
+      "answerIndex": 1,
+      "explanation": "Called this because Istanbul sits on two continents."
+    },
+    {
+      "id": 7053,
+      "level": 6,
+      "question": "Which Dutch club plays at the Johan Cruyff Arena?",
+      "options": [
+        "Feyenoord",
+        "Utrecht",
+        "Eindhoven",
+        "Ajax"
+      ],
+      "answerIndex": 3,
+      "explanation": "Renamed in honour of the club's legend."
+    },
+    {
+      "id": 7054,
+      "level": 6,
+      "question": "Which Dutch club is historically linked to the Philips company?",
+      "options": [
+        "Ajax",
+        "Twente",
+        "Feyenoord",
+        "PSV Eindhoven"
+      ],
+      "answerIndex": 3,
+      "explanation": "The club was originally founded as a team for the company's staff."
+    },
+    {
+      "id": 7055,
+      "level": 6,
+      "question": "What is the name of Manchester City's stadium?",
+      "options": [
+        "The Bay",
+        "Maine Road",
+        "The Emirates",
+        "The Etihad"
+      ],
+      "answerIndex": 3,
+      "explanation": "Originally built for the 2002 Commonwealth Games."
+    },
+    {
+      "id": 7056,
+      "level": 6,
+      "question": "What is Newcastle United's nickname?",
+      "options": [
+        "The Magpies",
+        "The Toffees",
+        "The Hammers",
+        "The Saints"
+      ],
+      "answerIndex": 0,
+      "explanation": "After their black and white colours."
+    },
+    {
+      "id": 7057,
+      "level": 6,
+      "question": "What is Everton's nickname?",
+      "options": [
+        "The Magpies",
+        "The Toffees",
+        "The Wolves",
+        "The Canaries"
+      ],
+      "answerIndex": 1,
+      "explanation": "Said to come from a toffee shop near the ground."
+    },
+    {
+      "id": 7058,
+      "level": 6,
+      "question": "What is West Ham United's nickname?",
+      "options": [
+        "The Canaries",
+        "The Wolves",
+        "The Saints",
+        "The Hammers"
+      ],
+      "answerIndex": 3,
+      "explanation": "After the club's origins at an ironworks."
+    },
+    {
+      "id": 7059,
+      "level": 6,
+      "question": "What is Wolverhampton's nickname?",
+      "options": [
+        "The Hammers",
+        "The Toffees",
+        "The Wolves",
+        "The Magpies"
+      ],
+      "answerIndex": 2,
+      "explanation": "Wolves, short for the city's own name."
+    },
+    {
+      "id": 7060,
+      "level": 6,
+      "question": "In what year was Bayern Munich founded?",
+      "options": [
+        "1900",
+        "1892",
+        "1911",
+        "1925"
+      ],
+      "answerIndex": 0,
+      "explanation": "It didn't dominate German football until the 1970s, though."
+    },
+    {
+      "id": 7061,
+      "level": 7,
+      "question": "In what year was Juventus founded?",
+      "options": [
+        "1889",
+        "1912",
+        "1905",
+        "1897"
+      ],
+      "answerIndex": 3,
+      "explanation": "Founded by secondary-school students in Turin."
+    },
+    {
+      "id": 7062,
+      "level": 7,
+      "question": "Which industrial family is historically linked to owning Juventus?",
+      "options": [
+        "The Berlusconi family",
+        "The Agnelli family",
+        "The Moratti family",
+        "The Zanetti family"
+      ],
+      "answerIndex": 1,
+      "explanation": "The family that owns the Fiat group."
+    },
+    {
+      "id": 7063,
+      "level": 7,
+      "question": "Which German club is historically linked to the pharmaceutical company Bayer?",
+      "options": [
+        "Wolfsburg",
+        "Bayer Leverkusen",
+        "Hoffenheim",
+        "Leipzig"
+      ],
+      "answerIndex": 1,
+      "explanation": "Founded as a team for the company's staff in 1904."
+    },
+    {
+      "id": 7064,
+      "level": 7,
+      "question": "Which German club is linked to Volkswagen?",
+      "options": [
+        "Bochum",
+        "Leverkusen",
+        "Stuttgart",
+        "Wolfsburg"
+      ],
+      "answerIndex": 3,
+      "explanation": "The city itself grew up around the company's factory."
+    },
+    {
+      "id": 7065,
+      "level": 7,
+      "question": "What was the name of Arsenal's stadium before their move?",
+      "options": [
+        "Boleyn Ground",
+        "White Hart Lane",
+        "Highbury",
+        "Maine Road"
+      ],
+      "answerIndex": 2,
+      "explanation": "The club played there from 1913 until 2006."
+    },
+    {
+      "id": 7066,
+      "level": 7,
+      "question": "What was the name of Manchester City's former stadium?",
+      "options": [
+        "Highbury",
+        "Maine Road",
+        "Bernal Green",
+        "Ayresome Park"
+      ],
+      "answerIndex": 1,
+      "explanation": "The club played there until 2003."
+    },
+    {
+      "id": 7067,
+      "level": 7,
+      "question": "What is Italian club Fiorentina's nickname?",
+      "options": [
+        "Viola",
+        "The Wolves",
+        "The Eagles",
+        "Partenopei"
+      ],
+      "answerIndex": 0,
+      "explanation": "After the distinctive purple colour of their kit."
+    },
+    {
+      "id": 7068,
+      "level": 7,
+      "question": "What is Juventus's nickname tied to their striped kit?",
+      "options": [
+        "The Wolves",
+        "Viola",
+        "Nerazzurri",
+        "The Zebras"
+      ],
+      "answerIndex": 3,
+      "explanation": "Le Zebre, after the black and white stripes."
+    },
+    {
+      "id": 7069,
+      "level": 7,
+      "question": "What is Real Madrid's nickname tied to their kit colour?",
+      "options": [
+        "Granata",
+        "Blaugrana",
+        "Rojiblancos",
+        "Merengues"
+      ],
+      "answerIndex": 3,
+      "explanation": "Los Merengues, compared to white meringue."
+    },
+    {
+      "id": 7070,
+      "level": 7,
+      "question": "Which two clubs compete in the Seville derby?",
+      "options": [
+        "Sevilla and Valencia",
+        "Sevilla and Betis",
+        "Betis and Málaga",
+        "Sevilla and Granada"
+      ],
+      "answerIndex": 1,
+      "explanation": "One of the most passionate derbies in Spain."
+    },
+    {
+      "id": 7071,
+      "level": 8,
+      "question": "Which English club has won the most league titles overall?",
+      "options": [
+        "Liverpool",
+        "Everton",
+        "Arsenal",
+        "Manchester United"
+      ],
+      "answerIndex": 3,
+      "explanation": "Twenty titles, spanning both the pre- and post-Premier League eras."
+    },
+    {
+      "id": 7072,
+      "level": 8,
+      "question": "Which English club has won the most FA Cups?",
+      "options": [
+        "Manchester United",
+        "Arsenal",
+        "Chelsea",
+        "Liverpool"
+      ],
+      "answerIndex": 1,
+      "explanation": "Arsenal top the list of winners of the world's oldest cup competition."
+    },
+    {
+      "id": 7073,
+      "level": 8,
+      "question": "Which two clubs contest the North London derby?",
+      "options": [
+        "Arsenal and Chelsea",
+        "Arsenal and Tottenham",
+        "Chelsea and Fulham",
+        "Tottenham and West Ham"
+      ],
+      "answerIndex": 1,
+      "explanation": "One of the fiercest derbies in the English capital."
+    },
+    {
+      "id": 7074,
+      "level": 8,
+      "question": "Which Argentine club plays at \"La Bombonera\"?",
+      "options": [
+        "River Plate",
+        "Boca Juniors",
+        "Independiente",
+        "Racing"
+      ],
+      "answerIndex": 1,
+      "explanation": "A tight, steep-sided ground famous for its atmosphere."
+    },
+    {
+      "id": 7075,
+      "level": 8,
+      "question": "What is the name of the Buenos Aires derby between Boca and River Plate?",
+      "options": [
+        "The Superclásico",
+        "The Clásico",
+        "The Silver Derby",
+        "The Grand Battle"
+      ],
+      "answerIndex": 0,
+      "explanation": "Often ranked as the fiercest derby in the world."
+    },
+    {
+      "id": 7076,
+      "level": 8,
+      "question": "What is the name of River Plate's stadium?",
+      "options": [
+        "La Bombonera",
+        "El Monumental",
+        "The Azteca",
+        "Centenario"
+      ],
+      "answerIndex": 1,
+      "explanation": "It hosted the 1978 World Cup final."
+    },
+    {
+      "id": 7077,
+      "level": 8,
+      "question": "Which Brazilian club calls the Maracanã its stronghold?",
+      "options": [
+        "Santos",
+        "Corinthians",
+        "Palmeiras",
+        "Flamengo"
+      ],
+      "answerIndex": 3,
+      "explanation": "One of the most widely supported clubs in Brazil and the world."
+    },
+    {
+      "id": 7078,
+      "level": 8,
+      "question": "Which Brazilian club's name is linked to Pelé?",
+      "options": [
+        "Santos",
+        "Flamengo",
+        "Corinthians",
+        "Vasco da Gama"
+      ],
+      "answerIndex": 0,
+      "explanation": "Pelé spent most of his career at Santos."
+    },
+    {
+      "id": 7079,
+      "level": 8,
+      "question": "What is the name of the famous stadium in Mexico City?",
+      "options": [
+        "The Azteca",
+        "El Monumental",
+        "Centenario",
+        "Maracanã"
+      ],
+      "answerIndex": 0,
+      "explanation": "The first stadium to host two World Cup finals."
+    },
+    {
+      "id": 7080,
+      "level": 8,
+      "question": "How many times has the Azteca hosted a World Cup final?",
+      "options": [
+        "Once",
+        "Twice",
+        "Three times",
+        "Never"
+      ],
+      "answerIndex": 1,
+      "explanation": "The 1970 and 1986 finals."
+    },
+    {
+      "id": 7081,
+      "level": 9,
+      "question": "In what year was Milan founded?",
+      "options": [
+        "1905",
+        "1899",
+        "1908",
+        "1912"
+      ],
+      "answerIndex": 1,
+      "explanation": "Founded by Englishmen living in the city of Milan."
+    },
+    {
+      "id": 7082,
+      "level": 9,
+      "question": "Why is Milan's name written as \"Milan\" in English rather than \"Milano\"?",
+      "options": [
+        "A recent marketing decision",
+        "Because its founders were English",
+        "An old administrative error",
+        "To distinguish it from Inter"
+      ],
+      "answerIndex": 1,
+      "explanation": "The club has kept the English spelling since its founding."
+    },
+    {
+      "id": 7083,
+      "level": 9,
+      "question": "Why was Inter Milan founded in 1908?",
+      "options": [
+        "A financial dispute",
+        "A merger of two clubs",
+        "A government decision",
+        "A split from Milan to allow foreign players to be signed"
+      ],
+      "answerIndex": 3,
+      "explanation": "The name \"Internazionale\" reflects this international outlook."
+    },
+    {
+      "id": 7084,
+      "level": 9,
+      "question": "What is English club Norwich City's nickname?",
+      "options": [
+        "The Saints",
+        "The Canaries",
+        "The Wolves",
+        "The Magpies"
+      ],
+      "answerIndex": 1,
+      "explanation": "After the yellow colour of their kit."
+    },
+    {
+      "id": 7085,
+      "level": 9,
+      "question": "What is Southampton's nickname?",
+      "options": [
+        "The Canaries",
+        "The Blacksmiths",
+        "The Hammers",
+        "The Saints"
+      ],
+      "answerIndex": 3,
+      "explanation": "After the club's origins in a church team."
+    },
+    {
+      "id": 7086,
+      "level": 9,
+      "question": "What is German club Schalke's nickname, tied to their region's history?",
+      "options": [
+        "The Knights",
+        "The Steelmakers",
+        "The Sailors",
+        "The Miners"
+      ],
+      "answerIndex": 3,
+      "explanation": "Die Knappen, after the coal miners of the Ruhr region."
+    },
+    {
+      "id": 7087,
+      "level": 9,
+      "question": "Which storied German club were relegated for the first time in their history in 2018?",
+      "options": [
+        "Hamburg",
+        "Stuttgart",
+        "Cologne",
+        "Bremen"
+      ],
+      "answerIndex": 0,
+      "explanation": "Until then, they were the only club to have played every Bundesliga season."
+    },
+    {
+      "id": 7088,
+      "level": 9,
+      "question": "Which Uruguayan club is the most successful in the country's history?",
+      "options": [
+        "Danubio",
+        "Nacional",
+        "Defensor",
+        "Peñarol"
+      ],
+      "answerIndex": 3,
+      "explanation": "One of the most successful clubs in South America continentally."
+    },
+    {
+      "id": 7089,
+      "level": 9,
+      "question": "Which Mexican club is nicknamed \"The Eagles\"?",
+      "options": [
+        "Cruz Azul",
+        "Chivas",
+        "América",
+        "Pumas"
+      ],
+      "answerIndex": 2,
+      "explanation": "Mexico's most decorated and popular club."
+    },
+    {
+      "id": 7090,
+      "level": 9,
+      "question": "Which Scottish club has won the European Cup?",
+      "options": [
+        "Rangers",
+        "Celtic",
+        "Aberdeen",
+        "Hearts"
+      ],
+      "answerIndex": 1,
+      "explanation": "Celtic won in 1967 with a team whose players were all born near Glasgow."
+    },
+    {
+      "id": 7091,
+      "level": 10,
+      "question": "What name was given to the Celtic team that were champions in 1967?",
+      "options": [
+        "The Lisbon Lions",
+        "The Knights of Glasgow",
+        "The Golden Generation",
+        "The Champions of the North"
+      ],
+      "answerIndex": 0,
+      "explanation": "After the city of Lisbon, where the final was played."
+    },
+    {
+      "id": 7092,
+      "level": 10,
+      "question": "What is Greek club Olympiacos's nickname?",
+      "options": [
+        "The Eagles",
+        "The Legend",
+        "The Dragons",
+        "The Knights"
+      ],
+      "answerIndex": 1,
+      "explanation": "Thrylos, the most successful club in Greek history."
+    },
+    {
+      "id": 7093,
+      "level": 10,
+      "question": "Which English club was founded in 1878 as St Domingo?",
+      "options": [
+        "Liverpool",
+        "Burnley",
+        "Everton",
+        "Blackburn"
+      ],
+      "answerIndex": 2,
+      "explanation": "It became Everton in 1879, and Liverpool split off from it in 1892."
+    },
+    {
+      "id": 7094,
+      "level": 10,
+      "question": "What was the name of Everton's historic stadium?",
+      "options": [
+        "Anfield",
+        "Stanley Park",
+        "Bloomay Field",
+        "Goodison Park"
+      ],
+      "answerIndex": 3,
+      "explanation": "The club played there for over a century before moving."
+    },
+    {
+      "id": 7095,
+      "level": 10,
+      "question": "Which club used Anfield before Liverpool did?",
+      "options": [
+        "Bolton",
+        "Tranmere",
+        "Everton",
+        "Burnley"
+      ],
+      "answerIndex": 2,
+      "explanation": "Everton left after a dispute with the ground's owner, leading to Liverpool's formation."
+    },
+    {
+      "id": 7096,
+      "level": 10,
+      "question": "What is Italian club Atalanta's nickname?",
+      "options": [
+        "The Eagles",
+        "The Goddess",
+        "The Wolves",
+        "The Zebras"
+      ],
+      "answerIndex": 1,
+      "explanation": "La Dea, after the goddess statue in the club crest."
+    },
+    {
+      "id": 7097,
+      "level": 10,
+      "question": "Which Spanish club is nicknamed \"Txuri-Urdin\", meaning white and blue in Basque?",
+      "options": [
+        "Real Sociedad",
+        "Deportivo Alavés",
+        "Real Betis",
+        "Osasuna"
+      ],
+      "answerIndex": 0,
+      "explanation": "After the blue and white colours of their kit."
+    },
+    {
+      "id": 7098,
+      "level": 10,
+      "question": "Which Italian club is nicknamed \"Il Toro\" and contests the Turin derby with Juventus?",
+      "options": [
+        "Bologna",
+        "Sampdoria",
+        "Genoa",
+        "Torino"
+      ],
+      "answerIndex": 3,
+      "explanation": "Il Toro, whose legendary side was lost in the 1949 Superga air disaster."
+    },
+    {
+      "id": 7099,
+      "level": 10,
+      "question": "What disaster saw Torino lose their entire team in 1949?",
+      "options": [
+        "The Andes disaster",
+        "The Munich disaster",
+        "The Superga disaster",
+        "The Turin disaster"
+      ],
+      "answerIndex": 2,
+      "explanation": "The team's plane crashed into the Superga hill near Turin."
+    },
+    {
+      "id": 7100,
+      "level": 10,
+      "question": "Which Portuguese club's name is linked to \"the Guttmann Curse\"?",
+      "options": [
+        "Porto",
+        "Benfica",
+        "Sporting",
+        "Braga"
+      ],
+      "answerIndex": 1,
+      "explanation": "Benfica have not won a European title since the coach departed in 1962."
+    }
+  ]
+}

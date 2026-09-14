@@ -1,0 +1,1306 @@
+{
+  "version": 2,
+  "category": "moments_records",
+  "questions": [
+    {
+      "id": 10001,
+      "level": 1,
+      "question": "Who scored the famous \"Hand of God\" goal in 1986?",
+      "options": [
+        "Pele",
+        "Diego Maradona",
+        "Gary Lineker",
+        "Jorge Valdano"
+      ],
+      "answerIndex": 1,
+      "explanation": "He punched it in against England in the quarter-final."
+    },
+    {
+      "id": 10002,
+      "level": 1,
+      "question": "What is the name of the night Liverpool came back from 0-3 down against Milan in 2005?",
+      "options": [
+        "The Miracle of Istanbul",
+        "The Miracle of Berlin",
+        "The Paris Comeback",
+        "The Lisbon Final"
+      ],
+      "answerIndex": 0,
+      "explanation": "Liverpool levelled the score in six minutes, then won on penalties."
+    },
+    {
+      "id": 10003,
+      "level": 1,
+      "question": "In which year did Liverpool complete a 4-0 comeback against Barcelona?",
+      "options": [
+        "2018",
+        "2017",
+        "2020",
+        "2019"
+      ],
+      "answerIndex": 3,
+      "explanation": "The 2019 semi-final at Anfield, going through 4-3 on aggregate."
+    },
+    {
+      "id": 10004,
+      "level": 1,
+      "question": "Who has the most international caps in the history of men's football?",
+      "options": [
+        "Bader Al-Mutawa",
+        "Ahmed Hassan",
+        "Sergio Ramos",
+        "Cristiano Ronaldo"
+      ],
+      "answerIndex": 3,
+      "explanation": "Ronaldo has passed every previous record by a wide margin."
+    },
+    {
+      "id": 10005,
+      "level": 1,
+      "question": "Who holds the record for the most goals scored in a single calendar year?",
+      "options": [
+        "Lionel Messi",
+        "Cristiano Ronaldo",
+        "Pele",
+        "Gerd Muller"
+      ],
+      "answerIndex": 0,
+      "explanation": "Messi scored 91 goals in 2012 for Barcelona and Argentina."
+    },
+    {
+      "id": 10006,
+      "level": 1,
+      "question": "Who is the highest-scoring goalkeeper in the history of football?",
+      "options": [
+        "Rogerio Ceni",
+        "Jose Luis Chilavert",
+        "Dimitar Ivankov",
+        "Hans-Jorg Butt"
+      ],
+      "answerIndex": 0,
+      "explanation": "The Brazilian scored over 130 goals from free kicks and penalties."
+    },
+    {
+      "id": 10007,
+      "level": 1,
+      "question": "Which club stunned the world by winning the English league in 2015-16?",
+      "options": [
+        "Leicester City",
+        "Southampton",
+        "Everton",
+        "Tottenham"
+      ],
+      "answerIndex": 0,
+      "explanation": "They started the season at 5000-1 odds."
+    },
+    {
+      "id": 10008,
+      "level": 1,
+      "question": "What is the largest crowd ever recorded at a football match?",
+      "options": [
+        "About 120,000",
+        "About 150,000",
+        "About 200,000",
+        "About 175,000"
+      ],
+      "answerIndex": 2,
+      "explanation": "At the Maracana in 1950, according to official estimates."
+    },
+    {
+      "id": 10009,
+      "level": 1,
+      "question": "Which player overtook Dani Alves to become the most decorated player in football history?",
+      "options": [
+        "Cristiano Ronaldo",
+        "Lionel Messi",
+        "Andres Iniesta",
+        "Maxwell"
+      ],
+      "answerIndex": 1,
+      "explanation": "Messi's titles with Argentina and Inter Miami pushed his tally above Alves, though exact counts vary by how they are tallied."
+    },
+    {
+      "id": 10010,
+      "level": 1,
+      "question": "Which goalkeeper scored a goal from about 91 metres out?",
+      "options": [
+        "Tim Howard",
+        "Asmir Begovic",
+        "Paul Robinson",
+        "Eder Militao"
+      ],
+      "answerIndex": 1,
+      "explanation": "He scored it for Stoke City in 2013 and entered the Guinness World Records."
+    },
+    {
+      "id": 10011,
+      "level": 2,
+      "question": "Who scored Manchester City's last-gasp winner to snatch the 2012 title?",
+      "options": [
+        "Carlos Tevez",
+        "Vincent Kompany",
+        "Mario Balotelli",
+        "Sergio Aguero"
+      ],
+      "answerIndex": 3,
+      "explanation": "A 94th-minute goal against Queens Park Rangers."
+    },
+    {
+      "id": 10012,
+      "level": 2,
+      "question": "How many goals did Manchester United score in stoppage time in the 1999 final?",
+      "options": [
+        "One goal",
+        "No goals",
+        "Three goals",
+        "Two goals"
+      ],
+      "answerIndex": 3,
+      "explanation": "Sheringham and Solskjaer struck to turn the game around against Bayern."
+    },
+    {
+      "id": 10013,
+      "level": 2,
+      "question": "Who scored Real Madrid's 93rd-minute equaliser in the 2014 final?",
+      "options": [
+        "Cristiano Ronaldo",
+        "Angel Di Maria",
+        "Gareth Bale",
+        "Sergio Ramos"
+      ],
+      "answerIndex": 3,
+      "explanation": "Ramos's header rescued \"La Decima\"."
+    },
+    {
+      "id": 10014,
+      "level": 2,
+      "question": "Who scored the famous volley in the 2002 Champions League final?",
+      "options": [
+        "Raul",
+        "Zinedine Zidane",
+        "Luis Figo",
+        "Roberto Carlos"
+      ],
+      "answerIndex": 1,
+      "explanation": "A left-footed strike against Bayer Leverkusen."
+    },
+    {
+      "id": 10015,
+      "level": 2,
+      "question": "Which side won Euro 1992 despite not originally qualifying?",
+      "options": [
+        "Germany",
+        "Sweden",
+        "Netherlands",
+        "Denmark"
+      ],
+      "answerIndex": 3,
+      "explanation": "Denmark were called up days before, replacing Yugoslavia."
+    },
+    {
+      "id": 10016,
+      "level": 2,
+      "question": "Which side stunned the world by winning Euro 2004?",
+      "options": [
+        "Portugal",
+        "Netherlands",
+        "Czech Republic",
+        "Greece"
+      ],
+      "answerIndex": 3,
+      "explanation": "Greece beat hosts Portugal in the final."
+    },
+    {
+      "id": 10017,
+      "level": 2,
+      "question": "Which professional player kept playing past the age of fifty?",
+      "options": [
+        "Kazuyoshi Miura",
+        "Stanley Matthews",
+        "Roger Milla",
+        "Teddy Sheringham"
+      ],
+      "answerIndex": 0,
+      "explanation": "Japan's Miura has the longest professional career on record."
+    },
+    {
+      "id": 10018,
+      "level": 2,
+      "question": "How many goals did Lewandowski score in nine minutes against Wolfsburg in 2015?",
+      "options": [
+        "5",
+        "4",
+        "3",
+        "6"
+      ],
+      "answerIndex": 0,
+      "explanation": "Five goals in under nine minutes, a record."
+    },
+    {
+      "id": 10019,
+      "level": 2,
+      "question": "Which side finished the 2003-04 English league season unbeaten?",
+      "options": [
+        "Arsenal",
+        "Manchester United",
+        "Chelsea",
+        "Liverpool"
+      ],
+      "answerIndex": 0,
+      "explanation": "The side known as \"The Invincibles\"."
+    },
+    {
+      "id": 10020,
+      "level": 2,
+      "question": "Which African side stunned everyone by winning the 2012 Africa Cup of Nations?",
+      "options": [
+        "Ivory Coast",
+        "Mali",
+        "Ghana",
+        "Zambia"
+      ],
+      "answerIndex": 3,
+      "explanation": "Zambia won on penalties in Libreville."
+    },
+    {
+      "id": 10021,
+      "level": 3,
+      "question": "What is the record for the most goals by one player at a single World Cup?",
+      "options": [
+        "13",
+        "11",
+        "15",
+        "9"
+      ],
+      "answerIndex": 0,
+      "explanation": "Just Fontaine scored 13 goals in 1958."
+    },
+    {
+      "id": 10022,
+      "level": 3,
+      "question": "What was Milan's longest unbeaten run in Serie A in the early 1990s?",
+      "options": [
+        "45",
+        "52",
+        "58",
+        "62"
+      ],
+      "answerIndex": 2,
+      "explanation": "A record that stood for decades in Italian football."
+    },
+    {
+      "id": 10023,
+      "level": 3,
+      "question": "Which national team holds the record for the longest run of consecutive wins in international matches?",
+      "options": [
+        "Brazil",
+        "Germany",
+        "Spain",
+        "France"
+      ],
+      "answerIndex": 2,
+      "explanation": "Fifteen wins in a row between 2008 and 2009."
+    },
+    {
+      "id": 10024,
+      "level": 3,
+      "question": "Which World Cup was the first to pass 170 goals?",
+      "options": [
+        "1994",
+        "2002",
+        "1998",
+        "2006"
+      ],
+      "answerIndex": 2,
+      "explanation": "171 goals were scored, and it was the first edition with 32 teams."
+    },
+    {
+      "id": 10025,
+      "level": 3,
+      "question": "For how many consecutive matches did Van der Sar keep a clean sheet in 2009?",
+      "options": [
+        "10",
+        "12",
+        "16",
+        "14"
+      ],
+      "answerIndex": 3,
+      "explanation": "1,311 minutes without conceding in the Premier League."
+    },
+    {
+      "id": 10026,
+      "level": 3,
+      "question": "What is the highest transfer fee ever paid for a goalkeeper?",
+      "options": [
+        "About 55 million euros",
+        "About 65 million euros",
+        "About 80 million euros",
+        "About 100 million euros"
+      ],
+      "answerIndex": 2,
+      "explanation": "Kepa Arrizabalaga's move from Bilbao to Chelsea in 2018."
+    },
+    {
+      "id": 10027,
+      "level": 3,
+      "question": "Which match is known as the \"Mineirazo\"?",
+      "options": [
+        "Brazil v Germany 2014",
+        "Brazil v Netherlands 2010",
+        "Brazil v France 1998",
+        "Brazil v Argentina 1990"
+      ],
+      "answerIndex": 0,
+      "explanation": "Played at the Mineirao Stadium in Belo Horizonte."
+    },
+    {
+      "id": 10028,
+      "level": 3,
+      "question": "What is the record for the most goals in a single Premier League match?",
+      "options": [
+        "9 goals",
+        "10 goals",
+        "12 goals",
+        "11 goals"
+      ],
+      "answerIndex": 3,
+      "explanation": "Portsmouth beat Reading 7-4 in 2007."
+    },
+    {
+      "id": 10029,
+      "level": 3,
+      "question": "Which 1954 match is known as the \"Miracle of Bern\"?",
+      "options": [
+        "Italy v Brazil",
+        "West Germany v Hungary",
+        "Uruguay v Brazil",
+        "Austria v Switzerland"
+      ],
+      "answerIndex": 1,
+      "explanation": "West Germany came back from 0-2 down to win 3-2."
+    },
+    {
+      "id": 10030,
+      "level": 3,
+      "question": "Which 1954 World Cup match is known as the \"Battle of Bern\"?",
+      "options": [
+        "Italy v Chile",
+        "Hungary v Brazil",
+        "Netherlands v Portugal",
+        "Argentina v England"
+      ],
+      "answerIndex": 1,
+      "explanation": "A quarter-final that turned into a mass brawl between players."
+    },
+    {
+      "id": 10031,
+      "level": 4,
+      "question": "Which 1982 match is known as the \"Disgrace of Gijon\"?",
+      "options": [
+        "Italy v Cameroon",
+        "West Germany v Austria",
+        "France v Kuwait",
+        "Brazil v Sweden"
+      ],
+      "answerIndex": 1,
+      "explanation": "A result that suited both sides and led to final-round fixtures being played simultaneously."
+    },
+    {
+      "id": 10032,
+      "level": 4,
+      "question": "Which 1962 match is known as the \"Battle of Santiago\"?",
+      "options": [
+        "Uruguay v Colombia",
+        "Brazil v Spain",
+        "Argentina v Hungary",
+        "Italy v Chile"
+      ],
+      "answerIndex": 3,
+      "explanation": "One of the most violent matches in World Cup history."
+    },
+    {
+      "id": 10033,
+      "level": 4,
+      "question": "Which 2006 match is known as the \"Battle of Nuremberg\"?",
+      "options": [
+        "England v Ecuador",
+        "Italy v Australia",
+        "Germany v Argentina",
+        "Netherlands v Portugal"
+      ],
+      "answerIndex": 3,
+      "explanation": "It saw four red cards and sixteen bookings."
+    },
+    {
+      "id": 10034,
+      "level": 4,
+      "question": "What was \"Lampard's disallowed goal\" that changed the history of technology in the game?",
+      "options": [
+        "Against Germany at the 2010 World Cup",
+        "Against Italy in 2012",
+        "Against Portugal in 2006",
+        "Against France in 2004"
+      ],
+      "answerIndex": 0,
+      "explanation": "The ball clearly crossed the line, and the row pushed goal-line technology into the game."
+    },
+    {
+      "id": 10035,
+      "level": 4,
+      "question": "What is the name of the infamous handball that denied Ghana a place in the 2010 semi-final?",
+      "options": [
+        "Suarez's handball",
+        "Henry's handball",
+        "Maradona's handball",
+        "Van Persie's handball"
+      ],
+      "answerIndex": 0,
+      "explanation": "Luis Suarez blocked the ball on the line with his hand, and Ghana then missed the penalty."
+    },
+    {
+      "id": 10036,
+      "level": 4,
+      "question": "Which French player caused a handball controversy against Ireland in the 2010 qualifiers?",
+      "options": [
+        "Thierry Henry",
+        "Nicolas Anelka",
+        "Franck Ribery",
+        "Florent Malouda"
+      ],
+      "answerIndex": 0,
+      "explanation": "He handled the ball before the qualifying goal, sparking a diplomatic row."
+    },
+    {
+      "id": 10037,
+      "level": 4,
+      "question": "What is the record for the most goals by a single club in a Premier League season?",
+      "options": [
+        "97 goals",
+        "103 goals",
+        "110 goals",
+        "106 goals"
+      ],
+      "answerIndex": 3,
+      "explanation": "Manchester City set it in the 2017-18 season."
+    },
+    {
+      "id": 10038,
+      "level": 4,
+      "question": "Why was Zinedine Zidane sent off in the 2006 final?",
+      "options": [
+        "Protesting to the referee",
+        "Headbutting Marco Materazzi",
+        "A violent tackle",
+        "Two yellow cards"
+      ],
+      "answerIndex": 1,
+      "explanation": "The last match of his professional career."
+    },
+    {
+      "id": 10039,
+      "level": 4,
+      "question": "Which player bit an opponent at the 2014 World Cup?",
+      "options": [
+        "Edinson Cavani",
+        "Luis Suarez",
+        "Diego Costa",
+        "Pepe"
+      ],
+      "answerIndex": 1,
+      "explanation": "He bit Italian defender Chiellini and received a lengthy ban."
+    },
+    {
+      "id": 10040,
+      "level": 4,
+      "question": "What is the fewest goals conceded by a side in a single Premier League season?",
+      "options": [
+        "15 goals",
+        "18 goals",
+        "22 goals",
+        "24 goals"
+      ],
+      "answerIndex": 0,
+      "explanation": "Chelsea's defence in 2004-05 under Mourinho and Cech."
+    },
+    {
+      "id": 10041,
+      "level": 5,
+      "question": "What is the biggest win recorded in an official international match?",
+      "options": [
+        "Brazil 14-0 Nicaragua",
+        "Germany 16-0 Russia",
+        "Australia 31-0 American Samoa",
+        "Iran 19-0 Guam"
+      ],
+      "answerIndex": 2,
+      "explanation": "Played in 2001 during World Cup qualifying."
+    },
+    {
+      "id": 10042,
+      "level": 5,
+      "question": "How many goals did Archie Thompson score in the Australia v American Samoa match?",
+      "options": [
+        "13",
+        "11",
+        "9",
+        "15"
+      ],
+      "answerIndex": 0,
+      "explanation": "A world record in a single international match."
+    },
+    {
+      "id": 10043,
+      "level": 5,
+      "question": "Which goalkeeper kept ten clean sheets at the World Cup between 1998 and 2006?",
+      "options": [
+        "Peter Shilton",
+        "Fabien Barthez",
+        "Iker Casillas",
+        "Sepp Maier"
+      ],
+      "answerIndex": 1,
+      "explanation": "France's Barthez, the 1998 world champion, kept ten clean sheets."
+    },
+    {
+      "id": 10044,
+      "level": 5,
+      "question": "Who is the youngest player to appear in an official professional match?",
+      "options": [
+        "Youssoufa Moukoko",
+        "Mauricio Baldivieso",
+        "Martin Odegaard",
+        "Vincent Barthelemy"
+      ],
+      "answerIndex": 1,
+      "explanation": "He played in the Bolivian league in 2009 aged 12."
+    },
+    {
+      "id": 10045,
+      "level": 5,
+      "question": "What is the highest number of kicks taken in a single penalty shoot-out in a professional match?",
+      "options": [
+        "Fewer than 20",
+        "About 25",
+        "More than 30",
+        "Exactly 22"
+      ],
+      "answerIndex": 2,
+      "explanation": "Some English cup matches have seen shoot-outs go past thirty kicks."
+    },
+    {
+      "id": 10046,
+      "level": 5,
+      "question": "Who is the oldest player to appear in the English top flight?",
+      "options": [
+        "John Burridge",
+        "Peter Shilton",
+        "Stanley Matthews",
+        "Teddy Sheringham"
+      ],
+      "answerIndex": 2,
+      "explanation": "He played until he was fifty with Stoke City."
+    },
+    {
+      "id": 10047,
+      "level": 5,
+      "question": "What is the fastest red card in Premier League history?",
+      "options": [
+        "In the first minute of the match",
+        "After five minutes",
+        "Seconds after coming on as a substitute",
+        "Before kick-off"
+      ],
+      "answerIndex": 2,
+      "explanation": "Keith Gillespie was sent off before he had touched the ball after coming on."
+    },
+    {
+      "id": 10048,
+      "level": 5,
+      "question": "How were drawn cup matches usually settled before penalty shoot-outs were adopted?",
+      "options": [
+        "By golden goal",
+        "By a replay or a coin toss",
+        "By fewer bookings",
+        "By a decision from FIFA"
+      ],
+      "answerIndex": 1,
+      "explanation": "Before 1970, drawn matches were replayed or settled by the toss of a coin."
+    },
+    {
+      "id": 10049,
+      "level": 5,
+      "question": "Which side reached the Euro 1968 final on the toss of a coin after drawing with the Soviet Union?",
+      "options": [
+        "Yugoslavia",
+        "England",
+        "West Germany",
+        "Italy"
+      ],
+      "answerIndex": 3,
+      "explanation": "They drew 0-0 with the Soviets in the semi-final and went through on a coin toss, then won the title after a replayed final against Yugoslavia."
+    },
+    {
+      "id": 10050,
+      "level": 5,
+      "question": "How long is the longest run of consecutive wins by a national team?",
+      "options": [
+        "15 matches",
+        "17 matches",
+        "12 matches",
+        "More than 20 matches"
+      ],
+      "answerIndex": 3,
+      "explanation": "Several national teams have posted runs of more than twenty wins in a row."
+    },
+    {
+      "id": 10051,
+      "level": 6,
+      "question": "What is the record number of matches Messi went unbeaten with Argentina before the 2022 World Cup?",
+      "options": [
+        "36",
+        "30",
+        "25",
+        "40"
+      ],
+      "answerIndex": 0,
+      "explanation": "The run ended with a loss to Saudi Arabia in the opening match."
+    },
+    {
+      "id": 10052,
+      "level": 6,
+      "question": "Who held the record for the fastest Champions League hat-trick before Mohamed Salah broke it in 2022?",
+      "options": [
+        "Pavel Nedved",
+        "Marc Overmars",
+        "Mike Newell",
+        "Bafetimbi Gomis"
+      ],
+      "answerIndex": 3,
+      "explanation": "Gomis scored a hat-trick in 8 minutes 45 seconds for Lyon against Dinamo Zagreb in 2011."
+    },
+    {
+      "id": 10053,
+      "level": 6,
+      "question": "Who scored the most goals in a single Champions League season?",
+      "options": [
+        "Ruud van Nistelrooy",
+        "Robert Lewandowski",
+        "Lionel Messi",
+        "Cristiano Ronaldo"
+      ],
+      "answerIndex": 3,
+      "explanation": "17 goals in the 2013-14 season."
+    },
+    {
+      "id": 10054,
+      "level": 6,
+      "question": "What is the biggest win in Champions League history?",
+      "options": [
+        "Liverpool 8-0 Besiktas",
+        "Bayern 8-2 Barcelona",
+        "Real Madrid 8-0 Malmo",
+        "Barcelona 7-0 Celtic"
+      ],
+      "answerIndex": 0,
+      "explanation": "Played in 2007 at Anfield."
+    },
+    {
+      "id": 10055,
+      "level": 6,
+      "question": "By what score did Bayern Munich beat Barcelona in 2020?",
+      "options": [
+        "6-2",
+        "8-2",
+        "7-1",
+        "5-1"
+      ],
+      "answerIndex": 1,
+      "explanation": "One of the most shocking results in quarter-final history."
+    },
+    {
+      "id": 10056,
+      "level": 6,
+      "question": "Who scored from the halfway line 16 seconds after coming on in the 1997 final?",
+      "options": [
+        "Karlheinz Riedle",
+        "Lars Ricken",
+        "Andreas Moller",
+        "Christian Pulisic"
+      ],
+      "answerIndex": 1,
+      "explanation": "A goal that sealed the final for Borussia Dortmund."
+    },
+    {
+      "id": 10057,
+      "level": 6,
+      "question": "In how many consecutive Champions League matches did Cristiano Ronaldo score?",
+      "options": [
+        "7",
+        "11",
+        "9",
+        "13"
+      ],
+      "answerIndex": 1,
+      "explanation": "A record in the competition's history."
+    },
+    {
+      "id": 10058,
+      "level": 6,
+      "question": "What is the biggest win recorded in Premier League history?",
+      "options": [
+        "9-0",
+        "8-0",
+        "7-0",
+        "10-0"
+      ],
+      "answerIndex": 0,
+      "explanation": "It has happened more than once, the first being Manchester United against Ipswich in 1995."
+    },
+    {
+      "id": 10059,
+      "level": 6,
+      "question": "Who scored the fastest hat-trick in Premier League history?",
+      "options": [
+        "Robbie Fowler",
+        "Sadio Mane",
+        "Sergio Aguero",
+        "Alan Shearer"
+      ],
+      "answerIndex": 1,
+      "explanation": "Three goals in two minutes 56 seconds for Southampton in 2015."
+    },
+    {
+      "id": 10060,
+      "level": 6,
+      "question": "Who scored the fastest goal in World Cup final history?",
+      "options": [
+        "Geoff Hurst",
+        "Paul Breitner",
+        "Johan Neeskens",
+        "Mario Kempes"
+      ],
+      "answerIndex": 2,
+      "explanation": "From a penalty in the second minute in 1974."
+    },
+    {
+      "id": 10061,
+      "level": 7,
+      "question": "Which side finished the 2023-24 Bundesliga season unbeaten?",
+      "options": [
+        "Bayern Munich",
+        "Leipzig",
+        "Stuttgart",
+        "Bayer Leverkusen"
+      ],
+      "answerIndex": 3,
+      "explanation": "The first side to do it in the history of the German league."
+    },
+    {
+      "id": 10062,
+      "level": 7,
+      "question": "Which Italian side finished the 2011-12 Serie A season unbeaten?",
+      "options": [
+        "Napoli",
+        "Milan",
+        "Juventus",
+        "Inter"
+      ],
+      "answerIndex": 2,
+      "explanation": "The start of Juventus's run of dominance that lasted nine seasons."
+    },
+    {
+      "id": 10063,
+      "level": 7,
+      "question": "Which goalkeeper holds the record for the longest run without conceding in La Liga?",
+      "options": [
+        "Yassine Bounou",
+        "Diego Alves",
+        "Claudio Bravo",
+        "Abel Resino"
+      ],
+      "answerIndex": 3,
+      "explanation": "The Atletico Madrid keeper went 1,275 minutes without conceding in the 1990-91 season."
+    },
+    {
+      "id": 10064,
+      "level": 7,
+      "question": "Who is the most decorated player in the history of the European Cup?",
+      "options": [
+        "Alfredo Di Stefano",
+        "Paolo Maldini",
+        "Cristiano Ronaldo",
+        "Francisco Gento"
+      ],
+      "answerIndex": 3,
+      "explanation": "Six titles with Real Madrid in the 1950s and 1960s."
+    },
+    {
+      "id": 10065,
+      "level": 7,
+      "question": "How many goals did Higuain score in the 2015-16 season, breaking the Serie A record?",
+      "options": [
+        "33",
+        "36",
+        "38",
+        "31"
+      ],
+      "answerIndex": 1,
+      "explanation": "36 goals in a 38-match season with Napoli."
+    },
+    {
+      "id": 10066,
+      "level": 7,
+      "question": "How many Bundesliga goals did Lewandowski score in the 2020-21 season?",
+      "options": [
+        "39",
+        "40",
+        "43",
+        "41"
+      ],
+      "answerIndex": 3,
+      "explanation": "He passed Gerd Muller's record of 40 goals."
+    },
+    {
+      "id": 10067,
+      "level": 7,
+      "question": "How many goals did Messi score in all competitions in the 2011-12 season?",
+      "options": [
+        "61",
+        "73",
+        "68",
+        "79"
+      ],
+      "answerIndex": 1,
+      "explanation": "A record for a single European season."
+    },
+    {
+      "id": 10068,
+      "level": 7,
+      "question": "In how many consecutive matches did Jamie Vardy score during the title-winning season?",
+      "options": [
+        "9",
+        "11",
+        "13",
+        "15"
+      ],
+      "answerIndex": 1,
+      "explanation": "A record in Premier League history."
+    },
+    {
+      "id": 10069,
+      "level": 7,
+      "question": "Which national team scored the most goals at a single World Cup?",
+      "options": [
+        "France 1958",
+        "Brazil 1970",
+        "Germany 2014",
+        "Hungary 1954"
+      ],
+      "answerIndex": 3,
+      "explanation": "Hungary scored 27 goals despite losing the final."
+    },
+    {
+      "id": 10070,
+      "level": 7,
+      "question": "Which national team lost the World Cup final despite scoring the most goals in the tournament?",
+      "options": [
+        "Brazil 1998",
+        "Netherlands 1974",
+        "Hungary 1954",
+        "Germany 2002"
+      ],
+      "answerIndex": 2,
+      "explanation": "They lost to West Germany in the \"Miracle of Bern\"."
+    },
+    {
+      "id": 10071,
+      "level": 8,
+      "question": "How long was Hungary's unbeaten run before the 1954 final?",
+      "options": [
+        "31 matches",
+        "21 matches",
+        "41 matches",
+        "51 matches"
+      ],
+      "answerIndex": 0,
+      "explanation": "A run lasting four years that ended in the final."
+    },
+    {
+      "id": 10072,
+      "level": 8,
+      "question": "By what score did Hungary beat England at Wembley in 1953?",
+      "options": [
+        "4-2",
+        "5-2",
+        "6-3",
+        "7-1"
+      ],
+      "answerIndex": 2,
+      "explanation": "England's first home defeat to a side from outside Britain."
+    },
+    {
+      "id": 10073,
+      "level": 8,
+      "question": "Which 1970 World Cup match is known as the \"Game of the Century\"?",
+      "options": [
+        "Brazil v England",
+        "Italy v West Germany",
+        "Brazil v Italy",
+        "Mexico v Soviet Union"
+      ],
+      "answerIndex": 1,
+      "explanation": "A semi-final that Italy won 4-3 after a wild period of extra time."
+    },
+    {
+      "id": 10074,
+      "level": 8,
+      "question": "What was \"Banks's save\", the legendary moment from 1970?",
+      "options": [
+        "His save from a Pele header",
+        "His save from a penalty",
+        "His save from a Maradona shot",
+        "His save of three penalty kicks"
+      ],
+      "answerIndex": 0,
+      "explanation": "Widely regarded as the greatest save in football history."
+    },
+    {
+      "id": 10075,
+      "level": 8,
+      "question": "Which 1999 European match is known as the \"Camp Nou Night\"?",
+      "options": [
+        "Barcelona v Milan",
+        "El Clasico",
+        "Barcelona v Chelsea",
+        "The Champions League final between United and Bayern"
+      ],
+      "answerIndex": 3,
+      "explanation": "The final was played at Camp Nou and settled by United in stoppage time."
+    },
+    {
+      "id": 10076,
+      "level": 8,
+      "question": "Which side lost three Champions League finals in a single decade without a win?",
+      "options": [
+        "Arsenal",
+        "Atletico Madrid",
+        "Valencia",
+        "Tottenham"
+      ],
+      "answerIndex": 1,
+      "explanation": "Atletico lost the 2014 and 2016 finals, in addition to earlier finals."
+    },
+    {
+      "id": 10077,
+      "level": 8,
+      "question": "What was the longest stoppage time added in a match at the 2022 World Cup?",
+      "options": [
+        "More than 20 minutes",
+        "14 minutes",
+        "10 minutes",
+        "8 minutes"
+      ],
+      "answerIndex": 0,
+      "explanation": "FIFA pushed for stoppage time to reflect actual time lost at that tournament."
+    },
+    {
+      "id": 10078,
+      "level": 8,
+      "question": "How long did the England v Iran match last at the 2022 World Cup?",
+      "options": [
+        "About 100 minutes",
+        "About 117 minutes",
+        "About 110 minutes",
+        "About 95 minutes"
+      ],
+      "answerIndex": 1,
+      "explanation": "The longest match in normal time in the tournament's history."
+    },
+    {
+      "id": 10079,
+      "level": 8,
+      "question": "Who scored the fastest goal in Premier League history?",
+      "options": [
+        "Allan Saint-Maximin",
+        "Ludwig Augustinsson",
+        "Shane Long, for Southampton",
+        "Tony Yeboah"
+      ],
+      "answerIndex": 2,
+      "explanation": "He scored after 7.69 seconds in 2019."
+    },
+    {
+      "id": 10080,
+      "level": 8,
+      "question": "What is the longest unbeaten run in Premier League history?",
+      "options": [
+        "38 matches",
+        "44 matches",
+        "49 matches",
+        "55 matches"
+      ],
+      "answerIndex": 2,
+      "explanation": "Arsenal's run between 2003 and 2004, spanning two seasons."
+    },
+    {
+      "id": 10081,
+      "level": 9,
+      "question": "Which club matched Barcelona's record of 16 consecutive La Liga wins in 2016?",
+      "options": [
+        "Valencia",
+        "Sevilla",
+        "Atletico Madrid",
+        "Real Madrid"
+      ],
+      "answerIndex": 3,
+      "explanation": "Real Madrid won 16 matches in a row between March and September 2016, matching Barcelona's mark from 2010-11."
+    },
+    {
+      "id": 10082,
+      "level": 9,
+      "question": "How many penalties did it take to settle the 2005 Namibia Cup final?",
+      "options": [
+        "48 kicks",
+        "24 kicks",
+        "18 kicks",
+        "34 kicks"
+      ],
+      "answerIndex": 0,
+      "explanation": "KK Palace beat Civics 17-16 after a 2-2 draw."
+    },
+    {
+      "id": 10083,
+      "level": 9,
+      "question": "What is the record for the fastest goal in an official football match?",
+      "options": [
+        "About six seconds",
+        "Under three seconds",
+        "About ten seconds",
+        "About fifteen seconds"
+      ],
+      "answerIndex": 1,
+      "explanation": "Goals have been scored straight from kick-off in under three seconds."
+    },
+    {
+      "id": 10084,
+      "level": 9,
+      "question": "Which player scored in five different European Cup finals?",
+      "options": [
+        "Cristiano Ronaldo",
+        "Ferenc Puskas",
+        "Alfredo Di Stefano",
+        "Paolo Maldini"
+      ],
+      "answerIndex": 2,
+      "explanation": "He scored in Real Madrid's first five finals."
+    },
+    {
+      "id": 10085,
+      "level": 9,
+      "question": "How many goals did Real Madrid score in the 1960 final?",
+      "options": [
+        "5",
+        "6",
+        "4",
+        "7"
+      ],
+      "answerIndex": 3,
+      "explanation": "They won 7-3 against Eintracht Frankfurt, with four goals from Puskas."
+    },
+    {
+      "id": 10086,
+      "level": 9,
+      "question": "What is the most goals a player has scored in a single La Liga match?",
+      "options": [
+        "4",
+        "5",
+        "7",
+        "6"
+      ],
+      "answerIndex": 2,
+      "explanation": "Bata for Athletic Bilbao in 1931 and Ladislao Kubala for Barcelona in 1952 each scored seven goals in a match."
+    },
+    {
+      "id": 10087,
+      "level": 9,
+      "question": "Who was the first player to win the Champions League with three different clubs?",
+      "options": [
+        "Zlatan Ibrahimovic",
+        "Samuel Eto'o",
+        "Clarence Seedorf",
+        "Angel Di Maria"
+      ],
+      "answerIndex": 2,
+      "explanation": "He won it with Ajax, Real Madrid and Milan."
+    },
+    {
+      "id": 10088,
+      "level": 9,
+      "question": "Which national team recorded the longest run without conceding a goal at a World Cup?",
+      "options": [
+        "Italy",
+        "England",
+        "Switzerland",
+        "Brazil"
+      ],
+      "answerIndex": 2,
+      "explanation": "Switzerland kept a clean sheet throughout the 2006 World Cup and went out on penalties."
+    },
+    {
+      "id": 10089,
+      "level": 9,
+      "question": "Which national team left the World Cup without conceding a goal in normal time?",
+      "options": [
+        "Italy 1990",
+        "Switzerland 2006",
+        "Belgium 1986",
+        "Argentina 1990"
+      ],
+      "answerIndex": 1,
+      "explanation": "They went out on penalties without scoring a single kick."
+    },
+    {
+      "id": 10090,
+      "level": 9,
+      "question": "How many penalties did Switzerland score when they went out of the 2006 World Cup?",
+      "options": [
+        "Zero",
+        "One",
+        "Two",
+        "Three"
+      ],
+      "answerIndex": 0,
+      "explanation": "The only team to miss every one of its kicks in the tournament's history."
+    },
+    {
+      "id": 10091,
+      "level": 10,
+      "question": "How much was Moises Caicedo's transfer from Brighton to Chelsea worth in 2023?",
+      "options": [
+        "About £115 million",
+        "About £100 million",
+        "About £80 million",
+        "About £150 million"
+      ],
+      "answerIndex": 0,
+      "explanation": "£100 million plus add-ons reaching £15 million, a British transfer record at the time."
+    },
+    {
+      "id": 10092,
+      "level": 10,
+      "question": "How many goals did Frenchman Stephane Stanis score for Lens in a single French Cup match in 1942?",
+      "options": [
+        "13 goals",
+        "10 goals",
+        "16 goals",
+        "8 goals"
+      ],
+      "answerIndex": 2,
+      "explanation": "Lens won 32-0 against Aubry-Asturies, a mark he shares with Cypriot Panagiotis Pontikos from 2007."
+    },
+    {
+      "id": 10093,
+      "level": 10,
+      "question": "Which African national team lost players in a plane crash in 1993?",
+      "options": [
+        "Cameroon",
+        "Zambia",
+        "Nigeria",
+        "Ghana"
+      ],
+      "answerIndex": 1,
+      "explanation": "The plane crashed near Libreville, where Zambia went on to win the title 19 years later."
+    },
+    {
+      "id": 10094,
+      "level": 10,
+      "question": "Which Brazilian club lost most of its squad in a plane crash in 2016?",
+      "options": [
+        "Cruzeiro",
+        "Atletico Mineiro",
+        "Chapecoense",
+        "Vitoria"
+      ],
+      "answerIndex": 2,
+      "explanation": "The crash happened as the side travelled to the Copa Sudamericana final."
+    },
+    {
+      "id": 10095,
+      "level": 10,
+      "question": "What was the controversial goal awarded to England against West Germany in the 1966 World Cup final?",
+      "options": [
+        "Peters's goal",
+        "Charlton's goal",
+        "Hurst's contentious third goal",
+        "Ball's goal"
+      ],
+      "answerIndex": 2,
+      "explanation": "It was given despite the row over whether the ball had fully crossed the line."
+    },
+    {
+      "id": 10096,
+      "level": 10,
+      "question": "Which linesman confirmed Geoff Hurst's contentious goal in 1966?",
+      "options": [
+        "Ken Aston",
+        "Gottfried Dienst",
+        "Tofiq Bahramov",
+        "Pierre Schwinte"
+      ],
+      "answerIndex": 2,
+      "explanation": "The Azerbaijani Bahramov became a national icon, and Baku's stadium was named after him."
+    },
+    {
+      "id": 10097,
+      "level": 10,
+      "question": "Which 1969 match is known as the \"Football War\"?",
+      "options": [
+        "Mexico v Guatemala",
+        "Argentina v Chile",
+        "El Salvador v Honduras",
+        "Peru v Ecuador"
+      ],
+      "answerIndex": 2,
+      "explanation": "World Cup qualifiers heightened tensions that led to a brief armed conflict."
+    },
+    {
+      "id": 10098,
+      "level": 10,
+      "question": "Which 1942 Kyiv match is known as the \"Death Match\"?",
+      "options": [
+        "A Soviet side against a German side under occupation",
+        "The Ukrainian Cup final",
+        "An exhibition match",
+        "The Kyiv derby"
+      ],
+      "answerIndex": 0,
+      "explanation": "A story that became a symbol of resistance, though accounts of it vary."
+    },
+    {
+      "id": 10099,
+      "level": 10,
+      "question": "In which match did a team deliberately score into its own net because a golden goal was worth double?",
+      "options": [
+        "Barbados v Grenada 1994",
+        "Thailand v Indonesia 1998",
+        "Grenada v Puerto Rico",
+        "West Germany v Austria 1982"
+      ],
+      "answerIndex": 0,
+      "explanation": "The double golden-goal rule created an absurd situation at the Caribbean Cup."
+    },
+    {
+      "id": 10100,
+      "level": 10,
+      "question": "Which club scored 149 own goals in a protest match in Madagascar in 2002?",
+      "options": [
+        "Fosa Juniors",
+        "AS Adema",
+        "Stade Olympique de l'Emyrne",
+        "Asama"
+      ],
+      "answerIndex": 2,
+      "explanation": "A protest against refereeing decisions, and the strangest record in the game's history."
+    }
+  ]
+}

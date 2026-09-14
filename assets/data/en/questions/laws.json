@@ -1,0 +1,1306 @@
+{
+  "version": 2,
+  "category": "laws",
+  "questions": [
+    {
+      "id": 9001,
+      "level": 1,
+      "question": "How many players does each team start the match with on the pitch?",
+      "options": [
+        "11",
+        "10",
+        "12",
+        "9"
+      ],
+      "answerIndex": 0,
+      "explanation": "Eleven players, including the goalkeeper."
+    },
+    {
+      "id": 9002,
+      "level": 1,
+      "question": "How long does an official match last without extra time?",
+      "options": [
+        "80 minutes",
+        "100 minutes",
+        "90 minutes",
+        "120 minutes"
+      ],
+      "answerIndex": 2,
+      "explanation": "Two halves of 45 minutes each."
+    },
+    {
+      "id": 9003,
+      "level": 1,
+      "question": "How many referees are on the pitch during a match?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answerIndex": 0,
+      "explanation": "One centre referee assisted by two linesmen."
+    },
+    {
+      "id": 9004,
+      "level": 1,
+      "question": "What colour is the card that means an immediate sending-off?",
+      "options": [
+        "Yellow",
+        "Blue",
+        "Red",
+        "White"
+      ],
+      "answerIndex": 2,
+      "explanation": "It means leaving the pitch at once with no substitute."
+    },
+    {
+      "id": 9005,
+      "level": 1,
+      "question": "What does a yellow card mean?",
+      "options": [
+        "Immediate sending-off",
+        "Penalty kick",
+        "A caution",
+        "Temporary suspension"
+      ],
+      "answerIndex": 2,
+      "explanation": "Two yellow cards in a match mean a sending-off."
+    },
+    {
+      "id": 9006,
+      "level": 1,
+      "question": "Who is the only player allowed to touch the ball with their hands during play?",
+      "options": [
+        "The captain",
+        "The goalkeeper",
+        "The last defender",
+        "The midfielder"
+      ],
+      "answerIndex": 1,
+      "explanation": "And only inside their own penalty area."
+    },
+    {
+      "id": 9007,
+      "level": 1,
+      "question": "What is the kick taken from the corner of the pitch called?",
+      "options": [
+        "Free kick",
+        "Goal kick",
+        "Corner kick",
+        "Throw-in"
+      ],
+      "answerIndex": 2,
+      "explanation": "Awarded when a defender puts the ball out over their own goal line."
+    },
+    {
+      "id": 9008,
+      "level": 1,
+      "question": "What is the ball being returned to play with both hands from behind the touchline called?",
+      "options": [
+        "Goal kick",
+        "Corner kick",
+        "Throw-in",
+        "Kick-off"
+      ],
+      "answerIndex": 2,
+      "explanation": "Taken with both hands from behind the head."
+    },
+    {
+      "id": 9009,
+      "level": 1,
+      "question": "What happens if two teams are level in a knockout match after extra time?",
+      "options": [
+        "The match is replayed",
+        "The home side goes through",
+        "A draw of lots",
+        "A penalty shoot-out"
+      ],
+      "answerIndex": 3,
+      "explanation": "Five kicks each, then sudden-death kicks if it's still level."
+    },
+    {
+      "id": 9010,
+      "level": 1,
+      "question": "How many halves are there in a match?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "1"
+      ],
+      "answerIndex": 0,
+      "explanation": "With a half-time break of no more than fifteen minutes."
+    },
+    {
+      "id": 9011,
+      "level": 2,
+      "question": "From what distance is a penalty kick taken?",
+      "options": [
+        "11 metres",
+        "9 metres",
+        "12 metres",
+        "10 metres"
+      ],
+      "answerIndex": 0,
+      "explanation": "Eleven metres from the centre of the goal line."
+    },
+    {
+      "id": 9012,
+      "level": 2,
+      "question": "What does VAR stand for?",
+      "options": [
+        "Video Assistant Referee",
+        "Speed analysis",
+        "Ball tracking",
+        "Automatic offside measurement"
+      ],
+      "answerIndex": 0,
+      "explanation": "Video Assistant Referee."
+    },
+    {
+      "id": 9013,
+      "level": 2,
+      "question": "How long does extra time last in knockout matches?",
+      "options": [
+        "15 minutes",
+        "30 minutes",
+        "20 minutes",
+        "10 minutes"
+      ],
+      "answerIndex": 1,
+      "explanation": "Two extra periods of 15 minutes each."
+    },
+    {
+      "id": 9014,
+      "level": 2,
+      "question": "How many kicks does each team take in the initial round of a penalty shoot-out?",
+      "options": [
+        "3",
+        "7",
+        "5",
+        "10"
+      ],
+      "answerIndex": 2,
+      "explanation": "Five kicks each, then it continues kick for kick."
+    },
+    {
+      "id": 9015,
+      "level": 2,
+      "question": "What is the official called who manages substitutions and shows the added time board?",
+      "options": [
+        "The fourth official",
+        "The assistant referee",
+        "The goal referee",
+        "The match observer"
+      ],
+      "answerIndex": 0,
+      "explanation": "Sits between the two technical areas and handles administrative matters."
+    },
+    {
+      "id": 9016,
+      "level": 2,
+      "question": "When is a goal kick awarded?",
+      "options": [
+        "When the ball goes out off a defender",
+        "When the ball crosses the goal line off an attacker",
+        "On an offside",
+        "On a foul inside the area"
+      ],
+      "answerIndex": 1,
+      "explanation": "If it goes out off a defender instead, the opponent gets a corner."
+    },
+    {
+      "id": 9017,
+      "level": 2,
+      "question": "What is the difference between a direct and an indirect free kick?",
+      "options": [
+        "The direct one needs two players",
+        "The indirect one is closer to goal",
+        "A goal can be scored straight from the direct one",
+        "There is no difference"
+      ],
+      "answerIndex": 2,
+      "explanation": "An indirect kick must touch another player before a goal can count."
+    },
+    {
+      "id": 9018,
+      "level": 2,
+      "question": "How many metres must the wall stand back from the ball at a free kick?",
+      "options": [
+        "9.15 metres",
+        "7.32 metres",
+        "11 metres",
+        "5 metres"
+      ],
+      "answerIndex": 0,
+      "explanation": "Equal to ten yards in the imperial system."
+    },
+    {
+      "id": 9019,
+      "level": 2,
+      "question": "What is the area set aside for the manager and coaching staff called?",
+      "options": [
+        "The technical area",
+        "The penalty area",
+        "The safety zone",
+        "The neutral zone"
+      ],
+      "answerIndex": 0,
+      "explanation": "It may not be left without the referee's permission."
+    },
+    {
+      "id": 9020,
+      "level": 2,
+      "question": "What is the decision when a defender deliberately handles the ball inside their own penalty area?",
+      "options": [
+        "Direct free kick",
+        "Penalty kick",
+        "Corner kick",
+        "A caution only"
+      ],
+      "answerIndex": 1,
+      "explanation": "With a possible card too, depending on the nature of the handball."
+    },
+    {
+      "id": 9021,
+      "level": 3,
+      "question": "What is the circumference of a regulation football, roughly?",
+      "options": [
+        "58-60 cm",
+        "68-70 cm",
+        "75-78 cm",
+        "62-64 cm"
+      ],
+      "answerIndex": 1,
+      "explanation": "Under FIFA's rules for a size 5 ball."
+    },
+    {
+      "id": 9022,
+      "level": 3,
+      "question": "What is the regulation width of the goal?",
+      "options": [
+        "6.32 metres",
+        "7.32 metres",
+        "8.32 metres",
+        "5.5 metres"
+      ],
+      "answerIndex": 1,
+      "explanation": "Eight yards between the posts."
+    },
+    {
+      "id": 9023,
+      "level": 3,
+      "question": "What is the regulation height of the goal?",
+      "options": [
+        "2.20 metres",
+        "2.44 metres",
+        "3 metres",
+        "2.75 metres"
+      ],
+      "answerIndex": 1,
+      "explanation": "Eight feet from the ground to the crossbar."
+    },
+    {
+      "id": 9024,
+      "level": 3,
+      "question": "When is a player not considered offside?",
+      "options": [
+        "When receiving a forward pass",
+        "When shooting at goal",
+        "When standing in the opponents' half",
+        "When receiving the ball from a throw-in"
+      ],
+      "answerIndex": 3,
+      "explanation": "There's also no offside from a goal kick or a corner kick."
+    },
+    {
+      "id": 9025,
+      "level": 3,
+      "question": "Can a player be offside in their own half?",
+      "options": [
+        "Yes, always",
+        "Only if they touch the ball",
+        "No, never",
+        "Only in extra time"
+      ],
+      "answerIndex": 2,
+      "explanation": "Offside requires the player to be in the opponents' half."
+    },
+    {
+      "id": 9026,
+      "level": 3,
+      "question": "How many substitutions are currently allowed in an official match?",
+      "options": [
+        "5",
+        "4",
+        "3",
+        "6"
+      ],
+      "answerIndex": 0,
+      "explanation": "Raised to five after the 2020 pandemic, and made permanent."
+    },
+    {
+      "id": 9027,
+      "level": 3,
+      "question": "What is the body responsible for setting football's laws called?",
+      "options": [
+        "IFAB",
+        "FIFA",
+        "UEFA",
+        "The Olympic Committee"
+      ],
+      "answerIndex": 0,
+      "explanation": "The International Football Association Board."
+    },
+    {
+      "id": 9028,
+      "level": 3,
+      "question": "How many official Laws of the Game are there?",
+      "options": [
+        "15",
+        "20",
+        "17",
+        "12"
+      ],
+      "answerIndex": 2,
+      "explanation": "Seventeen laws, since they were first drawn up in the 19th century."
+    },
+    {
+      "id": 9029,
+      "level": 3,
+      "question": "What is the \"back-pass rule\"?",
+      "options": [
+        "The keeper may not pick up a deliberate pass from a teammate's foot",
+        "Passing backwards is banned outright",
+        "Passing is banned in extra time",
+        "The keeper may not come off their line"
+      ],
+      "answerIndex": 0,
+      "explanation": "Introduced in 1992 to stop time-wasting."
+    },
+    {
+      "id": 9030,
+      "level": 3,
+      "question": "How many seconds is a goalkeeper allowed to hold the ball in their hands?",
+      "options": [
+        "4 seconds",
+        "10 seconds",
+        "8 seconds",
+        "6 seconds"
+      ],
+      "answerIndex": 3,
+      "explanation": "Going over gives the opponent an indirect free kick."
+    },
+    {
+      "id": 9031,
+      "level": 4,
+      "question": "What is the regulation pitch length for international matches?",
+      "options": [
+        "90-110 metres",
+        "105-115 metres",
+        "100-110 metres",
+        "95-105 metres"
+      ],
+      "answerIndex": 2,
+      "explanation": "The width ranges from 64 to 75 metres."
+    },
+    {
+      "id": 9032,
+      "level": 4,
+      "question": "What is the radius of the centre circle?",
+      "options": [
+        "11 metres",
+        "7.32 metres",
+        "9.15 metres",
+        "5.5 metres"
+      ],
+      "answerIndex": 2,
+      "explanation": "The same distance opponents must keep from the ball at free kicks."
+    },
+    {
+      "id": 9033,
+      "level": 4,
+      "question": "How deep is the penalty area from the goal line?",
+      "options": [
+        "11 metres",
+        "18 metres",
+        "16.5 metres",
+        "20 metres"
+      ],
+      "answerIndex": 2,
+      "explanation": "18 yards, which is where the nickname \"the 18-yard box\" comes from."
+    },
+    {
+      "id": 9034,
+      "level": 4,
+      "question": "How deep is the six-yard box?",
+      "options": [
+        "11 metres",
+        "7.32 metres",
+        "9.15 metres",
+        "5.5 metres"
+      ],
+      "answerIndex": 3,
+      "explanation": "Six yards, hence the name \"the six-yard box\"."
+    },
+    {
+      "id": 9035,
+      "level": 4,
+      "question": "When does the referee use VAR to review a decision?",
+      "options": [
+        "For any decision they want",
+        "For offside only",
+        "For goals, penalties, straight red cards and mistaken identity",
+        "For every foul"
+      ],
+      "answerIndex": 2,
+      "explanation": "Four specific situations only, never extended beyond them."
+    },
+    {
+      "id": 9036,
+      "level": 4,
+      "question": "What is the decision if the ball hits the referee and decisively changes the course of play?",
+      "options": [
+        "Play continues",
+        "A dropped ball",
+        "A free kick",
+        "The attack is replayed"
+      ],
+      "answerIndex": 1,
+      "explanation": "A rule added in 2019 to deal with this situation."
+    },
+    {
+      "id": 9037,
+      "level": 4,
+      "question": "What is a \"dropped ball\"?",
+      "options": [
+        "A ball the referee drops to restart play",
+        "A ball that goes out of play",
+        "A shot that hits the crossbar",
+        "A high ball in the air"
+      ],
+      "answerIndex": 0,
+      "explanation": "Now given to the team that had possession when play stopped."
+    },
+    {
+      "id": 9038,
+      "level": 4,
+      "question": "What does the \"advantage rule\" mean in refereeing?",
+      "options": [
+        "Favouring the home side",
+        "Giving the stronger team a decision",
+        "Awarding a doubtful goal",
+        "Letting play continue if stopping it would hurt the fouled team"
+      ],
+      "answerIndex": 3,
+      "explanation": "The referee signals it by throwing both arms forward."
+    },
+    {
+      "id": 9039,
+      "level": 4,
+      "question": "What is the minimum number of players needed for a match to continue?",
+      "options": [
+        "6",
+        "8",
+        "7",
+        "9"
+      ],
+      "answerIndex": 2,
+      "explanation": "If either team drops below seven, the match is abandoned."
+    },
+    {
+      "id": 9040,
+      "level": 4,
+      "question": "What happens if a player scores an own goal directly from a throw-in?",
+      "options": [
+        "The goal counts",
+        "The throw-in is retaken",
+        "Goal kick",
+        "Corner kick to the opponents"
+      ],
+      "answerIndex": 3,
+      "explanation": "A goal can never be scored directly from a throw-in, at either end."
+    },
+    {
+      "id": 9041,
+      "level": 5,
+      "question": "When were coloured cards first used at a World Cup?",
+      "options": [
+        "1970",
+        "1966",
+        "1974",
+        "1978"
+      ],
+      "answerIndex": 0,
+      "explanation": "Invented by referee Ken Aston, inspired by traffic lights."
+    },
+    {
+      "id": 9042,
+      "level": 5,
+      "question": "Who came up with the idea of coloured cards?",
+      "options": [
+        "Ken Aston",
+        "Pierluigi Collina",
+        "Stanley Rous",
+        "Jules Rimet"
+      ],
+      "answerIndex": 0,
+      "explanation": "He got the idea from traffic lights while driving."
+    },
+    {
+      "id": 9043,
+      "level": 5,
+      "question": "In what year was the rule banning the keeper from picking up a teammate's pass introduced?",
+      "options": [
+        "1986",
+        "1998",
+        "1992",
+        "2002"
+      ],
+      "answerIndex": 2,
+      "explanation": "After the 1990 World Cup, which suffered from a slow pace of play."
+    },
+    {
+      "id": 9044,
+      "level": 5,
+      "question": "What was the \"golden goal\" rule, scrapped in 2004?",
+      "options": [
+        "A decisive goal in a shoot-out",
+        "A goal that counted as two",
+        "A goal from a free kick",
+        "The first goal in extra time ended the match"
+      ],
+      "answerIndex": 3,
+      "explanation": "Scrapped because it made teams play far too cautiously."
+    },
+    {
+      "id": 9045,
+      "level": 5,
+      "question": "What was the short-lived \"silver goal\" rule?",
+      "options": [
+        "A goal from outside the area",
+        "A goal that counted as half a point",
+        "The match ended at the break in extra time if a team was ahead",
+        "A goalkeeper's goal"
+      ],
+      "answerIndex": 2,
+      "explanation": "Applied briefly in the early 2000s, then scrapped."
+    },
+    {
+      "id": 9046,
+      "level": 5,
+      "question": "What is the decision if a player touches the ball with their hand unintentionally and then scores from it?",
+      "options": [
+        "The goal counts",
+        "Penalty kick",
+        "The goal is disallowed",
+        "A caution for the player"
+      ],
+      "answerIndex": 2,
+      "explanation": "Any handball immediately before a goal rules it out, even if accidental."
+    },
+    {
+      "id": 9047,
+      "level": 5,
+      "question": "Under the modern laws, when does a handball count as an offence?",
+      "options": [
+        "When the arm is in an unnatural position that makes the body bigger",
+        "Any touch of the hand",
+        "Only inside the penalty area",
+        "Only when attacking"
+      ],
+      "answerIndex": 0,
+      "explanation": "Arm position is now the test, replacing the old intent-based standard."
+    },
+    {
+      "id": 9048,
+      "level": 5,
+      "question": "How many players must be between an attacker and the goal line to avoid offside?",
+      "options": [
+        "One",
+        "Four",
+        "Three",
+        "Two"
+      ],
+      "answerIndex": 3,
+      "explanation": "Usually the keeper and one defender — any two players will do."
+    },
+    {
+      "id": 9049,
+      "level": 5,
+      "question": "Is an attacker offside if they are level with the second-last defender?",
+      "options": [
+        "Yes",
+        "No",
+        "Only if they touch the ball",
+        "It's up to the referee"
+      ],
+      "answerIndex": 1,
+      "explanation": "Being level is not offside."
+    },
+    {
+      "id": 9050,
+      "level": 5,
+      "question": "What is \"semi-automated offside technology\"?",
+      "options": [
+        "An audio system for referees",
+        "A phone app",
+        "A camera tracking system that calls offside automatically",
+        "A chip inside a player's boot"
+      ],
+      "answerIndex": 2,
+      "explanation": "First widely used at the 2022 World Cup."
+    },
+    {
+      "id": 9051,
+      "level": 6,
+      "question": "At which major tournament was goal-line technology first used?",
+      "options": [
+        "2010 World Cup",
+        "Euro 2016",
+        "2014 World Cup",
+        "2018 World Cup"
+      ],
+      "answerIndex": 2,
+      "explanation": "After the controversy over Lampard's disallowed goal in 2010."
+    },
+    {
+      "id": 9052,
+      "level": 6,
+      "question": "What is the decision when a player celebrates by taking off their shirt?",
+      "options": [
+        "A verbal warning only",
+        "Free kick to the opponents",
+        "A red card",
+        "A yellow card"
+      ],
+      "answerIndex": 3,
+      "explanation": "A mandatory caution, whatever the reason for the celebration."
+    },
+    {
+      "id": 9053,
+      "level": 6,
+      "question": "What is the decision when a player runs into the crowd to celebrate?",
+      "options": [
+        "A yellow card",
+        "A verbal warning only",
+        "A red card",
+        "A fine only"
+      ],
+      "answerIndex": 0,
+      "explanation": "Considered unsporting behaviour, which draws a caution."
+    },
+    {
+      "id": 9054,
+      "level": 6,
+      "question": "What does \"denying an obvious goal-scoring opportunity\" mean in refereeing?",
+      "options": [
+        "An ordinary foul",
+        "A foul that usually means a sending-off",
+        "An offside decision",
+        "A corner kick"
+      ],
+      "answerIndex": 1,
+      "explanation": "Reduced to a caution if the foul was an attempt to play the ball inside the area."
+    },
+    {
+      "id": 9055,
+      "level": 6,
+      "question": "When may a goalkeeper move on the goal line during a penalty shoot-out?",
+      "options": [
+        "They must keep one foot on or above the line at the moment of the kick",
+        "They may not move at all",
+        "They may step forward two metres",
+        "They may come off the line after the shot"
+      ],
+      "answerIndex": 0,
+      "explanation": "A rule adjusted to make it easier to apply with video technology."
+    },
+    {
+      "id": 9056,
+      "level": 6,
+      "question": "What is the decision if the penalty taker touches the ball twice in a row?",
+      "options": [
+        "The goal counts",
+        "A yellow card",
+        "The kick is retaken",
+        "Indirect free kick to the opponents"
+      ],
+      "answerIndex": 3,
+      "explanation": "The taker may not touch the ball again before another player does."
+    },
+    {
+      "id": 9057,
+      "level": 6,
+      "question": "How many players are needed to take a passed penalty kick?",
+      "options": [
+        "One",
+        "Three",
+        "Two",
+        "It isn't allowed"
+      ],
+      "answerIndex": 2,
+      "explanation": "Allowed, provided the teammate is outside the area when it's taken."
+    },
+    {
+      "id": 9058,
+      "level": 6,
+      "question": "What is the decision if the assistant referee raises the flag for offside and the review overturns it?",
+      "options": [
+        "The assistant's call stands",
+        "The call is overturned and play restarts from the point of intervention",
+        "The match is replayed",
+        "A free kick is awarded"
+      ],
+      "answerIndex": 1,
+      "explanation": "That's why assistants are advised to delay raising the flag until the attack ends."
+    },
+    {
+      "id": 9059,
+      "level": 6,
+      "question": "Why do assistant referees sometimes delay raising the offside flag?",
+      "options": [
+        "To confuse the defenders",
+        "To let the attack finish before it's reviewed",
+        "To save time",
+        "Because of a slow connection"
+      ],
+      "answerIndex": 1,
+      "explanation": "So a valid goal isn't wasted."
+    },
+    {
+      "id": 9060,
+      "level": 6,
+      "question": "What is the decision when a player deliberately wastes time at a throw-in?",
+      "options": [
+        "A verbal warning only",
+        "A yellow card",
+        "A free kick",
+        "Loss of the throw"
+      ],
+      "answerIndex": 1,
+      "explanation": "Considered unsporting behaviour."
+    },
+    {
+      "id": 9061,
+      "level": 7,
+      "question": "What is the official ball size for senior matches?",
+      "options": [
+        "Size 3",
+        "Size 5",
+        "Size 4",
+        "Size 6"
+      ],
+      "answerIndex": 1,
+      "explanation": "Size 4 is used at youth level."
+    },
+    {
+      "id": 9062,
+      "level": 7,
+      "question": "What is the regulation weight of the ball at kick-off?",
+      "options": [
+        "380-420 grams",
+        "410-450 grams",
+        "450-500 grams",
+        "350-380 grams"
+      ],
+      "answerIndex": 1,
+      "explanation": "The specification for a size 5 ball."
+    },
+    {
+      "id": 9063,
+      "level": 7,
+      "question": "What happens if the ball bursts during a shot that ends up in the net?",
+      "options": [
+        "The goal counts",
+        "The goal is disallowed and play restarts with a dropped ball",
+        "The shot is retaken",
+        "Free kick"
+      ],
+      "answerIndex": 1,
+      "explanation": "The ball is out of play the instant it bursts."
+    },
+    {
+      "id": 9064,
+      "level": 7,
+      "question": "Can a goal be scored directly from a goal kick?",
+      "options": [
+        "Yes, in the opponents' goal",
+        "No, never",
+        "Yes, in either goal",
+        "Only in extra time"
+      ],
+      "answerIndex": 0,
+      "explanation": "If it goes into the taker's own goal instead, the opponent gets a corner."
+    },
+    {
+      "id": 9065,
+      "level": 7,
+      "question": "Can a goal be scored directly from a corner kick?",
+      "options": [
+        "No",
+        "Yes",
+        "Only after touching two players",
+        "Only by the goalkeeper"
+      ],
+      "answerIndex": 1,
+      "explanation": "It's known as an Olympic goal."
+    },
+    {
+      "id": 9066,
+      "level": 7,
+      "question": "What is a goal scored directly from a corner kick called?",
+      "options": [
+        "The golden goal",
+        "The free goal",
+        "The goal of honour",
+        "The Olympic goal"
+      ],
+      "answerIndex": 3,
+      "explanation": "Named after Argentina's Cesáreo Onzari scored one in 1924."
+    },
+    {
+      "id": 9067,
+      "level": 7,
+      "question": "Can a goal be scored directly from the kick-off at the centre of the pitch?",
+      "options": [
+        "No",
+        "Yes",
+        "Only in the second half",
+        "Only after touching two players"
+      ],
+      "answerIndex": 1,
+      "explanation": "Allowed since the laws were amended, though hard to achieve in practice."
+    },
+    {
+      "id": 9068,
+      "level": 7,
+      "question": "When is a red card shown for \"violent conduct\"?",
+      "options": [
+        "For repeated fouls",
+        "For any tackle from behind",
+        "For dissent",
+        "For using excessive force that endangers an opponent's safety"
+      ],
+      "answerIndex": 3,
+      "explanation": "Safety is the test, not the outcome of the challenge."
+    },
+    {
+      "id": 9069,
+      "level": 7,
+      "question": "What is the decision if a player spits at an opponent?",
+      "options": [
+        "A caution",
+        "A free kick",
+        "An immediate sending-off",
+        "A temporary suspension"
+      ],
+      "answerIndex": 2,
+      "explanation": "One of the most serious offences in the laws of the game."
+    },
+    {
+      "id": 9070,
+      "level": 7,
+      "question": "Can the goalkeeper handle the ball after a throw-in from a teammate?",
+      "options": [
+        "Yes",
+        "Only after another player touches it",
+        "Only in their own half",
+        "No"
+      ],
+      "answerIndex": 3,
+      "explanation": "A throw-in from a teammate is covered by the same back-pass rule."
+    },
+    {
+      "id": 9071,
+      "level": 8,
+      "question": "When did the modern offside rule — level is not offside — come into force?",
+      "options": [
+        "1990",
+        "1995",
+        "2000",
+        "2005"
+      ],
+      "answerIndex": 0,
+      "explanation": "A change made after the Italy World Cup to encourage attacking play."
+    },
+    {
+      "id": 9072,
+      "level": 8,
+      "question": "When was the tackle from behind strictly banned?",
+      "options": [
+        "1994 World Cup",
+        "Euro 2000",
+        "2002 World Cup",
+        "1998 World Cup"
+      ],
+      "answerIndex": 3,
+      "explanation": "The penalty was toughened to a straight red card to protect players."
+    },
+    {
+      "id": 9073,
+      "level": 8,
+      "question": "Which goal-line technology system uses a magnetic field instead of cameras?",
+      "options": [
+        "GoalRef",
+        "GoalControl",
+        "Hawk-Eye",
+        "VAR"
+      ],
+      "answerIndex": 0,
+      "explanation": "GoalRef detects coils inside the ball via a magnetic field, while Hawk-Eye and GoalControl rely on cameras."
+    },
+    {
+      "id": 9074,
+      "level": 8,
+      "question": "How many cameras does a goal-line technology system typically use per goal?",
+      "options": [
+        "3",
+        "7",
+        "5",
+        "9"
+      ],
+      "answerIndex": 1,
+      "explanation": "Seven high-speed cameras per goal in the most common system."
+    },
+    {
+      "id": 9075,
+      "level": 8,
+      "question": "Where does the referee review a decision using video technology?",
+      "options": [
+        "A pitchside monitor near the technical area",
+        "Inside the dressing room",
+        "On the big screen in the stadium",
+        "Through an earpiece only"
+      ],
+      "answerIndex": 0,
+      "explanation": "Known as the referee review area, off-limits to everyone else."
+    },
+    {
+      "id": 9076,
+      "level": 8,
+      "question": "Who has the final say when video technology is used?",
+      "options": [
+        "The video operations room",
+        "The match commissioner",
+        "The fourth official",
+        "The on-field referee"
+      ],
+      "answerIndex": 3,
+      "explanation": "The video room only advises; the decision stays with the on-field referee."
+    },
+    {
+      "id": 9077,
+      "level": 8,
+      "question": "What is the decision if an outsider enters the pitch and affects a goal?",
+      "options": [
+        "The goal is disallowed and play restarts with a dropped ball",
+        "The goal counts",
+        "The match is replayed",
+        "Penalty kick"
+      ],
+      "answerIndex": 0,
+      "explanation": "Outside interference is treated as voiding the passage of play."
+    },
+    {
+      "id": 9078,
+      "level": 8,
+      "question": "What is the decision if a player scores with their hand unseen by the referee and the match carries on?",
+      "options": [
+        "The goal stands",
+        "It's disallowed after the match",
+        "The match is replayed",
+        "It's awarded to the opponents"
+      ],
+      "answerIndex": 0,
+      "explanation": "The referee's decisions on matters of fact are final once the match has ended."
+    },
+    {
+      "id": 9079,
+      "level": 8,
+      "question": "What is the maximum width for the pitch markings?",
+      "options": [
+        "12 cm",
+        "5 cm",
+        "20 cm",
+        "25 cm"
+      ],
+      "answerIndex": 0,
+      "explanation": "And every line must be the same width."
+    },
+    {
+      "id": 9080,
+      "level": 8,
+      "question": "Are the lines considered part of the area they mark out?",
+      "options": [
+        "Only the touchline",
+        "No",
+        "Only the goal line",
+        "Yes"
+      ],
+      "answerIndex": 3,
+      "explanation": "So the ball is only out of play once it has fully crossed the line."
+    },
+    {
+      "id": 9081,
+      "level": 9,
+      "question": "When is the ball considered out of play?",
+      "options": [
+        "When it touches the line",
+        "When it has fully crossed the line",
+        "When a player touches it while outside",
+        "Only when the referee blows the whistle"
+      ],
+      "answerIndex": 1,
+      "explanation": "The ball must cross the line entirely, whether on the ground or in the air."
+    },
+    {
+      "id": 9082,
+      "level": 9,
+      "question": "What is the arc-shaped marking outside the penalty area called?",
+      "options": [
+        "The goal semicircle",
+        "The referee's arc",
+        "The throw-in arc",
+        "The penalty arc"
+      ],
+      "answerIndex": 3,
+      "explanation": "It marks the distance other players must stand behind at a penalty kick."
+    },
+    {
+      "id": 9083,
+      "level": 9,
+      "question": "What is the small mark outside the pitch near the corner flag for?",
+      "options": [
+        "To mark where photographers stand",
+        "To mark a warm-up area",
+        "To mark how far defenders must stand back at a corner kick",
+        "It serves no purpose"
+      ],
+      "answerIndex": 2,
+      "explanation": "It helps the referee judge the 9.15-metre distance quickly."
+    },
+    {
+      "id": 9084,
+      "level": 9,
+      "question": "Can the goalkeeper swap with another player during a match?",
+      "options": [
+        "Only after an injury",
+        "No",
+        "Only at half-time",
+        "Yes, after informing the referee"
+      ],
+      "answerIndex": 3,
+      "explanation": "Any player can swap roles with the keeper after telling the referee."
+    },
+    {
+      "id": 9085,
+      "level": 9,
+      "question": "What is the decision if two players swap the goalkeeper's role without informing the referee?",
+      "options": [
+        "Indirect free kick to the opponents",
+        "A caution for both players once play stops",
+        "A sending-off",
+        "The match is abandoned"
+      ],
+      "answerIndex": 1,
+      "explanation": "It's an administrative offence and doesn't void the play."
+    },
+    {
+      "id": 9086,
+      "level": 9,
+      "question": "Is jewellery allowed during a match?",
+      "options": [
+        "Yes",
+        "Bracelets only",
+        "Rings only",
+        "No jewellery at all is allowed"
+      ],
+      "answerIndex": 3,
+      "explanation": "For safety reasons — taping it up isn't enough."
+    },
+    {
+      "id": 9087,
+      "level": 9,
+      "question": "What is the rule on the colour of a player's thermal base layer?",
+      "options": [
+        "Completely free choice",
+        "It must match the shirt sleeve's main colour",
+        "Always white",
+        "Always black"
+      ],
+      "answerIndex": 1,
+      "explanation": "To avoid visual confusion during play."
+    },
+    {
+      "id": 9088,
+      "level": 9,
+      "question": "When may the referee abandon a match for good?",
+      "options": [
+        "By a decision of the crowd",
+        "If either team requests it",
+        "By the manager's decision",
+        "At their own discretion, for safety reasons or outside interference"
+      ],
+      "answerIndex": 3,
+      "explanation": "The referee's authority on this is absolute within the laws."
+    },
+    {
+      "id": 9089,
+      "level": 9,
+      "question": "What is the decision if a player throws a boot or object at the ball?",
+      "options": [
+        "A dropped ball",
+        "A direct free kick or penalty kick, plus a card",
+        "Play is retaken",
+        "Corner kick"
+      ],
+      "answerIndex": 1,
+      "explanation": "Treated as if the ball had been touched unfairly."
+    },
+    {
+      "id": 9090,
+      "level": 9,
+      "question": "What is the maximum length of the half-time break?",
+      "options": [
+        "10 minutes",
+        "15 minutes",
+        "20 minutes",
+        "5 minutes"
+      ],
+      "answerIndex": 1,
+      "explanation": "It may not be extended without the referee's agreement."
+    },
+    {
+      "id": 9091,
+      "level": 10,
+      "question": "In what year were the first laws of football drawn up?",
+      "options": [
+        "1848",
+        "1871",
+        "1863",
+        "1885"
+      ],
+      "answerIndex": 2,
+      "explanation": "Alongside the founding of the Football Association in London."
+    },
+    {
+      "id": 9092,
+      "level": 10,
+      "question": "In what year was the International Football Association Board founded?",
+      "options": [
+        "1863",
+        "1930",
+        "1904",
+        "1886"
+      ],
+      "answerIndex": 3,
+      "explanation": "Eighteen years before FIFA was founded."
+    },
+    {
+      "id": 9093,
+      "level": 10,
+      "question": "How many votes does FIFA hold in IFAB's votes on rule changes?",
+      "options": [
+        "One",
+        "Two",
+        "Eight",
+        "Four"
+      ],
+      "answerIndex": 3,
+      "explanation": "Four votes, against one each for the four British associations."
+    },
+    {
+      "id": 9094,
+      "level": 10,
+      "question": "How many votes are needed to pass a change to the laws of the game?",
+      "options": [
+        "A simple majority",
+        "Six votes out of eight",
+        "Unanimity",
+        "Five votes"
+      ],
+      "answerIndex": 1,
+      "explanation": "Meaning FIFA alone cannot push a change through."
+    },
+    {
+      "id": 9095,
+      "level": 10,
+      "question": "When was the penalty kick introduced into the laws of the game?",
+      "options": [
+        "1863",
+        "1902",
+        "1891",
+        "1912"
+      ],
+      "answerIndex": 2,
+      "explanation": "Added to punish fouls near the goal."
+    },
+    {
+      "id": 9096,
+      "level": 10,
+      "question": "When were goalkeepers restricted to handling the ball inside the penalty area only?",
+      "options": [
+        "1863",
+        "1888",
+        "1925",
+        "1912"
+      ],
+      "answerIndex": 3,
+      "explanation": "Before that, a keeper could use their hands anywhere in their own half."
+    },
+    {
+      "id": 9097,
+      "level": 10,
+      "question": "When was the offside rule changed from three defenders to two?",
+      "options": [
+        "1912",
+        "1937",
+        "1925",
+        "1950"
+      ],
+      "answerIndex": 2,
+      "explanation": "The change led to a big rise in the goals-per-game rate."
+    },
+    {
+      "id": 9098,
+      "level": 10,
+      "question": "When were nets first used on goals officially?",
+      "options": [
+        "1875",
+        "1920",
+        "1905",
+        "1891"
+      ],
+      "answerIndex": 3,
+      "explanation": "To settle disputes over whether the ball had crossed the line."
+    },
+    {
+      "id": 9099,
+      "level": 10,
+      "question": "When were substitutions first permitted in official matches?",
+      "options": [
+        "The 1960s",
+        "The 1940s",
+        "The 1970s",
+        "The 1980s"
+      ],
+      "answerIndex": 0,
+      "explanation": "It began with one substitution for injury, then gradually expanded."
+    },
+    {
+      "id": 9100,
+      "level": 10,
+      "question": "When was the penalty shoot-out adopted to decide matches internationally?",
+      "options": [
+        "1958",
+        "1990",
+        "1982",
+        "1970"
+      ],
+      "answerIndex": 3,
+      "explanation": "Before that, matches were settled by a replay or a draw of lots."
+    }
+  ]
+}

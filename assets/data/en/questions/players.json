@@ -1,0 +1,1306 @@
+{
+  "version": 2,
+  "category": "players",
+  "questions": [
+    {
+      "id": 6001,
+      "level": 1,
+      "question": "Which player is nicknamed \"The Flea\"?",
+      "options": [
+        "Sergio Aguero",
+        "Andres Iniesta",
+        "Lionel Messi",
+        "Xavi"
+      ],
+      "answerIndex": 2,
+      "explanation": "The nickname La Pulga has followed Messi since his early days due to his small stature."
+    },
+    {
+      "id": 6002,
+      "level": 1,
+      "question": "What is Cristiano Ronaldo's nationality?",
+      "options": [
+        "Spanish",
+        "Portuguese",
+        "Brazilian",
+        "Argentine"
+      ],
+      "answerIndex": 1,
+      "explanation": "He was born on the Portuguese island of Madeira."
+    },
+    {
+      "id": 6003,
+      "level": 1,
+      "question": "What is Lionel Messi's nationality?",
+      "options": [
+        "Uruguayan",
+        "Argentine",
+        "Chilean",
+        "Brazilian"
+      ],
+      "answerIndex": 1,
+      "explanation": "He was born in the Argentine city of Rosario."
+    },
+    {
+      "id": 6004,
+      "level": 1,
+      "question": "Which Brazilian player is nicknamed \"The Phenomenon\"?",
+      "options": [
+        "Ronaldinho",
+        "Ronaldo Nazario",
+        "Rivaldo",
+        "Romario"
+      ],
+      "answerIndex": 1,
+      "explanation": "El Fenomeno, one of the greatest strikers in history."
+    },
+    {
+      "id": 6005,
+      "level": 1,
+      "question": "What is Erling Haaland's nationality?",
+      "options": [
+        "Swedish",
+        "Norwegian",
+        "Danish",
+        "Icelandic"
+      ],
+      "answerIndex": 1,
+      "explanation": "Norway's striker and Manchester City's star forward."
+    },
+    {
+      "id": 6006,
+      "level": 1,
+      "question": "What is Robert Lewandowski's nationality?",
+      "options": [
+        "Czech",
+        "Polish",
+        "Slovak",
+        "Ukrainian"
+      ],
+      "answerIndex": 1,
+      "explanation": "Poland's captain and all-time record scorer."
+    },
+    {
+      "id": 6007,
+      "level": 1,
+      "question": "What is Neymar's nationality?",
+      "options": [
+        "Portuguese",
+        "Brazilian",
+        "Argentine",
+        "Colombian"
+      ],
+      "answerIndex": 1,
+      "explanation": "One of the leading stars of the current Brazilian generation."
+    },
+    {
+      "id": 6008,
+      "level": 1,
+      "question": "Which club did Lionel Messi spend most of his career at?",
+      "options": [
+        "Real Madrid",
+        "Inter Miami",
+        "Paris Saint-Germain",
+        "Barcelona"
+      ],
+      "answerIndex": 3,
+      "explanation": "He spent over twenty years at Barcelona between the academy and the first team."
+    },
+    {
+      "id": 6009,
+      "level": 1,
+      "question": "Which club did Cristiano Ronaldo play for between 2009 and 2018?",
+      "options": [
+        "Real Madrid",
+        "Juventus",
+        "Manchester United",
+        "Sporting Lisbon"
+      ],
+      "answerIndex": 0,
+      "explanation": "His most decorated years, individually and collectively."
+    },
+    {
+      "id": 6010,
+      "level": 1,
+      "question": "What is Kylian Mbappe's nationality?",
+      "options": [
+        "Belgian",
+        "French",
+        "Moroccan",
+        "Cameroonian"
+      ],
+      "answerIndex": 1,
+      "explanation": "He was born in the Paris suburb of Bondy."
+    },
+    {
+      "id": 6011,
+      "level": 2,
+      "question": "How many Ballon d'Or awards has Lionel Messi won?",
+      "options": [
+        "8",
+        "7",
+        "6",
+        "9"
+      ],
+      "answerIndex": 0,
+      "explanation": "A record no one else comes close to in the award's history."
+    },
+    {
+      "id": 6012,
+      "level": 2,
+      "question": "How many Ballon d'Or awards has Cristiano Ronaldo won?",
+      "options": [
+        "4",
+        "3",
+        "6",
+        "5"
+      ],
+      "answerIndex": 3,
+      "explanation": "Five Ballons d'Or between 2008 and 2017."
+    },
+    {
+      "id": 6013,
+      "level": 2,
+      "question": "What is Zlatan Ibrahimovic's nationality?",
+      "options": [
+        "Swedish",
+        "Bosnian",
+        "Croatian",
+        "Serbian"
+      ],
+      "answerIndex": 0,
+      "explanation": "Swedish, of Bosnian and Croatian descent."
+    },
+    {
+      "id": 6014,
+      "level": 2,
+      "question": "Who was Italy's goalkeeper when they won the 2006 World Cup?",
+      "options": [
+        "Morgan De Sanctis",
+        "Walter Zenga",
+        "Francesco Toldo",
+        "Gianluigi Buffon"
+      ],
+      "answerIndex": 3,
+      "explanation": "One of the greatest goalkeepers in the game's history."
+    },
+    {
+      "id": 6015,
+      "level": 2,
+      "question": "What is Luka Modric's nationality?",
+      "options": [
+        "Serbian",
+        "Slovenian",
+        "Bosnian",
+        "Croatian"
+      ],
+      "answerIndex": 3,
+      "explanation": "Croatia's historic captain and Real Madrid's midfield star."
+    },
+    {
+      "id": 6016,
+      "level": 2,
+      "question": "Who won the Ballon d'Or in 2018?",
+      "options": [
+        "Cristiano Ronaldo",
+        "Luka Modric",
+        "Lionel Messi",
+        "Antoine Griezmann"
+      ],
+      "answerIndex": 1,
+      "explanation": "Modric ended the ten-year duopoly held by Messi and Ronaldo."
+    },
+    {
+      "id": 6017,
+      "level": 2,
+      "question": "What is Toni Kroos's nationality?",
+      "options": [
+        "Austrian",
+        "Swiss",
+        "Dutch",
+        "German"
+      ],
+      "answerIndex": 3,
+      "explanation": "Germany and Real Madrid's playmaker for years."
+    },
+    {
+      "id": 6018,
+      "level": 2,
+      "question": "What is Jude Bellingham's nationality?",
+      "options": [
+        "Scottish",
+        "Irish",
+        "Welsh",
+        "English"
+      ],
+      "answerIndex": 3,
+      "explanation": "He moved from Dortmund to Real Madrid in 2023."
+    },
+    {
+      "id": 6019,
+      "level": 2,
+      "question": "Which Brazilian player wears the number 7 shirt at Real Madrid?",
+      "options": [
+        "Vinicius Junior",
+        "Rodrygo",
+        "Eder Militao",
+        "Endrick"
+      ],
+      "answerIndex": 0,
+      "explanation": "He inherited the famous number after years of standout form."
+    },
+    {
+      "id": 6020,
+      "level": 2,
+      "question": "What is Andres Iniesta's nationality?",
+      "options": [
+        "Italian",
+        "Portuguese",
+        "French",
+        "Spanish"
+      ],
+      "answerIndex": 3,
+      "explanation": "Playmaker for Barcelona and Spain in their golden era."
+    },
+    {
+      "id": 6021,
+      "level": 3,
+      "question": "Which player holds the record for the most Ballon d'Or awards?",
+      "options": [
+        "Lionel Messi",
+        "Cristiano Ronaldo",
+        "Michel Platini",
+        "Johan Cruyff"
+      ],
+      "answerIndex": 0,
+      "explanation": "Messi holds the record by a wide margin."
+    },
+    {
+      "id": 6022,
+      "level": 3,
+      "question": "Who is the legendary goalkeeper nicknamed \"The Black Spider\"?",
+      "options": [
+        "Gordon Banks",
+        "Dino Zoff",
+        "Peter Schmeichel",
+        "Lev Yashin"
+      ],
+      "answerIndex": 3,
+      "explanation": "The most famous Soviet goalkeeper in history."
+    },
+    {
+      "id": 6023,
+      "level": 3,
+      "question": "Who is the only goalkeeper to have won the Ballon d'Or?",
+      "options": [
+        "Dino Zoff",
+        "Lev Yashin",
+        "Oliver Kahn",
+        "Gianluigi Buffon"
+      ],
+      "answerIndex": 1,
+      "explanation": "Yashin won it in 1963, and no other goalkeeper has since."
+    },
+    {
+      "id": 6024,
+      "level": 3,
+      "question": "What is Johan Cruyff's nationality?",
+      "options": [
+        "Belgian",
+        "German",
+        "Danish",
+        "Dutch"
+      ],
+      "answerIndex": 3,
+      "explanation": "The symbol of Total Football and architect of Barcelona's philosophy."
+    },
+    {
+      "id": 6025,
+      "level": 3,
+      "question": "Which German player is nicknamed \"The Kaiser\"?",
+      "options": [
+        "Gerd Muller",
+        "Lothar Matthaus",
+        "Franz Beckenbauer",
+        "Karl-Heinz Rummenigge"
+      ],
+      "answerIndex": 2,
+      "explanation": "He redefined the sweeper role in football."
+    },
+    {
+      "id": 6026,
+      "level": 3,
+      "question": "Which French player won the Ballon d'Or in 1998?",
+      "options": [
+        "Zinedine Zidane",
+        "Thierry Henry",
+        "Didier Deschamps",
+        "Marcel Desailly"
+      ],
+      "answerIndex": 0,
+      "explanation": "After leading France to the World Cup title on home soil."
+    },
+    {
+      "id": 6027,
+      "level": 3,
+      "question": "Which English player played for Manchester United, Real Madrid and Milan?",
+      "options": [
+        "Michael Owen",
+        "David Beckham",
+        "Steven Gerrard",
+        "Paul Scholes"
+      ],
+      "answerIndex": 1,
+      "explanation": "One of his generation's most famous players, on and off the pitch."
+    },
+    {
+      "id": 6028,
+      "level": 3,
+      "question": "What is Sergio Ramos's nationality?",
+      "options": [
+        "Spanish",
+        "Argentine",
+        "Portuguese",
+        "Mexican"
+      ],
+      "answerIndex": 0,
+      "explanation": "Real Madrid and Spain's captain for many years."
+    },
+    {
+      "id": 6029,
+      "level": 3,
+      "question": "Who scored the famous volley in the Euro 1988 final?",
+      "options": [
+        "Ruud Gullit",
+        "Marco van Basten",
+        "Frank Rijkaard",
+        "Ronald Koeman"
+      ],
+      "answerIndex": 1,
+      "explanation": "A strike from an almost impossible angle, considered one of the finest goals in history."
+    },
+    {
+      "id": 6030,
+      "level": 3,
+      "question": "Which Portuguese player is nicknamed \"The Black Panther\"?",
+      "options": [
+        "Luis Figo",
+        "Eusebio",
+        "Rui Costa",
+        "Deco"
+      ],
+      "answerIndex": 1,
+      "explanation": "A Benfica legend and top scorer at the 1966 World Cup."
+    },
+    {
+      "id": 6031,
+      "level": 4,
+      "question": "How much did Neymar's transfer to Paris Saint-Germain cost in 2017?",
+      "options": [
+        "180 million euros",
+        "160 million euros",
+        "222 million euros",
+        "250 million euros"
+      ],
+      "answerIndex": 2,
+      "explanation": "A world record fee that still stands today."
+    },
+    {
+      "id": 6032,
+      "level": 4,
+      "question": "Who won the Ballon d'Or in 2022?",
+      "options": [
+        "Lionel Messi",
+        "Karim Benzema",
+        "Kylian Mbappe",
+        "Robert Lewandowski"
+      ],
+      "answerIndex": 1,
+      "explanation": "After an exceptional season leading Real Madrid to the double."
+    },
+    {
+      "id": 6033,
+      "level": 4,
+      "question": "Who won the Ballon d'Or in 2024?",
+      "options": [
+        "Rodri",
+        "Vinicius Junior",
+        "Jude Bellingham",
+        "Erling Haaland"
+      ],
+      "answerIndex": 0,
+      "explanation": "Rodri's first win after a standout season with City and Spain."
+    },
+    {
+      "id": 6034,
+      "level": 4,
+      "question": "Who is Germany's all-time top scorer?",
+      "options": [
+        "Miroslav Klose",
+        "Gerd Muller",
+        "Lothar Matthaus",
+        "Thomas Muller"
+      ],
+      "answerIndex": 0,
+      "explanation": "Klose overtook Gerd Muller's historic record."
+    },
+    {
+      "id": 6035,
+      "level": 4,
+      "question": "Who is England's all-time top scorer?",
+      "options": [
+        "Wayne Rooney",
+        "Harry Kane",
+        "Bobby Charlton",
+        "Alan Shearer"
+      ],
+      "answerIndex": 1,
+      "explanation": "Kane overtook the records held by Rooney and Charlton."
+    },
+    {
+      "id": 6036,
+      "level": 4,
+      "question": "Who is Brazil's all-time top scorer?",
+      "options": [
+        "Pele",
+        "Ronaldo",
+        "Neymar",
+        "Romario"
+      ],
+      "answerIndex": 2,
+      "explanation": "Neymar overtook Pele's historic record."
+    },
+    {
+      "id": 6037,
+      "level": 4,
+      "question": "Who broke Olivier Giroud's record of 57 goals for France in 2026?",
+      "options": [
+        "Thierry Henry",
+        "Kylian Mbappe",
+        "Michel Platini",
+        "Antoine Griezmann"
+      ],
+      "answerIndex": 1,
+      "explanation": "Mbappe scored twice against Senegal in the 2026 World Cup opener to reach 58 goals."
+    },
+    {
+      "id": 6038,
+      "level": 4,
+      "question": "Which Ukrainian player won the Ballon d'Or in 2004?",
+      "options": [
+        "Anatoliy Tymoshchuk",
+        "Oleg Blokhin",
+        "Andriy Shevchenko",
+        "Serhiy Rebrov"
+      ],
+      "answerIndex": 2,
+      "explanation": "He won it as a Milan star."
+    },
+    {
+      "id": 6039,
+      "level": 4,
+      "question": "Which African player won the Ballon d'Or and later became president of his country?",
+      "options": [
+        "Samuel Eto'o",
+        "Yaya Toure",
+        "Didier Drogba",
+        "George Weah"
+      ],
+      "answerIndex": 3,
+      "explanation": "Liberia's George Weah won it in 1995 and became president in 2018."
+    },
+    {
+      "id": 6040,
+      "level": 4,
+      "question": "Which Brazilian player won the Ballon d'Or in 2007?",
+      "options": [
+        "Ronaldinho",
+        "Robinho",
+        "Kaka",
+        "Adriano"
+      ],
+      "answerIndex": 2,
+      "explanation": "The last player to win it before the long Messi-Ronaldo era."
+    },
+    {
+      "id": 6041,
+      "level": 5,
+      "question": "Which Italian player is nicknamed \"The Divine Ponytail\"?",
+      "options": [
+        "Alessandro Del Piero",
+        "Roberto Baggio",
+        "Francesco Totti",
+        "Paolo Rossi"
+      ],
+      "answerIndex": 1,
+      "explanation": "He missed the decisive penalty in the 1994 final."
+    },
+    {
+      "id": 6042,
+      "level": 5,
+      "question": "Which Italian player spent almost his entire career at Milan?",
+      "options": [
+        "Paolo Maldini",
+        "Franco Baresi",
+        "Alessandro Costacurta",
+        "Gennaro Gattuso"
+      ],
+      "answerIndex": 0,
+      "explanation": "Maldini played 25 seasons with the Rossoneri."
+    },
+    {
+      "id": 6043,
+      "level": 5,
+      "question": "Which Italian player spent his entire career at Roma?",
+      "options": [
+        "Francesco Totti",
+        "Daniele De Rossi",
+        "Alessandro Nesta",
+        "Fabio Cannavaro"
+      ],
+      "answerIndex": 0,
+      "explanation": "A Roma icon and one of football's most famous one-club players."
+    },
+    {
+      "id": 6044,
+      "level": 5,
+      "question": "Which Italian defender won the Ballon d'Or in 2006?",
+      "options": [
+        "Alessandro Nesta",
+        "Marco Materazzi",
+        "Gianluca Zambrotta",
+        "Fabio Cannavaro"
+      ],
+      "answerIndex": 3,
+      "explanation": "He led Italy to the World Cup title as captain and defender."
+    },
+    {
+      "id": 6045,
+      "level": 5,
+      "question": "What is Thierry Henry's nationality?",
+      "options": [
+        "Belgian",
+        "Dutch",
+        "French",
+        "Senegalese"
+      ],
+      "answerIndex": 2,
+      "explanation": "Arsenal's legend and all-time top scorer."
+    },
+    {
+      "id": 6046,
+      "level": 5,
+      "question": "Which Argentine player is nicknamed \"El Matador\"?",
+      "options": [
+        "Gabriel Batistuta",
+        "Hernan Crespo",
+        "Sergio Aguero",
+        "Juan Roman Riquelme"
+      ],
+      "answerIndex": 0,
+      "explanation": "One of Serie A's most famous strikers in the 1990s."
+    },
+    {
+      "id": 6047,
+      "level": 5,
+      "question": "Which Brazilian player is nicknamed \"The People's Joy\"?",
+      "options": [
+        "Garrincha",
+        "Zico",
+        "Socrates",
+        "Didi"
+      ],
+      "answerIndex": 0,
+      "explanation": "Alegria do Povo, Brazil's legendary winger."
+    },
+    {
+      "id": 6048,
+      "level": 5,
+      "question": "Which Brazilian player combined a medical career with football?",
+      "options": [
+        "Zico",
+        "Tostao",
+        "Falcao",
+        "Socrates"
+      ],
+      "answerIndex": 3,
+      "explanation": "He was a doctor and intellectual leader of the 1982 side."
+    },
+    {
+      "id": 6049,
+      "level": 5,
+      "question": "Which legendary Hungarian player played for Real Madrid in the 1950s?",
+      "options": [
+        "Zoltan Czibor",
+        "Sandor Kocsis",
+        "Nandor Hidegkuti",
+        "Ferenc Puskas"
+      ],
+      "answerIndex": 3,
+      "explanation": "Alongside Di Stefano, he formed Europe's most feared partnership."
+    },
+    {
+      "id": 6050,
+      "level": 5,
+      "question": "Which Argentine-born player led Real Madrid to five consecutive European titles?",
+      "options": [
+        "Amancio Amaro",
+        "Humberto Mesquiaty",
+        "Jose Santamaria",
+        "Alfredo Di Stefano"
+      ],
+      "answerIndex": 3,
+      "explanation": "One of the greatest players of all time."
+    },
+    {
+      "id": 6051,
+      "level": 6,
+      "question": "Which German player is nicknamed \"Der Bomber\"?",
+      "options": [
+        "Karl-Heinz Rummenigge",
+        "Oliver Bierhoff",
+        "Jurgen Klinsmann",
+        "Gerd Muller"
+      ],
+      "answerIndex": 3,
+      "explanation": "Der Bomber, one of the deadliest strikers in history."
+    },
+    {
+      "id": 6052,
+      "level": 6,
+      "question": "Which English player survived the Munich air disaster and won the 1966 World Cup?",
+      "options": [
+        "Bobby Moore",
+        "Geoff Hurst",
+        "Bobby Charlton",
+        "Nobby Stiles"
+      ],
+      "answerIndex": 2,
+      "explanation": "A Manchester United and England legend."
+    },
+    {
+      "id": 6053,
+      "level": 6,
+      "question": "Which Northern Irish player was nicknamed \"The Fifth Beatle\"?",
+      "options": [
+        "Norman Whiteside",
+        "Pat Jennings",
+        "George Best",
+        "David Healy"
+      ],
+      "answerIndex": 2,
+      "explanation": "His fame off the pitch rivalled his talent on it."
+    },
+    {
+      "id": 6054,
+      "level": 6,
+      "question": "Which Cameroonian player won African Footballer of the Year four times?",
+      "options": [
+        "Samuel Eto'o",
+        "Roger Milla",
+        "Patrick Mboma",
+        "Jeremie Njitap"
+      ],
+      "answerIndex": 0,
+      "explanation": "One of the most successful African strikers in Europe."
+    },
+    {
+      "id": 6055,
+      "level": 6,
+      "question": "Which Ivorian player scored Chelsea's equaliser in the 2012 final?",
+      "options": [
+        "Salomon Kalou",
+        "Yaya Toure",
+        "Gervinho",
+        "Didier Drogba"
+      ],
+      "answerIndex": 3,
+      "explanation": "He scored the equaliser and then the decisive penalty."
+    },
+    {
+      "id": 6056,
+      "level": 6,
+      "question": "Who is the youngest player to win the Ballon d'Or?",
+      "options": [
+        "Ronaldo Nazario",
+        "Lionel Messi",
+        "Michael Owen",
+        "Kylian Mbappe"
+      ],
+      "answerIndex": 0,
+      "explanation": "Ronaldo won it in 1997 at age 21."
+    },
+    {
+      "id": 6057,
+      "level": 6,
+      "question": "How many Ballon d'Or awards did Johan Cruyff win?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "answerIndex": 0,
+      "explanation": "In 1971, 1973 and 1974."
+    },
+    {
+      "id": 6058,
+      "level": 6,
+      "question": "How many Ballon d'Or awards did Michel Platini win?",
+      "options": [
+        "2",
+        "1",
+        "4",
+        "3"
+      ],
+      "answerIndex": 3,
+      "explanation": "Three in a row between 1983 and 1985."
+    },
+    {
+      "id": 6059,
+      "level": 6,
+      "question": "How many Ballon d'Or awards did Marco van Basten win?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "1"
+      ],
+      "answerIndex": 1,
+      "explanation": "In 1988, 1989 and 1992, before injury ended his career early."
+    },
+    {
+      "id": 6060,
+      "level": 6,
+      "question": "Who won the first Puskas Award for the best goal in 2009?",
+      "options": [
+        "Lionel Messi",
+        "Cristiano Ronaldo",
+        "Zlatan Ibrahimovic",
+        "Neymar"
+      ],
+      "answerIndex": 1,
+      "explanation": "For his long-range rocket with Manchester United."
+    },
+    {
+      "id": 6061,
+      "level": 7,
+      "question": "Which player won the Golden Boy award in 2023?",
+      "options": [
+        "Pedri",
+        "Jude Bellingham",
+        "Gavi",
+        "Jamal Musiala"
+      ],
+      "answerIndex": 1,
+      "explanation": "After his standout first season at Real Madrid."
+    },
+    {
+      "id": 6062,
+      "level": 7,
+      "question": "Which Spanish player made the most appearances for Barcelona before Messi?",
+      "options": [
+        "Andres Iniesta",
+        "Carles Puyol",
+        "Xavi Hernandez",
+        "Gerard Pique"
+      ],
+      "answerIndex": 2,
+      "explanation": "Xavi made 767 appearances for the club."
+    },
+    {
+      "id": 6063,
+      "level": 7,
+      "question": "Which Uruguayan player sparked controversy by biting an opponent at the 2014 World Cup?",
+      "options": [
+        "Luis Suarez",
+        "Edinson Cavani",
+        "Diego Godin",
+        "Diego Forlan"
+      ],
+      "answerIndex": 0,
+      "explanation": "He bit Italian defender Chiellini and received a lengthy ban."
+    },
+    {
+      "id": 6064,
+      "level": 7,
+      "question": "Who was the first European player to pass 100 international goals?",
+      "options": [
+        "Ferenc Puskas",
+        "Miroslav Klose",
+        "Cristiano Ronaldo",
+        "Robert Lewandowski"
+      ],
+      "answerIndex": 2,
+      "explanation": "Ronaldo passed the mark in 2020 with Portugal."
+    },
+    {
+      "id": 6065,
+      "level": 7,
+      "question": "Which Czech player won the Ballon d'Or in 2003?",
+      "options": [
+        "Karel Poborsky",
+        "Petr Cech",
+        "Tomas Rosicky",
+        "Pavel Nedved"
+      ],
+      "answerIndex": 3,
+      "explanation": "He won it as a Juventus star."
+    },
+    {
+      "id": 6066,
+      "level": 7,
+      "question": "Which Bulgarian player won the Ballon d'Or in 1994?",
+      "options": [
+        "Krasimir Balakov",
+        "Yordan Letchkov",
+        "Emil Kostadinov",
+        "Hristo Stoichkov"
+      ],
+      "answerIndex": 3,
+      "explanation": "After leading Bulgaria to the World Cup semi-final."
+    },
+    {
+      "id": 6067,
+      "level": 7,
+      "question": "Which Brazilian player won the Ballon d'Or in 1999?",
+      "options": [
+        "Rivaldo",
+        "Ronaldo",
+        "Roberto Carlos",
+        "Cafu"
+      ],
+      "answerIndex": 0,
+      "explanation": "He was Barcelona's star at the time."
+    },
+    {
+      "id": 6068,
+      "level": 7,
+      "question": "Which German player won the Ballon d'Or in 1990?",
+      "options": [
+        "Jurgen Klinsmann",
+        "Andreas Brehme",
+        "Lothar Matthaus",
+        "Rudi Voller"
+      ],
+      "answerIndex": 2,
+      "explanation": "After leading West Germany to the World Cup title."
+    },
+    {
+      "id": 6069,
+      "level": 7,
+      "question": "Which English player won the Ballon d'Or in 2001?",
+      "options": [
+        "Michael Owen",
+        "David Beckham",
+        "Steven Gerrard",
+        "Paul Scholes"
+      ],
+      "answerIndex": 0,
+      "explanation": "The last Englishman to win the award to date."
+    },
+    {
+      "id": 6070,
+      "level": 7,
+      "question": "Which Brazilian player won FIFA World Player of the Year in 2004 and 2005?",
+      "options": [
+        "Kaka",
+        "Adriano",
+        "Ronaldinho",
+        "Robinho"
+      ],
+      "answerIndex": 2,
+      "explanation": "The peak of his form with Barcelona."
+    },
+    {
+      "id": 6071,
+      "level": 8,
+      "question": "Who was the first African player to win the Ballon d'Or?",
+      "options": [
+        "Samuel Eto'o",
+        "Roger Milla",
+        "Abedi Pele",
+        "George Weah"
+      ],
+      "answerIndex": 3,
+      "explanation": "He won it in 1995 as a Milan player."
+    },
+    {
+      "id": 6072,
+      "level": 8,
+      "question": "When was the Ballon d'Or opened up to players from outside Europe?",
+      "options": [
+        "1990",
+        "2000",
+        "1995",
+        "2007"
+      ],
+      "answerIndex": 2,
+      "explanation": "Before that it was reserved for European players."
+    },
+    {
+      "id": 6073,
+      "level": 8,
+      "question": "Which French player won the Ballon d'Or three years running in the 1980s?",
+      "options": [
+        "Jean-Pierre Papin",
+        "Michel Platini",
+        "Dominique Rocheteau",
+        "Alain Giresse"
+      ],
+      "answerIndex": 1,
+      "explanation": "In 1983, 1984 and 1985 with Juventus."
+    },
+    {
+      "id": 6074,
+      "level": 8,
+      "question": "Which French player won the Ballon d'Or in 1991 as a Marseille star?",
+      "options": [
+        "Eric Cantona",
+        "Laurent Blanc",
+        "Jean-Pierre Papin",
+        "Didier Deschamps"
+      ],
+      "answerIndex": 2,
+      "explanation": "One of the most prolific strikers in French league history."
+    },
+    {
+      "id": 6075,
+      "level": 8,
+      "question": "Which Dutch player won the Ballon d'Or in 1987?",
+      "options": [
+        "Ronald Koeman",
+        "Marco van Basten",
+        "Frank Rijkaard",
+        "Ruud Gullit"
+      ],
+      "answerIndex": 3,
+      "explanation": "Leader of Milan's legendary Dutch trio."
+    },
+    {
+      "id": 6076,
+      "level": 8,
+      "question": "Which German goalkeeper won World Goalkeeper of the Year three years in a row?",
+      "options": [
+        "Manuel Neuer",
+        "Oliver Kahn",
+        "Jens Lehmann",
+        "Bodo Illgner"
+      ],
+      "answerIndex": 1,
+      "explanation": "Between 1999 and 2002, at the peak of his form with Bayern."
+    },
+    {
+      "id": 6077,
+      "level": 8,
+      "question": "Which English player scored more than 250 goals for Manchester United?",
+      "options": [
+        "Bobby Charlton",
+        "Ryan Giggs",
+        "Denis Law",
+        "Wayne Rooney"
+      ],
+      "answerIndex": 3,
+      "explanation": "Rooney overtook Bobby Charlton's historic record."
+    },
+    {
+      "id": 6078,
+      "level": 8,
+      "question": "Which player has created the most goals in Premier League history?",
+      "options": [
+        "Frank Lampard",
+        "David Beckham",
+        "Cesc Fabregas",
+        "Ryan Giggs"
+      ],
+      "answerIndex": 3,
+      "explanation": "A career spanning more than twenty seasons with United."
+    },
+    {
+      "id": 6079,
+      "level": 8,
+      "question": "Which Italian goalkeeper appeared at five World Cups?",
+      "options": [
+        "Gianluigi Buffon",
+        "Dino Zoff",
+        "Walter Zenga",
+        "Francesco Toldo"
+      ],
+      "answerIndex": 0,
+      "explanation": "From 1998 to 2014, though he did not play in all of them."
+    },
+    {
+      "id": 6080,
+      "level": 8,
+      "question": "Which Spanish player won Player of the Tournament at Euro 2012?",
+      "options": [
+        "Xavi",
+        "David Silva",
+        "Xabi Alonso",
+        "Andres Iniesta"
+      ],
+      "answerIndex": 3,
+      "explanation": "He was the engine of Spain's midfield at that tournament."
+    },
+    {
+      "id": 6081,
+      "level": 9,
+      "question": "Which Hungarian player scored 84 goals in 85 international matches?",
+      "options": [
+        "Ferenc Puskas",
+        "Sandor Kocsis",
+        "Nandor Hidegkuti",
+        "Zoltan Czibor"
+      ],
+      "answerIndex": 0,
+      "explanation": "An almost unbelievable international scoring record."
+    },
+    {
+      "id": 6082,
+      "level": 9,
+      "question": "Which Dutch player played for Ajax and Milan, then managed Barcelona to the 2006 Champions League title?",
+      "options": [
+        "Marco van Basten",
+        "Ronald Koeman",
+        "Frank Rijkaard",
+        "Dennis Bergkamp"
+      ],
+      "answerIndex": 2,
+      "explanation": "He led Barcelona to the 2006 European title as manager."
+    },
+    {
+      "id": 6083,
+      "level": 9,
+      "question": "Which Portuguese player won the Ballon d'Or in 1965?",
+      "options": [
+        "Mario Coluna",
+        "Eusebio",
+        "Jose Torres",
+        "Antonio Simoes"
+      ],
+      "answerIndex": 1,
+      "explanation": "The first Portuguese player to win the award."
+    },
+    {
+      "id": 6084,
+      "level": 9,
+      "question": "Which Belgian player played for Chelsea before joining Real Madrid in 2019?",
+      "options": [
+        "Kevin De Bruyne",
+        "Thibaut Courtois",
+        "Eden Hazard",
+        "Thomas Meunier"
+      ],
+      "answerIndex": 2,
+      "explanation": "He struggled with injuries during his time in Madrid."
+    },
+    {
+      "id": 6085,
+      "level": 9,
+      "question": "Which Belgian player is considered Manchester City's greatest ever playmaker?",
+      "options": [
+        "Eden Hazard",
+        "Kevin De Bruyne",
+        "Dries Mertens",
+        "Youri Tielemans"
+      ],
+      "answerIndex": 1,
+      "explanation": "One of the finest playmakers in Premier League history."
+    },
+    {
+      "id": 6086,
+      "level": 9,
+      "question": "Which Spanish player won Euro 2024's Young Player of the Tournament?",
+      "options": [
+        "Pedri",
+        "Lamine Yamal",
+        "Nico Williams",
+        "Gavi"
+      ],
+      "answerIndex": 1,
+      "explanation": "The youngest player ever to score at the tournament."
+    },
+    {
+      "id": 6087,
+      "level": 9,
+      "question": "Which German player, born in 2003, emerged at Bayern Munich?",
+      "options": [
+        "Kai Havertz",
+        "Florian Wirtz",
+        "Jamal Musiala",
+        "Youssoufa Moukoko"
+      ],
+      "answerIndex": 2,
+      "explanation": "He moved from Chelsea's academy to Bayern as a youngster."
+    },
+    {
+      "id": 6088,
+      "level": 9,
+      "question": "Which Spanish goalkeeper won major titles with Real Madrid and Spain?",
+      "options": [
+        "Pepe Reina",
+        "David de Gea",
+        "Iker Casillas",
+        "Andoni Zubizarreta"
+      ],
+      "answerIndex": 2,
+      "explanation": "Captain of Spain's golden generation."
+    },
+    {
+      "id": 6089,
+      "level": 9,
+      "question": "Which English player spent nearly his entire career at Liverpool and was their captain?",
+      "options": [
+        "Jamie Carragher",
+        "Steven Gerrard",
+        "Robbie Fowler",
+        "Michael Owen"
+      ],
+      "answerIndex": 1,
+      "explanation": "A club icon and the driving force of the Istanbul comeback."
+    },
+    {
+      "id": 6090,
+      "level": 9,
+      "question": "Which English player's finest years came at Chelsea, where he scored over 200 goals?",
+      "options": [
+        "Ashley Cole",
+        "John Terry",
+        "Frank Lampard",
+        "Joe Cole"
+      ],
+      "answerIndex": 2,
+      "explanation": "Chelsea's all-time top scorer despite playing in midfield."
+    },
+    {
+      "id": 6091,
+      "level": 10,
+      "question": "Who scored a hat-trick for Real Madrid against Kashima Antlers in the 2018 Club World Cup semi-final?",
+      "options": [
+        "Gareth Bale",
+        "Luis Suarez",
+        "Cristiano Ronaldo",
+        "Karim Benzema"
+      ],
+      "answerIndex": 0,
+      "explanation": "Bale scored in the 44th, 53rd and 55th minutes as Real Madrid won 3-1 to reach the final."
+    },
+    {
+      "id": 6092,
+      "level": 10,
+      "question": "Which Argentine player is nicknamed \"El Enganche\" and considered the last of the classic playmakers?",
+      "options": [
+        "Ariel Ortega",
+        "Pablo Aimar",
+        "Juan Roman Riquelme",
+        "Javier Pastore"
+      ],
+      "answerIndex": 2,
+      "explanation": "A symbol of Boca Juniors and a slow, intelligent style of play."
+    },
+    {
+      "id": 6093,
+      "level": 10,
+      "question": "Which Danish player won the Ballon d'Or in 1977?",
+      "options": [
+        "Allan Simonsen",
+        "Michael Laudrup",
+        "Peter Schmeichel",
+        "Brian Laudrup"
+      ],
+      "answerIndex": 0,
+      "explanation": "The only Dane to win the award."
+    },
+    {
+      "id": 6094,
+      "level": 10,
+      "question": "Which Italian player, nicknamed \"The Golden Boy\", played for Juventus?",
+      "options": [
+        "Antonio Conte",
+        "Fabrizio Ravanelli",
+        "Alessandro Del Piero",
+        "Gianluca Vialli"
+      ],
+      "answerIndex": 2,
+      "explanation": "Il Pinturicchio, a Juventus icon and their all-time top scorer."
+    },
+    {
+      "id": 6095,
+      "level": 10,
+      "question": "Which Liberian player is the only one in history to win FIFA World Player of the Year?",
+      "options": [
+        "Abedi Pele",
+        "Samuel Eto'o",
+        "George Weah",
+        "Nwankwo Kanu"
+      ],
+      "answerIndex": 2,
+      "explanation": "He won it in 1995, alongside the Ballon d'Or in the same year."
+    },
+    {
+      "id": 6096,
+      "level": 10,
+      "question": "Which Brazilian player scored over a thousand official goals according to his club's own count?",
+      "options": [
+        "Zico",
+        "Romario",
+        "Pele",
+        "Ronaldo"
+      ],
+      "answerIndex": 2,
+      "explanation": "The figure includes friendly and exhibition matches according to Santos's own records."
+    },
+    {
+      "id": 6097,
+      "level": 10,
+      "question": "Which Italian player won the Ballon d'Or in 1993?",
+      "options": [
+        "Roberto Baggio",
+        "Paolo Maldini",
+        "Franco Baresi",
+        "Gianluca Vialli"
+      ],
+      "answerIndex": 0,
+      "explanation": "The peak of his form with Juventus and the Italian national team."
+    },
+    {
+      "id": 6098,
+      "level": 10,
+      "question": "Which Soviet player won the Ballon d'Or in 1986?",
+      "options": [
+        "Igor Belanov",
+        "Rinat Dasayev",
+        "Oleg Blokhin",
+        "Oleksiy Mykhailychenko"
+      ],
+      "answerIndex": 0,
+      "explanation": "Ukrainian Belanov won it as a Dynamo Kyiv player."
+    },
+    {
+      "id": 6099,
+      "level": 10,
+      "question": "Which Spanish player won the Ballon d'Or in 1960?",
+      "options": [
+        "Ladislao Kubala",
+        "Francisco Gento",
+        "Amancio Amaro",
+        "Luis Suarez Miramontes"
+      ],
+      "answerIndex": 3,
+      "explanation": "The first Spanish-born player to win the award, followed by Rodri in 2024."
+    },
+    {
+      "id": 6100,
+      "level": 10,
+      "question": "Which English player won the Ballon d'Or in 1966 after the World Cup title?",
+      "options": [
+        "Geoff Hurst",
+        "Bobby Moore",
+        "Bobby Charlton",
+        "Gordon Banks"
+      ],
+      "answerIndex": 2,
+      "explanation": "The best season of Charlton's career on both fronts."
+    }
+  ]
+}
