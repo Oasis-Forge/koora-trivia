@@ -31,6 +31,8 @@ class AppStrings {
   static const String quitBody = 'ستفقد تقدمك في هذه الجولة.';
   static const String quitConfirm = 'خروج';
   static const String quitCancel = 'متابعة اللعب';
+  static const String quitBodyLevel =
+      'ستفقد تقدمك في هذا المستوى، والخروج يكلّفك قلباً.';
   static const String quizPaused = 'الجولة متوقفة مؤقتاً';
   static const String quizPausedHint =
       'يعود السؤال والوقت كما تركتهما حين ترجع إلى التطبيق.';
@@ -101,8 +103,21 @@ class AppStrings {
   static const String lockedLevel = 'أكمل المستوى السابق لفتحه';
   static const String levelPassed = 'اجتزت المستوى!';
   static const String levelFailed = 'لم تجتز المستوى';
-  static const String levelFailedHint = 'تحتاج 7 إجابات صحيحة على الأقل';
+  /// [correctAnswers] مكتوبة بـ `ArabicCount`: «7 إجابات صحيحة».
+  static String levelFailedHint(String correctAnswers) =>
+      'تحتاج $correctAnswers على الأقل';
   static const String nextLevelUnlocked = 'فُتح المستوى التالي 🔓';
+
+  /// عتبات المستوى قبل بدئه: «للاجتياز 7 من 10 · ⭐⭐ 9 · ⭐⭐⭐ 10».
+  static String levelGoal({
+    required int pass,
+    required int twoStars,
+    required int threeStars,
+    required int total,
+  }) =>
+      'للاجتياز $pass من $total  ·  ⭐⭐ $twoStars  ·  ⭐⭐⭐ $threeStars';
+  static const String levelHeartCost =
+      'تخسر قلباً إن لم تجتز المستوى أو خرجت منه';
   static const String newBest = 'أفضل نتيجة جديدة!';
   static const String replayLevel = 'أعد المستوى';
   static const String nextLevel = 'المستوى التالي';
@@ -243,7 +258,7 @@ class AppStrings {
       'تصنيفات متنوّعة ومستويات تتصاعد صعوبتها معك كلما تقدّمت. اختبر معلوماتك وارتقِ بمستواك.';
   static const String onboard2Title = 'قلوب ومساعدات';
   static const String onboard2Body =
-      'كل خطأ في المستويات يكلّفك قلباً، والقلوب تتجدّد مع الوقت. استعن بالمساعدات عند الحاجة — تحدي اليوم واللعب السريع مجانيان دائماً.';
+      'المستوى الذي لا تجتازه يكلّفك قلباً، والقلوب تتجدّد مع الوقت. استعن بالمساعدات عند الحاجة — تحدي اليوم واللعب السريع مجانيان دائماً.';
   static const String onboard3Title = 'حافظ على سلسلتك';
   static const String onboard3Body =
       'العب تحدي اليوم يومياً لتنمو سلسلتك وتكسب قلباً وعملات. أكمل المهام اليومية لتفتح الصندوق.';
@@ -251,6 +266,8 @@ class AppStrings {
   static const String noQuestions = 'لا توجد أسئلة متاحة حالياً.';
   static const String errorTitle = 'حدث خطأ';
   static const String retry = 'إعادة المحاولة';
+  static const String loadCategoriesFailed =
+      'تعذّر تحميل التصنيفات. حاول مرة أخرى.';
   static const String ok = 'حسناً';
   static const String loadQuestionsFailed =
       'تعذّر تحميل الأسئلة. حاول مرة أخرى.';

@@ -9,6 +9,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/utils/arabic_count.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/entities/question.dart';
+import '../../domain/usecases/evaluate_level.dart';
 import '../providers/progress_provider.dart';
 import '../providers/quiz_provider.dart';
 import '../widgets/hearts_bar.dart';
@@ -81,17 +82,19 @@ class _LevelsScreenState extends State<LevelsScreen> {
 
   Future<void> _start(int level) async {
     if (_starting) return;
-
-    // القلوب تُفحص قبل بدء المستوى فقط — لا تمس تحدي اليوم ولا اللعب السريع.
-    if (!await NoHeartsDialog.ensureHearts(context)) return;
-    if (!mounted) return;
-
     setState(() => _starting = true);
+
+    // يفحص القلوب ويخصم قلب المحاولة — لا يمس تحدي اليوم ولا اللعب السريع.
     final quiz = context.read<QuizProvider>();
-    await quiz.startLevel(categorySlug: widget.category.slug, level: level);
+    final started = await NoHeartsDialog.startLevel(
+      context,
+      categorySlug: widget.category.slug,
+      level: level,
+    );
 
     if (!mounted) return;
     setState(() => _starting = false);
+    if (!started) return;
 
     if (quiz.status == QuizStatus.error) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -291,6 +294,10 @@ class _Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     final difficulty =
         level == null ? null : Question.difficultyForLevel(level!);
+    // العتبات من التقييم نفسه لا أرقاماً مكتوبة، فتتبع أي تعديل في AppConfig.
+    const evaluate = EvaluateLevel();
+    const total = AppConfig.questionsPerLevel;
+    final infoStyle = TextStyle(color: AppColors.chalkMuted, fontSize: 12);
 
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 14, 20, 20),
@@ -314,14 +321,34 @@ class _Footer extends StatelessWidget {
           if (level != null && difficulty != null)
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: Text(
-                '${AppStrings.level} $level  ·  ${difficulty.arabicLabel}'
-                '  ·  ${ArabicCount.format(AppConfig.questionsPerLevel, ArabicNoun.question)}',
-                style: TextStyle(
-                  color: AppColors.chalkMuted,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                ),
+              child: Column(
+                children: [
+                  Text(
+                    '${AppStrings.level} $level  ·  ${difficulty.arabicLabel}'
+                    '  ·  ${ArabicCount.format(total, ArabicNoun.question)}',
+                    style: TextStyle(
+                      color: AppColors.chalkMuted,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    AppStrings.levelGoal(
+                      pass: evaluate.minCorrectFor(1, total: total),
+                      twoStars: evaluate.minCorrectFor(2, total: total),
+                      threeStars: evaluate.minCorrectFor(3, total: total),
+                      total: total,
+                    ),
+                    textAlign: TextAlign.center,
+                    style: infoStyle,
+                  ),
+                  Text(
+                    AppStrings.levelHeartCost,
+                    textAlign: TextAlign.center,
+                    style: infoStyle,
+                  ),
+                ],
               ),
             ),
           FilledButton.icon(
@@ -380,7 +407,14 @@ class LevelStarsBanner extends StatelessWidget {
           if (!passed) ...[
             const SizedBox(height: 4),
             Text(
-              AppStrings.levelFailedHint,
+              // من التقييم نفسه بدل الرقم 7 المكتوب في النص.
+              AppStrings.levelFailedHint(
+                ArabicCount.format(
+                  const EvaluateLevel()
+                      .minCorrectFor(1, total: AppConfig.questionsPerLevel),
+                  ArabicNoun.correctAnswer,
+                ),
+              ),
               style: TextStyle(color: AppColors.chalkMuted, fontSize: 13),
             ),
           ],

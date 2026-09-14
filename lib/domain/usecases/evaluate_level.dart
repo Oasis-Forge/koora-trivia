@@ -17,4 +17,13 @@ class EvaluateLevel {
 
   bool passed({required int correct, required int total}) =>
       stars(correct: correct, total: total) > 0;
+
+  /// أقل عدد إجابات صحيحة من [total] يمنح [starCount] نجوم. يُحسب من `stars`
+  /// نفسها حتى لا تختلف العتبة المعروضة عن المطبّقة (0.7 × 10 عشرياً ليست 7).
+  int minCorrectFor(int starCount, {required int total}) {
+    for (var correct = 0; correct <= total; correct++) {
+      if (stars(correct: correct, total: total) >= starCount) return correct;
+    }
+    return total;
+  }
 }

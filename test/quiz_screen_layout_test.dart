@@ -275,7 +275,9 @@ void main() {
   });
 
 
-  testWidgets('لمستان سريعتان على خيار خاطئ تخصمان قلباً واحداً', (tester) async {
+  // القلب يُخصم عند بدء المحاولة لا عند الخطأ، واللمسة الثانية لا تُسجَّل.
+  testWidgets('لمستان سريعتان على خيار خاطئ تسجّلان إجابة واحدة ولا تخصمان قلباً',
+      (tester) async {
     final quiz = await _pumpQuiz(tester, tall);
     final economy = Provider.of<EconomyProvider>(
       tester.element(find.byType(QuizScreen)),
@@ -288,7 +290,7 @@ void main() {
     await tester.tap(find.byType(AnswerOption).at(1), warnIfMissed: false);
     await _settle(tester);
 
-    expect(economy.hearts, before - 1);
+    expect(economy.hearts, before);
     expect(quiz.answers, hasLength(1));
     await _finish(tester, quiz);
   });

@@ -35,7 +35,7 @@ each section.
   players who haven't played it yet, and level questions with an even id get a new option order once.
 - **Zero hearts let players replay levels.** The result screen's "Replay level" and "Next level"
   buttons skipped the levels screen's check. **Every button that starts a level must go through
-  `NoHeartsDialog.ensureHearts`**; quick play and the daily challenge stay free.
+  `NoHeartsDialog.startLevel`** (checks hearts, charges one heart at the start, refunded on a pass); quick play and the daily challenge stay free.
 
 ### Ads — what to know
 
@@ -144,7 +144,7 @@ many different actions be rewarded with one currency, and lets prices stay fixed
 
 | Item | Value |
 |---|---|
-| Hearts | 5, deducted per wrong answer **in level mode only** |
+| Hearts | 5, **level mode only**: one per attempt, charged at the start by `NoHeartsDialog.startLevel` and refunded on a pass, so failing, quitting or closing the app costs one |
 | Regen | One heart every 30 minutes, computed on read, not by a timer |
 | Daily challenge | Grants one free heart on completion |
 | Rewarded ad | +1 heart, max 4 per day (`heartsPerRewardedAdWatch`) |

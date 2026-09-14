@@ -117,7 +117,8 @@ class EconomyProvider extends ChangeNotifier {
     }
   }
 
-  /// خصم قلب عند الإجابة الخاطئة داخل مستوى. يعيد `false` إن لم يكن هناك رصيد.
+  /// خصم قلب المحاولة عند بدء مستوى (`NoHeartsDialog.startLevel`). يعيد `false`
+  /// إن لم يكن هناك رصيد.
   Future<bool> consumeHeart() async {
     _refresh(persist: false);
     if (_economy.hearts <= 0) return false;
@@ -136,6 +137,9 @@ class EconomyProvider extends ChangeNotifier {
     await _repository.save(_economy);
     return true;
   }
+
+  /// إعادة قلب المحاولة عند اجتياز المستوى: المحاولة الناجحة لا تكلّف شيئاً.
+  Future<void> refundLevelHeart() => _grantHearts(1);
 
   /// منح قلب مقابل إكمال تحدي اليوم.
   Future<void> grantDailyChallengeHeart() =>
