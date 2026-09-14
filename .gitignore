@@ -25,3 +25,10 @@ privacy-site/
 
 # إعدادات Claude Code المحلية لهذا الجهاز
 .claude/settings.local.json
+
+# Claude Design sync (staged scripts, build output, machine state)
+.ds-sync/
+ds-bundle/
+.design-sync/.cache/
+.design-sync/learnings/
+.design-sync/node_modules

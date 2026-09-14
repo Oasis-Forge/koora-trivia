@@ -158,6 +158,7 @@ Shared fakes are in `test/fakes/`. Per-file coverage, the current count and what
 | [docs/I18N_PLAN.md](docs/I18N_PLAN.md) | Anything about a second language |
 | [docs/ECONOMY.md](docs/ECONOMY.md) | Economy design (still in Arabic) |
 | `docs/STORE_LISTING.md` · `docs/DATA_SAFETY_EN.md` · `docs/privacy_policy.html` | Store text · Data safety answers · privacy policy source |
+| `design-system/` · `.design-sync/NOTES.md` | Exporting the app's design to Claude Design, or re-syncing it |
 
 ## Expected way of working
 - **One branch off the latest `origin/main` per task, then a PR:** `git fetch origin`,

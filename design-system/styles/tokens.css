@@ -1,0 +1,141 @@
+/*
+ * Koora Trivia («تحدي كرة القدم») — design tokens.
+ *
+ * Copied from the Flutter app, which is the source of truth:
+ *   colors  -> lib/core/theme/app_colors.dart (AppPalette: green, blue, purple, red)
+ *   buttons -> lib/core/theme/app_theme.dart
+ *   sizes   -> the values used across lib/presentation (widgets and screens)
+ * Dark UI only. Arabic, right to left, portrait phone.
+ *
+ * The app uses the Android system font; Noto Sans Arabic is the closest web match.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700;800;900&display=swap");
+
+/* ── Theme colors (AppPalette) ─────────────────────────────────────────────
+   Set data-theme on the root element. Green is the default and the original. */
+:root,
+[data-theme="green"] {
+  /* «ملعب أخضر» */
+  --pitch-dark: #06301c;
+  --pitch-deep: #0a4429;
+  --pitch-mid: #11623a;
+  --pitch-light: #1b8a50;
+  --card-surface: #0e4e30;
+  --wrong: #e74c3c;
+}
+
+[data-theme="blue"] {
+  /* «ليلي أزرق» */
+  --pitch-dark: #071a30;
+  --pitch-deep: #0b2a4a;
+  --pitch-mid: #123d66;
+  --pitch-light: #1e5e9a;
+  --card-surface: #0f3558;
+  --wrong: #e74c3c;
+}
+
+[data-theme="purple"] {
+  /* «بنفسجي» */
+  --pitch-dark: #190b2e;
+  --pitch-deep: #271249;
+  --pitch-mid: #391b66;
+  --pitch-light: #5a2e99;
+  --card-surface: #2e1654;
+  --wrong: #e74c3c;
+}
+
+[data-theme="red"] {
+  /* «كلاسيكو أحمر» — wrong is lighter so it stays visible on the red pitch */
+  --pitch-dark: #2a0810;
+  --pitch-deep: #3f0d1a;
+  --pitch-mid: #5c1527;
+  --pitch-light: #8a2139;
+  --card-surface: #4a1020;
+  --wrong: #ff7b6b;
+}
+
+/* ── Colors shared by every theme ─────────────────────────────────────────── */
+:root {
+  --gold: #f5c542;
+  --gold-deep: #cf9a17;
+  --chalk: #f3f7f4;
+  --chalk-muted: rgba(243, 247, 244, 0.7);
+  --correct: #2ecc71;
+  --card-border: rgba(255, 255, 255, 0.2);
+  --pitch-stripe: rgba(255, 255, 255, 0.08);
+  --pitch-line: rgba(255, 255, 255, 0.07);
+  --locked-surface: rgba(255, 255, 255, 0.04);
+}
+
+/* Gradients re-evaluate on every themed element, so a nested data-theme gets its own colors. */
+:root,
+[data-theme] {
+  --pitch-gradient: linear-gradient(to bottom, var(--pitch-deep), var(--pitch-dark));
+  /* Flutter topStart -> bottomEnd, which in right-to-left runs top-right -> bottom-left */
+  --gold-gradient: linear-gradient(to bottom left, var(--gold), var(--gold-deep));
+}
+
+/* ── Typography ───────────────────────────────────────────────────────────── */
+:root {
+  --font-family: "Noto Sans Arabic", Roboto, system-ui, sans-serif;
+
+  --text-score: 46px;     /* the number inside the result medal */
+  --text-headline: 24px;
+  --text-title: 22px;     /* screen titles, result rank line (weight 900) */
+  --text-question: 21px;  /* question card; 18px on short phones */
+  --text-level: 20px;     /* level number inside a level tile (weight 900) */
+  --text-button: 18px;    /* filled and outlined buttons (weight 700) */
+  --text-section: 17px;   /* section headings */
+  --text-subtitle: 16px;  /* quiz counter, answer text (answers use weight 600) */
+  --text-label: 15px;
+  --text-body: 14.5px;    /* settings rows, toggles */
+  --text-meta: 13px;      /* secondary lines under titles */
+  --text-caption: 12px;
+  --text-micro: 10.5px;   /* captions under hint icons */
+
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800; /* the most common weight in the app */
+  --weight-black: 900;
+}
+
+/* ── Shape, size and spacing ──────────────────────────────────────────────── */
+:root {
+  --radius-pill: 999px;   /* hearts bar, coin badge, chips */
+  --radius-card: 18px;    /* cards, answer options */
+  --radius-button: 18px;
+  --radius-tile: 16px;    /* level tiles, banners, notes */
+  --radius-hint: 12px;    /* hint buttons */
+  --radius-badge: 10px;   /* the letter badge on an answer option */
+
+  --button-height: 56px;
+  --hint-button-height: 50px;
+  --timer-size: 52px;
+  --answer-badge-size: 32px; /* 28px on short phones */
+
+  --border-card: 1px solid var(--card-border);
+  --border-outlined: 1.4px solid var(--card-border);
+
+  --space-page: 20px;     /* side padding of every screen */
+  --space-section: 26px;  /* gap between sections */
+  --space-card: 14px;     /* padding inside cards */
+  --space-lg: 16px;
+  --space-md: 12px;
+  --space-sm: 8px;
+  --space-xs: 4px;
+
+  --shadow-gold-glow: 0 0 34px 2px rgba(245, 197, 66, 0.35);
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+html {
+  direction: rtl;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--chalk);
+  background: var(--pitch-dark);
+}

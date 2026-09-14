@@ -1,0 +1,9 @@
+{
+  "shape": "package",
+  "projectId": "5ce1f8f6-39ef-48a9-af2e-5e54c7ad7186",
+  "pkg": "koora-trivia-design",
+  "globalName": "KooraTriviaDesign",
+  "cssEntry": "styles/tokens.css",
+  "guidelinesGlob": ["*.md"],
+  "readmeHeader": ".design-sync/conventions.md"
+}
