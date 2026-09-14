@@ -53,3 +53,5 @@ flutter:
   assets:
     - assets/data/categories.json
     - assets/data/questions/
+    - assets/data/en/categories.json
+    - assets/data/en/questions/

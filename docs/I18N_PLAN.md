@@ -91,7 +91,9 @@
 > 14 September 2026): `null` follows the phone; the panel stays hidden with one language; older settings read as `ar`, and
 > new players are saved as `ar` until a second language ships — then `AppSettings.defaultLanguageCode` becomes `null`
 > (`language_choice_test` fails until it does). **App text:** `AppStrings` returns `AppText` (Arabic) or `EnglishText`, not ARB files (owner, 14 September 2026). **Still to do:**
-> §2.3–2.4, §2.6–2.7, and an Android 13 `locales_config.xml` when the second language ships.
+> §2.6–2.7 and an Android 13 `locales_config.xml` when the second language ships. §2.3 isn't needed (`AppStrings` is plain
+> Dart), and §2.4's reloads are done (English step 2: one bank per language, open screens rebuilt, categories and reminder
+> refreshed).
 
 ### 2.1 Localization infrastructure
 - `pubspec.yaml`: add `intl` as a **direct** dependency (it only arrives transitively today, 0.20.2)

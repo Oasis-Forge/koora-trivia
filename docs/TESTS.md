@@ -2,7 +2,7 @@
 
 > Moved from CLAUDE.md on 14 September 2026. Update the count and the table when tests are added.
 
-**399 tests across 49 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+**413 tests across 51 files, all passing.** `flutter analyze` is clean. Shared test code lives in
 `test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
 (in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
 (`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
@@ -30,9 +30,11 @@
 | `no_hearts_dialog_test.dart` | 8 | **Widget test** — no dialog with hearts · daily-challenge button starts the daily · hidden once the daily is done · refill disabled without coins · refill buys and closes · closes by itself when a heart regenerates · a save finishing after it closed doesn't pop the screen underneath · «حسناً» closes only the dialog |
 | `daily_challenge_card_test.dart` | 1 | **Widget test** — the card's multiplier-and-reset line and its start button text |
 | `english_text_test.dart` | 4 | **Unit test** — Arabic by default, English when chosen, any other code falls back to Arabic · English counts («1 day», «2 stars») with Arabic unchanged · no Arabic letters in the English text except the language list · the text language follows `MaterialApp`'s rule, and English stays off until its translation file exists |
+| `english_bank_test.dart` | 11 | **Unit test** — per category, the English file matches the Arabic one in ids, levels, answers, option count and numeric options, with distinct options, no banned "all/none/both" options, no Arabic script and no invisible characters · the English category list matches too |
 | `share_text_test.dart` | 9 | Result grid · daily-challenge date · category and level · streak count forms (1 · 2 · 5 · 11) · the Play Store link with referrer on the last line · doesn't leak questions |
 | `quiz_repository_test.dart` | 11 | Levels · daily-challenge stability · **a full year with no day sharing more than 2 of 7 questions with the day before** · epoch day independent of time zone · neighbouring seeds shuffle differently · filtering |
 | `question_bank_test.dart` | 9 | Bank integrity: counts · IDs · structure · balance · banned options, including bare «لا شيء», «لا أحد» and «لم يحدث» · no hidden direction characters · **duplicates** · matches `AppConfig` |
+| `question_datasource_language_test.dart` | 2 | **Asset test** — the real Arabic and English banks load through `rootBundle` (so an undeclared language folder fails) with the same ids and English category names · one cached bank per language · follows `AppStrings` by default |
 | `update_streak_test.dart` | 6 | Day-streak logic in every case · daylight-saving days count as one day |
 | `settings_screen_test.dart` | 19 | **Widget test** — stats display · the built version number · «أرسل ملاحظاتك» opens an email with the version and recent errors, or shows the address without a mail app · confirmation dialog with the loss in correct Arabic, including the dual after a verb · reset · privacy: ad-options row only where required, opens the form, failure message · policy link opens the published URL, failure message · backup import shows the imported progress without a restart · an invalid code changes nothing · picking a color theme saves it and marks the swatch · the language panel stays hidden with one language, and with two saves the phone language or the picked one |
 | `restore_backup_test.dart` | 4 | **Real datasources over mock SharedPreferences** — imported data shows at once and survives the first save from every provider · without the reload the first save overwrites it (why `RestoreBackup` exists) · a code with reminders off cancels the device's reminders and nothing reschedules them · a corrupt code changes nothing |
@@ -57,7 +59,7 @@
 | `economy_balance_test.dart` | 4 | Daily income below cheapest purchase · purchase within two days · interstitials off · chest is worth it |
 | `score_screen_hearts_test.dart` | 4 | **Widget test** — result screen: a failed level keeps the charged heart and shows «فقدت قلباً», and "Replay level" with zero hearts shows the no-hearts dialog · a pass refunds the heart, so "Next level" starts and charges it · replay with hearts starts · quick play stays free |
 | `rewarded_button_test.dart` | 4 | **Widget test** — enables by itself when the ad loads and disables again if it's lost · daily limit · reward only on earned |
-| `app_lifecycle_hooks_test.dart` | 5 | Returning to the app retries ads, regenerates hearts and reschedules the reminder for a new day · finishing the daily reschedules at once · no lifecycle or stats listener left after removal · Play is asked about an update at launch and on resume · a downloaded update shows «إعادة التشغيل», which installs it |
+| `app_lifecycle_hooks_test.dart` | 6 | A language change reloads the categories and reschedules the reminder, while a sound toggle does neither · Returning to the app retries ads, regenerates hearts and reschedules the reminder for a new day · finishing the daily reschedules at once · no lifecycle or stats listener left after removal · Play is asked about an update at launch and on resume · a downloaded update shows «إعادة التشغيل», which installs it |
 
 ### Not covered — and it has bitten us
 

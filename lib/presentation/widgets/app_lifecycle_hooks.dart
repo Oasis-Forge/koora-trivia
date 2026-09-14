@@ -6,6 +6,7 @@ import '../../domain/repositories/app_updater.dart';
 import '../providers/ads_provider.dart';
 import '../providers/check_for_update.dart';
 import '../providers/economy_provider.dart';
+import '../providers/quiz_provider.dart';
 import '../providers/settings_provider.dart';
 import '../providers/stats_provider.dart';
 
@@ -25,6 +26,10 @@ class AppLifecycleHooks extends StatefulWidget {
 class _AppLifecycleHooksState extends State<AppLifecycleHooks> {
   late final AppLifecycleListener _listener;
   late final StatsProvider _stats;
+  late final SettingsProvider _settings;
+
+  /// لغة النصوص عند آخر تحميل للتصنيفات وجدولة للتنبيه.
+  late String _language;
 
   /// سؤال Play واحد في كل مرة: تنزيل التحديث المرن قد يستمر دقائق، والعودة إلى
   /// التطبيق أثناءه لا تبدأ سؤالاً ثانياً.
@@ -37,6 +42,9 @@ class _AppLifecycleHooksState extends State<AppLifecycleHooks> {
 
     // إنجاز تحدي اليوم أو تغيّر السلسلة يغيّر أيام التنبيه ونصّه.
     _stats = context.read<StatsProvider>()..addListener(_syncReminder);
+    _language = AppStrings.languageCode;
+    _settings = context.read<SettingsProvider>()
+      ..addListener(_onSettingsChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _syncReminder();
       _checkForUpdate();
@@ -57,6 +65,17 @@ class _AppLifecycleHooksState extends State<AppLifecycleHooks> {
 
     // تحديث إلزامي أُغلقت شاشته يُستأنف، وتحديث نُزّل في الغياب يُعرض تثبيته.
     _checkForUpdate();
+  }
+
+  /// تبديل اللغة يُطبَّق في بناء التطبيق التالي، فتُقارَن اللغة بعد الإطار. التصنيفات
+  /// المحمّلة تحمل أسماءها باللغة السابقة، والتنبيه المجدول نصّه بها.
+  void _onSettingsChanged() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || AppStrings.languageCode == _language) return;
+      _language = AppStrings.languageCode;
+      context.read<QuizProvider>().loadCategories();
+      _syncReminder();
+    });
   }
 
   void _syncReminder() {
@@ -95,6 +114,7 @@ class _AppLifecycleHooksState extends State<AppLifecycleHooks> {
   @override
   void dispose() {
     _stats.removeListener(_syncReminder);
+    _settings.removeListener(_onSettingsChanged);
     _listener.dispose();
     super.dispose();
   }

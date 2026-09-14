@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../core/services/feedback_service.dart';
 import '../../core/utils/day_key.dart';
+import '../../core/constants/app_strings.dart';
 import '../../domain/entities/app_settings.dart';
 import '../../domain/entities/user_stats.dart';
 import '../../domain/repositories/reminder_scheduler.dart';
@@ -156,8 +157,9 @@ class SettingsProvider extends ChangeNotifier {
       streak: UpdateStreak.visibleStreak(_stats, today),
     );
 
-    // أول تنبيه يحدد الخطة كلها: يومه وساعته والسلسلة في نصّه.
-    final key = '${plans.first.at.toIso8601String()}|${plans.first.streak}';
+    // أول تنبيه يحدد الخطة كلها: يومه وساعته والسلسلة في نصّه، ولغة النص.
+    final key = '${plans.first.at.toIso8601String()}|${plans.first.streak}|'
+        '${AppStrings.languageCode}';
     if (!force && key == _scheduledKey) return;
 
     _scheduledKey = key;

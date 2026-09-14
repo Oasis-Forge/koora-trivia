@@ -101,6 +101,7 @@ class FootballTriviaApp extends StatelessWidget {
           ));
           return PaletteScope(
             themeId: themeId,
+            languageCode: AppStrings.languageCode,
             child: MaterialApp(
         onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
         debugShowCheckedModeBanner: false,

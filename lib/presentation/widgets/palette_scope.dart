@@ -1,14 +1,21 @@
 import 'package:flutter/widgets.dart';
 
-/// يعيد بناء الشجرة كلها عند تبديل مظهر الألوان.
+/// يعيد بناء الشجرة كلها عند تبديل مظهر الألوان أو لغة النصوص.
 ///
-/// الألوان تُقرأ من `AppColors` وقت البناء، والودجات الثابتة لا تُبنى من جديد
-/// من تلقاء نفسها — فيُعلَّم كل عنصر للبناء بعد التبديل، دون إغلاق الشاشات
-/// المفتوحة (إعادة إنشاء `MaterialApp` بمفتاح جديد كانت ستعيد اللاعب للرئيسية).
+/// الألوان تُقرأ من `AppColors` والنصوص من `AppStrings` وقت البناء، والودجات
+/// الثابتة لا تُبنى من جديد من تلقاء نفسها — فيُعلَّم كل عنصر للبناء بعد التبديل،
+/// دون إغلاق الشاشات المفتوحة (إعادة إنشاء `MaterialApp` بمفتاح جديد كانت ستعيد
+/// اللاعب للرئيسية).
 class PaletteScope extends StatefulWidget {
-  const PaletteScope({super.key, required this.themeId, required this.child});
+  const PaletteScope({
+    super.key,
+    required this.themeId,
+    this.languageCode,
+    required this.child,
+  });
 
   final String themeId;
+  final String? languageCode;
   final Widget child;
 
   @override
@@ -19,7 +26,10 @@ class _PaletteScopeState extends State<PaletteScope> {
   @override
   void didUpdateWidget(PaletteScope oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.themeId == widget.themeId) return;
+    if (oldWidget.themeId == widget.themeId &&
+        oldWidget.languageCode == widget.languageCode) {
+      return;
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       void rebuild(Element element) {
