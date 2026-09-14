@@ -389,13 +389,19 @@ class _ScoreScreenState extends State<ScoreScreen>
                   style: TextStyle(color: AppColors.chalkMuted),
                 ),
               ),
-              const SizedBox(height: 24),
-              const Text(
-                AppStrings.reviewAnswers,
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
-              ),
-              const SizedBox(height: 12),
-              for (final answer in _result.answers) _ReviewRow(answer: answer),
+              // لا مراجعة للإجابات بعد المستوى (قرار المالك، 14 سبتمبر 2026)؛
+              // تبقى بعد اللعب السريع وتحدي اليوم. الإبلاغ عن سؤال متاح في لوحة
+              // الشرح أثناء الجولة.
+              if (!_result.isLevel) ...[
+                const SizedBox(height: 24),
+                const Text(
+                  AppStrings.reviewAnswers,
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+                ),
+                const SizedBox(height: 12),
+                for (final answer in _result.answers)
+                  _ReviewRow(answer: answer),
+              ],
             ],
           ),
         ),

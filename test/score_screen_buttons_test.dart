@@ -25,8 +25,13 @@ Future<QuizProvider> _pump(
     level: level,
     skipFirst: skipFirst,
   );
-  // آخر صف في المراجعة مبني = كل ما فوقه مبني أيضاً.
-  expect(find.text('سؤال ${quiz.total}'), findsOneWidget);
+  // آخر عنصر مبني = كل ما فوقه مبني أيضاً: آخر صف في المراجعة، أو زر الرئيسية
+  // بعد المستوى الذي لا مراجعة فيه.
+  if (mode == RoundMode.level) {
+    expect(find.text(AppStrings.backHome), findsOneWidget);
+  } else {
+    expect(find.text('سؤال ${quiz.total}'), findsOneWidget);
+  }
   return quiz;
 }
 
@@ -38,6 +43,9 @@ void main() {
     expect(find.text(AppStrings.nextLevel), findsOneWidget);
     expect(find.text(AppStrings.replayLevel), findsOneWidget);
     expect(find.text(AppStrings.playAgain), findsNothing);
+    // لا مراجعة للإجابات بعد المستوى.
+    expect(find.text(AppStrings.reviewAnswers), findsNothing);
+    expect(find.text('سؤال 1'), findsNothing);
     quiz.abandon();
   });
 
@@ -74,6 +82,7 @@ void main() {
     expect(find.text(AppStrings.nextLevel), findsNothing);
     expect(find.text(AppStrings.shareScore), findsOneWidget);
     expect(find.text(AppStrings.backHome), findsOneWidget);
+    expect(find.text(AppStrings.reviewAnswers), findsOneWidget);
     quiz.abandon();
   });
 
@@ -83,6 +92,7 @@ void main() {
     expect(find.text(AppStrings.playAgain), findsOneWidget);
     expect(find.text(AppStrings.replayLevel), findsNothing);
     expect(find.text(AppStrings.nextLevel), findsNothing);
+    expect(find.text(AppStrings.reviewAnswers), findsOneWidget);
     quiz.abandon();
   });
 
