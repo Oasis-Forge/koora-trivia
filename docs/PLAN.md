@@ -8,7 +8,7 @@
 - The owner published a *European regulations* consent message in AdMob on 13 September 2026; the EEA consent form now appears on the emulator (debug build with `UMP_DEBUG_EEA=true`), and the Settings privacy-options row shows.
 - Data safety form updated by the owner to Approximate location, App interactions, Diagnostics and Device or other IDs, and sent for review: 13 September 2026.
 - Privacy policy page updated to the PR #5 text and checked live: 13 September 2026.
-- PR #8, open: the share text ends with the Play Store link and a UTM referrer · the in-app review prompt after a 3-day daily streak or a 3-star level, at most every 30 days, never after an ad · «أبلغ عن خطأ» on the answer panel and in the review list opens a ready email with the question id, reason and version · a local error log fed by `FlutterError.onError` and `PlatformDispatcher.onError`, and «أرسل ملاحظاتك» in Settings emails the version and recent errors · Settings shows the real version · players no longer see raw exception text · `android:appCategory="game"` · privacy policy source mentions feedback emails (publishing needs the owner's go-ahead).
+- PR #8, merged 14 September 2026: the share text ends with the Play Store link and a UTM referrer · the in-app review prompt after a 3-day daily streak or a 3-star level, at most every 30 days, never after an ad · «أبلغ عن خطأ» on the answer panel and in the review list opens a ready email with the question id, reason and version · a local error log fed by `FlutterError.onError` and `PlatformDispatcher.onError`, and «أرسل ملاحظاتك» in Settings emails the version and recent errors · Settings shows the real version · players no longer see raw exception text · `android:appCategory="game"` · privacy policy source mentions feedback emails (publishing needs the owner's go-ahead).
 - PR #7, merged 14 September 2026: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
 - PR #6, merged 13 September 2026: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
 - PR #5, merged 13 September 2026: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
@@ -43,6 +43,7 @@
   - Daily challenge shows no replay button.
   - Backup import and export.
   - Shop purchases and the +70-coin ad.
+  - Quiz screen and level grid on a real short phone and a real tall one.
 
 ### Features
 - All Phase 1 features are in PR #8.
@@ -173,3 +174,5 @@
 - The reminder time always shows in 24-hour format.
 - `UserStats.lastPlayedDayKey` is saved but never used. Keep it for a future cloud move.
 - New question formats: "Who am I?" clues and picture questions that avoid rights issues.
+- Back buttons use `arrow_forward` and the quiz Next button `arrow_back`; both auto-mirror, so Arabic shows ← for Back, the reverse of Material's RTL convention. Changing it needs owner approval.
+- `cmdline-tools` is missing from the Android SDK (builds work without it).
