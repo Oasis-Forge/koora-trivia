@@ -1,0 +1,9 @@
+{
+  "name": "koora-trivia-design",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Design tokens and guidelines of the Koora Trivia Flutter app, packaged for Claude Design. Tokens only: the app's widgets are Flutter, so no web components ship.",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts"
+}
