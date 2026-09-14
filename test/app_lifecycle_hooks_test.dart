@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:football_trivia/core/constants/app_strings.dart';
 import 'package:football_trivia/domain/entities/app_settings.dart';
+import 'package:football_trivia/domain/entities/app_update_status.dart';
+import 'package:football_trivia/domain/repositories/app_updater.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
 import 'package:football_trivia/domain/entities/quiz_result.dart';
 import 'package:football_trivia/domain/entities/reminder_plan.dart';
@@ -17,6 +20,7 @@ import 'package:football_trivia/presentation/widgets/app_lifecycle_hooks.dart';
 import 'package:provider/provider.dart';
 
 import 'fakes/fake_ad_service.dart';
+import 'fakes/fake_repositories.dart';
 
 class _EconomyRepo implements EconomyRepository {
   _EconomyRepo(this.economy);
@@ -83,6 +87,7 @@ final _tomorrowAt20 = DateTime(_t0.year, _t0.month, _t0.day + 1, 20);
 class _Harness {
   final adService = FakeAdService(ready: false);
   final scheduler = _Scheduler();
+  final updater = FakeAppUpdater();
   DateTime economyNow = _t0;
   DateTime settingsNow = _t0;
 
@@ -116,6 +121,7 @@ class _Harness {
           ChangeNotifierProvider.value(value: economy),
           ChangeNotifierProvider<StatsProvider>.value(value: stats),
           ChangeNotifierProvider.value(value: settings),
+          Provider<AppUpdater>.value(value: updater),
         ],
         child: child,
       );
@@ -179,6 +185,40 @@ void main() {
     final first = h.scheduler.scheduled.last.first;
     expect(first.at, _tomorrowAt20);
     expect(first.streak, 1);
+  });
+
+  testWidgets('يُسأل Play عن تحديث عند الإقلاع وعند العودة إلى التطبيق',
+      (tester) async {
+    final h = await _pump(tester);
+    expect(h.updater.checks, 1);
+
+    _leaveAndReturn(tester);
+    await tester.pump();
+    expect(h.updater.checks, 2);
+  });
+
+  testWidgets('تحديث منزَّل يعرض «إعادة التشغيل» ويثبّته عند اللمس',
+      (tester) async {
+    final h = _Harness();
+    await h.init();
+    h.updater.status = const AppUpdateStatus(available: true, downloaded: true);
+
+    await tester.pumpWidget(
+      h.wrap(
+        MaterialApp(
+          builder: (context, child) =>
+              AppLifecycleHooks(child: child ?? const SizedBox.shrink()),
+          home: const Scaffold(),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 750));
+
+    expect(find.text(AppStrings.updateDownloaded), findsOneWidget);
+    await tester.tap(find.text(AppStrings.updateRestart));
+    await tester.pumpAndSettle();
+    expect(h.updater.completeCalls, 1);
   });
 
   testWidgets('بعد إزالة الغلاف لا يبقى مستمع معلّق', (tester) async {

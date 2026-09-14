@@ -17,9 +17,11 @@ import '../../data/services/admob_ad_service.dart';
 import '../../data/services/in_app_review_prompter.dart';
 import '../../data/services/local_notification_scheduler.dart';
 import '../../data/services/package_app_info.dart';
+import '../../data/services/play_app_updater.dart';
 import '../../data/services/url_link_opener.dart';
 import '../../domain/repositories/ad_service.dart';
 import '../../domain/repositories/app_info.dart';
+import '../../domain/repositories/app_updater.dart';
 import '../../domain/repositories/backup_repository.dart';
 import '../../domain/repositories/economy_repository.dart';
 import '../../domain/repositories/error_log.dart';
@@ -55,7 +57,8 @@ class Injector {
         linkOpener = UrlLinkOpener(),
         errorLog = PrefsErrorLog(),
         appInfo = PackageAppInfo(),
-        reviewPrompter = InAppReviewPrompter();
+        reviewPrompter = InAppReviewPrompter(),
+        appUpdater = PlayAppUpdater();
 
   final QuizRepository quizRepository;
   final StatsRepository statsRepository;
@@ -69,4 +72,5 @@ class Injector {
   final ErrorLog errorLog;
   final AppInfo appInfo;
   final ReviewPrompter reviewPrompter;
+  final AppUpdater appUpdater;
 }

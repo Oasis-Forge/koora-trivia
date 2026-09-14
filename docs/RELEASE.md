@@ -127,6 +127,10 @@ $env:Path = "C:\src\flutter\bin;$env:Path"; dart run tool/archive_release.dart "
 > differs (`aapt2`), and debug-signed or mismatched signing (`apksigner.jar` and `keytool` from Android Studio's
 > Java). Still build both.
 
+**Forcing an update (from v1.0.6):** leave the in-app update priority at 0 for normal releases — players get the
+gentle update. For a crash or data-loss fix, create the release with priority 4 or 5 through the Google Play Developer
+API (`inAppUpdatePriority`); the Play Console website can't set it. Details in [HOW_IT_WORKS.md](HOW_IT_WORKS.md).
+
 ### Testing on the emulator
 
 - Emulator: `Medium_Phone` (1080×2400, density 420, Play Store image) — replaced `Pixel_6_Pro` in September 2026.

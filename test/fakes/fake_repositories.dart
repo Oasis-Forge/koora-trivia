@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:football_trivia/domain/entities/app_settings.dart';
+import 'package:football_trivia/domain/entities/app_update_status.dart';
+import 'package:football_trivia/domain/repositories/app_updater.dart';
 import 'package:football_trivia/domain/entities/category.dart';
 import 'package:football_trivia/domain/entities/category_progress.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
@@ -195,4 +197,47 @@ class FakeScheduler implements ReminderScheduler {
 
   @override
   Future<void> cancelAll() async {}
+}
+
+/// تحديث Play مزيّف: حالة يضبطها الاختبار، ويسجّل ما طُلب منه.
+class FakeAppUpdater implements AppUpdater {
+  FakeAppUpdater({this.status = AppUpdateStatus.none, this.downloadCompletes = true});
+
+  AppUpdateStatus status;
+  bool downloadCompletes;
+  DateTime? lastAsked;
+  int checks = 0;
+  int immediateCalls = 0;
+  int flexibleCalls = 0;
+  int completeCalls = 0;
+
+  @override
+  Future<AppUpdateStatus> check() async {
+    checks++;
+    return status;
+  }
+
+  @override
+  Future<void> updateImmediately() async {
+    immediateCalls++;
+  }
+
+  @override
+  Future<bool> startFlexibleUpdate() async {
+    flexibleCalls++;
+    return downloadCompletes;
+  }
+
+  @override
+  Future<void> completeFlexibleUpdate() async {
+    completeCalls++;
+  }
+
+  @override
+  Future<DateTime?> lastFlexibleAskAt() async => lastAsked;
+
+  @override
+  Future<void> recordFlexibleAsk() async {
+    lastAsked = DateTime.now();
+  }
 }

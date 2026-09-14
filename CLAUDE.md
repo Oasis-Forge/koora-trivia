@@ -130,6 +130,8 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
   cached in a field or default parameter. A new color is a new `AppPalette` field in all four palettes.
 - Tunable numbers go in `app_config.dart`; player-facing text in `app_strings.dart`.
 - **Every `IconButton` has a `tooltip`** (screen readers; `hints_and_a11y_test` fails otherwise).
+- **In-app updates** (`PlayAppUpdater`, checked at launch and resume): flexible by default; only a release with Play
+  priority ≥ `AppConfig.forceUpdatePriority` forces the full-screen update. Works only for Play installs.
 
 ## Question bank
 `assets/data/questions/<slug>.json`, 10 levels × 10 questions per category. Before editing any
