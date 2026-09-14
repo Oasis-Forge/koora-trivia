@@ -53,7 +53,8 @@
    States). Paste the name, short and full description from [STORE_LISTING.md](STORE_LISTING.md) — not machine
    translation.
 2. **English graphics for that translation:** at least 2 English phone screenshots (the 5 uploaded are Arabic), and
-   optionally a feature graphic without Arabic text (`assets/branding/feature_art.png` is textless).
+   the English feature graphic `assets/branding/feature_graphic_en_1024x500.png` (Play needs exactly 1024×500;
+   `feature_art_1024x500.png` is the same art without text).
 3. **Release notes:** paste both the `<ar>` and `<en-US>` blocks from the release's `NOTES.md`.
 4. **"Some languages have errors":** after saving, fix or remove any language the Store listings page still flags.
 5. **Upload:** v1.0.6 (versionCode 7) to internal, then closed testing. It contains everything in v1.0.5, so v1.0.5
