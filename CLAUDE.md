@@ -35,7 +35,7 @@ before v1.0.4 reaches testers.
 ### Next steps, in order
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
-2. **Content fixes** from PLAN.md Phase 1 → Content, one micro PR each: second correct options → never-right answers (~5 per PR) → outdated answers (~5 per PR).
+2. **Content fixes** from PLAN.md Phase 1 → Content, one micro PR each: never-right answers (~5 per PR) → outdated answers (~5 per PR).
 3. **Ship v1.0.4:** steps in [docs/RELEASE.md](docs/RELEASE.md); log the release-build check in
    PRE_PUBLISH §1.
 4. **Owner's Play Console tasks:** replace the crashing versionCode 1 on the internal track · the
