@@ -2,7 +2,7 @@
 
 > Moved from CLAUDE.md on 14 September 2026. Update the count and the table when tests are added.
 
-**351 tests across 40 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+**359 tests across 42 files, all passing.** `flutter analyze` is clean. Shared test code lives in
 `test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
 (in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
 (`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
@@ -40,13 +40,15 @@
 | `theme_test.dart` | 7 | Four themes, unknown id falls back to green · text contrast in every theme, none less readable than the original green · theme saved and read back, old settings stay green · the provider saves the choice · backups carry it · **widget:** a switch rebuilds const widgets with the new colors · the result screen builds under every theme |
 | `localization_groundwork_test.dart` | 4 | No Arabic player text in string literals outside `AppStrings` (developer messages and the `ArabicCount` table excepted) · translation files hold Arabic only and the app title matches `AppStrings.appName`, as does the launcher name · **widget:** an English device still gets Arabic, right to left · the formats moved into `AppStrings` produce the same text |
 | `language_choice_test.dart` | 5 | New players get Arabic while it's the only language, the phone language once there are two · the phone language and a picked one are saved and read back, older settings read as Arabic · `copyWith` can switch to the phone language · the provider saves the choice · backups carry the phone-language choice |
-| `levels_screen_test.dart` | 5 | **Widget test** — completed, available and locked tiles · the first open level is auto-selected · a locked tap explains and keeps the selection · level 10 fully visible above the footer on 360×640 and 411×731 |
-| `quiz_screen_layout_test.dart` | 11 | **Widget test** — «أبلغ عن خطأ» appears in the feedback panel only after the answer · on 360×640 the 4th option sits above the hints bar in the compact size · on a tall screen the options sit right above the hints bar · the feedback panel scrolls fully into view · the next question starts at the top again · a panel taller than the screen shows its title · a short question's card is as wide as the options · Skip reads as a skip, time-up still as time-up · a quick double tap on a wrong option charges one heart · leaving the app pauses the timer and hides the question |
+| `level_attempt_test.dart` | 4 | The thresholds shown before a level match the evaluation (no 0.7 × 10 rounding error) · **widget:** `NoHeartsDialog.startLevel` charges one heart when the level starts · with no hearts it shows the dialog and starts nothing · a level that fails to load charges nothing |
+| `categories_and_replay_test.dart` | 3 | A categories load failure is flagged and logged, and a retry succeeds · **widget:** the categories screen shows the error and a retry button instead of spinning · «العب مرة أخرى» after quick play in a category replays that category |
+| `levels_screen_test.dart` | 6 | **Widget test** — completed, available and locked tiles · the first open level is auto-selected · a locked tap explains and keeps the selection · level 10 fully visible above the footer on 360×640 and 411×731 · the footer shows the pass mark, star thresholds and heart cost from the evaluation |
+| `quiz_screen_layout_test.dart` | 11 | **Widget test** — «أبلغ عن خطأ» appears in the feedback panel only after the answer · on 360×640 the 4th option sits above the hints bar in the compact size · on a tall screen the options sit right above the hints bar · the feedback panel scrolls fully into view · the next question starts at the top again · a panel taller than the screen shows its title · a short question's card is as wide as the options · Skip reads as a skip, time-up still as time-up · a quick double tap on a wrong option records one answer and charges no heart · leaving the app pauses the timer and hides the question |
 | `progress_provider_test.dart` | 5 | **Provider-to-storage wiring** — pass ⇒ stars ⇒ next unlocked · survives restart (guards the covariance bug) |
 | `daily_guard_test.dart` | 6 | `isDailyDone` after completion · persists across restart · quick play doesn't set it · a daily started before midnight counts for its start day |
 | `backup_test.dart` | 13 | Export then import · corrupt code · extra whitespace · newer version rejected · one badly typed value rejects the whole code and writes nothing · non-string value · unreadable day key · no known key · every datasource reads a badly typed stored value as defaults instead of throwing |
 | `economy_balance_test.dart` | 4 | Daily income below cheapest purchase · purchase within two days · interstitials off · chest is worth it |
-| `score_screen_hearts_test.dart` | 4 | **Widget test** — result screen: "Replay level" and "Next level" with zero hearts show the no-hearts dialog and don't start · replay with hearts starts · quick play stays free |
+| `score_screen_hearts_test.dart` | 4 | **Widget test** — result screen: a failed level keeps the charged heart and shows «فقدت قلباً», and "Replay level" with zero hearts shows the no-hearts dialog · a pass refunds the heart, so "Next level" starts and charges it · replay with hearts starts · quick play stays free |
 | `rewarded_button_test.dart` | 4 | **Widget test** — enables by itself when the ad loads and disables again if it's lost · daily limit · reward only on earned |
 | `app_lifecycle_hooks_test.dart` | 3 | Returning to the app retries ads, regenerates hearts and reschedules the reminder for a new day · finishing the daily reschedules at once · no lifecycle or stats listener left after removal |
 
@@ -57,7 +59,7 @@
   but the real UMP form and the SDK's own callback timing still need a hand test on the emulator.
   Before PR #5 nothing covered this, which is how the "reward is never granted" bug slipped through.
 - **The quiz screen's gameplay through the UI** — the hints bar and the quit dialog — has no widget test
-  (a double tap's heart charge and the background pause do); only its layout and feedback panel do (`quiz_screen_layout_test`).
+  (a double tap recording one answer and the background pause do); only its layout and feedback panel do (`quiz_screen_layout_test`).
   Result-screen buttons and the level grid are covered since PR #7.
 - **Release-build-only failures** (R8, signing) — `flutter test` can't catch them.
 - No integration tests (`integration_test`).

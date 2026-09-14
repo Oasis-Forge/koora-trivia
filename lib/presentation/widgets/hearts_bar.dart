@@ -94,13 +94,32 @@ class NoHeartsDialog extends StatelessWidget {
   /// بوابة كل زر يبدأ مستوى: يعيد `true` إن وُجد قلب، وإلا يعرض الحوار ويعيد `false`.
   ///
   /// كان الفحص في شاشة المستويات وحدها، فبدأ زرّا "إعادة المستوى" و"المستوى
-  /// التالي" في شاشة النتيجة مستوى بلا قلوب — ومع رصيد صفر لا يُخصم شيء عند
-  /// الخطأ، فيصبح اللعب مجانياً بلا حد.
+  /// التالي" في شاشة النتيجة مستوى بلا قلوب، فيصبح اللعب مجانياً بلا حد.
   static Future<bool> ensureHearts(BuildContext context) async {
     final economy = context.read<EconomyProvider>()..refresh();
     if (economy.hasHearts) return true;
     await show(context);
     return false;
+  }
+
+  /// الطريق الوحيد لبدء مستوى: يفحص القلوب ثم يخصم قلب المحاولة، وتعيده شاشة
+  /// النتيجة عند الاجتياز. فالإخفاق والخروج وإغلاق التطبيق وسط المستوى تكلّف قلباً
+  /// واحداً للمحاولة كلها — كان كل خطأ يكلّف قلباً فتنفد الخمسة في محاولة واحدة.
+  /// يعيد `false` إن لم يبدأ لنفاد القلوب.
+  static Future<bool> startLevel(
+    BuildContext context, {
+    required String categorySlug,
+    required int level,
+  }) async {
+    if (!await ensureHearts(context)) return false;
+    if (!context.mounted) return false;
+    final quiz = context.read<QuizProvider>();
+    final economy = context.read<EconomyProvider>();
+
+    await quiz.startLevel(categorySlug: categorySlug, level: level);
+    // تعذّر تحميل الأسئلة: لم تبدأ محاولة فلا يُخصم قلب.
+    if (quiz.status == QuizStatus.playing) await economy.consumeHeart();
+    return true;
   }
 
   @override

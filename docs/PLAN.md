@@ -23,6 +23,7 @@
 - Language groundwork: no forced locale or RTL (direction follows the language) · side-based paddings, the Tasks badge and gradients made directional · the last hard-coded player text moved into `AppStrings` · `lib/l10n` translation files (Arabic only, used for the app title) · launcher name from `strings.xml` · a test that blocks new hard-coded player text.
 - Language choice: the app follows the phone's language unless the player picks one in a «اللغة» panel in Settings, hidden while Arabic is the only language · settings saved before it, and new players until a second language ships, are stored as Arabic so nobody's app switches language later.
 - 14 September 2026 (owner, Play Console): the crashing versionCode 1 replaced on the internal track · displayed developer name set to Oasis Forge · the "Some languages have errors" warning is left for when a second language is added.
+- Hearts and two bugs: a level attempt costs one heart, charged at the start and refunded on a pass (failing, quitting or closing the app keeps it) · the level footer shows the pass mark, star thresholds and heart cost from the real evaluation, and the failed-level hint no longer hard-codes 7 · «العب مرة أخرى» keeps the quick-play category · the categories screen shows an error with a retry button instead of spinning forever.
 - PR #7, merged 14 September 2026: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
 - PR #6, merged 13 September 2026: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
 - PR #5, merged 13 September 2026: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
@@ -47,21 +48,18 @@
   - Quiz screen and level grid on a real short phone and a real tall one.
 
 ### Features
-- **P1 · S**: One heart per failed attempt instead of per wrong answer (owner's decision ①, 14 September 2026). Update the onboarding text to match.
+- Nothing open.
 
 ---
 
 ## Phase 2: first update after launch
 
 ### Bugs
-- **P2 · S**: «العب مرة أخرى» after a quick-play round ignores the chosen category. Keep the category and pass it back *(quiz_provider.dart, score_screen.dart)*.
-- **P2 · S**: The categories screen spins forever if loading fails. Show a friendly error with a retry button *(categories_screen.dart)*. The raw exception text in SnackBars was fixed in PR #8.
 - **P3 · S**: Economy leaks. Allow Extra time once per question and cap the speed bonus at 50. Grant the daily heart only if it wasn't already granted today, and show «كسبت قلباً! ❤️» only when a heart was actually added.
 - **P3 · M**: Move end-of-round saving out of ScoreScreen's post-frame callback into one provider method with error logging. That callback is what hid the star-saving bug.
 
 ### UI/UX
 - **P1 · S**: After the daily challenge, the result screen is a dead end. Add a one-tap "remind me tomorrow" card (asks for permission at that moment) and a "play a level" button *(score_screen.dart)*.
-- **P2 · S**: Show the pass mark and star thresholds before a level starts, built from AppConfig instead of the hard-coded 10 and 7. Show −1 heart on wrong answers.
 - **P2 · S**: Hints and shop clarity:
   - Captions under the hint icons.
   - Disabled hint and buy buttons say why they are disabled.
@@ -126,7 +124,7 @@
 ---
 
 ## Decisions only the owner can make
-1. **① Heart deduction** — **decided 14 September 2026:** one heart per failed attempt (Phase 1 item).
+1. **① Heart deduction** — **decided 14 September 2026:** one heart per failed attempt (done in v1.0.5).
 2. **② Name and address on the store page** (before production).
    - Options: personal account with a non-home address · organization account (needs a D-U-N-S number, which takes weeks).
    - **Recommend:** if your name must stay private, apply for D-U-N-S now.

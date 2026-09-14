@@ -5,6 +5,7 @@ import 'package:football_trivia/domain/entities/economy.dart';
 import 'package:football_trivia/domain/entities/user_stats.dart';
 import 'package:football_trivia/domain/repositories/app_info.dart';
 import 'package:football_trivia/domain/repositories/link_opener.dart';
+import 'package:football_trivia/domain/repositories/quiz_repository.dart';
 import 'package:football_trivia/domain/repositories/review_prompter.dart';
 import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
@@ -41,8 +42,10 @@ Future<QuizProvider> pumpScoreScreen(
   FakeAdService? adService,
   LinkOpener? linkOpener,
   DateTime Function()? clock,
+  String? quickPlayCategory,
+  QuizRepository? quizRepository,
 }) async {
-  final quiz = QuizProvider(repository: FakeQuizRepository());
+  final quiz = QuizProvider(repository: quizRepository ?? FakeQuizRepository());
   final economy = EconomyProvider(
     repository: FakeEconomyRepository(
       Economy(hearts: hearts, lastRegenAtIso: DateTime.now().toIso8601String()),
@@ -69,7 +72,7 @@ Future<QuizProvider> pumpScoreScreen(
     case RoundMode.level:
       await quiz.startLevel(categorySlug: 'alpha', level: level);
     case RoundMode.quickPlay:
-      await quiz.startQuickPlay();
+      await quiz.startQuickPlay(categorySlug: quickPlayCategory);
     case RoundMode.daily:
       await quiz.startDaily();
   }

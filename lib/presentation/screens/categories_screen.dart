@@ -44,7 +44,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final categories = context.watch<QuizProvider>().categories;
+    final quiz = context.watch<QuizProvider>();
+    final categories = quiz.categories;
     final progress = context.watch<ProgressProvider>();
 
     return Scaffold(
@@ -55,7 +56,32 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               _Header(totalStars: progress.totalStars),
               Expanded(
                 child: categories.isEmpty
-                    ? const Center(child: CircularProgressIndicator())
+                    ? quiz.categoriesFailed
+                        // كان الفشل يُبقي مؤشر التحميل يدور إلى الأبد.
+                        ? Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(24),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    AppStrings.loadCategoriesFailed,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: AppColors.chalkMuted,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 14),
+                                  FilledButton.icon(
+                                    onPressed: quiz.loadCategories,
+                                    icon: const Icon(Icons.refresh_rounded),
+                                    label: const Text(AppStrings.retry),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        : const Center(child: CircularProgressIndicator())
                     : GridView.builder(
                         padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
                         gridDelegate:

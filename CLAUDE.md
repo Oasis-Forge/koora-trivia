@@ -43,7 +43,7 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
   language first, translated vs. native questions, and `arab_football` — [docs/I18N_PLAN.md](docs/I18N_PLAN.md).
 - **Decided 14 September 2026:** themes are color variations of the current design only · a bare «لا شيء»
   option is not acceptable · the language follows the phone, and a Settings choice overrides it · ① one heart
-  per failed attempt, not per wrong answer (not built yet — PLAN.md Phase 1).
+  per failed attempt, not per wrong answer (built in v1.0.5).
 
 ### Identity and secrets — never break these
 - **Never write the owner's personal name, personal account names, or personal email into tracked
@@ -103,13 +103,13 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
 - An unguarded `Navigator.pop` after an `await` can close the screen underneath — check the route is
   still current.
 - **The quiz timer pauses while the app is in the background** and the question is hidden (`QuizScreen`
-  observes the lifecycle). `QuizProvider.selectAnswer` returns `false` when nothing was recorded — charge a
-  heart only on `true`.
+  observes the lifecycle). `QuizProvider.selectAnswer` returns `false` when nothing was recorded.
 - Question assets don't refresh on hot reload — full restart.
 
 ### Rules that are easy to break — details in [docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md)
-- **Every button that starts a level goes through `NoHeartsDialog.ensureHearts`**; quick play and the
-  daily challenge stay free (no hearts, hints or ads).
+- **Every button that starts a level goes through `NoHeartsDialog.startLevel`**: it checks hearts and charges
+  the attempt's heart at the start; `ScoreScreen` refunds it on a pass. Quick play and the daily challenge stay
+  free (no hearts, hints or ads).
 - **Ads:** no SDK init or ad load unless `canRequestAds()`; rewards only on `RewardResult.earned`;
   `AppConfig.interstitialsEnabled` stays `false`; never an interstitial after the daily;
   `google_mobile_ads` must stay ≥ 9.

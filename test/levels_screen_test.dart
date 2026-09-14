@@ -5,6 +5,7 @@ import 'package:football_trivia/core/constants/app_strings.dart';
 import 'package:football_trivia/domain/entities/category.dart';
 import 'package:football_trivia/domain/entities/category_progress.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
+import 'package:football_trivia/domain/usecases/evaluate_level.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
 import 'package:football_trivia/presentation/providers/progress_provider.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
@@ -113,6 +114,24 @@ void main() {
     await tester.pumpAndSettle();
     expect(_tileWidget(tester, 1).isSelected, isTrue);
     expect(_tileWidget(tester, 3).isSelected, isFalse);
+  });
+
+  testWidgets('الشريط السفلي يعرض عتبات الاجتياز والنجوم وكلفة المحاولة',
+      (tester) async {
+    await _pumpLevels(tester);
+
+    const evaluate = EvaluateLevel();
+    const total = AppConfig.questionsPerLevel;
+    expect(
+      find.text(AppStrings.levelGoal(
+        pass: evaluate.minCorrectFor(1, total: total),
+        twoStars: evaluate.minCorrectFor(2, total: total),
+        threeStars: evaluate.minCorrectFor(3, total: total),
+        total: total,
+      )),
+      findsOneWidget,
+    );
+    expect(find.text(AppStrings.levelHeartCost), findsOneWidget);
   });
 
   for (final size in const [Size(360, 640), Size(411, 731)]) {

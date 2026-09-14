@@ -12,7 +12,6 @@ import '../providers/economy_provider.dart';
 import '../providers/quiz_provider.dart';
 import '../providers/settings_provider.dart';
 import '../widgets/answer_option.dart';
-import '../widgets/hearts_bar.dart';
 import '../widgets/hint_bar.dart';
 import '../widgets/pitch_background.dart';
 import '../widgets/report_question_button.dart';
@@ -56,12 +55,14 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
   }
 
   Future<bool> _confirmQuit() async {
+    // الخروج من مستوى يُحسب محاولة لم تُجتز، فيذهب قلبها.
+    final isLevel = context.read<QuizProvider>().isLevelMode;
     final leave = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: AppColors.cardSurface,
         title: const Text(AppStrings.quitTitle),
-        content: const Text(AppStrings.quitBody),
+        content: Text(isLevel ? AppStrings.quitBodyLevel : AppStrings.quitBody),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
@@ -80,18 +81,17 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
     return leave ?? false;
   }
 
-  /// اختيار إجابة، مع خصم قلب عند الخطأ في نمط المستويات وحده.
+  /// اختيار إجابة. الخطأ لا يخصم قلباً: المحاولة كلها تكلّف قلباً واحداً يُخصم
+  /// عند بدئها ويعود عند الاجتياز (`NoHeartsDialog.startLevel`).
   Future<void> _answer(int index) async {
     final quiz = context.read<QuizProvider>();
-    final wasLevelMode = quiz.isLevelMode;
     final question = quiz.currentQuestion;
     if (question == null) return;
 
     final correct = question.isCorrect(index);
     final feedback = context.read<SettingsProvider>().feedback;
 
-    // لمسة ثانية قبل إعادة البناء، أو لمسة في إطار انتهاء الوقت، لا تُسجَّل —
-    // وكانت تخصم قلباً ثانياً.
+    // لمسة ثانية قبل إعادة البناء، أو لمسة في إطار انتهاء الوقت، لا تُسجَّل.
     if (!quiz.selectAnswer(index)) return;
     if (correct) {
       feedback.correct();
@@ -100,14 +100,8 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
     }
     if (!mounted) return;
 
-    final economy = context.read<EconomyProvider>();
-
     // مهمة الإجابات الصحيحة تُحتسب في كل الأنماط.
-    if (correct) {
-      await economy.recordCorrectAnswer();
-    } else if (wasLevelMode) {
-      await economy.consumeHeart();
-    }
+    if (correct) await context.read<EconomyProvider>().recordCorrectAnswer();
   }
 
   /// يؤكّد الخروج ثم يلغي الجولة ويعود للشاشة السابقة.
@@ -314,7 +308,6 @@ class _TopBar extends StatelessWidget {
                 icon: const Icon(Icons.close_rounded),
                 color: AppColors.chalkMuted,
               ),
-              if (quiz.isLevelMode) const HeartsBar(compact: true),
               Expanded(
                 child: Column(
                   children: [

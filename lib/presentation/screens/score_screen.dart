@@ -9,6 +9,7 @@ import '../../core/utils/arabic_count.dart';
 import '../../domain/entities/quiz_result.dart';
 import '../../domain/repositories/review_prompter.dart';
 import '../../domain/usecases/build_share_text.dart';
+import '../../domain/usecases/evaluate_level.dart';
 import '../../domain/usecases/should_ask_for_review.dart';
 import '../providers/ads_provider.dart';
 import '../providers/economy_provider.dart';
@@ -43,6 +44,9 @@ class _ScoreScreenState extends State<ScoreScreen>
 
   /// هل مُنح قلب مقابل إكمال تحدي اليوم؟
   bool _earnedHeart = false;
+
+  /// مستوى لم يُجتز: ذهب قلب المحاولة الذي خُصم عند بدئها.
+  bool _lostHeart = false;
 
   @override
   void initState() {
@@ -83,6 +87,18 @@ class _ScoreScreenState extends State<ScoreScreen>
 
       if (!mounted) return;
       if (_result.isLevel) {
+        // قلب المحاولة خُصم عند بدئها ويعود عند الاجتياز. يُعاد قبل حفظ التقدّم
+        // حتى لا يضيع على من اجتاز إن تعثّر الحفظ.
+        final passed = const EvaluateLevel()
+            .passed(correct: _result.correctCount, total: _result.total);
+        final economy = context.read<EconomyProvider>();
+        if (passed) {
+          await economy.refundLevelHeart();
+        } else if (mounted) {
+          setState(() => _lostHeart = true);
+        }
+
+        if (!mounted) return;
         final outcome =
             await context.read<ProgressProvider>().recordLevelResult(_result);
 
@@ -162,16 +178,16 @@ class _ScoreScreenState extends State<ScoreScreen>
     final quiz = context.read<QuizProvider>();
 
     // في نمط المستويات نعيد نفس المستوى بدل جولة عشوائية — والمستوى يحتاج قلباً،
-    // أما اللعب السريع فيبقى مجانياً.
+    // أما اللعب السريع فيبقى مجانياً وعلى التصنيف الذي اختاره اللاعب.
     if (_result.isLevel) {
-      if (!await NoHeartsDialog.ensureHearts(context)) return;
-      if (!mounted) return;
-      await quiz.startLevel(
+      final started = await NoHeartsDialog.startLevel(
+        context,
         categorySlug: _result.categorySlug!,
         level: _result.level!,
       );
+      if (!started) return;
     } else {
-      await quiz.startQuickPlay();
+      await quiz.startQuickPlay(categorySlug: quiz.quickPlayCategory);
     }
 
     if (!mounted) return;
@@ -181,14 +197,12 @@ class _ScoreScreenState extends State<ScoreScreen>
   Future<void> _playNextLevel() async {
     await _pendingReview;
     if (!mounted) return;
-    if (!await NoHeartsDialog.ensureHearts(context)) return;
-    if (!mounted) return;
-    final quiz = context.read<QuizProvider>();
-    await quiz.startLevel(
+    final started = await NoHeartsDialog.startLevel(
+      context,
       categorySlug: _result.categorySlug!,
       level: _result.level! + 1,
     );
-    if (!mounted) return;
+    if (!started || !mounted) return;
     Navigator.of(context).pushReplacementNamed(QuizScreen.routeName);
   }
 
@@ -270,7 +284,7 @@ class _ScoreScreenState extends State<ScoreScreen>
                   ),
                 ],
               ),
-              if (_earnedHeart) ...[
+              if (_earnedHeart || _lostHeart) ...[
                 const SizedBox(height: 14),
                 Container(
                   padding: const EdgeInsets.all(14),
@@ -283,11 +297,18 @@ class _ScoreScreenState extends State<ScoreScreen>
                   ),
                   child: Row(
                     children: [
-                      Icon(Icons.favorite_rounded, color: AppColors.wrong),
-                      SizedBox(width: 10),
+                      Icon(
+                        _earnedHeart
+                            ? Icons.favorite_rounded
+                            : Icons.heart_broken_rounded,
+                        color: AppColors.wrong,
+                      ),
+                      const SizedBox(width: 10),
                       Text(
-                        AppStrings.heartEarned,
-                        style: TextStyle(fontWeight: FontWeight.w700),
+                        _earnedHeart
+                            ? AppStrings.heartEarned
+                            : AppStrings.heartLost,
+                        style: const TextStyle(fontWeight: FontWeight.w700),
                       ),
                     ],
                   ),

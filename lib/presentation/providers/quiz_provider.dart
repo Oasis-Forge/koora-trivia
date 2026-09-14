@@ -58,6 +58,13 @@ class QuizProvider extends ChangeNotifier {
   String? _activeCategory;
   int? _activeLevel;
 
+  /// تصنيف آخر لعب سريع (`null` = كل التصنيفات)، فتعيد «العب مرة أخرى» الجولة
+  /// على التصنيف نفسه لا على كل التصنيفات.
+  String? _quickPlayCategory;
+
+  /// فشل تحميل التصنيفات: تعرض الشاشة إعادة المحاولة بدل انتظار لا ينتهي.
+  bool _categoriesFailed = false;
+
   /// خيارات أزالتها مساعدة "حذف إجابتين" من السؤال الحالي.
   final Set<int> _eliminated = {};
 
@@ -73,6 +80,8 @@ class QuizProvider extends ChangeNotifier {
   List<Category> get categories => _categories;
   String? get activeCategory => _activeCategory;
   int? get activeLevel => _activeLevel;
+  String? get quickPlayCategory => _quickPlayCategory;
+  bool get categoriesFailed => _categoriesFailed;
 
   /// وضع المستويات هو الوحيد الذي تُستهلك فيه القلوب والمساعدات.
   bool get isLevelMode => _activeCategory != null && _activeLevel != null;
@@ -96,15 +105,32 @@ class QuizProvider extends ChangeNotifier {
   double get progress => total == 0 ? 0 : (_index + 1) / total;
 
   Future<void> loadCategories() async {
+    if (_categoriesFailed) {
+      // إعادة المحاولة تُظهر مؤشر التحميل من جديد.
+      _categoriesFailed = false;
+      notifyListeners();
+    }
     try {
       _categories = await _repository.getCategories();
       notifyListeners();
-    } catch (_) {
+    } catch (e, stack) {
+      // كان الخطأ يُبتلع دون إخطار، فتبقى الشاشة تنتظر إلى الأبد.
       _categories = const [];
+      _categoriesFailed = true;
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          exception: e,
+          stack: stack,
+          library: 'quiz_provider',
+          context: ErrorDescription('أثناء تحميل التصنيفات'),
+        ),
+      );
+      notifyListeners();
     }
   }
 
   Future<void> startQuickPlay({String? categorySlug}) async {
+    _quickPlayCategory = categorySlug;
     await _start(
       () => _getQuizQuestions(categorySlug: categorySlug),
       isDaily: false,
