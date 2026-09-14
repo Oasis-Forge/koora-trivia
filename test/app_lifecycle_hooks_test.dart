@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:football_trivia/core/constants/app_strings.dart';
 import 'package:football_trivia/domain/entities/app_settings.dart';
 import 'package:football_trivia/domain/entities/app_update_status.dart';
+import 'package:football_trivia/domain/entities/category.dart' as domain;
 import 'package:football_trivia/domain/repositories/app_updater.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
 import 'package:football_trivia/domain/entities/quiz_result.dart';
@@ -14,6 +15,7 @@ import 'package:football_trivia/domain/repositories/settings_repository.dart';
 import 'package:football_trivia/domain/repositories/stats_repository.dart';
 import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
+import 'package:football_trivia/presentation/providers/quiz_provider.dart';
 import 'package:football_trivia/presentation/providers/settings_provider.dart';
 import 'package:football_trivia/presentation/providers/stats_provider.dart';
 import 'package:football_trivia/presentation/widgets/app_lifecycle_hooks.dart';
@@ -79,6 +81,17 @@ class _Scheduler implements ReminderScheduler {
   Future<void> cancelAll() async {}
 }
 
+/// يعدّ طلبات التصنيفات: تبديل اللغة يعيد تحميلها بأسمائها الجديدة.
+class _CountingQuizRepository extends FakeQuizRepository {
+  int categoryLoads = 0;
+
+  @override
+  Future<List<domain.Category>> getCategories() {
+    categoryLoads++;
+    return super.getCategories();
+  }
+}
+
 /// العاشرة صباح اليوم الحقيقي: `StatsProvider` يسجّل تحدي اليوم بالتاريخ الحقيقي.
 final _today = DateTime.now();
 final _t0 = DateTime(_today.year, _today.month, _today.day, 10);
@@ -88,6 +101,8 @@ class _Harness {
   final adService = FakeAdService(ready: false);
   final scheduler = _Scheduler();
   final updater = FakeAppUpdater();
+  final quizRepository = _CountingQuizRepository();
+  late final QuizProvider quiz = QuizProvider(repository: quizRepository);
   DateTime economyNow = _t0;
   DateTime settingsNow = _t0;
 
@@ -121,6 +136,7 @@ class _Harness {
           ChangeNotifierProvider.value(value: economy),
           ChangeNotifierProvider<StatsProvider>.value(value: stats),
           ChangeNotifierProvider.value(value: settings),
+          ChangeNotifierProvider.value(value: quiz),
           Provider<AppUpdater>.value(value: updater),
         ],
         child: child,
@@ -237,5 +253,27 @@ void main() {
     // مستمع باقٍ بعدها هو مستمع الغلاف.
     await tester.pumpWidget(const SizedBox());
     expect(h.stats.listening, isFalse);
+  });
+
+  testWidgets('تبديل اللغة يعيد تحميل التصنيفات وجدولة التنبيه بنصّها',
+      (tester) async {
+    final h = await _pump(tester);
+    addTearDown(() => AppText.use('ar'));
+    final loadsBefore = h.quizRepository.categoryLoads;
+    final schedulesBefore = h.scheduler.scheduled.length;
+
+    // إعداد لا يمسّ اللغة: لا تحميل ولا جدولة.
+    await h.settings.setSoundEnabled(false);
+    await tester.pump();
+    expect(h.quizRepository.categoryLoads, loadsBefore);
+    expect(h.scheduler.scheduled.length, schedulesBefore);
+
+    // `app.dart` يطبّق اللغة في بنائه بعد حفظ الاختيار؛ هنا نطبّقها بأنفسنا.
+    AppText.use('en');
+    await h.settings.setLanguageCode('en');
+    await tester.pump();
+
+    expect(h.quizRepository.categoryLoads, loadsBefore + 1);
+    expect(h.scheduler.scheduled.length, schedulesBefore + 1);
   });
 }

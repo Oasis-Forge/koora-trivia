@@ -106,7 +106,8 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
   still current.
 - **The quiz timer pauses while the app is in the background** and the question is hidden (`QuizScreen`
   observes the lifecycle). `QuizProvider.selectAnswer` returns `false` when nothing was recorded.
-- Question assets don't refresh on hot reload — full restart.
+- Question assets don't refresh on hot reload — full restart. Every language folder under `assets/data` must be listed in
+  `pubspec.yaml` (Flutter doesn't bundle subfolders; `question_datasource_language_test` fails otherwise).
 
 ### Rules that are easy to break — details in [docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md)
 - **Every button that starts a level goes through `NoHeartsDialog.startLevel`**: it checks hearts and charges
