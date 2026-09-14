@@ -1,7 +1,9 @@
 # Multilingual plan — Koora Trivia (تحدي كرة القدم)
 
-> **Status: deferred by owner decision** until the Arabic version proves itself. Nothing in this
-> document is implemented.
+> **Status: approved by the owner on 14 September 2026 — English is being added now.** The app is Arabic and English
+> only · the bank is translated with the same question IDs (one daily challenge for everyone) · `arab_football` is kept
+> and translated · code and content start now, without waiting for the levels 7–10 review (its fixes go into both
+> banks). The v1.0.5 groundwork is listed at the top of §2.
 >
 > **Source:** a read-only audit of the whole codebase on **13 September 2026** — six inventories
 > (strings, layout direction, content, platform, architecture, tests), a completeness critic that

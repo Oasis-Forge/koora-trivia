@@ -57,7 +57,7 @@
   - Quiz screen and level grid on a real short phone and a real tall one.
 
 ### Features
-- Nothing open.
+- **P1 · L**: English (owner, 14 September 2026: Arabic and English only · translated bank with the same IDs · `arab_football` kept and translated · starts now) — code, then the names glossary and the bank per [I18N_PLAN.md](I18N_PLAN.md).
 
 ---
 
@@ -149,7 +149,7 @@
 10. **Tuning:** 20-second timer, 30-minute heart regen, 3 hints a day, level 10 difficulty.
     - Options: keep · adjust.
     - **Recommend:** ask testers directly now and change the numbers in the first update.
-11. **Deferred bets** (revisiting decisions): interstitials, multiple languages, cloud save, R8, locking the daily after a quit-and-preview, clock and backup exploits.
+11. **Deferred bets** (revisiting decisions): interstitials, cloud save, R8, locking the daily after a quit-and-preview, clock and backup exploits.
     - **Recommend:** keep all deferred and review after about 30 days of production data.
 
 ---
