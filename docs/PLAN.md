@@ -23,8 +23,9 @@
 - Language groundwork: no forced locale or RTL (direction follows the language) · side-based paddings, the Tasks badge and gradients made directional · the last hard-coded player text moved into `AppStrings` · `lib/l10n` translation files (Arabic only, used for the app title) · launcher name from `strings.xml` · a test that blocks new hard-coded player text.
 - Language choice: the app follows the phone's language unless the player picks one in a «اللغة» panel in Settings, hidden while Arabic is the only language · settings saved before it, and new players until a second language ships, are stored as Arabic so nobody's app switches language later.
 - v1.0.6 — design: the current design (four color themes, type, spacing, shape) plus written guidelines and eight current-screen screenshots are exported to the Claude Design project «Koora Trivia — current design» (sources in `design-system/`, sync config in `.design-sync/`). Next: the owner redesigns screens there, then each screen is rebuilt in Flutter in its own PR.
-- v1.0.6 — redesign foundation: the new pitch background, `Surface`/`StatusPill`, the three buttons, section headings, rows cards and progress bars, from the owner's Claude Design project, applied to every screen in one PR (result screen, onboarding and the no-hearts dialog restyled to match).
+- v1.0.6 — redesign foundation: the new pitch background, `Surface`/`StatusPill`, the three buttons, section headings, rows cards and progress bars, from the owner's Claude Design project, applied to every screen in PRs #34 and #35 (result screen, onboarding and the no-hearts dialog restyled to match).
 - v1.0.6 — owner's request, 14 September 2026: the result screen no longer shows the answer recap after any round — level, quick play or the daily (reporting a question stays in the quiz's feedback panel).
+- v1.0.6 — the daily card reads «نقاط ×1.5» instead of «نقاط مضاعفة» (the multiplier is ×1.5, not double), and so does the store description · 11 unused strings deleted.
 - 14 September 2026 (owner, Play Console): the crashing versionCode 1 replaced on the internal track · displayed developer name set to Oasis Forge · the "Some languages have errors" warning is left for when a second language is added.
 - Hearts and two bugs: a level attempt costs one heart, charged at the start and refunded on a pass (failing, quitting or closing the app keeps it) · the level footer shows the pass mark, star thresholds and heart cost from the real evaluation, and the failed-level hint no longer hard-codes 7 · «العب مرة أخرى» keeps the quick-play category · the categories screen shows an error with a retry button instead of spinning forever.
 - Economy leaks and the end of the daily: Extra time once per question · the speed bonus can't pass 50 · the daily heart is granted once per daily (stored `dailyHeartDayKey`) and «كسبت قلباً!» shows only when a heart was added · the daily result screen offers a one-tap «ذكّرني» reminder card (asks permission then) and an «العب مستوى» button to the categories.
@@ -50,6 +51,7 @@
 - **P0 · M**: Production gate. Only 5 of the 12 required testers have joined. Recruit 15–20 as a buffer and record the date the 12th joins.
 - **P1 · S**: Play Console and GitHub tasks:
   - Host app-ads.txt at the oasis-forge.github.io root and set it as the listing's Website.
+  - With the v1.0.6 upload, paste the new daily line («بنقاط ×1.5») from `docs/STORE_LISTING.md` into the full description.
 - **P1 · M**: Check on a real phone (the emulator release check passed on 14 September 2026) and log results in PRE_PUBLISH §1:
   - The in-app review sheet, from a closed-test install.
   - Quiz screen and level grid on a real short phone and a real tall one.
@@ -156,10 +158,6 @@
 - Correct answers cluster in one screen position in some levels. Re-run the check after the seed fix.
 - After a level pass, make "Next level" the main button instead of Share.
 - The home category chips look like they apply to Levels too, and the app uses two different words for "category".
-- The completed daily card shows «أكملت تحدي اليوم ✅» twice.
-- «مضاعفة» (doubled) in the store listing and on the daily card, but the daily multiplier is ×1.5.
-- 13 unused AppStrings constants.
-- No test guards against hard-coded Arabic text outside app_strings.dart.
 - The splash screen still shows the old `ic_ball` drawing.
 - The Σ icon in Settings stats is mirrored.
 - The reminder time always shows in 24-hour format.

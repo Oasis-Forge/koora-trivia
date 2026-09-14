@@ -3,7 +3,6 @@ class AppStrings {
   const AppStrings._();
 
   static const String appName = 'تحدي كرة القدم';
-  static const String tagline = 'اختبر معلوماتك في عالم الساحرة المستديرة';
 
   // الرئيسية
   static const String quickPlay = 'لعب سريع';
@@ -12,7 +11,6 @@ class AppStrings {
   static const String quickRound = 'جولة سريعة';
   static const String dailyChallenge = 'تحدي اليوم';
   static const String dailyDone = 'أكملت تحدي اليوم ✅';
-  static const String dailyReady = 'جاهز! تحدٍ جديد بانتظارك';
   static const String chooseCategory = 'اختر الفئة';
   static const String allCategories = 'كل الفئات';
   static const String streak = 'سلسلة الأيام';
@@ -68,10 +66,6 @@ class AppStrings {
   static String hoursMinutes(int hours, int minutes) => '$hours س و $minutes د';
   static String hoursShort(int hours) => '$hours س';
   static String minutesShort(int minutes) => '$minutes د';
-  static String dailyNextIn(String duration) =>
-      '$dailyDone  •  التحدي القادم بعد $duration';
-  static String dailyQuestionsLine(String questions, String multiplier) =>
-      '$questions • نقاط مضاعفة ×$multiplier';
   static const String timeUp = 'انتهى الوقت!';
 
   // النتيجة
@@ -95,7 +89,6 @@ class AppStrings {
   // المستويات
   static const String levels = 'المستويات';
   static const String chooseCategoryTitle = 'اختر التصنيف';
-  static const String chooseLevel = 'اختر المستوى';
   static const String level = 'المستوى';
   static const String levelsDone = 'مستويات مكتملة';
   static const String startLevel = 'ابدأ المستوى';
@@ -117,7 +110,6 @@ class AppStrings {
       'للاجتياز ⭐ $pass من $total  ·  ⭐⭐ $twoStars  ·  ⭐⭐⭐ $threeStars';
   static const String levelHeartCost =
       'تخسر قلباً إن لم تجتز المستوى أو خرجت منه';
-  static const String newBest = 'أفضل نتيجة جديدة!';
   static const String replayLevel = 'أعد المستوى';
   static const String nextLevel = 'المستوى التالي';
   static const String allLevelsDone = 'أكملت كل مستويات هذا التصنيف 🏆';
@@ -143,7 +135,6 @@ class AppStrings {
   static const String confirmReset = 'تصفير';
   static const String cancel = 'إلغاء';
   static const String resetDone = 'تم التصفير';
-  static const String nothingToReset = 'لا يوجد ما يُصفَّر';
   /// [version] من `AppInfo`، مثل «1.0.4 (5)».
   static String appVersion(String version) => 'الإصدار $version';
   static const String bankSummary = 'تصنيفات متنوّعة · مستويات متدرّجة لكل تصنيف';
@@ -196,25 +187,21 @@ class AppStrings {
   static const String noHeartsBodyDailyDone =
       'انتظر حتى يتجدّد قلب، أو احصل على قلب الآن بإعلان أو بالعملات.';
   static const String nextHeartIn = 'القلب التالي بعد';
-  static const String heartsFull = 'القلوب ممتلئة';
   static const String playDailyForHeart = 'العب تحدي اليوم';
   static const String heartLost = 'فقدت قلباً';
   static const String heartEarned = 'كسبت قلباً! ❤️';
-  static const String hints = 'المساعدات';
   static const String hintFiftyFifty = 'حذف إجابتين';
   static const String hintSkip = 'تخطّي السؤال';
   static const String hintExtraTime = 'وقت إضافي';
   static const String noHintsLeft = 'انتهت مساعداتك اليوم';
   static const String hintFiftyFiftyUsed = 'حذفت إجابتين من هذا السؤال بالفعل';
   static const String hintExtraTimeUsed = 'الوقت الإضافي مرة واحدة لكل سؤال';
-  static const String hintsLeftLabel = 'مساعدات متبقية اليوم';
   static const String skippedAnswer = 'تخطّيت هذا السؤال';
 
   /// تحت السؤال بعد كشف الإجابة.
   static String correctAnswerIs(String answer) => 'الإجابة الصحيحة: $answer';
 
   // المهام والمتجر
-  static const String coins = 'العملات';
   static const String tasks = 'المهام اليومية';
   /// [count] الهدف مكتوباً بـ `ArabicCount` بصيغة المفعول: «10 إجابات صحيحة».
   static String taskAnswers(String count) => 'أجب $count';
@@ -287,9 +274,9 @@ class AppStrings {
   static const String more = 'المزيد';
   static const String dailyStart = 'ابدأ التحدي';
 
-  /// سطر بطاقة تحدي اليوم: «نقاط مضاعفة ×1.5 • يتجدد بعد 7 س و 4 د».
+  /// سطر بطاقة تحدي اليوم: «نقاط ×1.5 • يتجدد بعد 7 س و 4 د».
   static String dailyMeta(String multiplier, String time) =>
-      'نقاط مضاعفة ×$multiplier • يتجدد بعد $time';
+      'نقاط ×$multiplier • يتجدد بعد $time';
   static const String updateDownloaded = 'نُزّل تحديث جديد للتطبيق';
   static const String updateRestart = 'إعادة التشغيل';
   static const String loadCategoriesFailed =

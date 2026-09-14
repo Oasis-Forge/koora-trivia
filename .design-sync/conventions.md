@@ -36,7 +36,7 @@ wrong answer, lost heart, destructive action. Cards sit on `--card-surface` with
 <main style={{ minHeight: '100vh', background: 'var(--pitch-gradient)', padding: '0 var(--space-page)' }}>
   <section style={{ background: 'var(--card-surface)', border: 'var(--border-card)', borderRadius: 'var(--radius-card)', padding: 'var(--space-card)' }}>
     <h2 style={{ fontSize: 'var(--text-title)', fontWeight: 'var(--weight-black)', margin: 0 }}>تحدي اليوم</h2>
-    <p style={{ color: 'var(--chalk-muted)', fontSize: 'var(--text-meta)' }}>7 أسئلة • نقاط مضاعفة ×1.5</p>
+    <p style={{ color: 'var(--chalk-muted)', fontSize: 'var(--text-meta)' }}>7 أسئلة • نقاط ×1.5</p>
   </section>
   <button style={{ width: '100%', height: 'var(--button-height)', marginTop: 'var(--space-section)', background: 'var(--gold)', color: 'var(--pitch-dark)', border: 0, borderRadius: 'var(--radius-button)', fontFamily: 'inherit', fontSize: 'var(--text-button)', fontWeight: 'var(--weight-bold)' }}>
     لعب سريع ⚽

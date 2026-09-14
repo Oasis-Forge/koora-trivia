@@ -69,7 +69,6 @@
   Result-screen buttons and the level grid are covered since PR #7.
 - **Release-build-only failures** (R8, signing) — `flutter test` can't catch them.
 - No integration tests (`integration_test`).
-- No guard against hardcoded user-visible strings — 28 literal lines already bypass `app_strings.dart`.
 - **The in-app review dialog and real mail apps.** `score_screen_review_test` covers when the prompt is
   requested and `report_question_button_test` the `mailto` link, but Play shows the dialog only to
   Play installs, and each mail app parses `mailto` its own way — check both from the closed test.

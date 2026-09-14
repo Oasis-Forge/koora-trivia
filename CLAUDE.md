@@ -35,7 +35,7 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
 3. **v1.0.5 (owner):** upload `releases/v1.0.5_build6_2026-09-14/app-release.aab` with the Arabic notes in its `NOTES.md`.
-4. **Owner's Play Console tasks:** app-ads.txt (PLAN.md P1 · S). The "Some languages
+4. **Owner's Play Console tasks:** app-ads.txt (PLAN.md P1 · S) · paste the new «بنقاط ×1.5» daily line from `docs/STORE_LISTING.md` into the store description with the v1.0.6 upload. The "Some languages
    have errors" warning is handled when a second language is added.
 
 ### Decisions waiting on the owner
