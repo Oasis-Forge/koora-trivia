@@ -233,7 +233,7 @@ class _Header extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       '$done من $total ${AppStrings.levelsDone}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12.5,
                         color: AppColors.chalkMuted,
                       ),
@@ -249,12 +249,12 @@ class _Header extends StatelessWidget {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.star_rounded,
+                      Icon(Icons.star_rounded,
                           size: 15, color: AppColors.gold),
                       const SizedBox(width: 3),
                       Text(
                         '$stars / $maxStars',
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: AppColors.gold,
                           fontWeight: FontWeight.w800,
                           fontSize: 13,
@@ -296,13 +296,13 @@ class _Footer extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(20, 14, 20, 20),
       decoration: BoxDecoration(
         color: Colors.black.withValues(alpha: 0.22),
-        border: const Border(top: BorderSide(color: AppColors.cardBorder)),
+        border: Border(top: BorderSide(color: AppColors.cardBorder)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           if (allDone) ...[
-            const Text(
+            Text(
               AppStrings.allLevelsDone,
               style: TextStyle(
                 color: AppColors.gold,
@@ -317,7 +317,7 @@ class _Footer extends StatelessWidget {
               child: Text(
                 '${AppStrings.level} $level  ·  ${difficulty.arabicLabel}'
                 '  ·  ${ArabicCount.format(AppConfig.questionsPerLevel, ArabicNoun.question)}',
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.chalkMuted,
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
@@ -379,14 +379,14 @@ class LevelStarsBanner extends StatelessWidget {
           ),
           if (!passed) ...[
             const SizedBox(height: 4),
-            const Text(
+            Text(
               AppStrings.levelFailedHint,
               style: TextStyle(color: AppColors.chalkMuted, fontSize: 13),
             ),
           ],
           if (unlockedNext) ...[
             const SizedBox(height: 6),
-            const Text(
+            Text(
               AppStrings.nextLevelUnlocked,
               style: TextStyle(
                 color: AppColors.correct,

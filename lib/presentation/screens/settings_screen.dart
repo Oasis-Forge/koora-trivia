@@ -99,6 +99,10 @@ class SettingsScreen extends StatelessWidget {
                     const _EffectsPanel(),
 
                     const SizedBox(height: 26),
+                    const _SectionTitle(AppStrings.themeSection),
+                    const _ThemePanel(),
+
+                    const SizedBox(height: 26),
                     const _SectionTitle(AppStrings.backupSection),
                     const _BackupPanel(),
 
@@ -147,7 +151,7 @@ class SettingsScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(18),
                         border: Border.all(color: AppColors.cardBorder),
                       ),
-                      child: const Column(
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -201,7 +205,7 @@ class _VersionTextState extends State<_VersionText> {
       future: _version,
       builder: (context, snapshot) => Text(
         snapshot.hasData ? AppStrings.appVersion(snapshot.data!) : '',
-        style: const TextStyle(color: AppColors.chalkMuted, fontSize: 13),
+        style: TextStyle(color: AppColors.chalkMuted, fontSize: 13),
       ),
     );
   }
@@ -221,7 +225,7 @@ class _FeedbackButton extends StatelessWidget {
           icon: const Icon(Icons.mail_outline_rounded),
           label: const Text(AppStrings.sendFeedback),
         ),
-        const Padding(
+        Padding(
           padding: EdgeInsets.only(top: 6),
           child: Text(
             AppStrings.sendFeedbackHint,
@@ -286,7 +290,7 @@ class _SectionTitle extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10, right: 4),
       child: Text(
         text,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w800,
           color: AppColors.gold,
@@ -330,7 +334,7 @@ class _StatsPanel extends StatelessWidget {
                   ),
                   Text(
                     rows[i].$3,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w800,
                       color: AppColors.chalk,
@@ -374,7 +378,7 @@ class _ReminderPanel extends StatelessWidget {
                 AppStrings.reminderToggle,
                 style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.w700),
               ),
-              subtitle: const Text(
+              subtitle: Text(
                 AppStrings.reminderToggleHint,
                 style: TextStyle(
                   fontSize: 12.5,
@@ -387,7 +391,7 @@ class _ReminderPanel extends StatelessWidget {
               const Divider(height: 1, thickness: 1),
               ListTile(
                 onTap: () => _pickTime(context, settings),
-                leading: const Icon(
+                leading: Icon(
                   Icons.schedule_rounded,
                   size: 20,
                   color: AppColors.gold,
@@ -398,7 +402,7 @@ class _ReminderPanel extends StatelessWidget {
                 ),
                 trailing: Text(
                   settings.reminderLabel,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
                     color: AppColors.gold,
@@ -468,7 +472,7 @@ class _EffectsPanel extends StatelessWidget {
               activeThumbColor: AppColors.gold,
               onChanged: (v) =>
                   context.read<SettingsProvider>().setSoundEnabled(v),
-              secondary: const Icon(
+              secondary: Icon(
                 Icons.volume_up_rounded,
                 color: AppColors.gold,
                 size: 20,
@@ -484,7 +488,7 @@ class _EffectsPanel extends StatelessWidget {
               activeThumbColor: AppColors.gold,
               onChanged: (v) =>
                   context.read<SettingsProvider>().setHapticsEnabled(v),
-              secondary: const Icon(
+              secondary: Icon(
                 Icons.vibration_rounded,
                 color: AppColors.gold,
                 size: 20,
@@ -492,6 +496,104 @@ class _EffectsPanel extends StatelessWidget {
               title: const Text(
                 AppStrings.hapticsToggle,
                 style: TextStyle(fontSize: 14.5),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// اختيار مظهر الألوان: عيّنة لكل مظهر، والمختار محاط بالذهبي.
+class _ThemePanel extends StatelessWidget {
+  const _ThemePanel();
+
+  static const Map<String, String> _names = {
+    'green': AppStrings.themeGreen,
+    'blue': AppStrings.themeBlue,
+    'purple': AppStrings.themePurple,
+    'red': AppStrings.themeRed,
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final selected =
+        context.select<SettingsProvider, String>((s) => s.themeId);
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (final palette in AppPalette.all)
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: _ThemeSwatch(
+                palette: palette,
+                label: _names[palette.id]!,
+                selected: palette.id == selected,
+                onTap: () =>
+                    context.read<SettingsProvider>().setThemeId(palette.id),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class _ThemeSwatch extends StatelessWidget {
+  const _ThemeSwatch({
+    required this.palette,
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final AppPalette palette;
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: label,
+      excludeSemantics: true,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16),
+        child: Column(
+          children: [
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              height: 56,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [palette.pitchLight, palette.pitchDark],
+                ),
+                border: Border.all(
+                  color: selected ? palette.gold : AppColors.cardBorder,
+                  width: selected ? 2.5 : 1,
+                ),
+              ),
+              child: selected
+                  ? Icon(Icons.check_rounded, color: palette.gold)
+                  : null,
+            ),
+            const SizedBox(height: 6),
+            Text(
+              label,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: 12,
+                color: selected ? AppColors.chalk : AppColors.chalkMuted,
               ),
             ),
           ],
@@ -525,7 +627,7 @@ class _PrivacyPanel extends StatelessWidget {
             if (ads.isPrivacyOptionsRequired) ...[
               ListTile(
                 onTap: () => _openPrivacyOptions(context),
-                leading: const Icon(
+                leading: Icon(
                   Icons.privacy_tip_rounded,
                   size: 20,
                   color: AppColors.gold,
@@ -539,7 +641,7 @@ class _PrivacyPanel extends StatelessWidget {
             ],
             ListTile(
               onTap: () => _openPolicy(context),
-              leading: const Icon(
+              leading: Icon(
                 Icons.policy_rounded,
                 size: 20,
                 color: AppColors.gold,
@@ -548,7 +650,7 @@ class _PrivacyPanel extends StatelessWidget {
                 AppStrings.privacyPolicy,
                 style: TextStyle(fontSize: 14.5),
               ),
-              trailing: const Icon(
+              trailing: Icon(
                 Icons.open_in_new_rounded,
                 size: 18,
                 color: AppColors.chalkMuted,
@@ -593,7 +695,7 @@ class _BackupPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.only(bottom: 12, right: 4, left: 4),
           child: Text(
             AppStrings.backupHint,
@@ -669,7 +771,7 @@ class _BackupPanel extends StatelessWidget {
           ),
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(true),
-            child: const Text(
+            child: Text(
               AppStrings.importConfirm,
               style: TextStyle(
                 color: AppColors.wrong,
@@ -746,7 +848,7 @@ class _DangerButton extends StatelessWidget {
           ),
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(true),
-            child: const Text(
+            child: Text(
               AppStrings.confirmReset,
               style: TextStyle(
                 color: AppColors.wrong,

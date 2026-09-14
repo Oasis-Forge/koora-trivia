@@ -34,6 +34,13 @@ class AppStrings {
   static const String quizPaused = 'الجولة متوقفة مؤقتاً';
   static const String quizPausedHint =
       'يعود السؤال والوقت كما تركتهما حين ترجع إلى التطبيق.';
+
+  // المظهر
+  static const String themeSection = 'المظهر';
+  static const String themeGreen = 'ملعب أخضر';
+  static const String themeBlue = 'ليلي أزرق';
+  static const String themePurple = 'بنفسجي';
+  static const String themeRed = 'كلاسيكو أحمر';
   static const String timeUp = 'انتهى الوقت!';
 
   // النتيجة

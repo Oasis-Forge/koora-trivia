@@ -20,7 +20,7 @@ class AppTheme {
         surface: AppColors.cardSurface,
         error: AppColors.wrong,
       ),
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
@@ -50,7 +50,7 @@ class AppTheme {
           foregroundColor: AppColors.chalk,
           minimumSize: const Size.fromHeight(56),
           iconAlignment: _iconAfterLabel,
-          side: const BorderSide(color: AppColors.cardBorder, width: 1.4),
+          side: BorderSide(color: AppColors.cardBorder, width: 1.4),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18),
           ),
@@ -59,12 +59,12 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(iconAlignment: _iconAfterLabel),
       ),
-      snackBarTheme: const SnackBarThemeData(
+      snackBarTheme: SnackBarThemeData(
         backgroundColor: AppColors.cardSurface,
         contentTextStyle: TextStyle(color: AppColors.chalk),
         behavior: SnackBarBehavior.floating,
       ),
-      dividerTheme: const DividerThemeData(color: AppColors.cardBorder),
+      dividerTheme: DividerThemeData(color: AppColors.cardBorder),
     );
   }
 }

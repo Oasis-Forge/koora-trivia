@@ -24,6 +24,8 @@ class PrefsSettingsDataSource implements SettingsLocalDataSource {
         soundEnabled: map['soundEnabled'] as bool? ?? true,
         hapticsEnabled: map['hapticsEnabled'] as bool? ?? true,
         onboardingSeen: map['onboardingSeen'] as bool? ?? false,
+        // الإعدادات المحفوظة قبل المظاهر لا تحمل المفتاح، فتبقى على الأخضر.
+        themeId: map['themeId'] as String? ?? AppSettings.defaultThemeId,
       );
     } on TypeError catch (e) {
       throw FormatException('بنية إعدادات غير متوقعة: $e');
@@ -56,6 +58,7 @@ class PrefsSettingsDataSource implements SettingsLocalDataSource {
         'soundEnabled': settings.soundEnabled,
         'hapticsEnabled': settings.hapticsEnabled,
         'onboardingSeen': settings.onboardingSeen,
+        'themeId': settings.themeId,
       }),
     );
   }

@@ -220,6 +220,16 @@ many different actions be rewarded with one currency, and lets prices stay fixed
 - `android:appCategory="game"` keeps the portrait lock on large screens in Android 16. The manifest
   also declares a `mailto` `SENDTO` query for url_launcher on Android 11+.
 
+### Color themes — how they work (v1.0.5)
+
+- `AppPalette` holds each theme's colors; `AppPalette.all` is green (default) · blue · purple · red. All four keep the
+  stadium design: the pitch and card colors change, gold, chalk and correct stay (red uses a lighter «wrong»).
+- `AppColors.x` are getters over `AppColors.current`. `app.dart` selects `SettingsProvider.themeId`, calls
+  `AppColors.use` before building `MaterialApp`, and `PaletteScope` marks every element for rebuild after a switch,
+  so open screens change color without losing navigation.
+- The choice is `AppSettings.themeId` in `app_settings_v1` (old settings read as green) and travels in backups.
+- `theme_test` checks that no theme is less readable than the original green.
+
 ### Backup import — how it works (PR #7)
 
 - `BackupRepositoryImpl.import` checks **every** value with the datasource's own `decode` (the same

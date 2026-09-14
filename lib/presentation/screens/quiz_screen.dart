@@ -69,7 +69,7 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text(
+            child: Text(
               AppStrings.quitConfirm,
               style: TextStyle(color: AppColors.wrong),
             ),
@@ -269,7 +269,7 @@ class _PausedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Padding(
         padding: EdgeInsets.all(32),
         child: Column(
@@ -328,7 +328,7 @@ class _TopBar extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       ArabicCount.format(quiz.score, ArabicNoun.point),
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.gold,
                         fontSize: 13,
                         fontWeight: FontWeight.w700,
@@ -348,7 +348,7 @@ class _TopBar extends StatelessWidget {
               minHeight: 7,
               backgroundColor: Colors.white.withValues(alpha: 0.10),
               valueColor:
-                  const AlwaysStoppedAnimation<Color>(AppColors.pitchLight),
+                  AlwaysStoppedAnimation<Color>(AppColors.pitchLight),
             ),
           ),
         ],
@@ -537,7 +537,7 @@ class _FeedbackPanelState extends State<_FeedbackPanel> {
               if (correct)
                 Text(
                   '+${quiz.answers.last.earnedPoints}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.gold,
                     fontWeight: FontWeight.w800,
                   ),
@@ -555,7 +555,7 @@ class _FeedbackPanelState extends State<_FeedbackPanel> {
             const SizedBox(height: 8),
             Text(
               question.explanation!,
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.chalkMuted,
                 height: 1.5,
                 fontSize: 13,

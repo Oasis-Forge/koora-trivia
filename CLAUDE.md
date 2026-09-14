@@ -33,7 +33,7 @@ and #5–#14) was uploaded by the owner on 14 September 2026 and is in Google's 
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
-3. **v1.0.5, in this order:** color themes · language groundwork (both in PLAN.md Phase 1 → Features).
+3. **v1.0.5:** language groundwork (PLAN.md Phase 1 → Features), then the release.
 4. **Owner's Play Console tasks:** replace the crashing versionCode 1 on the internal track · the
    "Some languages have errors" warning · displayed developer name · app-ads.txt (PLAN.md P1 · S).
 
@@ -79,7 +79,7 @@ $env:Path = "C:\src\flutter\bin;$env:Path"; flutter test
 ```
 
 - `adb`: `%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe` · `gh`: `C:\Program Files\GitHub CLI\` —
-  neither on PATH. Emulator: `Pixel_6_Pro`.
+  neither on PATH. Emulator: `Medium_Phone` (1080×2400, Play Store image).
 - The only JDK is **Java 25 — never downgrade Gradle** (9.1.0 / AGP 9.0.1 / Kotlin 2.3.20).
   `* What went wrong: 25.0.2` means a version mismatch.
 - **R8 is off in release** (it crashed launch through WorkManager). Re-enabling needs keep rules and a
@@ -121,6 +121,8 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
 - **Economy balance:** full daily income (130 🪙) stays below the cheapest purchase (200 🪙).
 - **Button icons sit on the left of their text** (after it in RTL) through `iconAlignment` in `AppTheme` —
   owner's request, 14 September 2026. Don't override it per button.
+- **Colors:** read `AppColors.x` (getters over the current `AppPalette`) at build time — never inside `const`, never
+  cached in a field or default parameter. A new color is a new `AppPalette` field in all four palettes.
 - Tunable numbers go in `app_config.dart`; player-facing text in `app_strings.dart`.
 
 ## Question bank

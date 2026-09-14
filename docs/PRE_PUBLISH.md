@@ -73,6 +73,12 @@ Build A is v1.0.4+5 from `main` before PR #14; build B is the final v1.0.4+5 (sa
 | Button icons | B | ✅ icons sit left of the text on home, Settings and the daily card |
 | Backup export and import | B | ✅ copy code → reset stats → import restores streak, best score, rounds and the done daily without a restart. One earlier attempt showed «رمز غير صالح» right after a `KEYCODE_PASTE` keyevent; two clean repeats succeeded |
 
+### v1.0.5 checks on the emulator `Medium_Phone` (1080×2400, Play Store image)
+
+| Flow | Build | Result |
+|---|---|---|
+| Color themes | release (PR #22) | ✅ green unchanged · switching green → blue → purple → red in Settings recolors the open screen at once · home and quiz follow · red keeps wrong (coral) and correct (green) distinct · the choice survives force-stop and relaunch · no crash |
+
 To re-run the EEA check: clear the app's data, then `flutter run --dart-define=UMP_DEBUG_EEA=true`
 (ignored in release builds). To make a reminder fire without waiting: `adb shell settings put global
 auto_time 0`, then `adb shell cmd alarm set-time <epoch ms>` more than an hour past the reminder time

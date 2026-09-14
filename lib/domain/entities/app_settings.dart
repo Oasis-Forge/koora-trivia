@@ -7,7 +7,11 @@ class AppSettings {
     this.soundEnabled = true,
     this.hapticsEnabled = true,
     this.onboardingSeen = false,
+    this.themeId = defaultThemeId,
   });
+
+  /// المظهر الأصلي «ملعب أخضر» (`AppPalette.green`).
+  static const String defaultThemeId = 'green';
 
   final bool reminderEnabled;
 
@@ -21,6 +25,9 @@ class AppSettings {
   /// هل شاهد المستخدم شاشة الترحيب؟
   final bool onboardingSeen;
 
+  /// مظهر الألوان الذي اختاره المستخدم.
+  final String themeId;
+
   /// صيغة عرض 24 ساعة، مثل `20:00`.
   String get reminderLabel =>
       '${reminderHour.toString().padLeft(2, '0')}:'
@@ -33,6 +40,7 @@ class AppSettings {
     bool? soundEnabled,
     bool? hapticsEnabled,
     bool? onboardingSeen,
+    String? themeId,
   }) {
     return AppSettings(
       reminderEnabled: reminderEnabled ?? this.reminderEnabled,
@@ -41,6 +49,7 @@ class AppSettings {
       soundEnabled: soundEnabled ?? this.soundEnabled,
       hapticsEnabled: hapticsEnabled ?? this.hapticsEnabled,
       onboardingSeen: onboardingSeen ?? this.onboardingSeen,
+      themeId: themeId ?? this.themeId,
     );
   }
 }

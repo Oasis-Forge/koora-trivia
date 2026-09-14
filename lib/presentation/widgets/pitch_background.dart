@@ -11,7 +11,7 @@ class PitchBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: const BoxDecoration(gradient: AppColors.pitchGradient),
+      decoration: BoxDecoration(gradient: AppColors.pitchGradient),
       child: CustomPaint(
         painter: _PitchPainter(),
         child: child,
