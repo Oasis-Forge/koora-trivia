@@ -85,8 +85,11 @@
 > (only `appTitle`, used by `onGenerateTitle`) · the player-facing literals from §2.1 moved into `AppStrings`
 > (developer messages in `lib/data` stay) · `android:label` → `@string/app_name` · §2.5's side-encoded paddings, the Tasks
 > badge and both gradients made directional (the arrows are untouched: bug 10 needs the owner) ·
-> `localization_groundwork_test` blocks new hard-coded player text. **Still to do:** convert `AppStrings` to ARB and
-> `AppLocalizations` (§2.1), §2.2's picker and `languageCode`, §2.3–2.4, §2.6–2.7.
+> `localization_groundwork_test` blocks new hard-coded player text. §2.2's `languageCode` and picker are done too (owner,
+> 14 September 2026): `null` follows the phone; the panel stays hidden with one language; older settings read as `ar`, and
+> new players are saved as `ar` until a second language ships — then `AppSettings.defaultLanguageCode` becomes `null`
+> (`language_choice_test` fails until it does). **Still to do:** convert `AppStrings` to ARB and `AppLocalizations` (§2.1),
+> §2.3–2.4, §2.6–2.7, and an Android 13 `locales_config.xml` when the second language ships.
 
 ### 2.1 Localization infrastructure
 - `pubspec.yaml`: add `intl` as a **direct** dependency (it only arrives transitively today, 0.20.2)

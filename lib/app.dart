@@ -74,9 +74,11 @@ class FootballTriviaApp extends StatelessWidget {
         ),
       ],
       // الثيم والشاشات تقرأ الألوان الحالية، فيُضبط المظهر قبل بناء `MaterialApp`.
-      child: Selector<SettingsProvider, String>(
-        selector: (_, settings) => settings.themeId,
-        builder: (context, themeId, _) {
+      // واللغة من اختيار اللاعب؛ سجلّ لا `Consumer` حتى لا يعيد الصوت بناء التطبيق.
+      child: Selector<SettingsProvider, (String, String?)>(
+        selector: (_, settings) => (settings.themeId, settings.languageCode),
+        builder: (context, choice, _) {
+          final (themeId, languageCode) = choice;
           AppColors.use(AppPalette.byId(themeId));
           return PaletteScope(
             themeId: themeId,
@@ -87,8 +89,9 @@ class FootballTriviaApp extends StatelessWidget {
         themeMode: ThemeMode.dark,
 
         // اللغات من ملفات الترجمة في lib/l10n (العربية وحدها حالياً)، واتجاه
-        // الكتابة يتبع اللغة. لا لغة ولا اتجاه مفروضان هنا: جهاز بلغة غير مدعومة
-        // يحصل على العربية، وإضافة لغة لا تتطلب تعديل هذا الملف.
+        // الكتابة يتبع اللغة. اللغة المختارة في الإعدادات تتقدّم، و`null` تعني لغة
+        // الهاتف: جهاز بلغة غير مدعومة يحصل على أول لغة مدعومة (العربية).
+        locale: languageCode == null ? null : Locale(languageCode),
         supportedLocales: AppLocalizations.supportedLocales,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         builder: (context, child) => AppLifecycleHooks(
