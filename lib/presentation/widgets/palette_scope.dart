@@ -9,12 +9,12 @@ import 'package:flutter/widgets.dart';
 class PaletteScope extends StatefulWidget {
   const PaletteScope({
     super.key,
-    required this.themeId,
+    this.themeId,
     this.languageCode,
     required this.child,
   });
 
-  final String themeId;
+  final String? themeId;
   final String? languageCode;
   final Widget child;
 

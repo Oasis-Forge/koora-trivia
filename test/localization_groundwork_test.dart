@@ -50,45 +50,63 @@ void main() {
     expect(offenders, isEmpty, reason: offenders.join('\n'));
   });
 
-  test('ملفات الترجمة فيها العربية وحدها، واسم التطبيق يطابق AppStrings', () {
-    expect(AppLocalizations.supportedLocales, [const Locale('ar')]);
-    expect(lookupAppLocalizations(const Locale('ar')).appTitle,
-        AppStrings.appName);
+  test('ملفات الترجمة بالعربية والإنجليزية، واسم التطبيق يطابق AppStrings في كل لغة',
+      () {
+    expect(AppLocalizations.supportedLocales,
+        [const Locale('ar'), const Locale('en')]);
 
-    final strings =
-        File('android/app/src/main/res/values/strings.xml').readAsStringSync();
-    expect(strings, contains('<string name="app_name">${AppStrings.appName}</string>'));
     final manifest =
         File('android/app/src/main/AndroidManifest.xml').readAsStringSync();
     expect(manifest, contains('android:label="@string/app_name"'));
+    // لغات إعدادات أندرويد 13 تطابق ملفات الترجمة.
+    expect(manifest, contains('android:localeConfig="@xml/locales_config"'));
+    final localeConfig =
+        File('android/app/src/main/res/xml/locales_config.xml').readAsStringSync();
+
+    for (final (language, resFolder) in const [('ar', 'values'), ('en', 'values-en')]) {
+      AppText.use(language);
+      addTearDown(() => AppText.use('ar'));
+      expect(lookupAppLocalizations(Locale(language)).appTitle, AppStrings.appName);
+      final strings = File('android/app/src/main/res/$resFolder/strings.xml')
+          .readAsStringSync();
+      expect(strings,
+          contains('<string name="app_name">${AppStrings.appName}</string>'));
+      expect(localeConfig, contains('android:name="$language"'));
+    }
   });
 
-  testWidgets('جهاز بلغة غير مدعومة يحصل على العربية ومن اليمين إلى اليسار',
-      (tester) async {
-    tester.platformDispatcher.localesTestValue = const [Locale('en', 'US')];
-    addTearDown(tester.platformDispatcher.clearLocalesTestValue);
+  // هاتف بالفرنسية (غير مدعومة) يحصل على العربية، وهاتف بالإنجليزية على الإنجليزية.
+  for (final (phone, language, direction, title) in const [
+    (Locale('fr', 'FR'), 'ar', TextDirection.rtl, 'تحدي كرة القدم'),
+    (Locale('en', 'US'), 'en', TextDirection.ltr, 'Koora Trivia'),
+  ]) {
+    testWidgets('هاتف بلغة ${phone.languageCode} يحصل على $language واتجاهها',
+        (tester) async {
+      tester.platformDispatcher.localesTestValue = [phone];
+      addTearDown(tester.platformDispatcher.clearLocalesTestValue);
 
-    late Locale locale;
-    late TextDirection direction;
-    await tester.pumpWidget(
-      MaterialApp(
-        supportedLocales: AppLocalizations.supportedLocales,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        home: Builder(
-          builder: (context) {
-            locale = Localizations.localeOf(context);
-            direction = Directionality.of(context);
-            return Text(AppLocalizations.of(context).appTitle);
-          },
+      late Locale locale;
+      late TextDirection textDirection;
+      await tester.pumpWidget(
+        MaterialApp(
+          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          home: Builder(
+            builder: (context) {
+              locale = Localizations.localeOf(context);
+              textDirection = Directionality.of(context);
+              return Text(AppLocalizations.of(context).appTitle);
+            },
+          ),
         ),
-      ),
-    );
-    await tester.pumpAndSettle();
+      );
+      await tester.pumpAndSettle();
 
-    expect(locale.languageCode, 'ar');
-    expect(direction, TextDirection.rtl);
-    expect(find.text(AppStrings.appName), findsOneWidget);
-  });
+      expect(locale.languageCode, language);
+      expect(textDirection, direction);
+      expect(find.text(title), findsOneWidget);
+    });
+  }
 
   test('الصيغ المنقولة إلى AppStrings تكتب النص نفسه', () {
     expect(AppStrings.hoursMinutes(2, 5), '2 س و 5 د');

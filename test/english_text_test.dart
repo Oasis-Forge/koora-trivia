@@ -1,8 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:football_trivia/app.dart' show resolveLanguage;
 import 'package:football_trivia/core/constants/app_strings.dart';
 import 'package:football_trivia/core/utils/arabic_count.dart';
 
@@ -47,13 +45,5 @@ void main() {
           '${i + 1}: ${lines[i].trim()}',
     ];
     expect(offending, isEmpty, reason: offending.join('\n'));
-  });
-
-  test('لغة النصوص تتبع قاعدة MaterialApp، والإنجليزية مقفلة حتى تُفعَّل', () {
-    expect(resolveLanguage('ar', const [Locale('en')]), 'ar');
-    expect(resolveLanguage(null, const [Locale('fr'), Locale('ar')]), 'ar');
-    expect(resolveLanguage(null, const [Locale('fr')]), 'ar');
-    // لا ملف ترجمة إنجليزي في lib/l10n بعد، فلا يرى اللاعب الإنجليزية قبل تفعيلها.
-    expect(resolveLanguage('en', const [Locale('en')]), 'ar');
   });
 }

@@ -18,6 +18,8 @@ import 'package:football_trivia/presentation/providers/economy_provider.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
 import 'package:football_trivia/presentation/providers/settings_provider.dart';
 import 'package:football_trivia/presentation/providers/stats_provider.dart';
+import 'package:football_trivia/l10n/app_localizations.dart';
+import 'package:football_trivia/presentation/widgets/app_language_scope.dart';
 import 'package:football_trivia/presentation/widgets/app_lifecycle_hooks.dart';
 import 'package:provider/provider.dart';
 
@@ -79,6 +81,14 @@ class _Scheduler implements ReminderScheduler {
 
   @override
   Future<void> cancelAll() async {}
+}
+
+/// نص ثابت يُقرأ من `AppStrings`؛ لا يُبنى من جديد إلا بإعادة البناء الشاملة.
+class _QuickPlayLabel extends StatelessWidget {
+  const _QuickPlayLabel();
+
+  @override
+  Widget build(BuildContext context) => Text(AppStrings.quickPlay);
 }
 
 /// يعدّ طلبات التصنيفات: تبديل اللغة يعيد تحميلها بأسمائها الجديدة.
@@ -255,24 +265,43 @@ void main() {
     expect(h.stats.listening, isFalse);
   });
 
-  testWidgets('تبديل اللغة يعيد تحميل التصنيفات وجدولة التنبيه بنصّها',
+  testWidgets(
+      'لغة MaterialApp تُطبَّق على النصوص وتعيد بناء الشاشة وتحميل التصنيفات وجدولة التنبيه',
       (tester) async {
-    final h = await _pump(tester);
+    final h = _Harness();
+    await h.init();
     addTearDown(() => AppText.use('ar'));
+
+    // كما في `app.dart`: اللغة تُطبَّق في `builder` تحت `Localizations`.
+    Widget app(String language) => h.wrap(
+          MaterialApp(
+            locale: Locale(language),
+            supportedLocales: AppLocalizations.supportedLocales,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            builder: (context, child) => AppLanguageScope(
+              child: AppLifecycleHooks(child: child ?? const SizedBox.shrink()),
+            ),
+            home: const _QuickPlayLabel(),
+          ),
+        );
+
+    await tester.pumpWidget(app('ar'));
+    await tester.pump();
+    expect(find.text('لعب سريع'), findsOneWidget);
     final loadsBefore = h.quizRepository.categoryLoads;
     final schedulesBefore = h.scheduler.scheduled.length;
 
-    // إعداد لا يمسّ اللغة: لا تحميل ولا جدولة.
-    await h.settings.setSoundEnabled(false);
+    // إعادة بناء بلا تغيير لغة: لا تحميل ولا جدولة.
+    await tester.pumpWidget(app('ar'));
     await tester.pump();
     expect(h.quizRepository.categoryLoads, loadsBefore);
     expect(h.scheduler.scheduled.length, schedulesBefore);
 
-    // `app.dart` يطبّق اللغة في بنائه بعد حفظ الاختيار؛ هنا نطبّقها بأنفسنا.
-    AppText.use('en');
-    await h.settings.setLanguageCode('en');
+    await tester.pumpWidget(app('en'));
     await tester.pump();
-
+    await tester.pump();
+    // ودجة ثابتة (`const`) تُبنى من جديد بالنص الإنجليزي دون إغلاق الشاشة.
+    expect(find.text('Quick play'), findsOneWidget);
     expect(h.quizRepository.categoryLoads, loadsBefore + 1);
     expect(h.scheduler.scheduled.length, schedulesBefore + 1);
   });
