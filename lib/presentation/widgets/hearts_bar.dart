@@ -22,8 +22,18 @@ class HeartsBar extends StatelessWidget {
     final economy = context.watch<EconomyProvider>();
     final empty = !economy.hasHearts;
 
+    final untilNext = economy.untilNextHeart;
+
     return HeartsTicker(
-      child: Container(
+      // قارئ الشاشة يقرأ الرصيد جملةً بدل «3/5» ورمز القلب.
+      child: Semantics(
+        label: AppStrings.heartsLabel(
+          economy.hearts,
+          economy.maxHearts,
+          nextIn: untilNext == null ? null : _format(untilNext),
+        ),
+        excludeSemantics: true,
+        child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: compact ? 10 : 12,
           vertical: compact ? 6 : 8,
@@ -66,6 +76,7 @@ class HeartsBar extends StatelessWidget {
             ],
           ],
         ),
+      ),
       ),
     );
   }

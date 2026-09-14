@@ -132,6 +132,7 @@ class _Header extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
+            tooltip: AppStrings.back,
             icon: const Icon(Icons.arrow_forward_rounded),
             color: AppColors.chalk,
           ),

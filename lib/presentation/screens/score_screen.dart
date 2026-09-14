@@ -627,14 +627,24 @@ class _ReviewRow extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 6),
+                // ما حدث بلونه، والإجابة الصحيحة بالأخضر دائماً — كانت تُكتب بالأحمر
+                // بعد الخطأ فتبدو كأنها الخطأ.
+                if (!correct)
+                  Text(
+                    skipped
+                        ? AppStrings.skippedAnswer
+                        : answer.timedOut
+                            ? AppStrings.timeUp
+                            : AppStrings.yourAnswerIs(
+                                answer.question.options[answer.selectedIndex],
+                              ),
+                    style: TextStyle(color: color, fontSize: 13),
+                  ),
                 Text(
                   correct
                       ? answer.question.correctAnswer
-                      : skipped
-                          ? '${AppStrings.skippedAnswer} · '
-                              '${AppStrings.correctIs(answer.question.correctAnswer)}'
-                          : AppStrings.correctIs(answer.question.correctAnswer),
-                  style: TextStyle(color: color, fontSize: 13),
+                      : AppStrings.correctIs(answer.question.correctAnswer),
+                  style: TextStyle(color: AppColors.correct, fontSize: 13),
                 ),
               ],
             ),

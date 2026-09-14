@@ -25,6 +25,7 @@
 - 14 September 2026 (owner, Play Console): the crashing versionCode 1 replaced on the internal track · displayed developer name set to Oasis Forge · the "Some languages have errors" warning is left for when a second language is added.
 - Hearts and two bugs: a level attempt costs one heart, charged at the start and refunded on a pass (failing, quitting or closing the app keeps it) · the level footer shows the pass mark, star thresholds and heart cost from the real evaluation, and the failed-level hint no longer hard-codes 7 · «العب مرة أخرى» keeps the quick-play category · the categories screen shows an error with a retry button instead of spinning forever.
 - Economy leaks and the end of the daily: Extra time once per question · the speed bonus can't pass 50 · the daily heart is granted once per daily (stored `dailyHeartDayKey`) and «كسبت قلباً!» shows only when a heart was added · the daily result screen offers a one-tap «ذكّرني» reminder card (asks permission then) and an «العب مستوى» button to the categories.
+- Hints clarity and accessibility: captions under the hint icons, and a disabled hint says why when tapped · disabled shop buttons show their reason · the review list shows the player's pick in red and the correct answer in green (a timeout reads «انتهى الوقت!») · every IconButton has a tooltip (a test enforces it) · screen-reader labels for hearts, the timer and stars.
 - PR #7, merged 14 September 2026: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
 - PR #6, merged 13 September 2026: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
 - PR #5, merged 13 September 2026: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
@@ -59,10 +60,7 @@
 - **P3 · M**: Move end-of-round saving out of ScoreScreen's post-frame callback into one provider method with error logging. That callback is what hid the star-saving bug.
 
 ### UI/UX
-- **P2 · S**: Hints and shop clarity:
-  - Captions under the hint icons.
-  - Disabled hint and buy buttons say why they are disabled.
-  - The coin badge looks like a shop button, has a 48 dp tap target, and also works on the Tasks screen.
+- **P2 · S**: The coin badge looks like a shop button, has a 48 dp tap target, and also works on the Tasks screen.
 - **P2 · M**: Large system font sizes:
   - Cap text scaling at 1.3.
   - Make onboarding pages scrollable.
@@ -70,9 +68,7 @@
   - Check the home status row on 320 dp phones.
 - **P2 · M**: Accessibility:
   - Use a red that is readable as text (the current one is 2.6:1).
-  - Show the correct answer in green in the review list.
   - Announce answer feedback to TalkBack.
-  - Label hearts, timer and stars, and give every IconButton a tooltip.
 
 ### Content
 - **P2 · M**: 32 facts appear twice in different categories, and one level has three Switzerland-2006 questions. Keep one copy of each according to the overlap rules, and add a test that catches near-duplicates with the same answer.

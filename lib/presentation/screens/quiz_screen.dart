@@ -305,6 +305,7 @@ class _TopBar extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: onQuit,
+                tooltip: AppStrings.quitRound,
                 icon: const Icon(Icons.close_rounded),
                 color: AppColors.chalkMuted,
               ),
