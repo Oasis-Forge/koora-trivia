@@ -122,9 +122,10 @@ $env:Path = "C:\src\flutter\bin;$env:Path"; dart run tool/rebalance_answers.dart
 $env:Path = "C:\src\flutter\bin;$env:Path"; dart run tool/archive_release.dart "reason for this release"
 ```
 
-> ⚠️ **The tool copies whatever `.aab`/`.apk` exists without checking that it matches the current
-> version.** Build only one of them and the stale other one gets archived under the new version's
-> name (this actually happened with v1.0.2). That's why step 3 always builds both.
+> ⚠️ Before v1.0.5 the tool copied whatever `.aab`/`.apk` existed, so a stale build got archived under the new
+> version's name (v1.0.2). It now refuses a missing file, a file older than `pubspec.yaml`, an APK whose version
+> differs (`aapt2`), and debug-signed or mismatched signing (`apksigner.jar` and `keytool` from Android Studio's
+> Java). Still build both.
 
 ### Testing on the emulator
 
