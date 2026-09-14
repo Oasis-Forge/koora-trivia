@@ -32,8 +32,7 @@ and #5–#14) was uploaded by the owner on 14 September 2026 and is in Google's 
 ### Next steps, in order
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
-2. **Content:** the audit's answer lists are done; next is the question-bank test PR (no bare «لا شيء» options,
-   filler words in the duplicate check, question 1093).
+2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
 3. **v1.0.5, in this order:** the content fixes above · the two small Phase 1 bug fixes and the quiz timer pause ·
    color themes · language groundwork (both in PLAN.md Phase 1 → Features).
 4. **Owner's Play Console tasks:** replace the crashing versionCode 1 on the internal track · the
@@ -127,7 +126,7 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
 ## Question bank
 `assets/data/questions/<slug>.json`, 10 levels × 10 questions per category. Before editing any
 question read [docs/QUESTION_BANK.md](docs/QUESTION_BANK.md) (categories, id ranges, overlap rules).
-Mandatory: four distinct options · no «كل ما سبق», «لا يوجد», «كلاهما» or «كلتاهما» · balanced
+Mandatory: four distinct options · no «كل ما سبق», «لا يوجد», «كلاهما», «كلتاهما», «لا شيء», «لا أحد» or «لم يحدث» · balanced
 `answerIndex` (`dart run tool/rebalance_answers.dart`) · no duplicates across categories · evergreen
 facts only · no invisible direction characters · `level` matches the id. Run `question_bank_test`
 after any change.

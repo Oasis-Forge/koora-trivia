@@ -33,7 +33,8 @@ challenge uses `SeededRandom(seed + q.id)` · quick play is random.
 ### Rules for writing questions — mandatory
 
 1. **Four distinct options**, no exceptions.
-2. **No «كل ما سبق» (all of the above), «لا يوجد» (none), «كلاهما» (both)** or similar. The app
+2. **No «كل ما سبق» (all of the above), «لا يوجد» (none), «كلاهما» (both)** or similar — nor a bare «لا شيء» (nothing), «لا أحد» (no one) or «لم يحدث» (it never
+   happened), per the owner's decision of 14 September 2026. The app
    shuffles options before display, which makes that phrasing meaningless. Guarded by a test.
 3. **`answerIndex` balanced** — run `tool/rebalance_answers.dart` after any addition.
 4. **No duplicates across categories** — neither in wording nor in meaning. Guarded by two tests
@@ -44,8 +45,8 @@ challenge uses `SeededRandom(seed + q.id)` · quick play is random.
    U+2066–U+2069, U+200B–U+200D, U+FEFF). Harmless in Arabic, but they silently reorder text in a
    left-to-right translation. Guarded by a test.
 
-> ⚠️ Rule 4's near-duplicate check is weaker than it looks: the
-> stopwords «على» and «إلى» never match after normalisation (`_fingerprint` in `question_bank_test.dart`).
+> Rule 4's near-duplicate check normalises its filler words the same way as the question text
+> (`_fingerprint` in `question_bank_test.dart`, fixed 14 September 2026).
 
 ### Rules for resolving category overlap
 
