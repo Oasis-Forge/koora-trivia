@@ -9,6 +9,7 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
+        android:appCategory="game"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:allowBackup="true">
@@ -64,6 +65,11 @@
         <intent>
             <action android:name="android.intent.action.SEND" />
             <data android:mimeType="*/*" />
+        </intent>
+        <!-- مطلوب لـ url_launcher حتى يجد تطبيق بريد لرسائل الملاحظات والبلاغات (أندرويد 11+). -->
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="mailto" />
         </intent>
         <!-- مطلوب لـ url_launcher حتى يجد متصفحاً يفتح سياسة الخصوصية (أندرويد 11+). -->
         <intent>

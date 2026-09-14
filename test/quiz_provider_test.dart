@@ -1,6 +1,8 @@
 import 'package:fake_async/fake_async.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:football_trivia/core/constants/app_config.dart';
+import 'package:football_trivia/core/constants/app_strings.dart';
 import 'package:football_trivia/data/datasources/question_local_datasource.dart';
 import 'package:football_trivia/data/models/category_model.dart';
 import 'package:football_trivia/data/models/question_model.dart';
@@ -43,6 +45,12 @@ class _FakeDataSource implements QuestionLocalDataSource {
     }
     return QuestionBank(categories: categories, questions: questions);
   }
+}
+
+/// بنك تالف: التحميل يرمي.
+class _ThrowingDataSource implements QuestionLocalDataSource {
+  @override
+  Future<QuestionBank> load() async => throw StateError('ملف أسئلة تالف');
 }
 
 QuizProvider _provider({bool empty = false}) => QuizProvider(
@@ -89,7 +97,30 @@ void main() {
         async.flushMicrotasks();
 
         expect(quiz.status, QuizStatus.error);
-        expect(quiz.errorMessage, isNotNull);
+        expect(quiz.errorMessage, AppStrings.noQuestions);
+
+        quiz.dispose();
+      });
+    });
+
+    test('خطأ التحميل يظهر برسالة مفهومة وتذهب تفاصيله إلى سجل الأخطاء', () {
+      final reported = <FlutterErrorDetails>[];
+      final original = FlutterError.onError;
+      FlutterError.onError = reported.add;
+      addTearDown(() => FlutterError.onError = original);
+
+      fakeAsync((async) {
+        final quiz = QuizProvider(
+          repository: QuizRepositoryImpl(_ThrowingDataSource()),
+        );
+        quiz.startQuickPlay();
+        async.flushMicrotasks();
+
+        expect(quiz.status, QuizStatus.error);
+        // كان نص الاستثناء الخام يظهر للاعب.
+        expect(quiz.errorMessage, AppStrings.loadQuestionsFailed);
+        expect(reported.single.exception, isA<StateError>());
+        expect(reported.single.stack, isNotNull);
 
         quiz.dispose();
       });

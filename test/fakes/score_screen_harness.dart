@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:football_trivia/core/constants/app_config.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
+import 'package:football_trivia/domain/entities/user_stats.dart';
+import 'package:football_trivia/domain/repositories/app_info.dart';
+import 'package:football_trivia/domain/repositories/link_opener.dart';
+import 'package:football_trivia/domain/repositories/review_prompter.dart';
 import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
 import 'package:football_trivia/presentation/providers/progress_provider.dart';
@@ -23,7 +27,8 @@ const quizScreenStub = 'quiz-screen';
 /// يلعب جولة كاملة ثم يعرض شاشة النتيجة، مع بديل لشاشة السؤال يكشف أي انتقال إليها.
 ///
 /// أول [correct] إجابات صحيحة والباقي خاطئ. [skipFirst] يتخطّى السؤال الأول
-/// بمساعدة بدل الإجابة عنه.
+/// بمساعدة بدل الإجابة عنه. [stats] إحصائيات اللاعب قبل الجولة، و[clock] ساعة
+/// الإحصائيات.
 Future<QuizProvider> pumpScoreScreen(
   WidgetTester tester, {
   required int correct,
@@ -31,6 +36,11 @@ Future<QuizProvider> pumpScoreScreen(
   RoundMode mode = RoundMode.level,
   int level = 1,
   bool skipFirst = false,
+  UserStats stats = const UserStats(),
+  ReviewPrompter? reviewPrompter,
+  FakeAdService? adService,
+  LinkOpener? linkOpener,
+  DateTime Function()? clock,
 }) async {
   final quiz = QuizProvider(repository: FakeQuizRepository());
   final economy = EconomyProvider(
@@ -38,16 +48,19 @@ Future<QuizProvider> pumpScoreScreen(
       Economy(hearts: hearts, lastRegenAtIso: DateTime.now().toIso8601String()),
     ),
   );
-  final stats = StatsProvider(repository: FakeStatsRepository());
+  final statsProvider = StatsProvider(
+    repository: FakeStatsRepository(stats),
+    clock: clock,
+  );
   final progress = ProgressProvider(repository: FakeProgressRepository());
   final settings = SettingsProvider(
     repository: FakeSettingsRepository(),
     scheduler: FakeScheduler(),
   );
-  final ads = AdsProvider(service: FakeAdService(ready: false));
+  final ads = AdsProvider(service: adService ?? FakeAdService(ready: false));
 
   await economy.init();
-  await stats.init();
+  await statsProvider.init();
   await progress.init();
   await settings.init();
   await quiz.loadCategories();
@@ -74,10 +87,15 @@ Future<QuizProvider> pumpScoreScreen(
       providers: [
         ChangeNotifierProvider.value(value: quiz),
         ChangeNotifierProvider.value(value: economy),
-        ChangeNotifierProvider.value(value: stats),
+        ChangeNotifierProvider.value(value: statsProvider),
         ChangeNotifierProvider.value(value: progress),
         ChangeNotifierProvider.value(value: settings),
         ChangeNotifierProvider.value(value: ads),
+        Provider<ReviewPrompter>.value(
+          value: reviewPrompter ?? FakeReviewPrompter(),
+        ),
+        Provider<LinkOpener>.value(value: linkOpener ?? FakeLinkOpener()),
+        Provider<AppInfo>.value(value: FakeAppInfo()),
       ],
       child: MaterialApp(
         locale: const Locale('ar'),

@@ -249,6 +249,19 @@ void main() {
     await _finish(tester, quiz);
   });
 
+  testWidgets('زر «أبلغ عن خطأ» يظهر في لوحة الشرح بعد كشف الإجابة فقط',
+      (tester) async {
+    final quiz = await _pumpQuiz(tester, tall);
+    expect(find.text(AppStrings.reportQuestion), findsNothing);
+
+    quiz.selectAnswer(0);
+    await tester.pump();
+    await _settle(tester);
+
+    expect(find.text(AppStrings.reportQuestion), findsOneWidget);
+    await _finish(tester, quiz);
+  });
+
   testWidgets('انتهاء الوقت ما زال يُعرض كانتهاء وقت', (tester) async {
     final quiz = await _pumpQuiz(tester, short);
 

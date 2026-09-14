@@ -3,7 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:football_trivia/core/constants/app_config.dart';
 import 'package:football_trivia/core/constants/app_strings.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
+import 'package:football_trivia/domain/entities/error_entry.dart';
+import 'package:football_trivia/domain/repositories/app_info.dart';
 import 'package:football_trivia/domain/repositories/backup_repository.dart';
+import 'package:football_trivia/domain/repositories/error_log.dart';
 import 'package:football_trivia/domain/repositories/economy_repository.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
 import 'package:football_trivia/domain/repositories/link_opener.dart';
@@ -27,6 +30,7 @@ import 'package:football_trivia/presentation/screens/settings_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'fakes/fake_ad_service.dart';
+import 'fakes/fake_repositories.dart';
 
 class _FakeEconomyRepository implements EconomyRepository {
   Economy economy = const Economy();
@@ -167,6 +171,7 @@ Future<void> _pumpSettings(
   FakeAdService? adService,
   LinkOpener? linkOpener,
   BackupRepository? backupRepository,
+  ErrorLog? errorLog,
 }) async {
   final stats = StatsProvider(repository: statsRepo);
   final progress = ProgressProvider(repository: progressRepo);
@@ -195,6 +200,8 @@ Future<void> _pumpSettings(
         ),
         Provider<LinkOpener>.value(value: linkOpener ?? _FakeLinkOpener()),
         ChangeNotifierProvider.value(value: economy),
+        Provider<AppInfo>.value(value: FakeAppInfo('1.0.4 (5)')),
+        Provider<ErrorLog>.value(value: errorLog ?? FakeErrorLog()),
         Provider<BackupRepository>.value(
           value: backupRepository ??
               _FakeBackupRepository(onImport: () => false),
@@ -459,6 +466,73 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text(AppStrings.linkOpenFailed), findsOneWidget);
+    });
+  });
+
+  group('عن التطبيق', () {
+    Future<void> scrollToFeedback(WidgetTester tester) async {
+      await tester.scrollUntilVisible(
+        find.text(AppStrings.sendFeedback),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pumpAndSettle();
+    }
+
+    testWidgets('يعرض رقم الإصدار المبني لا نصاً ثابتاً', (tester) async {
+      await _pumpSettings(
+        tester,
+        statsRepo: _FakeStatsRepository(const UserStats()),
+        progressRepo: _FakeProgressRepository({}),
+      );
+      await scrollToFeedback(tester);
+
+      expect(find.text(AppStrings.appVersion('1.0.4 (5)')), findsOneWidget);
+    });
+
+    testWidgets('«أرسل ملاحظاتك» يفتح رسالة فيها الإصدار وآخر الأخطاء',
+        (tester) async {
+      final opener = _FakeLinkOpener();
+      await _pumpSettings(
+        tester,
+        statsRepo: _FakeStatsRepository(const UserStats()),
+        progressRepo: _FakeProgressRepository({}),
+        linkOpener: opener,
+        errorLog: FakeErrorLog([
+          ErrorEntry(
+            at: DateTime(2026, 9, 14, 9, 30),
+            message: 'Bad state: خطأ تجريبي',
+          ),
+        ]),
+      );
+      await scrollToFeedback(tester);
+
+      await tester.tap(find.text(AppStrings.sendFeedback));
+      await tester.pumpAndSettle();
+
+      final uri = opener.opened.single;
+      expect(uri.scheme, 'mailto');
+      expect(uri.path, AppConfig.contactEmail);
+      expect(uri.queryParameters['body'], contains('1.0.4 (5)'));
+      expect(uri.queryParameters['body'], contains('Bad state: خطأ تجريبي'));
+    });
+
+    testWidgets('بلا تطبيق بريد: رسالة فيها عنوان البريد', (tester) async {
+      await _pumpSettings(
+        tester,
+        statsRepo: _FakeStatsRepository(const UserStats()),
+        progressRepo: _FakeProgressRepository({}),
+        linkOpener: _FakeLinkOpener(result: false),
+      );
+      await scrollToFeedback(tester);
+
+      await tester.tap(find.text(AppStrings.sendFeedback));
+      await tester.pumpAndSettle();
+
+      expect(
+        find.text(AppStrings.noEmailApp(AppConfig.contactEmail)),
+        findsOneWidget,
+      );
     });
   });
 

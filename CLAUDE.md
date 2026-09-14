@@ -5,7 +5,7 @@
 >
 > **⚠️ Update this file whenever work is completed.** Move items from "Remaining" to
 > "Done", and record any new design decision or trap you discover.
-> Last updated: **13 September 2026**.
+> Last updated: **14 September 2026**.
 
 ## Working conventions
 Keep output minimal — this burns real tokens:
@@ -98,10 +98,11 @@ Update it as items ship.
 3. **Done on 13 September 2026:** PRs #5 and #6 merged (not yet in a Play build) · AdMob European
    regulations message published · Data safety form updated to the four types and sent for review ·
    privacy policy page live with the new text.
-4. **PR #7** (open): small-screen layouts (level grid, quiz screen), the Skip hint shown as a skip,
-   backup import that survives the next save, and widget tests for the result-screen buttons and the
-   level grid. Ship **v1.0.4** with PRs #2, #3, #5, #6 and #7, after a release-build check on the
-   emulator.
+4. **PR #7 merged** (small-screen layouts, Skip shown as a skip, backup import that survives the next
+   save). **PR #8** (open): share link, in-app review prompt, «أبلغ عن خطأ», local error log with
+   «أرسل ملاحظاتك», the real version number. Ship **v1.0.4** with PRs #2, #3 and #5–#8, after a
+   release-build check on the emulator. PR #8 also updates the privacy policy source — publish it to
+   `privacy-site/` only with the owner's go-ahead.
 5. Install from the closed test on a **real phone** and verify: pass a level ⇒ star + "Next level" +
    next level unlocked; daily challenge ⇒ no replay button; zero hearts ⇒ replay blocked.
 6. Resolve the store listing's "Some languages have errors" warning, and start the plan's content
@@ -344,14 +345,20 @@ When a question could fit more than one category, apply these in order:
 
 ## Tests
 
-**278 tests across 30 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+**323 tests across 36 files, all passing.** `flutter analyze` is clean. Shared test code lives in
 `test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
 (in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
 (`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
 
 | File | Count | Covers |
 |---|---|---|
-| `quiz_provider_test.dart` | 22 | Scoring · speed bonus · multipliers · timer · sequencing · result building |
+| `quiz_provider_test.dart` | 23 | Scoring · speed bonus · multipliers · timer · sequencing · result building · a load error shows a friendly message and is reported to `FlutterError` |
+| `should_ask_for_review_test.dart` | 5 | Review prompt rules: daily streak threshold · 3 stars only · never after quick play · never after an ad · 30-day gap |
+| `score_screen_review_test.dart` | 9 | **Widget test** — the result screen asks for a review after a 3-day daily streak or 3 stars, not after a shorter streak, 2 stars, a failed level, a recent ask or an interstitial · not once the player has left for the next round · «أعد المستوى» waits for a review request in progress · every review row has «أبلغ عن خطأ» |
+| `email_builders_test.dart` | 7 | `mailto` encoding (`%20`, newlines, `&`) · question report: recipient, subject, id, category, level, text, options with the approved one marked, version · distinct reason labels · feedback email: version, "no errors", newest errors only with date and time, long ones cut |
+| `report_question_button_test.dart` | 6 | **Widget test** — reasons sheet, the chosen reason opens the email · dismissing opens nothing · no mail app shows the address · compact icon with tooltip · the sheet stays until the mail app is asked, and a second tap doesn't open twice · dismissing it meanwhile doesn't close the screen under it |
+| `error_log_test.dart` | 7 | `PrefsErrorLog`: newest first with stack top · cap · long messages cut · rapid writes all kept · corrupt log recovers · `installErrorHandlers`: framework errors logged and passed on · uncaught async errors logged and still printed by the engine |
+| `platform_services_test.dart` | 3 | Review prompt time recorded even when Play's dialog fails · none before the first ask · `PackageAppInfo` version and build |
 | `economy_test.dart` | 18 | Heart regen (remainder · clock going backward · corrupt date) · daily limits · `EconomyProvider` (deduction · daily-challenge grant · rewarded-ad cap · hints) |
 | `level_progress_test.dart` | 13 | Star calculation · progressive unlocks · stars never decrease (entity and use case) |
 | `tasks_coins_test.dart` | 12 | Daily tasks (completion · claim once · chest · daily reset) · shop (heart refill · insufficient coins · hint pack and consumption order) |
@@ -361,19 +368,19 @@ When a question could fit more than one category, apply these in order:
 | `reminder_test.dart` | 16 | `SettingsProvider` — permission · schedule and cancel · permission revoked at launch cancels · launch always reschedules · finishing the daily moves the first reminder to tomorrow with the streak · a broken streak isn't named · no reschedule for an unchanged plan · after midnight the new day isn't treated as done · reminder body names the streak and the question count from `AppConfig` |
 | `plan_reminders_test.dart` | 8 | Which days get a reminder: today before the time · tomorrow after the daily or after the time · consecutive days, streak only in the first · month end · minutes |
 | `arabic_count_test.dart` | 17 | Count-noun forms for 0 · 1 · 2 · 3–10 · 11–99 · 100+ · dual after a verb · every noun has distinct forms |
-| `android_config_test.dart` | 3 | Notification receivers declared, without `MY_PACKAGE_REPLACED` · status-bar icon in every density · kept from resource shrinking |
+| `android_config_test.dart` | 5 | Notification receivers declared, without `MY_PACKAGE_REPLACED` · `appCategory="game"` · `mailto` and `https` queries · status-bar icon in every density · kept from resource shrinking |
 | `hearts_refresh_test.dart` | 8 | Countdown moves and notifies without saving · a regenerated heart saves · a granted heart keeps the countdown · the first lost heart shows the countdown · **widget:** the hearts bar updates itself every 30 s, and does nothing when hearts are full |
 | `no_hearts_dialog_test.dart` | 8 | **Widget test** — no dialog with hearts · daily-challenge button starts the daily · hidden once the daily is done · refill disabled without coins · refill buys and closes · closes by itself when a heart regenerates · a save finishing after it closed doesn't pop the screen underneath · «حسناً» closes only the dialog |
 | `daily_challenge_card_test.dart` | 1 | **Widget test** — the card's question count and multiplier line |
-| `share_text_test.dart` | 8 | Result grid · daily-challenge date · category and level · streak count forms (1 · 2 · 5 · 11) · doesn't leak questions |
+| `share_text_test.dart` | 9 | Result grid · daily-challenge date · category and level · streak count forms (1 · 2 · 5 · 11) · the Play Store link with referrer on the last line · doesn't leak questions |
 | `quiz_repository_test.dart` | 11 | Levels · daily-challenge stability · **a full year with no day sharing more than 2 of 7 questions with the day before** · epoch day independent of time zone · neighbouring seeds shuffle differently · filtering |
 | `question_bank_test.dart` | 8 | Bank integrity: counts · IDs · structure · balance · banned options · **duplicates** · matches `AppConfig` |
 | `update_streak_test.dart` | 5 | Day-streak logic in every case |
-| `settings_screen_test.dart` | 13 | **Widget test** — stats display · confirmation dialog with the loss in correct Arabic, including the dual after a verb · reset · privacy: ad-options row only where required, opens the form, failure message · policy link opens the published URL, failure message · backup import shows the imported progress without a restart · an invalid code changes nothing |
+| `settings_screen_test.dart` | 16 | **Widget test** — stats display · the built version number · «أرسل ملاحظاتك» opens an email with the version and recent errors, or shows the address without a mail app · confirmation dialog with the loss in correct Arabic, including the dual after a verb · reset · privacy: ad-options row only where required, opens the form, failure message · policy link opens the published URL, failure message · backup import shows the imported progress without a restart · an invalid code changes nothing |
 | `restore_backup_test.dart` | 4 | **Real datasources over mock SharedPreferences** — imported data shows at once and survives the first save from every provider · without the reload the first save overwrites it (why `RestoreBackup` exists) · a code with reminders off cancels the device's reminders and nothing reschedules them · a corrupt code changes nothing |
 | `score_screen_buttons_test.dart` | 6 | **Widget test** — result screen: level pass shows "Next level" and "Replay level" · fail shows only "Replay level" · last level has no "Next level" · daily has no replay or next · quick play shows "Play again" · a skipped question reads as a skip in the review |
 | `levels_screen_test.dart` | 5 | **Widget test** — completed, available and locked tiles · the first open level is auto-selected · a locked tap explains and keeps the selection · level 10 fully visible above the footer on 360×640 and 411×731 |
-| `quiz_screen_layout_test.dart` | 8 | **Widget test** — on 360×640 the 4th option sits above the hints bar in the compact size · on a tall screen the options sit right above the hints bar · the feedback panel scrolls fully into view · the next question starts at the top again · a panel taller than the screen shows its title · a short question's card is as wide as the options · Skip reads as a skip, time-up still as time-up |
+| `quiz_screen_layout_test.dart` | 9 | **Widget test** — «أبلغ عن خطأ» appears in the feedback panel only after the answer · on 360×640 the 4th option sits above the hints bar in the compact size · on a tall screen the options sit right above the hints bar · the feedback panel scrolls fully into view · the next question starts at the top again · a panel taller than the screen shows its title · a short question's card is as wide as the options · Skip reads as a skip, time-up still as time-up |
 | `progress_provider_test.dart` | 5 | **Provider-to-storage wiring** — pass ⇒ stars ⇒ next unlocked · survives restart (guards the covariance bug) |
 | `daily_guard_test.dart` | 5 | `isDailyDone` after completion · persists across restart · quick play doesn't set it |
 | `backup_test.dart` | 13 | Export then import · corrupt code · extra whitespace · newer version rejected · one badly typed value rejects the whole code and writes nothing · non-string value · unreadable day key · no known key · every datasource reads a badly typed stored value as defaults instead of throwing |
@@ -394,6 +401,9 @@ When a question could fit more than one category, apply these in order:
 - **Release-build-only failures** (R8, signing) — `flutter test` can't catch them.
 - No integration tests (`integration_test`).
 - No guard against hardcoded user-visible strings — 28 literal lines already bypass `app_strings.dart`.
+- **The in-app review dialog and real mail apps.** `score_screen_review_test` covers when the prompt is
+  requested and `report_question_button_test` the `mailto` link, but Play shows the dialog only to
+  Play installs, and each mail app parses `mailto` its own way — check both from the closed test.
 - **Real notification delivery.** `reminder_test` uses a fake scheduler, which is how the missing
   manifest receivers went unnoticed until PR #6. `android_config_test` now guards the receivers and
   the icon, but actual firing still needs a check on a device after any change to the reminder.
@@ -611,6 +621,45 @@ many different actions be rewarded with one currency, and lets prices stay fixed
 - Strings that embed a count are functions in `AppStrings` taking the already-formatted count
   (`taskAnswers`, `resetProgressLoss`, `streakKeptFor`, `reminderBody`, `reminderBodyStreak`).
 
+### Feedback, reports, review prompt and error log — how they work (PR #8)
+
+- **Error log:** `installErrorHandlers` (called first thing in `main.dart`) wraps
+  `FlutterError.onError` and `PlatformDispatcher.instance.onError`; both keep the previous handler.
+  With no previous handler the platform one returns `false`, so the engine still prints the error to
+  logcat — returning `true` would hide it (and doesn't change whether the app keeps running).
+  `PrefsErrorLog` keeps the last `AppConfig.errorLogMaxEntries` (20) errors under `error_log_v1` —
+  message cut to 300 characters, first 4 stack lines — with writes chained so two errors in one frame
+  don't overwrite each other. It never throws. **Not part of the backup**, deliberately. Caught errors
+  that should still be logged go through `FlutterError.reportError` (see `QuizProvider._start`, which
+  now shows `AppStrings.loadQuestionsFailed` instead of the raw exception).
+- **Nothing is sent automatically.** «أرسل ملاحظاتك» (Settings → About) and «أبلغ عن خطأ» open a ready
+  email in the player's own mail app to `AppConfig.contactEmail`, built by `BuildFeedbackEmail`
+  (version + the last `AppConfig.feedbackEmailErrors` errors) and `BuildQuestionReport` (reason ·
+  question id · category · level · text · options as shown with the approved one marked ✓ · version).
+  `EmailDraft.toMailtoUri` encodes spaces as `%20` — `Uri(queryParameters:)` would put `+`, which some
+  mail apps show literally. No mail app ⇒ a SnackBar with the address.
+- «أبلغ عن خطأ» sits in the quiz feedback panel (only after the answer is revealed, when the timer is
+  stopped) and, as an icon with a tooltip, in every result-review row. The reasons sheet stays open
+  until the mail app has been asked to open — its barrier keeps «التالي» from starting the next
+  question's timer behind the mail app — and a second tap doesn't open a second email. If the player
+  dismisses the sheet meanwhile, the late result pops nothing.
+- **Review prompt:** `ShouldAskForReview` — never after an interstitial; at most every
+  `AppConfig.reviewPromptMinDaysBetween` (30) days; a daily with streak ≥ `reviewPromptMinStreak` (3)
+  or a 3-star level, nothing else. The result screen checks it last, after stats and stars are saved.
+  **The quiz timer doesn't pause in the background**, so Play's sheet must never open over a new round:
+  no prompt once the result screen is no longer the current route, and «أعد المستوى» · «المستوى
+  التالي» · «العب مرة أخرى» wait for a request already in progress (`_pendingReview`).
+  `InAppReviewPrompter` records the time **before** calling Play, so a failed call isn't retried every
+  round; it's stored under `review_prompt_v1`, not in the backup. ⚠️ Play only shows the dialog to
+  apps installed from Play — a sideloaded APK shows nothing, so check it from the closed test.
+- **Share text** ends with `BuildShareText.shareLink`: `AppConfig.playStoreUrl` +
+  `&referrer=` + the encoded `AppConfig.shareReferrer`. The link only works for non-testers once the
+  app is in production.
+- **Version:** `AppInfo` (`PackageAppInfo`, package_info_plus) gives «1.0.4 (5)» for Settings and the
+  emails — no more hand-edited version string.
+- `android:appCategory="game"` keeps the portrait lock on large screens in Android 16. The manifest
+  also declares a `mailto` `SENDTO` query for url_launcher on Android 11+.
+
 ### Backup import — how it works (PR #7)
 
 - `BackupRepositoryImpl.import` checks **every** value with the datasource's own `decode` (the same
@@ -732,8 +781,6 @@ Found by the read-only audit on 13 September 2026; file:line details are in
 [docs/I18N_PLAN.md §0](docs/I18N_PLAN.md). The full prioritised audit from the same day is in
 **[docs/PLAN.md](docs/PLAN.md)** — treat it as the source of truth for what's open. The daily-challenge
 repeat and its time-zone seed were fixed in PR #2; the items below are still open.
-- **Raw exception text reaches players:** `quiz_provider.dart:150` shows `e.toString()` in a SnackBar.
-- **Stale version string:** Settings → About shows «الإصدار 1.0.0» (`app_strings.dart:88`).
 - **Misspelled names in the Arabic bank** — e.g. Koeman «روناد كومان» on 4 lines, «ويين روني»,
   «باساريا», «ياي توريه» — and the ambiguous «تشابي» in the 2010 final question (`world_cup.json:649`:
   Xavi or Xabi Alonso?).

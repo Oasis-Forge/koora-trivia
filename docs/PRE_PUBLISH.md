@@ -54,6 +54,7 @@ Last full check: **13 September 2026** · Latest build: **v1.0.3+4**
 | Skip hint, emulated 360×640 | release | ✅ «تخطّيت هذا السؤال» in gold with the correct answer · the panel scrolls fully above «التالي» · the result review row shows a skip icon |
 | Quiz screen and level grid at the Pixel 6 Pro's own size | release | ✅ options directly above the hints bar, no gap · level grid looks as before |
 | Release launch with PRs #5 and #6 | release | ✅ no crash · an ad is requested at launch |
+| Version, feedback email, question report (14 September 2026) | release (PR #8) | ✅ Settings shows «الإصدار 1.0.3 (4)» · «أرسل ملاحظاتك» and a chosen report reason both open Gmail with a `mailto:` link · «أبلغ عن خطأ» appears only after answering · a flag icon in every result-review row · a full quick-play round with no crash |
 
 To re-run the EEA check: clear the app's data, then `flutter run --dart-define=UMP_DEBUG_EEA=true`
 (ignored in release builds). To make a reminder fire without waiting: `adb shell settings put global

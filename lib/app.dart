@@ -6,8 +6,11 @@ import 'core/constants/app_strings.dart';
 import 'core/di/injector.dart';
 import 'core/theme/app_theme.dart';
 import 'domain/entities/category.dart';
+import 'domain/repositories/app_info.dart';
 import 'domain/repositories/backup_repository.dart';
+import 'domain/repositories/error_log.dart';
 import 'domain/repositories/link_opener.dart';
+import 'domain/repositories/review_prompter.dart';
 import 'presentation/providers/ads_provider.dart';
 import 'presentation/providers/economy_provider.dart';
 import 'presentation/providers/progress_provider.dart';
@@ -36,6 +39,9 @@ class FootballTriviaApp extends StatelessWidget {
         // مستودع بلا حالة — يُقدَّم كقيمة لا كمزوّد تغيير.
         Provider<BackupRepository>.value(value: injector.backupRepository),
         Provider<LinkOpener>.value(value: injector.linkOpener),
+        Provider<ErrorLog>.value(value: injector.errorLog),
+        Provider<AppInfo>.value(value: injector.appInfo),
+        Provider<ReviewPrompter>.value(value: injector.reviewPrompter),
         ChangeNotifierProvider(
           create: (_) => QuizProvider(repository: injector.quizRepository),
         ),

@@ -1,14 +1,21 @@
+import 'dart:async';
+
 import 'package:football_trivia/domain/entities/app_settings.dart';
 import 'package:football_trivia/domain/entities/category.dart';
 import 'package:football_trivia/domain/entities/category_progress.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
+import 'package:football_trivia/domain/entities/error_entry.dart';
 import 'package:football_trivia/domain/entities/question.dart';
 import 'package:football_trivia/domain/entities/reminder_plan.dart';
 import 'package:football_trivia/domain/entities/user_stats.dart';
+import 'package:football_trivia/domain/repositories/app_info.dart';
 import 'package:football_trivia/domain/repositories/economy_repository.dart';
+import 'package:football_trivia/domain/repositories/error_log.dart';
+import 'package:football_trivia/domain/repositories/link_opener.dart';
 import 'package:football_trivia/domain/repositories/progress_repository.dart';
 import 'package:football_trivia/domain/repositories/quiz_repository.dart';
 import 'package:football_trivia/domain/repositories/reminder_scheduler.dart';
+import 'package:football_trivia/domain/repositories/review_prompter.dart';
 import 'package:football_trivia/domain/repositories/settings_repository.dart';
 import 'package:football_trivia/domain/repositories/stats_repository.dart';
 
@@ -107,6 +114,70 @@ class FakeSettingsRepository implements SettingsRepository {
 
   @override
   Future<void> save(AppSettings value) async => settings = value;
+}
+
+class FakeAppInfo implements AppInfo {
+  FakeAppInfo([this.value = '1.0.4 (5)']);
+  final String value;
+
+  @override
+  Future<String> version() async => value;
+}
+
+class FakeErrorLog implements ErrorLog {
+  FakeErrorLog([List<ErrorEntry>? entries]) : entries = entries ?? [];
+
+  /// الأحدث أولاً، كالسجل الحقيقي.
+  final List<ErrorEntry> entries;
+
+  @override
+  Future<void> record(Object error, StackTrace? stack) async =>
+      entries.insert(0, ErrorEntry(at: DateTime.now(), message: '$error'));
+
+  @override
+  Future<List<ErrorEntry>> recent() async => List.of(entries);
+}
+
+class FakeReviewPrompter implements ReviewPrompter {
+  FakeReviewPrompter({this.last, this.lastAskedGate, this.askGate});
+
+  DateTime? last;
+  int asks = 0;
+
+  /// إن وُجدا: لا تكتمل قراءة آخر طلب أو نافذة التقييم حتى يُكملهما الاختبار.
+  final Completer<void>? lastAskedGate;
+  final Completer<void>? askGate;
+
+  @override
+  Future<DateTime?> lastAskedAt() async {
+    await lastAskedGate?.future;
+    return last;
+  }
+
+  @override
+  Future<void> ask() async {
+    asks++;
+    last = DateTime.now();
+    await askGate?.future;
+  }
+}
+
+class FakeLinkOpener implements LinkOpener {
+  FakeLinkOpener({this.result = true, this.gate});
+
+  final bool result;
+  final opened = <Uri>[];
+
+  /// إن وُجد: لا يكتمل الفتح حتى يُكمله الاختبار.
+  final Completer<bool>? gate;
+
+  @override
+  Future<bool> open(Uri uri) async {
+    opened.add(uri);
+    final pending = gate;
+    if (pending != null) return pending.future;
+    return result;
+  }
 }
 
 class FakeScheduler implements ReminderScheduler {

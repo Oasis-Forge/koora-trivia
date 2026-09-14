@@ -91,7 +91,8 @@ class AppStrings {
   static const String cancel = 'إلغاء';
   static const String resetDone = 'تم التصفير';
   static const String nothingToReset = 'لا يوجد ما يُصفَّر';
-  static const String appVersion = 'الإصدار 1.0.0';
+  /// [version] من `AppInfo`، مثل «1.0.4 (5)».
+  static String appVersion(String version) => 'الإصدار $version';
   static const String bankSummary = 'تصنيفات متنوّعة · مستويات متدرّجة لكل تصنيف';
 
   // التنبيه اليومي
@@ -212,4 +213,30 @@ class AppStrings {
   static const String errorTitle = 'حدث خطأ';
   static const String retry = 'إعادة المحاولة';
   static const String ok = 'حسناً';
+  static const String loadQuestionsFailed =
+      'تعذّر تحميل الأسئلة. حاول مرة أخرى.';
+
+  // الملاحظات والبلاغات
+  static const String sendFeedback = 'أرسل ملاحظاتك';
+  static const String sendFeedbackHint =
+      'رسالة بريد إلى المطوّر، ترى محتواها كاملاً قبل إرسالها.';
+  static String noEmailApp(String email) =>
+      'تعذّر فتح تطبيق البريد. راسلنا على $email';
+  static const String feedbackSubject = 'ملاحظات على تطبيق $appName';
+  static const String feedbackBodyPrompt = 'اكتب ملاحظتك هنا:';
+  static const String feedbackDiagnostics = '— معلومات تساعدنا على الإصلاح —';
+  static const String versionLabel = 'الإصدار';
+  static const String recentErrors = 'آخر الأخطاء';
+  static const String noRecentErrors = 'لا أخطاء مسجّلة';
+  static const String reportQuestion = 'أبلغ عن خطأ';
+  static const String reportQuestionTitle = 'ما المشكلة في هذا السؤال؟';
+  static const String reportWrongAnswer = 'الإجابة المعتمدة خاطئة';
+  static const String reportTwoCorrect = 'أكثر من إجابة صحيحة';
+  static const String reportTypo = 'خطأ إملائي أو في الصياغة';
+  static const String reportOther = 'مشكلة أخرى';
+  static String reportSubject(int questionId) => 'بلاغ عن السؤال $questionId';
+  static const String reportReasonLabel = 'السبب';
+  static const String reportQuestionLabel = 'السؤال';
+  static const String reportOptionsLabel = 'الخيارات';
+  static const String reportNotePrompt = 'تفاصيل إضافية (اختياري):';
 }

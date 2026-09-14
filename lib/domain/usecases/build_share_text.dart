@@ -1,3 +1,4 @@
+import '../../core/constants/app_config.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/utils/arabic_count.dart';
 import '../../core/utils/day_key.dart';
@@ -44,8 +45,15 @@ class BuildShareText {
       );
     }
 
+    // الرابط في سطر وحده: تطبيقات المحادثة تحوّله إلى معاينة قابلة للّمس.
+    buffer.writeln(shareLink);
+
     return buffer.toString().trimRight();
   }
+
+  /// رابط التطبيق مع مصدر التثبيت، ليُعرف كم لاعباً جاء من المشاركة.
+  static String get shareLink => '${AppConfig.playStoreUrl}'
+      '&referrer=${Uri.encodeComponent(AppConfig.shareReferrer)}';
 
   /// شبكة المربّعات بترتيب الأسئلة.
   String grid(QuizResult result) {

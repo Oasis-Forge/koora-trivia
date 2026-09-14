@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart' hide Category;
 
 import '../../core/constants/app_config.dart';
+import '../../core/constants/app_strings.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/entities/question.dart';
 import '../../domain/entities/quiz_result.dart';
@@ -131,7 +132,7 @@ class QuizProvider extends ChangeNotifier {
       final questions = await loader();
       if (questions.isEmpty) {
         _status = QuizStatus.error;
-        _errorMessage = 'لا توجد أسئلة متاحة.';
+        _errorMessage = AppStrings.noQuestions;
         notifyListeners();
         return;
       }
@@ -145,9 +146,19 @@ class QuizProvider extends ChangeNotifier {
       _status = QuizStatus.playing;
       _startTimer();
       notifyListeners();
-    } catch (e) {
+    } catch (e, stack) {
       _status = QuizStatus.error;
-      _errorMessage = e.toString();
+      // اللاعب يرى رسالة مفهومة، والتفاصيل تذهب إلى سجل الأخطاء لا إلى الشاشة —
+      // كان نص الاستثناء الخام يظهر في الشريط السفلي.
+      _errorMessage = AppStrings.loadQuestionsFailed;
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          exception: e,
+          stack: stack,
+          library: 'quiz_provider',
+          context: ErrorDescription('أثناء تحميل أسئلة الجولة'),
+        ),
+      );
       notifyListeners();
     }
   }
