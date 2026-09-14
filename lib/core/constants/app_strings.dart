@@ -42,6 +42,15 @@ class AppStrings {
   static const String themePurple = 'بنفسجي';
   static const String themeRed = 'كلاسيكو أحمر';
 
+  // اللغة — كل لغة باسمها في لغتها، فلا تُترجم هذه الأسماء.
+  static const String languageSection = 'اللغة';
+  static const String languageSystem = 'لغة الهاتف';
+  static const Map<String, String> languageNames = {
+    'ar': 'العربية',
+    'en': 'English',
+  };
+  static String languageName(String code) => languageNames[code] ?? code;
+
   // صيغ كانت مكتوبة داخل الودجات والكيانات — مكانها هنا حتى تُترجم يوماً.
   static const List<String> optionLetters = ['أ', 'ب', 'ج', 'د'];
   static const List<String> monthNames = [

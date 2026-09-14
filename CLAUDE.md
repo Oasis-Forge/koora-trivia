@@ -44,7 +44,7 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
 - **③ Multiple languages:** the groundwork is in v1.0.5 (status at the top of I18N_PLAN.md §2). Still open: which
   language first, translated vs. native questions, and `arab_football` — [docs/I18N_PLAN.md](docs/I18N_PLAN.md).
 - **Decided 14 September 2026:** themes are color variations of the current design only · a bare «لا شيء»
-  option is not acceptable.
+  option is not acceptable · the language follows the phone, and a Settings choice overrides it.
 
 ### Identity and secrets — never break these
 - **Never write the owner's personal name, personal account names, or personal email into tracked
@@ -122,8 +122,9 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
 - **Button icons sit on the left of their text** (after it in RTL) through `iconAlignment` in `AppTheme` —
   owner's request, 14 September 2026. Don't override it per button.
 - **Player text lives only in `AppStrings`** (`localization_groundwork_test` fails otherwise). Layout sides use
-  `EdgeInsetsDirectional` / `AlignmentDirectional` / `PositionedDirectional`, and the language comes from `lib/l10n`
-  (Arabic only) — never force a locale or wrap the app in a `Directionality`.
+  `EdgeInsetsDirectional` / `AlignmentDirectional` / `PositionedDirectional`. The locale comes only from
+  `AppSettings.languageCode` (`null` = phone language; the picker hides with one language) — never hard-code one or wrap
+  the app in a `Directionality`.
 - **Colors:** read `AppColors.x` (getters over the current `AppPalette`) at build time — never inside `const`, never
   cached in a field or default parameter. A new color is a new `AppPalette` field in all four palettes.
 - Tunable numbers go in `app_config.dart`; player-facing text in `app_strings.dart`.

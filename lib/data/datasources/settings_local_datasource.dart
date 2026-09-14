@@ -26,6 +26,10 @@ class PrefsSettingsDataSource implements SettingsLocalDataSource {
         onboardingSeen: map['onboardingSeen'] as bool? ?? false,
         // الإعدادات المحفوظة قبل المظاهر لا تحمل المفتاح، فتبقى على الأخضر.
         themeId: map['themeId'] as String? ?? AppSettings.defaultThemeId,
+        // `null` محفوظة تعني لغة الهاتف؛ غياب المفتاح يعني إعدادات أقدم من الخيار.
+        languageCode: map.containsKey('languageCode')
+            ? map['languageCode'] as String?
+            : AppSettings.languageBeforeChoice,
       );
     } on TypeError catch (e) {
       throw FormatException('بنية إعدادات غير متوقعة: $e');
@@ -59,6 +63,7 @@ class PrefsSettingsDataSource implements SettingsLocalDataSource {
         'hapticsEnabled': settings.hapticsEnabled,
         'onboardingSeen': settings.onboardingSeen,
         'themeId': settings.themeId,
+        'languageCode': settings.languageCode,
       }),
     );
   }

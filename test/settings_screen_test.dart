@@ -23,6 +23,7 @@ import 'package:football_trivia/domain/repositories/quiz_repository.dart';
 import 'package:football_trivia/domain/entities/category.dart';
 import 'package:football_trivia/domain/entities/question.dart';
 import 'package:football_trivia/domain/repositories/stats_repository.dart';
+import 'package:football_trivia/l10n/app_localizations.dart';
 import 'package:football_trivia/presentation/providers/progress_provider.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
 import 'package:football_trivia/presentation/providers/stats_provider.dart';
@@ -172,6 +173,7 @@ Future<void> _pumpSettings(
   LinkOpener? linkOpener,
   BackupRepository? backupRepository,
   ErrorLog? errorLog,
+  List<Locale> languages = AppLocalizations.supportedLocales,
 }) async {
   final stats = StatsProvider(repository: statsRepo);
   final progress = ProgressProvider(repository: progressRepo);
@@ -207,11 +209,11 @@ Future<void> _pumpSettings(
               _FakeBackupRepository(onImport: () => false),
         ),
       ],
-      child: const MaterialApp(
-        locale: Locale('ar'),
+      child: MaterialApp(
+        locale: const Locale('ar'),
         home: Directionality(
           textDirection: TextDirection.rtl,
-          child: SettingsScreen(),
+          child: SettingsScreen(languages: languages),
         ),
       ),
     ),
@@ -645,5 +647,69 @@ void main() {
     );
     expect(settings.themeId, 'blue');
     expect(find.byIcon(Icons.check_rounded), findsOneWidget);
+  });
+
+  group('خيار اللغة', () {
+    // يستقر السحب قبل النقر: بقية زخمه كانت تُخرج اللوحة من الشاشة. ثم يُحاذى
+    // عنوان «المظهر» أعلى الشاشة فتظهر لوحتا المظهر واللغة كاملتين.
+    Future<void> showThemeSection(WidgetTester tester) async {
+      await tester.scrollUntilVisible(
+        find.text(AppStrings.themeBlue),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(
+        find.text(AppStrings.themeSection, skipOffstage: false),
+      );
+      await tester.pumpAndSettle();
+    }
+
+    testWidgets('مخفي ما دامت العربية اللغة الوحيدة', (tester) async {
+      await _pumpSettings(
+        tester,
+        statsRepo: _FakeStatsRepository(const UserStats()),
+        progressRepo: _FakeProgressRepository({}),
+      );
+      await showThemeSection(tester);
+
+      expect(find.text(AppStrings.backupSection), findsOneWidget);
+      expect(find.text(AppStrings.languageSection, skipOffstage: false),
+          findsNothing);
+    });
+
+    testWidgets('مع لغتين يظهر، ويحفظ لغة الهاتف أو اللغة المختارة',
+        (tester) async {
+      await _pumpSettings(
+        tester,
+        statsRepo: _FakeStatsRepository(const UserStats()),
+        progressRepo: _FakeProgressRepository({}),
+        languages: const [Locale('ar'), Locale('en')],
+      );
+      await showThemeSection(tester);
+
+      final settings = Provider.of<SettingsProvider>(
+        tester.element(find.byType(SettingsScreen)),
+        listen: false,
+      );
+      Finder checkOn(String name) => find.descendant(
+            of: find.widgetWithText(ListTile, name),
+            matching: find.byIcon(Icons.check_rounded),
+          );
+
+      expect(find.text(AppStrings.languageSection), findsOneWidget);
+      expect(checkOn(AppStrings.languageName('ar')), findsOneWidget);
+
+      await tester.tap(find.text(AppStrings.languageSystem));
+      await tester.pumpAndSettle();
+      expect(settings.languageCode, isNull);
+      expect(checkOn(AppStrings.languageSystem), findsOneWidget);
+
+      await tester.tap(find.text(AppStrings.languageName('en')));
+      await tester.pumpAndSettle();
+      expect(settings.languageCode, 'en');
+      expect(checkOn(AppStrings.languageName('en')), findsOneWidget);
+      expect(checkOn(AppStrings.languageSystem), findsNothing);
+    });
   });
 }

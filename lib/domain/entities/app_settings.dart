@@ -8,10 +8,22 @@ class AppSettings {
     this.hapticsEnabled = true,
     this.onboardingSeen = false,
     this.themeId = defaultThemeId,
+    this.languageCode = defaultLanguageCode,
   });
 
   /// المظهر الأصلي «ملعب أخضر» (`AppPalette.green`).
   static const String defaultThemeId = 'green';
+
+  /// لغة اللاعب الجديد. ما دامت العربية اللغة الوحيدة تُحفظ العربية صراحةً، حتى
+  /// لا تنقلب لغة من بدأ بالعربية وهاتفه بالإنجليزية يوم تُضاف لغة ثانية. مع
+  /// اللغة الثانية تصبح `String?` بقيمة `null` (لغة الهاتف) — `language_choice_test`
+  /// يفرض ذلك.
+  static const String defaultLanguageCode = 'ar';
+
+  /// لغة من حُفظت إعداداته قبل خيار اللغة: كان يلعب بالعربية فيبقى عليها.
+  static const String languageBeforeChoice = 'ar';
+
+  static const Object _keep = Object();
 
   final bool reminderEnabled;
 
@@ -28,6 +40,9 @@ class AppSettings {
   /// مظهر الألوان الذي اختاره المستخدم.
   final String themeId;
 
+  /// رمز اللغة التي اختارها اللاعب (`ar`)، أو `null` لاتباع لغة الهاتف.
+  final String? languageCode;
+
   /// صيغة عرض 24 ساعة، مثل `20:00`.
   String get reminderLabel =>
       '${reminderHour.toString().padLeft(2, '0')}:'
@@ -41,6 +56,8 @@ class AppSettings {
     bool? hapticsEnabled,
     bool? onboardingSeen,
     String? themeId,
+    // `null` هنا قيمة حقيقية (لغة الهاتف)، فالغياب يُعرف بقيمة حارسة لا بـ`??`.
+    Object? languageCode = _keep,
   }) {
     return AppSettings(
       reminderEnabled: reminderEnabled ?? this.reminderEnabled,
@@ -50,6 +67,9 @@ class AppSettings {
       hapticsEnabled: hapticsEnabled ?? this.hapticsEnabled,
       onboardingSeen: onboardingSeen ?? this.onboardingSeen,
       themeId: themeId ?? this.themeId,
+      languageCode: identical(languageCode, _keep)
+          ? this.languageCode
+          : languageCode as String?,
     );
   }
 }

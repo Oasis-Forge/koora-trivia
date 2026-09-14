@@ -130,6 +130,12 @@ class SettingsProvider extends ChangeNotifier {
   Future<void> setThemeId(String id) =>
       _persist(_settings.copyWith(themeId: id));
 
+  /// رمز اللغة المختارة، أو `null` لاتباع لغة الهاتف.
+  String? get languageCode => _settings.languageCode;
+
+  Future<void> setLanguageCode(String? code) =>
+      _persist(_settings.copyWith(languageCode: code));
+
   Future<void> setReminderTime({required int hour, required int minute}) async {
     await _persist(
       _settings.copyWith(reminderHour: hour, reminderMinute: minute),

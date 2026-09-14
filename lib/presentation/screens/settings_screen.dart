@@ -12,6 +12,7 @@ import '../../core/constants/app_config.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/arabic_count.dart';
+import '../../l10n/app_localizations.dart';
 import '../providers/ads_provider.dart';
 import '../providers/economy_provider.dart';
 import '../providers/progress_provider.dart';
@@ -22,7 +23,13 @@ import '../providers/stats_provider.dart';
 import '../widgets/pitch_background.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+  const SettingsScreen({
+    super.key,
+    this.languages = AppLocalizations.supportedLocales,
+  });
+
+  /// اللغات المعروضة في خيار اللغة (تُمرَّر في الاختبارات فقط).
+  final List<Locale> languages;
 
   static const String routeName = '/settings';
 
@@ -101,6 +108,13 @@ class SettingsScreen extends StatelessWidget {
                     const SizedBox(height: 26),
                     const _SectionTitle(AppStrings.themeSection),
                     const _ThemePanel(),
+
+                    // لا يظهر مع لغة واحدة: خيار لا يغيّر شيئاً يربك اللاعب.
+                    if (languages.length > 1) ...[
+                      const SizedBox(height: 26),
+                      const _SectionTitle(AppStrings.languageSection),
+                      _LanguagePanel(languages: languages),
+                    ],
 
                     const SizedBox(height: 26),
                     const _SectionTitle(AppStrings.backupSection),
@@ -596,6 +610,60 @@ class _ThemeSwatch extends StatelessWidget {
                 color: selected ? AppColors.chalk : AppColors.chalkMuted,
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// اختيار اللغة: لغة الهاتف أو لغة بعينها، وكل لغة باسمها في لغتها.
+class _LanguagePanel extends StatelessWidget {
+  const _LanguagePanel({required this.languages});
+
+  final List<Locale> languages;
+
+  @override
+  Widget build(BuildContext context) {
+    final selected =
+        context.select<SettingsProvider, String?>((s) => s.languageCode);
+    final options = <(String?, String)>[
+      (null, AppStrings.languageSystem),
+      for (final locale in languages)
+        (locale.languageCode, AppStrings.languageName(locale.languageCode)),
+    ];
+
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: AppColors.cardBorder),
+      ),
+      child: Material(
+        color: AppColors.cardSurface,
+        borderRadius: BorderRadius.circular(18),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          children: [
+            for (final (index, (code, name)) in options.indexed) ...[
+              if (index > 0) const Divider(height: 1, thickness: 1),
+              ListTile(
+                selected: code == selected,
+                selectedColor: AppColors.chalk,
+                onTap: () =>
+                    context.read<SettingsProvider>().setLanguageCode(code),
+                leading: Icon(
+                  code == null
+                      ? Icons.phone_android_rounded
+                      : Icons.translate_rounded,
+                  color: AppColors.gold,
+                  size: 20,
+                ),
+                title: Text(name, style: const TextStyle(fontSize: 14.5)),
+                trailing: code == selected
+                    ? Icon(Icons.check_rounded, color: AppColors.gold)
+                    : null,
+              ),
+            ],
           ],
         ),
       ),
