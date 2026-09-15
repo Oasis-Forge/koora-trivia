@@ -59,7 +59,8 @@
 ### Release & tech debt
 - **P0 · M**: Production gate. Only 5 of the 12 required testers have joined. Recruit 15–20 as a buffer and record the date the 12th joins.
 - **P1 · S**: Play Console and GitHub tasks:
-  - Host app-ads.txt at the oasis-forge.github.io root and set it as the listing's Website.- **P1 · M**: Check on a real phone (the emulator release check passed on 14 September 2026) and log results in PRE_PUBLISH §1:
+  - app-ads.txt is live at https://oasis-forge.github.io/app-ads.txt (repo `Oasis-Forge/oasis-forge.github.io`, 15 September 2026; one file for every Oasis Forge app). Left for the owner: set the Play listing's Website to `https://oasis-forge.github.io`, then AdMob → Apps → app-ads.txt → check for updates.
+- **P1 · M**: Check on a real phone (the emulator release check passed on 14 September 2026) and log results in PRE_PUBLISH §1:
   - The in-app review sheet, from a closed-test install.
   - Quiz screen and level grid on a real short phone and a real tall one.
 

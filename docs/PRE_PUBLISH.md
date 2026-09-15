@@ -264,7 +264,7 @@ New **personal** developer accounts can't request production until a closed test
 |---|---|
 | In-app purchases | Not built; "Remove ads" shows "Soon". ⚠️ Consumables must be acknowledged within 3 days |
 | Interstitial ads | Built, deliberately off at launch |
-| `app-ads.txt` | Ready in `docs/`, not published (needs a root domain) |
+| `app-ads.txt` | Live at https://oasis-forge.github.io/app-ads.txt (15 September 2026); the Play listing's Website and the AdMob check are left for the owner |
 | Tablet screenshots | None |
 | Splash screen | Still uses the old `ic_ball` drawing |
 | iOS | Out of scope |

@@ -38,7 +38,8 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
 3. **After Google approves v1.0.6 (owner):** check the pre-launch report (crashes, and its screenshots in both languages).
-4. **Owner's Play Console tasks:** app-ads.txt (PLAN.md P1 · S).
+4. **app-ads.txt (owner):** live at https://oasis-forge.github.io/app-ads.txt since 15 September 2026. Set the Play
+   listing's Website to `https://oasis-forge.github.io`, then check it in AdMob (PLAN.md P1 · S).
 
 ### Decisions waiting on the owner
 - **② Name and address on the store page** (personal account) vs. an organization account. Undecided.
