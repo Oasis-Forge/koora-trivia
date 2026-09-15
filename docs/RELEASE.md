@@ -49,8 +49,7 @@
 
 ### English on Play Console (with v1.0.6)
 
-Done by the owner (14–15 September 2026): steps 1, 3, 4, 5 and 8, and the English screenshots in step 2. Left: step 6,
-and the English feature graphic in step 2 if it isn't uploaded yet.
+Done by the owner (14–15 September 2026): steps 1–5 and 8. Left: step 6 (pre-launch report), kept for later.
 
 1. **Listing translation:** Store listings → main listing → Manage translations → add your own → English (United
    States). Paste the name, short and full description from [STORE_LISTING.md](STORE_LISTING.md) — not machine
