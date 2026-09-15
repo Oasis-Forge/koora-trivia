@@ -34,7 +34,7 @@
 | Developer account registration | ✅ | Shows the legal name and address from the payments profile — see decision ② below |
 | App created | ✅ | Game · Free · Arabic default |
 | Store settings | ✅ | Category **Trivia** · contact email |
-| Store listing | ✅ uploaded | Text from [STORE_LISTING.md](STORE_LISTING.md) · 512 icon · feature graphic · 5 screenshots (Arabic). English (en-US) translation added by the owner with the v1.0.6 upload (14 September 2026, in Google's review) |
+| Store listing | ✅ uploaded | Text from [STORE_LISTING.md](STORE_LISTING.md) · 512 icon · feature graphic · 5 screenshots in the v1.0.6 design. English (en-US) translation with its own 5 screenshots added by the owner with the v1.0.6 upload (14–15 September 2026, in Google's review) |
 | AI asset declaration | ✅ | Icon and feature graphic labeled; screenshots are real captures, so not labeled |
 | Data safety | ✅ submitted | Updated by the owner on 13 September 2026 to the four types in [DATA_SAFETY_EN.md](DATA_SAFETY_EN.md): Approximate location · App interactions · Diagnostics · Device or other IDs — sent for Google's review |
 | Financial · health features | ✅ | None |
@@ -48,6 +48,9 @@
 | Production | ⏳ | |
 
 ### English on Play Console (with v1.0.6)
+
+Done by the owner (14–15 September 2026): steps 1, 3, 4, 5 and 8, and the English screenshots in step 2. Left: step 6,
+and the English feature graphic in step 2 if it isn't uploaded yet.
 
 1. **Listing translation:** Store listings → main listing → Manage translations → add your own → English (United
    States). Paste the name, short and full description from [STORE_LISTING.md](STORE_LISTING.md) — not machine
