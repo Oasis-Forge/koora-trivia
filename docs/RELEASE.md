@@ -182,13 +182,16 @@ API (`inAppUpdatePriority`); the Play Console website can't set it. Details in [
 | [docs/STORE_LISTING.md](STORE_LISTING.md) | App name · short description · full description (Arabic payload) |
 | [docs/DATA_SAFETY_EN.md](DATA_SAFETY_EN.md) | Data safety answers in Play Console's English terms, with the AdMob disclosure source |
 | [docs/privacy_policy.html](privacy_policy.html) | Privacy policy source (English + Arabic) |
-| `docs/app-ads.txt` | Ready, **not published** (needs a root domain) |
+| `docs/app-ads.txt` | Copy of the live https://oasis-forge.github.io/app-ads.txt — edit the live one in the `Oasis-Forge/oasis-forge.github.io` repo |
 | [docs/PRE_PUBLISH.md](PRE_PUBLISH.md) | Publishing checklist and verification log |
 | [docs/ECONOMY.md](ECONOMY.md) | Economy design — **still in Arabic** |
 
 - The icon and feature graphic were **AI-generated** (Higgsfield) and then processed with PIL —
   hence labeled in Play's declaration. The Arabic title on the feature graphic was drawn with PIL
   plus `arabic_reshaper` and `python-bidi` (generators garble Arabic script).
+- **The Oasis Forge root site** (https://oasis-forge.github.io: home page and the one `app-ads.txt` for every app) is
+  the `Oasis-Forge/oasis-forge.github.io` repo, cloned next to this project in `App Project/oasis-forge.github.io`, with
+  the same local `gh` credential helper. Don't rename it: the address depends on the repo name.
 - **The privacy policy is published from `privacy-site/`** — a separate git repo pushing to
   `Oasis-Forge/koora-trivia-privacy` (GitHub Pages, served at
   https://oasis-forge.github.io/koora-trivia-privacy/). Since 13 September 2026 it pushes through the
