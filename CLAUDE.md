@@ -3,7 +3,7 @@
 > Loaded at the start of every session and into every subagent, so it stays short: rules, current
 > status, traps and pointers. Details live in `docs/` — read a file only when the task touches it.
 > **Update the status and next steps here, and `docs/PLAN.md`, whenever work is completed.**
-> Last updated: **14 September 2026**.
+> Last updated: **15 September 2026**.
 
 ## Working conventions — agreed with the owner on 14 September 2026
 Tokens cost the owner real money.
@@ -28,7 +28,8 @@ Tokens cost the owner real money.
 and #5–#14) was uploaded by the owner on 14 September 2026 to internal and closed testing. `v1.0.5+6`
 (`releases/v1.0.5_build6_2026-09-14/`, PRs #16–#29) was archived but never uploaded (skipped). `v1.0.6+7`
 (`releases/v1.0.6_build7_2026-09-14/`, PRs #31–#42: redesign, English, in-app updates) was uploaded by the owner on
-14 September 2026 with the English store listing and is in Google's review; it contains everything in v1.0.5.
+14 September 2026 to internal and closed testing, with the English store listing and both screenshot sets in the new
+design; it is in Google's review and contains everything in v1.0.5. The "Some languages have errors" warning is gone.
 
 **Privacy policy:** the live page carries the 14 September 2026 text, including "Messages you send us".
 
@@ -36,8 +37,7 @@ and #5–#14) was uploaded by the owner on 14 September 2026 to internal and clo
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
-3. **After Google approves v1.0.6 (owner):** check the pre-launch report and the "Some languages have errors" warning,
-   and make sure v1.0.6 reaches the closed track the testers use.
+3. **After Google approves v1.0.6 (owner):** check the pre-launch report (crashes, and its screenshots in both languages).
 4. **Owner's Play Console tasks:** app-ads.txt (PLAN.md P1 · S).
 
 ### Decisions waiting on the owner
