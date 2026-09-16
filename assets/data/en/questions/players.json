@@ -91,7 +91,7 @@
         "Colombian"
       ],
       "answerIndex": 1,
-      "explanation": "One of the leading stars of the current Brazilian generation."
+      "explanation": "He made his Brazil debut in 2010 and became one of the stars of his generation."
     },
     {
       "id": 6008,
@@ -169,7 +169,7 @@
         "Serbian"
       ],
       "answerIndex": 0,
-      "explanation": "Swedish, of Bosnian and Croatian descent."
+      "explanation": "Born in Sweden, with both his father's and his mother's roots in the Balkans."
     },
     {
       "id": 6014,
@@ -403,7 +403,7 @@
         "250 million euros"
       ],
       "answerIndex": 2,
-      "explanation": "A world record fee that still stands today."
+      "explanation": "A world-record fee that still stood nine years later, in the summer of 2026."
     },
     {
       "id": 6032,
@@ -811,15 +811,15 @@
     {
       "id": 6063,
       "level": 7,
-      "question": "Which Uruguayan player sparked controversy by biting an opponent at the 2014 World Cup?",
+      "question": "Which German player won the Ballon d'Or in 1972?",
       "options": [
-        "Luis Suarez",
-        "Edinson Cavani",
-        "Diego Godin",
-        "Diego Forlan"
+        "Franz Beckenbauer",
+        "Gerd Muller",
+        "Sepp Maier",
+        "Uli Hoeness"
       ],
       "answerIndex": 0,
-      "explanation": "He bit Italian defender Chiellini and received a lengthy ban."
+      "explanation": "The first of two Ballons d'Or for West Germany's sweeper and captain."
     },
     {
       "id": 6064,
@@ -897,7 +897,7 @@
         "Paul Scholes"
       ],
       "answerIndex": 0,
-      "explanation": "The last Englishman to win the award to date."
+      "explanation": "No English player had won it since, up to the 2025 edition."
     },
     {
       "id": 6070,
@@ -923,7 +923,7 @@
         "George Weah"
       ],
       "answerIndex": 3,
-      "explanation": "He won it in 1995 as a Milan player."
+      "explanation": "The Liberian striker won it after moving from Paris Saint-Germain to Milan."
     },
     {
       "id": 6072,

@@ -149,8 +149,10 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
 question read [docs/QUESTION_BANK.md](docs/QUESTION_BANK.md) (categories, id ranges, overlap rules).
 Mandatory: four distinct options · no «كل ما سبق», «لا يوجد», «كلاهما», «كلتاهما», «لا شيء», «لا أحد» or «لم يحدث» · balanced
 `answerIndex` (`dart run tool/rebalance_answers.dart`) · no duplicates across categories · evergreen
-facts only · no invisible direction characters · `level` matches the id. Run `question_bank_test`
-after any change.
+facts only · no invisible direction characters · `level` matches the id · no «حالياً», «حتى الآن» or "currently"
+without a year, and changeable counts or records anchored to one · no explanation naming a later answer in its level.
+Run `question_bank_test`, `english_bank_test` and `question_content_test` after any change. **After every major
+tournament or Champions League final, re-check record, count and "first/only/most" questions in both languages.**
 
 ## Tests
 Shared fakes are in `test/fakes/`. `small_screen_layout_test` renders every screen at 320 and 360 dp in Arabic and

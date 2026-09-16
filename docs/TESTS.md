@@ -2,7 +2,7 @@
 
 > Moved from CLAUDE.md on 14 September 2026. Update the count and the table when tests are added.
 
-**449 tests across 52 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+**455 tests across 53 files, all passing.** `flutter analyze` is clean. Shared test code lives in
 `test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
 (in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
 (`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
@@ -18,7 +18,7 @@
 | `platform_services_test.dart` | 3 | Review prompt time recorded even when Play's dialog fails · none before the first ask · `PackageAppInfo` version and build |
 | `economy_test.dart` | 20 | Heart regen (remainder · clock going backward · corrupt date) · daily limits · `EconomyProvider` (deduction · daily-challenge grant once per daily, reporting whether a heart was added · rewarded-ad cap · hints) · the daily-heart day is saved and read back |
 | `level_progress_test.dart` | 13 | Star calculation · progressive unlocks · stars never decrease (entity and use case) |
-| `tasks_coins_test.dart` | 12 | Daily tasks (completion · claim once · chest · daily reset) · shop (heart refill · insufficient coins · hint pack and consumption order) |
+| `tasks_coins_test.dart` | 13 | Daily tasks (completion · claim once · the shown count stops at the goal, not «21 / 10» · chest · daily reset) · shop (heart refill · insufficient coins · hint pack and consumption order) |
 | `ads_test.dart` | 14 | `AdsProvider` (earned/dismissed · no two ads at once · isReady · notifies when an ad loads · privacy options and resume pass through · dispose detaches) · interstitials (round counting · remove-ads) · ad rewards — **through a fake service** |
 | `admob_ad_service_test.dart` | 21 | **Consent gate** — no SDK init or ad request before the consent form closes · previous-session consent loads at once · nothing loads when consent disallows · consent withdrawn during SDK init · a failed consent update retried on resume or ad request, never two at once, not re-run after a successful one · load retry after the delay and on resume · privacy-options changes applied both ways · unsupported platform · init once · **rewarded show path with a fake `RewardedAd`**: result decided on dismissal, not on show (the 8 September bug) · earned · dismissed · failed to show · reload afterwards |
 | `retrying_ad_loader_test.dart` | 11 | Load once · rising retry delays capped at the last · success resets the delay · take once · retry now · stop cancels and disposes · an ad arriving after stop is disposed · a stale callback after stop and a new load · synchronous SDK error |
@@ -32,8 +32,9 @@
 | `english_text_test.dart` | 3 | **Unit test** — Arabic by default, English when chosen, any other code falls back to Arabic · English counts («1 day», «2 stars») with Arabic unchanged · no Arabic letters in the English text except the language list |
 | `english_bank_test.dart` | 11 | **Unit test** — per category, the English file matches the Arabic one in ids, levels, answers, option count and numeric options, with distinct options, no banned "all/none/both" options, no Arabic script and no invisible characters · the English category list matches too |
 | `share_text_test.dart` | 9 | Result grid · daily-challenge date · category and level · streak count forms (1 · 2 · 5 · 11) · the Play Store link with referrer on the last line · doesn't leak questions |
-| `quiz_repository_test.dart` | 11 | Levels · daily-challenge stability · **a full year with no day sharing more than 2 of 7 questions with the day before** · epoch day independent of time zone · neighbouring seeds shuffle differently · filtering |
+| `quiz_repository_test.dart` | 13 | Levels · daily-challenge stability · **a full year with no day sharing more than 2 of 7 questions with the day before** · the daily is 2 easy, 3 medium, 2 hard in that order · **no question repeats within a 133-day cycle** · epoch day independent of time zone · neighbouring seeds shuffle differently · filtering |
 | `question_bank_test.dart` | 9 | Bank integrity: counts · IDs · structure · balance · banned options, including bare «لا شيء», «لا أحد» and «لم يحدث» · no hidden direction characters · **duplicates** · matches `AppConfig` |
+| `question_content_test.dart` | 3 | Both languages: no «حالياً», «حتى الآن», "currently", "so far" and similar without a year · no explanation names the answer of a later question in its level · no two questions ask the same fact in other words (English wording; different years = a series) |
 | `question_datasource_language_test.dart` | 2 | **Asset test** — the real Arabic and English banks load through `rootBundle` (so an undeclared language folder fails) with the same ids and English category names · one cached bank per language · follows `AppStrings` by default |
 | `small_screen_layout_test.dart` | 36 | **Widget test** — home, categories, levels, quiz, settings (scrolled to the bottom), shop, tasks, the result screen and the no-hearts dialog render at 320×640 and 360×640 in Arabic and in English without an overflow. The test font draws every letter about 1 em wide, wider than real fonts, so passing leaves room on real phones |
 | `update_streak_test.dart` | 6 | Day-streak logic in every case · daylight-saving days count as one day |

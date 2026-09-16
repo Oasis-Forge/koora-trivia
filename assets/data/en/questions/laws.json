@@ -13,7 +13,7 @@
         "9"
       ],
       "answerIndex": 0,
-      "explanation": "Eleven players, including the goalkeeper."
+      "explanation": "Eleven per side at kick-off, not counting substitutes."
     },
     {
       "id": 9002,
@@ -330,7 +330,7 @@
     {
       "id": 9026,
       "level": 3,
-      "question": "How many substitutions are currently allowed in an official match?",
+      "question": "In 2022, how many substitutions per team were made permanent for top-level competitions?",
       "options": [
         "5",
         "4",
@@ -338,7 +338,7 @@
         "6"
       ],
       "answerIndex": 0,
-      "explanation": "Raised to five after the 2020 pandemic, and made permanent."
+      "explanation": "The number had been raised from three to five as a temporary measure during the 2020 pandemic."
     },
     {
       "id": 9027,
@@ -533,7 +533,7 @@
         "1978"
       ],
       "answerIndex": 0,
-      "explanation": "Invented by referee Ken Aston, inspired by traffic lights."
+      "explanation": "The first yellow card went to a Soviet player in the opening match against Mexico."
     },
     {
       "id": 9042,
@@ -754,7 +754,7 @@
         "A free kick is awarded"
       ],
       "answerIndex": 1,
-      "explanation": "That's why assistants are advised to delay raising the flag until the attack ends."
+      "explanation": "Because play had already been stopped, it restarts with a dropped ball."
     },
     {
       "id": 9059,
@@ -845,7 +845,7 @@
         "Only by the goalkeeper"
       ],
       "answerIndex": 1,
-      "explanation": "It's known as an Olympic goal."
+      "explanation": "Law 17 allows it, but only into the opposing team's goal."
     },
     {
       "id": 9066,

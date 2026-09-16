@@ -13,7 +13,7 @@
         "Croatia"
       ],
       "answerIndex": 2,
-      "explanation": "Argentina beat France 4-2 on penalties after a 3-3 draw."
+      "explanation": "Argentina won 4-2 on penalties after a thrilling 3-3 draw."
     },
     {
       "id": 1002,
@@ -44,15 +44,15 @@
     {
       "id": 1004,
       "level": 1,
-      "question": "Which country hosted the 2022 World Cup?",
+      "question": "What is the original World Cup trophy, in use since 1974, made of?",
       "options": [
-        "Qatar",
-        "UAE",
-        "Saudi Arabia",
-        "Kuwait"
+        "18-carat gold",
+        "Pure silver",
+        "Bronze",
+        "Gold-plated silver"
       ],
       "answerIndex": 0,
-      "explanation": "The first World Cup held in the Middle East and in winter."
+      "explanation": "It stands on a base with two rings of green malachite."
     },
     {
       "id": 1005,
@@ -195,7 +195,7 @@
         "Portugal"
       ],
       "answerIndex": 0,
-      "explanation": "Italy beat France on penalties."
+      "explanation": "Italy won on penalties after a 1-1 draw in the Berlin final."
     },
     {
       "id": 1016,
@@ -291,7 +291,7 @@
     {
       "id": 1023,
       "level": 3,
-      "question": "How many World Cup titles does Italy have?",
+      "question": "How many World Cup titles did Italy have by the end of 2026?",
       "options": [
         "3",
         "5",
@@ -338,7 +338,7 @@
         "West Germany"
       ],
       "answerIndex": 3,
-      "explanation": "West Germany beat Argentina 1-0 with a penalty."
+      "explanation": "West Germany won the final 1-0 with a penalty five minutes from time."
     },
     {
       "id": 1027,
@@ -499,15 +499,15 @@
     {
       "id": 1039,
       "level": 4,
-      "question": "Why was Zidane sent off in the 2006 final?",
+      "question": "Which was the first World Cup match to be decided by a penalty shoot-out?",
       "options": [
-        "Headbutting Marco Materazzi",
-        "Protesting to the referee",
-        "A violent tackle",
-        "Two yellow cards"
+        "West Germany v France, 1982 semi-final",
+        "Italy v France, 2006 final",
+        "Argentina v Netherlands, 1998 quarter-final",
+        "Brazil v Italy, 1994 final"
       ],
       "answerIndex": 0,
-      "explanation": "It was the last match of his professional career."
+      "explanation": "West Germany won the Seville semi-final 5-4 on penalties after a 3-3 draw."
     },
     {
       "id": 1040,
@@ -624,7 +624,7 @@
         "15"
       ],
       "answerIndex": 0,
-      "explanation": "A record for most goals in a single edition, still unbroken today."
+      "explanation": "A record for most goals in a single edition that has stood since 1958, unmatched even after the expanded 2026 tournament."
     },
     {
       "id": 1049,
@@ -720,15 +720,15 @@
     {
       "id": 1056,
       "level": 6,
-      "question": "In which edition were coloured cards used for the first time?",
+      "question": "In which edition did the World Cup first follow its group stage with a round of 16?",
       "options": [
-        "1966",
-        "1970",
-        "1974",
-        "1978"
+        "1982",
+        "1986",
+        "1990",
+        "1994"
       ],
       "answerIndex": 1,
-      "explanation": "Invented by referee Ken Aston and introduced at the 1970 Mexico World Cup."
+      "explanation": "The 1986 finals kept 24 teams but replaced the second group stage with straight knockout football."
     },
     {
       "id": 1057,
@@ -746,15 +746,15 @@
     {
       "id": 1058,
       "level": 6,
-      "question": "In which edition was goal-line technology used for the first time?",
+      "question": "Which team was the first to reach three consecutive World Cup finals?",
       "options": [
-        "2010",
-        "2006",
-        "2018",
-        "2014"
+        "Brazil",
+        "Argentina",
+        "Italy",
+        "West Germany"
       ],
       "answerIndex": 3,
-      "explanation": "Introduced in Brazil 2014 after the controversy over Lampard's disallowed goal in 2010."
+      "explanation": "They were beaten finalists in 1982 and 1986, then won the title in 1990."
     },
     {
       "id": 1059,
@@ -876,28 +876,28 @@
     {
       "id": 1068,
       "level": 7,
-      "question": "Which match is known as the \"Battle of Berne\"?",
+      "question": "Which team suffered a shock 1-0 defeat to North Korea in the 1966 World Cup group stage?",
       "options": [
-        "Italy v Chile 1962",
-        "Hungary v Brazil 1954",
-        "Netherlands v Portugal 2006",
-        "Argentina v England 1986"
+        "West Germany",
+        "Italy",
+        "Chile",
+        "Portugal"
       ],
       "answerIndex": 1,
-      "explanation": "A 1954 quarter-final that turned into a brawl between the players."
+      "explanation": "Pak Doo-ik's goal eliminated the two-time champions in the group stage."
     },
     {
       "id": 1069,
       "level": 7,
-      "question": "Which match is known as the \"Disgrace of Gijon\"?",
+      "question": "Which team came back from 3-0 down to beat North Korea 5-3 in the 1966 World Cup quarter-final?",
       "options": [
-        "West Germany v Austria 1982",
-        "Italy v South Korea 2002",
-        "France v Kuwait 1982",
-        "Brazil v Sweden 1978"
+        "Portugal",
+        "West Germany",
+        "Hungary",
+        "Soviet Union"
       ],
       "answerIndex": 0,
-      "explanation": "A result that suited both sides and later led to final-round fixtures being played simultaneously."
+      "explanation": "Eusebio scored four goals in the famous comeback."
     },
     {
       "id": 1070,
@@ -923,7 +923,7 @@
         "Michel Platini"
       ],
       "answerIndex": 2,
-      "explanation": "Beckenbauer won it as a player in 1974 and as manager in 1990, both with West Germany."
+      "explanation": "Beckenbauer lifted the trophy as captain in 1974, then repeated the feat as manager in 1990."
     },
     {
       "id": 1072,
@@ -980,7 +980,7 @@
     {
       "id": 1076,
       "level": 8,
-      "question": "How many nations have won the World Cup so far?",
+      "question": "How many nations had won the World Cup by the end of the 2026 tournament?",
       "options": [
         "6",
         "8",
@@ -988,7 +988,7 @@
         "9"
       ],
       "answerIndex": 1,
-      "explanation": "Brazil, Germany, Italy, Argentina, France, Uruguay, England and Spain."
+      "explanation": "They include five European sides and three from South America."
     },
     {
       "id": 1077,
@@ -1092,7 +1092,7 @@
         "Sepp Herberger"
       ],
       "answerIndex": 1,
-      "explanation": "Deschamps took charge of his 26th match, France's 2026 semi-final against Spain, passing Schon's tally with West Germany."
+      "explanation": "Deschamps took charge of his 26th match, France's 2026 semi-final against Spain, moving one match ahead of Schon's long-standing record."
     },
     {
       "id": 1085,
@@ -1209,7 +1209,7 @@
         "Cristiano Ronaldo"
       ],
       "answerIndex": 0,
-      "explanation": "Pele shares the feat across those same four editions, both being the first to score in four different World Cups."
+      "explanation": "Only one other player matched the feat across those same four editions, and together they were the first men to score at four different World Cups."
     },
     {
       "id": 1094,
@@ -1240,15 +1240,15 @@
     {
       "id": 1096,
       "level": 10,
-      "question": "Which manager led Mexico, Costa Rica, the United States, Nigeria and China at the World Cup?",
+      "question": "By the end of the 2026 World Cup, who held the record for the fastest hat-trick in the tournament's history, scored in just seven minutes as a substitute?",
       "options": [
-        "Sven-Goran Eriksson",
-        "Bora Milutinovic",
-        "Carlos Queiroz",
-        "Guus Hiddink"
+        "Just Fontaine",
+        "Laszlo Kiss",
+        "Oleg Salenko",
+        "Gerd Muller"
       ],
       "answerIndex": 1,
-      "explanation": "Bora Milutinovic led five different nations across five straight editions from 1986 to 2002."
+      "explanation": "Kiss came off the bench for Hungary against El Salvador in 1982 and scored three goals in seven minutes."
     },
     {
       "id": 1097,
@@ -1287,7 +1287,7 @@
         "1966"
       ],
       "answerIndex": 0,
-      "explanation": "He scored in Sweden in 1958 aged 17, the start of his legend."
+      "explanation": "He scored twice in the final that year, aged just 17."
     },
     {
       "id": 1100,

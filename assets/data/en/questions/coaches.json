@@ -161,7 +161,7 @@
     {
       "id": 8013,
       "level": 2,
-      "question": "Who has managed Atletico Madrid since 2011?",
+      "question": "Who took charge of Atletico Madrid in December 2011?",
       "options": [
         "Quique Flores",
         "Marcelino",
@@ -169,7 +169,7 @@
         "Unai Emery"
       ],
       "answerIndex": 2,
-      "explanation": "The longest recent spell of any manager at a big Spanish club."
+      "explanation": "He turned the club into a fixture among Spain's and Europe's best sides."
     },
     {
       "id": 8014,
@@ -247,7 +247,7 @@
         "Jose Mourinho"
       ],
       "answerIndex": 3,
-      "explanation": "The club's only treble to date."
+      "explanation": "The first treble ever won by an Italian club."
     },
     {
       "id": 8020,
@@ -533,7 +533,7 @@
         "Kenny Dalglish"
       ],
       "answerIndex": 0,
-      "explanation": "The most successful manager in the club's European history."
+      "explanation": "He also won the UEFA Cup with the club in 1976."
     },
     {
       "id": 8042,
@@ -624,7 +624,7 @@
         "Argentine"
       ],
       "answerIndex": 3,
-      "explanation": "Nicknamed \"El Loco\", he shaped an entire generation of coaches."
+      "explanation": "Nicknamed \"El Loco\" for his obsessive attention to detail and his intensity."
     },
     {
       "id": 8049,
@@ -663,20 +663,20 @@
         "Arrigo Sacchi"
       ],
       "answerIndex": 1,
-      "explanation": "The most successful manager in Serie A history by trophy count."
+      "explanation": "He won seven Serie A titles as a manager, six of them with Juventus."
     },
     {
       "id": 8052,
       "level": 6,
-      "question": "Which Argentine coach devised the \"catenaccio\" system at Inter?",
+      "question": "Which Argentine-born coach made the \"catenaccio\" system famous at Inter?",
       "options": [
-        "Carlo Baretti",
+        "Gipo Viani",
         "Nereo Rocco",
         "Giovanni Trapattoni",
         "Helenio Herrera"
       ],
       "answerIndex": 3,
-      "explanation": "He led Inter to two European titles in the 1960s with strict defensive football."
+      "explanation": "He led Inter to back-to-back European titles in 1964 and 1965."
     },
     {
       "id": 8053,
@@ -715,7 +715,7 @@
         "Franz Beckenbauer"
       ],
       "answerIndex": 1,
-      "explanation": "He led the golden generation captained by Beckenbauer and Muller."
+      "explanation": "He led the golden generation of Beckenbauer and Muller."
     },
     {
       "id": 8056,
@@ -923,20 +923,20 @@
         "Dunga"
       ],
       "answerIndex": 2,
-      "explanation": "He won as a player in 1958 and 1962, and as manager in 1970."
+      "explanation": "He won as a player at the 1958 and 1962 World Cups, then added the title again later as a manager."
     },
     {
       "id": 8072,
       "level": 8,
-      "question": "Who managed the Brazil side that won the 1970 World Cup?",
+      "question": "Who led Brazil through qualifying for the 1970 World Cup but was sacked months before the finals?",
       "options": [
-        "Mario Zagallo",
         "Joao Saldanha",
-        "Telê Santana",
-        "Carlos Alberto"
+        "Aymore Moreira",
+        "Zeze Moreira",
+        "Flavio Costa"
       ],
       "answerIndex": 0,
-      "explanation": "He took charge just months before the tournament."
+      "explanation": "Mario Zagallo replaced him in March 1970 and led Brazil to the title."
     },
     {
       "id": 8073,
@@ -1032,7 +1032,7 @@
     {
       "id": 8080,
       "level": 8,
-      "question": "Which manager won all three major European competitions with different clubs?",
+      "question": "Which manager won the European Cup, the Cup Winners' Cup and the UEFA Cup with a single club?",
       "options": [
         "Giovanni Trapattoni",
         "Ottmar Hitzfeld",
@@ -1040,7 +1040,7 @@
         "Louis van Gaal"
       ],
       "answerIndex": 0,
-      "explanation": "He won the European Cup, the Cup Winners' Cup and the UEFA Cup."
+      "explanation": "He won all three with Juventus between 1977 and 1985."
     },
     {
       "id": 8081,
@@ -1144,7 +1144,7 @@
         "Miguel Munoz"
       ],
       "answerIndex": 0,
-      "explanation": "Villalonga won the 1956 and 1957 titles, then Carniglia won in 1958 and 1959, and Munoz won in 1960."
+      "explanation": "He led Real Madrid to the first two titles in the European Cup's history."
     },
     {
       "id": 8089,
@@ -1183,7 +1183,7 @@
         "Florent Ibenge"
       ],
       "answerIndex": 1,
-      "explanation": "The Frenchman Renard also led Ivory Coast to the 2015 title."
+      "explanation": "The Frenchman Renard led Zambia to a penalty-shootout final win."
     },
     {
       "id": 8092,
@@ -1227,7 +1227,7 @@
     {
       "id": 8095,
       "level": 10,
-      "question": "Which Italian manager won the league title with Juventus, Inter and Milan?",
+      "question": "Which Italian manager won Serie A with Juventus and Inter, having won it as a player with Milan?",
       "options": [
         "Roberto Mancini",
         "Antonio Conte",
@@ -1248,7 +1248,7 @@
         "Javier Irureta"
       ],
       "answerIndex": 0,
-      "explanation": "The Serbian Antic managed all three Madrid clubs plus Barcelona."
+      "explanation": "The Serbian Antic guided the side to the league and cup double that season."
     },
     {
       "id": 8097,

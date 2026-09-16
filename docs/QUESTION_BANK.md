@@ -51,8 +51,21 @@ challenge uses `SeededRandom(seed + q.id)` · quick play is random.
    numeric options unchanged. English is British, with football wording and English Wikipedia's spelling of
    names. `english_bank_test` fails on any mismatch.
 
+8. **No time-relative wording without a year** — «حالياً», «الحالي», «حتى الآن», «حتى اليوم», «العقد الأخير» /
+   currently, current, so far, to date, last decade. Counts and records that can change («كم مرة فاز…»,
+   "most", "only", caps, top scorers) are anchored to a year or event («حتى نهاية 2025» / "by the end of 2025").
+   Guarded by `question_content_test`.
+9. **An explanation never names the answer of a later question in the same level.** Levels play in id order and
+   the explanation shows right after each answer. Guarded by `question_content_test` (implied spoilers need a
+   reader).
+
 > Rule 4's near-duplicate check normalises its filler words the same way as the question text
-> (`_fingerprint` in `question_bank_test.dart`, fixed 14 September 2026).
+> (`_fingerprint` in `question_bank_test.dart`, fixed 14 September 2026). Since 15 September 2026
+> `question_content_test` also compares the English wording (same answer and ≥ 50% shared words, or ≥ 70%
+> shared words; questions naming different years are a series, not duplicates).
+
+**After every World Cup, Euro, Copa América, Africa Cup of Nations, Asian Cup and Champions League final**, re-check
+the questions about records, counts and "first/only/most" claims in both languages.
 
 ### Rules for resolving category overlap
 
