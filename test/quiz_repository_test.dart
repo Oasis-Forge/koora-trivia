@@ -125,6 +125,46 @@ void main() {
     }
   });
 
+  test('تحدي اليوم: سؤالان سهلان ثم ثلاثة متوسطة ثم سؤالان صعبان', () async {
+    final bank = QuizRepositoryImpl(_FakeDataSource(categoryCount: 10));
+
+    for (final dayKey in ['2026-09-15', '2027-02-01']) {
+      final questions = await bank.getDailyQuestions(dayKey: dayKey, count: 7);
+      expect(
+        questions.map((q) => q.difficulty),
+        [
+          Difficulty.easy,
+          Difficulty.easy,
+          Difficulty.medium,
+          Difficulty.medium,
+          Difficulty.medium,
+          Difficulty.hard,
+          Difficulty.hard,
+        ],
+        reason: dayKey,
+      );
+    }
+  });
+
+  test('لا يتكرر سؤال في تحدي اليوم طوال الدورة', () async {
+    // بحجم البنك الحقيقي: 300 سهل و400 متوسط و300 صعب، فالدورة 133 يوماً
+    // (400 ÷ 3). اليوم 20748 = 156 × 133 أول أيام دورة (22 أكتوبر 2026).
+    final bank = QuizRepositoryImpl(_FakeDataSource(categoryCount: 10));
+    const cycleDays = 133;
+    const firstDay = 156 * cycleDays;
+    final seen = <int>{};
+
+    for (var i = 0; i < cycleDays; i++) {
+      final dayKey =
+          DayKey.from(DateTime.utc(1970).add(Duration(days: firstDay + i)));
+      final questions = await bank.getDailyQuestions(dayKey: dayKey, count: 7);
+      for (final q in questions) {
+        expect(seen.add(q.id), isTrue, reason: 'السؤال ${q.id} تكرر في $dayKey');
+      }
+    }
+    expect(seen, hasLength(cycleDays * 7));
+  });
+
   test('رقم اليوم لا يتأثر بالمنطقة الزمنية للجهاز', () {
     // كان التاريخ المحلي يُطرح من منتصف ليل UTC، فيتأخر الرقم يوماً شرق غرينتش
     // ويحصل الخليج وأوروبا على تحدٍّ مختلف في نفس التاريخ.

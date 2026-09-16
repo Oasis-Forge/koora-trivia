@@ -50,6 +50,23 @@ void main() {
       expect(p.claimableCount, 1);
     });
 
+    test('العدد المعروض لا يتجاوز الهدف بعد الاستلام («21 / 10»)', () async {
+      final p = await _provider();
+      final answers = AppConfig.taskAnswersTarget * 2 + 1;
+
+      for (var i = 0; i < answers; i++) {
+        await p.recordCorrectAnswer();
+        if (i == AppConfig.taskAnswersTarget) {
+          await p.claimTask(TaskKind.correctAnswers);
+        }
+      }
+
+      final task =
+          p.tasks.firstWhere((t) => t.kind == TaskKind.correctAnswers);
+      expect(task.progress, answers, reason: 'التقدّم نفسه يستمر بعد الهدف');
+      expect(task.shownProgress, AppConfig.taskAnswersTarget);
+    });
+
     test('الاستلام يمنح العملات مرة واحدة فقط', () async {
       final p = await _provider();
       await p.recordDailyCompleted();

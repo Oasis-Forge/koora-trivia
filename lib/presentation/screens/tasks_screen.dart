@@ -104,7 +104,7 @@ class _TaskCard extends StatelessWidget {
                     KooraProgress(value: task.ratio),
                     const SizedBox(height: 6),
                     Text(
-                      '${task.progress} / ${task.target}',
+                      '${task.shownProgress} / ${task.target}',
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
