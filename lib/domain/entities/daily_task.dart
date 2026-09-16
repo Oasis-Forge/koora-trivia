@@ -30,4 +30,7 @@ class DailyTask {
   bool get isClaimable => isComplete && !claimed;
 
   double get ratio => target == 0 ? 0 : (progress / target).clamp(0.0, 1.0);
+
+  /// العدد المعروض للاعب: التقدّم يستمر بعد الهدف (21 إجابة)، لكن «21 / 10» يبدو خطأً.
+  int get shownProgress => progress > target ? target : progress;
 }

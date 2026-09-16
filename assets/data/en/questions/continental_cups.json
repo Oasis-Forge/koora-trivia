@@ -104,7 +104,7 @@
         "Portugal"
       ],
       "answerIndex": 0,
-      "explanation": "Spain beat Italy 4-0, the biggest win in a European final."
+      "explanation": "Spain beat Italy in the final, played in Kyiv."
     },
     {
       "id": 2009,
@@ -122,7 +122,7 @@
     {
       "id": 2010,
       "level": 1,
-      "question": "How often is the Africa Cup of Nations held?",
+      "question": "Up to its 2025 edition, how often was the Africa Cup of Nations held?",
       "options": [
         "Every 4 years",
         "Every 3 years",
@@ -130,7 +130,7 @@
         "Every year"
       ],
       "answerIndex": 2,
-      "explanation": "It's held every two years, unlike most continental championships."
+      "explanation": "In December 2025, CAF announced a switch to a four-year cycle from 2028."
     },
     {
       "id": 2011,
@@ -265,7 +265,7 @@
     {
       "id": 2021,
       "level": 3,
-      "question": "Which side has won the European Championship the most times?",
+      "question": "After the 2026 World Cup, which side had won the European Championship the most times?",
       "options": [
         "Germany",
         "Italy",
@@ -273,12 +273,12 @@
         "Spain"
       ],
       "answerIndex": 3,
-      "explanation": "Spain has four titles: 1964, 2008, 2012 and 2024."
+      "explanation": "Spain had four titles: 1964, 2008, 2012 and 2024."
     },
     {
       "id": 2022,
       "level": 3,
-      "question": "Which side has won the Copa America the most times?",
+      "question": "After the 2026 World Cup, which side had won the Copa America the most times?",
       "options": [
         "Brazil",
         "Uruguay",
@@ -312,7 +312,7 @@
         "Italy"
       ],
       "answerIndex": 1,
-      "explanation": "The Netherlands' only title, capped by a legendary Van Basten strike."
+      "explanation": "The Netherlands' first major title, capped by a legendary Van Basten strike."
     },
     {
       "id": 2025,
@@ -356,7 +356,7 @@
     {
       "id": 2028,
       "level": 3,
-      "question": "Who is the European Championship's all-time top scorer?",
+      "question": "After the 2026 World Cup, who was the European Championship's all-time top scorer?",
       "options": [
         "Michel Platini",
         "Antoine Griezmann",
@@ -364,12 +364,12 @@
         "Cristiano Ronaldo"
       ],
       "answerIndex": 3,
-      "explanation": "Ronaldo holds the record for goals in the finals."
+      "explanation": "Ronaldo held the record for goals at the finals."
     },
     {
       "id": 2029,
       "level": 3,
-      "question": "Which side has won the Asian Cup the most times?",
+      "question": "After the 2026 World Cup, which side had won the Asian Cup the most times?",
       "options": [
         "Japan",
         "Iran",
@@ -377,7 +377,7 @@
         "Australia"
       ],
       "answerIndex": 0,
-      "explanation": "Japan has four titles."
+      "explanation": "Japan had four titles."
     },
     {
       "id": 2030,
@@ -546,7 +546,7 @@
         "Netherlands"
       ],
       "answerIndex": 1,
-      "explanation": "West Germany's second title after 1972."
+      "explanation": "Horst Hrubesch scored both West German goals in the 2-1 win over Belgium in Rome."
     },
     {
       "id": 2043,
@@ -590,6 +590,19 @@
     {
       "id": 2046,
       "level": 5,
+      "question": "What is the oldest international continental football tournament in the world?",
+      "options": [
+        "Copa America",
+        "European Championship",
+        "Africa Cup of Nations",
+        "Asian Cup"
+      ],
+      "answerIndex": 0,
+      "explanation": "It is organised by CONMEBOL, the world's oldest continental football confederation."
+    },
+    {
+      "id": 2047,
+      "level": 5,
       "question": "When was the first Copa America held?",
       "options": [
         "1916",
@@ -601,22 +614,9 @@
       "explanation": "It was held in Argentina, fourteen years before the World Cup began."
     },
     {
-      "id": 2047,
-      "level": 5,
-      "question": "What is the oldest international continental football tournament in the world?",
-      "options": [
-        "Copa America",
-        "European Championship",
-        "Africa Cup of Nations",
-        "Asian Cup"
-      ],
-      "answerIndex": 0,
-      "explanation": "It began in 1916 and is still running."
-    },
-    {
       "id": 2048,
       "level": 5,
-      "question": "How many Copa America titles does Uruguay have?",
+      "question": "After the 2026 World Cup, how many Copa America titles had Uruguay won?",
       "options": [
         "12",
         "10",
@@ -694,7 +694,7 @@
     {
       "id": 2054,
       "level": 6,
-      "question": "Which side has won the CONCACAF Gold Cup the most times?",
+      "question": "After the 2026 World Cup, which side had won the CONCACAF Gold Cup the most times?",
       "options": [
         "United States",
         "Costa Rica",
@@ -720,7 +720,7 @@
     {
       "id": 2056,
       "level": 6,
-      "question": "How many Africa Cup of Nations titles does Cameroon have?",
+      "question": "After the 2026 World Cup, how many Africa Cup of Nations titles had Cameroon won?",
       "options": [
         "4",
         "3",
@@ -733,7 +733,7 @@
     {
       "id": 2057,
       "level": 6,
-      "question": "Who is the Africa Cup of Nations' all-time top scorer?",
+      "question": "After the 2026 World Cup, who was the Africa Cup of Nations' all-time top scorer?",
       "options": [
         "Didier Drogba",
         "Laurent Pokou",
@@ -772,7 +772,7 @@
     {
       "id": 2060,
       "level": 6,
-      "question": "How many Asian Cup titles does Japan have?",
+      "question": "After the 2026 World Cup, how many Asian Cup titles had Japan won?",
       "options": [
         "3",
         "2",
@@ -785,7 +785,7 @@
     {
       "id": 2061,
       "level": 7,
-      "question": "How many teams currently take part in the Africa Cup of Nations finals?",
+      "question": "How many teams did the Africa Cup of Nations finals expand to in 2019?",
       "options": [
         "16",
         "20",
@@ -793,7 +793,7 @@
         "24"
       ],
       "answerIndex": 3,
-      "explanation": "It expanded from 16 to 24 teams from the 2019 edition onward."
+      "explanation": "Up from 16 teams at the 2017 edition."
     },
     {
       "id": 2062,
@@ -824,7 +824,7 @@
     {
       "id": 2064,
       "level": 7,
-      "question": "How many Africa Cup of Nations titles does Ghana have?",
+      "question": "After the 2026 World Cup, how many Africa Cup of Nations titles had Ghana won?",
       "options": [
         "3",
         "2",
@@ -863,7 +863,7 @@
     {
       "id": 2067,
       "level": 7,
-      "question": "What was the scoreline when Spain won the Euro 2012 final?",
+      "question": "What was the scoreline in the Euro 2012 final?",
       "options": [
         "2-0",
         "3-1",
@@ -871,7 +871,7 @@
         "1-0"
       ],
       "answerIndex": 2,
-      "explanation": "The biggest win in the history of the tournament's finals."
+      "explanation": "The widest winning margin in any European Championship final up to Euro 2024."
     },
     {
       "id": 2068,
@@ -889,7 +889,7 @@
     {
       "id": 2069,
       "level": 7,
-      "question": "Who has made the most appearances at the European Championship finals?",
+      "question": "After the 2026 World Cup, who had made the most appearances at the European Championship finals?",
       "options": [
         "Gianluigi Buffon",
         "Cristiano Ronaldo",
@@ -897,12 +897,12 @@
         "Toni Kroos"
       ],
       "answerIndex": 1,
-      "explanation": "Ronaldo played in six straight editions between 2004 and 2024."
+      "explanation": "After the 2026 World Cup, his tally at the tournament stood at 30 matches."
     },
     {
       "id": 2070,
       "level": 7,
-      "question": "How many European Championships has Cristiano Ronaldo played in?",
+      "question": "After the 2026 World Cup, how many European Championships had Cristiano Ronaldo played in?",
       "options": [
         "4",
         "5",
@@ -910,12 +910,12 @@
         "6"
       ],
       "answerIndex": 3,
-      "explanation": "From 2004 to 2024, a tournament record."
+      "explanation": "He played in every edition from 2004 to 2024."
     },
     {
       "id": 2071,
       "level": 8,
-      "question": "Which was the last team to win the European Championship on home soil?",
+      "question": "After the 2026 World Cup, which was the last team to win the European Championship on home soil?",
       "options": [
         "England 1996",
         "France 1984",
@@ -923,7 +923,7 @@
         "Italy 1968"
       ],
       "answerIndex": 1,
-      "explanation": "It hasn't happened again since Platini's tournament in 1984."
+      "explanation": "No host won it between Platini's tournament in 1984 and Euro 2024."
     },
     {
       "id": 2072,
@@ -941,15 +941,15 @@
     {
       "id": 2073,
       "level": 8,
-      "question": "Who managed Greece at Euro 2004?",
+      "question": "Who was the top scorer at Euro 2004?",
       "options": [
-        "Claudio Ranieri",
-        "Fernando Santos",
-        "Otto Rehhagel",
-        "Dick Advocaat"
+        "Wayne Rooney",
+        "Ruud van Nistelrooy",
+        "Milan Baros",
+        "Henrik Larsson"
       ],
       "answerIndex": 2,
-      "explanation": "German coach Rehhagel built a famously stubborn defence."
+      "explanation": "The Czech striker finished the tournament with five goals."
     },
     {
       "id": 2074,
@@ -988,7 +988,7 @@
         "Colombia"
       ],
       "answerIndex": 0,
-      "explanation": "A title that preceded a long drought lasting until 2021."
+      "explanation": "Gabriel Batistuta scored twice in the final, played in Guayaquil, Ecuador."
     },
     {
       "id": 2077,
@@ -1071,7 +1071,7 @@
     {
       "id": 2083,
       "level": 9,
-      "question": "How many Asian Cup titles does Iran have?",
+      "question": "After the 2026 World Cup, how many Asian Cup titles had Iran won?",
       "options": [
         "2",
         "3",
@@ -1097,7 +1097,7 @@
     {
       "id": 2085,
       "level": 9,
-      "question": "Which side has won the OFC Nations Cup the most times?",
+      "question": "After the 2026 World Cup, which side had won the OFC Nations Cup the most times?",
       "options": [
         "New Zealand",
         "Tahiti",
@@ -1105,7 +1105,7 @@
         "Fiji"
       ],
       "answerIndex": 0,
-      "explanation": "New Zealand is the tournament's biggest force."
+      "explanation": "New Zealand had long dominated the tournament."
     },
     {
       "id": 2086,
@@ -1123,7 +1123,7 @@
     {
       "id": 2087,
       "level": 9,
-      "question": "Which guest nation has reached the Copa America final twice?",
+      "question": "After the 2026 World Cup, which guest nation had reached the Copa America final twice?",
       "options": [
         "Mexico",
         "Japan",
@@ -1162,7 +1162,7 @@
     {
       "id": 2090,
       "level": 9,
-      "question": "How many goals has Cristiano Ronaldo scored at the European Championship finals?",
+      "question": "After the 2026 World Cup, how many goals had Cristiano Ronaldo scored at the European Championship finals?",
       "options": [
         "11",
         "12",
@@ -1175,7 +1175,7 @@
     {
       "id": 2091,
       "level": 10,
-      "question": "Who is the Copa America's all-time top scorer?",
+      "question": "After the 2026 World Cup, who was the Copa America's all-time top scorer?",
       "options": [
         "Lionel Messi",
         "Pele",
@@ -1183,7 +1183,7 @@
         "Gabriel Batistuta"
       ],
       "answerIndex": 2,
-      "explanation": "They share the top spot with seventeen goals each."
+      "explanation": "They shared the top spot with seventeen goals each."
     },
     {
       "id": 2092,
@@ -1196,7 +1196,7 @@
         "South Africa"
       ],
       "answerIndex": 3,
-      "explanation": "South Africa won on home soil in their first appearance after the end of apartheid."
+      "explanation": "Mark Williams scored both goals in South Africa's 2-0 final win over Tunisia in Johannesburg."
     },
     {
       "id": 2093,
@@ -1279,15 +1279,15 @@
     {
       "id": 2099,
       "level": 10,
-      "question": "Who managed Portugal at Euro 2016?",
+      "question": "In which year was the Copa America held twice, in two different countries?",
       "options": [
-        "Paulo Bento",
-        "Roberto Martinez",
-        "Fernando Santos",
-        "Carlos Queiroz"
+        "1955",
+        "1957",
+        "1959",
+        "1963"
       ],
       "answerIndex": 2,
-      "explanation": "Santos led Portugal to the first major title in their history."
+      "explanation": "It was held in Argentina early in the year and in Ecuador at the end of it, after Ecuador had first withdrawn as host."
     },
     {
       "id": 2100,

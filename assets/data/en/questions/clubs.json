@@ -109,7 +109,7 @@
     {
       "id": 7009,
       "level": 1,
-      "question": "What is the name of Arsenal's current stadium?",
+      "question": "What is the name of the stadium Arsenal moved into in 2006?",
       "options": [
         "The Emirates Stadium",
         "Highbury",
@@ -117,7 +117,7 @@
         "Craven Cottage"
       ],
       "answerIndex": 0,
-      "explanation": "The club moved there in 2006."
+      "explanation": "It holds more than 60,000 spectators."
     },
     {
       "id": 7010,
@@ -169,7 +169,7 @@
         "Amsterdam"
       ],
       "answerIndex": 3,
-      "explanation": "The most successful club in Dutch history."
+      "explanation": "By the end of the 2025-26 season, Ajax were the most successful club in Dutch history."
     },
     {
       "id": 7014,
@@ -226,15 +226,15 @@
     {
       "id": 7018,
       "level": 2,
-      "question": "What is the name of Atlético Madrid's current stadium?",
+      "question": "What is the name of the stadium Atlético Madrid moved into in 2017?",
       "options": [
         "Vicente Calderón",
-        "Boot Farm",
+        "Riazor",
         "Santiago Bernabéu",
         "Metropolitano"
       ],
       "answerIndex": 3,
-      "explanation": "The club moved there in 2017."
+      "explanation": "It replaced the Vicente Calderón, the club's home since 1966."
     },
     {
       "id": 7019,
@@ -590,7 +590,7 @@
     {
       "id": 7046,
       "level": 5,
-      "question": "Which Spanish club has won the most Europa League titles?",
+      "question": "By the end of the 2025-26 season, which Spanish club had won the most Europa League titles?",
       "options": [
         "Valencia",
         "Villarreal",
@@ -915,20 +915,20 @@
     {
       "id": 7071,
       "level": 8,
-      "question": "Which English club has won the most league titles overall?",
+      "question": "By the end of the 2025-26 season, which two clubs shared the record for English top-flight league titles, with 20 each?",
       "options": [
-        "Liverpool",
-        "Everton",
-        "Arsenal",
-        "Manchester United"
+        "Liverpool and Everton",
+        "Arsenal and Chelsea",
+        "Manchester United and Arsenal",
+        "Manchester United and Liverpool"
       ],
       "answerIndex": 3,
-      "explanation": "Twenty titles, spanning both the pre- and post-Premier League eras."
+      "explanation": "Liverpool matched Manchester United's long-standing total by winning the 2024-25 Premier League."
     },
     {
       "id": 7072,
       "level": 8,
-      "question": "Which English club has won the most FA Cups?",
+      "question": "By the end of the 2025-26 season, which English club had won the most FA Cups?",
       "options": [
         "Manchester United",
         "Arsenal",
@@ -936,7 +936,7 @@
         "Liverpool"
       ],
       "answerIndex": 1,
-      "explanation": "Arsenal top the list of winners of the world's oldest cup competition."
+      "explanation": "Arsenal top the list with 14 titles in the world's oldest cup competition."
     },
     {
       "id": 7073,
@@ -1027,17 +1027,17 @@
         "Maracanã"
       ],
       "answerIndex": 0,
-      "explanation": "The first stadium to host two World Cup finals."
+      "explanation": "It opened in 1966 and is the traditional home of the Mexico national team."
     },
     {
       "id": 7080,
       "level": 8,
-      "question": "How many times has the Azteca hosted a World Cup final?",
+      "question": "After the 2026 World Cup, how many times had the Azteca staged a World Cup final?",
       "options": [
         "Once",
         "Twice",
         "Three times",
-        "Never"
+        "Four times"
       ],
       "answerIndex": 1,
       "explanation": "The 1970 and 1986 finals."
@@ -1053,7 +1053,7 @@
         "1912"
       ],
       "answerIndex": 1,
-      "explanation": "Founded by Englishmen living in the city of Milan."
+      "explanation": "Founded in December 1899, the club won its first Italian title in 1901."
     },
     {
       "id": 7082,
@@ -1066,7 +1066,7 @@
         "To distinguish it from Inter"
       ],
       "answerIndex": 1,
-      "explanation": "The club has kept the English spelling since its founding."
+      "explanation": "The club kept the English spelling, except under Fascism, when it was forced to use \"Milano\"."
     },
     {
       "id": 7083,
@@ -1136,7 +1136,7 @@
     {
       "id": 7088,
       "level": 9,
-      "question": "Which Uruguayan club is the most successful in the country's history?",
+      "question": "By the end of the 2025-26 season, which Uruguayan club was the most successful in the country's history?",
       "options": [
         "Danubio",
         "Nacional",
@@ -1144,7 +1144,7 @@
         "Peñarol"
       ],
       "answerIndex": 3,
-      "explanation": "One of the most successful clubs in South America continentally."
+      "explanation": "One of the most successful clubs in the history of the Copa Libertadores."
     },
     {
       "id": 7089,
@@ -1157,20 +1157,20 @@
         "Pumas"
       ],
       "answerIndex": 2,
-      "explanation": "Mexico's most decorated and popular club."
+      "explanation": "By the end of the 2025-26 season, América were Mexico's most decorated club, as well as one of its most popular."
     },
     {
       "id": 7090,
       "level": 9,
-      "question": "Which Scottish club has won the European Cup?",
+      "question": "What is Argentine club River Plate's traditional nickname?",
       "options": [
-        "Rangers",
-        "Celtic",
-        "Aberdeen",
-        "Hearts"
+        "The Academy",
+        "The Millionaires",
+        "The Red Devils",
+        "The Crows"
       ],
       "answerIndex": 1,
-      "explanation": "Celtic won in 1967 with a team whose players were all born near Glasgow."
+      "explanation": "It dates from the early 1930s, when River spent heavily on signings such as Bernabé Ferreyra."
     },
     {
       "id": 7091,
@@ -1196,7 +1196,7 @@
         "The Knights"
       ],
       "answerIndex": 1,
-      "explanation": "Thrylos, the most successful club in Greek history."
+      "explanation": "By the end of the 2025-26 season, Olympiacos, known in Greek as Thrylos, were the most successful club in Greek history."
     },
     {
       "id": 7093,
@@ -1209,7 +1209,7 @@
         "Blackburn"
       ],
       "answerIndex": 2,
-      "explanation": "It became Everton in 1879, and Liverpool split off from it in 1892."
+      "explanation": "It took the name Everton in 1879, after the district where the club was formed."
     },
     {
       "id": 7094,
@@ -1266,7 +1266,7 @@
     {
       "id": 7098,
       "level": 10,
-      "question": "Which Italian club is nicknamed \"Il Toro\" and contests the Turin derby with Juventus?",
+      "question": "Which Italian club is nicknamed \"Il Toro\" and contests a city derby with Juventus?",
       "options": [
         "Bologna",
         "Sampdoria",
@@ -1274,7 +1274,7 @@
         "Torino"
       ],
       "answerIndex": 3,
-      "explanation": "Il Toro, whose legendary side was lost in the 1949 Superga air disaster."
+      "explanation": "After the bull on the city of Turin's coat of arms."
     },
     {
       "id": 7099,
@@ -1292,15 +1292,15 @@
     {
       "id": 7100,
       "level": 10,
-      "question": "Which Portuguese club's name is linked to \"the Guttmann Curse\"?",
+      "question": "Which is Italy's oldest active football club, founded in 1893?",
       "options": [
-        "Porto",
-        "Benfica",
-        "Sporting",
-        "Braga"
+        "Juventus",
+        "Genoa",
+        "Torino",
+        "Milan"
       ],
       "answerIndex": 1,
-      "explanation": "Benfica have not won a European title since the coach departed in 1962."
+      "explanation": "English expatriates founded it in 1893 as Genoa Cricket and Athletic Club."
     }
   ]
 }

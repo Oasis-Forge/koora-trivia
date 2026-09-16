@@ -41,6 +41,8 @@
 - English store screenshots: 5 × 1080×1920 in `screenshots/store_9x16_en/` (home, categories, levels, question, answer feedback) for the en-US listing. The Arabic set in `screenshots/store_9x16/` was recaptured the same way in the v1.0.6 design.
 - 14 September 2026 (owner): v1.0.6+7 uploaded to Play Console for review with the English (en-US) store listing; v1.0.5 was skipped.
 - 15 September 2026 (owner, Play Console): v1.0.6 is on internal and closed testing · the Arabic and English v1.0.6-design screenshots and the English feature graphic are uploaded · the "Some languages have errors" warning is gone. Left: the pre-launch report once Google approves.
+- 15 September 2026: the daily challenge plays 2 easy, 3 medium and 2 hard questions, easiest first, and repeats no question within a 133-day cycle · a claimed task's count stops at its goal instead of «21 / 10».
+- 16 September 2026, question bank in both languages: 40 questions that repeated a fact from another question replaced (the overlap rules pick the copy kept) · no explanation gives away a later answer in its level · no time-relative wording, and counts and records that can change within a few years anchored to «حتى نهاية موسم 2025-2026» / "By the end of the 2025-26 season" or «بعد كأس العالم 2026» / "After the 2026 World Cup" (owner's decision) · more than a dozen wrong facts found on the way corrected (e.g. 4080, 9030, 10023) · `question_content_test` guards all three.
 - PR #7, merged 14 September 2026: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
 - PR #6, merged 13 September 2026: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
 - PR #5, merged 13 September 2026: ads wait for UMP consent (`canRequestAds()`) and start at launch instead of when Settings, the result screen or the shop first opens · Settings privacy row with ad privacy options and the policy link · the rewarded-ad button enables when an ad loads and failed loads retry with backoff and on resume, as does a failed consent update · Data safety docs list what AdMob collects · privacy policy source updated · the manifest's AdMob comment fixed · the Arabic DATA_SAFETY.md copy deleted.
@@ -72,7 +74,7 @@
 ## Phase 2: first update after launch
 
 ### Bugs
-- **P3 · S**: A daily task's progress can read past its goal («21 / 10» after claiming); cap the shown count at the goal *(tasks_screen.dart)*.
+- None open.
 
 ### UI/UX
 - **P2 · S**: The coin badge looks like a shop button, has a 48 dp tap target, and also works on the Tasks screen.
@@ -86,9 +88,7 @@
   - Announce answer feedback to TalkBack.
 
 ### Content
-- **P2 · M**: 32 facts appear twice in different categories, and one level has three Switzerland-2006 questions. Keep one copy of each according to the overlap rules, and add a test that catches near-duplicates with the same answer.
-- **P2 · M**: Some explanations reveal the answer to a later question in the same level (1001→1006, 5029→5030…); fix them and add a test. Also fix the 51 questions whose answer gives itself away by length or by repeating a word from the question (laws levels 4–9 first).
-- **P2 · M**: Tie record and count questions to a year (1002, 1019, 3015, 5081, 5100…). Add a test banning «حالياً», «الحالي» and «حتى الآن» without a year, and add a post-tournament re-check step to CLAUDE.md.
+- **P2 · M**: Fix the 51 questions whose answer gives itself away by length or by repeating a word from the question (laws levels 4–9 first; 2091's two-name answer is another).
 
 ### Release & tech debt
 - **P2 · S**: CI: GitHub Actions runs analyze and test on every PR with Flutter 3.44.8, once in UTC and once in a western time zone.
@@ -102,7 +102,6 @@
   - Release builds fail when key.properties is missing.
 
 ### Features
-- **P1 · M**: Daily challenge: no repeated questions within a cycle and an even difficulty mix (e.g. 2 easy, 3 medium, 2 hard) *(quiz_repository_impl.dart)*. Ship soon after the seed fix so daily sets change only once.
 - **P1 · M**: Streak protection bought with coins, plus rewards at 7, 30 and 100 days. Price per decision *(update_streak.dart, user_stats.dart)*.
 - **P1 · L**: World Cup 2026 pack: about 100 lasting, person-checked questions, released while interest is high. Placement per decision.
 - **P2 · S**: Quick play skips recently seen questions and prefers unlocked levels. Add the new storage key to the backup list.

@@ -51,8 +51,26 @@ challenge uses `SeededRandom(seed + q.id)` · quick play is random.
    numeric options unchanged. English is British, with football wording and English Wikipedia's spelling of
    names. `english_bank_test` fails on any mismatch.
 
+8. **No time-relative wording without a year** — «حالياً», «الحالي», «حتى الآن», «حتى اليوم», «العقد الأخير» /
+   currently, current, so far, to date, last decade. Guarded by `question_content_test`.
+   Counts and records that could change within a few years (title counts, "most" records, caps, all-time top scorers
+   near active players) use one of two anchors, preferably at the start (owner's decision, 16 September 2026):
+   - club football, including the Ballon d'Or: «حتى نهاية موسم 2025-2026،» / "By the end of the 2025-26 season,"
+   - national teams: «بعد كأس العالم 2026،» / "After the 2026 World Cup,"
+
+   One-off feats (fastest goal, youngest scorer), rules and formats, and finished careers stay unanchored.
+9. **An explanation never names the answer of a later question in the same level.** Levels play in id order and
+   the explanation shows right after each answer. Guarded by `question_content_test` (implied spoilers need a
+   reader).
+
 > Rule 4's near-duplicate check normalises its filler words the same way as the question text
-> (`_fingerprint` in `question_bank_test.dart`, fixed 14 September 2026).
+> (`_fingerprint` in `question_bank_test.dart`, fixed 14 September 2026). Since 15 September 2026
+> `question_content_test` also compares the English wording (same answer and ≥ 50% shared words, or ≥ 70%
+> shared words; questions naming different years are a series, not duplicates).
+
+**After every World Cup, Euro, Copa América, Africa Cup of Nations, Asian Cup and Champions League final**, re-check
+the questions about records, counts and "first/only/most" claims in both languages. Grep for the two anchor phrases
+first; when moving them forward (e.g. to the 2026-27 season), confirm every answer at the new anchor.
 
 ### Rules for resolving category overlap
 

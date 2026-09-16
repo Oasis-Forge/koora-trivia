@@ -44,7 +44,7 @@
     {
       "id": 10004,
       "level": 1,
-      "question": "Who has the most international caps in the history of men's football?",
+      "question": "After the 2026 World Cup, who had the most international caps in the history of men's football?",
       "options": [
         "Bader Al-Mutawa",
         "Ahmed Hassan",
@@ -57,7 +57,7 @@
     {
       "id": 10005,
       "level": 1,
-      "question": "Who holds the record for the most goals scored in a single calendar year?",
+      "question": "By the end of the 2025-26 season, who held the record for the most goals scored in a single calendar year?",
       "options": [
         "Lionel Messi",
         "Cristiano Ronaldo",
@@ -83,15 +83,15 @@
     {
       "id": 10007,
       "level": 1,
-      "question": "Which club stunned the world by winning the English league in 2015-16?",
+      "question": "Which two nations played the first official international football match in 1872?",
       "options": [
-        "Leicester City",
-        "Southampton",
-        "Everton",
-        "Tottenham"
+        "Scotland and England",
+        "England and Wales",
+        "Scotland and Ireland",
+        "England and Ireland"
       ],
       "answerIndex": 0,
-      "explanation": "They started the season at 5000-1 odds."
+      "explanation": "The match finished 0-0 in Glasgow in front of around 4,000 spectators."
     },
     {
       "id": 10008,
@@ -187,28 +187,28 @@
     {
       "id": 10015,
       "level": 2,
-      "question": "Which side won Euro 1992 despite not originally qualifying?",
+      "question": "In which year did British and German soldiers famously play an impromptu football match during a Christmas truce on the Western Front?",
       "options": [
-        "Germany",
-        "Sweden",
-        "Netherlands",
-        "Denmark"
+        "1916",
+        "1917",
+        "1915",
+        "1914"
       ],
       "answerIndex": 3,
-      "explanation": "Denmark were called up days before, replacing Yugoslavia."
+      "explanation": "Troops climbed out of the trenches and played an unofficial match in no-man's-land."
     },
     {
       "id": 10016,
       "level": 2,
-      "question": "Which side stunned the world by winning Euro 2004?",
+      "question": "What was the name of the dog that found the stolen World Cup trophy months before the 1966 tournament in England?",
       "options": [
-        "Portugal",
-        "Netherlands",
-        "Czech Republic",
-        "Greece"
+        "Rex",
+        "Fido",
+        "Rover",
+        "Pickles"
       ],
       "answerIndex": 3,
-      "explanation": "Greece beat hosts Portugal in the final."
+      "explanation": "The trophy had been stolen from a public exhibition in London and was found wrapped in newspaper under a hedge."
     },
     {
       "id": 10017,
@@ -239,59 +239,59 @@
     {
       "id": 10019,
       "level": 2,
-      "question": "Which side finished the 2003-04 English league season unbeaten?",
+      "question": "Who became the first woman to referee a men's World Cup match, at the 2022 tournament in Qatar?",
       "options": [
-        "Arsenal",
-        "Manchester United",
-        "Chelsea",
-        "Liverpool"
+        "Stephanie Frappart",
+        "Bibiana Steinhaus",
+        "Kateryna Monzul",
+        "Riem Hussein"
       ],
       "answerIndex": 0,
-      "explanation": "The side known as \"The Invincibles\"."
+      "explanation": "The French official took charge of the Germany v Costa Rica group match."
     },
     {
       "id": 10020,
       "level": 2,
-      "question": "Which African side stunned everyone by winning the 2012 Africa Cup of Nations?",
+      "question": "Which Dutch player showed off a famous dribbling move against Sweden at the 1974 World Cup, a move later named after him?",
       "options": [
-        "Ivory Coast",
-        "Mali",
-        "Ghana",
-        "Zambia"
+        "Johan Neeskens",
+        "Rob Rensenbrink",
+        "Johnny Rep",
+        "Johan Cruyff"
       ],
       "answerIndex": 3,
-      "explanation": "Zambia won on penalties in Libreville."
+      "explanation": "The \"Cruyff Turn\" left Swedish defender Jan Olsson wrong-footed in a goalless group match."
     },
     {
       "id": 10021,
       "level": 3,
-      "question": "What is the record for the most goals by one player at a single World Cup?",
+      "question": "Which Colombian goalkeeper cleared the ball with his famous \"scorpion kick\" against England at Wembley in 1995?",
       "options": [
-        "13",
-        "11",
-        "15",
-        "9"
+        "Rene Higuita",
+        "Oscar Cordoba",
+        "Faryd Mondragon",
+        "Miguel Calero"
       ],
       "answerIndex": 0,
-      "explanation": "Just Fontaine scored 13 goals in 1958."
+      "explanation": "He leapt forward and hooked the looping ball away with his heels over his head, in a goalless friendly."
     },
     {
       "id": 10022,
       "level": 3,
-      "question": "What was Milan's longest unbeaten run in Serie A in the early 1990s?",
+      "question": "Which Swedish player scored a spectacular 30-yard bicycle kick against England in a 2012 friendly, later winning the Puskas Award?",
       "options": [
-        "45",
-        "52",
-        "58",
-        "62"
+        "Henrik Larsson",
+        "Freddie Ljungberg",
+        "Zlatan Ibrahimovic",
+        "Marcus Berg"
       ],
       "answerIndex": 2,
-      "explanation": "A record that stood for decades in Italian football."
+      "explanation": "He scored all four of Sweden's goals in a 4-2 win at the Friends Arena."
     },
     {
       "id": 10023,
       "level": 3,
-      "question": "Which national team holds the record for the longest run of consecutive wins in international matches?",
+      "question": "Which national team won 15 international matches in a row between 2008 and 2009, a world record at the time?",
       "options": [
         "Brazil",
         "Germany",
@@ -299,7 +299,7 @@
         "France"
       ],
       "answerIndex": 2,
-      "explanation": "Fifteen wins in a row between 2008 and 2009."
+      "explanation": "The run began at Euro 2008 and ended in the semi-finals of the 2009 Confederations Cup."
     },
     {
       "id": 10024,
@@ -317,15 +317,15 @@
     {
       "id": 10025,
       "level": 3,
-      "question": "For how many consecutive matches did Van der Sar keep a clean sheet in 2009?",
+      "question": "Which country pulled off a shock 1-0 win over England at the 1950 World Cup, a result later nicknamed the \"Miracle on Grass\"?",
       "options": [
-        "10",
-        "12",
-        "16",
-        "14"
+        "Chile",
+        "Mexico",
+        "Sweden",
+        "United States"
       ],
       "answerIndex": 3,
-      "explanation": "1,311 minutes without conceding in the Premier League."
+      "explanation": "Joe Gaetjens scored with a diving header that redirected Walter Bahr's shot in Belo Horizonte."
     },
     {
       "id": 10026,
@@ -455,7 +455,7 @@
         "Van Persie's handball"
       ],
       "answerIndex": 0,
-      "explanation": "Luis Suarez blocked the ball on the line with his hand, and Ghana then missed the penalty."
+      "explanation": "Suarez blocked the ball on the goal line with his hand, and Ghana then missed the resulting penalty."
     },
     {
       "id": 10036,
@@ -473,7 +473,7 @@
     {
       "id": 10037,
       "level": 4,
-      "question": "What is the record for the most goals by a single club in a Premier League season?",
+      "question": "By the end of the 2025-26 season, what was the Premier League record for the most goals scored by a club in a single season?",
       "options": [
         "97 goals",
         "103 goals",
@@ -642,15 +642,15 @@
     {
       "id": 10050,
       "level": 5,
-      "question": "How long is the longest run of consecutive wins by a national team?",
+      "question": "After the 2026 World Cup, how long was the longest run of consecutive wins by a men's national team?",
       "options": [
         "15 matches",
         "17 matches",
-        "12 matches",
-        "More than 20 matches"
+        "21 matches",
+        "19 matches"
       ],
       "answerIndex": 3,
-      "explanation": "Several national teams have posted runs of more than twenty wins in a row."
+      "explanation": "Morocco won 19 matches in a row between 2024 and 2025."
     },
     {
       "id": 10051,
@@ -681,28 +681,28 @@
     {
       "id": 10053,
       "level": 6,
-      "question": "Who scored the most goals in a single Champions League season?",
+      "question": "Which player was mistakenly shown three yellow cards by referee Graham Poll before finally being sent off at the 2006 World Cup?",
       "options": [
-        "Ruud van Nistelrooy",
-        "Robert Lewandowski",
-        "Lionel Messi",
-        "Cristiano Ronaldo"
+        "Craig Moore",
+        "Niko Kovac",
+        "Dario Simic",
+        "Josip Simunic"
       ],
       "answerIndex": 3,
-      "explanation": "17 goals in the 2013-14 season."
+      "explanation": "Poll lost track of the bookings in Croatia's group match against Australia."
     },
     {
       "id": 10054,
       "level": 6,
-      "question": "What is the biggest win in Champions League history?",
+      "question": "How many red cards were shown in the record-breaking 2011 match between Claypole and Victoriano Arenas, in Argentina's fifth tier?",
       "options": [
-        "Liverpool 8-0 Besiktas",
-        "Bayern 8-2 Barcelona",
-        "Real Madrid 8-0 Malmo",
-        "Barcelona 7-0 Celtic"
+        "36",
+        "22",
+        "28",
+        "41"
       ],
       "answerIndex": 0,
-      "explanation": "Played in 2007 at Anfield."
+      "explanation": "After a mass brawl, the referee sent off all 22 players, plus substitutes and coaching staff."
     },
     {
       "id": 10055,
@@ -741,7 +741,7 @@
         "13"
       ],
       "answerIndex": 1,
-      "explanation": "A record in the competition's history."
+      "explanation": "By the end of the 2025-26 season, no player had scored in more consecutive Champions League matches."
     },
     {
       "id": 10058,
@@ -772,28 +772,28 @@
     {
       "id": 10060,
       "level": 6,
-      "question": "Who scored the fastest goal in World Cup final history?",
+      "question": "In 2000, which Japanese player broke the record for the fastest hat-trick in international football, scoring three in 3 minutes 15 seconds against Brunei?",
       "options": [
-        "Geoff Hurst",
-        "Paul Breitner",
-        "Johan Neeskens",
-        "Mario Kempes"
+        "Kazuyoshi Miura",
+        "Shunsuke Nakamura",
+        "Masashi Nakayama",
+        "Hidetoshi Nakata"
       ],
       "answerIndex": 2,
-      "explanation": "From a penalty in the second minute in 1974."
+      "explanation": "He beat a record that had stood since 1938, during an Asian Cup qualifier."
     },
     {
       "id": 10061,
       "level": 7,
-      "question": "Which side finished the 2023-24 Bundesliga season unbeaten?",
+      "question": "After the 2026 World Cup, which country had waited longest between two World Cup titles, at 44 years?",
       "options": [
-        "Bayern Munich",
-        "Leipzig",
-        "Stuttgart",
-        "Bayer Leverkusen"
+        "Uruguay",
+        "Argentina",
+        "Germany",
+        "Italy"
       ],
       "answerIndex": 3,
-      "explanation": "The first side to do it in the history of the German league."
+      "explanation": "Paolo Rossi's goals fired Italy to their third title at the 1982 World Cup in Spain, 44 years after their 1938 triumph."
     },
     {
       "id": 10062,
@@ -824,7 +824,7 @@
     {
       "id": 10064,
       "level": 7,
-      "question": "Who is the most decorated player in the history of the European Cup?",
+      "question": "Which player was the first to reach six European Cup/Champions League titles, a tally later matched by four Real Madrid players?",
       "options": [
         "Alfredo Di Stefano",
         "Paolo Maldini",
@@ -832,33 +832,33 @@
         "Francisco Gento"
       ],
       "answerIndex": 3,
-      "explanation": "Six titles with Real Madrid in the 1950s and 1960s."
+      "explanation": "Gento won all six with Real Madrid between 1956 and 1966; Luka Modric, Toni Kroos, Dani Carvajal and Nacho reached six in 2024."
     },
     {
       "id": 10065,
       "level": 7,
-      "question": "How many goals did Higuain score in the 2015-16 season, breaking the Serie A record?",
+      "question": "Who scored the fastest goal in FA Cup final history, netting after just 13 seconds in the 2023 final?",
       "options": [
-        "33",
-        "36",
-        "38",
-        "31"
+        "Erling Haaland",
+        "Ilkay Gundogan",
+        "Kevin De Bruyne",
+        "Bruno Fernandes"
       ],
       "answerIndex": 1,
-      "explanation": "36 goals in a 38-match season with Napoli."
+      "explanation": "His long-range volley put Manchester City ahead of Manchester United at Wembley."
     },
     {
       "id": 10066,
       "level": 7,
-      "question": "How many Bundesliga goals did Lewandowski score in the 2020-21 season?",
+      "question": "Who holds the record for the fastest goal at a European Championship, scored after just 23 seconds at Euro 2024?",
       "options": [
-        "39",
-        "40",
-        "43",
-        "41"
+        "Dmitri Kirichenko",
+        "Milan Baros",
+        "Antonin Panenka",
+        "Nedim Bajrami"
       ],
       "answerIndex": 3,
-      "explanation": "He passed Gerd Muller's record of 40 goals."
+      "explanation": "The Albanian scored against Italy in both teams' first group match, pouncing on a poor throw-in."
     },
     {
       "id": 10067,
@@ -884,12 +884,12 @@
         "15"
       ],
       "answerIndex": 1,
-      "explanation": "A record in Premier League history."
+      "explanation": "He broke Ruud van Nistelrooy's record of 10 matches in a row."
     },
     {
       "id": 10069,
       "level": 7,
-      "question": "Which national team scored the most goals at a single World Cup?",
+      "question": "After the 2026 World Cup, which national team had scored the most goals at a single World Cup?",
       "options": [
         "France 1958",
         "Brazil 1970",
@@ -902,15 +902,15 @@
     {
       "id": 10070,
       "level": 7,
-      "question": "Which national team lost the World Cup final despite scoring the most goals in the tournament?",
+      "question": "At Euro 2016, which nation, with a population of about 330,000 at the time, became the smallest ever to play at a European Championship?",
       "options": [
-        "Brazil 1998",
-        "Netherlands 1974",
-        "Hungary 1954",
-        "Germany 2002"
+        "Wales",
+        "Northern Ireland",
+        "Iceland",
+        "Slovakia"
       ],
       "answerIndex": 2,
-      "explanation": "They lost to West Germany in the \"Miracle of Bern\"."
+      "explanation": "They beat England in the last 16 before losing to hosts France."
     },
     {
       "id": 10071,
@@ -980,15 +980,15 @@
     {
       "id": 10076,
       "level": 8,
-      "question": "Which side lost three Champions League finals in a single decade without a win?",
+      "question": "How many people died in the 1971 Ibrox disaster, a crush on a stairway as fans left a Rangers v Celtic match?",
       "options": [
-        "Arsenal",
-        "Atletico Madrid",
-        "Valencia",
-        "Tottenham"
+        "45",
+        "66",
+        "78",
+        "53"
       ],
       "answerIndex": 1,
-      "explanation": "Atletico lost the 2014 and 2016 finals, in addition to earlier finals."
+      "explanation": "The crush happened on Stairway 13 at the end of a 1-1 draw, moments after Colin Stein's late equaliser."
     },
     {
       "id": 10077,
@@ -1084,15 +1084,15 @@
     {
       "id": 10084,
       "level": 9,
-      "question": "Which player scored in five different European Cup finals?",
+      "question": "Which European club competition was abolished in 1999 and merged into the UEFA Cup?",
       "options": [
-        "Cristiano Ronaldo",
-        "Ferenc Puskas",
-        "Alfredo Di Stefano",
-        "Paolo Maldini"
+        "The Inter-Cities Fairs Cup",
+        "The Intertoto Cup",
+        "The Cup Winners' Cup",
+        "The UEFA Super Cup"
       ],
       "answerIndex": 2,
-      "explanation": "He scored in Real Madrid's first five finals."
+      "explanation": "It had been contested since 1960 by the winners of each country's domestic cup."
     },
     {
       "id": 10085,
@@ -1123,20 +1123,20 @@
     {
       "id": 10087,
       "level": 9,
-      "question": "Who was the first player to win the Champions League with three different clubs?",
+      "question": "Which English club's stadium suffered a devastating fire in 1985 that killed 56 people?",
       "options": [
-        "Zlatan Ibrahimovic",
-        "Samuel Eto'o",
-        "Clarence Seedorf",
-        "Angel Di Maria"
+        "Luton Town",
+        "Millwall",
+        "Bradford City",
+        "Port Vale"
       ],
       "answerIndex": 2,
-      "explanation": "He won it with Ajax, Real Madrid and Milan."
+      "explanation": "The fire broke out in the main stand at Valley Parade during a match against Lincoln City."
     },
     {
       "id": 10088,
       "level": 9,
-      "question": "Which national team recorded the longest run without conceding a goal at a World Cup?",
+      "question": "Which national team is the only one in World Cup history to be eliminated without conceding a single goal?",
       "options": [
         "Italy",
         "England",
@@ -1144,33 +1144,33 @@
         "Brazil"
       ],
       "answerIndex": 2,
-      "explanation": "Switzerland kept a clean sheet throughout the 2006 World Cup and went out on penalties."
+      "explanation": "Switzerland kept a clean sheet throughout the 2006 World Cup, before losing to Ukraine on penalties in the last 16."
     },
     {
       "id": 10089,
       "level": 9,
-      "question": "Which national team left the World Cup without conceding a goal in normal time?",
+      "question": "Who became the first substitute used in English league football, coming on for Charlton Athletic in 1965?",
       "options": [
-        "Italy 1990",
-        "Switzerland 2006",
-        "Belgium 1986",
-        "Argentina 1990"
+        "Terry Venables",
+        "Keith Peacock",
+        "Ron Harris",
+        "Bobby Moncur"
       ],
       "answerIndex": 1,
-      "explanation": "They went out on penalties without scoring a single kick."
+      "explanation": "He replaced an injured goalkeeper away at Bolton Wanderers on the opening day of the season."
     },
     {
       "id": 10090,
       "level": 9,
-      "question": "How many penalties did Switzerland score when they went out of the 2006 World Cup?",
+      "question": "Which two English clubs played the longest competitive football match on record, a 1946 cup tie lasting 3 hours and 23 minutes?",
       "options": [
-        "Zero",
-        "One",
-        "Two",
-        "Three"
+        "Stockport County and Doncaster Rovers",
+        "Rochdale and Bury",
+        "Crewe Alexandra and Port Vale",
+        "Halifax Town and York City"
       ],
       "answerIndex": 0,
-      "explanation": "The only team to miss every one of its kicks in the tournament's history."
+      "explanation": "After extra time, play went on until someone scored, but darkness ended it at 2-2."
     },
     {
       "id": 10091,

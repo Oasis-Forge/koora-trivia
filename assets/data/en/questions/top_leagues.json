@@ -57,7 +57,7 @@
     {
       "id": 4005,
       "level": 1,
-      "question": "Which club has won the German league the most times?",
+      "question": "By the end of the 2025-26 season, which club had won the German league the most times?",
       "options": [
         "Dortmund",
         "Bayern Munich",
@@ -70,7 +70,7 @@
     {
       "id": 4006,
       "level": 1,
-      "question": "Which club has won La Liga the most times?",
+      "question": "By the end of the 2025-26 season, which club had won La Liga the most times?",
       "options": [
         "Real Madrid",
         "Barcelona",
@@ -109,7 +109,7 @@
     {
       "id": 4009,
       "level": 1,
-      "question": "Which French club has won the league the most in the last decade?",
+      "question": "Which French club won the most Ligue 1 titles between 2013 and 2025?",
       "options": [
         "Marseille",
         "Lyon",
@@ -117,12 +117,12 @@
         "Monaco"
       ],
       "answerIndex": 2,
-      "explanation": "Near-total dominance since 2013."
+      "explanation": "Near-total dominance of the league throughout that period."
     },
     {
       "id": 4010,
       "level": 1,
-      "question": "Which Italian club has won Serie A the most times?",
+      "question": "By the end of the 2025-26 season, which Italian club had won Serie A the most times?",
       "options": [
         "Milan",
         "Juventus",
@@ -135,7 +135,7 @@
     {
       "id": 4011,
       "level": 2,
-      "question": "In what year was the Premier League founded in its current form?",
+      "question": "In what year was the Premier League founded, replacing the old First Division as the top tier?",
       "options": [
         "1988",
         "1996",
@@ -408,15 +408,15 @@
     {
       "id": 4032,
       "level": 4,
-      "question": "How many goals did Messi score in all competitions for Barcelona in 2011-2012?",
+      "question": "How many clubs are relegated from La Liga to the second division each season?",
       "options": [
-        "61",
-        "68",
-        "79",
-        "73"
+        "2",
+        "4",
+        "1",
+        "3"
       ],
       "answerIndex": 3,
-      "explanation": "73 goals, a record for a single European season."
+      "explanation": "The bottom three clubs in the table drop down, swapping places with three promoted sides."
     },
     {
       "id": 4033,
@@ -455,7 +455,7 @@
         "Jamie Vardy"
       ],
       "answerIndex": 3,
-      "explanation": "Vardy scored in 11 consecutive matches, breaking a record."
+      "explanation": "Vardy scored 24 league goals that season."
     },
     {
       "id": 4036,
@@ -473,7 +473,7 @@
     {
       "id": 4037,
       "level": 4,
-      "question": "Which French club won the league ten times in a row during the 1970s and 1980s?",
+      "question": "Which French club won the league four times in a row between 1989 and 1992?",
       "options": [
         "Saint-Etienne",
         "Nantes",
@@ -481,7 +481,7 @@
         "Marseille"
       ],
       "answerIndex": 3,
-      "explanation": "Marseille dominated in the early nineties, but Saint-Etienne hold ten historic titles."
+      "explanation": "Marseille also finished top in 1993, but they were stripped of that title over a match-fixing scandal."
     },
     {
       "id": 4038,
@@ -525,20 +525,20 @@
     {
       "id": 4041,
       "level": 5,
-      "question": "Who holds the record for most Premier League appearances?",
+      "question": "Which player broke Gareth Barry's Premier League appearance record in 2026?",
       "options": [
         "Ryan Giggs",
-        "James Milner",
         "Frank Lampard",
-        "Gareth Barry"
+        "Jordan Henderson",
+        "James Milner"
       ],
       "answerIndex": 3,
-      "explanation": "Gareth Barry played 653 Premier League matches."
+      "explanation": "Milner passed Barry's long-standing mark of 653 appearances during the 2025-26 season."
     },
     {
       "id": 4042,
       "level": 5,
-      "question": "Who has won the most Premier League titles as a player?",
+      "question": "By the end of the 2025-26 season, who had won the most Premier League titles as a player?",
       "options": [
         "Ryan Giggs",
         "Paul Scholes",
@@ -546,7 +546,7 @@
         "Wayne Rooney"
       ],
       "answerIndex": 0,
-      "explanation": "Giggs won thirteen titles with Manchester United."
+      "explanation": "Thirteen league titles, a record no other player had matched."
     },
     {
       "id": 4043,
@@ -655,20 +655,20 @@
     {
       "id": 4051,
       "level": 6,
-      "question": "Which manager won the Premier League with two different clubs in the last decade?",
+      "question": "By the end of the 2025-26 season, which manager had led both Borussia Monchengladbach and Bayern Munich to the Bundesliga title?",
       "options": [
-        "Pep Guardiola",
-        "Jose Mourinho",
-        "Jurgen Klopp",
-        "Antonio Conte"
+        "Jupp Heynckes",
+        "Udo Lattek",
+        "Felix Magath",
+        "Ottmar Hitzfeld"
       ],
       "answerIndex": 1,
-      "explanation": "Mourinho lifted trophies with Chelsea and then Manchester United, and won the league with Chelsea across two spells."
+      "explanation": "Six titles with Bayern and two with Gladbach: eight in all, the most by any Bundesliga coach."
     },
     {
       "id": 4052,
       "level": 6,
-      "question": "Who has won the most Premier League titles as a manager?",
+      "question": "By the end of the 2025-26 season, who had won the most Premier League titles as a manager?",
       "options": [
         "Alex Ferguson",
         "Arsene Wenger",
@@ -759,7 +759,7 @@
     {
       "id": 4059,
       "level": 6,
-      "question": "Roughly how many La Liga titles does Real Madrid hold?",
+      "question": "By the end of the 2025-26 season, how many La Liga titles had Real Madrid won?",
       "options": [
         "30",
         "36",
@@ -767,20 +767,20 @@
         "40"
       ],
       "answerIndex": 1,
-      "explanation": "Thirty-six titles, making them the most successful club by a wide margin."
+      "explanation": "Thirty-six titles, the most of any Spanish club by a wide margin."
     },
     {
       "id": 4060,
       "level": 6,
-      "question": "Roughly how many La Liga titles does Barcelona hold?",
+      "question": "By the end of the 2025-26 season, how many La Liga titles had Barcelona won?",
       "options": [
         "24",
-        "30",
-        "27",
+        "31",
+        "29",
         "22"
       ],
       "answerIndex": 2,
-      "explanation": "Twenty-seven titles, second on the all-time list."
+      "explanation": "Twenty-nine titles, second on the all-time list behind Real Madrid."
     },
     {
       "id": 4061,
@@ -824,7 +824,7 @@
     {
       "id": 4064,
       "level": 7,
-      "question": "How many Serie A titles does Juventus officially hold?",
+      "question": "By the end of the 2025-26 season, how many Serie A titles had Juventus officially won?",
       "options": [
         "32",
         "36",
@@ -941,7 +941,7 @@
     {
       "id": 4073,
       "level": 8,
-      "question": "How many La Liga titles does Athletic Bilbao hold?",
+      "question": "By the end of the 2025-26 season, how many La Liga titles had Athletic Bilbao won?",
       "options": [
         "6",
         "8",
@@ -1019,15 +1019,15 @@
     {
       "id": 4079,
       "level": 8,
-      "question": "Who is the youngest player ever to score in the Premier League?",
+      "question": "Who is the youngest player to score in the Premier League?",
       "options": [
         "Wayne Rooney",
-        "James Vaughan",
+        "Max Dowman",
         "Cesc Fabregas",
         "Harvey Elliott"
       ],
       "answerIndex": 1,
-      "explanation": "James Vaughan scored for Everton in 2005 aged 16."
+      "explanation": "Arsenal's Dowman broke James Vaughan's 2005 record in March 2026, aged 16 years and 73 days."
     },
     {
       "id": 4080,
@@ -1040,7 +1040,7 @@
         "Brad Friedel"
       ],
       "answerIndex": 2,
-      "explanation": "Goalkeeper Burridge played for Sunderland aged 43."
+      "explanation": "Goalkeeper Burridge played for Manchester City aged 43."
     },
     {
       "id": 4081,
@@ -1053,7 +1053,7 @@
         "Inter"
       ],
       "answerIndex": 0,
-      "explanation": "Milan began a 58-match unbeaten run in that era."
+      "explanation": "Part of the longest unbeaten run in Serie A history."
     },
     {
       "id": 4082,
@@ -1097,7 +1097,7 @@
     {
       "id": 4085,
       "level": 9,
-      "question": "How many times has Manchester United won the Premier League?",
+      "question": "By the end of the 2025-26 season, how many times had Manchester United won the Premier League?",
       "options": [
         "13",
         "11",
@@ -1201,7 +1201,7 @@
     {
       "id": 4093,
       "level": 10,
-      "question": "Which goalkeeper holds the record for most clean sheets in Premier League history?",
+      "question": "By the end of the 2025-26 season, which goalkeeper held the record for most clean sheets in Premier League history?",
       "options": [
         "Edwin van der Sar",
         "David de Gea",
@@ -1253,7 +1253,7 @@
     {
       "id": 4097,
       "level": 10,
-      "question": "Which manager has won the league title in each of the five major European leagues?",
+      "question": "By the end of the 2025-26 season, which manager had won the league title in each of the five major European leagues?",
       "options": [
         "Jose Mourinho",
         "Pep Guardiola",
@@ -1261,7 +1261,7 @@
         "Fabio Capello"
       ],
       "answerIndex": 2,
-      "explanation": "Ancelotti is the only manager to have achieved this."
+      "explanation": "He won the league with Milan, Chelsea, Paris Saint-Germain, Bayern Munich and Real Madrid."
     },
     {
       "id": 4098,

@@ -13,7 +13,7 @@
         "Ismaily"
       ],
       "answerIndex": 1,
-      "explanation": "Al Ahly of Egypt, Africa's most successful club."
+      "explanation": "By the end of the 2025-26 season, Al Ahly were Africa's most successful club."
     },
     {
       "id": 5002,
@@ -26,7 +26,7 @@
         "Al Ahli"
       ],
       "answerIndex": 2,
-      "explanation": "Al Hilal, Asia's most decorated club."
+      "explanation": "By the end of the 2025-26 season, Al Hilal were Asia's most decorated club."
     },
     {
       "id": 5003,
@@ -57,7 +57,7 @@
     {
       "id": 5005,
       "level": 1,
-      "question": "Who is the Egyptian star of Liverpool?",
+      "question": "Which Egyptian star joined Liverpool in 2017?",
       "options": [
         "Mohamed Salah",
         "Mohamed Elneny",
@@ -65,7 +65,7 @@
         "Ahmed Hegazi"
       ],
       "answerIndex": 0,
-      "explanation": "He joined Liverpool in 2017 and became a club icon."
+      "explanation": "Salah spent nine seasons at Liverpool and became a club icon."
     },
     {
       "id": 5006,
@@ -83,7 +83,7 @@
     {
       "id": 5007,
       "level": 1,
-      "question": "Which Arab team has won the Africa Cup of Nations the most times?",
+      "question": "After the 2026 World Cup, which Arab team had won the Africa Cup of Nations the most times?",
       "options": [
         "Algeria",
         "Egypt",
@@ -135,7 +135,7 @@
     {
       "id": 5011,
       "level": 2,
-      "question": "Which Arab club has won the CAF Champions League the most times?",
+      "question": "By the end of the 2025-26 season, which Arab club had won the CAF Champions League the most times?",
       "options": [
         "Esperance of Tunis",
         "Al Ahly",
@@ -213,12 +213,12 @@
     {
       "id": 5017,
       "level": 2,
-      "question": "How many times has Mohamed Salah won African Footballer of the Year?",
+      "question": "By the end of the 2025-26 season, how many times had Mohamed Salah won African Footballer of the Year?",
       "options": [
         "Once",
         "Twice",
         "Three times",
-        "Never"
+        "Four times"
       ],
       "answerIndex": 1,
       "explanation": "He won the award in 2017 and 2018."
@@ -247,12 +247,12 @@
         "Algeria"
       ],
       "answerIndex": 1,
-      "explanation": "Tunisia won on home soil for their only title."
+      "explanation": "After the 2026 World Cup, this remained Tunisia's only Africa Cup of Nations title, won on home soil."
     },
     {
       "id": 5020,
       "level": 2,
-      "question": "Which Qatari club is regarded as one of the country's most successful?",
+      "question": "By the end of the 2025-26 season, which Qatari club had won the most Qatari league titles?",
       "options": [
         "Al Rayyan",
         "Al Sadd",
@@ -260,7 +260,7 @@
         "Al Arabi"
       ],
       "answerIndex": 1,
-      "explanation": "Al Sadd hold the record for Qatari league titles."
+      "explanation": "Al Sadd won their 19th league title in the 2025-26 season."
     },
     {
       "id": 5021,
@@ -304,7 +304,7 @@
     {
       "id": 5024,
       "level": 3,
-      "question": "Which Saudi club has won the AFC Champions League the most times?",
+      "question": "By the end of the 2025-26 season, which Saudi club had won the AFC Champions League the most times?",
       "options": [
         "Al Ittihad",
         "Al Nassr",
@@ -317,7 +317,7 @@
     {
       "id": 5025,
       "level": 3,
-      "question": "How many Asian titles has the Saudi Arabia national team won?",
+      "question": "After the 2026 World Cup, how many Asian titles had the Saudi Arabia national team won?",
       "options": [
         "2",
         "4",
@@ -377,7 +377,7 @@
         "Iraq"
       ],
       "answerIndex": 0,
-      "explanation": "Qatar retained the title by beating Jordan in the final."
+      "explanation": "Qatar retained their continental title in the final, held at Lusail Stadium."
     },
     {
       "id": 5030,
@@ -507,7 +507,7 @@
         "Semi-final"
       ],
       "answerIndex": 2,
-      "explanation": "Saudi Arabia's best World Cup result to date."
+      "explanation": "After the 2026 World Cup, this remained Saudi Arabia's best World Cup result."
     },
     {
       "id": 5040,
@@ -525,15 +525,15 @@
     {
       "id": 5041,
       "level": 5,
-      "question": "Which Algerian player scored the famous \"backheel\" in a 1987 European final?",
+      "question": "Which Moroccan player, nicknamed the \"Black Pearl\", joined Marseille in 1938?",
       "options": [
-        "Rabah Madjer",
-        "Lakhdar Belloumi",
-        "Mustapha Dahleb",
-        "Salim Oujani"
+        "Larbi Benbarek",
+        "Ahmed Faras",
+        "Hassan Akesbi",
+        "Mohamed Timoumi"
       ],
       "answerIndex": 0,
-      "explanation": "Madjer scored with a backheel for Porto in the European Cup final."
+      "explanation": "Benbarek later starred for Atlético Madrid, winning La Liga in 1950 and 1951."
     },
     {
       "id": 5042,
@@ -559,7 +559,7 @@
         "Yousef Al-Thunayan"
       ],
       "answerIndex": 1,
-      "explanation": "The Saudi national team's all-time top scorer."
+      "explanation": "After the 2026 World Cup, he remained Saudi Arabia's all-time top scorer."
     },
     {
       "id": 5044,
@@ -598,7 +598,7 @@
         "Iraq"
       ],
       "answerIndex": 2,
-      "explanation": "Kuwait's only Asian title, won on home soil."
+      "explanation": "After the 2026 World Cup, this remained Kuwait's only Asian Cup title, won on home soil."
     },
     {
       "id": 5047,
@@ -611,7 +611,7 @@
         "UAE"
       ],
       "answerIndex": 3,
-      "explanation": "The UAE's first and, to date, only World Cup appearance."
+      "explanation": "After the 2026 World Cup, this remained the UAE's only World Cup appearance."
     },
     {
       "id": 5048,
@@ -681,7 +681,7 @@
     {
       "id": 5053,
       "level": 6,
-      "question": "How many CAF Champions League titles has Esperance of Tunis won?",
+      "question": "By the end of the 2025-26 season, how many CAF Champions League titles had Esperance of Tunis won?",
       "options": [
         "2",
         "3",
@@ -694,7 +694,7 @@
     {
       "id": 5054,
       "level": 6,
-      "question": "How many CAF Champions League titles has Zamalek won?",
+      "question": "By the end of the 2025-26 season, how many CAF Champions League titles had Zamalek won?",
       "options": [
         "5",
         "4",
@@ -733,7 +733,7 @@
     {
       "id": 5057,
       "level": 6,
-      "question": "Who is Algeria's all-time top scorer?",
+      "question": "After the 2026 World Cup, who was Algeria's all-time top scorer?",
       "options": [
         "Abdelhafid Tasfaout",
         "Rabah Madjer",
@@ -741,7 +741,7 @@
         "Baghdad Bounedjah"
       ],
       "answerIndex": 2,
-      "explanation": "Slimani leads the list by a clear margin."
+      "explanation": "Slimani passed Abdelhafid Tasfaout's record of 36 goals in 2021."
     },
     {
       "id": 5058,
@@ -793,7 +793,7 @@
         "Algeria"
       ],
       "answerIndex": 1,
-      "explanation": "Sudan's only title, won on home soil."
+      "explanation": "After the 2026 World Cup, this remained Sudan's only Africa Cup of Nations title, won by beating Ghana 1-0 in the final."
     },
     {
       "id": 5062,
@@ -837,7 +837,7 @@
     {
       "id": 5065,
       "level": 7,
-      "question": "Which team has won the Arabian Gulf Cup the most times?",
+      "question": "After the 2026 World Cup, which team had won the Arabian Gulf Cup the most times?",
       "options": [
         "Kuwait",
         "Saudi Arabia",
@@ -858,7 +858,7 @@
         "Algeria"
       ],
       "answerIndex": 3,
-      "explanation": "Algeria beat Tunisia 2-0 in extra time."
+      "explanation": "Algeria won the final 2-0 after extra time."
     },
     {
       "id": 5067,
@@ -889,15 +889,15 @@
     {
       "id": 5069,
       "level": 7,
-      "question": "Which Arab team reached the round of 16 at the 2022 World Cup besides Morocco?",
+      "question": "How many points did Qatar collect as hosts of the 2022 World Cup?",
       "options": [
-        "Saudi Arabia",
-        "Tunisia",
-        "Qatar",
-        "No other Arab team did"
+        "3",
+        "1",
+        "2",
+        "0"
       ],
       "answerIndex": 3,
-      "explanation": "Morocco was the only Arab team to advance past the group stage."
+      "explanation": "They lost all three group games, the first World Cup hosts ever to do so."
     },
     {
       "id": 5070,
@@ -910,7 +910,7 @@
         "Qatar"
       ],
       "answerIndex": 0,
-      "explanation": "Tunisia won 1-0 but missed out on goal difference."
+      "explanation": "Tunisia won 1-0 but finished third in their group."
     },
     {
       "id": 5071,
@@ -928,20 +928,20 @@
     {
       "id": 5072,
       "level": 8,
-      "question": "Who was the first Arab player to score in a European Cup final?",
+      "question": "By what score did Egypt lose to Hungary in their only match at the 1934 World Cup?",
       "options": [
-        "Mohamed Salah",
-        "Rabah Madjer",
-        "Samuel Eto'o",
-        "Marouane Chamakh"
+        "3-2",
+        "4-2",
+        "2-1",
+        "4-1"
       ],
       "answerIndex": 1,
-      "explanation": "Madjer scored for Porto in the 1987 final against Bayern Munich."
+      "explanation": "Hungary won the first-round match 4-2, played in Naples, Italy."
     },
     {
       "id": 5073,
       "level": 8,
-      "question": "Which Algerian club has won the CAF Champions League twice?",
+      "question": "Which Algerian club won the CAF Champions League in 2014?",
       "options": [
         "USM Alger",
         "MC Alger",
@@ -949,12 +949,12 @@
         "ES Setif"
       ],
       "answerIndex": 3,
-      "explanation": "ES Setif won in 1988 and 2014."
+      "explanation": "ES Setif beat AS Vita Club of DR Congo on away goals, adding to their first title in 1988."
     },
     {
       "id": 5074,
       "level": 8,
-      "question": "Which Algerian club won Algeria's first African title in 1981?",
+      "question": "Which Algerian club won the African Cup of Champions Clubs in 1981?",
       "options": [
         "USM Alger",
         "MC Alger",
@@ -962,20 +962,20 @@
         "JS Kabylie"
       ],
       "answerIndex": 3,
-      "explanation": "JS Kabylie is one of Algeria's most storied clubs."
+      "explanation": "JS Kabylie won it without losing a match, then lifted the trophy again in 1990."
     },
     {
       "id": 5075,
       "level": 8,
-      "question": "Which Egyptian coach led Al Ahly to multiple African titles?",
+      "question": "Who coached Al Ahly to CAF Champions League titles in 2001, 2005, 2006 and 2008?",
       "options": [
         "Hossam El-Badry",
-        "Manuel Jose",
+        "Manuel José",
         "Mahmoud El Gohary",
         "Pitso Mosimane"
       ],
       "answerIndex": 1,
-      "explanation": "Portugal's Manuel Jose led Al Ahly to four continental titles."
+      "explanation": "Portugal's Manuel José won all four titles with Al Ahly."
     },
     {
       "id": 5076,
@@ -1045,7 +1045,7 @@
     {
       "id": 5081,
       "level": 9,
-      "question": "How many CAF Champions League titles has Al Ahly of Egypt won?",
+      "question": "By the end of the 2025-26 season, how many CAF Champions League titles had Al Ahly of Egypt won?",
       "options": [
         "9",
         "12",
@@ -1118,7 +1118,7 @@
         "Munir El Haddadi"
       ],
       "answerIndex": 2,
-      "explanation": "A prominent Moroccan defender in Europe over the past decade."
+      "explanation": "Benatia played for Bayern Munich from 2014 to 2016, then for Juventus from 2016 to 2019."
     },
     {
       "id": 5087,
@@ -1131,12 +1131,12 @@
         "Mahmoud Mokhtar"
       ],
       "answerIndex": 0,
-      "explanation": "Egypt's Abdulrahman Fawzi scored twice in 1934."
+      "explanation": "Egyptian international Abdulrahman Fawzi scored twice in 1934."
     },
     {
       "id": 5088,
       "level": 9,
-      "question": "Which Arab country has hosted the Africa Cup of Nations the most times?",
+      "question": "After the 2026 World Cup, which Arab country had hosted the Africa Cup of Nations the most times?",
       "options": [
         "Tunisia",
         "Morocco",
@@ -1214,7 +1214,7 @@
     {
       "id": 5094,
       "level": 10,
-      "question": "How many CAF Champions League titles has Wydad of Morocco won?",
+      "question": "By the end of the 2025-26 season, how many CAF Champions League titles had Wydad of Morocco won?",
       "options": [
         "1",
         "2",
@@ -1292,7 +1292,7 @@
     {
       "id": 5100,
       "level": 10,
-      "question": "Who is the Arab player with the most international caps in Asia?",
+      "question": "After the 2026 World Cup, who was the Arab player with the most international caps in Asia?",
       "options": [
         "Mohamed El Daeay",
         "Sami Al-Jaber",
@@ -1300,7 +1300,7 @@
         "Younis Mahmoud"
       ],
       "answerIndex": 2,
-      "explanation": "Kuwait's Bader Al-Mutawa passed 190 international caps."
+      "explanation": "Kuwait's Bader Al-Mutawa played more than 190 internationals."
     }
   ]
 }

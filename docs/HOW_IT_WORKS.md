@@ -348,6 +348,11 @@ many different actions be rewarded with one currency, and lets prices stay fixed
   `daily_guard_test` covers `isDailyDone`, and `score_screen_buttons_test` covers the button's
   visibility (PR #7).
 - Leaving the challenge before finishing doesn't mark it complete (deliberate).
+- **Which questions (15 September 2026):** 7 questions split by the bank's difficulty shares (3 easy · 4 medium · 3
+  hard levels) → 2 easy, 3 medium, 2 hard, played easiest first. Each difficulty pool is shuffled once per cycle, and
+  each day takes its next slice, so no question repeats inside a cycle (133 days with the current bank: 400 medium ÷ 3).
+  Seeds come from the UTC day number, so everyone gets the same set in both languages
+  (`getDailyQuestions` in `quiz_repository_impl.dart`).
 
 ### Level system — how it works
 

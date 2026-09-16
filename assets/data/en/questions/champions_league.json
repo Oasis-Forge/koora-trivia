@@ -5,7 +5,7 @@
     {
       "id": 3001,
       "level": 1,
-      "question": "Which club has won the most Champions League titles?",
+      "question": "By the end of the 2025-26 season, which club had won the most Champions League titles?",
       "options": [
         "Real Madrid",
         "Liverpool",
@@ -44,7 +44,7 @@
     {
       "id": 3004,
       "level": 1,
-      "question": "Who is the Champions League's all-time top scorer?",
+      "question": "By the end of the 2025-26 season, who was the Champions League's all-time top scorer?",
       "options": [
         "Karim Benzema",
         "Lionel Messi",
@@ -117,7 +117,7 @@
         "Netherlands"
       ],
       "answerIndex": 2,
-      "explanation": "The most successful club in German football history."
+      "explanation": "By the end of the 2025-26 season, Bayern were the most successful club in German football history."
     },
     {
       "id": 3010,
@@ -143,7 +143,7 @@
         "Roma"
       ],
       "answerIndex": 1,
-      "explanation": "Real Madrid's third title in a row, winning 3-1."
+      "explanation": "Real Madrid beat Liverpool 3-1 in the final in Kyiv."
     },
     {
       "id": 3012,
@@ -161,7 +161,7 @@
     {
       "id": 3013,
       "level": 2,
-      "question": "How many Champions League titles has AC Milan won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had AC Milan won?",
       "options": [
         "5",
         "6",
@@ -187,7 +187,7 @@
     {
       "id": 3015,
       "level": 2,
-      "question": "How many Champions League titles has Liverpool won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had Liverpool won?",
       "options": [
         "6",
         "5",
@@ -226,7 +226,7 @@
     {
       "id": 3018,
       "level": 2,
-      "question": "How many Champions League titles has Bayern Munich won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had Bayern Munich won?",
       "options": [
         "5",
         "6",
@@ -265,7 +265,7 @@
     {
       "id": 3021,
       "level": 3,
-      "question": "How many Champions League titles has Barcelona won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had Barcelona won?",
       "options": [
         "4",
         "3",
@@ -299,20 +299,20 @@
         "Bayern Munich"
       ],
       "answerIndex": 1,
-      "explanation": "\"La Decima\" after a Ramos goal in the 93rd minute."
+      "explanation": "\"La Decima\" - Real Madrid's tenth title, sealed in extra time after a dramatic finish."
     },
     {
       "id": 3024,
       "level": 3,
-      "question": "Who scored Real Madrid's dramatic equaliser in the 2014 final?",
+      "question": "Who won the 2026 Champions League?",
       "options": [
-        "Cristiano Ronaldo",
-        "Angel Di Maria",
-        "Gareth Bale",
-        "Sergio Ramos"
+        "Real Madrid",
+        "Bayern Munich",
+        "Arsenal",
+        "Paris Saint-Germain"
       ],
       "answerIndex": 3,
-      "explanation": "Ramos's header in the 93rd minute turned the final on its head."
+      "explanation": "PSG beat Arsenal 4-3 on penalties in Budapest to retain the title, only the second club to do so in the Champions League era."
     },
     {
       "id": 3025,
@@ -330,7 +330,7 @@
     {
       "id": 3026,
       "level": 3,
-      "question": "How many Champions League titles has Ajax won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had Ajax won?",
       "options": [
         "3",
         "2",
@@ -351,7 +351,7 @@
         "Chelsea"
       ],
       "answerIndex": 0,
-      "explanation": "Milan avenged their 2005 Istanbul final defeat to Liverpool."
+      "explanation": "Filippo Inzaghi scored both goals in Milan's 2-1 win in Athens."
     },
     {
       "id": 3028,
@@ -395,15 +395,15 @@
     {
       "id": 3031,
       "level": 4,
-      "question": "Who scored Real Madrid's decisive volley in the 2002 final?",
+      "question": "In which city was the 2021 Champions League final played, after being moved from Istanbul because of the pandemic?",
       "options": [
-        "Zinedine Zidane",
-        "Raul",
-        "Luis Figo",
-        "Roberto Carlos"
+        "Porto",
+        "Lisbon",
+        "Seville",
+        "Madrid"
       ],
       "answerIndex": 0,
-      "explanation": "A left-footed volley struck against Bayer Leverkusen."
+      "explanation": "The final was moved there because of pandemic travel restrictions on fans."
     },
     {
       "id": 3032,
@@ -442,20 +442,20 @@
         "Juventus"
       ],
       "answerIndex": 0,
-      "explanation": "The only club to achieve that in the modern Champions League era."
+      "explanation": "By the end of the 2025-26 season, Real Madrid were the only club to have done so in the modern Champions League era."
     },
     {
       "id": 3035,
       "level": 4,
-      "question": "Who managed Real Madrid through their three-in-a-row titles of 2016-2018?",
+      "question": "Which club beat Barcelona 4-0 in the 1994 Champions League final in Athens?",
       "options": [
-        "Carlo Ancelotti",
-        "Rafael Benitez",
-        "Jose Mourinho",
-        "Zinedine Zidane"
+        "Real Madrid",
+        "Juventus",
+        "Bayern Munich",
+        "AC Milan"
       ],
       "answerIndex": 3,
-      "explanation": "An unprecedented feat in Zidane's first major managerial job."
+      "explanation": "Fabio Capello's Milan produced one of the most one-sided final performances ever, against Johan Cruyff's Barcelona."
     },
     {
       "id": 3036,
@@ -538,7 +538,7 @@
     {
       "id": 3042,
       "level": 5,
-      "question": "Who is the most successful manager in Champions League history?",
+      "question": "By the end of the 2025-26 season, who was the most successful manager in Champions League history?",
       "options": [
         "Bob Paisley",
         "Zinedine Zidane",
@@ -611,7 +611,7 @@
         "Red Star Belgrade"
       ],
       "answerIndex": 3,
-      "explanation": "Red Star Belgrade won on penalties against Marseille."
+      "explanation": "Red Star Belgrade won on penalties, after a final that finished goalless following extra time."
     },
     {
       "id": 3048,
@@ -629,7 +629,7 @@
     {
       "id": 3049,
       "level": 5,
-      "question": "How many Champions League titles has Porto won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had Porto won?",
       "options": [
         "2",
         "1",
@@ -668,7 +668,7 @@
     {
       "id": 3052,
       "level": 6,
-      "question": "Which manager won the trophy with two different clubs, one English and one Spanish?",
+      "question": "By the end of the 2025-26 season, which manager had won the trophy with both an Italian club and a Spanish club?",
       "options": [
         "Jose Mourinho",
         "Pep Guardiola",
@@ -676,12 +676,12 @@
         "Rafael Benitez"
       ],
       "answerIndex": 2,
-      "explanation": "Ancelotti won it with AC Milan and Real Madrid, and managed clubs in four major leagues."
+      "explanation": "Ancelotti won it with AC Milan and Real Madrid."
     },
     {
       "id": 3053,
       "level": 6,
-      "question": "Which club has lost the most finals without a single win to show for it?",
+      "question": "By the end of the 2025-26 season, which club had lost the most Champions League finals without a single win to show for it?",
       "options": [
         "Arsenal",
         "Atletico Madrid",
@@ -746,7 +746,7 @@
     {
       "id": 3058,
       "level": 6,
-      "question": "Who has played the most matches in Champions League history?",
+      "question": "By the end of the 2025-26 season, who had played the most matches in Champions League history?",
       "options": [
         "Cristiano Ronaldo",
         "Iker Casillas",
@@ -785,15 +785,15 @@
     {
       "id": 3061,
       "level": 7,
-      "question": "Which goalkeeper has kept the most clean sheets in the competition?",
+      "question": "By the end of the 2025-26 season, which goalkeeper had kept the most clean sheets in the Champions League?",
       "options": [
         "Petr Cech",
-        "Manuel Neuer",
+        "Iker Casillas",
         "Gianluigi Buffon",
-        "Iker Casillas"
+        "Manuel Neuer"
       ],
       "answerIndex": 3,
-      "explanation": "Casillas leads thanks to a long career with Real Madrid and Porto."
+      "explanation": "Neuer overtook Iker Casillas's record of 57 clean sheets during the 2023-24 season."
     },
     {
       "id": 3062,
@@ -863,7 +863,7 @@
     {
       "id": 3067,
       "level": 7,
-      "question": "How many Champions League titles has Inter Milan won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had Inter Milan won?",
       "options": [
         "2",
         "1",
@@ -889,15 +889,15 @@
     {
       "id": 3069,
       "level": 7,
-      "question": "Who managed Atletico Madrid in the 2014 and 2016 finals?",
+      "question": "By the end of the 2025-26 season, which stadium had hosted the most European Cup and Champions League finals?",
       "options": [
-        "Diego Simeone",
-        "Quique Flores",
-        "Marcelino",
-        "Unai Emery"
+        "Wembley",
+        "Santiago Bernabeu",
+        "San Siro",
+        "Stade de France"
       ],
       "answerIndex": 0,
-      "explanation": "Simeone built one of the most defensively solid sides in Europe."
+      "explanation": "Wembley has staged the final eight times, most recently when Real Madrid beat Dortmund there in 2024."
     },
     {
       "id": 3070,
@@ -1058,7 +1058,7 @@
     {
       "id": 3082,
       "level": 9,
-      "question": "Who scored the most goals in a single Champions League season?",
+      "question": "By the end of the 2025-26 season, who had scored the most goals in a single Champions League season?",
       "options": [
         "Cristiano Ronaldo",
         "Robert Lewandowski",
@@ -1097,15 +1097,15 @@
     {
       "id": 3085,
       "level": 9,
-      "question": "Who scored a famous first-touch goal from the halfway line in the 1997 final?",
+      "question": "In which stadium was the first European Cup final played in 1956?",
       "options": [
-        "Lars Ricken",
-        "Karlheinz Riedle",
-        "Andreas Moller",
-        "Christian Pulisic"
+        "Parc des Princes, Paris",
+        "Wembley, London",
+        "San Siro, Milan",
+        "Santiago Bernabeu, Madrid"
       ],
       "answerIndex": 0,
-      "explanation": "Substitute Ricken scored just 16 seconds after coming on."
+      "explanation": "Real Madrid beat Stade de Reims 4-3 in front of more than 38,000 spectators."
     },
     {
       "id": 3086,
@@ -1201,15 +1201,15 @@
     {
       "id": 3093,
       "level": 10,
-      "question": "What was the only final to feature two clubs from the same city?",
+      "question": "By the end of the 2025-26 season, how many Champions League finals had been contested by two clubs from the same city?",
       "options": [
-        "The 2003 final between AC Milan and Juventus",
-        "The 2014 and 2016 finals between Real Madrid and Atletico Madrid",
-        "The 2008 final between Manchester United and Chelsea",
-        "The 2013 final between Bayern and Dortmund"
+        "1",
+        "2",
+        "3",
+        "4"
       ],
       "answerIndex": 1,
-      "explanation": "A Madrid derby repeated twice within three years."
+      "explanation": "The 2014 and 2016 finals, both between Real Madrid and their neighbours Atletico Madrid."
     },
     {
       "id": 3094,
@@ -1227,7 +1227,7 @@
     {
       "id": 3095,
       "level": 10,
-      "question": "Who saved penalties for Liverpool in the 2005 final shootout?",
+      "question": "Who saved penalties in the 2005 Champions League final shootout in Istanbul?",
       "options": [
         "Pepe Reina",
         "Jerzy Dudek",
@@ -1235,7 +1235,7 @@
         "Scott Carson"
       ],
       "answerIndex": 1,
-      "explanation": "His famous wobbly-legs routine on the line unsettled the Milan players."
+      "explanation": "His wobbly-legs routine on the line unsettled the opposition's penalty takers."
     },
     {
       "id": 3096,

@@ -70,21 +70,63 @@ class QuizRepositoryImpl implements QuizRepository {
     required int count,
   }) async {
     final bank = await _dataSource.load();
-    if (bank.questions.isEmpty) return const [];
+    final wanted = min(count, bank.questions.length);
+    if (wanted <= 0) return const [];
 
-    // ترتيب ثابت (حسب المعرّف) ثم خلط ببذرة اليوم = نفس الأسئلة للجميع.
-    final ordered = List<Question>.of(bank.questions)
-      ..sort((a, b) => a.id.compareTo(b.id));
+    // مجموعة لكل صعوبة مرتّبة بالمعرّف: نفس الأسئلة للجميع وبكل لغة.
+    final pools = {
+      for (final d in Difficulty.values)
+        d: bank.questions.where((q) => q.difficulty == d).toList()
+          ..sort((a, b) => a.id.compareTo(b.id)),
+    };
+    final mix = _dailyMix(wanted, pools);
 
-    final seed = DayKey.epochDay(dayKey);
-    final picked = SeededRandom(seed).shuffled(ordered).take(
-          min(count, ordered.length),
-        );
+    // الدورة = الأيام التي تكفيها أضيق مجموعة. كل مجموعة تُخلط مرة واحدة للدورة
+    // ويأخذ كل يوم شريحته التالية منها، فلا يتكرر سؤال حتى تبدأ دورة جديدة.
+    final cycleDays = [
+      for (final d in Difficulty.values)
+        if (mix[d]! > 0) pools[d]!.length ~/ mix[d]!,
+    ].reduce(min);
+    final day = DayKey.epochDay(dayKey);
+    final dayInCycle = day % cycleDays;
+    final cycle = (day - dayInCycle) ~/ cycleDays;
+
+    // من الأسهل إلى الأصعب، كما تتدرّج المستويات.
+    final picked = [
+      for (final d in Difficulty.values)
+        ...SeededRandom(cycle * Difficulty.values.length + d.index)
+            .shuffled(pools[d]!)
+            .skip(dayInCycle * mix[d]!)
+            .take(mix[d]!),
+    ];
 
     return [
       for (final q in picked)
-        q.withOptionsOrder(SeededRandom(seed + q.id).shuffled(q.options)),
+        q.withOptionsOrder(SeededRandom(day + q.id).shuffled(q.options)),
     ];
+  }
+
+  /// يوزّع [count] على الصعوبات بنسبة حجم كل مجموعة، والباقي للأكبر كسراً:
+  /// سبعة أسئلة من بنك 3 مستويات سهلة و4 متوسطة و3 صعبة = 2 و3 و2.
+  static Map<Difficulty, int> _dailyMix(
+    int count,
+    Map<Difficulty, List<Question>> pools,
+  ) {
+    final total = pools.values.fold<int>(0, (sum, p) => sum + p.length);
+    final mix = {
+      for (final d in Difficulty.values) d: count * pools[d]!.length ~/ total,
+    };
+    final left = count - mix.values.fold<int>(0, (sum, n) => sum + n);
+    int remainder(Difficulty d) => count * pools[d]!.length % total;
+    final byRemainder = [...Difficulty.values]..sort(
+        (a, b) => remainder(b) != remainder(a)
+            ? remainder(b).compareTo(remainder(a))
+            : a.index.compareTo(b.index),
+      );
+    for (final d in byRemainder.take(left)) {
+      mix[d] = mix[d]! + 1;
+    }
+    return mix;
   }
 
   Future<List<Question>> _pool(String? categorySlug) async {
