@@ -226,7 +226,7 @@
     {
       "id": 5018,
       "level": 2,
-      "question": "Which Moroccan club is nicknamed \"The Red Wydad\"?",
+      "question": "Which Moroccan club is nicknamed \"Dean of Clubs\"?",
       "options": [
         "Raja",
         "FAR Rabat",
@@ -330,10 +330,10 @@
     {
       "id": 5026,
       "level": 3,
-      "question": "Which Tunisian club is nicknamed \"Esperance\"?",
+      "question": "Which Tunisian club is nicknamed \"Blood and Gold\"?",
       "options": [
         "Esperance Sportive de Tunis",
-        "Etoile du Sahel",
+        "Etoile Sportive du Sahel",
         "Club Africain",
         "Sfaxien"
       ],
@@ -824,7 +824,7 @@
     {
       "id": 5064,
       "level": 7,
-      "question": "What is the name of the tournament for Arab Gulf national teams?",
+      "question": "What is the name of the tournament for Gulf national teams?",
       "options": [
         "WAFF Championship",
         "Arab Cup",
@@ -1164,10 +1164,10 @@
       "level": 9,
       "question": "What famous incident occurred in the Kuwait vs France match at the 1982 World Cup?",
       "options": [
-        "Four players were sent off",
-        "Kuwait withdrew from the match",
-        "The Kuwaiti federation president walked onto the pitch and had a goal disallowed",
-        "The match was stopped for an hour"
+        "Four Kuwaiti players were sent off before half-time",
+        "FIFA ordered the match to be replayed the next day",
+        "The Kuwaiti federation president stormed the pitch and got a goal disallowed",
+        "The match was halted for a full hour by officials"
       ],
       "answerIndex": 2,
       "explanation": "Sheikh Fahad Al-Ahmad, head of the Kuwaiti federation, walked onto the pitch, and the referee disallowed a French goal."

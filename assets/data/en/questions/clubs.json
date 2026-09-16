@@ -57,7 +57,7 @@
     {
       "id": 7005,
       "level": 1,
-      "question": "Which city does Bayern Munich play in?",
+      "question": "In which city is Bayern's home stadium, the Allianz Arena, located?",
       "options": [
         "Berlin",
         "Hamburg",
@@ -109,7 +109,7 @@
     {
       "id": 7009,
       "level": 1,
-      "question": "What is the name of the stadium Arsenal moved into in 2006?",
+      "question": "Where did Arsenal move their home matches in 2006?",
       "options": [
         "The Emirates Stadium",
         "Highbury",
@@ -343,7 +343,7 @@
     {
       "id": 7027,
       "level": 3,
-      "question": "Which two clubs share the Stadio Olimpico in Rome?",
+      "question": "Which two clubs share the Olympic Stadium in the Italian capital?",
       "options": [
         "Milan and Inter",
         "Juventus and Torino",
@@ -369,12 +369,12 @@
     {
       "id": 7029,
       "level": 3,
-      "question": "What is the name of Tottenham's new stadium?",
+      "question": "What is the name of the stadium that replaced White Hart Lane in 2019?",
       "options": [
-        "White Hart Lane",
+        "Stamford Bridge",
         "Tottenham Hotspur Stadium",
         "Wembley",
-        "London Stadium"
+        "The London Stadium"
       ],
       "answerIndex": 1,
       "explanation": "Opened in 2019 with a retractable pitch."
@@ -450,7 +450,7 @@
       "question": "What is the name of the famous anthem sung by Liverpool fans?",
       "options": [
         "Blue Moon",
-        "Glory Glory",
+        "Glory Glory Man United",
         "You'll Never Walk Alone",
         "Bubbles"
       ],
@@ -503,7 +503,7 @@
       "options": [
         "The Yellow Submarine",
         "The Bats",
-        "Merengues",
+        "The Merengues",
         "The Lions"
       ],
       "answerIndex": 0,
@@ -811,7 +811,7 @@
     {
       "id": 7063,
       "level": 7,
-      "question": "Which German club is historically linked to the pharmaceutical company Bayer?",
+      "question": "Which German club began as a works team for a chemicals and pharmaceuticals company?",
       "options": [
         "Wolfsburg",
         "Bayer Leverkusen",
@@ -1060,10 +1060,10 @@
       "level": 9,
       "question": "Why is Milan's name written as \"Milan\" in English rather than \"Milano\"?",
       "options": [
-        "A recent marketing decision",
-        "Because its founders were English",
-        "An old administrative error",
-        "To distinguish it from Inter"
+        "A recent marketing rebrand decision",
+        "Founded by a group of expatriates from England",
+        "An old administrative naming error",
+        "A way to distinguish it from Inter"
       ],
       "answerIndex": 1,
       "explanation": "The club kept the English spelling, except under Fascism, when it was forced to use \"Milano\"."
@@ -1073,10 +1073,10 @@
       "level": 9,
       "question": "Why was Inter Milan founded in 1908?",
       "options": [
-        "A financial dispute",
-        "A merger of two clubs",
-        "A government decision",
-        "A split from Milan to allow foreign players to be signed"
+        "A financial dispute among the club's board",
+        "A merger between two smaller local clubs",
+        "A government decision to create a second club",
+        "A split over allowing foreign players to sign"
       ],
       "answerIndex": 3,
       "explanation": "The name \"Internazionale\" reflects this international outlook."

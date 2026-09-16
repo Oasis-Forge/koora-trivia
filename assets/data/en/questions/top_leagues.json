@@ -111,7 +111,7 @@
       "level": 1,
       "question": "Which French club won the most Ligue 1 titles between 2013 and 2025?",
       "options": [
-        "Marseille",
+        "Olympique de Marseille",
         "Lyon",
         "Paris Saint-Germain",
         "Monaco"
@@ -516,7 +516,7 @@
       "options": [
         "Borussia Dortmund",
         "Schalke",
-        "Wolfsburg",
+        "Bayer Leverkusen",
         "Stuttgart"
       ],
       "answerIndex": 0,
@@ -579,10 +579,10 @@
       "level": 5,
       "question": "What is the \"European Golden Shoe\"?",
       "options": [
-        "Europe's best player",
-        "Goal of the season",
+        "Best player across Europe's leagues, voted by fans",
+        "Best goal across Europe's leagues, chosen by experts",
         "Top scorer across Europe's leagues, weighted by league strength",
-        "Europe's best manager"
+        "Best manager across Europe's leagues, voted by fellow managers"
       ],
       "answerIndex": 2,
       "explanation": "It is calculated using points that vary with how strong each league is."
@@ -595,7 +595,7 @@
         "Manchester United",
         "Chelsea",
         "Arsenal",
-        "Liverpool"
+        "Nottingham Forest"
       ],
       "answerIndex": 0,
       "explanation": "Ferguson's side, led by Ronaldo, Rooney and Tevez."
@@ -933,7 +933,7 @@
         "Valencia",
         "Celta Vigo",
         "Deportivo La Coruna",
-        "Real Betis"
+        "Athletic Bilbao"
       ],
       "answerIndex": 2,
       "explanation": "The only league title in Deportivo's history."
@@ -1011,7 +1011,7 @@
         "Chelsea",
         "Liverpool",
         "Manchester United",
-        "Arsenal"
+        "Newcastle United"
       ],
       "answerIndex": 2,
       "explanation": "A domestic and European double for Ferguson's side."
@@ -1088,7 +1088,7 @@
       "options": [
         "Arsenal",
         "Liverpool",
-        "Blackburn",
+        "Blackburn Rovers",
         "Manchester United"
       ],
       "answerIndex": 3,
@@ -1193,7 +1193,7 @@
         "Sevilla",
         "Valencia",
         "Deportivo La Coruna",
-        "Villarreal"
+        "Athletic Bilbao"
       ],
       "answerIndex": 2,
       "explanation": "Deportivo declined gradually until relegation in 2011, then collapsed financially."

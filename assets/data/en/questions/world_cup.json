@@ -320,7 +320,7 @@
       "question": "Which country hosted the 1994 World Cup?",
       "options": [
         "United States",
-        "Mexico",
+        "South Africa",
         "Canada",
         "Spain"
       ],
@@ -694,12 +694,12 @@
     {
       "id": 1054,
       "level": 6,
-      "question": "What was the trophy awarded to the champion before 1974 called?",
+      "question": "What was the cup awarded to the champion before 1974 called?",
       "options": [
         "Golden FIFA Cup",
         "Jules Rimet Trophy",
         "Nations Cup",
-        "Victory Cup"
+        "Henri Delaunay Trophy"
       ],
       "answerIndex": 1,
       "explanation": "Named after the FIFA president who founded the tournament."

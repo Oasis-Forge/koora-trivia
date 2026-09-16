@@ -187,7 +187,7 @@
     {
       "id": 9015,
       "level": 2,
-      "question": "What is the official called who manages substitutions and shows the added time board?",
+      "question": "Who manages substitutions and shows the added-time board?",
       "options": [
         "The fourth official",
         "The assistant referee",
@@ -202,10 +202,10 @@
       "level": 2,
       "question": "When is a goal kick awarded?",
       "options": [
-        "When the ball goes out off a defender",
+        "When the ball crosses the goal line off a defender",
         "When the ball crosses the goal line off an attacker",
-        "On an offside",
-        "On a foul inside the area"
+        "When the ball crosses the touchline off a defender",
+        "When an attacker is penalised for offside"
       ],
       "answerIndex": 1,
       "explanation": "If it goes out off a defender instead, the opponent gets a corner."
@@ -252,7 +252,7 @@
     {
       "id": 9020,
       "level": 2,
-      "question": "What is the decision when a defender deliberately handles the ball inside their own penalty area?",
+      "question": "What is the decision when a defender deliberately handles the ball inside their own box?",
       "options": [
         "Direct free kick",
         "Penalty kick",
@@ -371,10 +371,10 @@
       "level": 3,
       "question": "What is the \"back-pass rule\"?",
       "options": [
-        "The keeper may not pick up a deliberate pass from a teammate's foot",
-        "Passing backwards is banned outright",
-        "Passing is banned in extra time",
-        "The keeper may not come off their line"
+        "The keeper may not handle a deliberate kick from a team-mate",
+        "The keeper may not handle a deliberate header from a team-mate",
+        "The keeper may not handle a throw-in taken by an opponent",
+        "The keeper may not handle the ball straight from a corner kick"
       ],
       "answerIndex": 0,
       "explanation": "Introduced in 1992 to stop time-wasting."
@@ -449,8 +449,8 @@
       "level": 4,
       "question": "When does the referee use VAR to review a decision?",
       "options": [
-        "For any decision they want",
-        "For offside only",
+        "For any decision the referee feels uncertain about",
+        "For offside calls and every yellow card shown",
         "For goals, penalties, red cards and mistaken identity",
         "For every foul"
       ],
@@ -478,7 +478,7 @@
         "A ball the referee drops to restart play",
         "A ball that goes out of play",
         "A shot that hits the crossbar",
-        "A high ball in the air"
+        "A very high ball in the air"
       ],
       "answerIndex": 0,
       "explanation": "Now given to the team that had possession when play stopped."
@@ -488,9 +488,9 @@
       "level": 4,
       "question": "What does the \"advantage rule\" mean in refereeing?",
       "options": [
-        "Favouring the home side",
-        "Giving the stronger team a decision",
-        "Awarding a doubtful goal",
+        "Letting play continue only when the home side is attacking",
+        "Stopping play whenever continuing would help the stronger team",
+        "Giving the attacking team the benefit of the doubt on goals",
         "Letting play continue if stopping it would hurt the fouled team"
       ],
       "answerIndex": 3,
@@ -580,7 +580,7 @@
       "question": "What was the short-lived \"silver goal\" rule?",
       "options": [
         "A goal from outside the area",
-        "A goal that counted as half a point",
+        "A goal that only counted as half a point in the final score",
         "The match ended at the break in extra time if a team was ahead",
         "A goalkeeper's goal"
       ],
@@ -606,7 +606,7 @@
       "question": "Under the modern laws, when does a handball count as an offence?",
       "options": [
         "When the arm is in an unnatural position that makes the body bigger",
-        "Any touch of the hand",
+        "Any touch of the hand, even if completely accidental",
         "Only inside the penalty area",
         "Only when attacking"
       ],
@@ -646,8 +646,8 @@
       "options": [
         "An audio system for referees",
         "A phone app",
-        "A camera tracking system that calls offside automatically",
-        "A chip inside a player's boot"
+        "A camera system that tracks players and alerts the VAR",
+        "An electronic chip inside every player's boot"
       ],
       "answerIndex": 2,
       "explanation": "First widely used at the 2022 World Cup."
@@ -696,7 +696,7 @@
       "level": 6,
       "question": "What does \"denying an obvious goal-scoring opportunity\" mean in refereeing?",
       "options": [
-        "An ordinary foul",
+        "A foul that always means a penalty kick",
         "A foul that usually means a sending-off",
         "An offside decision",
         "A corner kick"
@@ -710,9 +710,9 @@
       "question": "When may a goalkeeper move on the goal line during a penalty shoot-out?",
       "options": [
         "They must keep one foot on or above the line at the moment of the kick",
-        "They may not move at all",
-        "They may step forward two metres",
-        "They may come off the line after the shot"
+        "They must not move at all before the kick is taken",
+        "They may step two metres off the line before the kick",
+        "They may leave the line as soon as the referee whistles"
       ],
       "answerIndex": 0,
       "explanation": "A rule adjusted to make it easier to apply with video technology."
@@ -724,7 +724,7 @@
       "options": [
         "The goal counts",
         "A yellow card",
-        "The kick is retaken",
+        "The kick is retaken completely from the start",
         "Indirect free kick to the opponents"
       ],
       "answerIndex": 3,
@@ -746,12 +746,12 @@
     {
       "id": 9058,
       "level": 6,
-      "question": "What is the decision if the assistant referee raises the flag for offside and the review overturns it?",
+      "question": "What is the decision if the assistant referee flags for offside, play stops, and a video review shows the attacker was onside?",
       "options": [
-        "The assistant's call stands",
-        "The call is overturned and play restarts from the point of intervention",
-        "The match is replayed",
-        "A free kick is awarded"
+        "Play restarts with an indirect free kick",
+        "Play restarts with a dropped ball",
+        "Play restarts with a penalty kick",
+        "Play restarts with a goal kick"
       ],
       "answerIndex": 1,
       "explanation": "Because play had already been stopped, it restarts with a dropped ball."
@@ -761,7 +761,7 @@
       "level": 6,
       "question": "Why do assistant referees sometimes delay raising the offside flag?",
       "options": [
-        "To confuse the defenders",
+        "To confuse the defenders and the goalkeeper",
         "To let the attack finish before it's reviewed",
         "To save time",
         "Because of a slow connection"
@@ -813,10 +813,10 @@
       "level": 7,
       "question": "What happens if the ball bursts during a shot that ends up in the net?",
       "options": [
-        "The goal counts",
+        "The goal stands because the whole ball crossed the line",
         "The goal is disallowed and play restarts with a dropped ball",
-        "The shot is retaken",
-        "Free kick"
+        "The goal is disallowed and play restarts with a goal kick",
+        "The goal is disallowed and the defending team gets a free kick"
       ],
       "answerIndex": 1,
       "explanation": "The ball is out of play the instant it bursts."
@@ -878,13 +878,13 @@
       "level": 7,
       "question": "When is a red card shown for \"violent conduct\"?",
       "options": [
-        "For repeated fouls",
-        "For any tackle from behind",
-        "For dissent",
-        "For using excessive force that endangers an opponent's safety"
+        "For committing several fouls in the same match",
+        "For any tackle from behind, no matter how light",
+        "For protesting against the referee's decisions",
+        "For using excessive force or brutality when not challenging for the ball"
       ],
       "answerIndex": 3,
-      "explanation": "Safety is the test, not the outcome of the challenge."
+      "explanation": "It counts even if no contact is made."
     },
     {
       "id": 9069,
@@ -996,9 +996,9 @@
       "question": "What is the decision if an outsider enters the pitch and affects a goal?",
       "options": [
         "The goal is disallowed and play restarts with a dropped ball",
-        "The goal counts",
-        "The match is replayed",
-        "Penalty kick"
+        "The goal stands and play restarts with a kick-off",
+        "The goal is disallowed and play restarts with a goal kick",
+        "The goal is disallowed and play restarts with a corner kick"
       ],
       "answerIndex": 0,
       "explanation": "Outside interference is treated as voiding the passage of play."
@@ -1073,8 +1073,8 @@
       "level": 9,
       "question": "What is the small mark outside the pitch near the corner flag for?",
       "options": [
-        "To mark where photographers stand",
-        "To mark a warm-up area",
+        "To mark where photographers must stand during corner kicks",
+        "To mark where substitutes may warm up during the match",
         "To mark how far defenders must stand back at a corner kick",
         "It serves no purpose"
       ],
@@ -1086,7 +1086,7 @@
       "level": 9,
       "question": "Can the goalkeeper swap with another player during a match?",
       "options": [
-        "Only after an injury",
+        "Only after an injury stoppage",
         "No",
         "Only at half-time",
         "Yes, after informing the referee"
@@ -1100,7 +1100,7 @@
       "question": "What is the decision if two players swap the goalkeeper's role without informing the referee?",
       "options": [
         "Indirect free kick to the opponents",
-        "A caution for both players once play stops",
+        "A caution for both once play stops",
         "A sending-off",
         "The match is abandoned"
       ],
@@ -1112,10 +1112,10 @@
       "level": 9,
       "question": "Is jewellery allowed during a match?",
       "options": [
-        "Yes",
-        "Bracelets only",
-        "Rings only",
-        "No jewellery at all is allowed"
+        "Yes, all types of jewellery are allowed",
+        "Only bracelets are allowed",
+        "Only rings are allowed",
+        "No jewellery of any kind is allowed"
       ],
       "answerIndex": 3,
       "explanation": "For safety reasons — taping it up isn't enough."
@@ -1125,7 +1125,7 @@
       "level": 9,
       "question": "What is the rule on the colour of a player's thermal base layer?",
       "options": [
-        "Completely free choice",
+        "Completely free choice of colour, with no restriction",
         "It must match the shirt sleeve's main colour",
         "Always white",
         "Always black"
@@ -1139,7 +1139,7 @@
       "question": "When may the referee abandon a match for good?",
       "options": [
         "By a decision of the crowd",
-        "If either team requests it",
+        "If either team formally requests it during the match",
         "By the manager's decision",
         "At their own discretion, for safety reasons or outside interference"
       ],
@@ -1153,7 +1153,7 @@
       "options": [
         "A dropped ball",
         "A direct free kick or penalty kick, plus a card",
-        "Play is retaken",
+        "Play is retaken from exactly the same spot",
         "Corner kick"
       ],
       "answerIndex": 1,

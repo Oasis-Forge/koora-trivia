@@ -397,10 +397,10 @@
       "level": 4,
       "question": "Why did Denmark even take part in Euro 1992?",
       "options": [
-        "They won qualifying",
-        "They hosted the tournament",
+        "They topped their qualifying group",
+        "They hosted the tournament on home soil",
         "They replaced a banned Yugoslavia",
-        "A special invitation"
+        "They were the defending European champions"
       ],
       "answerIndex": 2,
       "explanation": "Called up days before the tournament, they went on to win it."
@@ -525,7 +525,7 @@
     {
       "id": 2041,
       "level": 5,
-      "question": "What is the famous \"Panenka\" penalty?",
+      "question": "What is the famous \"Panenka\" kick?",
       "options": [
         "A direct free kick",
         "A penalty chipped gently down the middle",
@@ -542,7 +542,7 @@
       "options": [
         "Belgium",
         "West Germany",
-        "Italy",
+        "Czechoslovakia",
         "Netherlands"
       ],
       "answerIndex": 1,
@@ -683,10 +683,10 @@
       "level": 6,
       "question": "Why was the Confederations Cup discontinued?",
       "options": [
-        "Low public interest",
-        "A restructuring of the FIFA and Club World Cup calendar",
-        "Financial problems",
-        "Opposition from European clubs"
+        "Because of low public interest in the tournament",
+        "Because of a restructuring of the FIFA and Club World Cup calendar",
+        "Because of mounting financial problems",
+        "Because of objections from major European clubs"
       ],
       "answerIndex": 1,
       "explanation": "It was scrapped after 2017 as part of a shake-up of the international calendar."
@@ -852,10 +852,10 @@
       "level": 7,
       "question": "What was special about the 2016 Copa America?",
       "options": [
-        "It was held in Europe",
+        "It was held in Europe instead of the Americas",
         "A one-off Centenario edition held in the United States",
-        "20 nations took part",
-        "Its final was cancelled"
+        "Only South American national teams took part",
+        "Its final was cancelled and never played"
       ],
       "answerIndex": 1,
       "explanation": "A special extra edition to mark the tournament's hundredth anniversary."
@@ -1021,10 +1021,10 @@
       "level": 8,
       "question": "Why was Zambia's 2012 win especially moving?",
       "options": [
-        "It was their first appearance",
-        "They played with ten men",
+        "It was their first appearance in a continental final",
+        "They played the whole match with ten men",
         "The final was held near the site of their 1993 plane disaster",
-        "They won without conceding a goal"
+        "They won without conceding a single goal throughout the tournament"
       ],
       "answerIndex": 2,
       "explanation": "The final was held in Libreville, where their team's plane had gone down 19 years earlier."
@@ -1177,10 +1177,10 @@
       "level": 10,
       "question": "After the 2026 World Cup, who was the Copa America's all-time top scorer?",
       "options": [
-        "Lionel Messi",
-        "Pele",
+        "Paolo Guerrero and Eduardo Vargas",
+        "Lionel Messi and Diego Maradona",
         "Norberto Mendez and Zizinho",
-        "Gabriel Batistuta"
+        "Teodoro Fernandez and Severino Varela"
       ],
       "answerIndex": 2,
       "explanation": "They shared the top spot with seventeen goals each."
@@ -1188,7 +1188,7 @@
     {
       "id": 2092,
       "level": 10,
-      "question": "Who won the 1996 Africa Cup of Nations?",
+      "question": "Who won the 1996 African Cup of Nations?",
       "options": [
         "Ghana",
         "Tunisia",
@@ -1230,9 +1230,9 @@
       "question": "Why was South Africa excluded from the 1957 edition?",
       "options": [
         "They refused to field non-white players under apartheid",
-        "They withdrew for financial reasons",
-        "They registered too late",
-        "A FIFA punishment"
+        "They withdrew for financial reasons related to travel",
+        "They registered their official entry too late",
+        "They were serving a suspension imposed by FIFA"
       ],
       "answerIndex": 0,
       "explanation": "The first sporting exclusion caused by apartheid policy."
