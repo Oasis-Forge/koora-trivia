@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter_test/flutter_test.dart';
 
@@ -95,6 +96,23 @@ const _distinctFacts = <String>{
   '4005/4017', // أكثر الأندية فوزاً بالدوري الألماني، وأطول سلسلة ألقاب متتالية.
   '7032/7081', // سنة تأسيس برشلونة وسنة تأسيس ميلان: كلاهما 1899.
 };
+
+/// كلمات المعنى في نص إنجليزي لفحص تكرار كلمة السؤال في الإجابة.
+const _echoStop = {
+  'the', 'a', 'an', 'of', 'in', 'at', 'on', 'to', 'for', 'by', 'with', 'from',
+  'and', 'or', 'is', 'was', 'were', 'are', 'be', 'has', 'have', 'had', 'did',
+  'does', 'which', 'who', 'what', 'when', 'where', 'how', 'many', 'much', 'that',
+  'this', 'his', 'her', 'their', 'its', 'as', 'after', 'before', 'end', 'season',
+  'world', 'cup', 'first', 'last', 'one', 'two', 'three', 'club', 'team', 'player',
+};
+
+Set<String> _contentWords(String s) => {
+      for (final m in RegExp('[a-z0-9]+').allMatches(s.toLowerCase()))
+        if (m.group(0)!.length > 2 && !_echoStop.contains(m.group(0))) m.group(0)!,
+    };
+
+/// أسئلة تتكرر فيها كلمة من السؤال في الإجابة وحدها دون أن تدلّ عليها (راجعها قارئ).
+const _harmlessEchoes = <int>{};
 
 void main() {
   final slugs = [
@@ -206,6 +224,49 @@ void main() {
           problems.add('$idA / $idB (${similarity.toStringAsFixed(2)}): '
               '"${bank[i].en['question']}" / "${bank[j].en['question']}"');
         }
+      }
+    }
+    expect(problems, isEmpty, reason: problems.join('\n'));
+  });
+
+  test('الإجابة الصحيحة لا تتميّز بطولها عن الخيارات الخاطئة', () {
+    // خيار صحيح أطول بكثير من البقية يُخمَّن دون معرفة الحقيقة، فيُفحص في اللغتين.
+    final problems = <String>[];
+    for (final q in bank) {
+      for (final (lang, data) in [('ar', q.ar), ('en', q.en)]) {
+        final options = (data['options'] as List).cast<String>();
+        final index = data['answerIndex'] as int;
+        final longestWrong = [
+          for (var k = 0; k < options.length; k++)
+            if (k != index) options[k].length,
+        ].reduce(max);
+        final length = options[index].length;
+        if (length >= 1.6 * longestWrong && length - longestWrong >= 8) {
+          problems.add('${data['id']} $lang: $length حرفاً مقابل $longestWrong '
+              'لأطول خيار خاطئ');
+        }
+      }
+    }
+    expect(problems, isEmpty, reason: problems.join('\n'));
+  });
+
+  test('الإجابة الصحيحة وحدها لا تكرر كلمة من نص السؤال', () {
+    // «في أي مدينة يلعب بايرن ميونخ؟ ← ميونخ». الفحص بالإنجليزية لأن كلماتها بلا سوابق،
+    // والعربية ترجمتها بالخيارات نفسها.
+    final problems = <String>[];
+    for (final q in bank) {
+      final id = q.en['id'] as int;
+      if (_harmlessEchoes.contains(id)) continue;
+      final options = (q.en['options'] as List).cast<String>();
+      final index = q.en['answerIndex'] as int;
+      final words = _contentWords(q.en['question'] as String);
+      final shared = words.intersection(_contentWords(options[index]));
+      final wrongShares = [
+        for (var k = 0; k < options.length; k++)
+          if (k != index) words.intersection(_contentWords(options[k])).isNotEmpty,
+      ].any((shares) => shares);
+      if (shared.isNotEmpty && !wrongShares) {
+        problems.add('$id: «${shared.join('، ')}» في "${q.en['question']}" ← ${options[index]}');
       }
     }
     expect(problems, isEmpty, reason: problems.join('\n'));

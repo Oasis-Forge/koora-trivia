@@ -150,7 +150,8 @@ question read [docs/QUESTION_BANK.md](docs/QUESTION_BANK.md) (categories, id ran
 Mandatory: four distinct options · no «كل ما سبق», «لا يوجد», «كلاهما», «كلتاهما», «لا شيء», «لا أحد» or «لم يحدث» · balanced
 `answerIndex` (`dart run tool/rebalance_answers.dart`) · no duplicates across categories · evergreen
 facts only · no invisible direction characters · `level` matches the id · no «حالياً», «حتى الآن» or "currently"
-without a year, and changeable counts or records anchored to one · no explanation naming a later answer in its level.
+without a year, and changeable counts or records anchored to one · no explanation naming a later answer in its level ·
+the correct option never stands out by length or by alone repeating a word from the question.
 Run `question_bank_test`, `english_bank_test` and `question_content_test` after any change. **After every major
 tournament or Champions League final, re-check record, count and "first/only/most" questions in both languages.**
 

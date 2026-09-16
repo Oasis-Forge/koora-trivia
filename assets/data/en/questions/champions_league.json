@@ -360,7 +360,7 @@
       "options": [
         "Chelsea",
         "Arsenal",
-        "Liverpool",
+        "Newcastle United",
         "Manchester United"
       ],
       "answerIndex": 3,
@@ -826,10 +826,10 @@
       "level": 7,
       "question": "What was the \"away goals\" rule, scrapped in 2021?",
       "options": [
-        "Cards counting in penalty shootouts",
-        "A ban on substitutions in extra time",
-        "The abolition of penalty shootouts",
-        "Away goals counting double if the tie finished level"
+        "Extra time goals counting as two",
+        "A coin toss deciding any level tie",
+        "The away team automatically advancing on any level tie",
+        "Goals at the opponent's ground counting double in a level tie"
       ],
       "answerIndex": 3,
       "explanation": "Scrapped to encourage visiting teams to attack without reservation."
@@ -876,7 +876,7 @@
     {
       "id": 3068,
       "level": 7,
-      "question": "Which Spanish club other than Real Madrid and Barcelona reached two finals in the 2010s?",
+      "question": "Which Spanish club, aside from the two Clasico rivals, reached two Champions League finals in the 2010s?",
       "options": [
         "Sevilla",
         "Atletico Madrid",
@@ -985,7 +985,7 @@
         "A ban on signing foreign players",
         "Losing every derby",
         "A ban on playing at their home ground",
-        "A prophecy that they would not win a European title for a hundred years"
+        "A prophecy of no European title for a hundred years"
       ],
       "answerIndex": 3,
       "explanation": "Attributed to manager Bela Guttmann after his falling-out with the club in 1962."

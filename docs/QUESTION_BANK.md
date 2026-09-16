@@ -62,6 +62,10 @@ challenge uses `SeededRandom(seed + q.id)` · quick play is random.
 9. **An explanation never names the answer of a later question in the same level.** Levels play in id order and
    the explanation shows right after each answer. Guarded by `question_content_test` (implied spoilers need a
    reader).
+10. **The correct option must not stand out.** Not by length (1.6× the longest wrong option and 8 or more characters
+    longer, in either language), and not by being the only option that repeats a word from the question. Wrong options
+    share the correct one's form and detail. Guarded by `question_content_test` (the word check runs on the English
+    text; harmless repeats are listed in `_harmlessEchoes`).
 
 > Rule 4's near-duplicate check normalises its filler words the same way as the question text
 > (`_fingerprint` in `question_bank_test.dart`, fixed 14 September 2026). Since 15 September 2026

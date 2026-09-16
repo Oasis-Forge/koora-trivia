@@ -320,7 +320,7 @@
       "question": "Which country pulled off a shock 1-0 win over England at the 1950 World Cup, a result later nicknamed the \"Miracle on Grass\"?",
       "options": [
         "Chile",
-        "Mexico",
+        "Yugoslavia",
         "Sweden",
         "United States"
       ],
@@ -330,7 +330,7 @@
     {
       "id": 10026,
       "level": 3,
-      "question": "What is the highest transfer fee ever paid for a goalkeeper?",
+      "question": "By the end of the 2025-26 season, what was the highest transfer fee ever paid for a goalkeeper?",
       "options": [
         "About 55 million euros",
         "About 65 million euros",
@@ -971,7 +971,7 @@
       "options": [
         "Barcelona v Milan",
         "El Clasico",
-        "Barcelona v Chelsea",
+        "Barcelona's Champions League semi-final defeat to Chelsea",
         "The Champions League final between United and Bayern"
       ],
       "answerIndex": 3,
@@ -993,10 +993,10 @@
     {
       "id": 10077,
       "level": 8,
-      "question": "What was the longest stoppage time added in a match at the 2022 World Cup?",
+      "question": "What was the longest total stoppage time added in a single match at the 2022 World Cup?",
       "options": [
         "More than 20 minutes",
-        "14 minutes",
+        "About 16 minutes",
         "10 minutes",
         "8 minutes"
       ],
@@ -1229,10 +1229,10 @@
       "level": 10,
       "question": "What was the controversial goal awarded to England against West Germany in the 1966 World Cup final?",
       "options": [
-        "Peters's goal",
-        "Charlton's goal",
-        "Hurst's contentious third goal",
-        "Ball's goal"
+        "Peters's second-half goal",
+        "Charlton's long-range strike",
+        "Hurst's first goal in extra time",
+        "Ball's first-half header"
       ],
       "answerIndex": 2,
       "explanation": "It was given despite the row over whether the ball had fully crossed the line."
@@ -1269,7 +1269,7 @@
       "question": "Which 1942 Kyiv match is known as the \"Death Match\"?",
       "options": [
         "A Soviet side against a German side under occupation",
-        "The Ukrainian Cup final",
+        "A Soviet league match between two Kyiv clubs",
         "An exhibition match",
         "The Kyiv derby"
       ],
@@ -1296,8 +1296,8 @@
       "options": [
         "Fosa Juniors",
         "AS Adema",
-        "Stade Olympique de l'Emyrne",
-        "Asama"
+        "SO l'Emyrne",
+        "DSA Antananarivo"
       ],
       "answerIndex": 2,
       "explanation": "A protest against refereeing decisions, and the strangest record in the game's history."

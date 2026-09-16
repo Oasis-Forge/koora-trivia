@@ -61,7 +61,7 @@
       "options": [
         "Liverpool",
         "Manchester United",
-        "Arsenal",
+        "Newcastle United",
         "Chelsea"
       ],
       "answerIndex": 1,
@@ -592,7 +592,7 @@
       "level": 5,
       "question": "Who managed Ajax to their three consecutive European Cups in the 1970s?",
       "options": [
-        "Louis van Gaal",
+        "Louis van Gaal and Frank Rijkaard",
         "Rinus Michels and Stefan Kovacs",
         "Johan Cruyff",
         "Leo Beenhakker"
@@ -683,10 +683,10 @@
       "level": 6,
       "question": "What does the term \"catenaccio\" mean?",
       "options": [
-        "High press",
-        "Short passing",
+        "High pressing on the ball carrier",
+        "Short passing between players",
         "The bolt, or defensive lock",
-        "Total attack"
+        "Total attack without any retreat"
       ],
       "answerIndex": 2,
       "explanation": "An Italian system built on a tight defence and swift counterattacks."
@@ -997,7 +997,7 @@
       "options": [
         "Morten Olsen",
         "Richard Moller Nielsen",
-        "Bo Johansson",
+        "Sven-Goran Eriksson",
         "Sepp Piontek"
       ],
       "answerIndex": 1,
@@ -1110,12 +1110,12 @@
     {
       "id": 8086,
       "level": 9,
-      "question": "Who managed Bayern Munich's three consecutive titles in the 1970s?",
+      "question": "Who managed Bayern Munich's three consecutive European Cups in the 1970s?",
       "options": [
         "Branko Zebec",
         "Hennes Weisweiler",
         "Udo Lattek, then Dettmar Cramer",
-        "Gyula Lorant"
+        "Franz Beckenbauer and Jupp Heynckes"
       ],
       "answerIndex": 2,
       "explanation": "Lattek started the run and Cramer completed it."
