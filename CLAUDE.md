@@ -31,8 +31,8 @@ and #5–#14) was uploaded by the owner on 14 September 2026 to internal and clo
 14 September 2026 to internal and closed testing, with the English store listing and both screenshot sets in the new
 design; it is in Google's review and contains everything in v1.0.5. The "Some languages have errors" warning is gone. `v1.0.7+8`
 (`releases/v1.0.7_build8_2026-09-16/`, PRs #51–#52: daily challenge mix and no-repeat cycle, «21 / 10» task count,
-question bank clean-up) is built and archived, not uploaded yet — the owner tests it on a phone (no full test run or
-emulator check, owner's call).
+question bank clean-up) was uploaded by the owner on 16 September 2026 to closed testing (no full test run or emulator
+check before it, owner's call).
 
 **Privacy policy:** the live page carries the 14 September 2026 text, including "Messages you send us".
 
@@ -40,9 +40,7 @@ emulator check, owner's call).
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
-3. **After Google approves v1.0.6 (owner):** check the pre-launch report (crashes, and its screenshots in both languages).
-4. **v1.0.7 (owner):** test `releases/v1.0.7_build8_2026-09-16/app-release.apk` on a phone, then upload the `.aab`
-   with the Arabic and English notes in its `NOTES.md`.
+3. **After Google approves v1.0.7 (owner):** check the pre-launch report (crashes, and its screenshots in both languages).
 
 ### Decisions waiting on the owner
 - **② Name and address on the store page** (personal account) vs. an organization account. Undecided.
