@@ -147,6 +147,11 @@ $env:Path = "C:\src\flutter\bin;$env:Path"; dart run tool/archive_release.dart "
 > differs (`aapt2`), and debug-signed or mismatched signing (`apksigner.jar` and `keytool` from Android Studio's
 > Java). Still build both.
 
+> ⚠️ `flutter build appbundle --release` exits 1 with "failed to strip debug symbols from native libraries" because the
+> SDK's `cmdline-tools` component is missing (see `flutter doctor`). Gradle still builds the bundle: v1.0.7's native
+> libraries matched v1.0.6's, which Play accepted. Installing `cmdline-tools` from Android Studio's SDK Manager removes
+> the error.
+
 **Forcing an update (from v1.0.6):** leave the in-app update priority at 0 for normal releases — players get the
 gentle update. For a crash or data-loss fix, create the release with priority 4 or 5 through the Google Play Developer
 API (`inAppUpdatePriority`); the Play Console website can't set it. Details in [HOW_IT_WORKS.md](HOW_IT_WORKS.md).
