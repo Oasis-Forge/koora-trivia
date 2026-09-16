@@ -5,7 +5,7 @@
     {
       "id": 3001,
       "level": 1,
-      "question": "Which club has won the most Champions League titles?",
+      "question": "By the end of the 2025-26 season, which club had won the most Champions League titles?",
       "options": [
         "Real Madrid",
         "Liverpool",
@@ -44,7 +44,7 @@
     {
       "id": 3004,
       "level": 1,
-      "question": "Who is the Champions League's all-time top scorer?",
+      "question": "By the end of the 2025-26 season, who was the Champions League's all-time top scorer?",
       "options": [
         "Karim Benzema",
         "Lionel Messi",
@@ -117,7 +117,7 @@
         "Netherlands"
       ],
       "answerIndex": 2,
-      "explanation": "The most successful club in German football history."
+      "explanation": "By the end of the 2025-26 season, Bayern were the most successful club in German football history."
     },
     {
       "id": 3010,
@@ -161,7 +161,7 @@
     {
       "id": 3013,
       "level": 2,
-      "question": "After the 2026 final, how many Champions League titles had AC Milan won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had AC Milan won?",
       "options": [
         "5",
         "6",
@@ -187,7 +187,7 @@
     {
       "id": 3015,
       "level": 2,
-      "question": "After the 2026 final, how many Champions League titles had Liverpool won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had Liverpool won?",
       "options": [
         "6",
         "5",
@@ -226,7 +226,7 @@
     {
       "id": 3018,
       "level": 2,
-      "question": "After the 2026 final, how many Champions League titles had Bayern Munich won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had Bayern Munich won?",
       "options": [
         "5",
         "6",
@@ -265,7 +265,7 @@
     {
       "id": 3021,
       "level": 3,
-      "question": "After the 2026 final, how many Champions League titles had Barcelona won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had Barcelona won?",
       "options": [
         "4",
         "3",
@@ -330,7 +330,7 @@
     {
       "id": 3026,
       "level": 3,
-      "question": "After the 2026 final, how many Champions League titles had Ajax won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had Ajax won?",
       "options": [
         "3",
         "2",
@@ -442,7 +442,7 @@
         "Juventus"
       ],
       "answerIndex": 0,
-      "explanation": "The only club to achieve that in the modern Champions League era."
+      "explanation": "By the end of the 2025-26 season, Real Madrid were the only club to have done so in the modern Champions League era."
     },
     {
       "id": 3035,
@@ -538,7 +538,7 @@
     {
       "id": 3042,
       "level": 5,
-      "question": "Who is the most successful manager in Champions League history?",
+      "question": "By the end of the 2025-26 season, who was the most successful manager in Champions League history?",
       "options": [
         "Bob Paisley",
         "Zinedine Zidane",
@@ -629,7 +629,7 @@
     {
       "id": 3049,
       "level": 5,
-      "question": "After the 2026 final, how many Champions League titles had Porto won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had Porto won?",
       "options": [
         "2",
         "1",
@@ -681,7 +681,7 @@
     {
       "id": 3053,
       "level": 6,
-      "question": "After the 2026 final, which club had lost the most Champions League finals without a single win to show for it?",
+      "question": "By the end of the 2025-26 season, which club had lost the most Champions League finals without a single win to show for it?",
       "options": [
         "Arsenal",
         "Atletico Madrid",
@@ -746,7 +746,7 @@
     {
       "id": 3058,
       "level": 6,
-      "question": "Who has played the most matches in Champions League history?",
+      "question": "By the end of the 2025-26 season, who had played the most matches in Champions League history?",
       "options": [
         "Cristiano Ronaldo",
         "Iker Casillas",
@@ -863,7 +863,7 @@
     {
       "id": 3067,
       "level": 7,
-      "question": "After the 2026 final, how many Champions League titles had Inter Milan won?",
+      "question": "By the end of the 2025-26 season, how many Champions League titles had Inter Milan won?",
       "options": [
         "2",
         "1",

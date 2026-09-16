@@ -67,6 +67,13 @@ Set<String> _tokens(String s) => {
           w.length > 4 && w.endsWith('s') ? w.substring(0, w.length - 1) : w,
     };
 
+/// عبارتا التثبيت الزمني الموحّدتان (QUESTION_BANK.md) تتكرران في أسئلة كثيرة،
+/// فلا تُحسبان تشابهاً بينها.
+final _anchor = RegExp(
+  r'by the end of the \d{4}-\d{2} season|after the \d{4} world cup',
+  caseSensitive: false,
+);
+
 /// السنوات في النص؛ الموسم «2011-12» أو «2011-2012» يعطي سنتيه كلتيهما.
 Set<String> _yearsIn(String s) => {
       for (final m in RegExp(r'\b((?:18|19|20)\d\d)(?:[-/](\d{4}|\d{2}))?\b')
@@ -79,6 +86,11 @@ Set<String> _yearsIn(String s) => {
 
 /// أزواج متشابهة الصياغة تطرح حقيقتين مختلفتين فعلاً.
 const _distinctFacts = <String>{
+  '1019/1023', // ألقاب ألمانيا وألقاب إيطاليا في كأس العالم: 4 لكل منهما.
+  '2028/3004', // هدّاف اليورو التاريخي وهدّاف دوري الأبطال: رونالدو في البطولتين.
+  '3021/5054', // ألقاب برشلونة الأوروبية وألقاب الزمالك الأفريقية: 5 لكل منهما.
+  '5007/5021', // أكثر العرب فوزاً بأمم أفريقيا، وثلاثة ألقاب متتالية: مصر في الحالتين.
+  '5007/5088', // أكثر العرب فوزاً بأمم أفريقيا وأكثرهم استضافة لها: مصر في الحالتين.
   '3015/3018', // ألقاب ليفربول وألقاب بايرن: ناديان مختلفان بالعدد نفسه (6).
   '4005/4017', // أكثر الأندية فوزاً بالدوري الألماني، وأطول سلسلة ألقاب متتالية.
   '7032/7081', // سنة تأسيس برشلونة وسنة تأسيس ميلان: كلاهما 1899.
@@ -163,10 +175,14 @@ void main() {
   test('لا يوجد سؤالان يطرحان الحقيقة نفسها بصياغة مختلفة', () {
     // المقارنة بالصياغة الإنجليزية لأن كلماتها بلا سوابق. سلسلة مثل «من فاز بيورو
     // 2008؟» و«2012؟» تحمل سنتين مختلفتين فليست تكراراً.
-    final tokens = [
-      for (final q in bank) _tokens('${q.en['question']} ${_answer(q.en)}'),
+    final questions = [
+      for (final q in bank) (q.en['question'] as String).replaceAll(_anchor, ' '),
     ];
-    final years = [for (final q in bank) _yearsIn(q.en['question'] as String)];
+    final tokens = [
+      for (var i = 0; i < bank.length; i++)
+        _tokens('${questions[i]} ${_answer(bank[i].en)}'),
+    ];
+    final years = [for (final text in questions) _yearsIn(text)];
 
     final problems = <String>[];
     for (var i = 0; i < bank.length; i++) {

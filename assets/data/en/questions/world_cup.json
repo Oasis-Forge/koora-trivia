@@ -18,7 +18,7 @@
     {
       "id": 1002,
       "level": 1,
-      "question": "How many times has Brazil won the World Cup?",
+      "question": "After the 2026 World Cup, how many times had Brazil won the World Cup?",
       "options": [
         "4",
         "6",
@@ -239,7 +239,7 @@
     {
       "id": 1019,
       "level": 2,
-      "question": "How many World Cup titles does Germany have?",
+      "question": "After the 2026 World Cup, how many World Cup titles had Germany won?",
       "options": [
         "3",
         "5",
@@ -252,7 +252,7 @@
     {
       "id": 1020,
       "level": 2,
-      "question": "How many World Cup titles does Argentina have?",
+      "question": "After the 2026 World Cup, how many World Cup titles had Argentina won?",
       "options": [
         "2",
         "4",
@@ -291,7 +291,7 @@
     {
       "id": 1023,
       "level": 3,
-      "question": "How many World Cup titles did Italy have by the end of 2026?",
+      "question": "After the 2026 World Cup, how many World Cup titles had Italy won?",
       "options": [
         "3",
         "5",
@@ -356,7 +356,7 @@
     {
       "id": 1028,
       "level": 3,
-      "question": "Which side has played at every World Cup without ever missing one?",
+      "question": "After the 2026 World Cup, which side had played at every World Cup without ever missing one?",
       "options": [
         "Germany",
         "Brazil",
@@ -369,7 +369,7 @@
     {
       "id": 1029,
       "level": 3,
-      "question": "How many World Cup titles does France have?",
+      "question": "After the 2026 World Cup, how many World Cup titles had France won?",
       "options": [
         "1",
         "4",
@@ -538,7 +538,7 @@
     {
       "id": 1042,
       "level": 5,
-      "question": "Which side has lost the most World Cup finals without ever winning the title?",
+      "question": "After the 2026 World Cup, which side had lost the most World Cup finals without ever winning the title?",
       "options": [
         "Hungary",
         "Netherlands",
@@ -551,7 +551,7 @@
     {
       "id": 1043,
       "level": 5,
-      "question": "Which was the last host nation to win the World Cup on home soil?",
+      "question": "After the 2026 World Cup, which was the last host nation to win the World Cup on home soil?",
       "options": [
         "Argentina 1978",
         "Germany 1974",
@@ -559,7 +559,7 @@
         "Italy 1990"
       ],
       "answerIndex": 2,
-      "explanation": "It hasn't happened again since, despite several hosting turns."
+      "explanation": "It had not happened again since, despite several hosting turns."
     },
     {
       "id": 1044,
@@ -569,7 +569,7 @@
         "Once",
         "Three times",
         "Twice",
-        "Never"
+        "Four times"
       ],
       "answerIndex": 2,
       "explanation": "1970 and 1986, making 2026 its third time."
@@ -624,7 +624,7 @@
         "15"
       ],
       "answerIndex": 0,
-      "explanation": "A record for most goals in a single edition that has stood since 1958, unmatched even after the expanded 2026 tournament."
+      "explanation": "He set the record for the most goals at a single World Cup."
     },
     {
       "id": 1049,
@@ -850,12 +850,12 @@
     {
       "id": 1066,
       "level": 7,
-      "question": "How many times has Uruguay won the World Cup?",
+      "question": "After the 2026 World Cup, how many times had Uruguay won the World Cup?",
       "options": [
         "Once",
         "Twice",
         "Three times",
-        "Never"
+        "Four times"
       ],
       "answerIndex": 1,
       "explanation": "1930 and 1950."
@@ -980,7 +980,7 @@
     {
       "id": 1076,
       "level": 8,
-      "question": "How many nations had won the World Cup by the end of the 2026 tournament?",
+      "question": "After the 2026 World Cup, how many nations had won the World Cup?",
       "options": [
         "6",
         "8",
@@ -993,7 +993,7 @@
     {
       "id": 1077,
       "level": 8,
-      "question": "Which of these sides has never won the World Cup?",
+      "question": "After the 2026 World Cup, which of these sides had never won the World Cup?",
       "options": [
         "England",
         "Netherlands",
@@ -1001,7 +1001,7 @@
         "Uruguay"
       ],
       "answerIndex": 1,
-      "explanation": "The Netherlands is the most famous side never to have won the title, despite three finals."
+      "explanation": "The Netherlands were the most famous side never to have won the title, despite three finals."
     },
     {
       "id": 1078,
@@ -1240,7 +1240,7 @@
     {
       "id": 1096,
       "level": 10,
-      "question": "By the end of the 2026 World Cup, who held the record for the fastest hat-trick in the tournament's history, scored in just seven minutes as a substitute?",
+      "question": "Who scored the fastest hat-trick in World Cup history, in just seven minutes as a substitute?",
       "options": [
         "Just Fontaine",
         "Laszlo Kiss",
@@ -1253,7 +1253,7 @@
     {
       "id": 1097,
       "level": 10,
-      "question": "What is the match known as in which England won its only title in 1966?",
+      "question": "What is the match known as in which England won the World Cup in 1966?",
       "options": [
         "The Wembley final",
         "The Miracle of London",

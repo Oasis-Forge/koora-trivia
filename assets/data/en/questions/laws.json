@@ -364,7 +364,7 @@
         "12"
       ],
       "answerIndex": 2,
-      "explanation": "Seventeen laws, since they were first drawn up in the 19th century."
+      "explanation": "The first version of the laws, in the 19th century, had only thirteen."
     },
     {
       "id": 9029,
@@ -386,11 +386,11 @@
       "options": [
         "4 seconds",
         "10 seconds",
-        "8 seconds",
-        "6 seconds"
+        "6 seconds",
+        "8 seconds"
       ],
       "answerIndex": 3,
-      "explanation": "Going over gives the opponent an indirect free kick."
+      "explanation": "The limit rose from six to eight seconds in July 2025, and going over it gives the opponent a corner kick."
     },
     {
       "id": 9031,
@@ -451,11 +451,11 @@
       "options": [
         "For any decision they want",
         "For offside only",
-        "For goals, penalties, straight red cards and mistaken identity",
+        "For goals, penalties, red cards and mistaken identity",
         "For every foul"
       ],
       "answerIndex": 2,
-      "explanation": "Four specific situations only, never extended beyond them."
+      "explanation": "In 2026 reviews were extended to red cards from a clearly wrong second yellow card."
     },
     {
       "id": 9036,

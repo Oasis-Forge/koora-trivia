@@ -78,7 +78,7 @@
         "Ukrainian"
       ],
       "answerIndex": 1,
-      "explanation": "Poland's captain and all-time record scorer."
+      "explanation": "Poland's long-time captain and all-time record scorer."
     },
     {
       "id": 6007,
@@ -135,7 +135,7 @@
     {
       "id": 6011,
       "level": 2,
-      "question": "How many Ballon d'Or awards has Lionel Messi won?",
+      "question": "By the end of the 2025-26 season, how many Ballon d'Or awards had Lionel Messi won?",
       "options": [
         "8",
         "7",
@@ -148,7 +148,7 @@
     {
       "id": 6012,
       "level": 2,
-      "question": "How many Ballon d'Or awards has Cristiano Ronaldo won?",
+      "question": "By the end of the 2025-26 season, how many Ballon d'Or awards had Cristiano Ronaldo won?",
       "options": [
         "4",
         "3",
@@ -265,7 +265,7 @@
     {
       "id": 6021,
       "level": 3,
-      "question": "Which player holds the record for the most Ballon d'Or awards?",
+      "question": "By the end of the 2025-26 season, which player held the record for the most Ballon d'Or awards?",
       "options": [
         "Lionel Messi",
         "Cristiano Ronaldo",
@@ -897,7 +897,7 @@
         "Paul Scholes"
       ],
       "answerIndex": 0,
-      "explanation": "No English player had won it since, up to the 2025 edition."
+      "explanation": "By the end of the 2025-26 season, no other English player had won it since."
     },
     {
       "id": 6070,

@@ -265,7 +265,7 @@
     {
       "id": 2021,
       "level": 3,
-      "question": "By the end of Euro 2024, which side had won the European Championship the most times?",
+      "question": "After the 2026 World Cup, which side had won the European Championship the most times?",
       "options": [
         "Germany",
         "Italy",
@@ -278,7 +278,7 @@
     {
       "id": 2022,
       "level": 3,
-      "question": "By the end of the 2024 edition, which side had won the Copa America the most times?",
+      "question": "After the 2026 World Cup, which side had won the Copa America the most times?",
       "options": [
         "Brazil",
         "Uruguay",
@@ -312,7 +312,7 @@
         "Italy"
       ],
       "answerIndex": 1,
-      "explanation": "The Netherlands' only title, capped by a legendary Van Basten strike."
+      "explanation": "The Netherlands' first major title, capped by a legendary Van Basten strike."
     },
     {
       "id": 2025,
@@ -356,7 +356,7 @@
     {
       "id": 2028,
       "level": 3,
-      "question": "By the end of Euro 2024, who was the European Championship's all-time top scorer?",
+      "question": "After the 2026 World Cup, who was the European Championship's all-time top scorer?",
       "options": [
         "Michel Platini",
         "Antoine Griezmann",
@@ -369,7 +369,7 @@
     {
       "id": 2029,
       "level": 3,
-      "question": "By the end of 2025, which side had won the Asian Cup the most times?",
+      "question": "After the 2026 World Cup, which side had won the Asian Cup the most times?",
       "options": [
         "Japan",
         "Iran",
@@ -616,7 +616,7 @@
     {
       "id": 2048,
       "level": 5,
-      "question": "By the end of the 2024 edition, how many Copa America titles had Uruguay won?",
+      "question": "After the 2026 World Cup, how many Copa America titles had Uruguay won?",
       "options": [
         "12",
         "10",
@@ -694,7 +694,7 @@
     {
       "id": 2054,
       "level": 6,
-      "question": "By the end of the 2025 edition, which side had won the CONCACAF Gold Cup the most times?",
+      "question": "After the 2026 World Cup, which side had won the CONCACAF Gold Cup the most times?",
       "options": [
         "United States",
         "Costa Rica",
@@ -720,7 +720,7 @@
     {
       "id": 2056,
       "level": 6,
-      "question": "Before the 2027 edition, how many Africa Cup of Nations titles had Cameroon won?",
+      "question": "After the 2026 World Cup, how many Africa Cup of Nations titles had Cameroon won?",
       "options": [
         "4",
         "3",
@@ -733,7 +733,7 @@
     {
       "id": 2057,
       "level": 6,
-      "question": "Before the 2027 edition, who was the Africa Cup of Nations' all-time top scorer?",
+      "question": "After the 2026 World Cup, who was the Africa Cup of Nations' all-time top scorer?",
       "options": [
         "Didier Drogba",
         "Laurent Pokou",
@@ -772,7 +772,7 @@
     {
       "id": 2060,
       "level": 6,
-      "question": "By the end of 2025, how many Asian Cup titles had Japan won?",
+      "question": "After the 2026 World Cup, how many Asian Cup titles had Japan won?",
       "options": [
         "3",
         "2",
@@ -824,7 +824,7 @@
     {
       "id": 2064,
       "level": 7,
-      "question": "Before the 2027 edition, how many Africa Cup of Nations titles had Ghana won?",
+      "question": "After the 2026 World Cup, how many Africa Cup of Nations titles had Ghana won?",
       "options": [
         "3",
         "2",
@@ -889,7 +889,7 @@
     {
       "id": 2069,
       "level": 7,
-      "question": "Who had made the most appearances at the European Championship finals by the end of Euro 2024?",
+      "question": "After the 2026 World Cup, who had made the most appearances at the European Championship finals?",
       "options": [
         "Gianluigi Buffon",
         "Cristiano Ronaldo",
@@ -897,12 +897,12 @@
         "Toni Kroos"
       ],
       "answerIndex": 1,
-      "explanation": "His tally reached 30 matches at the tournament by the end of Euro 2024."
+      "explanation": "After the 2026 World Cup, his tally at the tournament stood at 30 matches."
     },
     {
       "id": 2070,
       "level": 7,
-      "question": "How many European Championships had Cristiano Ronaldo played in before Euro 2028?",
+      "question": "After the 2026 World Cup, how many European Championships had Cristiano Ronaldo played in?",
       "options": [
         "4",
         "5",
@@ -915,7 +915,7 @@
     {
       "id": 2071,
       "level": 8,
-      "question": "By the end of Euro 2024, which was the last team to win the European Championship on home soil?",
+      "question": "After the 2026 World Cup, which was the last team to win the European Championship on home soil?",
       "options": [
         "England 1996",
         "France 1984",
@@ -1071,7 +1071,7 @@
     {
       "id": 2083,
       "level": 9,
-      "question": "By the end of 2025, how many Asian Cup titles had Iran won?",
+      "question": "After the 2026 World Cup, how many Asian Cup titles had Iran won?",
       "options": [
         "2",
         "3",
@@ -1097,7 +1097,7 @@
     {
       "id": 2085,
       "level": 9,
-      "question": "By the end of 2025, which side had won the OFC Nations Cup the most times?",
+      "question": "After the 2026 World Cup, which side had won the OFC Nations Cup the most times?",
       "options": [
         "New Zealand",
         "Tahiti",
@@ -1123,7 +1123,7 @@
     {
       "id": 2087,
       "level": 9,
-      "question": "By the end of the 2024 edition, which guest nation had reached the Copa America final twice?",
+      "question": "After the 2026 World Cup, which guest nation had reached the Copa America final twice?",
       "options": [
         "Mexico",
         "Japan",
@@ -1162,7 +1162,7 @@
     {
       "id": 2090,
       "level": 9,
-      "question": "By the end of Euro 2024, how many goals had Cristiano Ronaldo scored at the European Championship finals?",
+      "question": "After the 2026 World Cup, how many goals had Cristiano Ronaldo scored at the European Championship finals?",
       "options": [
         "11",
         "12",
@@ -1175,7 +1175,7 @@
     {
       "id": 2091,
       "level": 10,
-      "question": "By the end of the 2024 edition, who was the Copa America's all-time top scorer?",
+      "question": "After the 2026 World Cup, who was the Copa America's all-time top scorer?",
       "options": [
         "Lionel Messi",
         "Pele",
@@ -1240,7 +1240,7 @@
     {
       "id": 2096,
       "level": 10,
-      "question": "By the end of Euro 2024, who was the youngest player to score at a European Championship finals?",
+      "question": "Who is the youngest player to score at a European Championship finals?",
       "options": [
         "Wayne Rooney",
         "Kylian Mbappe",

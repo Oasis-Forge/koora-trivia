@@ -169,7 +169,7 @@
         "Amsterdam"
       ],
       "answerIndex": 3,
-      "explanation": "The most successful club in Dutch history."
+      "explanation": "By the end of the 2025-26 season, Ajax were the most successful club in Dutch history."
     },
     {
       "id": 7014,
@@ -590,7 +590,7 @@
     {
       "id": 7046,
       "level": 5,
-      "question": "Which Spanish club has won the most Europa League titles?",
+      "question": "By the end of the 2025-26 season, which Spanish club had won the most Europa League titles?",
       "options": [
         "Valencia",
         "Villarreal",
@@ -1032,7 +1032,7 @@
     {
       "id": 7080,
       "level": 8,
-      "question": "How many times had the Azteca staged a World Cup final before the 2026 tournament?",
+      "question": "After the 2026 World Cup, how many times had the Azteca staged a World Cup final?",
       "options": [
         "Once",
         "Twice",
@@ -1136,7 +1136,7 @@
     {
       "id": 7088,
       "level": 9,
-      "question": "Which Uruguayan club is the most successful in the country's history?",
+      "question": "By the end of the 2025-26 season, which Uruguayan club was the most successful in the country's history?",
       "options": [
         "Danubio",
         "Nacional",
@@ -1157,7 +1157,7 @@
         "Pumas"
       ],
       "answerIndex": 2,
-      "explanation": "Mexico's most decorated and popular club."
+      "explanation": "By the end of the 2025-26 season, América were Mexico's most decorated club, as well as one of its most popular."
     },
     {
       "id": 7090,
@@ -1196,7 +1196,7 @@
         "The Knights"
       ],
       "answerIndex": 1,
-      "explanation": "Thrylos, the most successful club in Greek history."
+      "explanation": "By the end of the 2025-26 season, Olympiacos, known in Greek as Thrylos, were the most successful club in Greek history."
     },
     {
       "id": 7093,
@@ -1292,15 +1292,15 @@
     {
       "id": 7100,
       "level": 10,
-      "question": "Which Portuguese club's name is linked to \"the Guttmann Curse\"?",
+      "question": "Which is Italy's oldest active football club, founded in 1893?",
       "options": [
-        "Porto",
-        "Benfica",
-        "Sporting",
-        "Braga"
+        "Juventus",
+        "Genoa",
+        "Torino",
+        "Milan"
       ],
       "answerIndex": 1,
-      "explanation": "Benfica have not won a European title since the coach departed in 1962."
+      "explanation": "English expatriates founded it in 1893 as Genoa Cricket and Athletic Club."
     }
   ]
 }

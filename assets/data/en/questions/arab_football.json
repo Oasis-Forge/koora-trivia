@@ -13,7 +13,7 @@
         "Ismaily"
       ],
       "answerIndex": 1,
-      "explanation": "Al Ahly, Africa's most successful club by the end of 2025."
+      "explanation": "By the end of the 2025-26 season, Al Ahly were Africa's most successful club."
     },
     {
       "id": 5002,
@@ -26,7 +26,7 @@
         "Al Ahli"
       ],
       "answerIndex": 2,
-      "explanation": "Al Hilal, Asia's most decorated club by the end of 2025."
+      "explanation": "By the end of the 2025-26 season, Al Hilal were Asia's most decorated club."
     },
     {
       "id": 5003,
@@ -83,7 +83,7 @@
     {
       "id": 5007,
       "level": 1,
-      "question": "Which Arab team has won the Africa Cup of Nations the most times, through the 2023 tournament?",
+      "question": "After the 2026 World Cup, which Arab team had won the Africa Cup of Nations the most times?",
       "options": [
         "Algeria",
         "Egypt",
@@ -135,7 +135,7 @@
     {
       "id": 5011,
       "level": 2,
-      "question": "Which Arab club has won the CAF Champions League the most times, by the end of 2025?",
+      "question": "By the end of the 2025-26 season, which Arab club had won the CAF Champions League the most times?",
       "options": [
         "Esperance of Tunis",
         "Al Ahly",
@@ -213,12 +213,12 @@
     {
       "id": 5017,
       "level": 2,
-      "question": "How many times has Mohamed Salah won African Footballer of the Year, by the end of 2025?",
+      "question": "By the end of the 2025-26 season, how many times had Mohamed Salah won African Footballer of the Year?",
       "options": [
         "Once",
         "Twice",
         "Three times",
-        "Never"
+        "Four times"
       ],
       "answerIndex": 1,
       "explanation": "He won the award in 2017 and 2018."
@@ -247,12 +247,12 @@
         "Algeria"
       ],
       "answerIndex": 1,
-      "explanation": "Tunisia's only title by the end of 2025, won on home soil."
+      "explanation": "After the 2026 World Cup, this remained Tunisia's only Africa Cup of Nations title, won on home soil."
     },
     {
       "id": 5020,
       "level": 2,
-      "question": "Which Qatari club has won the most Qatari league titles, through the 2025-26 season?",
+      "question": "By the end of the 2025-26 season, which Qatari club had won the most Qatari league titles?",
       "options": [
         "Al Rayyan",
         "Al Sadd",
@@ -304,7 +304,7 @@
     {
       "id": 5024,
       "level": 3,
-      "question": "Which Saudi club has won the AFC Champions League the most times, by the end of 2025?",
+      "question": "By the end of the 2025-26 season, which Saudi club had won the AFC Champions League the most times?",
       "options": [
         "Al Ittihad",
         "Al Nassr",
@@ -317,7 +317,7 @@
     {
       "id": 5025,
       "level": 3,
-      "question": "How many Asian titles has the Saudi Arabia national team won, by the end of 2025?",
+      "question": "After the 2026 World Cup, how many Asian titles had the Saudi Arabia national team won?",
       "options": [
         "2",
         "4",
@@ -507,7 +507,7 @@
         "Semi-final"
       ],
       "answerIndex": 2,
-      "explanation": "Saudi Arabia's best World Cup result through the 2026 edition."
+      "explanation": "After the 2026 World Cup, this remained Saudi Arabia's best World Cup result."
     },
     {
       "id": 5040,
@@ -559,7 +559,7 @@
         "Yousef Al-Thunayan"
       ],
       "answerIndex": 1,
-      "explanation": "Saudi Arabia's all-time top scorer by the end of 2025."
+      "explanation": "After the 2026 World Cup, he remained Saudi Arabia's all-time top scorer."
     },
     {
       "id": 5044,
@@ -598,7 +598,7 @@
         "Iraq"
       ],
       "answerIndex": 2,
-      "explanation": "Kuwait's only Asian Cup title by the end of 2025, won on home soil."
+      "explanation": "After the 2026 World Cup, this remained Kuwait's only Asian Cup title, won on home soil."
     },
     {
       "id": 5047,
@@ -611,7 +611,7 @@
         "UAE"
       ],
       "answerIndex": 3,
-      "explanation": "The UAE's only World Cup appearance, through the 2026 edition."
+      "explanation": "After the 2026 World Cup, this remained the UAE's only World Cup appearance."
     },
     {
       "id": 5048,
@@ -681,7 +681,7 @@
     {
       "id": 5053,
       "level": 6,
-      "question": "How many CAF Champions League titles has Esperance of Tunis won, by the end of 2025?",
+      "question": "By the end of the 2025-26 season, how many CAF Champions League titles had Esperance of Tunis won?",
       "options": [
         "2",
         "3",
@@ -694,7 +694,7 @@
     {
       "id": 5054,
       "level": 6,
-      "question": "How many CAF Champions League titles has Zamalek won, by the end of 2025?",
+      "question": "By the end of the 2025-26 season, how many CAF Champions League titles had Zamalek won?",
       "options": [
         "5",
         "4",
@@ -733,7 +733,7 @@
     {
       "id": 5057,
       "level": 6,
-      "question": "Who is Algeria's all-time top scorer, by the end of 2025?",
+      "question": "After the 2026 World Cup, who was Algeria's all-time top scorer?",
       "options": [
         "Abdelhafid Tasfaout",
         "Rabah Madjer",
@@ -780,7 +780,7 @@
         "Ahmed El-Shenawy"
       ],
       "answerIndex": 0,
-      "explanation": "The oldest player ever to appear at a World Cup finals, through the 2026 edition."
+      "explanation": "The oldest player ever to appear at a World Cup finals."
     },
     {
       "id": 5061,
@@ -793,7 +793,7 @@
         "Algeria"
       ],
       "answerIndex": 1,
-      "explanation": "Sudan beat Ghana 1-0 in the final for their only title by the end of 2025."
+      "explanation": "After the 2026 World Cup, this remained Sudan's only Africa Cup of Nations title, won by beating Ghana 1-0 in the final."
     },
     {
       "id": 5062,
@@ -837,7 +837,7 @@
     {
       "id": 5065,
       "level": 7,
-      "question": "Which team has won the Arabian Gulf Cup the most times, by the end of 2025?",
+      "question": "After the 2026 World Cup, which team had won the Arabian Gulf Cup the most times?",
       "options": [
         "Kuwait",
         "Saudi Arabia",
@@ -889,15 +889,15 @@
     {
       "id": 5069,
       "level": 7,
-      "question": "Which Arab team reached the round of 16 at the 2022 World Cup besides Morocco?",
+      "question": "How many points did Qatar collect as hosts of the 2022 World Cup?",
       "options": [
-        "Saudi Arabia",
-        "Tunisia",
-        "Qatar",
-        "No other Arab team did"
+        "3",
+        "1",
+        "2",
+        "0"
       ],
       "answerIndex": 3,
-      "explanation": "Morocco was the only Arab team to advance past the group stage."
+      "explanation": "They lost all three group games, the first World Cup hosts ever to do so."
     },
     {
       "id": 5070,
@@ -1045,7 +1045,7 @@
     {
       "id": 5081,
       "level": 9,
-      "question": "How many CAF Champions League titles has Al Ahly of Egypt won, by the end of 2025?",
+      "question": "By the end of the 2025-26 season, how many CAF Champions League titles had Al Ahly of Egypt won?",
       "options": [
         "9",
         "12",
@@ -1136,7 +1136,7 @@
     {
       "id": 5088,
       "level": 9,
-      "question": "Which Arab country has hosted the Africa Cup of Nations the most times, by the end of 2025?",
+      "question": "After the 2026 World Cup, which Arab country had hosted the Africa Cup of Nations the most times?",
       "options": [
         "Tunisia",
         "Morocco",
@@ -1214,7 +1214,7 @@
     {
       "id": 5094,
       "level": 10,
-      "question": "How many CAF Champions League titles has Wydad of Morocco won, by the end of 2025?",
+      "question": "By the end of the 2025-26 season, how many CAF Champions League titles had Wydad of Morocco won?",
       "options": [
         "1",
         "2",
@@ -1292,7 +1292,7 @@
     {
       "id": 5100,
       "level": 10,
-      "question": "Who is the Arab player with the most international caps in Asia, by the end of 2025?",
+      "question": "After the 2026 World Cup, who was the Arab player with the most international caps in Asia?",
       "options": [
         "Mohamed El Daeay",
         "Sami Al-Jaber",

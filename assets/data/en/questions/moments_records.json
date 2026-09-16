@@ -44,7 +44,7 @@
     {
       "id": 10004,
       "level": 1,
-      "question": "As of mid-2026, who has the most international caps in the history of men's football?",
+      "question": "After the 2026 World Cup, who had the most international caps in the history of men's football?",
       "options": [
         "Bader Al-Mutawa",
         "Ahmed Hassan",
@@ -57,7 +57,7 @@
     {
       "id": 10005,
       "level": 1,
-      "question": "As of the end of 2025, who holds the record for the most goals scored in a single calendar year?",
+      "question": "By the end of the 2025-26 season, who held the record for the most goals scored in a single calendar year?",
       "options": [
         "Lionel Messi",
         "Cristiano Ronaldo",
@@ -265,33 +265,33 @@
     {
       "id": 10021,
       "level": 3,
-      "question": "What is the record for the most goals by one player at a single World Cup?",
+      "question": "Which Colombian goalkeeper cleared the ball with his famous \"scorpion kick\" against England at Wembley in 1995?",
       "options": [
-        "13",
-        "11",
-        "15",
-        "9"
+        "Rene Higuita",
+        "Oscar Cordoba",
+        "Faryd Mondragon",
+        "Miguel Calero"
       ],
       "answerIndex": 0,
-      "explanation": "Just Fontaine scored 13 goals in 1958."
+      "explanation": "He leapt forward and hooked the looping ball away with his heels over his head, in a goalless friendly."
     },
     {
       "id": 10022,
       "level": 3,
-      "question": "Which match produced the first penalty shoot-out in English professional football, in a 1970 Watney Cup tie?",
+      "question": "Which Swedish player scored a spectacular 30-yard bicycle kick against England in a 2012 friendly, later winning the Puskas Award?",
       "options": [
-        "Leeds United v Sheffield Wednesday",
-        "Coventry City v West Bromwich Albion",
-        "Hull City v Manchester United",
-        "Blackpool v Bury"
+        "Henrik Larsson",
+        "Freddie Ljungberg",
+        "Zlatan Ibrahimovic",
+        "Marcus Berg"
       ],
       "answerIndex": 2,
-      "explanation": "George Best scored the first kick, and Manchester United won the shoot-out 4-3 after a 1-1 draw."
+      "explanation": "He scored all four of Sweden's goals in a 4-2 win at the Friends Arena."
     },
     {
       "id": 10023,
       "level": 3,
-      "question": "Which national team holds the record for the longest run of consecutive wins in international matches?",
+      "question": "Which national team won 15 international matches in a row between 2008 and 2009, a world record at the time?",
       "options": [
         "Brazil",
         "Germany",
@@ -299,7 +299,7 @@
         "France"
       ],
       "answerIndex": 2,
-      "explanation": "Fifteen wins in a row between 2008 and 2009."
+      "explanation": "The run began at Euro 2008 and ended in the semi-finals of the 2009 Confederations Cup."
     },
     {
       "id": 10024,
@@ -642,15 +642,15 @@
     {
       "id": 10050,
       "level": 5,
-      "question": "How long is the longest run of consecutive wins by a national team?",
+      "question": "After the 2026 World Cup, how long was the longest run of consecutive wins by a men's national team?",
       "options": [
         "15 matches",
         "17 matches",
-        "12 matches",
-        "More than 20 matches"
+        "21 matches",
+        "19 matches"
       ],
       "answerIndex": 3,
-      "explanation": "Several national teams have posted runs of more than twenty wins in a row."
+      "explanation": "Morocco won 19 matches in a row between 2024 and 2025."
     },
     {
       "id": 10051,
@@ -741,7 +741,7 @@
         "13"
       ],
       "answerIndex": 1,
-      "explanation": "A record in the competition's history."
+      "explanation": "By the end of the 2025-26 season, no player had scored in more consecutive Champions League matches."
     },
     {
       "id": 10058,
@@ -785,7 +785,7 @@
     {
       "id": 10061,
       "level": 7,
-      "question": "Up to the 2026 World Cup, which country waited longest between two World Cup titles, at 44 years?",
+      "question": "After the 2026 World Cup, which country had waited longest between two World Cup titles, at 44 years?",
       "options": [
         "Uruguay",
         "Argentina",
@@ -824,7 +824,7 @@
     {
       "id": 10064,
       "level": 7,
-      "question": "Who is the most decorated player in the history of the European Cup?",
+      "question": "Which player was the first to reach six European Cup/Champions League titles, a tally later matched by four Real Madrid players?",
       "options": [
         "Alfredo Di Stefano",
         "Paolo Maldini",
@@ -832,12 +832,12 @@
         "Francisco Gento"
       ],
       "answerIndex": 3,
-      "explanation": "Six titles with Real Madrid in the 1950s and 1960s."
+      "explanation": "Gento won all six with Real Madrid between 1956 and 1966; Luka Modric, Toni Kroos, Dani Carvajal and Nacho reached six in 2024."
     },
     {
       "id": 10065,
       "level": 7,
-      "question": "Up to the 2026 final, who had scored the fastest goal in FA Cup final history, after just 13 seconds in 2023?",
+      "question": "Who scored the fastest goal in FA Cup final history, netting after just 13 seconds in the 2023 final?",
       "options": [
         "Erling Haaland",
         "Ilkay Gundogan",
@@ -850,7 +850,7 @@
     {
       "id": 10066,
       "level": 7,
-      "question": "Before Euro 2028, who held the record for the fastest goal at a European Championship, after just 23 seconds at Euro 2024?",
+      "question": "Who holds the record for the fastest goal at a European Championship, scored after just 23 seconds at Euro 2024?",
       "options": [
         "Dmitri Kirichenko",
         "Milan Baros",
@@ -884,12 +884,12 @@
         "15"
       ],
       "answerIndex": 1,
-      "explanation": "A record in Premier League history."
+      "explanation": "He broke Ruud van Nistelrooy's record of 10 matches in a row."
     },
     {
       "id": 10069,
       "level": 7,
-      "question": "Which national team scored the most goals at a single World Cup?",
+      "question": "After the 2026 World Cup, which national team had scored the most goals at a single World Cup?",
       "options": [
         "France 1958",
         "Brazil 1970",
@@ -1136,7 +1136,7 @@
     {
       "id": 10088,
       "level": 9,
-      "question": "Which national team recorded the longest run without conceding a goal at a World Cup?",
+      "question": "Which national team is the only one in World Cup history to be eliminated without conceding a single goal?",
       "options": [
         "Italy",
         "England",
@@ -1144,7 +1144,7 @@
         "Brazil"
       ],
       "answerIndex": 2,
-      "explanation": "Switzerland kept a clean sheet throughout the 2006 World Cup and went out on penalties."
+      "explanation": "Switzerland kept a clean sheet throughout the 2006 World Cup, before losing to Ukraine on penalties in the last 16."
     },
     {
       "id": 10089,
