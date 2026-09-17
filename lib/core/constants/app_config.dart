@@ -82,6 +82,18 @@ class AppConfig {
   /// عدد الإجابات الصحيحة المطلوبة لمهمة الإجابات.
   static const int taskAnswersTarget = 10;
 
+  // ── الشراء بالمال الحقيقي ──
+  // الأسعار نفسها تُضبط في Play Console لا هنا، فغوغل تعرضها بعملة كل بلد.
+
+  /// قلوب حزمة الشراء الصغيرة.
+  ///
+  /// الرصيد يتجاوز السقف بعد الشراء عمداً (`_grantPurchasedHearts`): من دفع
+  /// وهو يملك أربعة قلوب لا يجوز أن يحصل على قلب واحد.
+  static const int heartsPerSmallPack = 5;
+
+  /// قلوب الحزمة الكبيرة — أربعة أضعاف الصغيرة بسعر أقل للقلب الواحد.
+  static const int heartsPerLargePack = 20;
+
   /// أسعار المتجر بالعملات.
   static const int priceHeartsRefill = 200;
   static const int priceHintsPack = 200;

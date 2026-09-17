@@ -47,6 +47,19 @@
 | Closed testing | ✅ running · ⚠️ testers | Track **Alpha**: available since **9 September 2026** with v1.0.3 (versionCode 4), 177 countries; latest upload v1.0.7 (versionCode 8, 16 September 2026). Only **5 of 12** testers opted in (13 September). New personal accounts need **12 testers opted in for 14 consecutive days** before requesting production, so the clock hasn't started |
 | Production | ⏳ | |
 
+### In-app products — what the owner creates in Play Console (v1.0.8)
+
+The code ships with the ids below; the shop stays on «قريباً» until Play returns them, so the
+order of these steps doesn't matter to the app.
+
+1. **Payments profile** — Setup → Payments profile. Under verification since 17 September 2026;
+   nothing can be sold before it is active.
+2. **Products** — Monetise → In-app products. Ids exactly: `hearts_small` (consumable, 5 hearts),
+   `hearts_large` (consumable, 20 hearts), `remove_ads` (non-consumable). **An id can never be
+   renamed** — old purchases stop restoring. Set the price per product; Google converts per country.
+3. **Licence testers** — Setup → Licence testing: add the tester accounts that should buy without
+   being charged. Test purchases need the app installed from a Play track, not a local APK.
+
 ### English on Play Console (with v1.0.6)
 
 Done by the owner (14–15 September 2026): steps 1–5 and 8. Left: step 6 (pre-launch report), kept for later.

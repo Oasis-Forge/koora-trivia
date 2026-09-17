@@ -344,7 +344,28 @@ class EnglishText implements AppText {
   @override
   String get watchAdForHeart => 'Watch an ad and get a heart';
   @override
-  String get removeAdsSoon => 'Remove ads';
+  String get removeAds => 'Remove ads';
+  @override
+  String get removeAdsHint => 'Hides the bottom banner and the ads between rounds';
+  @override
+  String get removeAdsActive => 'Active';
+  @override
+  String heartsPack(String hearts) => 'Pack of $hearts';
+  @override
+  String get heartsPackHint => 'Added on top of your hearts, even when full';
+  @override
+  String get restorePurchases => 'Restore purchases';
+  @override
+  String get purchaseDone => 'Purchase complete — thank you!';
+  @override
+  String get purchasePending =>
+      "Your purchase is being processed; you'll get it as soon as it completes";
+  @override
+  String get purchaseFailed => "The purchase didn't go through";
+  @override
+  String get purchasesRestored => 'Your purchases are back';
+  @override
+  String get noPurchasesToRestore => 'No previous purchases on this account';
   @override
   String get adUnavailable => 'Requires an internet connection';
   @override

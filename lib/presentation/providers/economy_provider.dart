@@ -184,6 +184,20 @@ class EconomyProvider extends ChangeNotifier {
     await _repository.save(_economy);
   }
 
+  /// منح قلوب مشتراة بالمال — **تتجاوز السقف**.
+  ///
+  /// القلوب المجانية تتوقف عند السقف، أما المدفوعة فلا يُصادَر منها شيء: من
+  /// اشترى عشرين قلباً وهو يملك ثلاثة يجب أن يجدها كلها.
+  Future<void> grantPurchasedHearts(int amount) async {
+    if (amount <= 0) return;
+    _refresh(persist: false);
+
+    _economy = _economy.copyWith(hearts: _economy.hearts + amount);
+    _untilNextHeart = null;
+    notifyListeners();
+    await _repository.save(_economy);
+  }
+
   /// استهلاك مساعدة — المجانية أولاً ثم المشتراة.
   Future<bool> consumeHint() async {
     _refresh(persist: false);

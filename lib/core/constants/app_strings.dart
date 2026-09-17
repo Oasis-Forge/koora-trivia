@@ -239,7 +239,18 @@ class AppText {
   String get comingSoon => 'قريباً';
   String get watchAdForCoins => 'شاهد إعلاناً واكسب عملات';
   String get watchAdForHeart => 'شاهد إعلاناً واحصل على قلب';
-  String get removeAdsSoon => 'إزالة الإعلانات';
+  String get removeAds => 'إزالة الإعلانات';
+  String get removeAdsHint => 'تُخفي الشريط السفلي والإعلانات بين الجولات';
+  String get removeAdsActive => 'مفعّلة';
+  String heartsPack(String hearts) => 'حزمة $hearts';
+  String get heartsPackHint => 'تُضاف فوق رصيدك ولو كان ممتلئاً';
+  String get restorePurchases => 'استعادة المشتريات';
+  String get purchaseDone => 'تم الشراء — شكراً لدعمك!';
+  String get purchasePending =>
+      'الشراء قيد المعالجة، وسيصلك ما اشتريته فور اكتماله';
+  String get purchaseFailed => 'تعذّر إتمام الشراء';
+  String get purchasesRestored => 'تمت استعادة مشترياتك';
+  String get noPurchasesToRestore => 'لا توجد مشتريات سابقة على هذا الحساب';
   String get adUnavailable => 'يتطلب اتصالاً بالإنترنت';
   String get adDailyLimitReached => 'استنفدت إعادة التعبئة اليوم';
   String get adDismissed => 'يجب إكمال الإعلان للحصول على المكافأة';

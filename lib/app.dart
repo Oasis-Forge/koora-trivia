@@ -14,6 +14,7 @@ import 'domain/repositories/review_prompter.dart';
 import 'presentation/providers/ads_provider.dart';
 import 'presentation/providers/economy_provider.dart';
 import 'presentation/providers/progress_provider.dart';
+import 'presentation/providers/purchases_provider.dart';
 import 'presentation/providers/quiz_provider.dart';
 import 'presentation/providers/settings_provider.dart';
 import 'presentation/providers/stats_provider.dart';
@@ -68,6 +69,18 @@ class FootballTriviaApp extends StatelessWidget {
           // فيظهر نموذج الموافقة وسط اللعب ولا يكون الإعلان جاهزاً عند أول زر.
           lazy: false,
           create: (_) => AdsProvider(service: injector.adService)..init(),
+        ),
+        ChangeNotifierProvider(
+          // غير كسول أيضاً: شراء اكتمل والتطبيق مغلق (دفع معلّق أو جهاز آخر)
+          // يصل عند الإقلاع، ومن اشترى إزالة الإعلانات يجب ألا يراها لحظة.
+          lazy: false,
+          create: (context) => PurchasesProvider(
+            service: injector.billingService,
+            grantHearts: context.read<EconomyProvider>().grantPurchasedHearts,
+            onAdsRemoved: () {
+              context.read<AdsProvider>().adsRemoved = true;
+            },
+          )..init(),
         ),
         ChangeNotifierProvider(
           create: (_) => SettingsProvider(

@@ -12,6 +12,7 @@ import 'package:football_trivia/domain/repositories/link_opener.dart';
 import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
 import 'package:football_trivia/presentation/providers/progress_provider.dart';
+import 'package:football_trivia/presentation/providers/purchases_provider.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
 import 'package:football_trivia/presentation/providers/settings_provider.dart';
 import 'package:football_trivia/presentation/providers/stats_provider.dart';
@@ -26,6 +27,7 @@ import 'package:football_trivia/presentation/widgets/hearts_bar.dart';
 import 'package:provider/provider.dart';
 
 import 'fakes/fake_ad_service.dart';
+import 'fakes/fake_billing_service.dart';
 import 'fakes/fake_repositories.dart';
 import 'fakes/score_screen_harness.dart';
 
@@ -290,6 +292,13 @@ void _screens() {
               ChangeNotifierProvider.value(value: economy),
               ChangeNotifierProvider(
                 create: (_) => AdsProvider(service: FakeAdService()),
+              ),
+              ChangeNotifierProvider(
+                create: (_) => PurchasesProvider(
+                  service: FakeBillingService(available: true),
+                  grantHearts: (_) async {},
+                  onAdsRemoved: () {},
+                )..init(),
               ),
             ],
             child: _app(const ShopScreen()),

@@ -49,6 +49,17 @@ class ArabicNoun {
     englishPlural: 'days',
   );
 
+  static const heart = ArabicNoun(
+    singular: 'قلب',
+    one: 'قلب واحد',
+    dual: 'قلبان',
+    dualObject: 'قلبين',
+    plural: 'قلوب',
+    accusative: 'قلباً',
+    english: 'heart',
+    englishPlural: 'hearts',
+  );
+
   static const star = ArabicNoun(
     singular: 'نجمة',
     one: 'نجمة واحدة',

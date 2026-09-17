@@ -9,6 +9,7 @@ import 'package:football_trivia/core/utils/day_key.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
 import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
+import 'package:football_trivia/presentation/providers/purchases_provider.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
 import 'package:football_trivia/presentation/screens/shop_screen.dart';
 import 'package:football_trivia/presentation/widgets/hearts_bar.dart';
@@ -18,6 +19,7 @@ import 'package:football_trivia/presentation/widgets/timer_ring.dart';
 import 'package:provider/provider.dart';
 
 import 'fakes/fake_ad_service.dart';
+import 'fakes/fake_billing_service.dart';
 import 'fakes/fake_repositories.dart';
 
 EconomyProvider _economy({int hintsUsed = 0}) => EconomyProvider(
@@ -119,6 +121,13 @@ void main() {
           ChangeNotifierProvider.value(value: economy),
           ChangeNotifierProvider(
             create: (_) => AdsProvider(service: FakeAdService(ready: false)),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => PurchasesProvider(
+              service: FakeBillingService(available: false),
+              grantHearts: (_) async {},
+              onAdsRemoved: () {},
+            )..init(),
           ),
         ],
         child: const MaterialApp(home: ShopScreen()),

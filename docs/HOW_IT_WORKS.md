@@ -149,6 +149,34 @@ sections kept), tasks, shop, plus the result screen, onboarding and the no-heart
 > `configurations.all`, which Gradle 9 removed, so the build fails with
 > `Could not get unknown property 'all'`.
 
+### In-app purchases — how they work (v1.0.8)
+
+Three products, ids exactly as in Play Console: `hearts_small` (5 hearts), `hearts_large`
+(20 hearts) and `remove_ads`. **Never rename an id** — old purchases stop restoring.
+
+- **The rows appear only when Play returns the products.** `PlayBillingService.isAvailable` is
+  store-reachable *and* products found, so the shop keeps its «قريباً» row while the payments
+  profile is under verification or the products don't exist yet. That is what let this ship before
+  the account was ready to sell.
+- **Delivery goes through `PurchasesProvider`, not the shop screen.** A purchase can complete while
+  the app is closed (a pending bank payment, or a buy on another device) and arrives at the next
+  launch with no screen open.
+- **Bought hearts go above the 5-heart cap** (`grantPurchasedHearts`). `RegenerateHearts` returns
+  early when hearts ≥ max, so the extra hearts survive; free regen still stops at 5. Paying at
+  4 hearts and getting 1 would read as a rip-off.
+- **`remove_ads` stops the banner and interstitials, never the rewarded ad** — that one is optional
+  and is how players get hearts and coins (see ECONOMY.md).
+- **The entitlement is not in the backup code.** `entitlements_v1_ads_removed` is deliberately
+  missing from `_decoders` in `BackupRepositoryImpl`: a backup code is shareable, so carrying the
+  purchase in it would make Remove-ads free for anyone who copies it. Play is the source of truth
+  (`restorePurchases()` at every launch) and the local key is only an offline cache.
+- **Consumables are not restored.** Only non-consumables are re-delivered on restore, or hearts
+  would be granted again at every launch.
+- **Every purchase is completed** (`completePurchase`), which acknowledges it. Google refunds
+  anything unacknowledged after 3 days. `buyConsumable` also consumes, so a pack can be bought again.
+- A revoked or refunded purchase is **not** revoked locally on its own: wrongly cutting off a paying
+  player is worse than the rare refund keeping its benefit.
+
 ### Coins and tasks — how they work
 
 Coins are an intermediate currency: actions grant coins, and coins buy hearts or hints. That lets
