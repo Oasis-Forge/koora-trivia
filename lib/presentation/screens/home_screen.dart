@@ -8,6 +8,7 @@ import '../../core/theme/app_colors.dart';
 import '../providers/economy_provider.dart';
 import '../providers/quiz_provider.dart';
 import '../providers/stats_provider.dart';
+import '../widgets/banner_slot.dart';
 import '../widgets/category_chips.dart';
 import '../widgets/coin_badge.dart';
 import '../widgets/daily_challenge_card.dart';
@@ -76,6 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final quiz = context.watch<QuizProvider>();
 
     return Scaffold(
+      // الشريط الإعلاني أسفل المحتوى دائماً، لا داخل التمرير.
+      bottomNavigationBar: const BannerSlot(),
       body: PitchBackground(
         child: SafeArea(
           child: ListView(

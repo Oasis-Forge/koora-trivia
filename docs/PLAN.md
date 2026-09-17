@@ -44,6 +44,8 @@
 - 15 September 2026: the daily challenge plays 2 easy, 3 medium and 2 hard questions, easiest first, and repeats no question within a 133-day cycle · a claimed task's count stops at its goal instead of «21 / 10».
 - 16 September 2026, question bank in both languages: 40 questions that repeated a fact from another question replaced (the overlap rules pick the copy kept) · no explanation gives away a later answer in its level · no time-relative wording, and counts and records that can change within a few years anchored to «حتى نهاية موسم 2025-2026» / "By the end of the 2025-26 season" or «بعد كأس العالم 2026» / "After the 2026 World Cup" (owner's decision) · more than a dozen wrong facts found on the way corrected (e.g. 4080, 9030, 10023) · `question_content_test` guards all three.
 - 16 September 2026, answer giveaways: in 75 questions the correct option no longer stands out by length or by alone repeating a word from the question (26 of them in laws), in both languages · 10026 is anchored · 2091's options are all name pairs · wrong options that were also true were replaced (e.g. 9055, 9063, 10077) · 8086 and 9068 reworded for accuracy · `question_content_test` guards length and repeated words.
+- 17 September 2026 (owner's decision): interstitials on — after the result screen, every 3 rounds, at least 3 minutes apart, never after the daily challenge and never before the review prompt.
+- 17 September 2026 (owner's decision): a bottom banner on home, categories, levels, tasks, shop, settings and the quiz. It reserves its height before the ad arrives so nothing above it shifts under the player's finger, and `AppConfig.bannersEnabled` switches it off.
 - 16 September 2026: app-ads.txt set as the Play listing's Website and verified in AdMob (owner) · the 32 merged PR branches deleted · v1.0.7+8 built, archived and uploaded by the owner to closed testing (no full test run or emulator check, owner's call).
 - PR #7, merged 14 September 2026: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
 - PR #6, merged 13 September 2026: the daily reminder fires (receivers and a status-bar icon; verified on a release build on the emulator, including after a reboot); one reminder per day for the next week, skipping today once the daily is done, naming the streak in the first, and taking the question count from AppConfig · hearts, the countdown and tasks refresh on resume and every 30 s, and a granted heart no longer resets the countdown · the no-hearts dialog offers the daily challenge (only if not done), an ad and a 200-coin refill, with «حسناً» · count-noun grammar helper used for days, stars, levels, points, questions and correct answers.
@@ -67,6 +69,7 @@
   - Quiz screen and level grid on a real short phone and a real tall one.
 
 ### Features
+- **P1 · L**: Play Billing, owner's decision of 17 September 2026 — Remove ads (stops the banner and interstitials, keeps the rewarded ad) and heart packs; acknowledged within 3 days, restored on reinstall, and the Play listing then declares in-app purchases. Was P2 · L in phase 3.
 - **P1 · S**: English is built (steps 1–4, see Done). Left: a person fluent in English spot-checks the translated questions (the English store listing went up with v1.0.6).
 
 ---
@@ -126,7 +129,7 @@
 - **P2 · M**: Achievements and category mastery with one-time coin rewards, plus a rotating pool of daily tasks that keeps the 130-coin daily total.
 - **P2 · M**: A shareable image card for WhatsApp and Instagram stories, and a "challenge a friend" code that replays the same questions without a server.
 - **P2 · M**: Free endless modes from the existing questions: Survival and 60-second True/False, with a personal best for each.
-- **P2 · L**: In-app purchases per decision: heart packs, acknowledged within 3 days, restored through Play Billing, and a checksum on backup codes.
+- **P3 · S**: A checksum on backup codes (was bundled with the in-app purchases item, now in phase 1).
 - **P3 · L**: Revisits local-only storage: Play Games cloud save and achievements, and downloadable question packs (needs privacy policy and Data safety updates).
 
 ---
@@ -141,9 +144,7 @@
    - **Recommend:** leave it out of the total, as the code's own comment intends, but no 3 stars on a level with a skip.
 4. **Telemetry.** The local error log and feedback email shipped (PR #8). Still open: Crashlytics and about 8 analytics events in the first update (needs Data safety and privacy policy updates).
 5. **Timer while the app is in the background** — done in v1.0.5 (B1): the quiz pauses and hides the question.
-6. **Shop and monetization.**
-   - Options: keep or hide the «قريباً» Remove-ads row · sell heart packs or coins for money · add hint-for-ad and replay-level ads.
-   - **Recommend:** hide the row at launch, sell only heart packs, and add hint-for-ad.
+6. **Shop and monetization** — **decided 17 September 2026:** banners and interstitials now, then Play Billing for Remove ads and heart packs. The «قريباً» row stays until it can be bought.
 7. **Streak protection.**
    - Options: none · protection bought with coins.
    - **Recommend:** at least 200 coins, so a full day of tasks (130 coins) can't buy it, and hold at most one.

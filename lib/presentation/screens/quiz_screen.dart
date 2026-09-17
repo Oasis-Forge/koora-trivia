@@ -12,6 +12,7 @@ import '../providers/economy_provider.dart';
 import '../providers/quiz_provider.dart';
 import '../providers/settings_provider.dart';
 import '../widgets/answer_option.dart';
+import '../widgets/banner_slot.dart';
 import '../widgets/hint_bar.dart';
 import '../widgets/koora_app_bar.dart';
 import '../widgets/koora_buttons.dart';
@@ -180,6 +181,8 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
         _handleQuit();
       },
       child: Scaffold(
+        // الشريط الإعلاني أسفل المحتوى دائماً، لا داخل التمرير.
+        bottomNavigationBar: const BannerSlot(),
         body: PitchBackground(
           child: SafeArea(
             child: question == null

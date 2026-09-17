@@ -49,11 +49,13 @@ class AdMobAdService implements AdService {
   static const String _testRewarded = 'ca-app-pub-3940256099942544/5224354917';
   static const String _testInterstitial =
       'ca-app-pub-3940256099942544/1033173712';
+  static const String _testBanner = 'ca-app-pub-3940256099942544/6300978111';
 
   // معرّفات الإنتاج من حساب AdMob (Oasis Forge · تطبيق Koora Trivia).
   static const String _prodRewarded = 'ca-app-pub-8287765177319119/2743596250';
   static const String _prodInterstitial =
       'ca-app-pub-8287765177319119/2959218674';
+  static const String _prodBanner = 'ca-app-pub-8287765177319119/9794622122';
 
   String get _rewardedUnitId {
     if (useTestIds || _prodRewarded.isEmpty) return _testRewarded;
@@ -63,6 +65,12 @@ class AdMobAdService implements AdService {
   String get _interstitialUnitId {
     if (useTestIds || _prodInterstitial.isEmpty) return _testInterstitial;
     return _prodInterstitial;
+  }
+
+  @override
+  String get bannerUnitId {
+    if (useTestIds || _prodBanner.isEmpty) return _testBanner;
+    return _prodBanner;
   }
 
   static final List<Duration> _retryDelays = [
@@ -108,6 +116,8 @@ class AdMobAdService implements AdService {
   set adsRemoved(bool value) {
     _adsRemoved = value;
     if (value) _interstitial.stop();
+    // الشريط السفلي يسأل `areBannersAllowed` في كل بناء، فلا يختفي قبل إخطار.
+    _notify();
   }
 
   @override
@@ -118,6 +128,10 @@ class AdMobAdService implements AdService {
 
   bool get _interstitialsWanted =>
       AppConfig.interstitialsEnabled && !_adsRemoved;
+
+  @override
+  bool get areBannersAllowed =>
+      AppConfig.bannersEnabled && !_adsRemoved && _canLoad;
 
   /// هل يُسمح بطلب إعلان الآن؟ موافقة قائمة وحزمة مهيّأة.
   bool get _canLoad => _canRequestAds && _sdkReady;
@@ -176,6 +190,8 @@ class AdMobAdService implements AdService {
   Future<void> _startAds() async {
     await (_sdkInit ??= _initializeSdk());
     _sdkReady = true;
+    // جاهزية الحزمة شرطٌ في `areBannersAllowed`، وهي تكتمل بعد آخر إخطار.
+    _notify();
 
     // قد تتغيّر الموافقة أثناء انتظار التهيئة.
     if (!_canRequestAds) return;

@@ -263,7 +263,7 @@ New **personal** developer accounts can't request production until a closed test
 | Item | Status |
 |---|---|
 | In-app purchases | Not built; "Remove ads" shows "Soon". ⚠️ Consumables must be acknowledged within 3 days |
-| Interstitial ads | Built, deliberately off at launch |
+| Interstitial ads | On since 17 September 2026 (owner's decision), with a bottom banner |
 | `app-ads.txt` | Live at https://oasis-forge.github.io/app-ads.txt, set as the Play listing's Website and verified in AdMob (16 September 2026) |
 | Tablet screenshots | None |
 | Splash screen | Still uses the old `ic_ball` drawing |

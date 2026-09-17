@@ -6,15 +6,18 @@ import 'package:football_trivia/domain/entities/category.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
 import 'package:football_trivia/domain/entities/question.dart';
 import 'package:football_trivia/domain/repositories/quiz_repository.dart';
+import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
 import 'package:football_trivia/presentation/providers/settings_provider.dart';
 import 'package:football_trivia/presentation/screens/quiz_screen.dart';
 import 'package:football_trivia/presentation/widgets/answer_option.dart';
+import 'package:football_trivia/presentation/widgets/banner_slot.dart';
 import 'package:football_trivia/presentation/widgets/hint_bar.dart';
 import 'package:football_trivia/presentation/widgets/surface.dart';
 import 'package:provider/provider.dart';
 
+import 'fakes/fake_ad_service.dart';
 import 'fakes/fake_repositories.dart';
 
 /// بطول سؤال حقيقي متوسط.
@@ -74,6 +77,7 @@ Future<QuizProvider> _pumpQuiz(
   WidgetTester tester,
   Size size, {
   String text = _questionText,
+  bool banners = false,
 }) async {
   tester.view.physicalSize = size;
   tester.view.devicePixelRatio = 1;
@@ -102,6 +106,10 @@ Future<QuizProvider> _pumpQuiz(
         ChangeNotifierProvider.value(value: quiz),
         ChangeNotifierProvider.value(value: economy),
         ChangeNotifierProvider.value(value: settings),
+        ChangeNotifierProvider(
+          create: (_) =>
+              AdsProvider(service: FakeAdService(bannersAllowed: banners)),
+        ),
       ],
       child: const MaterialApp(
         home: Directionality(
@@ -146,6 +154,21 @@ void main() {
     expect(lastOption.bottom, lessThanOrEqualTo(hintBar.top));
     expect(_questionFontSize(tester), 18);
 
+    await _finish(tester, quiz);
+  });
+
+  testWidgets('الشريط الإعلاني يبقى تحت الخيارات ولا يلامسها', (tester) async {
+    // شريط إعلاني ملاصق لزر إجابة = نقرات خاطئة، وهي عند AdMob «حركة غير
+    // صالحة» تُعرّض الحساب للإيقاف. أضيق شاشة هي أخطر حالة.
+    BannerSlot.testAdBuilder = (_) => const SizedBox.expand();
+    addTearDown(() => BannerSlot.testAdBuilder = null);
+    final quiz = await _pumpQuiz(tester, const Size(320, 640), banners: true);
+
+    final lastOption = tester.getRect(find.byType(AnswerOption).last);
+    final banner = tester.getRect(find.byType(BannerSlot));
+
+    expect(banner.height, BannerSlot.totalHeight);
+    expect(banner.top, greaterThanOrEqualTo(lastOption.bottom));
     await _finish(tester, quiz);
   });
 

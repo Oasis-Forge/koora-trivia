@@ -6,6 +6,7 @@ import '../../core/theme/app_colors.dart';
 import '../../domain/entities/category.dart';
 import '../providers/progress_provider.dart';
 import '../providers/quiz_provider.dart';
+import '../widgets/banner_slot.dart';
 import '../widgets/category_card.dart';
 import '../widgets/koora_app_bar.dart';
 import '../widgets/koora_buttons.dart';
@@ -52,6 +53,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     final progress = context.watch<ProgressProvider>();
 
     return Scaffold(
+      // الشريط الإعلاني أسفل المحتوى دائماً، لا داخل التمرير.
+      bottomNavigationBar: const BannerSlot(),
       body: PitchBackground(
         child: SafeArea(
           child: Column(
