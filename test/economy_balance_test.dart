@@ -35,10 +35,12 @@ void main() {
     expect(days, greaterThan(1.0), reason: 'الشراء اليومي سخيّ أكثر من اللازم');
   });
 
-  test('الإعلانات البينية مطفأة عند الإطلاق', () {
-    // قرار مقصود: تقييمات الأيام الأولى أهم من دخل الإعلان البيني.
-    // إن فُعّلت لاحقاً في تحديث، احذف هذا الاختبار أو اعكسه.
-    expect(AppConfig.interstitialsEnabled, isFalse);
+  test('الإعلان البيني محكوم بسقفَي الجولات والوقت', () {
+    // مفعّل بقرار المالك (17 سبتمبر 2026)، فالحارس الآن هو السقفان: بلا
+    // أحدهما يصبح الإعلان لكل جولة، وهو أسرع طريق إلى تقييم بنجمة واحدة.
+    expect(AppConfig.interstitialsEnabled, isTrue);
+    expect(AppConfig.roundsBetweenInterstitials, greaterThanOrEqualTo(3));
+    expect(AppConfig.minSecondsBetweenInterstitials, greaterThanOrEqualTo(120));
   });
 
   test('الصندوق يستحق إتمام كل المهام', () {

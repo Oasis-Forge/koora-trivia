@@ -44,6 +44,7 @@
 - 15 September 2026: the daily challenge plays 2 easy, 3 medium and 2 hard questions, easiest first, and repeats no question within a 133-day cycle · a claimed task's count stops at its goal instead of «21 / 10».
 - 16 September 2026, question bank in both languages: 40 questions that repeated a fact from another question replaced (the overlap rules pick the copy kept) · no explanation gives away a later answer in its level · no time-relative wording, and counts and records that can change within a few years anchored to «حتى نهاية موسم 2025-2026» / "By the end of the 2025-26 season" or «بعد كأس العالم 2026» / "After the 2026 World Cup" (owner's decision) · more than a dozen wrong facts found on the way corrected (e.g. 4080, 9030, 10023) · `question_content_test` guards all three.
 - 16 September 2026, answer giveaways: in 75 questions the correct option no longer stands out by length or by alone repeating a word from the question (26 of them in laws), in both languages · 10026 is anchored · 2091's options are all name pairs · wrong options that were also true were replaced (e.g. 9055, 9063, 10077) · 8086 and 9068 reworded for accuracy · `question_content_test` guards length and repeated words.
+- 17 September 2026 (owner's decision): interstitials on — after the result screen, every 3 rounds, at least 3 minutes apart, never after the daily challenge and never before the review prompt.
 - 17 September 2026 (owner's decision): a bottom banner on home, categories, levels, tasks, shop, settings and the quiz. It reserves its height before the ad arrives so nothing above it shifts under the player's finger, and `AppConfig.bannersEnabled` switches it off.
 - 16 September 2026: app-ads.txt set as the Play listing's Website and verified in AdMob (owner) · the 32 merged PR branches deleted · v1.0.7+8 built, archived and uploaded by the owner to closed testing (no full test run or emulator check, owner's call).
 - PR #7, merged 14 September 2026: the level grid fits all ten levels on 360×640 and 411×731 · compact quiz layout below 700 dp, options anchored above the hints bar, feedback panel scrolls into view · Skip shown as a skip on the quiz screen and in the review · backup import validates every value, reloads every provider, and datasources survive badly typed values · widget tests for result-screen buttons, the level grid, the quiz layout, and a real-storage import test.
@@ -68,7 +69,6 @@
   - Quiz screen and level grid on a real short phone and a real tall one.
 
 ### Features
-- **P1 · S**: Turn interstitials on (`AppConfig.interstitialsEnabled`), owner's decision of 17 September 2026: after the result screen, every 3 rounds, 3 minutes apart, never after the daily.
 - **P1 · L**: Play Billing, owner's decision of 17 September 2026 — Remove ads (stops the banner and interstitials, keeps the rewarded ad) and heart packs; acknowledged within 3 days, restored on reinstall, and the Play listing then declares in-app purchases. Was P2 · L in phase 3.
 - **P1 · S**: English is built (steps 1–4, see Done). Left: a person fluent in English spot-checks the translated questions (the English store listing went up with v1.0.6).
 

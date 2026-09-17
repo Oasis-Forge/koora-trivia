@@ -84,12 +84,13 @@ sections kept), tasks, shop, plus the result screen, onboarding and the no-heart
 |---|---|---|
 | Rewarded | No-hearts dialog | +1 heart (max 4 per day) |
 | Rewarded | Shop | +70 🪙 (no limit) |
-| Interstitial | After the result | Every 3 rounds, 3-minute cap — **off at launch** |
+| Interstitial | After the result | Every 3 rounds, 3-minute cap — on since 17 September 2026 |
 | Banner | Bottom of home, categories, levels, tasks, shop, settings and the quiz | `BannerSlot`, owner's decision of 17 September 2026 |
 
-- **`AppConfig.interstitialsEnabled = false` at launch, deliberately.** First-days ratings on Play
-  carry a lot of weight, and interstitials hurt them most. Launch clean, then enable in a later
-  update with a one-line change. A test guards this — flip it when enabling.
+- **`AppConfig.interstitialsEnabled = true` since 17 September 2026 (owner's decision),** before the
+  public launch, so closed testers meet it first. It was off until then because first-days ratings on
+  Play carry a lot of weight. `economy_balance_test` now guards the two caps instead of the flag:
+  without them the ad would come after every round.
 - **Never an interstitial after the daily challenge** — deliberate, to protect the daily ritual.
 - **`BannerSlot` reserves its 58 dp before the ad arrives** (`AppConfig.bannersEnabled` turns it
   off). A band that appears only once the ad loads would push the answer buttons up under the
@@ -405,7 +406,7 @@ many different actions be rewarded with one currency, and lets prices stay fixed
 | Arabic store name «تحدي كرة القدم» | The audience is Arabic and searches in Arabic; "Koora Trivia" gets added as an English listing if one is ever opened |
 | No offline promise and no fixed counts in any text | Text stays true as content is added, and ads need a connection anyway |
 | 70 coins per ad | Closes the 200−130 gap with one ad; confirmed by the owner after discussing 50 |
-| Interstitials off at launch | First-days ratings matter more than their revenue |
+| Interstitials on before launch (17 Sep 2026) | Owner's call: closed testers meet them first, so their effect is known before the public launch |
 | R8 off in release | Turned off to fix the launch crash; re-enabling needs keep rules and a release-build test |
 
 ---
