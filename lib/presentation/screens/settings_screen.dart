@@ -20,6 +20,7 @@ import '../providers/quiz_provider.dart';
 import '../providers/restore_backup.dart';
 import '../providers/settings_provider.dart';
 import '../providers/stats_provider.dart';
+import '../widgets/banner_slot.dart';
 import '../widgets/koora_app_bar.dart';
 import '../widgets/koora_buttons.dart';
 import '../widgets/pitch_background.dart';
@@ -47,6 +48,8 @@ class SettingsScreen extends StatelessWidget {
     final maxStars = maxLevels * 3;
 
     return Scaffold(
+      // الشريط الإعلاني أسفل المحتوى دائماً، لا داخل التمرير.
+      bottomNavigationBar: const BannerSlot(),
       body: PitchBackground(
         child: SafeArea(
           child: Column(

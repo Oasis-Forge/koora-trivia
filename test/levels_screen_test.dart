@@ -6,6 +6,7 @@ import 'package:football_trivia/domain/entities/category.dart';
 import 'package:football_trivia/domain/entities/category_progress.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
 import 'package:football_trivia/domain/usecases/evaluate_level.dart';
+import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
 import 'package:football_trivia/presentation/providers/progress_provider.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
@@ -14,6 +15,7 @@ import 'package:football_trivia/presentation/widgets/koora_buttons.dart';
 import 'package:football_trivia/presentation/widgets/level_tile.dart';
 import 'package:provider/provider.dart';
 
+import 'fakes/fake_ad_service.dart';
 import 'fakes/fake_repositories.dart';
 
 const _category = Category(slug: 'alpha', name: 'ألفا', idBlock: 1000, order: 1);
@@ -56,6 +58,9 @@ Future<void> _pumpLevels(
         ChangeNotifierProvider.value(value: economy),
         ChangeNotifierProvider(
           create: (_) => QuizProvider(repository: FakeQuizRepository()),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AdsProvider(service: FakeAdService()),
         ),
       ],
       child: const MaterialApp(

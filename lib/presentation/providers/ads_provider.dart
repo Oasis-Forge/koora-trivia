@@ -22,6 +22,11 @@ class AdsProvider extends ChangeNotifier {
   /// هل تعرض الإعدادات مدخل خيارات خصوصية الإعلانات؟
   bool get isPrivacyOptionsRequired => _service.isPrivacyOptionsRequired;
 
+  /// هل يحجز الشريط السفلي مكانه ويطلب إعلاناً؟ راجع `BannerSlot`.
+  bool get areBannersAllowed => _service.areBannersAllowed;
+
+  String get bannerUnitId => _service.bannerUnitId;
+
   Future<void> init() async {
     await _service.init();
     _initialized = true;

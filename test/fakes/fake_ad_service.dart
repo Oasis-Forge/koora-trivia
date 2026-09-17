@@ -8,12 +8,16 @@ class FakeAdService implements AdService {
     this.result = RewardResult.earned,
     this.privacyOptionsRequired = false,
     this.privacyFormShown = true,
+    this.bannersAllowed = false,
   });
 
   bool ready;
   RewardResult result;
   bool privacyOptionsRequired;
   bool privacyFormShown;
+
+  /// افتراضياً مطفأ: اختبارات الودجات لا تملك منصة تحمّل إعلاناً حقيقياً.
+  bool bannersAllowed;
 
   void Function()? listener;
   bool adsRemovedValue = false;
@@ -41,6 +45,12 @@ class FakeAdService implements AdService {
 
   @override
   bool get isPrivacyOptionsRequired => privacyOptionsRequired;
+
+  @override
+  bool get areBannersAllowed => bannersAllowed && !adsRemovedValue;
+
+  @override
+  String get bannerUnitId => 'fake-banner';
 
   @override
   Future<bool> showPrivacyOptions() async {
@@ -71,5 +81,9 @@ class FakeAdService implements AdService {
   }
 
   @override
-  set adsRemoved(bool value) => adsRemovedValue = value;
+  set adsRemoved(bool value) {
+    adsRemovedValue = value;
+    // الخدمة الحقيقية تُخطر هنا ليختفي الشريط فوراً.
+    listener?.call();
+  }
 }

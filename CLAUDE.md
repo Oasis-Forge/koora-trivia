@@ -119,8 +119,9 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
   the attempt's heart at the start; `ScoreScreen` refunds it on a pass. Quick play and the daily challenge stay
   free (no hearts, hints or ads).
 - **Ads:** no SDK init or ad load unless `canRequestAds()`; rewards only on `RewardResult.earned`;
-  `AppConfig.interstitialsEnabled` stays `false`; never an interstitial after the daily;
-  `google_mobile_ads` must stay ≥ 9.
+  never an interstitial after the daily; `google_mobile_ads` must stay ≥ 9. The bottom banner is
+  `BannerSlot` in `Scaffold.bottomNavigationBar` — it reserves its height before the ad arrives, so
+  nothing above it moves under the player's finger (AdMob suspends accounts over invalid taps).
 - **Arabic counts:** never `'$n يوم'` — use `ArabicCount.format(n, ArabicNoun.day)`.
 - **A new stored key** must be added to `_decoders` in `BackupRepositoryImpl`.
 - **Reminders:** one-shot per day (ids 1001–1007); the manifest receivers are required;

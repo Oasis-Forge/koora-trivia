@@ -6,6 +6,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/utils/arabic_count.dart';
 import '../../domain/entities/daily_task.dart';
 import '../providers/economy_provider.dart';
+import '../widgets/banner_slot.dart';
 import '../widgets/coin_badge.dart';
 import '../widgets/koora_app_bar.dart';
 import '../widgets/koora_buttons.dart';
@@ -23,6 +24,8 @@ class TasksScreen extends StatelessWidget {
     final economy = context.watch<EconomyProvider>();
 
     return Scaffold(
+      // الشريط الإعلاني أسفل المحتوى دائماً، لا داخل التمرير.
+      bottomNavigationBar: const BannerSlot(),
       body: PitchBackground(
         child: SafeArea(
           child: ListView(

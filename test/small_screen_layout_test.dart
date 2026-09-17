@@ -99,6 +99,9 @@ void _screens() {
               ChangeNotifierProvider.value(value: quiz),
               ChangeNotifierProvider.value(value: stats),
               ChangeNotifierProvider.value(value: economy),
+              ChangeNotifierProvider(
+                create: (_) => AdsProvider(service: FakeAdService()),
+              ),
             ],
             child: _app(const HomeScreen()),
           ),
@@ -127,6 +130,9 @@ void _screens() {
             providers: [
               ChangeNotifierProvider.value(value: quiz),
               ChangeNotifierProvider.value(value: progress),
+              ChangeNotifierProvider(
+                create: (_) => AdsProvider(service: FakeAdService()),
+              ),
             ],
             child: _app(const CategoriesScreen()),
           ),
@@ -154,6 +160,9 @@ void _screens() {
               ChangeNotifierProvider.value(value: economy),
               ChangeNotifierProvider(
                 create: (_) => QuizProvider(repository: FakeQuizRepository()),
+              ),
+              ChangeNotifierProvider(
+                create: (_) => AdsProvider(service: FakeAdService()),
               ),
             ],
             child: _app(
@@ -190,6 +199,9 @@ void _screens() {
               ChangeNotifierProvider.value(value: quiz),
               ChangeNotifierProvider.value(value: economy),
               ChangeNotifierProvider.value(value: settings),
+              ChangeNotifierProvider(
+                create: (_) => AdsProvider(service: FakeAdService()),
+              ),
             ],
             child: _app(const QuizScreen()),
           ),
@@ -299,7 +311,12 @@ void _screens() {
 
         await tester.pumpWidget(
           MultiProvider(
-            providers: [ChangeNotifierProvider.value(value: economy)],
+            providers: [
+              ChangeNotifierProvider.value(value: economy),
+              ChangeNotifierProvider(
+                create: (_) => AdsProvider(service: FakeAdService()),
+              ),
+            ],
             child: _app(const TasksScreen()),
           ),
         );

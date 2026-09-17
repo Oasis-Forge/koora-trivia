@@ -85,11 +85,19 @@ sections kept), tasks, shop, plus the result screen, onboarding and the no-heart
 | Rewarded | No-hearts dialog | +1 heart (max 4 per day) |
 | Rewarded | Shop | +70 🪙 (no limit) |
 | Interstitial | After the result | Every 3 rounds, 3-minute cap — **off at launch** |
+| Banner | Bottom of home, categories, levels, tasks, shop, settings and the quiz | `BannerSlot`, owner's decision of 17 September 2026 |
 
 - **`AppConfig.interstitialsEnabled = false` at launch, deliberately.** First-days ratings on Play
   carry a lot of weight, and interstitials hurt them most. Launch clean, then enable in a later
   update with a one-line change. A test guards this — flip it when enabling.
 - **Never an interstitial after the daily challenge** — deliberate, to protect the daily ritual.
+- **`BannerSlot` reserves its 58 dp before the ad arrives** (`AppConfig.bannersEnabled` turns it
+  off). A band that appears only once the ad loads would push the answer buttons up under the
+  player's finger, and AdMob counts the resulting tap as invalid traffic. For the same reason the
+  size is the fixed `AdSize.banner`, not an adaptive one, and the slot keeps an 8 dp gap above it.
+  It is `Scaffold.bottomNavigationBar`, so it never scrolls with the content. The score screen has
+  none — that is where the interstitial shows.
+- `BannerSlot.testAdBuilder` replaces the real ad in widget tests (there is no platform to load one).
 - The reward is granted on `RewardResult.earned` **only**, never on early dismissal.
 - The rewarded-ad button shows disabled with «يتطلب اتصالاً بالإنترنت» ("requires an internet
   connection") until the ad has loaded (a few seconds after launch or after a previous watch), then
@@ -124,7 +132,7 @@ sections kept), tasks, shop, plus the result screen, onboarding and the no-heart
   `Publisher misconfiguration`, and the gate falls back to whatever `canRequestAds()` answers.
 
 > ✅ **Production IDs set (8 September 2026)** — the app ID is in `AndroidManifest.xml`, the
-> rewarded and interstitial unit IDs are in
+> rewarded, interstitial and banner unit IDs are in
 > [`admob_ad_service.dart`](../lib/data/services/admob_ad_service.dart), and test-vs-production is
 > chosen in `injector.dart` via `useTestIds: !kReleaseMode` (debug builds stay on test IDs to
 > protect the account). **Never tap your own live ads — the account gets suspended.**

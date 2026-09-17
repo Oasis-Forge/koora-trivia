@@ -12,6 +12,7 @@ import '../../domain/entities/question.dart';
 import '../../domain/usecases/evaluate_level.dart';
 import '../providers/progress_provider.dart';
 import '../providers/quiz_provider.dart';
+import '../widgets/banner_slot.dart';
 import '../widgets/hearts_bar.dart';
 import '../widgets/koora_app_bar.dart';
 import '../widgets/koora_buttons.dart';
@@ -118,6 +119,8 @@ class _LevelsScreenState extends State<LevelsScreen> {
     final canStart = selected != null && categoryProgress.isUnlocked(selected);
 
     return Scaffold(
+      // الشريط الإعلاني أسفل المحتوى دائماً، لا داخل التمرير.
+      bottomNavigationBar: const BannerSlot(),
       body: PitchBackground(
         child: SafeArea(
           bottom: false,

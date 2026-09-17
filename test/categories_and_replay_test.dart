@@ -3,11 +3,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:football_trivia/core/constants/app_strings.dart';
 import 'package:football_trivia/domain/entities/category.dart';
 import 'package:football_trivia/domain/entities/question.dart';
+import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/presentation/providers/progress_provider.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
 import 'package:football_trivia/presentation/screens/categories_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'fakes/fake_ad_service.dart';
 import 'fakes/fake_repositories.dart';
 import 'fakes/score_screen_harness.dart';
 
@@ -70,6 +72,9 @@ void main() {
               create: (_) => QuizProvider(repository: _FlakyQuizRepository()),
             ),
             ChangeNotifierProvider.value(value: progress),
+            ChangeNotifierProvider(
+            create: (_) => AdsProvider(service: FakeAdService()),
+          ),
           ],
           child: const MaterialApp(home: CategoriesScreen()),
         ),
