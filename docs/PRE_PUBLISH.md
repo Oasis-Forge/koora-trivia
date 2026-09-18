@@ -135,7 +135,7 @@ mentions no fixed counts):
 | `1.0.5+6` | PRs #16–#29: content fixes (section A) · daily start-day, one heart per answer charge, quiz pause in the background · four color themes · language groundwork and choice · one heart per failed level attempt with thresholds in the level footer · quick-play replay keeps the category · categories load retry · extra time once per question and a capped speed bonus · daily heart once per daily · reminder card and «العب مستوى» after the daily · hint captions and disabled reasons · review colors, tooltips, screen-reader labels · `RecordRound` · archive-tool checks (archived 14 September 2026, never uploaded — skipped) |
 | `1.0.6+7` | PRs #31–#42: redesign · English · in-app updates (uploaded 14 September 2026) |
 | `1.0.7+8` | PRs #51–#52: daily challenge mix and no-repeat cycle · task count · question bank clean-up (uploaded 16 September 2026) |
-| `1.0.8+9` | PRs #55–#58: banner and interstitial ads · Play Billing shop (200 coins, Remove ads, Remove ads + 500 coins) · full-width banner and «إزالة الإعلانات» link · support email `oasisforge.support@gmail.com` ← **latest** (archived 18 September 2026, not uploaded yet) |
+| `1.0.8+9` | PRs #55–#58: banner and interstitial ads · Play Billing shop (200 coins, Remove ads, Remove ads + 500 coins) · full-width banner and «إزالة الإعلانات» link · support email `oasisforge.support@gmail.com` ← **latest** (uploaded 18 September 2026 to closed testing) |
 
 > ⚠️ In `releases/v1.0.1_build2_*` the `.apk` is **versionCode 1** (built two minutes before
 > the version bump) while the `.aab` is correct. Verified with `aapt2 dump badging`; the
@@ -148,8 +148,8 @@ mentions no fixed counts):
 ### App creation and store settings
 - Name «تحدي كرة القدم» · default language Arabic · Game · Free.
 - Package `com.oasisforge.kooratrivia`.
-- Category **Trivia** · contact email `thepromptkitchen@gmail.com`, to change to `oasisforge.support@gmail.com`
-  (18 September 2026) · phone left blank ·
+- Category **Trivia** · contact email `oasisforge.support@gmail.com` (changed from `thepromptkitchen@gmail.com`
+  by the owner on 18 September 2026) · phone left blank ·
   external marketing left on (default).
 
 ### Store listing
