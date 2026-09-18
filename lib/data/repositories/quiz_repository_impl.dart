@@ -50,13 +50,27 @@ class QuizRepositoryImpl implements QuizRepository {
   Future<List<Question>> getRandomQuestions({
     required int count,
     String? categorySlug,
+    Set<int> avoid = const {},
+    bool Function(Question question)? prefer,
   }) async {
     final pool = await _pool(categorySlug);
     if (pool.isEmpty) return const [];
 
-    final picked = (List<Question>.of(pool)..shuffle(_random))
-        .take(min(count, pool.length))
-        .toList();
+    final shuffled = List<Question>.of(pool)..shuffle(_random);
+    final fresh = [for (final q in shuffled) if (!avoid.contains(q.id)) q];
+    // المرئية مؤخراً آخر الطبقات، والأقدم رؤيةً قبل الأحدث.
+    final order = {for (final (i, id) in avoid.indexed) id: i};
+    final seen = [for (final q in shuffled) if (avoid.contains(q.id)) q]
+      ..sort((a, b) => order[a.id]!.compareTo(order[b.id]!));
+
+    final picked = [
+      if (prefer != null) ...[
+        ...fresh.where(prefer),
+        ...fresh.where((q) => !prefer(q)),
+      ] else
+        ...fresh,
+      ...seen,
+    ].take(min(count, pool.length)).toList();
 
     return [
       for (final q in picked)

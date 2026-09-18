@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../domain/repositories/backup_repository.dart';
 import '../datasources/economy_local_datasource.dart';
 import '../datasources/progress_local_datasource.dart';
+import '../datasources/recent_questions_local_datasource.dart';
 import '../datasources/settings_local_datasource.dart';
 import '../datasources/stats_local_datasource.dart';
 
@@ -20,6 +21,7 @@ class BackupRepositoryImpl implements BackupRepository {
     PrefsProgressDataSource.key: PrefsProgressDataSource.decode,
     PrefsEconomyDataSource.key: PrefsEconomyDataSource.decode,
     PrefsSettingsDataSource.key: PrefsSettingsDataSource.decode,
+    PrefsRecentQuestionsDataSource.key: PrefsRecentQuestionsDataSource.decode,
   };
 
   /// إصدار صيغة النسخة — يرتفع إن تغيّرت بنية المفاتيح.

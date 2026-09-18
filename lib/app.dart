@@ -11,6 +11,7 @@ import 'domain/repositories/backup_repository.dart';
 import 'domain/repositories/error_log.dart';
 import 'domain/repositories/link_opener.dart';
 import 'domain/repositories/review_prompter.dart';
+import 'domain/usecases/get_quiz_questions.dart';
 import 'presentation/providers/ads_provider.dart';
 import 'presentation/providers/economy_provider.dart';
 import 'presentation/providers/progress_provider.dart';
@@ -48,7 +49,14 @@ class FootballTriviaApp extends StatelessWidget {
         Provider<ReviewPrompter>.value(value: injector.reviewPrompter),
         Provider<AppUpdater>.value(value: injector.appUpdater),
         ChangeNotifierProvider(
-          create: (_) => QuizProvider(repository: injector.quizRepository),
+          create: (_) => QuizProvider(
+            repository: injector.quizRepository,
+            getQuizQuestions: GetQuizQuestions(
+              injector.quizRepository,
+              recent: injector.recentQuestionsRepository,
+              progress: injector.progressRepository,
+            ),
+          ),
         ),
         ChangeNotifierProvider(
           create: (_) =>

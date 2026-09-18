@@ -33,6 +33,8 @@ class _RecordingQuizRepository extends FakeQuizRepository {
   Future<List<Question>> getRandomQuestions({
     required int count,
     String? categorySlug,
+    Set<int> avoid = const {},
+    bool Function(Question question)? prefer,
   }) {
     requested.add(categorySlug);
     return super.getRandomQuestions(count: count, categorySlug: categorySlug);

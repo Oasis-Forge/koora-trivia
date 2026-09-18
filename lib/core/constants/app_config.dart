@@ -5,6 +5,12 @@ class AppConfig {
   /// عدد الأسئلة في الجولة السريعة.
   static const int quickPlayQuestionCount = 10;
 
+  /// كم سؤالاً تتذكّر الجولة السريعة لتتجنّبه — نحو 15 جولة.
+  ///
+  /// أكبر من مجموعة تصنيف واحد (100) عمداً: في التصنيف الواحد تنفد الأسئلة غير
+  /// المرئية فتعود الأقدم رؤيةً أولاً، لا سؤال الجولة الماضية.
+  static const int quickPlayRecentMemory = 150;
+
   /// عدد أسئلة تحدي اليوم.
   static const int dailyQuestionCount = 7;
 
