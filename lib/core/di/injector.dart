@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart' show kReleaseMode;
 
 import '../../data/datasources/economy_local_datasource.dart';
+import '../../data/datasources/entitlement_local_datasource.dart';
 import '../../data/datasources/prefs_error_log.dart';
 import '../../data/datasources/progress_local_datasource.dart';
 import '../../data/datasources/question_local_datasource.dart';
@@ -17,12 +18,14 @@ import '../../data/services/admob_ad_service.dart';
 import '../../data/services/in_app_review_prompter.dart';
 import '../../data/services/local_notification_scheduler.dart';
 import '../../data/services/package_app_info.dart';
+import '../../data/services/play_billing_service.dart';
 import '../../data/services/play_app_updater.dart';
 import '../../data/services/url_link_opener.dart';
 import '../../domain/repositories/ad_service.dart';
 import '../../domain/repositories/app_info.dart';
 import '../../domain/repositories/app_updater.dart';
 import '../../domain/repositories/backup_repository.dart';
+import '../../domain/repositories/billing_service.dart';
 import '../../domain/repositories/economy_repository.dart';
 import '../../domain/repositories/error_log.dart';
 import '../../domain/repositories/link_opener.dart';
@@ -53,6 +56,9 @@ class Injector {
                 !kReleaseMode && const bool.fromEnvironment('UMP_DEBUG_EEA'),
           ),
         ),
+        billingService = PlayBillingService(
+          entitlements: PrefsEntitlementDataSource(),
+        ),
         reminderScheduler = LocalNotificationScheduler(),
         linkOpener = UrlLinkOpener(),
         errorLog = PrefsErrorLog(),
@@ -67,6 +73,7 @@ class Injector {
   final EconomyRepository economyRepository;
   final BackupRepository backupRepository;
   final AdService adService;
+  final BillingService billingService;
   final ReminderScheduler reminderScheduler;
   final LinkOpener linkOpener;
   final ErrorLog errorLog;

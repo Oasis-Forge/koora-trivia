@@ -123,7 +123,12 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
   `BannerSlot` in `Scaffold.bottomNavigationBar` — it reserves its height before the ad arrives, so
   nothing above it moves under the player's finger (AdMob suspends accounts over invalid taps).
 - **Arabic counts:** never `'$n يوم'` — use `ArabicCount.format(n, ArabicNoun.day)`.
-- **A new stored key** must be added to `_decoders` in `BackupRepositoryImpl`.
+- **A new stored key** must be added to `_decoders` in `BackupRepositoryImpl` — except
+  `entitlements_v1_ads_removed`, kept out on purpose: a backup code is shareable, so a purchase
+  carried in it would be free for anyone who copies it.
+- **Purchases:** product ids (`hearts_small` · `hearts_large` · `remove_ads`) must match Play Console
+  and never change · every purchase is completed so it is acknowledged within Google's 3 days · only
+  non-consumables are restored · bought hearts go above the cap.
 - **Reminders:** one-shot per day (ids 1001–1007); the manifest receivers are required;
   `MY_PACKAGE_REPLACED` stays undeclared; never mix one-shot and repeating reminders.
 - **Economy balance:** full daily income (130 🪙) stays below the cheapest purchase (200 🪙).
