@@ -19,7 +19,8 @@ class FakeBillingService implements BillingService {
   final List<StoreProductKind> restoredAtInit;
 
   void Function()? listener;
-  void Function(StoreProductKind kind, {required bool restored})? delivered;
+  void Function(StoreProductKind kind, {required bool alreadyDelivered})?
+      delivered;
   final List<StoreProductKind> bought = [];
   int restoreCalls = 0;
   bool disposed = false;
@@ -29,7 +30,8 @@ class FakeBillingService implements BillingService {
 
   @override
   set onDelivered(
-    void Function(StoreProductKind kind, {required bool restored})? value,
+    void Function(StoreProductKind kind, {required bool alreadyDelivered})?
+        value,
   ) =>
       delivered = value;
 
@@ -51,7 +53,7 @@ class FakeBillingService implements BillingService {
   Future<void> init() async {
     for (final kind in restoredAtInit) {
       if (kind.removesAds) adsRemovedValue = true;
-      delivered?.call(kind, restored: true);
+      delivered?.call(kind, alreadyDelivered: true);
     }
     listener?.call();
   }
@@ -63,7 +65,7 @@ class FakeBillingService implements BillingService {
     bought.add(kind);
     if (outcome == PurchaseOutcome.purchased) {
       if (kind.removesAds) adsRemovedValue = true;
-      delivered?.call(kind, restored: false);
+      delivered?.call(kind, alreadyDelivered: false);
     }
     return outcome;
   }
@@ -73,7 +75,7 @@ class FakeBillingService implements BillingService {
     restoreCalls++;
     if (!adsRemovedValue) return 0;
 
-    delivered?.call(StoreProductKind.removeAds, restored: true);
+    delivered?.call(StoreProductKind.removeAds, alreadyDelivered: true);
     return 1;
   }
 
