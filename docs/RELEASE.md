@@ -50,7 +50,15 @@
 ### In-app products — what the owner creates in Play Console (v1.0.8)
 
 The code ships with the ids below; the shop stays on «قريباً» until Play returns them, so the
-order of these steps doesn't matter to the app.
+order of these steps doesn't matter to the app. **Done by the owner on 18 September 2026** (steps 1–2); each
+product has one purchase option `buy`, type Buy, **backwards compatible** — the app's billing library only sees
+that one. New products take a few hours to reach devices.
+
+**Testing a purchase:** licence tester signed in, app installed from the Play track, fully restarted. Buy
+`coins_small` (+200 coins) and `remove_ads_bundle` (banner gone, +500 coins, the bundle row disappears, Remove ads
+reads «مفعّلة»). Then clear the app's data: ads stay off and the 500 coins don't come back. To test `remove_ads` on
+its own afterwards, refund the test order in Play Console → Order management and clear the app's data again — the
+app never revokes a purchase by itself.
 
 1. **Payments profile** — Setup → Payments profile. Under verification since 17 September 2026;
    nothing can be sold before it is active.
