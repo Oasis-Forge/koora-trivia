@@ -92,15 +92,19 @@ class ShopScreen extends StatelessWidget {
                   label: AppStrings.removeAds,
                 )
               else ...[
-                for (final product in purchases.products) ...[
-                  _PaidItem(
-                    product: product,
-                    owned: product.kind == StoreProductKind.removeAds &&
-                        purchases.adsRemoved,
-                    busy: purchases.busy == product.kind,
-                  ),
-                  const SizedBox(height: 12),
-                ],
+                for (final product in purchases.products)
+                  // من أزال الإعلانات لا تُعرض عليه الباقة: لم يبقَ فيها له إلا
+                  // عملات تُباع وحدها. صفّ الإزالة المستقلة يبقى ويقول «مفعّلة».
+                  if (!(product.kind == StoreProductKind.removeAdsBundle &&
+                      purchases.adsRemoved)) ...[
+                    _PaidItem(
+                      product: product,
+                      owned: product.kind == StoreProductKind.removeAds &&
+                          purchases.adsRemoved,
+                      busy: purchases.busy == product.kind,
+                    ),
+                    const SizedBox(height: 12),
+                  ],
                 _RestoreRow(),
               ],
             ],
@@ -124,17 +128,20 @@ class _PaidItem extends StatelessWidget {
   final bool busy;
 
   static String _label(StoreProduct product) => switch (product.kind) {
-        StoreProductKind.removeAds => AppStrings.removeAds,
         StoreProductKind.coinsSmall => AppStrings.coinsPack(
             ArabicCount.format(AppConfig.coinsPerSmallPack, ArabicNoun.coin),
           ),
-        StoreProductKind.coinsLarge => AppStrings.coinsPack(
-            ArabicCount.format(AppConfig.coinsPerLargePack, ArabicNoun.coin),
+        StoreProductKind.removeAds => AppStrings.removeAds,
+        StoreProductKind.removeAdsBundle => AppStrings.removeAdsBundle(
+            ArabicCount.format(
+              AppConfig.coinsInRemoveAdsBundle,
+              ArabicNoun.coin,
+            ),
           ),
       };
 
   static String _hint(StoreProduct product) =>
-      product.kind == StoreProductKind.removeAds
+      product.kind.removesAds
           ? AppStrings.removeAdsHint
           : AppStrings.coinsPackHint;
 
@@ -152,11 +159,11 @@ class _PaidItem extends StatelessWidget {
               border: Border.all(color: AppColors.cardBorder),
             ),
             child: Icon(
-              product.kind == StoreProductKind.removeAds
+              product.kind.removesAds
                   ? Icons.block_rounded
                   : Icons.monetization_on_rounded,
               size: 22,
-              color: product.kind == StoreProductKind.removeAds
+              color: product.kind.removesAds
                   ? AppColors.chalkMuted
                   : AppColors.gold,
             ),

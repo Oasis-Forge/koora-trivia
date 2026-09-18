@@ -56,14 +56,16 @@ class PurchasesProvider extends ChangeNotifier {
   /// يعيد عدد ما استُعيد؛ صفر يعني لا مشتريات سابقة على هذا الحساب.
   Future<int> restore() => _service.restore();
 
-  void _deliver(StoreProductKind kind) {
+  void _deliver(StoreProductKind kind, {required bool restored}) {
     switch (kind) {
-      case StoreProductKind.removeAds:
-        _onAdsRemoved();
       case StoreProductKind.coinsSmall:
         _grantCoins(AppConfig.coinsPerSmallPack);
-      case StoreProductKind.coinsLarge:
-        _grantCoins(AppConfig.coinsPerLargePack);
+      case StoreProductKind.removeAds:
+        _onAdsRemoved();
+      case StoreProductKind.removeAdsBundle:
+        _onAdsRemoved();
+        // عملات الباقة مرة واحدة: الاستعادة تعيد إزالة الإعلانات وحدها.
+        if (!restored) _grantCoins(AppConfig.coinsInRemoveAdsBundle);
     }
     notifyListeners();
   }

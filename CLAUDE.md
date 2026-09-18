@@ -126,9 +126,10 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
 - **A new stored key** must be added to `_decoders` in `BackupRepositoryImpl` — except
   `entitlements_v1_ads_removed`, kept out on purpose: a backup code is shareable, so a purchase
   carried in it would be free for anyone who copies it.
-- **Purchases:** product ids (`coins_small` · `coins_large` · `remove_ads`) must match Play Console
+- **Purchases:** product ids (`coins_small` · `remove_ads` · `remove_ads_bundle`) must match Play Console
   and never change · every purchase is completed so it is acknowledged within Google's 3 days · only
-  non-consumables are restored · money buys coins, never hearts — hearts never go above 5.
+  non-consumables are restored, and the bundle's coins never come back with them · money buys coins,
+  never hearts — hearts never go above 5.
 - **Reminders:** one-shot per day (ids 1001–1007); the manifest receivers are required;
   `MY_PACKAGE_REPLACED` stays undeclared; never mix one-shot and repeating reminders.
 - **Economy balance:** full daily income (130 🪙) stays below the cheapest purchase (200 🪙).

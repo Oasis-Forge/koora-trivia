@@ -58,23 +58,25 @@ void main() {
       final w = _wire(FakeBillingService(), economy);
       await w.purchases.init();
 
-      expect(await w.purchases.buy(StoreProductKind.coinsLarge),
+      expect(await w.purchases.buy(StoreProductKind.coinsSmall),
           PurchaseOutcome.purchased);
 
-      expect(economy.coins, 30 + AppConfig.coinsPerLargePack);
+      expect(economy.coins, 30 + AppConfig.coinsPerSmallPack);
     });
 
     test('العملات المشتراة لا ترفع القلوب فوق السقف', () async {
       // قرار المالك: نبيع عملات لا قلوباً، والقلوب لا تتجاوز خمسة مهما دفع
       // اللاعب. ملء القلوب يتوقف عند السقف، ويُمنع شراؤه والرصيد ممتلئ.
-      final economy = await _economy(hearts: 2);
+      final economy = await _economy(hearts: 2, coins: 300);
       final w = _wire(FakeBillingService(), economy);
       await w.purchases.init();
-      await w.purchases.buy(StoreProductKind.coinsLarge);
+      await w.purchases.buy(StoreProductKind.coinsSmall);
 
       expect(await economy.buyHeartsRefill(), isTrue);
       expect(economy.hearts, AppConfig.maxHearts);
 
+      // ما زال معه ما يكفي لملء آخر؛ المنع سببه الامتلاء وحده.
+      expect(economy.coins, greaterThanOrEqualTo(AppConfig.priceHeartsRefill));
       expect(economy.canBuyHeartsRefill, isFalse);
       expect(await economy.buyHeartsRefill(), isFalse);
       expect(economy.hearts, AppConfig.maxHearts);
@@ -91,6 +93,35 @@ void main() {
       expect(w.ads.adsRemovedValue, isTrue);
       expect(w.ads.areBannersAllowed, isFalse);
       expect(await w.ads.maybeShowInterstitial(), isFalse);
+      expect(w.economy.coins, 0, reason: 'الإزالة المستقلة بلا عملات');
+    });
+
+    test('الباقة تزيل الإعلانات وتمنح عملاتها', () async {
+      final economy = await _economy(coins: 20);
+      final w = _wire(FakeBillingService(), economy);
+      await w.purchases.init();
+
+      await w.purchases.buy(StoreProductKind.removeAdsBundle);
+
+      expect(w.purchases.adsRemoved, isTrue);
+      expect(w.ads.areBannersAllowed, isFalse);
+      expect(economy.coins, 20 + AppConfig.coinsInRemoveAdsBundle);
+    });
+
+    test('استعادة الباقة تعيد إزالة الإعلانات دون عملاتها', () async {
+      // مسح البيانات ثم الاستعادة كان سيصبح طريقاً لعملات مجانية بلا حد.
+      final economy = await _economy(coins: 40);
+      final w = _wire(
+        FakeBillingService(
+          restoredAtInit: const [StoreProductKind.removeAdsBundle],
+        ),
+        economy,
+      );
+
+      await w.purchases.init();
+
+      expect(w.purchases.adsRemoved, isTrue);
+      expect(economy.coins, 40);
     });
 
     test('شراء ملغى لا يمنح شيئاً', () async {

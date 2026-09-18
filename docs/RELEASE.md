@@ -54,8 +54,9 @@ order of these steps doesn't matter to the app.
 
 1. **Payments profile** — Setup → Payments profile. Under verification since 17 September 2026;
    nothing can be sold before it is active.
-2. **Products** — Monetise → In-app products. Ids exactly: `coins_small` (consumable, 500 coins),
-   `coins_large` (consumable, 2000 coins), `remove_ads` (non-consumable). **An id can never be
+2. **Products** — Monetise → In-app products. Ids exactly: `coins_small` (consumable, 200 coins),
+   `remove_ads` (non-consumable) and `remove_ads_bundle` (non-consumable, Remove ads + 500 coins). Owner's
+   planned prices: $1.99 · $2.99 · $4.99. **An id can never be
    renamed** — old purchases stop restoring. Set the price per product; Google converts per country.
 3. **Licence testers** — Setup → Licence testing: add the tester accounts that should buy without
    being charged. Test purchases need the app installed from a Play track, not a local APK.

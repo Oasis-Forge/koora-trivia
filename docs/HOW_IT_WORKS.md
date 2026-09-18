@@ -151,8 +151,15 @@ sections kept), tasks, shop, plus the result screen, onboarding and the no-heart
 
 ### In-app purchases — how they work (v1.0.8)
 
-Three products, ids exactly as in Play Console: `coins_small` (500 coins), `coins_large`
-(2000 coins) and `remove_ads`. **Never rename an id** — old purchases stop restoring.
+Three products, ids exactly as in Play Console: `coins_small` (200 coins, consumable),
+`remove_ads` and `remove_ads_bundle` (Remove ads + 500 coins), both non-consumable. **Never rename an
+id** — old purchases stop restoring. Prices live in Play Console only.
+
+- **The bundle's coins come with the original purchase only.** A restore (new phone, reinstall,
+  cleared data) brings back Remove ads alone; otherwise clearing data and restoring would be an
+  endless free-coins loop. `onDelivered` carries `restored` for exactly this.
+- Once ads are removed the shop hides the bundle (only its coins would be left, sold separately)
+  and shows the standalone row as «مفعّلة».
 
 - **The rows appear only when Play returns the products.** `PlayBillingService.isAvailable` is
   store-reachable *and* products found, so the shop keeps its «قريباً» row while the payments
@@ -163,7 +170,7 @@ Three products, ids exactly as in Play Console: `coins_small` (500 coins), `coin
   launch with no screen open.
 - **Coins, not hearts** (owner's decision, 18 September 2026). Hearts never go above 5: bought
   coins are spent in the same shop on the 200-coin refill (fills to 5, disabled when full) or the
-  hints pack. Coins have no cap. Pack sizes are `AppConfig.coinsPerSmallPack` / `coinsPerLargePack`.
+  hints pack. Coins have no cap. Pack sizes are `AppConfig.coinsPerSmallPack` and `coinsInRemoveAdsBundle`.
 - **`remove_ads` stops the banner and interstitials, never the rewarded ad** — that one is optional
   and is how players get hearts and coins (see ECONOMY.md).
 - **The entitlement is not in the backup code.** `entitlements_v1_ads_removed` is deliberately
