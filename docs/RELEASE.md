@@ -44,7 +44,7 @@
 | Developer verification | ✅ | Play reports all apps registered (deadline 30 September 2026) |
 | Privacy policy URL | ✅ | Changed to the oasis-forge.github.io URL by the owner on 13 September 2026. The page itself now carries the PR #5 text (effective 13 September 2026), deployed and checked live the same day |
 | Internal testing | ✅ | The crashing versionCode 1 was replaced by the owner (14 September 2026) |
-| Closed testing | ✅ running · ⚠️ testers | Track **Alpha**: available since **9 September 2026** with v1.0.3 (versionCode 4), 177 countries; latest upload v1.0.7 (versionCode 8, 16 September 2026). Only **5 of 12** testers opted in (13 September). New personal accounts need **12 testers opted in for 14 consecutive days** before requesting production, so the clock hasn't started |
+| Closed testing | ✅ running · ⚠️ testers | Track **Alpha**: available since **9 September 2026** with v1.0.3 (versionCode 4), 177 countries; latest upload v1.0.8 (versionCode 9, 18 September 2026, in review). Only **5 of 12** testers opted in (13 September). New personal accounts need **12 testers opted in for 14 consecutive days** before requesting production, so the clock hasn't started |
 | Production | ⏳ | |
 
 ### In-app products — what the owner creates in Play Console (v1.0.8)
