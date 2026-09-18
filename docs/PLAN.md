@@ -68,7 +68,7 @@
 - **P1 · L**: Have a person review levels 7–10 in every category; a sample of levels 9–10 found about 1 in 10 wrong. Reviewer checklist: a source for every answer, no wrong option that is also true, and no «الوحيد» or «حتى الآن» without a year. Also check laws 9058: VAR can't normally review an offside once the flag has stopped play.
 
 ### Release & tech debt
-- **P0 · S · owner**: Finish the payments profile (under verification on 17 September 2026), then create the three products in Play Console with ids `coins_small`, `remove_ads`, `remove_ads_bundle`, set their prices (owner's plan: $1.99 · $2.99 · $4.99), and add a licence tester to buy without paying. Nothing sells until this is done.
+- **P0 · S · owner**: Test the purchases. The three products (`coins_small`, `remove_ads`, `remove_ads_bundle`) were created and activated on 18 September 2026, each with one backwards-compatible `buy` option. Left: licence testers, then a test purchase of coins and the bundle and a restore after clearing data, from the Play install.
 - **P0 · M**: Production gate. Only 5 of the 12 required testers have joined. Recruit 15–20 as a buffer and record the date the 12th joins.
 - **P1 · M**: Check on a real phone (the emulator release check passed on 14 September 2026) and log results in PRE_PUBLISH §1:
   - The in-app review sheet, from a closed-test install.

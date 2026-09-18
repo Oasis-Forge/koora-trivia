@@ -45,8 +45,8 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
 3. **After Google approves v1.0.7 (owner):** check the pre-launch report (crashes, and its screenshots in both languages).
-4. **After Google approves v1.0.8 (owner):** create the three in-app products `coins_small`, `remove_ads`,
-   `remove_ads_bundle` (RELEASE.md), then test a purchase with a licence tester.
+4. **Purchases (owner):** the three in-app products exist and are active (18 September 2026). Add licence testers, wait
+   a few hours, then test coins, the bundle and a restore from the Play install (steps in RELEASE.md).
 
 ### Decisions waiting on the owner
 - **② Name and address on the store page** (personal account) vs. an organization account. Undecided.
