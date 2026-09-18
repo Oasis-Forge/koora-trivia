@@ -92,12 +92,20 @@ sections kept), tasks, shop, plus the result screen, onboarding and the no-heart
   Play carry a lot of weight. `economy_balance_test` now guards the two caps instead of the flag:
   without them the ad would come after every round.
 - **Never an interstitial after the daily challenge** — deliberate, to protect the daily ritual.
-- **`BannerSlot` reserves its 58 dp before the ad arrives** (`AppConfig.bannersEnabled` turns it
+- **`BannerSlot` reserves its height before the ad arrives** (`AppConfig.bannersEnabled` turns it
   off). A band that appears only once the ad loads would push the answer buttons up under the
-  player's finger, and AdMob counts the resulting tap as invalid traffic. For the same reason the
-  size is the fixed `AdSize.banner`, not an adaptive one, and the slot keeps an 8 dp gap above it.
-  It is `Scaffold.bottomNavigationBar`, so it never scrolls with the content. The score screen has
-  none — that is where the interstitial shows.
+  player's finger, and AdMob counts the resulting tap as invalid traffic. It keeps an 8 dp gap above
+  the ad and is `Scaffold.bottomNavigationBar`, so it never scrolls with the content. The score
+  screen has none — that is where the interstitial shows.
+- **Full width, standard anchored adaptive size** (owner's request, 18 September 2026). The height
+  is asked for before the ad is requested, once per session, and shared by every screen. Measured
+  on a 411 dp-wide phone: standard 64 dp, Google's newer "large" size 128 dp (14% of the screen),
+  so the plugin's deprecated standard call is used on purpose. The quiz caps the banner at
+  `AppConfig.quizBannerMaxHeightFraction` (10% of the screen) and falls back to 320×50 above it, so
+  the fourth answer never drops below the fold.
+- **A small «إزالة الإعلانات» link above the banner opens the shop** — on the menu screens only, and
+  only once Play returns the products. Not on the quiz (it would abandon the round, next to the
+  answers) nor on the shop itself.
 - `BannerSlot.testAdBuilder` replaces the real ad in widget tests (there is no platform to load one).
 - The reward is granted on `RewardResult.earned` **only**, never on early dismissal.
 - The rewarded-ad button shows disabled with «يتطلب اتصالاً بالإنترنت» ("requires an internet
