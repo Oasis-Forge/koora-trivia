@@ -201,7 +201,7 @@ API (`inAppUpdatePriority`); the Play Console website can't set it. Details in [
 | File | What it is |
 |---|---|
 | `assets/branding/play_store_icon_512.png` | Store icon — **full green square to the edges** (Play rounds the corners itself; never upload a pre-rounded icon) |
-| `assets/branding/products/` | **In-app product icons** — `coins_small.png`, `remove_ads.png`, `remove_ads_bundle.png`, 1024×1024 32-bit PNG, full green square, no text (Play's rule). Drawn with Pillow in the app's green and gold, 19 September 2026 |
+| `assets/branding/products/` | **In-app product icons** — `coins_small.png`, `remove_ads.png`, `remove_ads_bundle.png`, 1024×1024 32-bit PNG, full green square, no text (Play's rule). Play crops product icons into a rounded hexagon, so the artwork sits inside a central circle of 34% of the width. Drawn with Pillow in the app's green and gold, 19 September 2026 |
 | `assets/branding/app_icon_source.png` | Launcher icon source · `app_icon_foreground.png` for adaptive · `app_icon_cutout.png` transparent cutout |
 | `assets/branding/feature_graphic_1024x500.png` | Feature graphic with title · `feature_art.png` raw art without text |
 | `screenshots/store_9x16/` | **Arabic screenshots** — 5 × 1080×1920 in the v1.0.6 design, same screens and method as the English set (replaced the pre-redesign set on 14 September 2026) |
