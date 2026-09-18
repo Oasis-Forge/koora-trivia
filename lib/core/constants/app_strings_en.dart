@@ -350,9 +350,9 @@ class EnglishText implements AppText {
   @override
   String get removeAdsActive => 'Active';
   @override
-  String heartsPack(String hearts) => 'Pack of $hearts';
+  String coinsPack(String coins) => 'Pack of $coins';
   @override
-  String get heartsPackHint => 'Added on top of your hearts, even when full';
+  String get coinsPackHint => 'For heart refills and hints';
   @override
   String get restorePurchases => 'Restore purchases';
   @override

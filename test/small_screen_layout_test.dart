@@ -296,7 +296,7 @@ void _screens() {
               ChangeNotifierProvider(
                 create: (_) => PurchasesProvider(
                   service: FakeBillingService(available: true),
-                  grantHearts: (_) async {},
+                  grantCoins: (_) async {},
                   onAdsRemoved: () {},
                 )..init(),
               ),

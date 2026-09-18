@@ -242,8 +242,8 @@ class AppText {
   String get removeAds => 'إزالة الإعلانات';
   String get removeAdsHint => 'تُخفي الشريط السفلي والإعلانات بين الجولات';
   String get removeAdsActive => 'مفعّلة';
-  String heartsPack(String hearts) => 'حزمة $hearts';
-  String get heartsPackHint => 'تُضاف فوق رصيدك ولو كان ممتلئاً';
+  String coinsPack(String coins) => 'حزمة $coins';
+  String get coinsPackHint => 'لملء القلوب وشراء المساعدات';
   String get restorePurchases => 'استعادة المشتريات';
   String get purchaseDone => 'تم الشراء — شكراً لدعمك!';
   String get purchasePending =>

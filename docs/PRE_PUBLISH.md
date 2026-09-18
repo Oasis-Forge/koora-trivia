@@ -262,7 +262,7 @@ New **personal** developer accounts can't request production until a closed test
 
 | Item | Status |
 |---|---|
-| In-app purchases | Built in v1.0.8 (`hearts_small`, `hearts_large`, `remove_ads`), acknowledged on completion. Owner still has to create the three products in Play Console and finish the payments profile; until then the shop shows "Soon" |
+| In-app purchases | Built in v1.0.8 (`coins_small`, `coins_large`, `remove_ads`), acknowledged on completion. Owner still has to create the three products in Play Console and finish the payments profile; until then the shop shows "Soon" |
 | Interstitial ads | On since 17 September 2026 (owner's decision), with a bottom banner |
 | `app-ads.txt` | Live at https://oasis-forge.github.io/app-ads.txt, set as the Play listing's Website and verified in AdMob (16 September 2026) |
 | Tablet screenshots | None |

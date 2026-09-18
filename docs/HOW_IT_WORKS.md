@@ -151,8 +151,8 @@ sections kept), tasks, shop, plus the result screen, onboarding and the no-heart
 
 ### In-app purchases — how they work (v1.0.8)
 
-Three products, ids exactly as in Play Console: `hearts_small` (5 hearts), `hearts_large`
-(20 hearts) and `remove_ads`. **Never rename an id** — old purchases stop restoring.
+Three products, ids exactly as in Play Console: `coins_small` (500 coins), `coins_large`
+(2000 coins) and `remove_ads`. **Never rename an id** — old purchases stop restoring.
 
 - **The rows appear only when Play returns the products.** `PlayBillingService.isAvailable` is
   store-reachable *and* products found, so the shop keeps its «قريباً» row while the payments
@@ -161,9 +161,9 @@ Three products, ids exactly as in Play Console: `hearts_small` (5 hearts), `hear
 - **Delivery goes through `PurchasesProvider`, not the shop screen.** A purchase can complete while
   the app is closed (a pending bank payment, or a buy on another device) and arrives at the next
   launch with no screen open.
-- **Bought hearts go above the 5-heart cap** (`grantPurchasedHearts`). `RegenerateHearts` returns
-  early when hearts ≥ max, so the extra hearts survive; free regen still stops at 5. Paying at
-  4 hearts and getting 1 would read as a rip-off.
+- **Coins, not hearts** (owner's decision, 18 September 2026). Hearts never go above 5: bought
+  coins are spent in the same shop on the 200-coin refill (fills to 5, disabled when full) or the
+  hints pack. Coins have no cap. Pack sizes are `AppConfig.coinsPerSmallPack` / `coinsPerLargePack`.
 - **`remove_ads` stops the banner and interstitials, never the rewarded ad** — that one is optional
   and is how players get hearts and coins (see ECONOMY.md).
 - **The entitlement is not in the backup code.** `entitlements_v1_ads_removed` is deliberately

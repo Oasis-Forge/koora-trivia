@@ -11,17 +11,17 @@ import '../../domain/repositories/billing_service.dart';
 class PurchasesProvider extends ChangeNotifier {
   PurchasesProvider({
     required BillingService service,
-    required Future<void> Function(int hearts) grantHearts,
+    required Future<void> Function(int coins) grantCoins,
     required void Function() onAdsRemoved,
   })  : _service = service,
-        _grantHearts = grantHearts,
+        _grantCoins = grantCoins,
         _onAdsRemoved = onAdsRemoved {
     _service.onChanged = notifyListeners;
     _service.onDelivered = _deliver;
   }
 
   final BillingService _service;
-  final Future<void> Function(int hearts) _grantHearts;
+  final Future<void> Function(int coins) _grantCoins;
   final void Function() _onAdsRemoved;
 
   StoreProductKind? _busy;
@@ -60,10 +60,10 @@ class PurchasesProvider extends ChangeNotifier {
     switch (kind) {
       case StoreProductKind.removeAds:
         _onAdsRemoved();
-      case StoreProductKind.heartsSmall:
-        _grantHearts(AppConfig.heartsPerSmallPack);
-      case StoreProductKind.heartsLarge:
-        _grantHearts(AppConfig.heartsPerLargePack);
+      case StoreProductKind.coinsSmall:
+        _grantCoins(AppConfig.coinsPerSmallPack);
+      case StoreProductKind.coinsLarge:
+        _grantCoins(AppConfig.coinsPerLargePack);
     }
     notifyListeners();
   }

@@ -125,18 +125,18 @@ class _PaidItem extends StatelessWidget {
 
   static String _label(StoreProduct product) => switch (product.kind) {
         StoreProductKind.removeAds => AppStrings.removeAds,
-        StoreProductKind.heartsSmall => AppStrings.heartsPack(
-            ArabicCount.format(AppConfig.heartsPerSmallPack, ArabicNoun.heart),
+        StoreProductKind.coinsSmall => AppStrings.coinsPack(
+            ArabicCount.format(AppConfig.coinsPerSmallPack, ArabicNoun.coin),
           ),
-        StoreProductKind.heartsLarge => AppStrings.heartsPack(
-            ArabicCount.format(AppConfig.heartsPerLargePack, ArabicNoun.heart),
+        StoreProductKind.coinsLarge => AppStrings.coinsPack(
+            ArabicCount.format(AppConfig.coinsPerLargePack, ArabicNoun.coin),
           ),
       };
 
   static String _hint(StoreProduct product) =>
       product.kind == StoreProductKind.removeAds
           ? AppStrings.removeAdsHint
-          : AppStrings.heartsPackHint;
+          : AppStrings.coinsPackHint;
 
   @override
   Widget build(BuildContext context) {
@@ -154,11 +154,11 @@ class _PaidItem extends StatelessWidget {
             child: Icon(
               product.kind == StoreProductKind.removeAds
                   ? Icons.block_rounded
-                  : Icons.favorite_rounded,
+                  : Icons.monetization_on_rounded,
               size: 22,
               color: product.kind == StoreProductKind.removeAds
                   ? AppColors.chalkMuted
-                  : AppColors.wrong,
+                  : AppColors.gold,
             ),
           ),
           const SizedBox(width: 12),
