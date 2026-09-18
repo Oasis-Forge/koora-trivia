@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:football_trivia/core/constants/app_config.dart';
 import 'package:football_trivia/core/constants/app_strings.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
+import 'package:football_trivia/presentation/widgets/koora_buttons.dart';
 
 import 'fakes/score_screen_harness.dart';
 
@@ -39,6 +40,35 @@ void main() {
     expect(find.text(AppStrings.nextLevel), findsOneWidget);
     expect(find.text(AppStrings.replayLevel), findsOneWidget);
     expect(find.text(AppStrings.playAgain), findsNothing);
+    quiz.abandon();
+  });
+
+  testWidgets('بعد الاجتياز «المستوى التالي» هو الزر الذهبي والمشاركة تحته',
+      (tester) async {
+    final quiz = await _pump(tester, correct: 10);
+
+    final gold = find.byType(GoldButton);
+    expect(
+      find.descendant(of: gold, matching: find.text(AppStrings.nextLevel)),
+      findsOneWidget,
+    );
+    expect(
+      tester.getTopLeft(find.text(AppStrings.nextLevel)).dy,
+      lessThan(tester.getTopLeft(find.text(AppStrings.shareScore)).dy),
+    );
+    quiz.abandon();
+  });
+
+  testWidgets('إخفاق في مستوى: المشاركة تبقى الزر الذهبي', (tester) async {
+    final quiz = await _pump(tester, correct: 3);
+
+    expect(
+      find.descendant(
+        of: find.byType(GoldButton),
+        matching: find.text(AppStrings.shareScore),
+      ),
+      findsOneWidget,
+    );
     quiz.abandon();
   });
 
