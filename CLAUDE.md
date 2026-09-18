@@ -3,7 +3,7 @@
 > Loaded at the start of every session and into every subagent, so it stays short: rules, current
 > status, traps and pointers. Details live in `docs/` — read a file only when the task touches it.
 > **Update the status and next steps here, and `docs/PLAN.md`, whenever work is completed.**
-> Last updated: **16 September 2026**.
+> Last updated: **18 September 2026**.
 
 ## Working conventions — agreed with the owner on 14 September 2026
 Tokens cost the owner real money.
@@ -32,17 +32,20 @@ and #5–#14) was uploaded by the owner on 14 September 2026 to internal and clo
 design; it is in Google's review and contains everything in v1.0.5. The "Some languages have errors" warning is gone. `v1.0.7+8`
 (`releases/v1.0.7_build8_2026-09-16/`, PRs #51–#52: daily challenge mix and no-repeat cycle, «21 / 10» task count,
 question bank clean-up) was uploaded by the owner on 16 September 2026 to closed testing (no full test run or emulator
-check before it, owner's call).
+check before it, owner's call). `v1.0.8+9` (`releases/v1.0.8_build9_2026-09-18/`, PRs #55–#58: banner and interstitial
+ads, Play Billing shop, full-width banner and «إزالة الإعلانات» link, support email) is built, release-checked on the
+emulator and archived — not uploaded yet.
 
-**Privacy policy:** the live page carries the 14 September 2026 text, including "Messages you send us".
-`docs/privacy_policy.html` is ahead of it (18 September 2026: new support email) until
-Oasis-Forge/koora-trivia-privacy#1 is merged, which publishes it.
+**Privacy policy:** the live page carries the 18 September 2026 text (support email `oasisforge.support@gmail.com`),
+the same as `docs/privacy_policy.html`.
 
 ### Next steps, in order
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
 3. **After Google approves v1.0.7 (owner):** check the pre-launch report (crashes, and its screenshots in both languages).
+4. **v1.0.8 (owner):** upload `releases/v1.0.8_build9_2026-09-18/app-release.aab` with the notes in its `NOTES.md`; then
+   create the three in-app products (RELEASE.md) and set Play Console's store contact to `oasisforge.support@gmail.com`.
 
 ### Decisions waiting on the owner
 - **② Name and address on the store page** (personal account) vs. an organization account. Undecided.

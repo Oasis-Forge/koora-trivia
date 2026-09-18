@@ -1,7 +1,7 @@
 name: football_trivia
 description: "تحدي كرة القدم — لعبة أسئلة عربية عن كرة القدم."
 publish_to: 'none'
-version: 1.0.7+8
+version: 1.0.8+9
 
 environment:
   sdk: ^3.6.0
