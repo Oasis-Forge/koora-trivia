@@ -11,7 +11,7 @@
 | App name on the store | «تحدي كرة القدم» (Arabic is the default listing language) |
 | Public contact email | `oasisforge.support@gmail.com` since 18 September 2026 (was `thepromptkitchen@gmail.com`) — the app's feedback and report emails, the privacy policy and Play Console's store contact must all match |
 | AdMob | app "Koora Trivia" · publisher `pub-8287765177319119` |
-| Privacy policy | https://oasis-forge.github.io/koora-trivia/privacy/ — published from this repo since 18 September 2026. The previous address, https://oasis-forge.github.io/koora-trivia-privacy/, forwards to it (v1.0.8 and earlier open that one). Play Console must point to the new address |
+| Privacy policy | https://oasis-forge.github.io/koora-trivia/privacy/ — published from this repo since 18 September 2026. The previous address, https://oasis-forge.github.io/koora-trivia-privacy/, forwards to it (v1.0.8 and earlier open that one). Play Console points to the new address since 18 September 2026 (submitted with the v1.0.8 review) |
 | Upload key | `%USERPROFILE%/keys/koora-upload.jks` (alias `upload`) — the password is in `android/key.properties`, outside Git. **Never copy it into any other file.** |
 | Repository | https://github.com/Oasis-Forge/koora-trivia — **public**, owned by the **Oasis-Forge organization** (transferred from the `thepromptkitchen-alt` account on 13 September 2026) · branch `main` |
 
