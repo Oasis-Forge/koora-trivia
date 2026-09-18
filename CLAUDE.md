@@ -36,8 +36,9 @@ check before it, owner's call). `v1.0.8+9` (`releases/v1.0.8_build9_2026-09-18/`
 ads, Play Billing shop, full-width banner and «إزالة الإعلانات» link, support email) was uploaded by the owner on
 18 September 2026 to closed testing and is in Google's review (release-checked on the emulator first).
 
-**Privacy policy:** the live page carries the 18 September 2026 text (support email `oasisforge.support@gmail.com`),
-the same as `docs/privacy_policy.html`.
+**Privacy policy:** published from this repo — `docs/privacy_policy.html` is the only copy, and merging a change to it
+publishes https://oasis-forge.github.io/koora-trivia/privacy/ (`.github/workflows/privacy-pages.yml`). The old
+`/koora-trivia-privacy/` address forwards there from the root site repo. Details in RELEASE.md.
 
 ### Next steps, in order
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.

@@ -176,12 +176,12 @@ class AppConfig {
 
   // ── الروابط ──
 
-  /// صفحة سياسة الخصوصية المنشورة.
+  /// صفحة سياسة الخصوصية المنشورة من هذا المستودع (`docs/privacy_policy.html`).
   ///
-  /// ⚠️ نقل مستودع الصفحة أو تغيير اسمه يغيّر الرابط دون تحويل — حدّثه هنا وفي
-  /// Play Console معاً.
+  /// الرابط القديم `/koora-trivia-privacy/` يحوّل إلى هنا، فالإصدارات حتى v1.0.8
+  /// لا تنكسر. ⚠️ تغيير اسم هذا المستودع يغيّر الرابط — حدّثه هنا وفي Play Console معاً.
   static const String privacyPolicyUrl =
-      'https://oasis-forge.github.io/koora-trivia-privacy/';
+      'https://oasis-forge.github.io/koora-trivia/privacy/';
 
   /// صفحة التطبيق على غوغل بلاي.
   static const String playStoreUrl =

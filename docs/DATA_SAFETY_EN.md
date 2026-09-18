@@ -68,8 +68,10 @@ Answer **every row the same way**: Collected **Yes** · Shared **Yes** · Proces
 ## E. Privacy policy URL (required field)
 
 ```
-https://oasis-forge.github.io/koora-trivia-privacy/
+https://oasis-forge.github.io/koora-trivia/privacy/
 ```
+
+(Since 18 September 2026. The previous address, `/koora-trivia-privacy/`, forwards here.)
 
 ---
 
