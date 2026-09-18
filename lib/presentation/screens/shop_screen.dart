@@ -20,10 +20,23 @@ import '../widgets/surface.dart';
 ///
 /// صفّ الشراء بالمال لا يظهر إلا حين يردّ المتجر منتجاته فعلاً؛ قبل ذلك (ملف
 /// دفع تحت التحقق، أو منتجات لم تُنشأ بعد) يبقى صفّ «قريباً» كما كان.
-class ShopScreen extends StatelessWidget {
+class ShopScreen extends StatefulWidget {
   const ShopScreen({super.key});
 
   static const String routeName = '/shop';
+
+  @override
+  State<ShopScreen> createState() => _ShopScreenState();
+}
+
+class _ShopScreenState extends State<ShopScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // فتح المتجر لحظة يريد فيها اللاعب الشراء: إن لم تصل المنتجات عند الإقلاع
+    // نطلبها الآن بدل «قريباً» حتى يُعاد تشغيل التطبيق.
+    context.read<PurchasesProvider>().refresh();
+  }
 
   @override
   Widget build(BuildContext context) {

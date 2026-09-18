@@ -94,6 +94,12 @@ class AppConfig {
   /// عملات باقة إزالة الإعلانات — تُمنح عند الشراء الأصلي فقط، لا عند الاستعادة.
   static const int coinsInRemoveAdsBundle = 500;
 
+  /// أقل مدة بين محاولتين لجلب المنتجات حين لم يردّ المتجر.
+  ///
+  /// المحاولة تتكرر عند العودة إلى التطبيق وعند فتح المتجر؛ السقف يمنع سيلاً من
+  /// الطلبات إن تنقّل اللاعب بين الشاشات والمتجر معطّل.
+  static const int billingRetrySeconds = 30;
+
   /// أسعار المتجر بالعملات.
   static const int priceHeartsRefill = 200;
   static const int priceHintsPack = 200;

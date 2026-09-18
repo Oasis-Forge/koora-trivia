@@ -5,8 +5,10 @@ import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/billing_client_wrappers.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 
+import '../../core/constants/app_config.dart';
 import '../../domain/entities/store_product.dart';
 import '../../domain/repositories/billing_service.dart';
+import '../../domain/repositories/error_log.dart';
 import '../datasources/entitlement_local_datasource.dart';
 
 /// تنفيذ الشراء داخل التطبيق عبر Google Play Billing.
@@ -16,18 +18,35 @@ import '../datasources/entitlement_local_datasource.dart';
 /// فيبقى [isAvailable] خطأً وتعرض شاشة المتجر «قريباً» كما كانت. لهذا يمكن شحن
 /// هذا الكود قبل أن يكتمل إعداد الدفع.
 class PlayBillingService implements BillingService {
-  /// [store] و[consume] منفذان للاختبارات؛ غيابهما يعني Play الحقيقي.
+  /// [store] و[consume] و[clock] منافذ للاختبارات؛ غيابها يعني Play الحقيقي.
+  ///
+  /// [errorLog] يحفظ سبب تعذّر المنتجات، فيصل مع رسالة الملاحظات من أي لاعب
+  /// بدل أن يبقى في سجل الجهاز الذي لا نراه.
   PlayBillingService({
     required EntitlementLocalDataSource entitlements,
+    ErrorLog? errorLog,
     InAppPurchase? store,
     Future<void> Function(PurchaseDetails purchase)? consume,
+    DateTime Function()? clock,
   })  : _entitlements = entitlements,
+        _errorLog = errorLog,
         _store = store ?? InAppPurchase.instance,
-        _consumeOverride = consume;
+        _consumeOverride = consume,
+        _clock = clock ?? DateTime.now;
 
   final EntitlementLocalDataSource _entitlements;
+  final ErrorLog? _errorLog;
   final InAppPurchase _store;
   final Future<void> Function(PurchaseDetails purchase)? _consumeOverride;
+  final DateTime Function() _clock;
+
+  /// هل وصلت مشتريات Play السابقة مرة في هذه الجلسة؟ إن تعذّر ذلك عند الإقلاع
+  /// تُعاد المحاولة، وإلا لم تُسلَّم مشتريات فات حدثها ولم تُفعَّل إزالة الإعلانات.
+  bool _restoredOnce = false;
+  DateTime? _lastAttempt;
+
+  /// آخر مشكلة سُجّلت — المشكلة نفسها لا تُكرَّر في السجل عند كل محاولة.
+  String? _lastProblem;
 
   final Map<StoreProductKind, ProductDetails> _details = {};
   final Map<String, Completer<PurchaseOutcome>> _pending = {};
@@ -70,30 +89,76 @@ class PlayBillingService implements BillingService {
     _adsRemoved = await _entitlements.readAdsRemoved();
     if (_adsRemoved) _notify();
 
+    await _connect();
+  }
+
+  @override
+  Future<void> refresh() async {
+    if (_allProductsLoaded && _restoredOnce) return;
+
+    final last = _lastAttempt;
+    if (last != null &&
+        _clock().difference(last).inSeconds < AppConfig.billingRetrySeconds) {
+      return;
+    }
+    await _connect();
+  }
+
+  /// الاتصال بالمتجر، ثم ما ينقص: المنتجات، ثم المشتريات السابقة.
+  Future<void> _connect() async {
+    _lastAttempt = _clock();
     try {
       _storeAvailable = await _store.isAvailable();
-      if (!_storeAvailable) return;
+      if (_storeAvailable) {
+        _subscription ??= _store.purchaseStream.listen(
+          _onPurchases,
+          onError: (Object e) => debugPrint('خطأ في مجرى المشتريات: $e'),
+        );
+        // منتج واحد ناقص (لم يصل الجهاز بعد) يُطلب ثانية كذلك، لا المتجر الفارغ وحده.
+        if (!_allProductsLoaded) await _loadProducts();
 
-      _subscription = _store.purchaseStream.listen(
-        _onPurchases,
-        onError: (Object e) => debugPrint('خطأ في مجرى المشتريات: $e'),
-      );
-
-      final response = await _store.queryProductDetails(
-        {for (final kind in StoreProductKind.values) kind.id},
-      );
-      for (final d in response.productDetails) {
-        final kind = StoreProductKind.fromId(d.id);
-        if (kind != null) _details[kind] = d;
+        // مشتريات سابقة (جهاز جديد أو إعادة تثبيت) تصل عبر المجرى نفسه.
+        if (!_restoredOnce) {
+          await _store.restorePurchases();
+          _restoredOnce = true;
+        }
+      } else {
+        _report('Billing unavailable: Google Play Billing did not connect');
       }
-
-      // مشتريات سابقة (جهاز جديد أو إعادة تثبيت) تصل عبر المجرى نفسه.
-      await _store.restorePurchases();
-    } catch (e) {
+    } catch (e, stack) {
       // متجر غير متاح لا يُسقط الإقلاع: يبقى التطبيق يعمل بلا مشتريات.
-      debugPrint('تعذّر بدء المتجر: $e');
+      _report('Billing failed to start: $e', stack);
     }
     _notify();
+  }
+
+  bool get _allProductsLoaded =>
+      _details.length == StoreProductKind.values.length;
+
+  Future<void> _loadProducts() async {
+    final response = await _store.queryProductDetails(
+      {for (final kind in StoreProductKind.values) kind.id},
+    );
+    for (final d in response.productDetails) {
+      final kind = StoreProductKind.fromId(d.id);
+      if (kind != null) _details[kind] = d;
+    }
+
+    // الأسباب الشائعة لمتجر «قريباً»: منتجات غير مفعّلة أو لم تصل الجهاز بعد، أو
+    // حساب Play ليس من المختبرين. المعرّفات الناقصة تكفي لمعرفة أيّها.
+    final error = response.error;
+    if (error != null) {
+      _report('Billing products query failed: ${error.code} ${error.message}');
+    } else if (response.notFoundIDs.isNotEmpty) {
+      _report('Billing products not found: ${response.notFoundIDs.join(', ')}');
+    }
+  }
+
+  void _report(String problem, [StackTrace? stack]) {
+    debugPrint(problem);
+    if (problem == _lastProblem) return;
+    _lastProblem = problem;
+    _errorLog?.record(StateError(problem), stack);
   }
 
   @override

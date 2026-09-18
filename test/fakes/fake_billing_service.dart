@@ -23,6 +23,7 @@ class FakeBillingService implements BillingService {
       delivered;
   final List<StoreProductKind> bought = [];
   int restoreCalls = 0;
+  int refreshCalls = 0;
   bool disposed = false;
 
   @override
@@ -69,6 +70,9 @@ class FakeBillingService implements BillingService {
     }
     return outcome;
   }
+
+  @override
+  Future<void> refresh() async => refreshCalls++;
 
   @override
   Future<int> restore() async {

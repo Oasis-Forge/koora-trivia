@@ -58,10 +58,11 @@ class Injector {
         ),
         billingService = PlayBillingService(
           entitlements: PrefsEntitlementDataSource(),
+          errorLog: _sharedErrorLog,
         ),
         reminderScheduler = LocalNotificationScheduler(),
         linkOpener = UrlLinkOpener(),
-        errorLog = PrefsErrorLog(),
+        errorLog = _sharedErrorLog,
         appInfo = PackageAppInfo(),
         reviewPrompter = InAppReviewPrompter(),
         appUpdater = PlayAppUpdater();
@@ -77,6 +78,9 @@ class Injector {
   final ReminderScheduler reminderScheduler;
   final LinkOpener linkOpener;
   final ErrorLog errorLog;
+
+  /// سجل واحد للتطبيق كله: الخدمات تكتب فيه، ورسالة الملاحظات تقرأ منه.
+  static final ErrorLog _sharedErrorLog = PrefsErrorLog();
   final AppInfo appInfo;
   final ReviewPrompter reviewPrompter;
   final AppUpdater appUpdater;

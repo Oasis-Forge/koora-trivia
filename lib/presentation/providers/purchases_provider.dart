@@ -53,6 +53,9 @@ class PurchasesProvider extends ChangeNotifier {
     }
   }
 
+  /// محاولة جديدة إن لم يردّ المتجر عند الإقلاع — عند العودة إلى التطبيق وفتح المتجر.
+  Future<void> refresh() => _service.refresh();
+
   /// يعيد عدد ما استُعيد؛ صفر يعني لا مشتريات سابقة على هذا الحساب.
   Future<int> restore() => _service.restore();
 
