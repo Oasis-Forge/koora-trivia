@@ -185,10 +185,19 @@ id** — old purchases stop restoring. Prices live in Play Console only.
   missing from `_decoders` in `BackupRepositoryImpl`: a backup code is shareable, so carrying the
   purchase in it would make Remove-ads free for anyone who copies it. Play is the source of truth
   (`restorePurchases()` at every launch) and the local key is only an offline cache.
-- **Consumables are not restored.** Only non-consumables are re-delivered on restore, or hearts
-  would be granted again at every launch.
+- **"Not acknowledged" means "not delivered yet" — not the purchase status.** The app acknowledges
+  every purchase right after delivering it, so `pendingCompletePurchase` is the delivery marker.
+  `in_app_purchase_android` labels *everything* `restorePurchases()` returns as `restored`,
+  including a purchase whose live event never arrived (the app closed during Google's payment
+  window, or a slow payment finished while it was closed). Until 19 September 2026 those were
+  treated as already delivered: a bundle bought that way removed ads without its 500 coins (the
+  owner's test), and a coin pack gave nothing. Now an unacknowledged purchase is always delivered in
+  full; an acknowledged one only re-applies Remove ads, so coins never come twice.
 - **Every purchase is completed** (`completePurchase`), which acknowledges it. Google refunds
-  anything unacknowledged after 3 days. `buyConsumable` also consumes, so a pack can be bought again.
+  anything unacknowledged after 3 days. `buyConsumable` also consumes a live purchase so a pack can be
+  bought again; a coin pack that comes back through a restore was never consumed, so the app consumes
+  it itself (`InAppPurchaseAndroidPlatformAddition.consumePurchase`) — otherwise Play refuses to sell
+  it again.
 - A revoked or refunded purchase is **not** revoked locally on its own: wrongly cutting off a paying
   player is worse than the rare refund keeping its benefit.
 

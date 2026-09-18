@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:in_app_purchase_android/billing_client_wrappers.dart';
+import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 
 import '../../domain/entities/store_product.dart';
 import '../../domain/repositories/billing_service.dart';
@@ -14,21 +16,26 @@ import '../datasources/entitlement_local_datasource.dart';
 /// فيبقى [isAvailable] خطأً وتعرض شاشة المتجر «قريباً» كما كانت. لهذا يمكن شحن
 /// هذا الكود قبل أن يكتمل إعداد الدفع.
 class PlayBillingService implements BillingService {
+  /// [store] و[consume] منفذان للاختبارات؛ غيابهما يعني Play الحقيقي.
   PlayBillingService({
     required EntitlementLocalDataSource entitlements,
     InAppPurchase? store,
+    Future<void> Function(PurchaseDetails purchase)? consume,
   })  : _entitlements = entitlements,
-        _store = store ?? InAppPurchase.instance;
+        _store = store ?? InAppPurchase.instance,
+        _consumeOverride = consume;
 
   final EntitlementLocalDataSource _entitlements;
   final InAppPurchase _store;
+  final Future<void> Function(PurchaseDetails purchase)? _consumeOverride;
 
   final Map<StoreProductKind, ProductDetails> _details = {};
   final Map<String, Completer<PurchaseOutcome>> _pending = {};
 
   StreamSubscription<List<PurchaseDetails>>? _subscription;
   void Function()? _onChanged;
-  void Function(StoreProductKind kind, {required bool restored})? _onDelivered;
+  void Function(StoreProductKind kind, {required bool alreadyDelivered})?
+      _onDelivered;
   bool _storeAvailable = false;
   bool _adsRemoved = false;
   int _restored = 0;
@@ -38,7 +45,8 @@ class PlayBillingService implements BillingService {
 
   @override
   set onDelivered(
-    void Function(StoreProductKind kind, {required bool restored})? listener,
+    void Function(StoreProductKind kind, {required bool alreadyDelivered})?
+        listener,
   ) =>
       _onDelivered = listener;
 
@@ -138,14 +146,20 @@ class PlayBillingService implements BillingService {
         case PurchaseStatus.pending:
           _finish(purchase.productID, PurchaseOutcome.pending);
         case PurchaseStatus.purchased:
-          if (kind != null) await _deliver(kind, restored: false);
-          _finish(purchase.productID, PurchaseOutcome.purchased);
         case PurchaseStatus.restored:
-          // المستهلَكات لا تُستعاد: من اشترى عملات واستهلكها لا يأخذها ثانية
-          // عند كل إقلاع. غير المستهلَك وحده يُعاد تفعيله.
-          if (kind != null && !kind.isConsumable) {
-            _restored++;
-            await _deliver(kind, restored: true);
+          // «جديد» = لم يُقرّ بعد. نُقرّ كل شراء فور تسليمه، فالإقرار هو علامة
+          // التسليم. حالة الإضافة وحدها لا تكفي: `in_app_purchase_android` يصف
+          // بـ restored كل ما تعيده Play عند الإقلاع، ومنه شراء لم يصل حدثه قط
+          // (أُغلق التطبيق أثناء نافذة الدفع، أو اكتمل دفع معلّق وهو مغلق). كان
+          // يُعامل كاستعادة: تُزال الإعلانات بلا عملات الباقة، وحزمة العملات لا
+          // تُسلَّم ولا تُستهلك فلا تُشترى ثانية (19 سبتمبر 2026).
+          final isNew = purchase.pendingCompletePurchase;
+          if (kind != null && (isNew || !kind.isConsumable)) {
+            if (purchase.status == PurchaseStatus.restored &&
+                !kind.isConsumable) {
+              _restored++;
+            }
+            await _deliver(kind, alreadyDelivered: !isNew);
           }
           _finish(purchase.productID, PurchaseOutcome.purchased);
         case PurchaseStatus.canceled:
@@ -163,15 +177,39 @@ class PlayBillingService implements BillingService {
           debugPrint('تعذّر إقرار الشراء: $e');
         }
       }
+
+      // الاستهلاك التلقائي لا يلحق إلا بالشراء الحيّ في الجلسة نفسها. حزمة عملات
+      // تعيدها الاستعادة ما زالت «مملوكة»، فتُستهلك هنا وإلا رفضت Play شراءها ثانية.
+      if (kind != null &&
+          kind.isConsumable &&
+          purchase.status == PurchaseStatus.restored) {
+        try {
+          await (_consumeOverride ?? _consumeOnPlay)(purchase);
+        } catch (e) {
+          debugPrint('تعذّر استهلاك الشراء: $e');
+        }
+      }
     }
   }
 
-  Future<void> _deliver(StoreProductKind kind, {required bool restored}) async {
+  Future<void> _consumeOnPlay(PurchaseDetails purchase) async {
+    final android = _store
+        .getPlatformAddition<InAppPurchaseAndroidPlatformAddition>();
+    final result = await android.consumePurchase(purchase);
+    if (result.responseCode != BillingResponse.ok) {
+      debugPrint('رفضت Play استهلاك الشراء: ${result.debugMessage}');
+    }
+  }
+
+  Future<void> _deliver(
+    StoreProductKind kind, {
+    required bool alreadyDelivered,
+  }) async {
     if (kind.removesAds && !_adsRemoved) {
       _adsRemoved = true;
       await _entitlements.writeAdsRemoved(true);
     }
-    _onDelivered?.call(kind, restored: restored);
+    _onDelivered?.call(kind, alreadyDelivered: alreadyDelivered);
     _notify();
   }
 

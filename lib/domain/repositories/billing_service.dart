@@ -14,13 +14,15 @@ abstract class BillingService {
   /// يُستدعى كلما تغيّرت المنتجات أو الاستحقاق أو حالة الشراء.
   set onChanged(void Function()? listener);
 
-  /// يُستدعى عند تسليم شراء — عند إتمامه (`restored` خطأ) أو استعادته عند
-  /// الإقلاع (`restored` صحيح).
+  /// يُستدعى عند تسليم شراء: جديد (`alreadyDelivered` خطأ) أو سبق تسليمه ويُعاد
+  /// تفعيله عند الإقلاع (`alreadyDelivered` صحيح).
   ///
-  /// التسليم قد يصل متأخراً (دفع معلّق يكتمل بعد يوم)، فلا يكفي ردّ [buy].
-  /// والتمييز يمنع منح عملات الباقة ثانية عند كل استعادة.
+  /// التسليم قد يصل متأخراً (دفع معلّق يكتمل بعد يوم، أو تطبيق أُغلق أثناء نافذة
+  /// الدفع)، فلا يكفي ردّ [buy]. والتمييز يمنع منح عملات الباقة ثانية عند كل
+  /// استعادة، دون أن يحرم شراءً لم يُسلَّم بعد منها.
   set onDelivered(
-    void Function(StoreProductKind kind, {required bool restored})? listener,
+    void Function(StoreProductKind kind, {required bool alreadyDelivered})?
+        listener,
   );
 
   /// هل المتجر متاح ومنتجاته معروفة؟ الشاشة تعرض «قريباً» حين لا يكون.
