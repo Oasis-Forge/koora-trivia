@@ -57,7 +57,7 @@ class _ShopScreenState extends State<ShopScreen> {
                 children: [
                   HeartsBar(),
                   SizedBox(width: 8),
-                  CoinBadge(),
+                  CoinBadge(opensShop: false),
                 ],
               ),
               const SizedBox(height: 16),

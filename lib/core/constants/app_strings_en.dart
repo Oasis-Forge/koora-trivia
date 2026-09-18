@@ -328,6 +328,8 @@ class EnglishText implements AppText {
   @override
   String get shop => 'Shop';
   @override
+  String coinsOpenShop(String coins) => 'You have $coins — open the shop';
+  @override
   String get refillHearts => 'Refill hearts';
   @override
   String get hintsPack => 'Hints pack';

@@ -231,6 +231,7 @@ class AppText {
   String get chestOpened => 'فُتح الصندوق!';
   String get tasksResetHint => 'تتجدّد المهام كل يوم عند منتصف الليل';
   String get shop => 'المتجر';
+  String coinsOpenShop(String coins) => 'رصيدك $coins — افتح المتجر';
   String get refillHearts => 'ملء القلوب';
   String get hintsPack => 'حزمة مساعدات';
   String get notEnoughCoins => 'عملاتك لا تكفي';

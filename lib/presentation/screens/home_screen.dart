@@ -19,7 +19,6 @@ import '../widgets/surface.dart';
 import 'categories_screen.dart';
 import 'quiz_screen.dart';
 import 'settings_screen.dart';
-import 'shop_screen.dart';
 import 'tasks_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -199,9 +198,7 @@ class _StatusRow extends StatelessWidget {
       children: [
         const HeartsBar(),
         const SizedBox(width: 8),
-        CoinBadge(
-          onTap: () => Navigator.of(context).pushNamed(ShopScreen.routeName),
-        ),
+        const CoinBadge(),
         const SizedBox(width: 8),
         // مرن لا `Spacer`: على الهاتف الضيق يتقلّص نص الحبّة بدل أن يفيض الصف.
         Flexible(
