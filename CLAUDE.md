@@ -35,7 +35,8 @@ question bank clean-up) was uploaded by the owner on 16 September 2026 to closed
 check before it, owner's call).
 
 **Privacy policy:** the live page carries the 14 September 2026 text, including "Messages you send us".
-`docs/privacy_policy.html` is ahead of it (18 September 2026: new support email) until it is published.
+`docs/privacy_policy.html` is ahead of it (18 September 2026: new support email) until
+Oasis-Forge/koora-trivia-privacy#1 is merged, which publishes it.
 
 ### Next steps, in order
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
