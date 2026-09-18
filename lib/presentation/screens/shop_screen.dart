@@ -32,7 +32,7 @@ class ShopScreen extends StatelessWidget {
 
     return Scaffold(
       // الشريط الإعلاني أسفل المحتوى دائماً، لا داخل التمرير.
-      bottomNavigationBar: const BannerSlot(),
+      bottomNavigationBar: const BannerSlot(removeAdsLink: false),
       body: PitchBackground(
         child: SafeArea(
           child: ListView(

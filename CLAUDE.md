@@ -120,8 +120,9 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
   free (no hearts, hints or ads).
 - **Ads:** no SDK init or ad load unless `canRequestAds()`; rewards only on `RewardResult.earned`;
   never an interstitial after the daily; `google_mobile_ads` must stay ≥ 9. The bottom banner is
-  `BannerSlot` in `Scaffold.bottomNavigationBar` — it reserves its height before the ad arrives, so
-  nothing above it moves under the player's finger (AdMob suspends accounts over invalid taps).
+  `BannerSlot` in `Scaffold.bottomNavigationBar`, full width (standard adaptive, not the 128 dp
+  "large") — it reserves its height before the ad arrives, so nothing above it moves under the
+  player's finger (AdMob suspends accounts over invalid taps). No «إزالة الإعلانات» link on the quiz.
 - **Arabic counts:** never `'$n يوم'` — use `ArabicCount.format(n, ArabicNoun.day)`.
 - **A new stored key** must be added to `_decoders` in `BackupRepositoryImpl` — except
   `entitlements_v1_ads_removed`, kept out on purpose: a backup code is shareable, so a purchase

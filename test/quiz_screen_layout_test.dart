@@ -159,16 +159,26 @@ void main() {
 
   testWidgets('الشريط الإعلاني يبقى تحت الخيارات ولا يلامسها', (tester) async {
     // شريط إعلاني ملاصق لزر إجابة = نقرات خاطئة، وهي عند AdMob «حركة غير
-    // صالحة» تُعرّض الحساب للإيقاف. أضيق شاشة هي أخطر حالة.
+    // صالحة» تُعرّض الحساب للإيقاف. أضيق شاشة هي أخطر حالة، وأطول شريط
+    // متكيّف تسمح به غوغل هو 15% من ارتفاع الشاشة.
+    const size = Size(320, 640);
+    const tallest = 0.15 * 640;
     BannerSlot.testAdBuilder = (_) => const SizedBox.expand();
-    addTearDown(() => BannerSlot.testAdBuilder = null);
-    final quiz = await _pumpQuiz(tester, const Size(320, 640), banners: true);
+    BannerSlot.testAdHeight = tallest;
+    addTearDown(() {
+      BannerSlot.testAdBuilder = null;
+      BannerSlot.testAdHeight = null;
+    });
+    final quiz = await _pumpQuiz(tester, size, banners: true);
 
     final lastOption = tester.getRect(find.byType(AnswerOption).last);
     final banner = tester.getRect(find.byType(BannerSlot));
 
-    expect(banner.height, BannerSlot.totalHeight);
+    // أطول من الحدّ في شاشة السؤال، فيعود إلى المقاس الثابت.
+    expect(banner.height, BannerSlot.adHeight + BannerSlot.gap);
     expect(banner.top, greaterThanOrEqualTo(lastOption.bottom));
+    // الخيار الرابع ظاهر دون تمرير والوقت يجري.
+    expect(lastOption.bottom, lessThanOrEqualTo(size.height));
     await _finish(tester, quiz);
   });
 

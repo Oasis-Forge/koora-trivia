@@ -182,7 +182,10 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
       },
       child: Scaffold(
         // الشريط الإعلاني أسفل المحتوى دائماً، لا داخل التمرير.
-        bottomNavigationBar: const BannerSlot(),
+        bottomNavigationBar: const BannerSlot(
+          removeAdsLink: false,
+          maxHeightFraction: AppConfig.quizBannerMaxHeightFraction,
+        ),
         body: PitchBackground(
           child: SafeArea(
             child: question == null
