@@ -211,6 +211,8 @@ class AppText {
   String get hintSkip => 'تخطّي السؤال';
   String get hintExtraTime => 'وقت إضافي';
   String get noHintsLeft => 'انتهت مساعداتك اليوم';
+  String get watchAdForHint => 'شاهد إعلاناً واحصل على مساعدة';
+  String get hintGranted => '+1 مساعدة';
   String get hintFiftyFiftyUsed => 'حذفت إجابتين من هذا السؤال بالفعل';
   String get hintExtraTimeUsed => 'الوقت الإضافي مرة واحدة لكل سؤال';
   String get skippedAnswer => 'تخطّيت هذا السؤال';

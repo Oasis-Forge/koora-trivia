@@ -295,6 +295,10 @@ class EnglishText implements AppText {
   @override
   String get noHintsLeft => "You're out of hints for today";
   @override
+  String get watchAdForHint => 'Watch an ad for a hint';
+  @override
+  String get hintGranted => '+1 hint';
+  @override
   String get hintFiftyFiftyUsed =>
       'You already removed two answers from this question';
   @override

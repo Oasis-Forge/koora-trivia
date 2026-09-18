@@ -7,6 +7,7 @@ import 'package:football_trivia/core/constants/app_strings.dart';
 import 'package:football_trivia/core/utils/arabic_count.dart';
 import 'package:football_trivia/core/utils/day_key.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
+import 'package:football_trivia/domain/repositories/ad_service.dart';
 import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
 import 'package:football_trivia/presentation/providers/purchases_provider.dart';
@@ -32,10 +33,12 @@ EconomyProvider _economy({int hintsUsed = 0}) => EconomyProvider(
       ),
     );
 
-/// شريط المساعدات فوق مستوى بدأ للتوّ.
+/// شريط المساعدات فوق مستوى بدأ للتوّ. [ads] بإعلان غير جاهز افتراضياً، فلا يظهر
+/// زر «+1 مقابل إعلان» إلا في اختباراته.
 Future<(QuizProvider, EconomyProvider)> _pumpHintBar(
   WidgetTester tester, {
   int hintsUsed = 0,
+  FakeAdService? ads,
 }) async {
   final quiz = QuizProvider(repository: FakeQuizRepository());
   final economy = _economy(hintsUsed: hintsUsed);
@@ -47,6 +50,10 @@ Future<(QuizProvider, EconomyProvider)> _pumpHintBar(
       providers: [
         ChangeNotifierProvider.value(value: quiz),
         ChangeNotifierProvider.value(value: economy),
+        ChangeNotifierProvider(
+          create: (_) =>
+              AdsProvider(service: ads ?? FakeAdService(ready: false)),
+        ),
       ],
       child: const MaterialApp(home: Scaffold(body: Center(child: HintBar()))),
     ),
@@ -105,6 +112,53 @@ void main() {
       await _showSnackBar(tester);
       expect(find.text(AppStrings.noHintsLeft), findsOneWidget);
       expect(quiz.isFiftyFiftyUsed, isFalse);
+
+      await _dispose(tester, quiz);
+    });
+
+    testWidgets('بلا مساعدات والإعلان جاهز: إعلان مقابل مساعدة', (tester) async {
+      final ads = FakeAdService();
+      final (quiz, economy) = await _pumpHintBar(
+        tester,
+        hintsUsed: AppConfig.freeHintsPerDay,
+        ads: ads,
+      );
+      expect(economy.hintsLeft, 0);
+
+      await tester.tap(find.bySemanticsLabel(AppStrings.watchAdForHint));
+      await _showSnackBar(tester);
+
+      expect(ads.showRewardedCalls, 1);
+      expect(economy.hintsLeft, AppConfig.hintsPerRewardedAd);
+      expect(find.text(AppStrings.hintGranted), findsOneWidget);
+      // العدّاد توقف أثناء الإعلان ثم عاد.
+      expect(quiz.isPaused, isFalse);
+
+      await _dispose(tester, quiz);
+    });
+
+    testWidgets('إعلان أُغلق مبكراً لا يمنح مساعدة', (tester) async {
+      final ads = FakeAdService(result: RewardResult.dismissed);
+      final (quiz, economy) = await _pumpHintBar(
+        tester,
+        hintsUsed: AppConfig.freeHintsPerDay,
+        ads: ads,
+      );
+
+      await tester.tap(find.bySemanticsLabel(AppStrings.watchAdForHint));
+      await _showSnackBar(tester);
+
+      expect(economy.hintsLeft, 0);
+      expect(find.text(AppStrings.adDismissed), findsOneWidget);
+      expect(quiz.isPaused, isFalse);
+
+      await _dispose(tester, quiz);
+    });
+
+    testWidgets('لا زر إعلان ما دامت المساعدات متاحة', (tester) async {
+      final (quiz, _) = await _pumpHintBar(tester, ads: FakeAdService());
+
+      expect(find.bySemanticsLabel(AppStrings.watchAdForHint), findsNothing);
 
       await _dispose(tester, quiz);
     });
