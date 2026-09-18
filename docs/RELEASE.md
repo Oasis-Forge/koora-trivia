@@ -22,7 +22,7 @@
 > helper — **not** through the owner's personal GitHub account stored in Git Credential
 > Manager. `gh` is installed at `C:\Program Files\GitHub CLI\` and may not be on PATH.
 > Intentionally excluded in `.gitignore`: `.aab`/`.apk` bundles (`NOTES.md` is kept) ·
-> `privacy-site/` (an old clone of the retired privacy repo, safe to delete) · `key.properties` · `*.jks`.
+> `privacy-site/` (a local clone of the deleted privacy repo, safe to delete) · `key.properties` · `*.jks`.
 >
 > **Never write the owner's personal name, personal account names, or personal email into
 > tracked files.** The owner does not want their name public.
@@ -211,13 +211,13 @@ API (`inAppUpdatePriority`); the Play Console website can't set it. Details in [
 - **The Oasis Forge root site** (https://oasis-forge.github.io: home page and the one `app-ads.txt` for every app) is
   the `Oasis-Forge/oasis-forge.github.io` repo, cloned next to this project in `App Project/oasis-forge.github.io`, with
   the same local `gh` credential helper. Don't rename it: the address depends on the repo name.
-- **The privacy policy is published from this repo** (since 18 September 2026, owner's decision to drop the
-  separate `koora-trivia-privacy` repo). `docs/privacy_policy.html` is the only copy: merging a change to it
+- **The privacy policy is published from this repo** (since 18 September 2026, owner's decision; the separate
+  `koora-trivia-privacy` repo was deleted the same day). `docs/privacy_policy.html` is the only copy: merging a change to it
   on `main` runs `.github/workflows/privacy-pages.yml`, which publishes that page alone (not the rest of
   `docs/`) to GitHub Pages at https://oasis-forge.github.io/koora-trivia/privacy/. Pages on this repo uses
   "GitHub Actions" as its source.
 - **The old address forwards.** `https://oasis-forge.github.io/koora-trivia-privacy/` is now a forwarding page
   in the root site repo (`koora-trivia-privacy/index.html` in `oasis-forge.github.io`) — v1.0.8 and earlier
   still open it from Settings. It only works while no repo named `koora-trivia-privacy` publishes Pages;
-  keep that name unused. ⚠️ **Renaming this repo changes the policy URL** — update `AppConfig.privacyPolicyUrl`,
+  **never create a repo with that name again.** ⚠️ **Renaming this repo changes the policy URL** — update `AppConfig.privacyPolicyUrl`,
   Play Console and the home page link together.
