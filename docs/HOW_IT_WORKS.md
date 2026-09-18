@@ -201,6 +201,26 @@ id** — old purchases stop restoring. Prices live in Play Console only.
 - A revoked or refunded purchase is **not** revoked locally on its own: wrongly cutting off a paying
   player is worse than the rare refund keeping its benefit.
 
+- **The shop retries (v1.0.9).** Products are asked for at launch, and again when the player returns to
+  the app or opens the shop — at most every `AppConfig.billingRetrySeconds` — until all three products and
+  the past purchases have loaded. Before, a launch without an answer from Play left «قريباً» until a full
+  restart. When products don't load, the reason (Play Billing not connected, which ids were not found, or
+  the query error) is recorded once in the local error log, so a tester's feedback email says why.
+
+### Hint for a rewarded ad (v1.0.9)
+In a level, with no hints left and a rewarded ad loaded, the hint counter becomes «▶ +1 💡»
+(`_HintForAdButton` in `hint_bar.dart`). The quiz pauses during the ad and resumes after; one bonus hint
+(`AppConfig.hintsPerRewardedAd`) is granted on `RewardResult.earned` only. No daily cap: ads for coins are
+already unlimited, and 3 ads ≈ 210 coins ≈ a 3-hint pack — the same rate, a shorter path.
+
+### Quick play memory (v1.0.9)
+`GetQuizQuestions` remembers the last `AppConfig.quickPlayRecentMemory` (150) questions quick play served
+(`recent_questions_v1`, in the backup list) and asks the repository for, in order: unlocked-level questions
+not seen recently, other questions not seen recently, then the ones seen longest ago. Unlocked first so a
+new player gets level 1 and quick play doesn't spoil levels not reached yet; not-seen beats unlocked, since
+a repeat is worse than a harder question. Only quick play records and avoids — levels and the daily keep
+their own fixed questions.
+
 ### Coins and tasks — how they work
 
 Coins are an intermediate currency: actions grant coins, and coins buy hearts or hints. That lets
