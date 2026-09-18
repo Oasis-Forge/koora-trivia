@@ -145,7 +145,8 @@ mentions no fixed counts):
 ### App creation and store settings
 - Name «تحدي كرة القدم» · default language Arabic · Game · Free.
 - Package `com.oasisforge.kooratrivia`.
-- Category **Trivia** · contact email `thepromptkitchen@gmail.com` · phone left blank ·
+- Category **Trivia** · contact email `thepromptkitchen@gmail.com`, to change to `oasisforge.support@gmail.com`
+  (18 September 2026) · phone left blank ·
   external marketing left on (default).
 
 ### Store listing

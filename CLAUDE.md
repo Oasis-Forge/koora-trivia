@@ -35,6 +35,7 @@ question bank clean-up) was uploaded by the owner on 16 September 2026 to closed
 check before it, owner's call).
 
 **Privacy policy:** the live page carries the 14 September 2026 text, including "Messages you send us".
+`docs/privacy_policy.html` is ahead of it (18 September 2026: new support email) until it is published.
 
 ### Next steps, in order
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
@@ -54,8 +55,9 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
 ### Identity and secrets — never break these
 - **Never write the owner's personal name, personal account names, or personal email into tracked
   files.** The repo (https://github.com/Oasis-Forge/koora-trivia) is **public**.
-- Store name **Oasis Forge** · package `com.oasisforge.kooratrivia` (**final**) · public contact
-  `thepromptkitchen@gmail.com` · commit identity is local to the repo (`The Prompt Kitchen`).
+- Store name **Oasis Forge** · package `com.oasisforge.kooratrivia` (**final**) · public support contact
+  `oasisforge.support@gmail.com` (since 18 September 2026; was `thepromptkitchen@gmail.com`) · commit
+  identity is local to the repo (`The Prompt Kitchen`).
 - The upload key password lives only in `android/key.properties`. **Never copy it into any other file.**
 - **Never tap your own live ads** — the AdMob account gets suspended. Emulators get test ads.
 - **Pushing:** PowerShell 5.1 drops `""` arguments, so Git Credential Manager (the owner's personal
