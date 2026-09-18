@@ -76,7 +76,7 @@ class FootballTriviaApp extends StatelessWidget {
           lazy: false,
           create: (context) => PurchasesProvider(
             service: injector.billingService,
-            grantHearts: context.read<EconomyProvider>().grantPurchasedHearts,
+            grantCoins: context.read<EconomyProvider>().grantPurchasedCoins,
             onAdsRemoved: () {
               context.read<AdsProvider>().adsRemoved = true;
             },

@@ -346,13 +346,16 @@ class EnglishText implements AppText {
   @override
   String get removeAds => 'Remove ads';
   @override
-  String get removeAdsHint => 'Hides the bottom banner and the ads between rounds';
+  String removeAdsBundle(String coins) => 'Remove ads + $coins';
+  @override
+  String get removeAdsHint =>
+      'No bottom banner and no ads between rounds, bought once';
   @override
   String get removeAdsActive => 'Active';
   @override
-  String heartsPack(String hearts) => 'Pack of $hearts';
+  String coinsPack(String coins) => 'Pack of $coins';
   @override
-  String get heartsPackHint => 'Added on top of your hearts, even when full';
+  String get coinsPackHint => 'For heart refills and hints';
   @override
   String get restorePurchases => 'Restore purchases';
   @override

@@ -28,7 +28,7 @@ class PlayBillingService implements BillingService {
 
   StreamSubscription<List<PurchaseDetails>>? _subscription;
   void Function()? _onChanged;
-  void Function(StoreProductKind kind)? _onDelivered;
+  void Function(StoreProductKind kind, {required bool restored})? _onDelivered;
   bool _storeAvailable = false;
   bool _adsRemoved = false;
   int _restored = 0;
@@ -37,7 +37,9 @@ class PlayBillingService implements BillingService {
   set onChanged(void Function()? listener) => _onChanged = listener;
 
   @override
-  set onDelivered(void Function(StoreProductKind kind)? listener) =>
+  set onDelivered(
+    void Function(StoreProductKind kind, {required bool restored})? listener,
+  ) =>
       _onDelivered = listener;
 
   @override
@@ -136,14 +138,14 @@ class PlayBillingService implements BillingService {
         case PurchaseStatus.pending:
           _finish(purchase.productID, PurchaseOutcome.pending);
         case PurchaseStatus.purchased:
-          if (kind != null) await _deliver(kind);
+          if (kind != null) await _deliver(kind, restored: false);
           _finish(purchase.productID, PurchaseOutcome.purchased);
         case PurchaseStatus.restored:
-          // المستهلَكات لا تُستعاد: من اشترى قلوباً واستهلكها لا يأخذها ثانية
+          // المستهلَكات لا تُستعاد: من اشترى عملات واستهلكها لا يأخذها ثانية
           // عند كل إقلاع. غير المستهلَك وحده يُعاد تفعيله.
           if (kind != null && !kind.isConsumable) {
             _restored++;
-            await _deliver(kind);
+            await _deliver(kind, restored: true);
           }
           _finish(purchase.productID, PurchaseOutcome.purchased);
         case PurchaseStatus.canceled:
@@ -164,12 +166,12 @@ class PlayBillingService implements BillingService {
     }
   }
 
-  Future<void> _deliver(StoreProductKind kind) async {
-    if (kind == StoreProductKind.removeAds && !_adsRemoved) {
+  Future<void> _deliver(StoreProductKind kind, {required bool restored}) async {
+    if (kind.removesAds && !_adsRemoved) {
       _adsRemoved = true;
       await _entitlements.writeAdsRemoved(true);
     }
-    _onDelivered?.call(kind);
+    _onDelivered?.call(kind, restored: restored);
     _notify();
   }
 

@@ -125,7 +125,7 @@ void main() {
           ChangeNotifierProvider(
             create: (_) => PurchasesProvider(
               service: FakeBillingService(available: false),
-              grantHearts: (_) async {},
+              grantCoins: (_) async {},
               onAdsRemoved: () {},
             )..init(),
           ),

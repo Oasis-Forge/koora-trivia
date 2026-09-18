@@ -2,7 +2,7 @@
 
 > Moved from CLAUDE.md on 14 September 2026. Update the count and the table when tests are added.
 
-**469 tests across 55 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+**472 tests across 55 files, all passing.** `flutter analyze` is clean. Shared test code lives in
 `test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
 (in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
 (`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
@@ -54,7 +54,7 @@
 | `choose_update_mode_test.dart` | 6 | No update → nothing · a normal release is flexible · priority ≥ `forceUpdatePriority` forces, one below doesn't · urgent but immediate not allowed → flexible · an unfinished immediate update resumes · flexible isn't re-offered within the wait, immediate doesn't wait |
 | `check_for_update_test.dart` | 5 | `CheckForUpdate` with a fake updater — no update opens nothing · a normal update opens the flexible flow once, not again within the wait · a declined flexible update isn't re-asked · an urgent one opens the immediate flow every time · a downloaded update reports restart without a new dialog |
 | `levels_screen_test.dart` | 6 | **Widget test** — completed, available and locked tiles · the first open level is auto-selected · a locked tap explains and keeps the selection · level 10 fully visible above the footer on 360×640 and 411×731 · the footer shows the pass mark, star thresholds and heart cost from the evaluation |
-| `purchases_test.dart` | 8 | The store stays unavailable until Play returns products · a heart pack lands above the 5-heart cap · Remove ads stops both the banner and interstitials · a cancelled or pending purchase delivers nothing · a past purchase is restored at launch · restore returns 0 with nothing to restore · consumables are not restored — **through a fake store** |
+| `purchases_test.dart` | 11 | The store stays unavailable until Play returns products · a coin pack adds its coins · bought coins refill hearts only up to 5, and not at all when full · Remove ads stops both the banner and interstitials and grants no coins · the bundle removes ads and adds its 500 coins, but a restore brings back Remove ads only · a cancelled or pending purchase delivers nothing · a past purchase is restored at launch · restore returns 0 with nothing to restore · restoring Remove ads grants no coins — **through a fake store** |
 | `banner_ads_test.dart` | 3 | **Widget test** — the banner slot takes no space before consent, reserves its full height as soon as banners are allowed (before the ad arrives), and disappears the moment ads are removed |
 | `quiz_screen_layout_test.dart` | 12 | **Widget test** — «أبلغ عن خطأ» appears in the feedback panel only after the answer · on 360×640 the 4th option sits above the hints bar in the compact size · on a tall screen the options sit right above the hints bar · the feedback panel scrolls fully into view · the next question starts at the top again · a panel taller than the screen shows its title · a short question's card is as wide as the options · Skip reads as a skip, time-up still as time-up · a quick double tap on a wrong option records one answer and charges no heart · leaving the app pauses the timer and hides the question · the banner stays below the last option on 320×640 |
 | `progress_provider_test.dart` | 5 | **Provider-to-storage wiring** — pass ⇒ stars ⇒ next unlocked · survives restart (guards the covariance bug) |

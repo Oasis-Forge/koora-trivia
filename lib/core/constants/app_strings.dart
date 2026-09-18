@@ -240,10 +240,12 @@ class AppText {
   String get watchAdForCoins => 'شاهد إعلاناً واكسب عملات';
   String get watchAdForHeart => 'شاهد إعلاناً واحصل على قلب';
   String get removeAds => 'إزالة الإعلانات';
-  String get removeAdsHint => 'تُخفي الشريط السفلي والإعلانات بين الجولات';
+  String removeAdsBundle(String coins) => 'إزالة الإعلانات + $coins';
+  String get removeAdsHint =>
+      'بلا شريط سفلي ولا إعلانات بين الجولات، بشراء واحد';
   String get removeAdsActive => 'مفعّلة';
-  String heartsPack(String hearts) => 'حزمة $hearts';
-  String get heartsPackHint => 'تُضاف فوق رصيدك ولو كان ممتلئاً';
+  String coinsPack(String coins) => 'حزمة $coins';
+  String get coinsPackHint => 'لملء القلوب وشراء المساعدات';
   String get restorePurchases => 'استعادة المشتريات';
   String get purchaseDone => 'تم الشراء — شكراً لدعمك!';
   String get purchasePending =>
