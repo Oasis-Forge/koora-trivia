@@ -11,7 +11,7 @@
 | App name on the store | «تحدي كرة القدم» (Arabic is the default listing language) |
 | Public contact email | `oasisforge.support@gmail.com` since 18 September 2026 (was `thepromptkitchen@gmail.com`) — the app's feedback and report emails, the privacy policy and Play Console's store contact must all match |
 | AdMob | app "Koora Trivia" · publisher `pub-8287765177319119` |
-| Privacy policy | https://oasis-forge.github.io/koora-trivia-privacy/ — moved from the old personal-account URL (now 404) on 13 September 2026; Play Console was updated to it the same day |
+| Privacy policy | https://oasis-forge.github.io/koora-trivia/privacy/ — published from this repo since 18 September 2026. The previous address, https://oasis-forge.github.io/koora-trivia-privacy/, forwards to it (v1.0.8 and earlier open that one). Play Console must point to the new address |
 | Upload key | `%USERPROFILE%/keys/koora-upload.jks` (alias `upload`) — the password is in `android/key.properties`, outside Git. **Never copy it into any other file.** |
 | Repository | https://github.com/Oasis-Forge/koora-trivia — **public**, owned by the **Oasis-Forge organization** (transferred from the `thepromptkitchen-alt` account on 13 September 2026) · branch `main` |
 
@@ -22,7 +22,7 @@
 > helper — **not** through the owner's personal GitHub account stored in Git Credential
 > Manager. `gh` is installed at `C:\Program Files\GitHub CLI\` and may not be on PATH.
 > Intentionally excluded in `.gitignore`: `.aab`/`.apk` bundles (`NOTES.md` is kept) ·
-> `privacy-site/` (a separate repo) · `key.properties` · `*.jks`.
+> `privacy-site/` (an old clone of the retired privacy repo, safe to delete) · `key.properties` · `*.jks`.
 >
 > **Never write the owner's personal name, personal account names, or personal email into
 > tracked files.** The owner does not want their name public.
@@ -211,11 +211,13 @@ API (`inAppUpdatePriority`); the Play Console website can't set it. Details in [
 - **The Oasis Forge root site** (https://oasis-forge.github.io: home page and the one `app-ads.txt` for every app) is
   the `Oasis-Forge/oasis-forge.github.io` repo, cloned next to this project in `App Project/oasis-forge.github.io`, with
   the same local `gh` credential helper. Don't rename it: the address depends on the repo name.
-- **The privacy policy is published from `privacy-site/`** — a separate git repo pushing to
-  `Oasis-Forge/koora-trivia-privacy` (GitHub Pages, served at
-  https://oasis-forge.github.io/koora-trivia-privacy/). Since 13 September 2026 it pushes through the
-  `gh` account with the same local credential helper as this repo, not the personal account in Git
-  Credential Manager. ⚠️ **Renaming or transferring that repo changes the public URL with no
-  redirect** — the old URL returned 404 after the move to the organization, so Play Console's
-  privacy policy link must be updated whenever that happens. To update the page: edit
-  `docs/privacy_policy.html` → copy it to `privacy-site/index.html` → commit → push.
+- **The privacy policy is published from this repo** (since 18 September 2026, owner's decision to drop the
+  separate `koora-trivia-privacy` repo). `docs/privacy_policy.html` is the only copy: merging a change to it
+  on `main` runs `.github/workflows/privacy-pages.yml`, which publishes that page alone (not the rest of
+  `docs/`) to GitHub Pages at https://oasis-forge.github.io/koora-trivia/privacy/. Pages on this repo uses
+  "GitHub Actions" as its source.
+- **The old address forwards.** `https://oasis-forge.github.io/koora-trivia-privacy/` is now a forwarding page
+  in the root site repo (`koora-trivia-privacy/index.html` in `oasis-forge.github.io`) — v1.0.8 and earlier
+  still open it from Settings. It only works while no repo named `koora-trivia-privacy` publishes Pages;
+  keep that name unused. ⚠️ **Renaming this repo changes the policy URL** — update `AppConfig.privacyPolicyUrl`,
+  Play Console and the home page link together.

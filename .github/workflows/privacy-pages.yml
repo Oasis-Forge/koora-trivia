@@ -1,0 +1,56 @@
+# ينشر سياسة الخصوصية من هذا المستودع إلى GitHub Pages:
+# https://oasis-forge.github.io/koora-trivia/privacy/
+#
+# ينشر هذه الصفحة وحدها، لا مجلد docs كله: بقية الوثائق ملاحظات عمل لا صفحات للعامة.
+# الرابط القديم (/koora-trivia-privacy/) يحوّل إلى هنا من مستودع oasis-forge.github.io.
+name: Publish privacy policy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/privacy_policy.html
+      - .github/workflows/privacy-pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# نشر واحد في كل مرة؛ لا يُلغى نشر جارٍ فتبقى الصفحة كاملة.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}privacy/
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble the site
+        run: |
+          mkdir -p _site/privacy
+          cp docs/privacy_policy.html _site/privacy/index.html
+          # جذر /koora-trivia/ بلا صفحة خاصة به: يحوّل إلى صفحة Oasis Forge بدل 404.
+          cat > _site/index.html <<'HTML'
+          <!doctype html>
+          <meta charset="utf-8">
+          <title>Koora Trivia — Oasis Forge</title>
+          <meta http-equiv="refresh" content="0; url=https://oasis-forge.github.io/">
+          <link rel="canonical" href="https://oasis-forge.github.io/">
+          <p><a href="https://oasis-forge.github.io/">Oasis Forge</a> ·
+             <a href="privacy/">Privacy policy</a></p>
+          HTML
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
