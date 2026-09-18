@@ -192,7 +192,7 @@ class AppConfig {
   static const String shareReferrer = 'utm_source=share&utm_medium=result';
 
   /// البريد العام للملاحظات والبلاغات — نفسه في سياسة الخصوصية.
-  static const String contactEmail = 'thepromptkitchen@gmail.com';
+  static const String contactEmail = 'oasisforge.support@gmail.com';
 
   // ── طلب التقييم ──
 

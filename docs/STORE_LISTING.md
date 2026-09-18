@@ -106,7 +106,7 @@ Ready to prove you know football best? Download now and start the challenge! �
 
 ## ملاحظات
 
-- **بريد التواصل في الصفحة:** `thepromptkitchen@gmail.com` (نفسه في سياسة الخصوصية).
+- **بريد التواصل في الصفحة:** `oasisforge.support@gmail.com` (نفسه في سياسة الخصوصية وفي التطبيق، منذ 18 سبتمبر 2026).
 - **رابط سياسة الخصوصية:** https://oasis-forge.github.io/koora-trivia-privacy/
 - **لا تذكر «يعمل دون إنترنت» ولا عدداً ثابتاً للأسئلة** في الوصف — تُركت عمداً عامة
   لتسهيل إضافة تصنيفات وأقسام لاحقاً دون أن يصبح الوصف غير دقيق.
