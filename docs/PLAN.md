@@ -78,7 +78,7 @@
 
 ### Release & tech debt
 - **P0 · S · owner**: Test the purchases. The three products (`coins_small`, `remove_ads`, `remove_ads_bundle`) were created and activated on 18 September 2026, each with one backwards-compatible `buy` option. Licence testing is on, and on v1.0.8 the 200 coins and Remove ads worked; the bundle gave no coins (fixed in v1.0.9). Left, on v1.0.11 from the Play install: refund the old bundle order, clear data, buy the bundle again, and a restore after clearing data.
-- **P0 · M**: Production gate. Only 5 of the 12 required testers have joined. Recruit 15–20 as a buffer and record the date the 12th joins.
+- **P0 · M**: Production gate. 12 testers opted in — Play Console showed the step ticked on 19 September 2026 (owner's screenshot); the 14 consecutive days end about 3 October 2026, earlier if the 12th joined before the 19th. Keep them opted in (dropping below 12 can restart the count) and a few more as a buffer; then apply for production — Play asks about the closed test (recruiting, engagement, feedback, changes made).
 - **P1 · M**: Check on a real phone (the emulator release check passed on 14 September 2026) and log results in PRE_PUBLISH §1:
   - The in-app review sheet, from a closed-test install.
   - Quiz screen and level grid on a real short phone and a real tall one.

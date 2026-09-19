@@ -213,9 +213,9 @@ under 13 puts the app under the Families policy and requires child-directed ad s
 
 ## 4. Closed testing — the gate to production
 
-> **Status (13 September 2026):** track **Alpha** is live with v1.0.3 (versionCode 4) since
-> 9 September, in 177 countries — steps 1–2 below are done. Only **5 of 12** testers have opted in,
-> so the 14-day clock hasn't started; the job now is getting 7+ more testers through step 4.
+> **Status (19 September 2026):** track **Alpha** has been live since 9 September, in 177 countries (latest upload
+> v1.0.11). **12 testers have opted in** — Play Console ticks that step — so the 14-day clock is running: about
+> **3 October 2026**, earlier if the 12th joined before the 19th. Then "Apply for production" unlocks.
 
 New **personal** developer accounts can't request production until a closed test has run with
 **at least 12 testers opted in for 14 consecutive days**. Internal testing **does not count**.
