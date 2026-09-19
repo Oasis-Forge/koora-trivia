@@ -5,6 +5,7 @@ import '../../data/datasources/entitlement_local_datasource.dart';
 import '../../data/datasources/prefs_error_log.dart';
 import '../../data/datasources/progress_local_datasource.dart';
 import '../../data/datasources/question_local_datasource.dart';
+import '../../data/datasources/recent_questions_local_datasource.dart';
 import '../../data/datasources/settings_local_datasource.dart';
 import '../../data/datasources/stats_local_datasource.dart';
 import '../../data/repositories/backup_repository_impl.dart';
@@ -31,6 +32,7 @@ import '../../domain/repositories/error_log.dart';
 import '../../domain/repositories/link_opener.dart';
 import '../../domain/repositories/progress_repository.dart';
 import '../../domain/repositories/quiz_repository.dart';
+import '../../domain/repositories/recent_questions_repository.dart';
 import '../../domain/repositories/reminder_scheduler.dart';
 import '../../domain/repositories/review_prompter.dart';
 import '../../domain/repositories/settings_repository.dart';
@@ -44,6 +46,7 @@ class Injector {
         progressRepository = ProgressRepositoryImpl(PrefsProgressDataSource()),
         settingsRepository = SettingsRepositoryImpl(PrefsSettingsDataSource()),
         economyRepository = EconomyRepositoryImpl(PrefsEconomyDataSource()),
+        recentQuestionsRepository = PrefsRecentQuestionsDataSource(),
         backupRepository = BackupRepositoryImpl(),
         // معرّفات الإنتاج في بناء الإصدار فقط؛ بناء التطوير يبقى على معرّفات
         // الاختبار حمايةً للحساب من النقر على إعلاناتك الحقيقية أثناء التطوير.
@@ -58,10 +61,11 @@ class Injector {
         ),
         billingService = PlayBillingService(
           entitlements: PrefsEntitlementDataSource(),
+          errorLog: _sharedErrorLog,
         ),
         reminderScheduler = LocalNotificationScheduler(),
         linkOpener = UrlLinkOpener(),
-        errorLog = PrefsErrorLog(),
+        errorLog = _sharedErrorLog,
         appInfo = PackageAppInfo(),
         reviewPrompter = InAppReviewPrompter(),
         appUpdater = PlayAppUpdater();
@@ -71,12 +75,16 @@ class Injector {
   final ProgressRepository progressRepository;
   final SettingsRepository settingsRepository;
   final EconomyRepository economyRepository;
+  final RecentQuestionsRepository recentQuestionsRepository;
   final BackupRepository backupRepository;
   final AdService adService;
   final BillingService billingService;
   final ReminderScheduler reminderScheduler;
   final LinkOpener linkOpener;
   final ErrorLog errorLog;
+
+  /// سجل واحد للتطبيق كله: الخدمات تكتب فيه، ورسالة الملاحظات تقرأ منه.
+  static final ErrorLog _sharedErrorLog = PrefsErrorLog();
   final AppInfo appInfo;
   final ReviewPrompter reviewPrompter;
   final AppUpdater appUpdater;

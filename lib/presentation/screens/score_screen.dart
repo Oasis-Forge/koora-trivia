@@ -340,25 +340,33 @@ class _ScoreScreenState extends State<ScoreScreen>
               ],
               if (_result.isDaily) const _DailyReminderCard(),
               const SizedBox(height: 24),
-              GoldButton(
-                label: AppStrings.shareScore,
-                icon: Icons.share_rounded,
-                onPressed: _share,
-              ),
+              // بعد اجتياز مستوى: «المستوى التالي» هو الزر الذهبي — اللاعب في منتصف
+              // تقدّمه، والمشاركة خيار ثانوي. كانت المشاركة الذهبية تسبقه فيتوقف
+              // كثيرون عندها (طلب المالك، 19 سبتمبر 2026).
+              if (_showNextLevelButton) ...[
+                GoldButton(
+                  label: AppStrings.nextLevel,
+                  icon: Icons.skip_next_rounded,
+                  onPressed: _playNextLevel,
+                ),
+                const SizedBox(height: 12),
+                SolidButton(
+                  label: AppStrings.shareScore,
+                  icon: Icons.share_rounded,
+                  onPressed: _share,
+                ),
+              ] else
+                GoldButton(
+                  label: AppStrings.shareScore,
+                  icon: Icons.share_rounded,
+                  onPressed: _share,
+                ),
               const SizedBox(height: 12),
               if (_result.isDaily) ...[
                 SolidButton(
                   label: AppStrings.playLevel,
                   icon: Icons.sports_soccer_rounded,
                   onPressed: _playLevel,
-                ),
-                const SizedBox(height: 12),
-              ],
-              if (_showNextLevelButton) ...[
-                SolidButton(
-                  label: AppStrings.nextLevel,
-                  icon: Icons.skip_next_rounded,
-                  onPressed: _playNextLevel,
                 ),
                 const SizedBox(height: 12),
               ],

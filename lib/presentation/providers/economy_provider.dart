@@ -166,6 +166,16 @@ class EconomyProvider extends ChangeNotifier {
     return true;
   }
 
+  /// منح مساعدة مقابل إعلان مكافأ داخل المستوى. تُضاف إلى المشتراة فلا تُصفَّر
+  /// مع اليوم.
+  Future<void> grantRewardedHint() async {
+    _economy = _economy.copyWith(
+      bonusHints: _economy.bonusHints + AppConfig.hintsPerRewardedAd,
+    );
+    notifyListeners();
+    await _repository.save(_economy);
+  }
+
   /// منح عملات مقابل إعلان مكافأ — بلا حدّ يومي، فالإعلان نفسه هو الكلفة.
   Future<void> grantRewardedCoins() =>
       _addCoins(AppConfig.coinsPerRewardedAd);

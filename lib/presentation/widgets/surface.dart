@@ -72,6 +72,7 @@ class StatusPill extends StatelessWidget {
     this.labelColor,
     this.onTap,
     this.iconAtEnd = false,
+    this.trailingIcon,
   });
 
   final IconData icon;
@@ -85,6 +86,9 @@ class StatusPill extends StatelessWidget {
 
   /// الأيقونة بعد النص (زر «المهام اليومية» مثلاً).
   final bool iconAtEnd;
+
+  /// أيقونة صغيرة في آخر الحبّة تقول إنها تُلمس، مثل «+» شارة العملات.
+  final IconData? trailingIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +131,10 @@ class StatusPill extends StatelessWidget {
               ),
             ],
             if (iconAtEnd) ...[const SizedBox(width: 7), iconWidget],
+            if (trailingIcon != null) ...[
+              const SizedBox(width: 6),
+              Icon(trailingIcon, size: 16, color: labelColor ?? AppColors.chalk),
+            ],
           ],
           ),
         ),

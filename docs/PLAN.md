@@ -45,6 +45,7 @@
 - 16 September 2026, question bank in both languages: 40 questions that repeated a fact from another question replaced (the overlap rules pick the copy kept) · no explanation gives away a later answer in its level · no time-relative wording, and counts and records that can change within a few years anchored to «حتى نهاية موسم 2025-2026» / "By the end of the 2025-26 season" or «بعد كأس العالم 2026» / "After the 2026 World Cup" (owner's decision) · more than a dozen wrong facts found on the way corrected (e.g. 4080, 9030, 10023) · `question_content_test` guards all three.
 - 16 September 2026, answer giveaways: in 75 questions the correct option no longer stands out by length or by alone repeating a word from the question (26 of them in laws), in both languages · 10026 is anchored · 2091's options are all name pairs · wrong options that were also true were replaced (e.g. 9055, 9063, 10077) · 8086 and 9068 reworded for accuracy · `question_content_test` guards length and repeated words.
 - 18 September 2026: v1.0.8+9 (PRs #55–#58) built, release-checked on the emulator — full-width banner on home, quiz and Settings, an interstitial after the third round, the shop on «قريباً» until the products exist, «Version 1.0.8 (9)», feedback opening the email app to the new address — and archived. Uploaded by the owner to closed testing the same day; in Google's review. The in-app products get created after approval.
+- 19 September 2026, v1.0.9 (one PR, owner's request): the shop asks Play again on return to the app and on opening the shop until all products load, and logs why they didn't (feedback emails carry it) · "Next level" is the gold button after a pass, Share below it · the coin badge opens the shop from every screen, with a "+" · quick play remembers its last 150 questions and skips them, and prefers the player's unlocked levels (new players get level 1) · out of hints in a level, a rewarded ad gives one (timer paused during the ad, no daily cap). Built with the purchase-delivery fix and the app's new privacy link; release-checked on the emulator (coin badge with "+" opens the shop, «إزالة الإعلانات» link above the banner, the three products with prices, out of hints the «+1» button plays a test ad and grants the hint with the question resumed) and archived in `releases/v1.0.9_build10_2026-09-19/`. Not uploaded yet.
 - 19 September 2026: purchase delivery fix — the owner's test bundle removed ads but gave no 500 coins. The billing plugin labels every purchase read back from Play as "restored", including ones whose live event the app missed, and the app treated "restored" as already delivered (a coin pack in that state gave nothing and could never be bought again). Now an unacknowledged purchase is always delivered in full, and restored coin packs are consumed. Reproduced in `play_billing_service_test` first. Ships in the next release.
 - 18 September 2026 (owner's decision): the privacy policy is published from this repo at https://oasis-forge.github.io/koora-trivia/privacy/ by a GitHub Action, and the separate `koora-trivia-privacy` repo is retired; its old address forwards from the root site. The policy gained an "In-app purchases" section (Google Play processes payments; the app keeps Remove ads on the device and restores it from Play). The app links to the new address from the next release. The owner changed the privacy URL in Play Console the same day (it goes to review after v1.0.8 is approved). The owner deleted the old `koora-trivia-privacy` repo the same day; the old address still forwards.
 - 18 September 2026 (owner's request): the support email is `oasisforge.support@gmail.com` — in the app's feedback and report emails and in the privacy policy source. The live privacy page (effective 18 September 2026) and the Oasis Forge home page carry it too, published through Oasis-Forge/koora-trivia-privacy#1 and Oasis-Forge/oasis-forge.github.io#1. Play Console's store contact changed by the owner the same day.
@@ -86,7 +87,6 @@
 - None open.
 
 ### UI/UX
-- **P2 · S**: The coin badge looks like a shop button, has a 48 dp tap target, and also works on the Tasks screen.
 - **P2 · M**: Large system font sizes:
   - Cap text scaling at 1.3.
   - Make onboarding pages scrollable.
@@ -112,8 +112,7 @@
 ### Features
 - **P1 · M**: Streak protection bought with coins, plus rewards at 7, 30 and 100 days. Price per decision *(update_streak.dart, user_stats.dart)*.
 - **P1 · L**: World Cup 2026 pack: about 100 lasting, person-checked questions, released while interest is high. Placement per decision.
-- **P2 · S**: Quick play skips recently seen questions and prefers unlocked levels. Add the new storage key to the backup list.
-- **P2 · M**: More rewarded-ad offers, per decision: +1 hint for an ad between questions, and replaying a failed level without losing a heart if decision ① changes.
+- **P2 · M**: More rewarded-ad offers, per decision: replaying a failed level without losing a heart if decision ① changes (the hint for an ad shipped in v1.0.9).
 
 ---
 
@@ -168,7 +167,6 @@
 
 ## Parked
 - Correct answers cluster in one screen position in some levels. Re-run the check after the seed fix.
-- After a level pass, make "Next level" the main button instead of Share.
 - The home category chips look like they apply to Levels too, and the app uses two different words for "category".
 - The splash screen still shows the old `ic_ball` drawing.
 - `UserStats.lastPlayedDayKey` is saved but never used. Keep it for a future cloud move.

@@ -53,6 +53,8 @@ class _FakeQuizRepository implements QuizRepository {
   Future<List<Question>> getRandomQuestions({
     required int count,
     String? categorySlug,
+    Set<int> avoid = const {},
+    bool Function(Question question)? prefer,
   }) async =>
       _questions(count);
 

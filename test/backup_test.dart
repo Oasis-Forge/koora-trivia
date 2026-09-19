@@ -21,6 +21,7 @@ void main() {
       'level_progress_v1': progress,
       'economy_v1': '{"hearts":3,"coins":420}',
       'app_settings_v1': '{"reminderEnabled":true}',
+      'recent_questions_v1': '[1001,1002]',
     });
   });
 
@@ -40,6 +41,8 @@ void main() {
     expect(prefs.getString('user_stats_v1'), stats);
     expect(prefs.getString('level_progress_v1'), progress);
     expect(prefs.getString('economy_v1'), '{"hearts":3,"coins":420}');
+    // ذاكرة الجولة السريعة تنتقل مع التقدّم فلا تتكرر أسئلتها على الجهاز الجديد.
+    expect(prefs.getString('recent_questions_v1'), '[1001,1002]');
   });
 
   test('الرمز التالف يُرفض دون إسقاط التطبيق', () async {

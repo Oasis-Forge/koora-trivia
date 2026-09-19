@@ -6,6 +6,7 @@ import '../../domain/repositories/app_updater.dart';
 import '../providers/ads_provider.dart';
 import '../providers/check_for_update.dart';
 import '../providers/economy_provider.dart';
+import '../providers/purchases_provider.dart';
 import '../providers/quiz_provider.dart';
 import '../providers/settings_provider.dart';
 import '../providers/stats_provider.dart';
@@ -52,6 +53,10 @@ class _AppLifecycleHooksState extends State<AppLifecycleHooks> {
     // عودة الاتصال أثناء غياب اللاعب لا تُكتشف وحدها؛ العودة إلى التطبيق هي
     // اللحظة الطبيعية لإعادة محاولة إعلان فشل تحميله.
     context.read<AdsProvider>().onAppResumed();
+
+    // والمتجر كذلك: منتجات لم تصل عند الإقلاع تُطلب ثانية، بدل «قريباً» حتى
+    // يُغلق التطبيق كاملاً ويُفتح.
+    context.read<PurchasesProvider>().refresh();
 
     // القلوب والعدّاد والمهام اليومية تُحسب عند القراءة، فتبقى مجمّدة على
     // الشاشة بعد الغياب ما لم نُعد الحساب.

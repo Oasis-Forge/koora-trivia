@@ -15,6 +15,7 @@ import 'package:football_trivia/domain/repositories/settings_repository.dart';
 import 'package:football_trivia/domain/repositories/stats_repository.dart';
 import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
+import 'package:football_trivia/presentation/providers/purchases_provider.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
 import 'package:football_trivia/presentation/providers/settings_provider.dart';
 import 'package:football_trivia/presentation/providers/stats_provider.dart';
@@ -24,6 +25,7 @@ import 'package:football_trivia/presentation/widgets/app_lifecycle_hooks.dart';
 import 'package:provider/provider.dart';
 
 import 'fakes/fake_ad_service.dart';
+import 'fakes/fake_billing_service.dart';
 import 'fakes/fake_repositories.dart';
 
 class _EconomyRepo implements EconomyRepository {
@@ -109,6 +111,12 @@ final _tomorrowAt20 = DateTime(_t0.year, _t0.month, _t0.day + 1, 20);
 
 class _Harness {
   final adService = FakeAdService(ready: false);
+  final billing = FakeBillingService();
+  late final purchases = PurchasesProvider(
+    service: billing,
+    grantCoins: (_) async {},
+    onAdsRemoved: () {},
+  );
   final scheduler = _Scheduler();
   final updater = FakeAppUpdater();
   final quizRepository = _CountingQuizRepository();
@@ -143,6 +151,7 @@ class _Harness {
   Widget wrap(Widget child) => MultiProvider(
         providers: [
           ChangeNotifierProvider.value(value: ads),
+          ChangeNotifierProvider.value(value: purchases),
           ChangeNotifierProvider.value(value: economy),
           ChangeNotifierProvider<StatsProvider>.value(value: stats),
           ChangeNotifierProvider.value(value: settings),
@@ -185,7 +194,7 @@ QuizResult _dailyResult() => QuizResult(
     );
 
 void main() {
-  testWidgets('العودة إلى التطبيق: الإعلانات والقلوب والتنبيه', (tester) async {
+  testWidgets('العودة إلى التطبيق: الإعلانات والمتجر والقلوب والتنبيه', (tester) async {
     final h = await _pump(tester);
     final schedulesBefore = h.scheduler.scheduled.length;
     expect(h.economy.hearts, 2);
@@ -197,6 +206,8 @@ void main() {
     await tester.pump();
 
     expect(h.adService.resumeCalls, 1);
+    // منتجات لم تصل عند الإقلاع تُطلب ثانية عند العودة.
+    expect(h.billing.refreshCalls, 1);
     expect(h.economy.hearts, 3);
     expect(h.scheduler.scheduled.length, schedulesBefore + 1);
     expect(h.scheduler.scheduled.last.first.at, _tomorrowAt20);

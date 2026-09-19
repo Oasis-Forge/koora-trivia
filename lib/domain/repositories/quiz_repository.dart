@@ -15,9 +15,15 @@ abstract class QuizRepository {
   Future<int> getLevelCount(String categorySlug);
 
   /// جولة سريعة عشوائية، مع إمكانية تحديد تصنيف.
+  ///
+  /// تختار على طبقات: ما يفضّله [prefer] ولم يُذكر في [avoid]، ثم بقية ما لم يُذكر
+  /// فيه، ثم ما في [avoid] نفسه — الأقدم فيه أولاً (ترتيب [avoid] من الأقدم) —
+  /// حين لا يكفي غيره.
   Future<List<Question>> getRandomQuestions({
     required int count,
     String? categorySlug,
+    Set<int> avoid = const {},
+    bool Function(Question question)? prefer,
   });
 
   /// أسئلة تحدي اليوم — ثابتة لكل يوم بفضل البذرة المشتقة من التاريخ.

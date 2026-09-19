@@ -211,6 +211,8 @@ class AppText {
   String get hintSkip => 'تخطّي السؤال';
   String get hintExtraTime => 'وقت إضافي';
   String get noHintsLeft => 'انتهت مساعداتك اليوم';
+  String get watchAdForHint => 'شاهد إعلاناً واحصل على مساعدة';
+  String get hintGranted => '+1 مساعدة';
   String get hintFiftyFiftyUsed => 'حذفت إجابتين من هذا السؤال بالفعل';
   String get hintExtraTimeUsed => 'الوقت الإضافي مرة واحدة لكل سؤال';
   String get skippedAnswer => 'تخطّيت هذا السؤال';
@@ -231,6 +233,7 @@ class AppText {
   String get chestOpened => 'فُتح الصندوق!';
   String get tasksResetHint => 'تتجدّد المهام كل يوم عند منتصف الليل';
   String get shop => 'المتجر';
+  String coinsOpenShop(String coins) => 'رصيدك $coins — افتح المتجر';
   String get refillHearts => 'ملء القلوب';
   String get hintsPack => 'حزمة مساعدات';
   String get notEnoughCoins => 'عملاتك لا تكفي';

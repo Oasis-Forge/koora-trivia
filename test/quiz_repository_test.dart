@@ -193,6 +193,62 @@ void main() {
     }
   });
 
+  group('الجولة السريعة', () {
+    test('لا تعيد سؤالاً رآه اللاعب مؤخراً ما دام غيره متاحاً', () async {
+      final avoid = {for (var id = 2001; id <= 2090; id++) id};
+
+      final questions = await repository.getRandomQuestions(
+        count: 10,
+        categorySlug: 'beta',
+        avoid: avoid,
+      );
+
+      expect(questions.map((q) => q.id).toSet().intersection(avoid), isEmpty);
+    });
+
+    test('حين تنفد غير المرئية تعود الأقدم رؤيةً أولاً', () async {
+      // تصنيف واحد بـ 100 سؤال، رأى اللاعب 97 منها: 3 جديدة ثم أقدم 7.
+      final avoid = {for (var id = 2001; id <= 2097; id++) id};
+
+      final ids = (await repository.getRandomQuestions(
+        count: 10,
+        categorySlug: 'beta',
+        avoid: avoid,
+      ))
+          .map((q) => q.id)
+          .toSet();
+
+      expect(ids, containsAll([2098, 2099, 2100]));
+      expect(ids, containsAll([2001, 2002, 2003, 2004, 2005, 2006, 2007]));
+    });
+
+    test('تفضّل المستويات المفتوحة', () async {
+      final questions = await repository.getRandomQuestions(
+        count: 10,
+        prefer: (q) => q.level == 1,
+      );
+
+      // التصنيفان معاً فيهما 20 سؤالاً من المستوى الأول.
+      expect(questions.every((q) => q.level == 1), isTrue);
+    });
+
+    test('المرئية مؤخراً تتقدّم عليها غير المرئية ولو كانت مقفلة', () async {
+      // التكرار أزعج من سؤال مستوى أعلى: التفضيل لا يعيد سؤالاً مرئياً.
+      final seenLevelOne = {
+        for (var i = 1; i <= 10; i++) ...{1000 + i, 2000 + i},
+      };
+
+      final questions = await repository.getRandomQuestions(
+        count: 10,
+        avoid: seenLevelOne,
+        prefer: (q) => q.level == 1,
+      );
+
+      expect(questions.map((q) => q.id).toSet().intersection(seenLevelOne),
+          isEmpty);
+    });
+  });
+
   test('التصفية حسب التصنيف تعيد أسئلة ذلك التصنيف فقط', () async {
     final questions =
         await repository.getRandomQuestions(count: 5, categorySlug: 'beta');

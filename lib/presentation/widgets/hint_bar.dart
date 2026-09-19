@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../../core/constants/app_strings.dart';
 import '../../core/theme/app_colors.dart';
+import '../../domain/repositories/ad_service.dart';
+import '../providers/ads_provider.dart';
 import '../providers/economy_provider.dart';
 import '../providers/quiz_provider.dart';
 
@@ -16,6 +18,7 @@ class HintBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final quiz = context.watch<QuizProvider>();
     final economy = context.watch<EconomyProvider>();
+    final ads = context.watch<AdsProvider>();
 
     final playing = quiz.status == QuizStatus.playing;
     final available = playing && economy.hasHints;
@@ -62,20 +65,26 @@ class HintBar extends StatelessWidget {
             onTap: () => _use(context, () => quiz.addExtraTime()),
           ),
           const SizedBox(width: 12),
-          Text(
-            '${economy.hintsLeft}',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w900,
-              color: economy.hasHints ? AppColors.gold : AppColors.chalkMuted,
+          // نفدت المساعدات والإعلان جاهز: العدّاد يصير زر «+1 مقابل إعلان».
+          if (playing && !economy.hasHints && ads.isReady)
+            const _HintForAdButton()
+          else ...[
+            Text(
+              '${economy.hintsLeft}',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w900,
+                color:
+                    economy.hasHints ? AppColors.gold : AppColors.chalkMuted,
+              ),
             ),
-          ),
-          const SizedBox(width: 5),
-          Icon(
-            Icons.lightbulb_rounded,
-            size: 16,
-            color: AppColors.gold,
-          ),
+            const SizedBox(width: 5),
+            Icon(
+              Icons.lightbulb_rounded,
+              size: 16,
+              color: AppColors.gold,
+            ),
+          ],
         ],
       ),
     );
@@ -86,6 +95,84 @@ class HintBar extends StatelessWidget {
     final economy = context.read<EconomyProvider>();
     if (!economy.hasHints || !apply()) return;
     await economy.consumeHint();
+  }
+}
+
+/// «▶ +1 💡»: إعلان مكافأ مقابل مساعدة حين تنفد المساعدات داخل المستوى.
+///
+/// العدّاد يتوقف أثناء الإعلان: نصف دقيقة من الإعلان كانت ستأكل وقت السؤال.
+/// والمكافأة عند الإكمال فقط، كبقية الإعلانات المكافأة.
+class _HintForAdButton extends StatelessWidget {
+  const _HintForAdButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: AppStrings.watchAdForHint,
+      excludeSemantics: true,
+      child: Tooltip(
+        message: AppStrings.watchAdForHint,
+        child: Material(
+          color: AppColors.gold.withValues(alpha: 0.18),
+          borderRadius: BorderRadius.circular(999),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(999),
+            onTap: () => _watch(context),
+            child: SizedBox(
+              height: 48,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.play_circle_fill_rounded,
+                        size: 18, color: AppColors.gold),
+                    const SizedBox(width: 4),
+                    Text(
+                      '+1',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
+                        color: AppColors.gold,
+                      ),
+                    ),
+                    const SizedBox(width: 3),
+                    Icon(Icons.lightbulb_rounded,
+                        size: 16, color: AppColors.gold),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _watch(BuildContext context) async {
+    // تُقرأ قبل الانتظار: الإيقاف يخفي شريط المساعدات فتزول هذه الودجة.
+    final quiz = context.read<QuizProvider>();
+    final ads = context.read<AdsProvider>();
+    final economy = context.read<EconomyProvider>();
+    final messenger = ScaffoldMessenger.of(context);
+
+    quiz.pause();
+    try {
+      final result = await ads.showRewarded();
+      if (result == RewardResult.earned) {
+        await economy.grantRewardedHint();
+        messenger
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(AppStrings.hintGranted)));
+      } else if (result == RewardResult.dismissed) {
+        messenger
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(AppStrings.adDismissed)));
+      }
+    } finally {
+      quiz.resume();
+    }
   }
 }
 
