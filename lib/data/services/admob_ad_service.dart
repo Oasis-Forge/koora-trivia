@@ -110,6 +110,12 @@ class AdMobAdService implements AdService {
   @override
   set onChanged(void Function()? listener) => _onChanged = listener;
 
+  void Function()? _beforeFullScreenAd;
+
+  @override
+  set beforeFullScreenAd(void Function()? callback) =>
+      _beforeFullScreenAd = callback;
+
   void _notify() => _onChanged?.call();
 
   @override
@@ -302,6 +308,7 @@ class AdMobAdService implements AdService {
       },
     );
 
+    _beforeFullScreenAd?.call();
     await ad.show(onUserEarnedReward: (_, __) => earned = true);
     return completer.future;
   }
@@ -345,6 +352,7 @@ class AdMobAdService implements AdService {
       },
     );
 
+    _beforeFullScreenAd?.call();
     await ad.show();
     return true;
   }

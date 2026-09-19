@@ -145,6 +145,9 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
   unacknowledged purchase is new, whatever its status** (the plugin calls everything a restore returns
   "restored") · coin packs from a restore are consumed by the app · the bundle's coins come once ·
   money buys coins, never hearts — hearts never go above 5.
+- **Sounds** go through `FeedbackService` → `SoundEffects` (never `SystemSound`), obey the Settings switch, never
+  take audio focus (the player's music keeps playing), and stop before any full-screen ad (`beforeFullScreenAd`).
+  A new sound is a new `Sfx` value plus its file in `assets/sounds/`, and its source and licence in HOW_IT_WORKS.md.
 - **Streak protection** (250 coins, one held) lives in `UserStats` and is used inside `UpdateStreak` when the next
   daily is finished after one missed day; streak rewards are paid on the **best** streak, once each. Skip stays a
   miss in the level score (owner) — with unlimited ad hints, leaving it out would buy passes.

@@ -9,6 +9,7 @@ import '../../domain/entities/store_product.dart';
 import '../providers/economy_provider.dart';
 import '../providers/buy_streak_shield.dart';
 import '../providers/purchases_provider.dart';
+import '../providers/settings_provider.dart';
 import '../providers/stats_provider.dart';
 import '../widgets/banner_slot.dart';
 import '../widgets/coin_badge.dart';
@@ -115,8 +116,10 @@ class _ShopScreenState extends State<ShopScreen> {
               RewardedButton(
                 label: '${AppStrings.watchAdForCoins} '
                     '(+${AppConfig.coinsPerRewardedAd})',
-                onEarned: () =>
-                    context.read<EconomyProvider>().grantRewardedCoins(),
+                onEarned: () {
+                  context.read<SettingsProvider>().feedback.reward();
+                  return context.read<EconomyProvider>().grantRewardedCoins();
+                },
               ),
               const SizedBox(height: 16),
               if (!purchases.isAvailable)
@@ -173,10 +176,9 @@ class _PaidItem extends StatelessWidget {
           ),
       };
 
-  static String _hint(StoreProduct product) =>
-      product.kind.removesAds
-          ? AppStrings.removeAdsHint
-          : AppStrings.coinsPackHint;
+  static String _hint(StoreProduct product) => product.kind.removesAds
+      ? AppStrings.removeAdsHint
+      : AppStrings.coinsPackHint;
 
   @override
   Widget build(BuildContext context) {
@@ -245,14 +247,21 @@ class _PaidItem extends StatelessWidget {
 
   Future<void> _buy(BuildContext context) async {
     final messenger = ScaffoldMessenger.of(context);
+    final feedback = context.read<SettingsProvider>().feedback;
     final outcome = await context.read<PurchasesProvider>().buy(product.kind);
+    // صوت العملات لما يحمل عملات فقط؛ إزالة الإعلانات وحدها لا عملات فيها.
+    if (outcome == PurchaseOutcome.purchased &&
+        product.kind != StoreProductKind.removeAds) {
+      feedback.reward();
+    }
 
     final message = switch (outcome) {
       PurchaseOutcome.purchased => AppStrings.purchaseDone,
       PurchaseOutcome.pending => AppStrings.purchasePending,
       // إغلاق النافذة اختيار من اللاعب، لا خطأ يستحق رسالة.
       PurchaseOutcome.cancelled => null,
-      PurchaseOutcome.failed || PurchaseOutcome.unavailable =>
+      PurchaseOutcome.failed ||
+      PurchaseOutcome.unavailable =>
         AppStrings.purchaseFailed,
     };
     if (message == null) return;

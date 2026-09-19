@@ -26,6 +26,9 @@ class AppConfig {
   /// المدة المتاحة للسؤال بالثواني.
   static const int secondsPerQuestion = 20;
 
+  /// آخر كم ثانية يدقّ فيها العدّاد صوتاً. أكثر من خمس يصير إلحاحاً مزعجاً.
+  static const int tickFromSeconds = 5;
+
   /// نقاط الإجابة الصحيحة.
   static const int pointsPerCorrect = 100;
 

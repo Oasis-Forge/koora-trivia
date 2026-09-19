@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:football_trivia/core/services/sound_effects.dart';
 import 'package:football_trivia/core/constants/app_config.dart';
 import 'package:football_trivia/domain/entities/economy.dart';
 import 'package:football_trivia/domain/entities/user_stats.dart';
@@ -48,6 +49,7 @@ Future<QuizProvider> pumpScoreScreen(
   DateTime Function()? clock,
   String? quickPlayCategory,
   QuizRepository? quizRepository,
+  SoundEffects sounds = const SilentSoundEffects(),
 }) async {
   final quiz = QuizProvider(repository: quizRepository ?? FakeQuizRepository());
   final economy = EconomyProvider(
@@ -63,6 +65,7 @@ Future<QuizProvider> pumpScoreScreen(
   final settings = SettingsProvider(
     repository: FakeSettingsRepository(),
     scheduler: FakeScheduler(),
+    sounds: sounds,
   );
   final ads = AdsProvider(service: adService ?? FakeAdService(ready: false));
 

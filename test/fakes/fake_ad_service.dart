@@ -40,6 +40,13 @@ class FakeAdService implements AdService {
   @override
   set onChanged(void Function()? value) => listener = value;
 
+  /// ما يُستدعى قبل كل إعلان بملء الشاشة «يُعرض».
+  void Function()? beforeFullScreen;
+
+  @override
+  set beforeFullScreenAd(void Function()? callback) =>
+      beforeFullScreen = callback;
+
   @override
   bool get isRewardedReady => ready;
 
@@ -64,6 +71,7 @@ class FakeAdService implements AdService {
   @override
   Future<RewardResult> showRewarded() async {
     showRewardedCalls++;
+    if (ready) beforeFullScreen?.call();
     return result;
   }
 
@@ -76,6 +84,7 @@ class FakeAdService implements AdService {
     if (adsRemovedValue) return false;
     if (rounds < AppConfig.roundsBetweenInterstitials) return false;
     rounds = 0;
+    beforeFullScreen?.call();
     interstitialsShown++;
     return true;
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/services/feedback_service.dart';
+import '../../core/services/sound_effects.dart';
 import '../../core/utils/day_key.dart';
 import '../../core/constants/app_strings.dart';
 import '../../domain/entities/app_settings.dart';
@@ -15,15 +16,18 @@ class SettingsProvider extends ChangeNotifier {
     required SettingsRepository repository,
     required ReminderScheduler scheduler,
     PlanReminders planReminders = const PlanReminders(),
+    SoundEffects sounds = const SilentSoundEffects(),
     DateTime Function()? clock,
   })  : _repository = repository,
         _scheduler = scheduler,
+        _sounds = sounds,
         _planReminders = planReminders,
         _clock = clock ?? DateTime.now;
 
   final SettingsRepository _repository;
   final ReminderScheduler _scheduler;
   final PlanReminders _planReminders;
+  final SoundEffects _sounds;
   final DateTime Function() _clock;
 
   AppSettings _settings = const AppSettings();
@@ -123,6 +127,7 @@ class SettingsProvider extends ChangeNotifier {
   FeedbackService get feedback => FeedbackService(
         sound: _settings.soundEnabled,
         haptics: _settings.hapticsEnabled,
+        effects: _sounds,
       );
 
   Future<void> setSoundEnabled(bool value) =>

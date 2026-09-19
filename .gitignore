@@ -32,3 +32,6 @@ ds-bundle/
 .design-sync/.cache/
 .design-sync/learnings/
 .design-sync/node_modules
+
+# أصول Pixabay الأصلية (تنزيل المالك) — رخصتها تمنع نشر الملف وحده؛ المقاطع المقصوصة في assets/sounds/
+/sounds/

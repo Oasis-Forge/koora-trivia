@@ -10,6 +10,7 @@ import '../../core/utils/arabic_count.dart';
 import '../../domain/entities/question.dart';
 import '../providers/economy_provider.dart';
 import '../providers/quiz_provider.dart';
+import '../providers/quiz_sound_cues.dart';
 import '../providers/settings_provider.dart';
 import '../widgets/answer_option.dart';
 import '../widgets/banner_slot.dart';
@@ -33,15 +34,21 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
   bool _navigated = false;
+  late final QuizSoundCues _sounds;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    _sounds = QuizSoundCues(
+      quiz: context.read<QuizProvider>(),
+      feedback: () => context.read<SettingsProvider>().feedback,
+    )..attach();
   }
 
   @override
   void dispose() {
+    _sounds.detach();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }

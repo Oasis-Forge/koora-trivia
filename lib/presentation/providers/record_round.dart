@@ -15,6 +15,7 @@ class RoundRecord {
     this.lostHeart = false,
     this.level,
     this.streak = StreakUpdate.none,
+    this.newBestScore = false,
   });
 
   /// أُضيف قلب تحدي اليوم فعلاً.
@@ -28,6 +29,9 @@ class RoundRecord {
 
   /// حماية سلسلة استُعملت وعملات أيام السلسلة — في تحدي اليوم فقط.
   final StreakUpdate streak;
+
+  /// نقاط الجولة تجاوزت أفضل نتيجة سابقة (لا أول جولة على الإطلاق).
+  final bool newBestScore;
 }
 
 /// يحفظ نهاية الجولة كلها في مكان واحد: الإحصائيات والسلسلة، قلب تحدي اليوم
@@ -54,6 +58,10 @@ class RecordRound {
   final EvaluateLevel _evaluate;
 
   Future<RoundRecord> call(QuizResult result) async {
+    // أول جولة تضع الرقم من الصفر، فلا تُحتفل كرقم قياسي.
+    final bestBefore = _stats.stats.bestScore;
+    final newBestScore = bestBefore > 0 && result.score > bestBefore;
+
     var streak = StreakUpdate.none;
     await _step('stats', () async {
       streak = await _stats.recordResult(result);
@@ -77,7 +85,11 @@ class RecordRound {
     }
 
     if (!result.isLevel) {
-      return RoundRecord(earnedHeart: earnedHeart, streak: streak);
+      return RoundRecord(
+        earnedHeart: earnedHeart,
+        streak: streak,
+        newBestScore: newBestScore,
+      );
     }
 
     // قلب المحاولة خُصم عند بدئها ويعود عند الاجتياز — قبل حفظ النجوم، فلا يضيع
@@ -96,7 +108,11 @@ class RecordRound {
       await _step('level task', _economy.recordLevelCompleted);
     }
 
-    return RoundRecord(lostHeart: !passed, level: outcome);
+    return RoundRecord(
+      lostHeart: !passed,
+      level: outcome,
+      newBestScore: newBestScore,
+    );
   }
 
   static Future<void> _step(String name, Future<void> Function() save) async {

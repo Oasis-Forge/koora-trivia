@@ -4,10 +4,12 @@ import '../../domain/repositories/ad_service.dart';
 
 /// يغلّف [AdService] ويُخطر الواجهة عند تغيّر جاهزية الإعلان.
 class AdsProvider extends ChangeNotifier {
-  AdsProvider({required AdService service}) : _service = service {
+  AdsProvider({required AdService service, void Function()? beforeFullScreenAd})
+      : _service = service {
     // الخدمة تُخطرنا حين يكتمل تحميل إعلان أو تتغيّر الموافقة. بدون هذا بقي
     // زر الإعلان معطّلاً بعد اكتمال التحميل حتى يُعاد بناؤه لسبب آخر.
     _service.onChanged = notifyListeners;
+    _service.beforeFullScreenAd = beforeFullScreenAd;
   }
 
   final AdService _service;
