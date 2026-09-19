@@ -6,6 +6,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/utils/arabic_count.dart';
 import '../../domain/entities/daily_task.dart';
 import '../providers/economy_provider.dart';
+import '../providers/settings_provider.dart';
 import '../widgets/banner_slot.dart';
 import '../widgets/coin_badge.dart';
 import '../widgets/koora_app_bar.dart';
@@ -120,9 +121,8 @@ class _TaskCard extends StatelessWidget {
               const SizedBox(width: 12),
               _ClaimButton(
                 label: task.claimed ? AppStrings.claimed : AppStrings.claim,
-                onPressed: task.isClaimable
-                    ? () => _claim(context, task.kind)
-                    : null,
+                onPressed:
+                    task.isClaimable ? () => _claim(context, task.kind) : null,
               ),
             ],
           ),
@@ -133,8 +133,10 @@ class _TaskCard extends StatelessWidget {
 
   Future<void> _claim(BuildContext context, TaskKind kind) async {
     final messenger = ScaffoldMessenger.of(context);
+    final feedback = context.read<SettingsProvider>().feedback;
     final reward = await context.read<EconomyProvider>().claimTask(kind);
     if (reward <= 0) return;
+    feedback.reward();
 
     messenger
       ..hideCurrentSnackBar()
@@ -291,8 +293,10 @@ class _Chest extends StatelessWidget {
 
   Future<void> _open(BuildContext context) async {
     final messenger = ScaffoldMessenger.of(context);
+    final feedback = context.read<SettingsProvider>().feedback;
     final reward = await context.read<EconomyProvider>().claimChest();
     if (reward <= 0) return;
+    feedback.reward();
 
     messenger
       ..hideCurrentSnackBar()

@@ -16,6 +16,7 @@ import '../../data/repositories/settings_repository_impl.dart';
 import '../../data/repositories/stats_repository_impl.dart';
 import '../../data/services/ad_consent.dart';
 import '../../data/services/admob_ad_service.dart';
+import '../../data/services/audio_sound_effects.dart';
 import '../../data/services/in_app_review_prompter.dart';
 import '../../data/services/local_notification_scheduler.dart';
 import '../../data/services/package_app_info.dart';
@@ -37,6 +38,7 @@ import '../../domain/repositories/reminder_scheduler.dart';
 import '../../domain/repositories/review_prompter.dart';
 import '../../domain/repositories/settings_repository.dart';
 import '../../domain/repositories/stats_repository.dart';
+import '../services/sound_effects.dart';
 
 /// حاوية بسيطة لربط الطبقات — تُنشأ مرة واحدة عند إقلاع التطبيق.
 class Injector {
@@ -68,7 +70,8 @@ class Injector {
         errorLog = _sharedErrorLog,
         appInfo = PackageAppInfo(),
         reviewPrompter = InAppReviewPrompter(),
-        appUpdater = PlayAppUpdater();
+        appUpdater = PlayAppUpdater(),
+        soundEffects = AudioSoundEffects();
 
   final QuizRepository quizRepository;
   final StatsRepository statsRepository;
@@ -88,4 +91,5 @@ class Injector {
   final AppInfo appInfo;
   final ReviewPrompter reviewPrompter;
   final AppUpdater appUpdater;
+  final SoundEffects soundEffects;
 }

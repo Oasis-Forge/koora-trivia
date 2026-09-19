@@ -24,6 +24,10 @@ abstract class AdService {
   /// بدونه لا تعرف الواجهة أن الإعلان اكتمل تحميله، فيبقى زره معطّلاً.
   set onChanged(void Function()? listener);
 
+  /// يُستدعى لحظة قبل عرض إعلان بملء الشاشة (مكافأ أو بيني) فعلاً — لإيقاف
+  /// مؤثرات اللعبة، فلا يُسمع الهتاف فوق صوت الإعلان.
+  set beforeFullScreenAd(void Function()? callback);
+
   /// هل يوجد إعلان مكافأ جاهز للعرض الآن؟
   bool get isRewardedReady;
 

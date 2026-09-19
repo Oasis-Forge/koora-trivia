@@ -221,6 +221,36 @@ new player gets level 1 and quick play doesn't spoil levels not reached yet; not
 a repeat is worse than a harder question. Only quick play records and avoids — levels and the daily keep
 their own fixed questions.
 
+### Sounds (after v1.0.10)
+Owner's choice, 19 September 2026: clean game sounds for what repeats, stadium sounds for the big moments.
+`FeedbackService` plays them through `SoundEffects` (`AudioSoundEffects`, audioplayers in low-latency mode);
+the Settings «الصوت» switch governs every sound, and ordinary button taps stay silent.
+
+| Moment | Sound (`Sfx`) | Where it's triggered |
+|---|---|---|
+| Correct / wrong answer | `correct` / `wrong` | `QuizScreen._answer` |
+| Last `AppConfig.tickFromSeconds` (5) seconds | `tick` | `QuizSoundCues` (listens to `QuizProvider`; not on extra time or while paused) |
+| Time up · first question of the daily | `whistle` | `QuizSoundCues` |
+| Level passed | `cheer` | `ScoreScreen` |
+| 3 stars, or a new best score (not the first round ever) | `bigCheer` + `ConfettiBurst` (skipped with reduced motion) | `ScoreScreen`, from `RoundRecord.newBestScore` |
+| Coins arrive: task, chest, coins-for-ad, a coin purchase, streak reward | `coins` | Tasks, shop, result screen |
+
+One sound per result screen, the biggest first. Sounds **mix with the player's own music** (no audio focus
+taken) and follow the media volume; `AdService.beforeFullScreenAd` stops them right before a rewarded or
+interstitial ad is shown. Files are mono OGG in `assets/sounds/`, levelled to −1 dB peak, 5–100 KB each
+(`sounds_test` checks the size); per-sound volume is on the `Sfx` enum.
+
+| File | Source | Licence |
+|---|---|---|
+| `correct.ogg` · `wrong.ogg` · `tick.ogg` | Kenney *Interface Sounds* (`confirmation_004`, `error_006`, `tick_002`) | CC0 |
+| `coins.ogg` | Kenney *RPG Audio* (`handleCoins`), compressed | CC0 |
+| `whistle.ogg` | Pixabay "Referee whistle blow, gymnasium" (freesound_community, #6320), trimmed | Pixabay Content License |
+| `cheer.ogg` | Pixabay "Short crowd cheer" (Driken5482, #236776) | Pixabay Content License |
+| `big_cheer.ogg` | Pixabay "Air Horn" (SoundReality, #186076) + "Crazy Soccer Crowd Cheering" (freesound_community, #72194), trimmed and mixed | Pixabay Content License |
+
+Both licences allow commercial use without credit; Pixabay's forbids redistributing a file on its own, so
+only the trimmed clips inside the app are kept, not the originals.
+
 ### Streak protection and streak rewards (after v1.0.9)
 - **Protection** («حماية السلسلة»): bought in the shop for `AppConfig.priceStreakShield` (250) coins, at most
   `maxStreakShields` (1) held. Stored with the streak (`UserStats.streakShields`, in `user_stats_v1`, so it

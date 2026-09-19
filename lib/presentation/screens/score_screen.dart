@@ -18,6 +18,7 @@ import '../providers/quiz_provider.dart';
 import '../providers/record_round.dart';
 import '../providers/settings_provider.dart';
 import '../providers/stats_provider.dart';
+import '../widgets/confetti_burst.dart';
 import '../widgets/hearts_bar.dart';
 import '../widgets/koora_buttons.dart';
 import '../widgets/pitch_background.dart';
@@ -54,6 +55,9 @@ class _ScoreScreenState extends State<ScoreScreen>
   /// حماية السلسلة وعملات أيامها في تحدي اليوم.
   StreakUpdate _streak = StreakUpdate.none;
 
+  /// ثلاث نجوم أو رقم قياسي: الهتاف الكبير والقصاصات.
+  bool _celebrate = false;
+
   @override
   void initState() {
     super.initState();
@@ -88,9 +92,16 @@ class _ScoreScreenState extends State<ScoreScreen>
         _lostHeart = record.lostHeart;
         _levelOutcome = record.level;
         _streak = record.streak;
+        _celebrate = record.newBestScore || record.level?.stars == 3;
       });
-      if (record.level?.passed ?? false) {
-        context.read<SettingsProvider>().feedback.levelPassed();
+      // صوت واحد للنتيجة، الأكبر أولاً — أصوات متراكبة تبدو فوضى لا احتفالاً.
+      final feedback = context.read<SettingsProvider>().feedback;
+      if (_celebrate) {
+        feedback.celebrate();
+      } else if (record.level?.passed ?? false) {
+        feedback.levelPassed();
+      } else if (record.streak.rewardCoins > 0) {
+        feedback.reward();
       }
 
       // إعلان بيني كل ثلاث جولات — **ولا إعلان بعد تحدي اليوم إطلاقاً**،
@@ -224,198 +235,203 @@ class _ScoreScreenState extends State<ScoreScreen>
     final stats = context.watch<StatsProvider>();
 
     return Scaffold(
-      body: PitchBackground(
-        child: SafeArea(
-          child: ListView(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 28),
-            children: [
-              const SizedBox(height: 10),
-              Center(
-                child: Text(
-                  _result.rankLabel,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 22),
-              _ScoreMedal(animation: _scoreAnimation, result: _result),
-              if (_levelOutcome case final outcome?) ...[
-                const SizedBox(height: 20),
-                LevelStarsBanner(
-                  stars: outcome.stars,
-                  passed: outcome.passed,
-                  unlockedNext: outcome.unlockedNextLevel,
-                ),
-              ],
-              const SizedBox(height: 24),
-              Row(
+      body: Stack(
+        children: [
+          PitchBackground(
+            child: SafeArea(
+              child: ListView(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 28),
                 children: [
-                  Expanded(
-                    child: StatTile(
-                      icon: Icons.check_circle_rounded,
-                      value: '${_result.correctCount}/${_result.total}',
-                      label: AppStrings.correctAnswers,
-                      accent: AppColors.correct,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: StatTile(
-                      icon: Icons.percent_rounded,
-                      value: '${_result.accuracyPercent}%',
-                      label: AppStrings.accuracy,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: StatTile(
-                      icon: Icons.whatshot_rounded,
-                      value: '${stats.streak}',
-                      label: AppStrings.streak,
-                    ),
-                  ),
-                ],
-              ),
-              if (_earnedHeart || _lostHeart) ...[
-                const SizedBox(height: 14),
-                Surface(
-                  padding: const EdgeInsets.all(14),
-                  color: Color.alphaBlend(
-                    AppColors.wrong.withValues(alpha: 0.12),
-                    AppColors.cardSurface,
-                  ),
-                  border: Border.all(
-                    color: AppColors.wrong.withValues(alpha: 0.5),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        _earnedHeart
-                            ? Icons.favorite_rounded
-                            : Icons.heart_broken_rounded,
-                        color: AppColors.wrong,
+                  const SizedBox(height: 10),
+                  Center(
+                    child: Text(
+                      _result.rankLabel,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w900,
                       ),
-                      const SizedBox(width: 10),
-                      Text(
-                        _earnedHeart
-                            ? AppStrings.heartEarned
-                            : AppStrings.heartLost,
-                        style: const TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ],
-              if (_result.isDaily && stats.streak > 0) ...[
-                const SizedBox(height: 14),
-                Surface(
-                  padding: const EdgeInsets.all(14),
-                  color: Color.alphaBlend(
-                    AppColors.gold.withValues(alpha: 0.12),
-                    AppColors.cardSurface,
-                  ),
-                  border: Border.all(
-                    color: AppColors.gold.withValues(alpha: 0.5),
-                  ),
-                  child: Row(
+                  const SizedBox(height: 22),
+                  _ScoreMedal(animation: _scoreAnimation, result: _result),
+                  if (_levelOutcome case final outcome?) ...[
+                    const SizedBox(height: 20),
+                    LevelStarsBanner(
+                      stars: outcome.stars,
+                      passed: outcome.passed,
+                      unlockedNext: outcome.unlockedNextLevel,
+                    ),
+                  ],
+                  const SizedBox(height: 24),
+                  Row(
                     children: [
-                      Icon(
-                        Icons.local_fire_department_rounded,
-                        color: AppColors.gold,
+                      Expanded(
+                        child: StatTile(
+                          icon: Icons.check_circle_rounded,
+                          value: '${_result.correctCount}/${_result.total}',
+                          label: AppStrings.correctAnswers,
+                          accent: AppColors.correct,
+                        ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              AppStrings.streakKeptFor(
-                                ArabicCount.format(
-                                  stats.streak,
-                                  ArabicNoun.day,
-                                  object: true,
-                                ),
-                              ),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w700),
-                            ),
-                            if (_streak.shieldUsed) ...[
-                              const SizedBox(height: 4),
-                              Text(AppStrings.streakShieldUsed),
-                            ],
-                            if (_streak.rewardCoins > 0) ...[
-                              const SizedBox(height: 4),
-                              Text(
-                                AppStrings.streakReward(_streak.rewardCoins),
-                                style: TextStyle(
-                                  color: AppColors.gold,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                            ],
-                          ],
+                        child: StatTile(
+                          icon: Icons.percent_rounded,
+                          value: '${_result.accuracyPercent}%',
+                          label: AppStrings.accuracy,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: StatTile(
+                          icon: Icons.whatshot_rounded,
+                          value: '${stats.streak}',
+                          label: AppStrings.streak,
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
-              if (_result.isDaily) const _DailyReminderCard(),
-              const SizedBox(height: 24),
-              // بعد اجتياز مستوى: «المستوى التالي» هو الزر الذهبي — اللاعب في منتصف
-              // تقدّمه، والمشاركة خيار ثانوي. كانت المشاركة الذهبية تسبقه فيتوقف
-              // كثيرون عندها (طلب المالك، 19 سبتمبر 2026).
-              if (_showNextLevelButton) ...[
-                GoldButton(
-                  label: AppStrings.nextLevel,
-                  icon: Icons.skip_next_rounded,
-                  onPressed: _playNextLevel,
-                ),
-                const SizedBox(height: 12),
-                SolidButton(
-                  label: AppStrings.shareScore,
-                  icon: Icons.share_rounded,
-                  onPressed: _share,
-                ),
-              ] else
-                GoldButton(
-                  label: AppStrings.shareScore,
-                  icon: Icons.share_rounded,
-                  onPressed: _share,
-                ),
-              const SizedBox(height: 12),
-              if (_result.isDaily) ...[
-                SolidButton(
-                  label: AppStrings.playLevel,
-                  icon: Icons.sports_soccer_rounded,
-                  onPressed: _playLevel,
-                ),
-                const SizedBox(height: 12),
-              ],
-              if (_showReplayButton) ...[
-                OutlineButton(
-                  label: _result.isLevel
-                      ? AppStrings.replayLevel
-                      : AppStrings.playAgain,
-                  icon: Icons.replay_rounded,
-                  onPressed: _playAgain,
-                ),
-                const SizedBox(height: 12),
-              ],
-              TextButton.icon(
-                onPressed: _goHome,
-                icon: Icon(Icons.home_rounded, color: AppColors.chalkMuted),
-                label: Text(
-                  AppStrings.backHome,
-                  style: TextStyle(color: AppColors.chalkMuted),
-                ),
+                  if (_earnedHeart || _lostHeart) ...[
+                    const SizedBox(height: 14),
+                    Surface(
+                      padding: const EdgeInsets.all(14),
+                      color: Color.alphaBlend(
+                        AppColors.wrong.withValues(alpha: 0.12),
+                        AppColors.cardSurface,
+                      ),
+                      border: Border.all(
+                        color: AppColors.wrong.withValues(alpha: 0.5),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            _earnedHeart
+                                ? Icons.favorite_rounded
+                                : Icons.heart_broken_rounded,
+                            color: AppColors.wrong,
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            _earnedHeart
+                                ? AppStrings.heartEarned
+                                : AppStrings.heartLost,
+                            style: const TextStyle(fontWeight: FontWeight.w700),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                  if (_result.isDaily && stats.streak > 0) ...[
+                    const SizedBox(height: 14),
+                    Surface(
+                      padding: const EdgeInsets.all(14),
+                      color: Color.alphaBlend(
+                        AppColors.gold.withValues(alpha: 0.12),
+                        AppColors.cardSurface,
+                      ),
+                      border: Border.all(
+                        color: AppColors.gold.withValues(alpha: 0.5),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.local_fire_department_rounded,
+                            color: AppColors.gold,
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  AppStrings.streakKeptFor(
+                                    ArabicCount.format(
+                                      stats.streak,
+                                      ArabicNoun.day,
+                                      object: true,
+                                    ),
+                                  ),
+                                  style:
+                                      const TextStyle(fontWeight: FontWeight.w700),
+                                ),
+                                if (_streak.shieldUsed) ...[
+                                  const SizedBox(height: 4),
+                                  Text(AppStrings.streakShieldUsed),
+                                ],
+                                if (_streak.rewardCoins > 0) ...[
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    AppStrings.streakReward(_streak.rewardCoins),
+                                    style: TextStyle(
+                                      color: AppColors.gold,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                                  ),
+                                ],
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                  if (_result.isDaily) const _DailyReminderCard(),
+                  const SizedBox(height: 24),
+                  // بعد اجتياز مستوى: «المستوى التالي» هو الزر الذهبي — اللاعب في منتصف
+                  // تقدّمه، والمشاركة خيار ثانوي. كانت المشاركة الذهبية تسبقه فيتوقف
+                  // كثيرون عندها (طلب المالك، 19 سبتمبر 2026).
+                  if (_showNextLevelButton) ...[
+                    GoldButton(
+                      label: AppStrings.nextLevel,
+                      icon: Icons.skip_next_rounded,
+                      onPressed: _playNextLevel,
+                    ),
+                    const SizedBox(height: 12),
+                    SolidButton(
+                      label: AppStrings.shareScore,
+                      icon: Icons.share_rounded,
+                      onPressed: _share,
+                    ),
+                  ] else
+                    GoldButton(
+                      label: AppStrings.shareScore,
+                      icon: Icons.share_rounded,
+                      onPressed: _share,
+                    ),
+                  const SizedBox(height: 12),
+                  if (_result.isDaily) ...[
+                    SolidButton(
+                      label: AppStrings.playLevel,
+                      icon: Icons.sports_soccer_rounded,
+                      onPressed: _playLevel,
+                    ),
+                    const SizedBox(height: 12),
+                  ],
+                  if (_showReplayButton) ...[
+                    OutlineButton(
+                      label: _result.isLevel
+                          ? AppStrings.replayLevel
+                          : AppStrings.playAgain,
+                      icon: Icons.replay_rounded,
+                      onPressed: _playAgain,
+                    ),
+                    const SizedBox(height: 12),
+                  ],
+                  TextButton.icon(
+                    onPressed: _goHome,
+                    icon: Icon(Icons.home_rounded, color: AppColors.chalkMuted),
+                    label: Text(
+                      AppStrings.backHome,
+                      style: TextStyle(color: AppColors.chalkMuted),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+          if (_celebrate) const Positioned.fill(child: ConfettiBurst()),
+        ],
       ),
     );
   }

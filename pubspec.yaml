@@ -28,6 +28,7 @@ dependencies:
   in_app_update: ^5.0.0
   in_app_purchase: ^3.3.0
   in_app_purchase_android: ^0.5.3
+  audioplayers: 6.8.1
 
 dev_dependencies:
   flutter_test:
@@ -57,3 +58,4 @@ flutter:
     - assets/data/questions/
     - assets/data/en/categories.json
     - assets/data/en/questions/
+    - assets/sounds/

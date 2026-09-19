@@ -76,7 +76,10 @@ class FootballTriviaApp extends StatelessWidget {
           // لا يُنشأ إلا عند أول قراءة (الإعدادات أو شاشة النتيجة أو المتجر)،
           // فيظهر نموذج الموافقة وسط اللعب ولا يكون الإعلان جاهزاً عند أول زر.
           lazy: false,
-          create: (_) => AdsProvider(service: injector.adService)..init(),
+          create: (_) => AdsProvider(
+            service: injector.adService,
+            beforeFullScreenAd: injector.soundEffects.stopAll,
+          )..init(),
         ),
         ChangeNotifierProvider(
           // غير كسول أيضاً: شراء اكتمل والتطبيق مغلق (دفع معلّق أو جهاز آخر)
@@ -94,6 +97,7 @@ class FootballTriviaApp extends StatelessWidget {
           create: (_) => SettingsProvider(
             repository: injector.settingsRepository,
             scheduler: injector.reminderScheduler,
+            sounds: injector.soundEffects,
           )..init(),
         ),
       ],
