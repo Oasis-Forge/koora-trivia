@@ -41,7 +41,8 @@ uploaded by the owner on 19 September 2026 to closed testing (release-checked on
 `v1.0.10+11` (`releases/v1.0.10_build11_2026-09-19/`, PR #69: streak protection for 250 coins, streak rewards at 7, 30
 and 100 days, Skip says it doesn't count) was uploaded by the owner the same day to closed testing (release-checked on
 the emulator first); in Google's review. `v1.0.11+12` (`releases/v1.0.11_build12_2026-09-19/`, PR #72: sounds and
-confetti) is built, release-checked on the emulator (the owner approved the sounds) and archived — not uploaded yet.
+confetti) was uploaded by the owner the same day to closed testing (release-checked on the emulator first; the owner
+approved the sounds).
 
 **Privacy policy:** published from this repo — `docs/privacy_policy.html` is the only copy, and merging a change to it
 publishes https://oasis-forge.github.io/koora-trivia/privacy/ (`.github/workflows/privacy-pages.yml`). The old
@@ -51,8 +52,7 @@ publishes https://oasis-forge.github.io/koora-trivia/privacy/ (`.github/workflow
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
-3. **v1.0.11 (owner):** upload `releases/v1.0.11_build12_2026-09-19/app-release.aab` with the notes in its `NOTES.md`.
-4. **After Google approves v1.0.10 (owner):** check the pre-launch report (crashes, and its screenshots in both languages);
+3. **After Google approves v1.0.11 (owner):** check the pre-launch report (crashes, and its screenshots in both languages);
    on the phone, buy Streak protection (the row then reads «لديك حماية») and re-test the bundle (refund the old test
    order, clear data, buy again) — the owner's first test on v1.0.8 got Remove ads without the 500 coins, fixed in v1.0.9.
 
