@@ -10,6 +10,7 @@ import '../../domain/entities/quiz_result.dart';
 import '../../domain/repositories/review_prompter.dart';
 import '../../domain/usecases/build_share_text.dart';
 import '../../domain/usecases/should_ask_for_review.dart';
+import '../../domain/usecases/update_streak.dart';
 import '../providers/ads_provider.dart';
 import '../providers/economy_provider.dart';
 import '../providers/progress_provider.dart';
@@ -50,6 +51,9 @@ class _ScoreScreenState extends State<ScoreScreen>
   /// مستوى لم يُجتز: ذهب قلب المحاولة الذي خُصم عند بدئها.
   bool _lostHeart = false;
 
+  /// حماية السلسلة وعملات أيامها في تحدي اليوم.
+  StreakUpdate _streak = StreakUpdate.none;
+
   @override
   void initState() {
     super.initState();
@@ -83,6 +87,7 @@ class _ScoreScreenState extends State<ScoreScreen>
         _earnedHeart = record.earnedHeart;
         _lostHeart = record.lostHeart;
         _levelOutcome = record.level;
+        _streak = record.streak;
       });
       if (record.level?.passed ?? false) {
         context.read<SettingsProvider>().feedback.levelPassed();
@@ -323,15 +328,35 @@ class _ScoreScreenState extends State<ScoreScreen>
                       ),
                       const SizedBox(width: 10),
                       Expanded(
-                        child: Text(
-                          AppStrings.streakKeptFor(
-                            ArabicCount.format(
-                              stats.streak,
-                              ArabicNoun.day,
-                              object: true,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppStrings.streakKeptFor(
+                                ArabicCount.format(
+                                  stats.streak,
+                                  ArabicNoun.day,
+                                  object: true,
+                                ),
+                              ),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w700),
                             ),
-                          ),
-                          style: const TextStyle(fontWeight: FontWeight.w700),
+                            if (_streak.shieldUsed) ...[
+                              const SizedBox(height: 4),
+                              Text(AppStrings.streakShieldUsed),
+                            ],
+                            if (_streak.rewardCoins > 0) ...[
+                              const SizedBox(height: 4),
+                              Text(
+                                AppStrings.streakReward(_streak.rewardCoins),
+                                style: TextStyle(
+                                  color: AppColors.gold,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                            ],
+                          ],
                         ),
                       ),
                     ],

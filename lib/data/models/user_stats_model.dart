@@ -1,3 +1,4 @@
+import '../../core/constants/app_config.dart';
 import '../../domain/entities/user_stats.dart';
 
 class UserStatsModel extends UserStats {
@@ -9,6 +10,7 @@ class UserStatsModel extends UserStats {
     super.gamesPlayed,
     super.lastDailyDayKey,
     super.lastPlayedDayKey,
+    super.streakShields,
   });
 
   factory UserStatsModel.fromEntity(UserStats stats) {
@@ -20,6 +22,7 @@ class UserStatsModel extends UserStats {
       gamesPlayed: stats.gamesPlayed,
       lastDailyDayKey: stats.lastDailyDayKey,
       lastPlayedDayKey: stats.lastPlayedDayKey,
+      streakShields: stats.streakShields,
     );
   }
 
@@ -32,6 +35,9 @@ class UserStatsModel extends UserStats {
       gamesPlayed: json['gamesPlayed'] as int? ?? 0,
       lastDailyDayKey: json['lastDailyDayKey'] as String?,
       lastPlayedDayKey: json['lastPlayedDayKey'] as String?,
+      // السقف يُفرض عند القراءة أيضاً: نسخة احتياطية معدّلة لا تحمل عشر حمايات.
+      streakShields: (json['streakShields'] as int? ?? 0)
+          .clamp(0, AppConfig.maxStreakShields),
     );
   }
 
@@ -43,5 +49,6 @@ class UserStatsModel extends UserStats {
         'gamesPlayed': gamesPlayed,
         'lastDailyDayKey': lastDailyDayKey,
         'lastPlayedDayKey': lastPlayedDayKey,
+        'streakShields': streakShields,
       };
 }

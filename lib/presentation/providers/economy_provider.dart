@@ -197,6 +197,9 @@ class EconomyProvider extends ChangeNotifier {
   /// منح عملات مشتراة بالمال. القلوب لا تُباع مباشرة، فتبقى تحت سقفها.
   Future<void> grantPurchasedCoins(int amount) => _addCoins(amount);
 
+  /// عملات بلوغ السلسلة 7 أو 30 أو 100 يوم أول مرة.
+  Future<void> grantStreakReward(int amount) => _addCoins(amount);
+
   /// استهلاك مساعدة — المجانية أولاً ثم المشتراة.
   Future<bool> consumeHint() async {
     _refresh(persist: false);
@@ -287,6 +290,16 @@ class EconomyProvider extends ChangeNotifier {
   bool get canBuyHeartsRefill =>
       _economy.coins >= AppConfig.priceHeartsRefill && !isFull;
   bool get canBuyHintsPack => _economy.coins >= AppConfig.priceHintsPack;
+
+  /// خصم عملات لشيء يُحفظ خارج الاقتصاد (حماية السلسلة). يعيد `false` إن لم
+  /// يكفِ الرصيد، دون خصم شيء.
+  Future<bool> spendCoins(int amount) async {
+    if (amount <= 0 || _economy.coins < amount) return false;
+    _economy = _economy.copyWith(coins: _economy.coins - amount);
+    notifyListeners();
+    await _repository.save(_economy);
+    return true;
+  }
 
   /// ملء القلوب حتى الحد الأقصى مقابل عملات.
   ///

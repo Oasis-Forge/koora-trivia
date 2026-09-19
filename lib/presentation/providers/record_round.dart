@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../../core/utils/day_key.dart';
 import '../../domain/entities/quiz_result.dart';
 import '../../domain/usecases/evaluate_level.dart';
+import '../../domain/usecases/update_streak.dart';
 import 'economy_provider.dart';
 import 'progress_provider.dart';
 import 'stats_provider.dart';
@@ -13,6 +14,7 @@ class RoundRecord {
     this.earnedHeart = false,
     this.lostHeart = false,
     this.level,
+    this.streak = StreakUpdate.none,
   });
 
   /// أُضيف قلب تحدي اليوم فعلاً.
@@ -23,6 +25,9 @@ class RoundRecord {
 
   /// نتيجة المستوى، أو `null` خارج المستويات أو إن تعثّر حفظ النجوم.
   final LevelOutcome? level;
+
+  /// حماية سلسلة استُعملت وعملات أيام السلسلة — في تحدي اليوم فقط.
+  final StreakUpdate streak;
 }
 
 /// يحفظ نهاية الجولة كلها في مكان واحد: الإحصائيات والسلسلة، قلب تحدي اليوم
@@ -49,10 +54,19 @@ class RecordRound {
   final EvaluateLevel _evaluate;
 
   Future<RoundRecord> call(QuizResult result) async {
-    await _step('stats', () => _stats.recordResult(result));
+    var streak = StreakUpdate.none;
+    await _step('stats', () async {
+      streak = await _stats.recordResult(result);
+    });
 
     var earnedHeart = false;
     if (result.isDaily) {
+      if (streak.rewardCoins > 0) {
+        await _step(
+          'streak reward',
+          () => _economy.grantStreakReward(streak.rewardCoins),
+        );
+      }
       // قلب واحد لكل يوم تحدٍّ، ويوم التحدي يوم بدئه كما في السلسلة.
       await _step('daily heart', () async {
         earnedHeart = await _economy.grantDailyChallengeHeart(
@@ -62,7 +76,9 @@ class RecordRound {
       await _step('daily task', _economy.recordDailyCompleted);
     }
 
-    if (!result.isLevel) return RoundRecord(earnedHeart: earnedHeart);
+    if (!result.isLevel) {
+      return RoundRecord(earnedHeart: earnedHeart, streak: streak);
+    }
 
     // قلب المحاولة خُصم عند بدئها ويعود عند الاجتياز — قبل حفظ النجوم، فلا يضيع
     // على من اجتاز إن تعثّر حفظها.

@@ -215,7 +215,7 @@ class AppText {
   String get hintGranted => '+1 مساعدة';
   String get hintFiftyFiftyUsed => 'حذفت إجابتين من هذا السؤال بالفعل';
   String get hintExtraTimeUsed => 'الوقت الإضافي مرة واحدة لكل سؤال';
-  String get skippedAnswer => 'تخطّيت هذا السؤال';
+  String get skippedAnswer => 'تخطّيت هذا السؤال — لا يُحتسب إجابة صحيحة';
 
   /// تحت السؤال بعد كشف الإجابة.
   String correctAnswerIs(String answer) => 'الإجابة الصحيحة: $answer';
@@ -238,6 +238,11 @@ class AppText {
   String get hintsPack => 'حزمة مساعدات';
   String get notEnoughCoins => 'عملاتك لا تكفي';
   String get heartsAlreadyFull => 'قلوبك ممتلئة';
+  String get streakShield => 'حماية السلسلة';
+  String get streakShieldHint => 'تحفظ سلسلتك إن فاتك يوم واحد';
+  String get streakShieldHeld => 'لديك حماية';
+  String get streakShieldUsed => 'فاتك يوم، فحفظت الحماية سلسلتك 🛡️';
+  String streakReward(int coins) => 'مكافأة السلسلة: +$coins 🪙';
   String get purchased => 'تم الشراء';
   String get comingSoon => 'قريباً';
   String get watchAdForCoins => 'شاهد إعلاناً واكسب عملات';

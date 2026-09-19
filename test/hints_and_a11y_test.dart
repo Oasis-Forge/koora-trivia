@@ -12,6 +12,7 @@ import 'package:football_trivia/presentation/providers/ads_provider.dart';
 import 'package:football_trivia/presentation/providers/economy_provider.dart';
 import 'package:football_trivia/presentation/providers/purchases_provider.dart';
 import 'package:football_trivia/presentation/providers/quiz_provider.dart';
+import 'package:football_trivia/presentation/providers/stats_provider.dart';
 import 'package:football_trivia/presentation/screens/shop_screen.dart';
 import 'package:football_trivia/presentation/widgets/hearts_bar.dart';
 import 'package:football_trivia/presentation/widgets/hint_bar.dart';
@@ -174,6 +175,9 @@ void main() {
         providers: [
           ChangeNotifierProvider.value(value: economy),
           ChangeNotifierProvider(
+            create: (_) => StatsProvider(repository: FakeStatsRepository()),
+          ),
+          ChangeNotifierProvider(
             create: (_) => AdsProvider(service: FakeAdService(ready: false)),
           ),
           ChangeNotifierProvider(
@@ -191,8 +195,9 @@ void main() {
 
     expect(find.text(AppStrings.heartsAlreadyFull, skipOffstage: false),
         findsOneWidget);
+    // حزمة المساعدات وحماية السلسلة.
     expect(find.text(AppStrings.notEnoughCoins, skipOffstage: false),
-        findsOneWidget);
+        findsNWidgets(2));
   });
 
   test('لكل IconButton تلميح يقرؤه قارئ الشاشة', () {

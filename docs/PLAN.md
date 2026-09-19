@@ -45,6 +45,7 @@
 - 16 September 2026, question bank in both languages: 40 questions that repeated a fact from another question replaced (the overlap rules pick the copy kept) · no explanation gives away a later answer in its level · no time-relative wording, and counts and records that can change within a few years anchored to «حتى نهاية موسم 2025-2026» / "By the end of the 2025-26 season" or «بعد كأس العالم 2026» / "After the 2026 World Cup" (owner's decision) · more than a dozen wrong facts found on the way corrected (e.g. 4080, 9030, 10023) · `question_content_test` guards all three.
 - 16 September 2026, answer giveaways: in 75 questions the correct option no longer stands out by length or by alone repeating a word from the question (26 of them in laws), in both languages · 10026 is anchored · 2091's options are all name pairs · wrong options that were also true were replaced (e.g. 9055, 9063, 10077) · 8086 and 9068 reworded for accuracy · `question_content_test` guards length and repeated words.
 - 18 September 2026: v1.0.8+9 (PRs #55–#58) built, release-checked on the emulator — full-width banner on home, quiz and Settings, an interstitial after the third round, the shop on «قريباً» until the products exist, «Version 1.0.8 (9)», feedback opening the email app to the new address — and archived. Uploaded by the owner to closed testing the same day; in Google's review. The in-app products get created after approval.
+- 19 September 2026 (owner's decisions): streak protection — bought in the shop for 250 coins, at most one held; it covers one missed day and is used when the player finishes the next daily (the result screen says so), the missed day adding nothing · one-time coins when the best streak first reaches 7, 30 and 100 days (50 · 150 · 400) · Skip keeps counting as not correct, and the quiz now says so after a skip. For the next version.
 - 19 September 2026 (owner): v1.0.9+10 uploaded to closed testing, in Google's review. Next: re-test the bundle on it (refund the old test order, clear data, buy again).
 - 19 September 2026, v1.0.9 (one PR, owner's request): the shop asks Play again on return to the app and on opening the shop until all products load, and logs why they didn't (feedback emails carry it) · "Next level" is the gold button after a pass, Share below it · the coin badge opens the shop from every screen, with a "+" · quick play remembers its last 150 questions and skips them, and prefers the player's unlocked levels (new players get level 1) · out of hints in a level, a rewarded ad gives one (timer paused during the ad, no daily cap). Built with the purchase-delivery fix and the app's new privacy link; release-checked on the emulator (coin badge with "+" opens the shop, «إزالة الإعلانات» link above the banner, the three products with prices, out of hints the «+1» button plays a test ad and grants the hint with the question resumed) and archived in `releases/v1.0.9_build10_2026-09-19/`. Not uploaded yet.
 - 19 September 2026: purchase delivery fix — the owner's test bundle removed ads but gave no 500 coins. The billing plugin labels every purchase read back from Play as "restored", including ones whose live event the app missed, and the app treated "restored" as already delivered (a coin pack in that state gave nothing and could never be bought again). Now an unacknowledged purchase is always delivered in full, and restored coin packs are consumed. Reproduced in `play_billing_service_test` first. Ships in the next release.
@@ -111,7 +112,6 @@
   - Release builds fail when key.properties is missing.
 
 ### Features
-- **P1 · M**: Streak protection bought with coins, plus rewards at 7, 30 and 100 days. Price per decision *(update_streak.dart, user_stats.dart)*.
 - **P1 · L**: World Cup 2026 pack: about 100 lasting, person-checked questions, released while interest is high. Placement per decision.
 - **P2 · M**: More rewarded-ad offers, per decision: replaying a failed level without losing a heart if decision ① changes (the hint for an ad shipped in v1.0.9).
 
@@ -147,13 +147,11 @@
    - **Recommend:** if your name must stay private, apply for D-U-N-S now.
 3. **Skip hint scoring.**
    - Options: counts as a miss (and say so in the app) · left out of the level total · replaced by another question.
-   - **Recommend:** leave it out of the total, as the code's own comment intends, but no 3 stars on a level with a skip.
+   - **Decided 19 September 2026:** it stays a miss, and the quiz says so after a skip. Leaving it out of the total would let a player skip most of a level and still pass, since v1.0.9 gives unlimited hints for ads (4 correct + 6 skips = 4/4).
 4. **Telemetry.** The local error log and feedback email shipped (PR #8). Still open: Crashlytics and about 8 analytics events in the first update (needs Data safety and privacy policy updates).
 5. **Timer while the app is in the background** — done in v1.0.5 (B1): the quiz pauses and hides the question.
 6. **Shop and monetization** — **decided 17 September 2026:** banners and interstitials now, then Play Billing for Remove ads and coins (not hearts: hearts never pass 5) — shipped in v1.0.8.
-7. **Streak protection.**
-   - Options: none · protection bought with coins.
-   - **Recommend:** at least 200 coins, so a full day of tasks (130 coins) can't buy it, and hold at most one.
+7. **Streak protection** — **decided 19 September 2026:** 250 coins, at most one held; streak rewards 50 · 150 · 400 coins at 7 · 30 · 100 days. Built.
 8. **World Cup 2026 pack.**
    - Options: a new category · add to world_cup and arab_football (every category needs exactly 100 questions).
    - **Recommend:** a new category, allowing Arab-team 2026 questions in it as a recorded exception to overlap rule 1 (Arab content normally goes to arab_football).

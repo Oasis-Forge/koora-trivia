@@ -221,6 +221,21 @@ new player gets level 1 and quick play doesn't spoil levels not reached yet; not
 a repeat is worse than a harder question. Only quick play records and avoids — levels and the daily keep
 their own fixed questions.
 
+### Streak protection and streak rewards (after v1.0.9)
+- **Protection** («حماية السلسلة»): bought in the shop for `AppConfig.priceStreakShield` (250) coins, at most
+  `maxStreakShields` (1) held. Stored with the streak (`UserStats.streakShields`, in `user_stats_v1`, so it
+  travels in backups; the count is clamped on read). `BuyStreakShield` takes the coins first, then adds it.
+- **When it's used:** inside `UpdateStreak`, when the next daily is finished after exactly one missed day
+  (a two-day gap) with a streak alive — the streak goes up by one, the missed day adds nothing. Two missed
+  days break the streak and the protection stays with the player. Until then `visibleStreak` keeps showing
+  the streak, so home and the reminder don't show 0 on the day after the missed one. The result screen
+  says «فاتك يوم، فحفظت الحماية سلسلتك 🛡️».
+- **Rewards:** `AppConfig.streakMilestoneCoins` — 50 · 150 · 400 coins when the **best** streak first reaches
+  7 · 30 · 100 days, so each is paid once ever. `StatsProvider.recordResult` returns them in a
+  `StreakUpdate`; `RecordRound` grants the coins and the result screen shows «مكافأة السلسلة: +50 🪙».
+- **Skip** stays a miss in the level score (owner, 19 September 2026) and the quiz says so after a skip:
+  leaving it out of the total would let unlimited ad hints buy a pass.
+
 ### Coins and tasks — how they work
 
 Coins are an intermediate currency: actions grant coins, and coins buy hearts or hints. That lets
