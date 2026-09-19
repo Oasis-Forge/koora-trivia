@@ -50,7 +50,9 @@ publishes https://oasis-forge.github.io/koora-trivia/privacy/ (`.github/workflow
 
 ### Next steps, in order
 The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth for what's open.
-1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
+1. **Testers (critical path):** 12 opted in — Play Console ticked it by 19 September 2026. The 14 consecutive days run
+   to about **3 October 2026** (earlier if the 12th joined before the 19th); keep them opted in and playing, then apply
+   for production.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
 3. **After Google approves v1.0.11 (owner):** check the pre-launch report (crashes, and its screenshots in both languages);
    on the phone, buy Streak protection (the row then reads «لديك حماية») and re-test the bundle (refund the old test
