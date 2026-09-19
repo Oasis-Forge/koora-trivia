@@ -136,7 +136,8 @@ mentions no fixed counts):
 | `1.0.6+7` | PRs #31–#42: redesign · English · in-app updates (uploaded 14 September 2026) |
 | `1.0.7+8` | PRs #51–#52: daily challenge mix and no-repeat cycle · task count · question bank clean-up (uploaded 16 September 2026) |
 | `1.0.8+9` | PRs #55–#58: banner and interstitial ads · Play Billing shop (200 coins, Remove ads, Remove ads + 500 coins) · full-width banner and «إزالة الإعلانات» link · support email `oasisforge.support@gmail.com` (uploaded 18 September 2026 to closed testing) |
-| `1.0.9+10` | PRs #66–#67: purchase delivery fix · shop retries products and logs why · Next level main button · coin badge opens the shop · quick play skips recent questions and prefers unlocked levels · hint for a rewarded ad · new privacy link ← **latest** (uploaded 19 September 2026) |
+| `1.0.9+10` | PRs #66–#67: purchase delivery fix · shop retries products and logs why · Next level main button · coin badge opens the shop · quick play skips recent questions and prefers unlocked levels · hint for a rewarded ad · new privacy link (uploaded 19 September 2026) |
+| `1.0.10+11` | PR #69: streak protection for 250 coins · streak rewards at 7, 30 and 100 days · Skip says it doesn't count as correct ← **latest** (archived 19 September 2026, not uploaded yet) |
 
 > ⚠️ In `releases/v1.0.1_build2_*` the `.apk` is **versionCode 1** (built two minutes before
 > the version bump) while the `.aab` is correct. Verified with `aapt2 dump badging`; the
