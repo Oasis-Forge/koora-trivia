@@ -36,8 +36,8 @@ check before it, owner's call). `v1.0.8+9` (`releases/v1.0.8_build9_2026-09-18/`
 ads, Play Billing shop, full-width banner and «إزالة الإعلانات» link, support email) was uploaded by the owner on
 18 September 2026 to closed testing (release-checked on the emulator first); the owner's phone has it. `v1.0.9+10`
 (`releases/v1.0.9_build10_2026-09-19/`, PRs #66–#67: purchase delivery fix, shop retry and billing diagnostics, Next
-level button, coin badge to the shop, quick play memory, hint for a rewarded ad, new privacy link) is built,
-release-checked on the emulator and archived — not uploaded yet.
+level button, coin badge to the shop, quick play memory, hint for a rewarded ad, new privacy link) was
+uploaded by the owner on 19 September 2026 to closed testing (release-checked on the emulator first); in Google's review.
 
 **Privacy policy:** published from this repo — `docs/privacy_policy.html` is the only copy, and merging a change to it
 publishes https://oasis-forge.github.io/koora-trivia/privacy/ (`.github/workflows/privacy-pages.yml`). The old
@@ -48,9 +48,8 @@ The prioritised plan is **[docs/PLAN.md](docs/PLAN.md)** — the source of truth
 1. **Testers (critical path):** 5 of 12 opted in; production needs 12 opted in for 14 consecutive days.
 2. **Content:** section A of v1.0.5 is done. Still open: a person reviewing levels 7–10 (PLAN.md).
 3. **After Google approves v1.0.7 (owner):** check the pre-launch report (crashes, and its screenshots in both languages).
-4. **v1.0.9 (owner):** review the PR, upload `releases/v1.0.9_build10_2026-09-19/app-release.aab` with the notes in its
-   `NOTES.md`, then re-test the bundle (refund the old test order, clear data, buy again) — the owner's first test on
-   v1.0.8 got Remove ads without the 500 coins, fixed in v1.0.9.
+4. **v1.0.9 (owner), once Google approves it:** re-test the bundle (refund the old test order, clear data, buy again) —
+   the owner's first test on v1.0.8 got Remove ads without the 500 coins, fixed in v1.0.9.
 
 ### Decisions waiting on the owner
 - **② Name and address on the store page** (personal account) vs. an organization account. Undecided.
