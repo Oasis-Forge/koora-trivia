@@ -142,6 +142,9 @@ imports Flutter or third-party packages**) · `lib/data` (models · datasources 
   unacknowledged purchase is new, whatever its status** (the plugin calls everything a restore returns
   "restored") · coin packs from a restore are consumed by the app · the bundle's coins come once ·
   money buys coins, never hearts — hearts never go above 5.
+- **Streak protection** (250 coins, one held) lives in `UserStats` and is used inside `UpdateStreak` when the next
+  daily is finished after one missed day; streak rewards are paid on the **best** streak, once each. Skip stays a
+  miss in the level score (owner) — with unlimited ad hints, leaving it out would buy passes.
 - **Reminders:** one-shot per day (ids 1001–1007); the manifest receivers are required;
   `MY_PACKAGE_REPLACED` stays undeclared; never mix one-shot and repeating reminders.
 - **Economy balance:** full daily income (130 🪙) stays below the cheapest purchase (200 🪙).

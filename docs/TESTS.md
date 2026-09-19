@@ -2,7 +2,7 @@
 
 > Moved from CLAUDE.md on 14 September 2026. Update the count and the table when tests are added.
 
-**502 tests across 58 files, all passing.** `flutter analyze` is clean. Shared test code lives in
+**516 tests across 59 files, all passing.** `flutter analyze` is clean. Shared test code lives in
 `test/fakes/`: `fake_ad_service.dart` (add any new `AdService` member there), `fake_repositories.dart`
 (in-memory repositories, a scheduler and `fakeQuestions`), and `score_screen_harness.dart`
 (`pumpScoreScreen` plays a full level, quick-play or daily round and shows the result screen).
@@ -50,6 +50,7 @@
 | `daily_result_test.dart` | 5 | **Widget test** — daily result: «كسبت قلباً!» only when a heart was added, not with full hearts · the «ذكّرني» card turns the reminder on and confirms the time · «العب مستوى» opens the categories · neither appears after quick play |
 | `hints_and_a11y_test.dart` | 9 | **Widget test** — every hint has its name under the icon · out of hints with an ad ready, the «+1» button plays it, grants one hint only when earned, and resumes the timer · no ad button while hints remain · a used Extra time is disabled and tapping it explains why · with no hints left, tapping explains and applies nothing · disabled shop buttons show their reason · hearts, timer and stars carry screen-reader labels · every `IconButton` in `lib` has a tooltip |
 | `design_widgets_test.dart` | 7 | **Widget test** — the shared design pieces: button heights (56/56/52) and the icon left of the label in Arabic · a gold button taps when enabled and dims when disabled · a status pill is 48 tall and shows its value and the next-heart time · a surface card shows its content and takes taps · rows are separated by dividers and the section heading is gold · the progress bar fills by value at 6 px · the pitch background draws content above it with the ball watermark |
+| `streak_shield_test.dart` | 14 | Streak protection covers exactly one missed day and is used then, two missed days break the streak and keep it, the streak stays visible the day after the missed one · rewards at 7 days, once ever · buying takes 250 coins, one held at most, a backup can't carry more · `RecordRound` grants the reward once · **widget tests**: the shop row buys it then says «لديك حماية», the result screen shows the protection and the reward |
 | `record_round_test.dart` | 4 | `RecordRound` — a passed level refunds the attempt's heart and saves stars, the level task and stats · a failed level keeps the heart and saves no stars or task · a daily grants its heart and streak once however often it's saved · a failing step is reported to the error log and the other steps still save |
 | `choose_update_mode_test.dart` | 6 | No update → nothing · a normal release is flexible · priority ≥ `forceUpdatePriority` forces, one below doesn't · urgent but immediate not allowed → flexible · an unfinished immediate update resumes · flexible isn't re-offered within the wait, immediate doesn't wait |
 | `check_for_update_test.dart` | 5 | `CheckForUpdate` with a fake updater — no update opens nothing · a normal update opens the flexible flow once, not again within the wait · a declined flexible update isn't re-asked · an urgent one opens the immediate flow every time · a downloaded update reports restart without a new dialog |

@@ -304,7 +304,8 @@ class EnglishText implements AppText {
   @override
   String get hintExtraTimeUsed => 'Extra time is once per question';
   @override
-  String get skippedAnswer => 'You skipped this question';
+  String get skippedAnswer =>
+      "You skipped this question — it doesn't count as correct";
 
   @override
   String correctAnswerIs(String answer) => 'Correct answer: $answer';
@@ -341,6 +342,17 @@ class EnglishText implements AppText {
   String get notEnoughCoins => 'Not enough coins';
   @override
   String get heartsAlreadyFull => 'Your hearts are already full';
+  @override
+  String get streakShield => 'Streak protection';
+  @override
+  String get streakShieldHint => 'Saves your streak if you miss one day';
+  @override
+  String get streakShieldHeld => 'You have one';
+  @override
+  String get streakShieldUsed =>
+      'You missed a day — your protection saved your streak 🛡️';
+  @override
+  String streakReward(int coins) => 'Streak reward: +$coins 🪙';
   @override
   String get purchased => 'Purchased';
   @override

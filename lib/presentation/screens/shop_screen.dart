@@ -7,7 +7,9 @@ import '../../core/theme/app_colors.dart';
 import '../../core/utils/arabic_count.dart';
 import '../../domain/entities/store_product.dart';
 import '../providers/economy_provider.dart';
+import '../providers/buy_streak_shield.dart';
 import '../providers/purchases_provider.dart';
+import '../providers/stats_provider.dart';
 import '../widgets/banner_slot.dart';
 import '../widgets/coin_badge.dart';
 import '../widgets/hearts_bar.dart';
@@ -42,6 +44,7 @@ class _ShopScreenState extends State<ShopScreen> {
   Widget build(BuildContext context) {
     final economy = context.watch<EconomyProvider>();
     final purchases = context.watch<PurchasesProvider>();
+    final stats = context.watch<StatsProvider>();
 
     return Scaffold(
       // الشريط الإعلاني أسفل المحتوى دائماً، لا داخل التمرير.
@@ -83,6 +86,23 @@ class _ShopScreenState extends State<ShopScreen> {
                 enabled: economy.canBuyHintsPack,
                 disabledReason: AppStrings.notEnoughCoins,
                 onBuy: () => context.read<EconomyProvider>().buyHintsPack(),
+              ),
+              const SizedBox(height: 12),
+              _Item(
+                icon: Icons.shield_rounded,
+                iconColor: AppColors.gold,
+                label: AppStrings.streakShield,
+                sublabel: AppStrings.streakShieldHint,
+                price: AppConfig.priceStreakShield,
+                enabled: stats.canHoldShield &&
+                    economy.coins >= AppConfig.priceStreakShield,
+                disabledReason: stats.canHoldShield
+                    ? AppStrings.notEnoughCoins
+                    : AppStrings.streakShieldHeld,
+                onBuy: () => BuyStreakShield(
+                  stats: context.read<StatsProvider>(),
+                  economy: context.read<EconomyProvider>(),
+                )(),
               ),
               const SizedBox(height: 16),
               Divider(

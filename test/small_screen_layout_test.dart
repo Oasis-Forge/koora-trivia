@@ -291,6 +291,9 @@ void _screens() {
             providers: [
               ChangeNotifierProvider.value(value: economy),
               ChangeNotifierProvider(
+                create: (_) => StatsProvider(repository: FakeStatsRepository()),
+              ),
+              ChangeNotifierProvider(
                 create: (_) => AdsProvider(service: FakeAdService()),
               ),
               ChangeNotifierProvider(
